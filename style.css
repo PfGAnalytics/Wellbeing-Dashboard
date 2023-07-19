@@ -142,3 +142,8 @@ h1 {
 .line_filter_selected {
     background-color: #142062;
 }
+
+.leaflet-tile-pane {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }

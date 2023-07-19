@@ -13,6 +13,9 @@
 
     <script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script>
 
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
     <script src = "script.js"></script>
 
     <link rel ="stylesheet" href ="style.css">
@@ -272,11 +275,23 @@
             </div>
 
         </div>
+        
+        <div id = "maps-screen">
+            
+            <div id = "map" style = "width:1000px; height:900px;"></div>
+        </div>
 
         </div>
     </div>
 
     <script>
+
+        var map = L.map('map').setView([54.6, -6.8], 9);
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
         var home_btn = document.getElementById("home-button");
         var overall_btn = document.getElementById("overall-button");
@@ -291,6 +306,7 @@
         var overall_scrn = document.getElementById("overall-screen");
         var domain_scrn = document.getElementById("domains-screen");
         var indicators_scrn = document.getElementById("indicators-screen");
+        var maps_scrn = document.getElementById("maps-screen");
 
         var hex = document.getElementsByClassName("hex");
 
@@ -338,6 +354,7 @@
          overall_scrn.style.display = "none";
          domain_scrn.style.display = "none";
          indicators_scrn.style.display = "none";
+         maps_scrn.style.display = "none";
         }
 
         overall_btn.onclick = function () {
@@ -354,6 +371,7 @@
          overall_scrn.style.display = "block";
          domain_scrn.style.display = "none";
          indicators_scrn.style.display = "none";
+         maps_scrn.style.display = "none";
         }
 
         domains_btn.onclick = function () {
@@ -370,6 +388,7 @@
          overall_scrn.style.display = "none";
          domain_scrn.style.display = "block";
          indicators_scrn.style.display = "none";
+         maps_scrn.style.display = "none";
         }
 
         indicators_btn.onclick = function () {
@@ -379,6 +398,7 @@
          indicators_btn.classList.add("selected-item");
          maps_btn.classList.remove("selected-item");
          more_btn.classList.remove("selected-item");
+         
 
          ni_icon.style.filter = "";
 
@@ -386,6 +406,7 @@
          overall_scrn.style.display = "none";
          domain_scrn.style.display = "none";
          indicators_scrn.style.display = "block";
+         maps_scrn.style.display = "none";
         }
 
         maps_btn.onclick = function () {
@@ -402,6 +423,7 @@
          overall_scrn.style.display = "none";
          domain_scrn.style.display = "none";
          indicators_scrn.style.display = "none";
+         maps_scrn.style.display = "block";
         }
 
         more_btn.onclick = function () {
@@ -418,6 +440,7 @@
          overall_scrn.style.display = "none";
          domain_scrn.style.display = "none";
          indicators_scrn.style.display = "none";
+         maps_scrn.style.display = "none";
         }        
 
         self_eff_ni_btn.onclick = function() {

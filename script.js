@@ -126,7 +126,6 @@ function createTable(widget, title, matrix) {
 createTable("self_eff","PfG Indicator - Self-efficacy", "PFGIND02T03")
 createTable("lonely", "PfG Indicator - Loneliness", "PFGIND0301")
 
-
 var breakdowns = {
     "NI": {
         "var": "LGD2014",
@@ -406,40 +405,42 @@ createLineChart(id = "self_eff_line",
                 title = "PfG Indicator - Self-efficacy",
                 indicator = "PFGINDSELFEFF", 
                 breakdown = "NI",
-                matrix = "PFGIND02T02")
-
-createLineChart(id = "self_eff_line_lgd",
-                title = "PfG Indicator - Self-efficacy by Local Government District",
-                indicator = "PFGINDSELFEFF", 
-                breakdown = "LGD2014",
-                matrix = "PFGIND02T02")
+                matrix = "PFGIND02T02");
 
 // createLineChart(id = "self_eff_line_lgd",
-//                 title = "PfG Indicator - Employment Rate by Local Government District",
-//                 indicator = "PFGINDEMPRATE", 
+//                 title = "PfG Indicator - Self-efficacy by Local Government District",
+//                 indicator = "PFGINDSELFEFF", 
 //                 breakdown = "LGD2014",
-//                 matrix = "PFGIND04T02")
+//                 matrix = "PFGIND02T02");
+
+createLineChart(id = "self_eff_line_lgd",
+                title = "PfG Indicator - Employment Rate by Local Government District",
+                indicator = "PFGINDEMPRATE", 
+                breakdown = "LGD2014",
+                matrix = "PFGIND04T02");
 
 createLineChart(id = "self_eff_line_dep",
                 title = "PfG Indicator - Self-efficacy by Deprivation Group",
                 indicator = "PFGINDSELFEFF", 
                 breakdown = "DEP",
-                matrix = "PFGIND02T03")
+                matrix = "PFGIND02T03");
 
 createLineChart(id = "self_eff_line_gender",
                 title = "PfG Indicator - Self-efficacy by Gender",
                 indicator = "PFGINDSELFEFF", 
                 breakdown = "Gender",
-                matrix = "PFGIND02T01")
+                matrix = "PFGIND02T01");
 
 createLineChart(id = "self_eff_line_age",
                 title = "PfG Indicator - Self-efficacy by Age Group",
                 indicator = "PFGINDSELFEFF", 
                 breakdown = "Age",
-                matrix = "PFGIND02T01")
+                matrix = "PFGIND02T01");
 
 createLineChart(id = "self_eff_line_mar",
                 title = "PfG Indicator - Self-efficacy by Marital Status",
                 indicator = "PFGINDSELFEFF", 
                 breakdown = "Marital",
-                matrix = "PFGIND02T01")
+                matrix = "PFGIND02T01");
+
+
