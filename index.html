@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>PfG Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/FezVrasta/popper.js@v1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script>
+
+    <script src = "script.js"></script>
+
+    <link rel ="stylesheet" href ="style.css">
+
+</head>
+<body>
+    
+    <div class = "row" style = "margin: 0px;">
+        <div id = "sidebar" class = "col-12 col-sm-2 col-md-2 col-lg-2 col-xl-2" style = "background-color: #157c70; height: 100vh; padding: 0px;">
+            <img src = "img/Northern_Ireland_Executive_logo.svg" style = "margin-top: 1vh; margin-bottom: 20px; width:90%; margin-left: 5%; filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(322deg) brightness(103%) contrast(101%);">
+            <div id = "home-button" class = "sidebar-item selected-item"><i class = "fa fa-home"></i> Home</div>
+            <div id = "overall-button" class = "sidebar-item"><i class = "fa fa-th-large"></i> Overall</div>
+            <div id = "domains-button" class = "sidebar-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span> Domains</div>
+            <div id = "indicators-button" class = "sidebar-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span> Indicators</div>
+            <div id = "maps-button" class = "sidebar-item"><img id = "ni-icon" src = "img/noun-northern-ireland-1019239.svg" style = "width: 20px;"> Maps</div>
+            <div id = "more-button" class = "sidebar-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span></i> More</div>
+            <div id = "help-button" class = "sidebar-item" style = "vertical-align: bottom;"><i class = "fa fa-question"></i> Help</div>
+        </div>
+
+        <div class = "col" style = "background-color: #fafafa; height: 100vh">
+            <div class = "row">
+                <div style = "width: 60%; padding-left: 2vw; padding-top: 2vh;">
+                    <h1><span style = "color: #157c70;">SEEDS of Wellbeing</span><br>in Northern Ireland</h1>
+                </div>
+                <div style = "padding-top: 5vh;">
+                    <button style = "padding: 0px;">
+                        <i class = "fa fa-search"></i>
+                    </button>
+                    <input type = "text" placeholder = "Search here   " style = "padding: 0px; border-radius: 10px; text-align: right;">
+                </div>
+            </div>
+            <div id = "home-screen" style = "height: 90vh; padding: 0px; display: block; margin-left: 11%;">            
+                <h2>Social, Economic & Environmental Domains</h2>
+                <div class = "row" style = "display: flex; margin: 0px;">
+                    <div style = "width: 25%;">
+                        <div style = "height: 50vh; background-color :#157c70; border-radius: 25px;">
+                            <img src = "img/leaf.svg" style = "width: 100%; height: 90%; padding-top: 10%;">
+                        </div>
+                        <div class = "home-label">Seeds of Wellbeing in Northern Ireland</div>
+                    </div>
+                    <div style = "width: 25%; margin-left: 1%;">
+                        <div style = "height: 50vh; background-color :#157c70; border-radius: 25px;">
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">1</div>
+                                <div class = "text-point">Happier Children<i class="fa fa-child icon-point"></i></div>
+                            </div>
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">2</div>
+                                <div class = "text-point">Cleaner Environment<i class="fa fa-recycle icon-point"></i></div>
+                            </div>
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">3</div>
+                                <div class = "text-point">Equal Society<i class="fa fa-balance-scale icon-point"></i></div>
+                            </div>
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">4</div>
+                                <div class = "text-point">Healthier Lives<i class="fa fa-running icon-point"></i></div>
+                            </div>
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">5</div>
+                                <div class = "text-point">Brighter Futures<i class="far fa-lightbulb icon-point"></i></div>
+                            </div>
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">6</div>
+                                <div class = "text-point">Better Economy<i class="far fa-thumbs-up icon-point"></i></div>
+                            </div>
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">7</div>
+                                <div class = "text-point">Safer Communities<i class="fas fa-people-arrows icon-point"></i></div>
+                            </div>
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">8</div>
+                                <div class = "text-point">Caring Society<i class="fas fa-heart icon-point"></i></div>
+                            </div>
+                            <div class = "row" style = "display: flex; padding-top: 15px;">
+                                <div class = "numbered-point">9</div>
+                                <div class = "text-point">Better Homes<i class="fas fa-house icon-point"></i></div>
+                            </div>
+                        </div>
+                        <div class = "home-label">Domains</div>
+                    </div>
+                    <div style = "width: 25%; margin-left: 1%;">
+                        <div style = "height: 50vh; background-color :#157c70; border-radius: 25px;">
+                            <div style = "text-align: center; color: white; font-weight: bold; height: 20%; padding-top: 40%; margin-bottom: 10%;">Wellbeing Domains measured by 48 Population indicators</div>
+                            <img src="img/population indicators.svg" style = "width:60%; margin-left: 20%; height: 30%; margin-top: 10%;">
+                        </div>
+                        <div class = "home-label" >Indicators</div>
+                        <img src = "img/Northern_Ireland_Executive_logo.svg" style = "margin-top: 1vh; margin-bottom: 20px; width:80%; margin-left: 10%;">
+                    </div>
+                </div>
+                <div style = "width: 77%; text-align: center">A comprehensive framework called SEEDs (Social, Economic, and Environmental Domains) has been developed to assess the Programme for Government and shape its future versions. It focuses on three crucial areas—Social, Economic, and Environmental—that contribute to overall wellbeing.</div>          
+        </div>
+
+        <div id = "overall-screen" style = "height: 90vh; padding: 0px; display: none; margin-left: 11%;">
+
+            <div style = "width: 77%">We have developed a set of Indicators composed of Official and National Statistics. By analysing the evidence provided by these Indicators, we can gain valuable insights into Northern Ireland’s wellbeing, the areas where we are making progress, and where progress still needs to be made.</div>
+
+            <div class = "row" style = "display: flex;">
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label">Active travel - public transport</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex negative"></div>
+                    <div class = "hex-label">Active travel - walking & cycling</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label">Adult Social Care</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex"></div>
+                    <div class = "hex-label">Air pollution</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label">Arts & cultural activites</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex"></div>
+                    <div class = "hex-label">Availability of suitable housing</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex"></div>
+                    <div class = "hex-label">Children's social care</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex"></div>
+                    <div class = "hex-label">Costal water condition</div>
+                </div>
+            </div>
+            <div class = "row" style = "display: flex; margin-top: -20px; margin-left: 35px;">
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label">Condition of protected sites</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex negative"></div>
+                    <div class = "hex-label">Crime prevalence rate</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex negative"></div>
+                    <div class = "hex-label">Cultural identity</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex negative"></div>
+                    <div class = "hex-label">Economic inactivity</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label">Employment rate</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label">Energy spend</div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label">External sales</div>
+                </div>
+            </div>
+            <div class = "row" style = "display: flex; margin-top: -20px;">
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label"></div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label"></div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label"></div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label"></div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex"></div>
+                    <div class = "hex-label"></div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label"></div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label"></div>
+                </div>
+                <div class = "hex-container">
+                    <div class = "hex positive"></div>
+                    <div class = "hex-label"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id = "domains-screen" style = "height: 90vh; padding: 0px; display: none; margin-left: 11%;">
+
+            <p>To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</p>
+
+            <div class = "row">
+                <div class = "domain-label" style = "background-color: #dcaa39">Happier Children</div>
+                <div class = "domain-label" style = "background-color: #ff66c4">Cleaner Environment</div>
+                <div class = "domain-label" style = "background-color: #5ce1e6">Equal Society</div>
+            </div>
+            <div class = "row">
+                <div class = "domain-label" style = "background-color: #cb6ce6">Healthier Lives</div>
+                <div class = "domain-label" style = "background-color: #7ed957">Brighter Futures</div>
+                <div class = "domain-label" style = "background-color: #5271ff">Better Enconomy</div>
+            </div>
+            <div class = "row">
+                <div class = "domain-label" style = "background-color: #0cc0df">Safer Communities</div>
+                <div class = "domain-label" style = "background-color: #ff3131">Caring Society</div>
+                <div class = "domain-label" style = "background-color: #004aad">Better Homes</div>
+            </div>
+
+
+        </div>
+
+        <div id = "indicators-screen" style = "height: 90vh; padding: 0px; display: none; margin-left: 11%;">
+                
+            <!-- <div id="self_eff" class="pxwidget"></div> -->
+
+            <div class = "row">
+                <div id = "self_eff_ni_btn" class = "line_filter line_filter_selected">Northern Ireland</div>
+                <div id = "self_eff_lgd_btn" class = "line_filter">By Council</div>
+                <div id = "self_eff_dep_btn" class = "line_filter">By Deprivation Area</div>
+                <div id = "self_eff_gender_btn" class = "line_filter">By Gender</div>
+                <div id = "self_eff_age_btn" class = "line_filter">By Age</div>
+                <div id = "self_eff_mar_btn" class = "line_filter">By Marital Status</div>
+            </div>
+
+            <div id = "self_eff_container" style = "display: block;">
+                <div id="self_eff_line" class="pxwidget"></div>
+            </div>
+
+            <div id = "self_eff_lgd_container" style = "display: none;">
+                <div id="self_eff_line_lgd" class="pxwidget"></div>
+            </div>
+
+            <div id = "self_eff_dep_container" style = "display: none;">
+                <div id="self_eff_line_dep" class="pxwidget"></div>
+            </div>
+
+            <div id = "self_eff_gender_container" style = "display: none;">
+                <div id="self_eff_line_gender" class="pxwidget"></div>
+            </div>
+
+            <div id = "self_eff_age_container" style = "display: none;">
+                <div id="self_eff_line_age" class="pxwidget"></div>
+            </div>
+
+            <div id = "self_eff_mar_container" style = "display: none;">
+                <div id="self_eff_line_mar" class="pxwidget"></div>
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        var home_btn = document.getElementById("home-button");
+        var overall_btn = document.getElementById("overall-button");
+        var domains_btn = document.getElementById("domains-button");
+        var indicators_btn = document.getElementById("indicators-button");
+        var maps_btn = document.getElementById("maps-button");
+        var more_btn = document.getElementById("more-button");
+
+        var ni_icon = document.getElementById("ni-icon");
+
+        var home_scrn = document.getElementById("home-screen");
+        var overall_scrn = document.getElementById("overall-screen");
+        var domain_scrn = document.getElementById("domains-screen");
+        var indicators_scrn = document.getElementById("indicators-screen");
+
+        var hex = document.getElementsByClassName("hex");
+
+        var self_eff_ni_btn = document.getElementById("self_eff_ni_btn");
+        var self_eff_lgd_btn = document.getElementById("self_eff_lgd_btn");
+        var self_eff_dep_btn = document.getElementById("self_eff_dep_btn");
+        var self_eff_gender_btn = document.getElementById("self_eff_gender_btn");
+        var self_eff_age_btn = document.getElementById("self_eff_age_btn");
+        var self_eff_mar_btn = document.getElementById("self_eff_mar_btn");
+
+        var self_eff_container = document.getElementById("self_eff_container");
+        var self_eff_lgd_container = document.getElementById("self_eff_lgd_container");
+        var self_eff_dep_container = document.getElementById("self_eff_dep_container");
+        var self_eff_gender_container = document.getElementById("self_eff_gender_container");
+        var self_eff_age_container = document.getElementById("self_eff_age_container");
+        var self_eff_mar_container = document.getElementById("self_eff_mar_container");
+
+        for (var i = 0; i < hex.length; i++) {
+            hex[i].innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+        }
+
+        var positive_hex = document.getElementsByClassName("positive");
+
+        for (var i = 0; i < positive_hex.length; i++) {
+            positive_hex[i].innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+        }
+
+        var negative_hex = document.getElementsByClassName("negative");
+
+        for (var i = 0; i < negative_hex.length; i++) {
+            negative_hex[i].innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+        }
+
+        home_btn.onclick = function () {
+         home_btn.classList.add("selected-item");
+         overall_btn.classList.remove("selected-item");
+         domains_btn.classList.remove("selected-item");
+         indicators_btn.classList.remove("selected-item");
+         maps_btn.classList.remove("selected-item");
+         more_btn.classList.remove("selected-item");
+
+         ni_icon.style.filter = "";
+
+         home_scrn.style.display = "block";
+         overall_scrn.style.display = "none";
+         domain_scrn.style.display = "none";
+         indicators_scrn.style.display = "none";
+        }
+
+        overall_btn.onclick = function () {
+         home_btn.classList.remove("selected-item");
+         overall_btn.classList.add("selected-item");
+         domains_btn.classList.remove("selected-item");
+         indicators_btn.classList.remove("selected-item");
+         maps_btn.classList.remove("selected-item");
+         more_btn.classList.remove("selected-item");
+
+         ni_icon.style.filter = "";
+
+         home_scrn.style.display = "none";
+         overall_scrn.style.display = "block";
+         domain_scrn.style.display = "none";
+         indicators_scrn.style.display = "none";
+        }
+
+        domains_btn.onclick = function () {
+         home_btn.classList.remove("selected-item");
+         overall_btn.classList.remove("selected-item");
+         domains_btn.classList.add("selected-item");
+         indicators_btn.classList.remove("selected-item");
+         maps_btn.classList.remove("selected-item");
+         more_btn.classList.remove("selected-item");
+
+         ni_icon.style.filter = "";
+
+         home_scrn.style.display = "none";
+         overall_scrn.style.display = "none";
+         domain_scrn.style.display = "block";
+         indicators_scrn.style.display = "none";
+        }
+
+        indicators_btn.onclick = function () {
+         home_btn.classList.remove("selected-item");
+         overall_btn.classList.remove("selected-item");
+         domains_btn.classList.remove("selected-item");
+         indicators_btn.classList.add("selected-item");
+         maps_btn.classList.remove("selected-item");
+         more_btn.classList.remove("selected-item");
+
+         ni_icon.style.filter = "";
+
+         home_scrn.style.display = "none";
+         overall_scrn.style.display = "none";
+         domain_scrn.style.display = "none";
+         indicators_scrn.style.display = "block";
+        }
+
+        maps_btn.onclick = function () {
+         home_btn.classList.remove("selected-item");
+         overall_btn.classList.remove("selected-item");
+         domains_btn.classList.remove("selected-item");
+         indicators_btn.classList.remove("selected-item");
+         maps_btn.classList.add("selected-item");
+         more_btn.classList.remove("selected-item");
+
+         ni_icon.style.filter = "brightness(0) saturate(100%) invert(12%) sepia(94%) saturate(1827%) hue-rotate(221deg) brightness(82%) contrast(101%)";
+
+         home_scrn.style.display = "none";
+         overall_scrn.style.display = "none";
+         domain_scrn.style.display = "none";
+         indicators_scrn.style.display = "none";
+        }
+
+        more_btn.onclick = function () {
+         home_btn.classList.remove("selected-item");
+         overall_btn.classList.remove("selected-item");
+         domains_btn.classList.remove("selected-item");
+         indicators_btn.classList.remove("selected-item");
+         maps_btn.classList.remove("selected-item");
+         more_btn.classList.add("selected-item");
+
+         ni_icon.style.filter = "";
+
+         home_scrn.style.display = "none";
+         overall_scrn.style.display = "none";
+         domain_scrn.style.display = "none";
+         indicators_scrn.style.display = "none";
+        }        
+
+        self_eff_ni_btn.onclick = function() {
+            self_eff_ni_btn.classList.add("line_filter_selected");
+            self_eff_lgd_btn.classList.remove("line_filter_selected");
+            self_eff_dep_btn.classList.remove("line_filter_selected");
+            self_eff_gender_btn.classList.remove("line_filter_selected");
+            self_eff_age_btn.classList.remove("line_filter_selected");
+            self_eff_mar_btn.classList.remove("line_filter_selected");
+
+            self_eff_container.style.display = "block";
+            self_eff_lgd_container.style.display = "none";
+            self_eff_dep_container.style.display = "none";
+            self_eff_gender_container.style.display = "none";
+            self_eff_age_container.style.display = "none";
+            self_eff_mar_container.style.display = "none";
+        }
+
+        self_eff_lgd_btn.onclick = function() {
+            self_eff_ni_btn.classList.remove("line_filter_selected");
+            self_eff_lgd_btn.classList.add("line_filter_selected");
+            self_eff_dep_btn.classList.remove("line_filter_selected");
+            self_eff_gender_btn.classList.remove("line_filter_selected");
+            self_eff_age_btn.classList.remove("line_filter_selected");
+            self_eff_mar_btn.classList.remove("line_filter_selected");
+
+            self_eff_container.style.display = "none";
+            self_eff_lgd_container.style.display = "block";
+            self_eff_dep_container.style.display = "none";
+            self_eff_gender_container.style.display = "none";
+            self_eff_age_container.style.display = "none";
+            self_eff_mar_container.style.display = "none";
+        }
+
+        self_eff_dep_btn.onclick = function() {
+            self_eff_ni_btn.classList.remove("line_filter_selected");
+            self_eff_lgd_btn.classList.remove("line_filter_selected");
+            self_eff_dep_btn.classList.add("line_filter_selected");
+            self_eff_gender_btn.classList.remove("line_filter_selected");
+            self_eff_age_btn.classList.remove("line_filter_selected");
+            self_eff_mar_btn.classList.remove("line_filter_selected");
+
+            self_eff_container.style.display = "none";
+            self_eff_lgd_container.style.display = "none";
+            self_eff_dep_container.style.display = "block";
+            self_eff_gender_container.style.display = "none";
+            self_eff_age_container.style.display = "none";
+            self_eff_mar_container.style.display = "none";
+        }
+
+        self_eff_gender_btn.onclick = function() {
+            self_eff_ni_btn.classList.remove("line_filter_selected");
+            self_eff_lgd_btn.classList.remove("line_filter_selected");
+            self_eff_dep_btn.classList.remove("line_filter_selected");
+            self_eff_gender_btn.classList.add("line_filter_selected");
+            self_eff_age_btn.classList.remove("line_filter_selected");
+            self_eff_mar_btn.classList.remove("line_filter_selected");
+
+            self_eff_container.style.display = "none";
+            self_eff_lgd_container.style.display = "none";
+            self_eff_dep_container.style.display = "none";
+            self_eff_gender_container.style.display = "block";
+            self_eff_age_container.style.display = "none";
+            self_eff_mar_container.style.display = "none";
+        }
+
+        self_eff_age_btn.onclick = function() {
+            self_eff_ni_btn.classList.remove("line_filter_selected");
+            self_eff_lgd_btn.classList.remove("line_filter_selected");
+            self_eff_dep_btn.classList.remove("line_filter_selected");
+            self_eff_gender_btn.classList.remove("line_filter_selected");
+            self_eff_age_btn.classList.add("line_filter_selected");
+            self_eff_mar_btn.classList.remove("line_filter_selected");
+
+            self_eff_container.style.display = "none";
+            self_eff_lgd_container.style.display = "none";
+            self_eff_dep_container.style.display = "none";
+            self_eff_gender_container.style.display = "none";
+            self_eff_age_container.style.display = "block";
+            self_eff_mar_container.style.display = "none";
+        }
+
+        self_eff_mar_btn.onclick = function() {
+            self_eff_ni_btn.classList.remove("line_filter_selected");
+            self_eff_lgd_btn.classList.remove("line_filter_selected");
+            self_eff_dep_btn.classList.remove("line_filter_selected");
+            self_eff_gender_btn.classList.remove("line_filter_selected");
+            self_eff_age_btn.classList.remove("line_filter_selected");
+            self_eff_mar_btn.classList.add("line_filter_selected");
+
+            self_eff_container.style.display = "none";
+            self_eff_lgd_container.style.display = "none";
+            self_eff_dep_container.style.display = "none";
+            self_eff_gender_container.style.display = "none";
+            self_eff_age_container.style.display = "none";
+            self_eff_mar_container.style.display = "block";
+        }
+
+    </script>
+    
+
+</body>
+</html>

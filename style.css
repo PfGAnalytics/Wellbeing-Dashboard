@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar-item {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+    font-size: 14pt;
+    cursor: pointer;
+}
+
+.sidebar-item.selected-item {
+    color: #142062;
+    background-color: white;
+    border-radius: 25px;
+}
+
+#sidebar {
+    position: relative;
+}
+
+#sidebar #help-button {
+    position: absolute;
+    bottom: 0;
+}
+
+.helper {
+    display: inline-block;
+    height: 50vh;
+    vertical-align: bottom;
+}
+
+.numbered-point {
+    margin-left: 10%;
+    background-color: #142062;
+    color: white;
+    width: 20px;
+    text-align:right;
+    font-weight: bold;
+    padding-right: 1px;
+    font-size: 14pt;
+}
+
+.text-point {
+    background-color: #e8e8e8;
+    width: 75%;
+    padding-left: 5px;
+    color: #142062;
+    border-radius: 5px;
+    font-size: 14pt;
+}
+
+.icon-point {
+    float: right;
+    padding-right: 5px;
+    font-size: 18pt;
+    padding-top: 2px;
+}
+
+h2 {
+    font-size: 26pt;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.hex-container {
+    height: 100px;
+    width: 100px;
+    position: relative;
+}
+
+.hex {
+    height: 100px;
+    width: 100px;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background-color: #ff914d;
+    color: #ffffff55;
+    font-size: 60px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+.hex.positive {
+    background-color: #00bf63;
+}
+
+.hex.negative {
+    background-color: #ff3131;
+}
+
+.hex-label {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 35px;
+    font-size: 10pt;
+    line-height: 1em;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+.domain-label {
+    width: 20%;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    border-radius: 25px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.home-label {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: -15px;
+    background-color: #142062;
+    color: white; 
+    text-align: center;
+    border-radius: 15px;
+    padding-left: 5px; 
+    padding-right: 5px;
+}
+
+.line_filter {
+    background-color: #999999;
+    color: white;
+    border: 2px solid #142062;
+    padding: 2px;
+    margin: 1px;
+    cursor: pointer;
+}
+
+.line_filter_selected {
+    background-color: #142062;
+}
