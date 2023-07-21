@@ -442,5 +442,3 @@ createLineChart(id = "self_eff_line_mar",
                 indicator = "PFGINDSELFEFF", 
                 breakdown = "Marital",
                 matrix = "PFGIND02T01");
-
-
