@@ -160,67 +160,68 @@ var breakdowns = {
         }
     },
     "Gender": {
-        "var": "EQUALSUBPOPS",
+        "var": "EQUALGROUPS",
         "groups": {
             "1": "Male",
             "2": "Female"
         }
     },
     "Age": {
-        "var": "EQUALSUBPOPS",
+        "var": "EQUALGROUPS",
         "groups": {
             "3": "16-24",
             "4": "25-34",
-            "5": "35-49",
-            "6": "50-64",
-            "7": "65-74",
-            "8": "75+"
+            "5": "35-44",
+            "6": "45-54",
+            "7": "55-64",
+            "8": "65-74",
+            "9": "75+"
         }
     },
     "Marital": {
-        "var": "EQUALSUBPOPS",
+        "var": "EQUALGROUPS",
         "groups": {
-            "9": "Single",
-            "10": "Married/Civil Partnership",
-            "11": "Separated",
-            "12": "Divorced",
-            "13": "Widowed"
+            "10": "Single",
+            "11": "Married/Civil Partnership",
+            "12": "Separated",
+            "13": "Divorced",
+            "14": "Widowed"
         }
     },
     "Sexuality": {
-        "var": "EQUALSUBPOPS",
+        "var": "EQUALGROUPS",
         "groups": {
-            "14": "Heterosexual",
-            "15": "Gay/Lesibian, Bisexual and Other"
+            "15": "Heterosexual",
+            "16": "Gay/Lesibian, Bisexual and Other"
         }
     },
     "Ethnicity": {
-        "var": "EQUALSUBPOPS",
+        "var": "EQUALGROUPS",
         "groups": {
-            "16": "White",
-            "17": "Other"
+            "17": "White",
+            "18": "Other"
         }
     },
     "Religion": {
-        "var": "EQUALSUBPOPS",
+        "var": "EQUALGROUPS",
         "groups": {
-            "18": "Catholic",
-            "19": "Protestant",
-            "20": "Other/no religion"
+            "19": "Catholic",
+            "20": "Protestant",
+            "21": "Other/no religion"
         }
     },
     "Dependants": {
-        "var": "EQUALSUBPOPS",
+        "var": "EQUALGROUPS",
         "groups": {
-            "21": "With dependants (overall)",
-            "22": "Without dependants"
+            "22": "With dependants (overall)",
+            "23": "Without dependants"
         }
     },
     "Disability": {
-        "var": "EQUALSUBPOPS",
+        "var": "EQUALGROUPS",
         "groups": {
-            "23": "Yes",
-            "24": "No"
+            "24": "Yes",
+            "25": "No"
         }
     }
 };
@@ -401,44 +402,32 @@ function createLineChart (id, title, indicator, breakdown, matrix) {
 
 
 
-createLineChart(id = "self_eff_line",
+createLineChart(id = "self-eff-line",
                 title = "PfG Indicator - Self-efficacy",
-                indicator = "PFGINDSELFEFF", 
+                indicator = "WBLOWSE", 
                 breakdown = "NI",
-                matrix = "PFGIND02T02");
+                matrix = "WBSELFLGD");
 
-// createLineChart(id = "self_eff_line_lgd",
-//                 title = "PfG Indicator - Self-efficacy by Local Government District",
-//                 indicator = "PFGINDSELFEFF", 
-//                 breakdown = "LGD2014",
-//                 matrix = "PFGIND02T02");
-
-createLineChart(id = "self_eff_line_lgd",
-                title = "PfG Indicator - Employment Rate by Local Government District",
-                indicator = "PFGINDEMPRATE", 
+createLineChart(id = "self-eff-line-lgd",
+                title = "PfG Indicator - Self-efficacy by Local Government District",
+                indicator = "WBLOWSE", 
                 breakdown = "LGD2014",
-                matrix = "PFGIND04T02");
+                matrix = "WBSELFLGD");
 
-createLineChart(id = "self_eff_line_dep",
-                title = "PfG Indicator - Self-efficacy by Deprivation Group",
-                indicator = "PFGINDSELFEFF", 
-                breakdown = "DEP",
-                matrix = "PFGIND02T03");
-
-createLineChart(id = "self_eff_line_gender",
+createLineChart(id = "self-eff-line-gender",
                 title = "PfG Indicator - Self-efficacy by Gender",
-                indicator = "PFGINDSELFEFF", 
+                indicator = "WBLOWSE", 
                 breakdown = "Gender",
-                matrix = "PFGIND02T01");
+                matrix = "WBSELFEQ");
 
-createLineChart(id = "self_eff_line_age",
+createLineChart(id = "self-eff-line-age",
                 title = "PfG Indicator - Self-efficacy by Age Group",
-                indicator = "PFGINDSELFEFF", 
+                indicator = "WBLOWSE", 
                 breakdown = "Age",
-                matrix = "PFGIND02T01");
+                matrix = "WBSELFEQ");
 
-createLineChart(id = "self_eff_line_mar",
+createLineChart(id = "self-eff-line-mar",
                 title = "PfG Indicator - Self-efficacy by Marital Status",
-                indicator = "PFGINDSELFEFF", 
+                indicator = "WBLOWSE", 
                 breakdown = "Marital",
-                matrix = "PFGIND02T01");
+                matrix = "WBSELFEQ");
