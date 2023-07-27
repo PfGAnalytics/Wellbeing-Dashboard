@@ -48,7 +48,7 @@
                     <input type = "text" placeholder = "Search here   " style = "padding: 0px; border-radius: 10px; text-align: right;">
                 </div>
             </div>
-            <div id = "home-screen" style = "height: 90vh; padding: 0px; display: block; margin-left: 11%;">            
+            <div id = "home-screen" class = "screen">            
                 <h2>Social, Economic & Environmental Domains</h2>
                 <div class = "row" style = "display: flex; margin: 0px;">
                     <div style = "width: 25%;">
@@ -110,7 +110,7 @@
                 <div style = "width: 77%; text-align: center">A comprehensive framework called SEEDs (Social, Economic, and Environmental Domains) has been developed to assess the Programme for Government and shape its future versions. It focuses on three crucial areas—Social, Economic, and Environmental—that contribute to overall wellbeing.</div>          
         </div>
 
-        <div id = "overall-screen" style = "height: 90vh; padding: 0px; display: none; margin-left: 11%;">
+        <div id = "overall-screen"  class = "screen">
 
             <div style = "width: 77%">We have developed a set of Indicators composed of Official and National Statistics. By analysing the evidence provided by these Indicators, we can gain valuable insights into Northern Ireland’s wellbeing, the areas where we are making progress, and where progress still needs to be made.</div>
 
@@ -215,7 +215,7 @@
 
         </div>
 
-        <div id = "domains-screen" style = "height: 90vh; padding: 0px; display: none; margin-left: 11%;">
+        <div id = "domains-screen"  class = "screen">
 
             <p>To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</p>
 
@@ -238,7 +238,7 @@
 
         </div>
 
-        <div id = "indicators-screen" style = "height: 90vh; padding: 0px; display: none; margin-left: 11%;">
+        <div id = "indicators-screen"  class = "screen">
                 
             <!-- <div id="self_eff" class="pxwidget"></div> -->
 
@@ -272,9 +272,9 @@
 
         </div>
         
-        <div id = "maps-screen">
+        <div id = "maps-screen"  class = "screen">
             <div class = "row">
-                <div id = "map" style = "width:500px; height:450px; margin-left: 15px;;"></div>
+                <div id = "map" style = "width:500px; height:450px;"></div>
                 <div  style = "margin-left: 15px;">
                     <h3 id = "lgd-name"></h3>
                     <h4 id = "lgd-id"></h4>
@@ -282,17 +282,36 @@
             </div>
         </div>
 
+        <div id = "more-screen"  class = "screen">
+
+        </div>
+
+        <div id = "help-screen"  class = "screen">
+            
+        </div>
+
         </div>
     </div>
 
     <script>
 
-        var map = L.map('map').setView([54.65, -6.8], 8);        
+        var map = L.map('map',
+                        {zoomControl: false,
+                         dragging: false,
+                         touchZoom: false,
+                         doubleClickZoom: false,
+                         scrollWheelZoom: false,
+                         boxZoom: false,
+                         keyboard: false,
+                         attributionControl: false,
+                         tap: false}).setView([54.65, -6.8], 8);
 
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        window.onload = function() {L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+
+        }
 
         var NImapdata = L.geoJSON(NImap).addTo(map);
 
@@ -308,8 +327,18 @@
         }
 
         var sidebar_btns = document.getElementsByClassName("sidebar-item");
+        var screens = document.getElementsByClassName("screen")
+
+        for (let i = 0; i < screens.length; i++) {
+            if (screens[i].id == "home-screen") {
+                screens[i].style.display = "block";
+            } else {
+                screens[i].style.display = "none";
+            }
+        }
 
         for (let i = 0; i < sidebar_btns.length; i++) {
+
             sidebar_btns[i].onclick = function() {
                 for (let j = 0; j < sidebar_btns.length; j++) {
                     if (document.getElementById(sidebar_btns[i].id) == document.getElementById(sidebar_btns[j].id)) {

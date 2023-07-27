@@ -9,13 +9,16 @@ body {
     color: white;
     font-size: 14pt;
     cursor: pointer;
+    border-radius: 25px;
+}
+
+.sidebar-item:hover {
+    background-color: #ffffff55;
 }
 
 .sidebar-item.selected-item {
     color: #142062;
-    background-color: white;
-    border-radius: 25px;
-    
+    background-color: white;    
 }
 
 .selected-icon {
@@ -144,7 +147,11 @@ h1 {
     cursor: pointer;
 }
 
-.line-filter-selected {
+.line-filter:hover {
+    background-color: #14206277;
+}
+
+.line-filter-selected, .line-filter-selected:hover {
     background-color: #142062;
 }
 
@@ -152,3 +159,9 @@ h1 {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
   }
+
+.screen {
+    height: 90vh;
+    padding: 0px;
+    margin-left: 11%;
+}
