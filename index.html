@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script src = "script.js"></script>
     <script src = "OSNI Map Loughs Removed.js"></script>
@@ -239,8 +239,6 @@
         </div>
 
         <div id = "indicators-screen"  class = "screen">
-                
-            <!-- <div id="self_eff" class="pxwidget"></div> -->
 
             <div class = "row">
                 <div id = "self-eff-ni-btn" class = "line-filter line-filter-selected">Northern Ireland</div>
@@ -277,13 +275,19 @@
                 <div id = "map" style = "width:500px; height:450px;"></div>
                 <div  style = "margin-left: 15px;">
                     <h3 id = "lgd-name"></h3>
-                    <h4 id = "lgd-id"></h4>
+                    <p id = "self-eff-value"></p>
+                    <p id = "life-sat-value"></p>
+                    <p id = "loneliness-value"></p>
+                    <p id = "prevent-value"></p>
                 </div>
+
+
+                
             </div>
         </div>
 
         <div id = "more-screen"  class = "screen">
-
+            <div id="self_eff" class="pxwidget"></div>
         </div>
 
         <div id = "help-screen"  class = "screen">
@@ -292,6 +296,9 @@
 
         </div>
     </div>
+
+    
+
 
     <script>
 
@@ -319,12 +326,49 @@
         var lgd_id = document.getElementById("lgd-id");
         var shapes = document.getElementById("map").getElementsByClassName("leaflet-interactive");
 
+        // const api_url = ;
+
+        async function getData(id, matrix, n, statistic, unit = "") {
+
+            api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+
+            const response = await fetch(api_url);
+            const data = await response.json();
+            const {value, dimension} = data;
+
+            const num_years = Object.values(dimension)[1].category.index.length;
+            const num_geo = Object.values(dimension)[2].category.index.length;
+
+            document.getElementById(id).textContent = statistic + ": "  + value[num_geo * (num_years - 1) + n] + unit; 
+        }
+
         for (let i = 0; i < shapes.length; i++) {
             shapes[i].onclick = function() {
                 lgd_name.innerHTML = NImap.features[i].properties.LGDNAME;
-                lgd_id.innerHTML = "Code: " + NImap.features[i].properties.LGDCode;
+
+                getData(id = "self-eff-value",
+                        matrix = "WBSELFLGD",
+                        n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
+                        statistic = "Self-efficacy",
+                        unit = "%");
+
+                getData(id = "life-sat-value",
+                        matrix = "INDLIFESATLGD",
+                        n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
+                        statistic = "Average life satisfaction score");
+
+                getData(id = "loneliness-value",
+                        matrix = "INDLONELGD",
+                        n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
+                        statistic = "Percentage who were lonely 'often/always' or 'some of the time'",
+                        unit = "%");
+
+                getData(id = "prevent-value",
+                        matrix = "INDPREVDTHLGD",
+                        n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode) + 1,
+                        statistic = "Age standardised death rate (per 100,000 population) for causes considered preventable");
             }
-        }
+        }        
 
         var sidebar_btns = document.getElementsByClassName("sidebar-item");
         var screens = document.getElementsByClassName("screen")

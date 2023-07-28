@@ -123,8 +123,8 @@ function createTable(widget, title, matrix) {
 
 }
 
-createTable("self_eff","PfG Indicator - Self-efficacy", "PFGIND02T03")
-createTable("lonely", "PfG Indicator - Loneliness", "PFGIND0301")
+createTable("self_eff","PfG Indicator - Self-efficacy", "WBSELFLGD")
+createTable("lonely", "PfG Indicator - Loneliness", "INDLONELGD")
 
 var breakdowns = {
     "NI": {
@@ -431,3 +431,5 @@ createLineChart(id = "self-eff-line-mar",
                 indicator = "WBLOWSE", 
                 breakdown = "Marital",
                 matrix = "WBSELFEQ");
+
+
