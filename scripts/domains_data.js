@@ -62,7 +62,6 @@ var domains_data = {
        "description": "Living in a nice place",
        "indicators": ["Homelessness",
             "Housing costs as a proportion of household income",
-            "Housing stress"
-        ]
+            "Housing stress"]
     }
  }

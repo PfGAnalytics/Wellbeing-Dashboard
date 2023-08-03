@@ -168,7 +168,7 @@ h2 {
 .hex:hover {
     animation: shake 1.5s;
     animation-iteration-count: infinite;
-    filter: saturate(50%);
+    filter: saturate(80%);
 }
 
 @keyframes shake {
