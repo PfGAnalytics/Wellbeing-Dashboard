@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script>
 
     <!-- <script src = "script.js"></script> -->
+    <script src = "domains_data.js"></script>
     
 
     <link rel ="stylesheet" href ="style.css">
@@ -30,18 +31,33 @@
         <div id = "help-btn" class = "top-menu-item"><i class = "fa fa-question"></i> Help</div>
     </div>
 
+    <div id = "indicators-intro">We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made.</div>
+
     <div id = "main-container">
 
-        <div id = "home-scrn" class = "screen">
+        <div id = "domains-scrn" class = "screen" style = "display:block;">
             <h2>Social, Economic & Environmental Domains</h2>
-            <p>To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</p>
+            <div id = "domain-intro">To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</div>
             <div class = "row">
                 <div style = "padding-left: 15px;">
                     <img src = "img/leaf.svg" width = "400px;">
-                    <p id = "seeds-label">SEEDS of Wellbeing in Northern Ireland</p>
+                    <div id = "seeds-label">SEEDS of Wellbeing in Northern Ireland</div>
                 </div>
-                <div id = "domains-grid-container"></div>
-                <div style = "margin-top: 100px;">Click on a domain to see the indicators</div>
+                <div id = "domains-grid-container" style= "display: block;"></div>
+                <div id = "domain-info" style = "display:none;">
+                    <div id = "back-button">
+                        <i class="fa-solid fa-arrow-left"></i> Back
+                    </div>
+                    <div class = "row">
+                        <div class = "hex">
+                            <div id = "clicked-hex" class = "hex-inner"></div>
+                        </div>
+                        <div id = "desc-container">
+                            <div id = "clicked-desc" class = "blue-label"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id = "click-to-see" style = "margin-top: 100px;">Click on a domain to see the indicators</div>
             </div>
         </div>
 
@@ -77,16 +93,8 @@
 
     }
 
-    // Generate grid of domains
-    var domains = ["Happier Children",
-                   "Cleaner Environment",
-                   "Equal Society",
-                   "Healthier Lives",
-                   "Brighter Futures",
-                   "Better Economy",
-                   "Safer Communities",
-                   "Caring Society",
-                   "Better Homes"]
+    // Generate hex grid of domains
+    var domains = Object.keys(domains_data);
 
     var domains_grid_container = document.getElementById("domains-grid-container");
 
@@ -122,6 +130,50 @@
             hex_rows[i].style.marginTop = "-25px";
         }
     }
+
+    // Click on a domain
+    var hexagons = document.getElementsByClassName("hex-inner");
+
+    var domains_heading = document.getElementById("domains-scrn").getElementsByTagName("h2")[0];
+    var indicators_intro = document.getElementById("indicators-intro");
+    var domain_intro = document.getElementById("domain-intro");
+    var domain_info = document.getElementById("domain-info");
+    var clicked_hex = document.getElementById("clicked-hex");
+    var click_to_see = document.getElementById("click-to-see");
+    var clicked_desc = document.getElementById("clicked-desc");
+
+    for (let i = 0; i < hexagons.length; i++) {
+
+        hexagons[i].onclick = function() {
+
+            domains_heading.style.display = "none";
+            indicators_intro.style.display = "block";
+            domain_intro.style.display = "none";
+            domain_info.style.display = "block";
+            domains_grid_container.style.display = "none";
+            click_to_see.style.display = "none";
+
+           clicked_hex.innerHTML = hexagons[i].innerHTML;
+
+           clicked_desc.innerHTML = domains_data[hexagons[i].innerHTML].description;
+
+        }
+
+    }
+
+    // Click back button
+    var back_button = document.getElementById("back-button");
+
+    back_button.onclick = function() {
+        domains_heading.style.display = "block";
+            indicators_intro.style.display = "none";
+            domain_intro.style.display = "block";
+            domain_info.style.display = "none";
+            domains_grid_container.style.display = "block";
+            click_to_see.style.display = "block";
+    }
+
+    
 
 </script>
 

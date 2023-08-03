@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="0.963333in"
-   height="1.42667in"
-   viewBox="0 0 289 428"
+   width="0.93834352in"
+   height="1.3867811in"
+   viewBox="0 0 281.50315 416.03335"
    version="1.1"
    id="svg825"
    sodipodi:docname="leaf.svg"
@@ -27,7 +27,24 @@
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs829" />
+     id="defs829">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath845">
+      <g
+         id="use847"
+         inkscape:label="Clip">
+        <rect
+           style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.36220551;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:26.29999924;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+           id="rect849"
+           width="13.152924"
+           height="5.7622333"
+           x="117.15313"
+           y="422.57861"
+           clip-path="none" />
+      </g>
+    </clipPath>
+  </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -42,51 +59,57 @@
      id="namedview827"
      showgrid="false"
      inkscape:pagecheckerboard="true"
-     inkscape:zoom="8.8200731"
-     inkscape:cx="45.332963"
-     inkscape:cy="80.009362"
+     inkscape:zoom="4"
+     inkscape:cx="-79.597698"
+     inkscape:cy="46.422581"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg825" />
+     inkscape:current-layer="svg825"
+     fit-margin-bottom="-0.01"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0" />
   <path
      id="Selection"
-     fill="#157c70"
-     d="M 40.00,7.00            C 68.82,12.18 96.20,16.26 122.00,31.60              133.10,38.21 145.10,48.35 149.25,61.00              153.44,73.78 151.36,83.85 146.40,96.00              146.40,96.00 139.67,110.00 139.67,110.00              139.55,113.19 144.27,117.36 146.24,120.00              151.83,127.49 154.12,132.78 158.00,141.00              158.45,135.42 159.67,128.14 161.88,123.00              175.94,90.26 218.07,90.65 248.00,91.00              248.00,91.00 275.00,93.92 275.00,93.92              277.49,94.33 283.30,94.77 284.33,97.43              285.15,99.53 282.83,105.69 282.12,108.00              282.12,108.00 270.42,138.00 270.42,138.00              259.60,162.88 239.92,194.64 210.00,196.82              203.96,197.26 194.41,194.58 189.00,191.88              179.13,186.95 171.79,180.72 164.00,173.00              164.00,173.00 164.00,185.00 164.00,185.00              163.93,227.15 137.32,279.97 128.21,323.00              123.36,345.90 121.95,372.74 124.17,396.00              124.17,396.00 129.00,426.00 129.00,426.00              126.86,426.00 122.42,426.32 120.72,425.01              118.61,423.36 117.71,416.67 117.25,414.00              115.79,405.60 114.01,392.37 114.00,384.00              114.00,384.00 114.00,363.00 114.00,363.00              114.02,347.67 118.69,319.87 123.00,305.00              117.00,310.72 111.34,314.83 104.00,318.68              95.45,323.17 89.43,324.01 80.00,324.00              44.62,323.95 22.21,279.44 10.80,251.00              8.17,244.45 4.54,234.77 3.00,228.00              26.27,221.83 62.32,219.14 86.00,223.25              101.26,225.90 114.59,230.41 124.62,243.00              132.52,252.91 130.80,259.54 134.00,270.00              134.00,270.00 148.26,226.00 148.26,226.00              157.21,193.60 159.59,151.36 136.69,124.19              130.23,116.29 131.42,120.17 115.00,124.19              102.57,127.55 91.22,128.52 79.00,123.55              65.07,117.88 56.07,104.49 50.60,91.00              39.84,64.43 40.00,35.14 40.00,7.00 Z" />
+     d="M 37,-3.6820977e-4 C 65.82,5.1796318 93.2,9.2596318 119,24.599632 c 11.1,6.61 23.1,16.75 27.25,29.4 4.19,12.78 2.11,22.85 -2.85,35 0,0 -6.73,13.999998 -6.73,13.999998 -0.12,3.19 4.6,7.36 6.57,10 5.59,7.49 7.88,12.78 11.76,21 0.45,-5.58 1.67,-12.86 3.88,-18 14.06,-32.739998 56.19,-32.349998 86.12,-31.999998 0,0 27,2.92 27,2.92 2.49,0.41 8.3,0.85 9.33,3.51 0.82,2.1 -1.5,8.26 -2.21,10.569998 0,0 -11.7,30 -11.7,30 -10.82,24.88 -30.5,56.64 -60.42,58.82 -6.04,0.44 -15.59,-2.24 -21,-4.94 -9.87,-4.93 -17.21,-11.16 -25,-18.88 0,0 0,12 0,12 -0.07,42.15 -26.68,94.97 -35.79,138 -4.85,22.9 -6.26,49.74 -4.04,73 0,0 4.83,30 4.83,30 -2.14,0 -6.58,0.32 -8.28,-0.99 -2.11,-1.65 -3.01,-8.34 -3.47,-11.01 -1.46,-8.4 -3.24,-21.63 -3.25,-30 0,0 0,-21 0,-21 0.02,-15.33 4.69,-43.13 9,-58 -6,5.72 -11.66,9.83 -19,13.68 -8.55,4.49 -14.57,5.33 -24,5.32 -35.38,-0.05 -57.79,-44.56 -69.2,-73 -2.63,-6.55 -6.26,-16.23 -7.8,-23 23.27,-6.17 59.32,-8.86 83,-4.75 15.26,2.65 28.59,7.16 38.62,19.75 7.9,9.91 6.18,16.54 9.38,27 0,0 14.26,-44 14.26,-44 8.95,-32.4 11.33,-74.64 -11.57,-101.81 -6.46,-7.9 -5.27,-4.02 -21.69,0 -12.43,3.36 -23.78,4.33 -36,-0.64 C 62.07,110.87963 53.07,97.489632 47.6,83.999632 36.84,57.429632 37,28.139632 37,-3.6820977e-4 Z"
+     clip-path="none"
+     inkscape:connector-curvature="0"
+     style="fill:#157c70" />
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.50001526px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.12500119"
-     x="117.57089"
-     y="17.248617"
+     x="111.09821"
+     y="13.234982"
      id="text835"
      transform="rotate(35)"><tspan
        sodipodi:role="line"
        id="tspan833"
-       x="117.57089"
-       y="17.248617"
+       x="111.09821"
+       y="13.234982"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:3.12500119">Social</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.16667747px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.12500119"
-     x="140.58443"
-     y="223.91896"
+     x="140.82397"
+     y="216.30663"
      id="text4542"
      transform="rotate(-25)"><tspan
        sodipodi:role="line"
        id="tspan4540"
-       x="140.58443"
-       y="223.91896"
+       x="140.82397"
+       y="216.30663"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:3.12500119">Economic</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20.8333416px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.12500119"
-     x="175.34641"
-     y="214.44667"
+     x="169.66901"
+     y="209.37004"
      id="text4542-4"
      transform="rotate(25)"><tspan
        sodipodi:role="line"
        id="tspan4540-8"
-       x="175.34641"
-       y="214.44667"
+       x="169.66901"
+       y="209.37004"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:3.12500119">Environmental</tspan></text>
 </svg>
