@@ -12,6 +12,17 @@ body {
     border-radius: 25px;
 }
 
+#sidebar-select {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #142062;
+    background-color: white;
+    font-size: 14pt;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
 .sidebar-item:hover {
     background-color: #ffffff55;
 }
@@ -27,11 +38,28 @@ body {
 
 #sidebar {
     position: relative;
+    background-color: #157c70;
+    height: 100vh;
+    padding: 0px;
 }
 
 #sidebar #help-button {
     position: absolute;
     bottom: 0;
+}
+
+#sidebar-dropdown {
+    background-color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}
+
+.sidebar-drop-item:hover {
+    background-color: #cccccc;
 }
 
 .helper {

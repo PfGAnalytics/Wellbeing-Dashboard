@@ -13,27 +13,40 @@
 
     <script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> -->
 
     <script src = "script.js"></script>
-    <script src = "OSNI Map Loughs Removed.js"></script>
+    <!-- <script src = "OSNI Map Loughs Removed.js"></script> -->
 
     <link rel ="stylesheet" href ="style.css">
 
 </head>
-<body>
+<body onresize = "responsive()" >
     
     <div class = "row" style = "margin: 0px;">
-        <div id = "sidebar" class = "col-12 col-sm-2 col-md-2 col-lg-2 col-xl-2" style = "background-color: #157c70; height: 100vh; padding: 0px;">
+        <div id = "sidebar" class = "col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
             <img src = "img/Northern_Ireland_Executive_logo.svg" style = "margin-top: 1vh; margin-bottom: 20px; width:90%; margin-left: 5%; filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(322deg) brightness(103%) contrast(101%);">
             <div id = "home-button" class = "sidebar-item selected-item"><i class = "fa fa-home"></i> Home</div>
             <div id = "overall-button" class = "sidebar-item"><i class = "fa fa-th-large"></i> Overall</div>
             <div id = "domains-button" class = "sidebar-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span> Domains</div>
             <div id = "indicators-button" class = "sidebar-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span> Indicators</div>
             <div id = "maps-button" class = "sidebar-item"><img id = "ni-icon" src = "img/noun-northern-ireland-1019239.svg" style = "width: 20px;"> Maps</div>
-            <div id = "more-button" class = "sidebar-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span></i> More</div>
+            <div id = "more-button" class = "sidebar-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span></i> Other</div>
             <div id = "help-button" class = "sidebar-item" style = "vertical-align: bottom;"><i class = "fa fa-question"></i> Help</div>
+
+            <div id = "sidebar-select" style = "display: none"></div>
+            <div id = "sidebar-dropdown">
+                <div class = "sidebar-drop-item">Home</div>
+                <div class = "sidebar-drop-item">Overall</div>
+                <div class = "sidebar-drop-item">Domains</div>
+                <div class = "sidebar-drop-item">Indicators</div>
+                <div class = "sidebar-drop-item">Maps</div>
+                <div class = "sidebar-drop-item">More</div>
+            </div>
+
+            
+
         </div>
 
         <div class = "col" style = "background-color: #fafafa; height: 100vh">
@@ -271,7 +284,7 @@
         </div>
         
         <div id = "maps-screen"  class = "screen">
-            <div class = "row">
+            <!-- <div class = "row">
                 <div id = "map" style = "width:500px; height:450px;"></div>
                 <div  style = "margin-left: 15px;">
                     <h3 id = "lgd-name"></h3>
@@ -279,11 +292,9 @@
                     <p id = "life-sat-value"></p>
                     <p id = "loneliness-value"></p>
                     <p id = "prevent-value"></p>
-                </div>
-
-
-                
-            </div>
+                </div>            
+            </div> -->
+            <div id="school-leavers-map" class="pxwidget"></div>
         </div>
 
         <div id = "more-screen"  class = "screen">
@@ -302,75 +313,107 @@
 
     <script>
 
-        var map = L.map('map',
-                        {zoomControl: false,
-                         dragging: false,
-                         touchZoom: false,
-                         doubleClickZoom: false,
-                         scrollWheelZoom: false,
-                         boxZoom: false,
-                         keyboard: false,
-                         attributionControl: false,
-                         tap: false}).setView([54.65, -6.8], 8);
+        var sidebar = document.getElementById("sidebar");
+        var sidebar_btns = document.getElementsByClassName("sidebar-item");
+        var sidebar_select = document.getElementById("sidebar-select");
+        var sidebar_dropdown = document.getElementById("sidebar-dropdown");
 
-        window.onload = function() {L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+        if (window.outerWidth < 751) {
+            sidebar.style.height = "20vh";
+            sidebar_select.style.display = "block";
+            for (let i = 0; i < sidebar_btns.length; i ++) {
+                    sidebar_btns[i].style.display = "none";
+            }
+        }
+
+        function responsive() {
+
+            if (window.outerWidth < 751) {
+                sidebar.style.height = "20vh";
+                sidebar_select.style.display = "block";
+                for (let i = 0; i < sidebar_btns.length; i ++) {
+                    sidebar_btns[i].style.display = "none";
+                }
+            } else {
+                sidebar.style.height = "100vh";
+                sidebar_select.style.display = "none";
+                for (let i = 0; i < sidebar_btns.length; i ++) {
+                    sidebar_btns[i].style.display = "block";
+                }
+            }
 
         }
 
-        var NImapdata = L.geoJSON(NImap).addTo(map);
 
-        var lgd_name = document.getElementById("lgd-name");
-        var lgd_id = document.getElementById("lgd-id");
-        var shapes = document.getElementById("map").getElementsByClassName("leaflet-interactive");
+        // var map = L.map('map',
+        //                 {zoomControl: false,
+        //                  dragging: false,
+        //                  touchZoom: false,
+        //                  doubleClickZoom: false,
+        //                  scrollWheelZoom: false,
+        //                  boxZoom: false,
+        //                  keyboard: false,
+        //                  attributionControl: false,
+        //                  tap: false}).setView([54.65, -6.8], 8);
+
+        // window.onload = function() {L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        //     maxZoom: 19,
+        //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        // }).addTo(map);
+
+        // }
+
+        // var NImapdata = L.geoJSON(NImap).addTo(map);
+
+        // var lgd_name = document.getElementById("lgd-name");
+        // var lgd_id = document.getElementById("lgd-id");
+        // var shapes = document.getElementById("map").getElementsByClassName("leaflet-interactive");
 
         // const api_url = ;
 
-        async function getData(id, matrix, n, statistic, unit = "") {
+        // async function getData(id, matrix, n, statistic, unit = "") {
 
-            api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+        //     api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
-            const response = await fetch(api_url);
-            const data = await response.json();
-            const {value, dimension} = data;
+        //     const response = await fetch(api_url);
+        //     const data = await response.json();
+        //     const {value, dimension} = data;
 
-            const num_years = Object.values(dimension)[1].category.index.length;
-            const num_geo = Object.values(dimension)[2].category.index.length;
+        //     const num_years = Object.values(dimension)[1].category.index.length;
+        //     const num_geo = Object.values(dimension)[2].category.index.length;
 
-            document.getElementById(id).textContent = statistic + ": "  + value[num_geo * (num_years - 1) + n] + unit; 
-        }
+        //     document.getElementById(id).innerHTML = "<em style = 'color: #555555'>" + statistic + ":</em> <strong>"  + value[num_geo * (num_years - 1) + n] + unit + "</strong>";  
+        // }
 
-        for (let i = 0; i < shapes.length; i++) {
-            shapes[i].onclick = function() {
-                lgd_name.innerHTML = NImap.features[i].properties.LGDNAME;
+        // for (let i = 0; i < shapes.length; i++) {
+        //     shapes[i].onclick = function() {
+        //         lgd_name.innerHTML = NImap.features[i].properties.LGDNAME;
 
-                getData(id = "self-eff-value",
-                        matrix = "WBSELFLGD",
-                        n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
-                        statistic = "Self-efficacy",
-                        unit = "%");
+        //         getData(id = "self-eff-value",
+        //                 matrix = "WBSELFLGD",
+        //                 n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
+        //                 statistic = "Self-efficacy",
+        //                 unit = "%");
 
-                getData(id = "life-sat-value",
-                        matrix = "INDLIFESATLGD",
-                        n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
-                        statistic = "Average life satisfaction score");
+        //         getData(id = "life-sat-value",
+        //                 matrix = "INDLIFESATLGD",
+        //                 n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
+        //                 statistic = "Average life satisfaction score");
 
-                getData(id = "loneliness-value",
-                        matrix = "INDLONELGD",
-                        n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
-                        statistic = "Percentage who were lonely 'often/always' or 'some of the time'",
-                        unit = "%");
+        //         getData(id = "loneliness-value",
+        //                 matrix = "INDLONELGD",
+        //                 n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode),
+        //                 statistic = "Percentage who were lonely 'often/always' or 'some of the time'",
+        //                 unit = "%");
 
-                getData(id = "prevent-value",
-                        matrix = "INDPREVDTHLGD",
-                        n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode) + 1,
-                        statistic = "Age standardised death rate (per 100,000 population) for causes considered preventable");
-            }
-        }        
+        //         getData(id = "prevent-value",
+        //                 matrix = "INDPREVDTHLGD",
+        //                 n = Object.keys(breakdowns.LGD2014.groups).indexOf(NImap.features[i].properties.LGDCode) + 1,
+        //                 statistic = "Age standardised death rate (per 100,000 population) for causes considered preventable");
+        //     }
+        // }        
 
-        var sidebar_btns = document.getElementsByClassName("sidebar-item");
+        
         var screens = document.getElementsByClassName("screen")
 
         for (let i = 0; i < screens.length; i++) {
@@ -381,11 +424,16 @@
             }
         }
 
+        
+        sidebar_select.innerHTML = document.getElementsByClassName("selected-item")[0].innerHTML + '<i style = "float: right" class="fa-solid fa-caret-down"></i>';
+
         for (let i = 0; i < sidebar_btns.length; i++) {
 
             sidebar_btns[i].onclick = function() {
                 for (let j = 0; j < sidebar_btns.length; j++) {
-                    if (document.getElementById(sidebar_btns[i].id) == document.getElementById(sidebar_btns[j].id)) {
+                    if (document.getElementById(sidebar_btns[i].id) == "sidebar-select") {
+
+                    } else if (document.getElementById(sidebar_btns[i].id) == document.getElementById(sidebar_btns[j].id)) {
                         document.getElementById(sidebar_btns[j].id).classList.add("selected-item");
                         document.getElementById(sidebar_btns[j].id).firstChild.classList.add("selected-icon");
                         document.getElementById(sidebar_btns[j].id.replace(/button/, "screen")).style.display = "block";
@@ -394,9 +442,23 @@
                         document.getElementById(sidebar_btns[j].id).firstChild.classList.remove("selected-icon");
                         document.getElementById(sidebar_btns[j].id.replace(/button/, "screen")).style.display = "none";
                     }
-                }
+                }                
+                sidebar_select.innerHTML = document.getElementsByClassName("selected-item")[0].innerHTML + '<i style = "float: right" class="fa-solid fa-caret-down"></i>';
+            }
+
+        }
+
+        
+
+        sidebar_select.onclick = function () {
+            if (sidebar_dropdown.style.display == "none") {
+                sidebar_dropdown.style.display = "block";
+            } else {
+                sidebar_dropdown.style.display = "none";
             }
         }
+
+
 
         var hex = document.getElementsByClassName("hex");
 
