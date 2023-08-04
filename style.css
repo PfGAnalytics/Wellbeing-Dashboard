@@ -69,13 +69,18 @@ h2 {
     color: #142062;
 }
 
-#main-container {
-    width: 100%;
+.content-centre {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 25px;
 }
+
+#main-container {
+    width: 1200px;
+}
+
+
 
 #domains-grid-container, #domain-info {
     margin-left: 15px;
@@ -101,6 +106,9 @@ h2 {
     text-align: center;
     margin-left: 10px;
     width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #desc-container {
@@ -148,9 +156,10 @@ h2 {
     margin-right: 5%;
     margin-top: 10px;
     display: none;
+    width: 1200px;
 }
 
-#back-button {
+.back-button {
     background-color: #353535;
     color: white;
     width: 100px;
@@ -161,11 +170,11 @@ h2 {
     text-align: center;
 }
 
-#back-button:hover {
+.back-button:hover {
     background-color: #454545;
 }
 
-.hex:hover {
+.shake-hex:hover {
     animation: shake 1.5s;
     animation-iteration-count: infinite;
     filter: saturate(80%);
@@ -184,3 +193,55 @@ h2 {
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
+
+.ind-hex-container {
+   height: 150px;
+   width: 150px;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   cursor: pointer;
+}
+
+.ind-hex-container:hover {
+    filter: saturate(65%);
+}
+
+.ind-hex {
+    height: 150px;
+    width: 150px;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background-color: #ff914d;
+    color: #ffffff55;
+    font-size: 100px;    
+  }
+
+.ind-hex.positive {
+    background-color: #00bf63;
+}
+
+.ind-hex.negative {
+    background-color: #ff3131;
+}
+
+.ind-hex-label {
+    position: absolute;
+    color: #ffffff;
+    font-size: 12pt;
+    line-height: 1em;
+    padding: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+#indicator-title {
+    margin-left: 20px;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}

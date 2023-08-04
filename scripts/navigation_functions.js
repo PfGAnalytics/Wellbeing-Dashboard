@@ -62,7 +62,6 @@ for (let i = 0; i < hex_rows.length; i++) {
 
 // Click on a domain
 var hexagons = document.getElementsByClassName("hex-inner");
-
 var domains_heading = document.getElementById("domains-scrn").getElementsByTagName("h2")[0];
 var indicators_intro = document.getElementById("indicators-intro");
 var domain_intro = document.getElementById("domain-intro");
@@ -70,8 +69,11 @@ var domain_info = document.getElementById("domain-info");
 var clicked_hex = document.getElementById("clicked-hex");
 var click_to_see = document.getElementById("click-to-see");
 var clicked_desc = document.getElementById("clicked-desc");
+var indicator_hexes = document.getElementById("indicator-hexes");
 
-for (let i = 0; i < hexagons.length; i++) {
+for (let i = 0; i < hexagons.length - 1; i++) {
+
+    hexagons[i].parentElement.classList.add("shake-hex");
 
     hexagons[i].onclick = function() {
 
@@ -82,18 +84,106 @@ for (let i = 0; i < hexagons.length; i++) {
         domains_grid_container.style.display = "none";
         click_to_see.style.display = "none";
 
-        clicked_hex.innerHTML = hexagons[i].innerHTML;
+        var domain_name = hexagons[i].innerHTML;
 
-        clicked_desc.innerHTML = domains_data[hexagons[i].innerHTML].description;
+        clicked_hex.innerHTML = domain_name;
+
+        clicked_desc.innerHTML = domains_data[domain_name].description;
+
+        var indicators = Object.keys(domains_data[domain_name].indicators);
+
+        indicator_hexes.innerHTML = "";
+
+        for (let i = 0; i < indicators.length; i++) {
+
+            if (i % 3 == 0) {
+                var hex_row = document.createElement("div");
+                hex_row.classList.add("row");
+                hex_row.classList.add("ind-hex-row");
+                indicator_hexes.appendChild(hex_row);
+            }
+
+            var hex_container = document.createElement("div");
+            var hex = document.createElement("div");
+            var hex_label = document.createElement("div");
+            var label_text = document.createTextNode(indicators[i]);
+
+            hex_container.classList.add("ind-hex-container");
+            hex.classList.add("ind-hex");
+            hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+            hex_label.classList.add("ind-hex-label");
+
+            hex_label.appendChild(label_text);
+            hex_container.appendChild(hex);
+            hex_container.appendChild(hex_label);
+
+            hex_row.appendChild(hex_container);
+
+        }
+
+        ind_hex_rows = document.getElementsByClassName("ind-hex-row");
+
+        for (let i = 0; i < ind_hex_rows.length; i++) {
+            if (i % 2 == 1) {
+                ind_hex_rows[i].style.marginLeft = "75px";
+            }
+        
+            if (i > 0) {
+                ind_hex_rows[i].style.marginTop = "-25px";
+            }
+        }
+
+        // Clinking an indicator name
+        var indicator_links = document.getElementsByClassName("ind-hex-container");
+
+        for (let j = 0; j < indicator_links.length; j++) {
+
+            indicator_links[j].onclick = function() {
+
+                var indicator_name = indicator_links[j].getElementsByClassName("ind-hex-label")[0].innerHTML;
+
+                document.getElementById("domains-scrn").style.display = "none";
+                indicators_intro.style.display = "none";
+                document.getElementById("indicator-scrn").style.display = "block";
+
+                document.getElementById("domain-title").innerHTML = domain_name;
+
+                document.getElementById("indicator-title").innerHTML = indicator_name;
+                document.getElementById("ind-important").innerHTML = domains_data[domain_name].indicators[indicator_name].importance;
+
+                var NI_matrix = domains_data[domain_name].indicators[indicator_name].data.NI;
+                var LGD_matrix = domains_data[domain_name].indicators[indicator_name].data.LGD;
+
+                if (NI_matrix != "") {
+                    chart_id = NI_matrix.replace("NI", "") + "-line";
+                } else {
+                    chart_id = LGD_matrix.replace("LGD", "") + "-line";
+                }
+
+                var line_charts = document.getElementsByClassName("line-chart");
+
+                for (let i = 0; i < line_charts.length; i++) {
+
+                    if (line_charts[i].id == chart_id) {
+                        document.getElementById(chart_id).style.display = "block";
+                    } else {
+                        line_charts[i].style.display = "none";
+                    }
+
+                }                
+
+        }
+
+}
 
     }
 
 }
 
 // Click back button
-var back_button = document.getElementById("back-button");
+var back_button_1 = document.getElementById("back-button-1");
 
-back_button.onclick = function() {
+back_button_1.onclick = function() {
     domains_heading.style.display = "block";
         indicators_intro.style.display = "none";
         domain_intro.style.display = "block";
@@ -101,3 +191,13 @@ back_button.onclick = function() {
         domains_grid_container.style.display = "block";
         click_to_see.style.display = "block";
 }
+
+var back_button_2 = document.getElementById("back-button-2");
+
+back_button_2.onclick = function () {
+    document.getElementById("domains-scrn").style.display = "block";
+    indicators_intro.style.display = "block";
+    document.getElementById("indicator-scrn").style.display = "none";
+}
+
+

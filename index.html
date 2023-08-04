@@ -13,8 +13,9 @@
 
     <script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script>
 
-    <!-- <script src = "scripts/data functions.js"></script> -->
-    <script src = "scripts/domains_data.js"></script>    
+    <script src = "scripts/domains_data.js"></script>  
+    
+      
 
     <link rel ="stylesheet" href ="style.css">
 
@@ -30,43 +31,64 @@
         <div id = "help-btn" class = "top-menu-item"><i class = "fa fa-question"></i> Help</div>
     </div>
 
-    <div id = "indicators-intro">We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made.</div>
+    
 
-    <div id = "main-container">
+    <div class = "content-centre">
+        <p id = "indicators-intro">We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made.</p>
+    </div>
+    <div class = "content-centre">
+        <div id = "main-container">
 
-        <div id = "domains-scrn" class = "screen" style = "display:block;">
-            <h2>Social, Economic & Environmental Domains</h2>
-            <div id = "domain-intro">To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</div>
-            <div class = "row">
-                <div style = "padding-left: 15px;">
-                    <img src = "img/leaf.svg" width = "400px;">
-                    <div id = "seeds-label">SEEDS of Wellbeing in Northern Ireland</div>
+            <div id = "domains-scrn" class = "screen" style = "display:block;">
+                <h2>Social, Economic & Environmental Domains</h2>
+                <div id = "domain-intro">To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</div>
+                <div class = "row">
+                    <div style = "padding-left: 15px;">
+                        <img src = "img/leaf.svg" width = "400px;">
+                        <div id = "seeds-label">SEEDS of Wellbeing in Northern Ireland</div>
+                    </div>
+                    <div id = "domains-grid-container" style= "display: block;"></div>
+                    <div id = "domain-info" style = "display:none;">
+                        <div id = "back-button-1" class = "back-button">
+                            <i class="fa-solid fa-arrow-left"></i> Back
+                        </div>
+                        <div class = "row">
+                            <div class = "hex">
+                                <div id = "clicked-hex" class = "hex-inner"></div>
+                            </div>
+                            <div id = "desc-container">
+                                <div id = "clicked-desc" class = "blue-label"></div>
+                            </div>
+                        </div>
+                        <div id = "indicator-hexes"></div>
+                    </div>
+                    <div id = "click-to-see" style = "margin-top: 100px;">Click on a domain to see the indicators</div>
                 </div>
-                <div id = "domains-grid-container" style= "display: block;"></div>
-                <div id = "domain-info" style = "display:none;">
-                    <div id = "back-button">
+            </div>
+
+            <div id = "indicator-scrn" class = "screen" style = "display:none;">
+                <div class = "row">
+                    <div id = "back-button-2" class = "back-button">
                         <i class="fa-solid fa-arrow-left"></i> Back
                     </div>
-                    <div class = "row">
-                        <div class = "hex">
-                            <div id = "clicked-hex" class = "hex-inner"></div>
-                        </div>
-                        <div id = "desc-container">
-                            <div id = "clicked-desc" class = "blue-label"></div>
-                        </div>
-                    </div>
-                    <div id = "indicator-hexes"></div>
+                    <div id = "domain-title" class = "blue-label"></div>
+                    <h2 id = "indicator-title"></h2>
                 </div>
-                <div id = "click-to-see" style = "margin-top: 100px;">Click on a domain to see the indicators</div>
+                <div class = "row" style = "margin-top: 15px;">
+                    <div class = "blue-label">Why is this Indicator important?</div>
+                    <p id = "ind-important"></p>
+                </div>
+                <div id = "line-chart" class = "pxwidget"></div>
             </div>
+
+            <img id = "nisra-logo" src="img/NISRA-acronym-bilingual.svg">
+
         </div>
-
-        <img id = "nisra-logo" src="img/NISRA-acronym-bilingual.svg">
-
-    </div>    
+    </div> 
 
 </body>
 
+<script src = "scripts/data_functions.js"></script>
 <script src = "scripts/navigation_functions.js"></script>
 
 </html>
