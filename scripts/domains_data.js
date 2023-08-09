@@ -71,7 +71,7 @@ var domains_data = {
             "importance": "Water is an essential natural resource and plays a vital role in maintaining biodiversity, our health and social welfare and our economic development. Our rivers, lakes, estuaries, seas and groundwater provide water to sustain many of our core social and economic activities, and also provide drinking water for our population. Soluble reactive phosphorus is a plant nutrient, which, when present in rivers in elevated concentrations, can lead to accelerated growth of algae and other plants. The impact on the composition and abundance of plant species can have adverse implications for other aspects of water quality, such as oxygen levels, and for the characteristics of river habitats. These various changes can cause undesirable disturbances to populations of water animals, such as invertebrates and fish.",
             "base_year": "2019",
             "data": {
-               "NI": "INDRIVERQNI",
+               "NI": "INDRIVERQNI", 
                "AA": "",
                "LGD": "",
                "EQ": ""
@@ -243,7 +243,7 @@ var domains_data = {
             "data": {
                "NI": "",
                "AA": "INDEMPRATEAA",
-               "LGD": "INDEMPRATEAA",
+               "LGD": "INDEMPRATELGD",
                "EQ": "INDEMPRATEEQ"
             }
          },
