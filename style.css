@@ -111,6 +111,20 @@ h2 {
     align-items: center;
 }
 
+.grey-box {
+    background-color: #D3D3D3;
+    padding: 10px;
+    color: #000;
+    border-radius: 25px;
+    font-size: 12pt;
+    text-align: left;
+    margin-left: 10px;
+    width: 1000px;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
 #desc-container {
     display: flex;
     align-items: center;
