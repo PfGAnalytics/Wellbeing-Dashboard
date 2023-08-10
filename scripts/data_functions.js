@@ -165,11 +165,13 @@ function createLineChart (id, title, statistic, geography, matrix) {
     
 }
 
+// Loop through domains_data to generate line charts for each indicator (see domains_data.js)
+// Assign list of domains to variable "domains"
 var domains = Object.keys(domains_data);
 
 for (let i = 0; i < domains.length; i++) {
-    
-    indicators = domains_data[domains[i]].indicators;
+    // Inside each domain we will return a list of "indicators"
+    var indicators = domains_data[domains[i]].indicators;
 
     for (let j = 0; j < Object.keys(indicators).length; j++) {
 
@@ -186,11 +188,9 @@ for (let i = 0; i < domains.length; i++) {
                this_statistic = this_matrix;
             } else {
                this_statistic = this_matrix.substring(0, this_matrix.length - 2);
-            }
+            }            
 
-            
-
-        } else if (LGD_matrix != "") {
+        } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD"].includes(LGD_matrix)) {
 
             this_matrix = LGD_matrix;
             this_geography = "LGD2014";
@@ -198,7 +198,7 @@ for (let i = 0; i < domains.length; i++) {
 
         } else if (EQ_matrix != "") {
 
-            this_matrix = LGD_matrix;
+            this_matrix = EQ_matrix;
             this_geography = "EQUALGROUPS";
             this_statistic = this_matrix.substring(0, this_matrix.length - 2);  
 
@@ -216,7 +216,12 @@ for (let i = 0; i < domains.length; i++) {
          chart_container.classList.add("line-chart");
          chart_container.style.display = "none";
 
-         document.getElementById("line-chart").appendChild(chart_container);
+         document.getElementById("line-chart-container").appendChild(chart_container);
+
+         if (this_matrix == "INDCULTIDEQ") {
+
+            console.log(this_statistic, this_geography)
+         }
 
          createLineChart(id = this_id,
             title = Object.keys(indicators)[j],

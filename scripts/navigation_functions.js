@@ -153,11 +153,25 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
                 var NI_matrix = domains_data[domain_name].indicators[indicator_name].data.NI;
                 var LGD_matrix = domains_data[domain_name].indicators[indicator_name].data.LGD;
+                var EQ_matrix = domains_data[domain_name].indicators[indicator_name].data.EQ;
+
 
                 if (NI_matrix != "") {
-                    chart_id = NI_matrix.replace("NI", "") + "-line";
-                } else {
-                    chart_id = LGD_matrix.replace("LGD", "") + "-line";
+
+                    if (["INDGREENHGNI", "INDNICEINI", "INDRIVERQNI"].includes(NI_matrix)) {
+                        chart_id = NI_matrix + "-line";
+                    } else {
+                        chart_id = NI_matrix.substring(0, NI_matrix.length - 2) + "-line";
+                    }            
+
+                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD"].includes(LGD_matrix)) {
+
+                    chart_id = LGD_matrix.substring(0, LGD_matrix.length - 3) + "-line";
+
+                } else if (EQ_matrix != "") {
+
+                    chart_id = EQ_matrix.substring(0, EQ_matrix.length - 2) + "-line";
+
                 }
 
                 var line_charts = document.getElementsByClassName("line-chart");
