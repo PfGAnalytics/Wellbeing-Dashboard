@@ -82,8 +82,13 @@ h2 {
 
 
 
-#domains-grid-container, #domain-info {
-    margin-left: 15px;
+#domains-grid-container {
+    width: 700px;
+}
+
+#domain-info {
+    width: 900px;
+    padding-left: 20px;
 }
 
 #seeds-label {
@@ -94,7 +99,7 @@ h2 {
     font-size: 14pt;
     width: 200px;
     text-align: center;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 .blue-label {
@@ -105,29 +110,41 @@ h2 {
     font-size: 14pt;
     text-align: center;
     margin-left: 10px;
-    width: 400px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.grey-box {
-    background-color: #D3D3D3;
+.white-box {
+    background-color: white;
     padding: 10px;
     color: #000;
     border-radius: 25px;
     font-size: 12pt;
     text-align: left;
-    margin-left: 10px;
-    width: 1000px;
+    margin: 10px;
+    width: 860px;
     display: flex;
-    justify-content: left;
     align-items: center;
+}
+
+.grey-box {
+    background-color: #e8e8e8;
+    width: 400px;
+    border-radius: 25px;
+    margin-left: 20px;
+    padding: 10px;  
 }
 
 #desc-container {
     display: flex;
     align-items: center;
+}
+
+#click-to-see {
+    width: 100px;
+    text-align: center;
 }
 
 .hex {
@@ -179,7 +196,6 @@ h2 {
     width: 100px;
     padding: 10px;
     border-radius: 10px;
-    margin-bottom: 20px;
     cursor: pointer;
     text-align: center;
 }
@@ -247,7 +263,6 @@ h2 {
     font-size: 12pt;
     line-height: 1em;
     padding: 10px;
-    padding-right: 10px;
     font-weight: bold;
 }
 
@@ -258,4 +273,10 @@ h2 {
 .row {
     margin-left: 0px;
     margin-right: 0px;
+    align-items: center;
+}
+
+.pxwidget-canvas-wrapper {
+    height: 40vh !important;
+    width: 700px;
 }

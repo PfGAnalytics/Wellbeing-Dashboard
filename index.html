@@ -41,11 +41,12 @@
                 <h2>Social, Economic & Environmental Domains</h2>
                 <div id = "domain-intro">To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</div>
                 <div class = "row">
-                    <div style = "padding-left: 15px;">
-                        <img src = "img/leaf.svg" width = "400px;">
+                    <div>
+                        <img src = "img/leaf.svg" width = "300px;">
                         <div id = "seeds-label">SEEDS of Wellbeing in Northern Ireland</div>
                     </div>
                     <div id = "domains-grid-container" style= "display: block;"></div>
+                    <div id = "click-to-see">Click on a domain to see the indicators</div>
                     <div id = "domain-info" style = "display:none;">
                         <div id = "back-button-1" class = "back-button">
                             <i class="fa-solid fa-arrow-left"></i> Back
@@ -55,12 +56,11 @@
                                 <div id = "clicked-hex" class = "hex-inner"></div>
                             </div>
                             <div id = "desc-container">
-                                <div id = "clicked-desc" class = "blue-label"></div>
+                                <div id = "clicked-desc" class = "blue-label" style = "width: 300px;"></div>
                             </div>
                         </div>
                         <div id = "indicator-hexes"></div>
                     </div>
-                    <div id = "click-to-see" style = "margin-top: 100px;">Click on a domain to see the indicators</div>
                 </div>
             </div>
 
@@ -74,9 +74,21 @@
                 </div>
                 <div class = "row" style = "margin-top: 15px;">
                     <div class = "blue-label">Why is this Indicator important?</div>
-                    <p id = "ind-important" class = "grey-box"></p>
+                    <div id = "ind-important" class = "white-box"></div>
                 </div>
-                <div id = "line-chart-container"></div>
+                <div class = "row">
+                    <div id = "line-chart-container" style = "position: relative; width: 700px;"></div>
+                    <div class = "grey-box">
+                        <strong>Source:</strong>
+                        <p id = "source-info"></p>
+                        <strong>More data:</strong>
+                        <p id = "data-info"></p>
+                    </div>
+                </div>
+                <div class = "row" style = "margin-top: 20px;">
+                    <div class = "blue-label">What is this Indicator telling us?</div>
+                    <div id = "change-info" class = "white-box"></div>
+                </div>
             </div>
 
             <img id = "nisra-logo" src="img/NISRA-acronym-bilingual.svg">
@@ -88,13 +100,5 @@
 
 <script src = "scripts/data_functions.js"></script>
 <script src = "scripts/navigation_functions.js"></script>
-
-
-
-
-<script>
-  
-
-</script>
 
 </html>

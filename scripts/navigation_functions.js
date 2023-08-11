@@ -154,6 +154,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 var NI_matrix = domains_data[domain_name].indicators[indicator_name].data.NI;
                 var LGD_matrix = domains_data[domain_name].indicators[indicator_name].data.LGD;
                 var EQ_matrix = domains_data[domain_name].indicators[indicator_name].data.EQ;
+                var AA_matrix = domains_data[domain_name].indicators[indicator_name].data.AA;
 
 
                 if (NI_matrix != "") {
@@ -176,15 +177,56 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
                 var line_charts = document.getElementsByClassName("line-chart");
 
-                for (let i = 0; i < line_charts.length; i++) {
+                for (let k = 0; k < line_charts.length; k++) {
 
-                    if (line_charts[i].id == chart_id) {
+                    if (line_charts[k].id == chart_id) {
                         document.getElementById(chart_id).style.display = "block";
                     } else {
-                        line_charts[i].style.display = "none";
+                        line_charts[k].style.display = "none";
                     }
 
-                }                
+                }
+
+                // Output source
+                var source_info = "This indicator is collected from the <a href='" + domains_data[domain_name].indicators[indicator_name].source_link + "' target='_blank'>" + domains_data[domain_name].indicators[indicator_name].source + "</a>.";
+
+                document.getElementById("source-info").innerHTML = source_info;
+
+                // Output "More data" paragraph
+                var data_info = "You can view data ";
+
+                if (NI_matrix != "") {
+                    data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + NI_matrix + '" target = "_blank">Northern Ireland level</a>, ';
+                }
+
+                if (LGD_matrix != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + LGD_matrix + '" target = "_blank">Local Government District</a>, ';
+                }
+
+                if (AA_matrix != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + AA_matrix + '" target = "_blank">Assembly Area</a>, ';
+                }
+
+                if (EQ_matrix != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + EQ_matrix + '" target = "_blank">Equality Groups</a>, ';
+                }
+
+                data_info = data_info + ' on the NISRA Data Portal.'
+
+                if (data_info.lastIndexOf(",") > 0 ) {
+                    data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+                }
+
+                if (data_info.lastIndexOf(",") > 0 ) {
+                    data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+                }
+
+                document.getElementById("data-info").innerHTML = data_info;
+
+                // Output things have improved/worsened
+                document.getElementById("change-info").innerHTML = "Things have improved since the baseline in " + domains_data[domain_name].indicators[indicator_name].base_year + ".";
+
+
 
         }
 

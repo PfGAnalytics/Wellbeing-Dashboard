@@ -5,7 +5,7 @@ function createLineChart (id, title, statistic, geography, matrix) {
         "matrix": null,
         "type": "line",
         "copyright": false,
-        "link": `https://ppdata.nisra.gov.uk/table/${matrix}`,
+        "link": "",
         "sort": false,
         "metadata": {
            "xAxis": {
@@ -37,7 +37,10 @@ function createLineChart (id, title, statistic, geography, matrix) {
            "labels": [],
            "datasets": [{
               "label": "Northern Ireland",
-              "pointRadius": 2,
+              "borderColor": "#000000",
+              "pointBackgroundColor": "#000000",
+              "pointBorderColor": "#000000",
+              "pointRadius": 3,
               "pointHoverRadius": 4,
               "maxBarThickness": 90,
               "api": {
@@ -215,13 +218,9 @@ for (let i = 0; i < domains.length; i++) {
          chart_container.classList.add("pxwidget");
          chart_container.classList.add("line-chart");
          chart_container.style.display = "none";
+         chart_container.style.height = "500px";
 
          document.getElementById("line-chart-container").appendChild(chart_container);
-
-         if (this_matrix == "INDCULTIDEQ") {
-
-            console.log(this_statistic, this_geography)
-         }
 
          createLineChart(id = this_id,
             title = Object.keys(indicators)[j],
@@ -234,22 +233,6 @@ for (let i = 0; i < domains.length; i++) {
     }
 
 }
-
-function rewriteLinks() {
-
-   var links = document.getElementsByTagName("a");
-
-   for (let i = 0; i < links.length; i++) {
-
-       if (links[i].innerHTML.includes("ppdata")) {
-         links[i].innerHTML = "See data on NISRA Data Portal";
-       }
-
-   }
-
-}
-
-document.onclick = rewriteLinks;
 
 // function createMap(id, title, matrix, indicator) {
 
