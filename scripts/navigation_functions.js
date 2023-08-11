@@ -52,7 +52,7 @@ var hex_rows = document.getElementsByClassName("hex-row");
 
 for (let i = 0; i < hex_rows.length; i++) {
     if (i % 2 == 1) {
-        hex_rows[i].style.marginLeft = "90px";
+        hex_rows[i].style.marginLeft = "100px";
     }
 
     if (i > 0) {
@@ -224,9 +224,23 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 document.getElementById("data-info").innerHTML = data_info;
 
                 // Output things have improved/worsened
-                document.getElementById("change-info").innerHTML = "Things have improved since the baseline in " + domains_data[domain_name].indicators[indicator_name].base_year + ".";
+                if (NI_matrix != "") {
+                    base_id = NI_matrix + "-base-statement"
+                } else {
+                    base_id = ""
+                }
 
+                base_statements = document.getElementsByClassName("base-statement");
 
+                for (let k = 0; k < base_statements.length; k++) {
+
+                    if (base_statements[k].id == base_id) {
+                        document.getElementById(base_id).style.display = "block";
+                    } else {
+                        base_statements[k].style.display = "none";
+                    }
+
+                }
 
         }
 

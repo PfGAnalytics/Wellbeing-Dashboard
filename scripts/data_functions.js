@@ -1,4 +1,4 @@
-function createLineChart (id, title, statistic, geography, matrix) {    
+function createLineChart (id, title, statistic, geography, matrix, y_label) {
 
     pxWidget.queue('chart', id, {
         "autoupdate": true,
@@ -129,8 +129,8 @@ function createLineChart (id, title, statistic, geography, matrix) {
                  },
                  "callback": null,
                  "scaleLabel": {
-                    "display": false,
-                    "labelString": null
+                    "display": true,
+                    "labelString": y_label
                  },
                  "stacked": false
               }]
@@ -144,7 +144,7 @@ function createLineChart (id, title, statistic, geography, matrix) {
               }
            },
            "legend": {
-              "display": true,
+              "display": false,
               "position": "bottom"
            },
            "elements": {
@@ -166,7 +166,40 @@ function createLineChart (id, title, statistic, geography, matrix) {
         "plugins": [{}]
      });
     
-}
+};
+
+async function getBaseValue(matrix, base) {
+   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + NI_matrix + "/JSON-stat/2.0/en";
+
+   const response = await fetch(api_url);
+   const data = await response.json();
+   const {value, dimension} = data;
+
+   const years = Object.values(dimension)[1].category.index;
+
+   const baseline_index = years.indexOf(base) - 1;
+
+   const labels = years.slice(baseline_index, years.length);
+
+   const change_from_baseline = value[value.length - 1] - value[baseline_index];              
+
+
+   if (change_from_baseline > 0) {
+      base_statement = "Things have improved since the baseline in " + base + ".";
+   } else {
+      base_statement = "Things have worsened since the baseline in " + base + ".";
+   };
+   
+   base_statement_div = document.createElement("div");
+   base_statement_div.id = matrix + "-base-statement";
+   base_statement_div.classList.add("white-box");
+   base_statement_div.classList.add("base-statement");
+   base_statement_div.style.display = "none";
+   base_statement_div.innerHTML = base_statement;
+
+   document.getElementById("change-info").appendChild(base_statement_div);
+
+};
 
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
 // Assign list of domains to variable "domains"
@@ -177,6 +210,9 @@ for (let i = 0; i < domains.length; i++) {
     var indicators = domains_data[domains[i]].indicators;
 
     for (let j = 0; j < Object.keys(indicators).length; j++) {
+
+        var chart_title = Object.values(indicators)[j].chart_title;
+        var y_axis_label = Object.values(indicators)[j].y_axis_label;
 
         var NI_matrix = Object.values(indicators)[j].data.NI;
         var LGD_matrix = Object.values(indicators)[j].data.LGD;
@@ -191,7 +227,15 @@ for (let i = 0; i < domains.length; i++) {
                this_statistic = this_matrix;
             } else {
                this_statistic = this_matrix.substring(0, this_matrix.length - 2);
-            }            
+            }
+
+            var baseline = Object.values(indicators)[j].base_year;
+            
+            if (baseline != "TBD") {
+
+               getBaseValue(NI_matrix, baseline);
+
+            };
 
         } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD"].includes(LGD_matrix)) {
 
@@ -223,10 +267,11 @@ for (let i = 0; i < domains.length; i++) {
          document.getElementById("line-chart-container").appendChild(chart_container);
 
          createLineChart(id = this_id,
-            title = Object.keys(indicators)[j],
+            title = chart_title,
             statistic = this_statistic,
             geography = this_geography,
-            matrix = this_matrix)
+            matrix = this_matrix,
+            y_label = y_axis_label)
 
         }          
 

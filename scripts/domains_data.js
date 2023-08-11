@@ -7,6 +7,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Care Leavers Statistical publication",
             "source_link": "https://www.health-ni.gov.uk/sites/default/files/publications/health/nicl-21-22.pdf",
+            "ci": 1,
+            "chart_title": "Percentage of care leavers, aged 19, who were in education, training or employment",
+            "y_axis_label": "%",
             "data": {
                "NI": "",
                "AA": "INDCHSCAA",
@@ -19,6 +22,9 @@ var domains_data = {
             "base_year": "TBD",
             "source": "Health Inequalities publication",
             "source_link": "https://www.health-ni.gov.uk/articles/health-inequalities-statistics",
+            "ci": 1,
+            "chart_title": "Gap between percentage of babies found to be small for gestational age for those living in the most and least deprived areas",
+            "y_axis_label": "Percentage points",
             "data": {
                "NI": "INDSFGANI",
                "AA": "",
@@ -36,6 +42,9 @@ var domains_data = {
             "base_year": "2019",
             "source": "Northern Ireland environmental statistics report",
             "source_link": "https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report",
+            "ci": 1,
+            "chart_title": "Air Pollution",
+            "y_axis_label": "Annual mean nitrogen dioxide concentration (μg/m³)",
             "data": {
                "NI": "INDAIRPOLNI",
                "AA": "",
@@ -48,6 +57,9 @@ var domains_data = {
             "base_year": "2019",
             "source": "Northern Ireland greenhouse gas inventory",
             "source_link": "https://www.daera-ni.gov.uk/articles/northern-ireland-greenhouse-gas-inventory",
+            "ci": 1,
+            "chart_title": "Greenhouse Gas Emissions",
+            "y_axis_label": "MtCO₂e",
             "data": {
                "NI": "INDGREENHGNI",
                "AA": "",
@@ -60,6 +72,9 @@ var domains_data = {
             "base_year": "2019",
             "source": "Low Carbon and Renewable Energy Economy Survey (ONS)",
             "source_link": "https://www.ons.gov.uk/economy/environmentalaccounts/bulletins/finalestimates/2021",
+            "ci": 1,
+            "chart_title": "Full Time Equivalent (FTE) employment in the carbon and renewable energy economy",
+            "y_axis_label": "FTE employment",
             "data": {
                "NI": "INDLCREENI",
                "AA": "",
@@ -72,6 +87,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Northern Ireland local authority collected municipal waste management statistics",
             "source_link": "https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics",
+            "ci": 0.5,
+            "chart_title": "Recycled Waste",
+            "y_axis_label": "% household waste that is reused, recycled or composted",
             "data": {
                "NI": "",
                "AA": "",
@@ -84,6 +102,9 @@ var domains_data = {
             "base_year": "2019",
             "source": "Northern Ireland environmental statistics report",
             "source_link": "https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report",
+            "ci": 0.01,
+            "chart_title": "River Water Quality",
+            "y_axis_label": "mg/l soluble reactive phosporus (SRP)",
             "data": {
                "NI": "INDRIVERQNI", 
                "AA": "",
@@ -101,6 +122,9 @@ var domains_data = {
             "base_year": "2020",
             "source": "NI Life and Times Survey",
             "source_link": "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/good-relations",
+            "ci": 2.7,
+            "chart_title": "Percentage of the population who believe their cultural identity is respected by society",
+            "y_axis_label": "%",
             "data": {
                "NI": "",
                "AA": "",
@@ -113,6 +137,9 @@ var domains_data = {
             "base_year": "2021/22",
             "source": "Northern Ireland Poverty Bulletin",
             "source_link": "https://www.communities-ni.gov.uk/topics/family-resources-survey",
+            "ci": 4,
+            "chart_title": "Percentage of population living in absolute poverty before housing costs",
+            "y_axis_label": "%",
             "data": {
                "NI": "",
                "AA": "",
@@ -125,6 +152,9 @@ var domains_data = {
             "base_year": "2021/22",
             "source": "Northern Ireland Poverty Bulletin",
             "source_link": "https://www.communities-ni.gov.uk/topics/family-resources-survey",
+            "ci": 4,
+            "chart_title": "Percentage of population living in relative poverty before housing costs",
+            "y_axis_label": "%",
             "data": {
                "NI": "",
                "AA": "",
@@ -137,6 +167,9 @@ var domains_data = {
             "base_year": "2020",
             "source": "NI Life and Times Survey",
             "source_link": "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/good-relations",
+            "ci": 2.2,
+            "chart_title": "Percentage who feel respected",
+            "y_axis_label": "%",
             "data": {
                "NI": "",
                "AA": "",
@@ -154,6 +187,9 @@ var domains_data = {
             "base_year": "2017-19",
             "source": "Life Expectancy in NI publication",
             "source_link": "https://www.health-ni.gov.uk/sites/default/files/publications/health/hscims-life-expectancy-ni-2019-21.pdf",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -166,6 +202,9 @@ var domains_data = {
             "base_year": "2017-19",
             "source": "Life Expectancy in NI publication",
             "source_link": "https://www.health-ni.gov.uk/sites/default/files/publications/health/hscims-life-expectancy-ni-2019-21.pdf",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -178,6 +217,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Health Survey Northern Ireland publication",
             "source_link": "https://www.health-ni.gov.uk/topics/health-survey-northern-ireland",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -190,6 +232,9 @@ var domains_data = {
             "base_year": "2015-19",
             "source": "Health Inequalities publication",
             "source_link": "https://www.health-ni.gov.uk/articles/health-inequalities-statistics",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDPREVDTHAA",
@@ -202,6 +247,9 @@ var domains_data = {
             "base_year": "2021/22",
             "source": "Continuous Household Survey",
             "source_link": "https://www.communities-ni.gov.uk/topics/statistics-and-research/sport-museums-and-libraries-statistics",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -219,6 +267,9 @@ var domains_data = {
             "base_year": "2021/22",
             "source": "Continuous Household Survey",
             "source_link": "https://www.communities-ni.gov.uk/topics/statistics-and-research/sport-museums-and-libraries-statistics",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -231,6 +282,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Continuous Household Survey",
             "source_link": "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/wellbeing-northern-ireland",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDLIFESATAA",
@@ -243,6 +297,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Qualifications and Destinations of Northern Ireland School Leavers report",
             "source_link": "https://www.education-ni.gov.uk/articles/school-leavers",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDSLATTGAPAA",
@@ -255,6 +312,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Continuous Household Survey",
             "source_link": "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/wellbeing-northern-ireland",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDSELFEFFAA",
@@ -272,6 +332,9 @@ var domains_data = {
             "base_year": "2020",
             "source": "Labour Force Survey",
             "source_link": "https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDECONINACTAA",
@@ -284,6 +347,9 @@ var domains_data = {
             "base_year": "2020",
             "source": "Labour Force Survey",
             "source_link": "https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDEMPRATEAA",
@@ -292,10 +358,13 @@ var domains_data = {
             }
          },
          "External sales rate": {
-            "importance": "",
-            "base_year": "",
+            "importance": "Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a “Trade and Investment Strategy for a 10x economy” in which they note “Trade can support the ambitions of our ‘10X Economy’ across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become.”",
+            "base_year": "2019",
             "source": "Northern Ireland Economic Trade Statistics",
             "source_link": "https://www.nisra.gov.uk/statistics/business-statistics/broad-economy-sales-and-exports-statistics",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "INDEXSALENI",
                "AA": "",
@@ -308,6 +377,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "NI Higher Education Qualifications Bulletin",
             "source_link": "https://www.economy-ni.gov.uk/publications/qualifications-gained-uk-higher-education-institutions-northern-ireland-analysis-202122",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDGRADSAA",
@@ -320,6 +392,9 @@ var domains_data = {
             "base_year": "2020",
             "source": "Anholt-Ipsos Nation Brands Survey",
             "source_link": "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/nation-brands-index",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "INDINTREPNI",
                "AA": "",
@@ -332,6 +407,9 @@ var domains_data = {
             "base_year": "2019",
             "source": "NI Composite Economic Index statistical bulletin",
             "source_link": "https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "INDNICEINI",
                "AA": "",
@@ -344,6 +422,9 @@ var domains_data = {
             "base_year": "2020",
             "source": "Labour Force Survey",
             "source_link": "https://www.nisra.gov.uk/publications/highest-qualification-level-2021",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -361,6 +442,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Safe Community Survey",
             "source_link": "https://www.justice-ni.gov.uk/publications/experience-crime-findings-201920-northern-ireland-safe-community-survey",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDCRIMEAA",
@@ -373,6 +457,9 @@ var domains_data = {
             "base_year": "2017/18",
             "source": "Adult and Youth Reoffending statistics in Northern Ireland report",
             "source_link": "https://www.justice-ni.gov.uk/topics/reoffending-statistics",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -390,6 +477,9 @@ var domains_data = {
             "base_year": "2020",
             "source": "annual survey of domiciliary care provision",
             "source_link": "https://www.health-ni.gov.uk/sites/default/files/publications/dhssps/quality-report-for-domiciliary-care-services.pdf",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "INDADSCNI",
                "AA": "",
@@ -402,6 +492,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Continuous Household Survey",
             "source_link": "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/wellbeing-northern-ireland",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDLONEAA",
@@ -414,6 +507,9 @@ var domains_data = {
             "base_year": "2021/22",
             "source": "Continuous Household Survey",
             "source_link": "https://www.communities-ni.gov.uk/publications/engagement-culture-arts-and-sport-by-adults-northern-ireland-201920",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -431,6 +527,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Northern Ireland Housing Bulletin",
             "source_link": "https://www.communities-ni.gov.uk/publications/northern-ireland-housing-bulletin-january-march-2020",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "INDHOMELNAA",
@@ -443,6 +542,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Family Resources Survey",
             "source_link": "https://www.communities-ni.gov.uk/publications/family-resources-survey-report-2021-2022",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
@@ -455,6 +557,9 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Northern Ireland Housing Statistics",
             "source_link": "https://www.communities-ni.gov.uk/topics/housing-statistics",
+            "ci": 1,
+            "chart_title": "",
+            "y_axis_label": "",
             "data": {
                "NI": "",
                "AA": "",
