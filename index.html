@@ -23,23 +23,35 @@
     <div id="top-menu" class = "row">
         <img id = "top-menu-exec-logo" src = "img/Northern_Ireland_Executive_logo.svg">
         <h1>SEEDS of Wellbeing<br>in Northern Ireland</h1>
-        <div id = "overall-btn" class = "top-menu-item"><i class = "fa fa-th-large"></i> Overall</div>
-        <div id = "domains-btn" class = "top-menu-item selected-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span></i> Domains</div>
+        <div id = "overall-btn" class = "top-menu-item selected-item"><i class = "fa fa-th-large"></i> Overall</div>
+        <div id = "domains-btn" class = "top-menu-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span></i> Domains</div>
         <div id = "maps-btn" class = "top-menu-item"><img id = "ni-icon" src = "img/noun-northern-ireland-1019239.svg" style = "width: 20px;"></i> Maps</div>
         <div id = "help-btn" class = "top-menu-item"><i class = "fa fa-question"></i> Help</div>
     </div>
 
-    
-
-    <div class = "content-centre">
-        <p id = "indicators-intro">We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made.</p>
-    </div>
     <div class = "content-centre">
         <div id = "main-container">
 
-            <div id = "domains-scrn" class = "screen" style = "display:block;">
+            <div id = "overall-scrn" class = "screen" style = "display:block">
+                <p class = "indicators-intro"></p>
+                <div class = "row">
+                    <div class = "overall-label">Improving</div>
+                    <div id = "improving-hexes" class = "overall-container"></div>
+                </div>
+                <div class = "row">
+                    <div class = "overall-label">No change</div>
+                    <div id = "no-change-hexes" class = "row overall-container"></div>
+                </div>
+                <div class = "row">
+                    <div class = "overall-label">Worsening</div>
+                    <div id = "worsening-hexes" class = "row overall-container"></div>
+                </div>
+            </div>
+
+            <div id = "domains-scrn" class = "screen" style = "display:none;">
                 <h2>Social, Economic & Environmental Domains</h2>
                 <div id = "domain-intro">To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</div>
+                <p class = "indicators-intro" style = "display: none"></p>
                 <div class = "row">
                     <div>
                         <img src = "img/leaf.svg" width = "300px;">
@@ -97,6 +109,10 @@
                 </div>
             </div>
 
+            <div id = "maps-scrn"></div>
+
+            <div id = "help-scrn"></div>
+
             <img id = "nisra-logo" src="img/NISRA-acronym-bilingual.svg">
 
         </div>
@@ -106,5 +122,9 @@
 
 <script src = "scripts/data_functions.js"></script>
 <script src = "scripts/navigation_functions.js"></script>
+
+<script>
+
+</script>
 
 </html>

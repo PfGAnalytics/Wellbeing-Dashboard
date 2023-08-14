@@ -1,4 +1,4 @@
-function createLineChart (id, title, statistic, geography, matrix, y_label) {
+async function createLineChart (id, title, statistic, geography, matrix, y_label) {   
 
     pxWidget.queue('chart', id, {
         "autoupdate": true,
@@ -42,7 +42,6 @@ function createLineChart (id, title, statistic, geography, matrix, y_label) {
               "pointBorderColor": "#000000",
               "pointRadius": 3,
               "pointHoverRadius": 4,
-              "maxBarThickness": 90,
               "api": {
                  "query": {
                     "url": "https://ppws-data.nisra.gov.uk/public/api.jsonrpc",
@@ -168,8 +167,9 @@ function createLineChart (id, title, statistic, geography, matrix, y_label) {
     
 };
 
-async function getBaseValue(matrix, base) {
-   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + NI_matrix + "/JSON-stat/2.0/en";
+async function determineChangeNI(matrix, base, ci, improvement) {
+
+   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
    const response = await fetch(api_url);
    const data = await response.json();
@@ -181,13 +181,14 @@ async function getBaseValue(matrix, base) {
 
    const labels = years.slice(baseline_index, years.length);
 
-   const change_from_baseline = value[value.length - 1] - value[baseline_index];              
+   const change_from_baseline = value[value.length - 1] - value[baseline_index];         
 
-
-   if (change_from_baseline > 0) {
+   if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + base + ".";
-   } else {
+   } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
       base_statement = "Things have worsened since the baseline in " + base + ".";
+   } else {
+      base_statement = "There has been no significant change since the baseline in " + base + ".";
    };
    
    base_statement_div = document.createElement("div");
@@ -201,6 +202,88 @@ async function getBaseValue(matrix, base) {
 
 };
 
+async function determineChangeLGD(matrix, base, ci, improvement) {
+
+   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+
+   const response = await fetch(api_url);
+   const data = await response.json();
+   const {value, dimension} = data;
+
+   const years = Object.values(dimension)[1].category.index;
+   const geographies = Object.values(dimension)[2].category.index;
+
+   const num_years = years.length;
+   const base_position = years.indexOf(base);
+
+   const num_geog = geographies.length;
+   const NI_position = geographies.indexOf("N92000002");
+
+   const base_value = value[num_geog * (base_position - 1) + NI_position];
+   const current_value = value[num_geog * (num_years - 1) + NI_position];
+
+   const change_from_baseline = current_value - base_value;
+
+   if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
+      base_statement = "Things have improved since the baseline in " + base + ".";
+   } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
+      base_statement = "Things have worsened since the baseline in " + base + ".";
+   } else {
+      base_statement = "There has been no significant change since the baseline in " + base + ".";
+   };
+   
+   base_statement_div = document.createElement("div");
+   base_statement_div.id = matrix + "-base-statement";
+   base_statement_div.classList.add("white-box");
+   base_statement_div.classList.add("base-statement");
+   base_statement_div.style.display = "none";
+   base_statement_div.innerHTML = base_statement;
+
+   document.getElementById("change-info").appendChild(base_statement_div);
+
+}
+
+async function determineChangeEQ (matrix, base, ci, improvement) {
+
+   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+
+   const response = await fetch(api_url);
+   const data = await response.json();
+   const {value, dimension} = data;
+
+   const years = Object.values(dimension)[1].category.index;
+   const groups = Object.values(dimension)[2].category.index;
+
+   const num_years = years.length;
+   const base_position = years.indexOf(base);
+
+   const num_groups = groups.length;
+   const NI_position = groups.indexOf("N92000002");
+
+   const base_value = value[num_groups * base_position + NI_position];
+   const current_value = value[num_groups * (num_years - 1) + NI_position];
+
+   const change_from_baseline = current_value - base_value;
+
+   if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
+      base_statement = "Things have improved since the baseline in " + base + ".";
+   } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
+      base_statement = "Things have worsened since the baseline in " + base + ".";
+   } else {
+      base_statement = "There has been no significant change since the baseline in " + base + ".";
+   };
+   
+   base_statement_div = document.createElement("div");
+   base_statement_div.id = matrix + "-base-statement";
+   base_statement_div.classList.add("white-box");
+   base_statement_div.classList.add("base-statement");
+   base_statement_div.style.display = "none";
+   base_statement_div.innerHTML = base_statement;
+
+   document.getElementById("change-info").appendChild(base_statement_div);
+}
+
+
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
 // Assign list of domains to variable "domains"
 var domains = Object.keys(domains_data);
@@ -213,6 +296,9 @@ for (let i = 0; i < domains.length; i++) {
 
         var chart_title = Object.values(indicators)[j].chart_title;
         var y_axis_label = Object.values(indicators)[j].y_axis_label;
+        var this_ci = Object.values(indicators)[j].ci;
+        var this_baseline = Object.values(indicators)[j].base_year;
+        var this_improvement = Object.values(indicators)[j].improvement;
 
         var NI_matrix = Object.values(indicators)[j].data.NI;
         var LGD_matrix = Object.values(indicators)[j].data.LGD;
@@ -227,27 +313,26 @@ for (let i = 0; i < domains.length; i++) {
                this_statistic = this_matrix;
             } else {
                this_statistic = this_matrix.substring(0, this_matrix.length - 2);
-            }
+            }            
 
-            var baseline = Object.values(indicators)[j].base_year;
-            
-            if (baseline != "TBD") {
+            determineChangeNI(NI_matrix, this_baseline, this_ci, this_improvement);
 
-               getBaseValue(NI_matrix, baseline);
 
-            };
-
-        } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD"].includes(LGD_matrix)) {
+        } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_matrix)) { // first 3 exclusions have no NI in LGD dataset, other 3 not on data portal yet
 
             this_matrix = LGD_matrix;
             this_geography = "LGD2014";
             this_statistic = this_matrix.substring(0, this_matrix.length - 3);
 
-        } else if (EQ_matrix != "") {
+            determineChangeLGD(LGD_matrix, this_baseline, this_ci, this_improvement);
+
+        } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_matrix)) { // not on data portal yet
 
             this_matrix = EQ_matrix;
             this_geography = "EQUALGROUPS";
-            this_statistic = this_matrix.substring(0, this_matrix.length - 2);  
+            this_statistic = this_matrix.substring(0, this_matrix.length - 2);
+
+            determineChangeEQ(EQ_matrix, this_baseline, this_ci, this_improvement);
 
         } else {
          this_matrix = ""

@@ -5,6 +5,8 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
     top_menu_items[i].onclick = function() {
 
+        document.getElementById("indicator-scrn").style.display = "none";
+
         for (let j = 0; j < top_menu_items.length; j++) {
 
             var clicked_id = document.getElementById(top_menu_items[j].id);
@@ -12,15 +14,28 @@ for (let i = 0; i < top_menu_items.length; i++) {
             if (document.getElementById(top_menu_items[i].id) == clicked_id) {
                 clicked_id.classList.add("selected-item");
                 clicked_id.firstChild.classList.add("selected-icon");
+                document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";                
             } else {
                 clicked_id.classList.remove("selected-item");
                 clicked_id.firstChild.classList.remove("selected-icon");
+                document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "none";
             }
 
-        }
-    }
+        }        
+
+    }    
 
 }
+
+var indicator_intros = document.getElementsByClassName("indicators-intro");
+
+
+
+for (let i = 0; i < indicator_intros.length; i++)  {
+    indicator_intros[i].innerHTML = "We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made."
+}
+
+
 
 // Generate hex grid of domains
 var domains = Object.keys(domains_data);
@@ -63,13 +78,13 @@ for (let i = 0; i < hex_rows.length; i++) {
 // Click on a domain
 var hexagons = document.getElementsByClassName("hex-inner");
 var domains_heading = document.getElementById("domains-scrn").getElementsByTagName("h2")[0];
-var indicators_intro = document.getElementById("indicators-intro");
 var domain_intro = document.getElementById("domain-intro");
 var domain_info = document.getElementById("domain-info");
 var clicked_hex = document.getElementById("clicked-hex");
 var click_to_see = document.getElementById("click-to-see");
 var clicked_desc = document.getElementById("clicked-desc");
 var indicator_hexes = document.getElementById("indicator-hexes");
+var indicator_intro = document.getElementById("domains-scrn").getElementsByClassName("indicators-intro")[0];
 
 for (let i = 0; i < hexagons.length - 1; i++) {
 
@@ -78,11 +93,11 @@ for (let i = 0; i < hexagons.length - 1; i++) {
     hexagons[i].onclick = function() {
 
         domains_heading.style.display = "none";
-        indicators_intro.style.display = "block";
         domain_intro.style.display = "none";
         domain_info.style.display = "block";
         domains_grid_container.style.display = "none";
         click_to_see.style.display = "none";
+        indicator_intro.style.display = "block";
 
         var domain_name = hexagons[i].innerHTML;
 
@@ -108,9 +123,32 @@ for (let i = 0; i < hexagons.length - 1; i++) {
             var hex_label = document.createElement("div");
             var label_text = document.createTextNode(indicators[i]);
 
+            var NI_data = domains_data[domain_name].indicators[indicators[i]].data.NI;
+            var LGD_data = domains_data[domain_name].indicators[indicators[i]].data.LGD;
+            var EQ_data = domains_data[domain_name].indicators[indicators[i]].data.EQ;
+
+            if (NI_data != "") {
+                base_text = document.getElementById(NI_data + "-base-statement").textContent;
+            } else if (LGD_data != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_data)) {
+                base_text = document.getElementById(LGD_data + "-base-statement").textContent;
+            }  else if (EQ_data != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_data)) {
+                base_text = document.getElementById(EQ_data + "-base-statement").textContent;
+            } else {
+                base_text = "";
+            }
+
+            if (base_text.includes("worsened")) {
+                hex.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+                hex.classList.add("negative");
+            } else if (base_text.includes("improved")) {
+                hex.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+                hex.classList.add("positive");
+            } else {
+                hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+            }
+
             hex_container.classList.add("ind-hex-container");
-            hex.classList.add("ind-hex");
-            hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+            hex.classList.add("ind-hex");            
             hex_label.classList.add("ind-hex-label");
 
             hex_label.appendChild(label_text);
@@ -134,7 +172,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
         }
 
         // Clinking an indicator name
-        var indicator_links = document.getElementsByClassName("ind-hex-container");
+        var indicator_links = document.getElementById("indicator-hexes").getElementsByClassName("ind-hex-container");
 
         for (let j = 0; j < indicator_links.length; j++) {
 
@@ -143,7 +181,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 var indicator_name = indicator_links[j].getElementsByClassName("ind-hex-label")[0].innerHTML;
 
                 document.getElementById("domains-scrn").style.display = "none";
-                indicators_intro.style.display = "none";
+                document.getElementById("overall-scrn").style.display = "none";
                 document.getElementById("indicator-scrn").style.display = "block";
 
                 document.getElementById("domain-title").innerHTML = domain_name;
@@ -165,7 +203,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                         chart_id = NI_matrix.substring(0, NI_matrix.length - 2) + "-line";
                     }            
 
-                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD"].includes(LGD_matrix)) {
+                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_matrix)) {
 
                     chart_id = LGD_matrix.substring(0, LGD_matrix.length - 3) + "-line";
 
@@ -226,11 +264,15 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 // Output things have improved/worsened
                 if (NI_matrix != "") {
                     base_id = NI_matrix + "-base-statement"
+                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_matrix)) {
+                    base_id = LGD_matrix + "-base-statement"
+                } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_matrix)) {
+                    base_id = EQ_matrix + "-base-statement"
                 } else {
                     base_id = ""
                 }
 
-                base_statements = document.getElementsByClassName("base-statement");
+                var base_statements = document.getElementsByClassName("base-statement");
 
                 for (let k = 0; k < base_statements.length; k++) {
 
@@ -255,19 +297,219 @@ var back_button_1 = document.getElementById("back-button-1");
 
 back_button_1.onclick = function() {
     domains_heading.style.display = "block";
-        indicators_intro.style.display = "none";
         domain_intro.style.display = "block";
         domain_info.style.display = "none";
         domains_grid_container.style.display = "block";
         click_to_see.style.display = "block";
+        indicator_intro.style.display = "none";
 }
 
 var back_button_2 = document.getElementById("back-button-2");
 
 back_button_2.onclick = function () {
     document.getElementById("domains-scrn").style.display = "block";
-    indicators_intro.style.display = "block";
     document.getElementById("indicator-scrn").style.display = "none";
 }
 
+// Overall screen
+setTimeout(function () {
 
+    improving_indicator = [];
+    improving_domain = [];
+    improving_importance = [];
+    improving_base_id = [];
+    improving_source = []
+    improving_chart = [];
+
+    no_change_indicator = [];
+
+    worsening_indicator = [];
+
+    for (let i = 0; i < domains.length; i++) {
+
+        indicators = Object.keys(domains_data[domains[i]].indicators);
+
+        for (let j = 0; j < indicators.length; j++) {
+            
+            NI_data = domains_data[domains[i]].indicators[indicators[j]].data.NI;
+            LGD_data = domains_data[domains[i]].indicators[indicators[j]].data.LGD;
+            EQ_data = domains_data[domains[i]].indicators[indicators[j]].data.EQ;
+            importance = domains_data[domains[i]].indicators[indicators[j]].importance;
+            source = domains_data[domains[i]].indicators[indicators[j]].source;
+
+            if (NI_data != "") {
+                base_id = NI_data + "-base-statement";
+
+                if (["INDGREENHGNI", "INDNICEINI", "INDRIVERQNI"].includes(NI_data)) {
+                    chart_id = NI_data + "-line";
+                } else {
+                    chart_id = NI_data.substring(0, NI_data.length - 2) + "-line";
+                }
+
+            } else if (LGD_data != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_data)) {
+                base_id = LGD_data + "-base-statement";
+
+                chart_id = LGD_data.substring(0, LGD_data.length - 3) + "-line";
+
+            } else if (EQ_data != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_data)) {
+                base_id = EQ_data + "-base-statement";
+
+                chart_id = EQ_data.substring(0, EQ_data.length - 2) + "-line";
+
+            }
+            
+            base_text = document.getElementById(base_id).textContent;
+
+            if (base_text.includes("improved")) {
+                improving_indicator.push(indicators[j]);
+                improving_domain.push(domains[i]);
+                improving_importance.push(importance);
+                improving_base_id.push(base_id);
+                improving_source.push(source);
+                improving_chart.push(chart_id);
+            } else if (base_text.includes("worsened")) {
+                worsening_indicator.push(indicators[j]);
+            } else {
+                no_change_indicator.push(indicators[j]);
+            }
+
+        }
+
+    }
+
+    for (let i = 0; i < improving_indicator.length; i++) {
+
+        if (i % 6 == 0) {
+            var hex_row = document.createElement("div");
+            hex_row.classList.add("row");
+            hex_row.classList.add("improving-hex-row");
+            document.getElementById("improving-hexes").appendChild(hex_row);
+        }
+
+        if (i % 12 == 6) {
+            hex_row.style.marginLeft = "75px"
+        }
+
+        if (i >= 6) {
+            hex_row.style.marginTop = "-25px";
+        }
+
+        var hex_container = document.createElement("div");
+        var hex = document.createElement("div");
+        var hex_label = document.createElement("div");
+        var label_text = document.createTextNode(improving_indicator[i]);
+
+        hex_container.classList.add("ind-hex-container");
+        hex.classList.add("ind-hex");            
+        hex_label.classList.add("ind-hex-label");
+
+        hex_label.appendChild(label_text);
+        hex_container.appendChild(hex);
+        hex_container.appendChild(hex_label);
+
+        hex.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+        hex.classList.add("positive");
+        hex_row.appendChild(hex_container);
+
+        hex_container.onclick = function() {
+            document.getElementById("domains-btn").classList.add("selected-item");
+            document.getElementById("overall-btn").classList.remove("selected-item");
+            document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
+            document.getElementById("overall-scrn").style.display = "none";
+            document.getElementById("indicator-scrn").style.display = "block";
+            document.getElementById("indicator-title").innerHTML = improving_indicator[i];
+            document.getElementById("domain-title").innerHTML = improving_domain[i];
+            document.getElementById("ind-important").innerHTML = improving_importance[i];
+            document.getElementById("source-info").innerHTML = improving_source[i];
+
+            base_statements = document.getElementsByClassName("base-statement");
+
+            for (let j = 0; j < base_statements.length; j++) {
+                base_statements[j].style.display = "none";
+            }
+
+            document.getElementById(improving_base_id[i]).style.display = "block";
+
+            line_charts = document.getElementsByClassName("line-chart");
+
+            for (let j = 0; j < line_charts.length; j++) {
+                line_charts[j].style.display = "none";
+            }
+
+            document.getElementById(improving_chart[i]).style.display = "block";
+        }
+
+    }
+
+    for (let i = 0; i < no_change_indicator.length; i++) {
+
+        if (i % 6 == 0) {
+            var hex_row = document.createElement("div");
+            hex_row.classList.add("row");
+            hex_row.classList.add("no-change-hex-row");
+            document.getElementById("no-change-hexes").appendChild(hex_row);
+        }
+
+        if (i % 12 == 6) {
+            hex_row.style.marginLeft = "75px"
+        }
+
+        if (i >= 6) {
+            hex_row.style.marginTop = "-25px";
+        }
+
+        var hex_container = document.createElement("div");
+        var hex = document.createElement("div");
+        var hex_label = document.createElement("div");
+        var label_text = document.createTextNode(no_change_indicator[i]);
+
+        hex_container.classList.add("ind-hex-container");
+        hex.classList.add("ind-hex");            
+        hex_label.classList.add("ind-hex-label");
+
+        hex_label.appendChild(label_text);
+        hex_container.appendChild(hex);
+        hex_container.appendChild(hex_label);
+
+        hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+        hex_row.appendChild(hex_container);
+
+    }
+
+    for (let i = 0; i < worsening_indicator.length; i++) {
+
+        if (i % 6 == 0) {
+            var hex_row = document.createElement("div");
+            hex_row.classList.add("row");
+            hex_row.classList.add("worsening-hex-row");
+            document.getElementById("worsening-hexes").appendChild(hex_row);
+        }
+
+        if (i % 12 == 6) {
+            hex_row.style.marginLeft = "75px"
+        }
+
+        if (i >= 6) {
+            hex_row.style.marginTop = "-25px";
+        }
+
+        var hex_container = document.createElement("div");
+        var hex = document.createElement("div");
+        var hex_label = document.createElement("div");
+        var label_text = document.createTextNode(worsening_indicator[i]);
+
+        hex_container.classList.add("ind-hex-container");
+        hex.classList.add("ind-hex");            
+        hex_label.classList.add("ind-hex-label");
+
+        hex_label.appendChild(label_text);
+        hex_container.appendChild(hex);
+        hex_container.appendChild(hex_label);
+
+        hex.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+        hex.classList.add("negative");
+        hex_row.appendChild(hex_container);
+
+    }
+
+}, 1000);
