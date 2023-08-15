@@ -303,3 +303,10 @@ h2 {
     width: 1050px;
     margin-top: 20px
 }
+
+#loading-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 450px;
+}

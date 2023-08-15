@@ -322,8 +322,18 @@ setTimeout(function () {
     improving_chart = [];
 
     no_change_indicator = [];
+    no_change_domain = [];
+    no_change_importance = [];
+    no_change_base_id = [];
+    no_change_source = []
+    no_change_chart = [];
 
     worsening_indicator = [];
+    worsening_domain = [];
+    worsening_importance = [];
+    worsening_base_id = [];
+    worsening_source = []
+    worsening_chart = [];
 
     for (let i = 0; i < domains.length; i++) {
 
@@ -369,8 +379,18 @@ setTimeout(function () {
                 improving_chart.push(chart_id);
             } else if (base_text.includes("worsened")) {
                 worsening_indicator.push(indicators[j]);
+                worsening_domain.push(domains[i]);
+                worsening_importance.push(importance);
+                worsening_base_id.push(base_id);
+                worsening_source.push(source);
+                worsening_chart.push(chart_id);
             } else {
                 no_change_indicator.push(indicators[j]);
+                no_change_domain.push(domains[i]);
+                no_change_importance.push(importance);
+                no_change_base_id.push(base_id);
+                no_change_source.push(source);
+                no_change_chart.push(chart_id);
             }
 
         }
@@ -437,6 +457,44 @@ setTimeout(function () {
             }
 
             document.getElementById(improving_chart[i]).style.display = "block";
+
+            NI_matrix = domains_data[improving_domain[i]].indicators[improving_indicator[i]].data.NI;
+            LGD_matrix = domains_data[improving_domain[i]].indicators[improving_indicator[i]].data.LGD;
+            AA_matrix = domains_data[improving_domain[i]].indicators[improving_indicator[i]].data.AA;
+            EQ_matrix = domains_data[improving_domain[i]].indicators[improving_indicator[i]].data.EQ;
+
+
+            // Output "More data" paragraph
+            var data_info = "You can view data ";
+
+            if (NI_matrix != "") {
+                data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + NI_matrix + '" target = "_blank">Northern Ireland level</a>, ';
+            }
+
+            if (LGD_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + LGD_matrix + '" target = "_blank">Local Government District</a>, ';
+            }
+
+            if (AA_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + AA_matrix + '" target = "_blank">Assembly Area</a>, ';
+            }
+
+            if (EQ_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + EQ_matrix + '" target = "_blank">Equality Groups</a>, ';
+            }
+
+            data_info = data_info + ' on the NISRA Data Portal.'
+
+            if (data_info.lastIndexOf(",") > 0 ) {
+                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+            }
+
+            if (data_info.lastIndexOf(",") > 0 ) {
+                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+            }
+
+            document.getElementById("data-info").innerHTML = data_info;
+
         }
 
     }
@@ -449,31 +507,97 @@ setTimeout(function () {
             hex_row.classList.add("no-change-hex-row");
             document.getElementById("no-change-hexes").appendChild(hex_row);
         }
-
+    
         if (i % 12 == 6) {
             hex_row.style.marginLeft = "75px"
         }
-
+    
         if (i >= 6) {
             hex_row.style.marginTop = "-25px";
         }
-
+    
         var hex_container = document.createElement("div");
         var hex = document.createElement("div");
         var hex_label = document.createElement("div");
         var label_text = document.createTextNode(no_change_indicator[i]);
-
+    
         hex_container.classList.add("ind-hex-container");
         hex.classList.add("ind-hex");            
         hex_label.classList.add("ind-hex-label");
-
+    
         hex_label.appendChild(label_text);
         hex_container.appendChild(hex);
         hex_container.appendChild(hex_label);
-
+    
         hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
         hex_row.appendChild(hex_container);
-
+    
+        hex_container.onclick = function() {
+            document.getElementById("domains-btn").classList.add("selected-item");
+            document.getElementById("overall-btn").classList.remove("selected-item");
+            document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
+            document.getElementById("overall-scrn").style.display = "none";
+            document.getElementById("indicator-scrn").style.display = "block";
+            document.getElementById("indicator-title").innerHTML = no_change_indicator[i];
+            document.getElementById("domain-title").innerHTML = no_change_domain[i];
+            document.getElementById("ind-important").innerHTML = no_change_importance[i];
+            document.getElementById("source-info").innerHTML = no_change_source[i];
+    
+            base_statements = document.getElementsByClassName("base-statement");
+    
+            for (let j = 0; j < base_statements.length; j++) {
+                base_statements[j].style.display = "none";
+            }
+    
+            document.getElementById(no_change_base_id[i]).style.display = "block";
+    
+            line_charts = document.getElementsByClassName("line-chart");
+    
+            for (let j = 0; j < line_charts.length; j++) {
+                line_charts[j].style.display = "none";
+            }
+    
+            document.getElementById(no_change_chart[i]).style.display = "block";
+    
+            NI_matrix = domains_data[no_change_domain[i]].indicators[no_change_indicator[i]].data.NI;
+            LGD_matrix = domains_data[no_change_domain[i]].indicators[no_change_indicator[i]].data.LGD;
+            AA_matrix = domains_data[no_change_domain[i]].indicators[no_change_indicator[i]].data.AA;
+            EQ_matrix = domains_data[no_change_domain[i]].indicators[no_change_indicator[i]].data.EQ;
+    
+    
+            // Output "More data" paragraph
+            var data_info = "You can view data ";
+    
+            if (NI_matrix != "") {
+                data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + NI_matrix + '" target = "_blank">Northern Ireland level</a>, ';
+            }
+    
+            if (LGD_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + LGD_matrix + '" target = "_blank">Local Government District</a>, ';
+            }
+    
+            if (AA_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + AA_matrix + '" target = "_blank">Assembly Area</a>, ';
+            }
+    
+            if (EQ_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + EQ_matrix + '" target = "_blank">Equality Groups</a>, ';
+            }
+    
+            data_info = data_info + ' on the NISRA Data Portal.'
+    
+            if (data_info.lastIndexOf(",") > 0 ) {
+                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+            }
+    
+            if (data_info.lastIndexOf(",") > 0 ) {
+                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+            }
+    
+            document.getElementById("data-info").innerHTML = data_info;
+    
+        }
+    
     }
 
     for (let i = 0; i < worsening_indicator.length; i++) {
@@ -484,32 +608,101 @@ setTimeout(function () {
             hex_row.classList.add("worsening-hex-row");
             document.getElementById("worsening-hexes").appendChild(hex_row);
         }
-
+    
         if (i % 12 == 6) {
             hex_row.style.marginLeft = "75px"
         }
-
+    
         if (i >= 6) {
             hex_row.style.marginTop = "-25px";
         }
-
+    
         var hex_container = document.createElement("div");
         var hex = document.createElement("div");
         var hex_label = document.createElement("div");
         var label_text = document.createTextNode(worsening_indicator[i]);
-
+    
         hex_container.classList.add("ind-hex-container");
         hex.classList.add("ind-hex");            
         hex_label.classList.add("ind-hex-label");
-
+    
         hex_label.appendChild(label_text);
         hex_container.appendChild(hex);
         hex_container.appendChild(hex_label);
-
+    
         hex.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
         hex.classList.add("negative");
         hex_row.appendChild(hex_container);
-
+    
+        hex_container.onclick = function() {
+            document.getElementById("domains-btn").classList.add("selected-item");
+            document.getElementById("overall-btn").classList.remove("selected-item");
+            document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
+            document.getElementById("overall-scrn").style.display = "none";
+            document.getElementById("indicator-scrn").style.display = "block";
+            document.getElementById("indicator-title").innerHTML = worsening_indicator[i];
+            document.getElementById("domain-title").innerHTML = worsening_domain[i];
+            document.getElementById("ind-important").innerHTML = worsening_importance[i];
+            document.getElementById("source-info").innerHTML = worsening_source[i];
+    
+            base_statements = document.getElementsByClassName("base-statement");
+    
+            for (let j = 0; j < base_statements.length; j++) {
+                base_statements[j].style.display = "none";
+            }
+    
+            document.getElementById(worsening_base_id[i]).style.display = "block";
+    
+            line_charts = document.getElementsByClassName("line-chart");
+    
+            for (let j = 0; j < line_charts.length; j++) {
+                line_charts[j].style.display = "none";
+            }
+    
+            document.getElementById(worsening_chart[i]).style.display = "block";
+    
+            NI_matrix = domains_data[worsening_domain[i]].indicators[worsening_indicator[i]].data.NI;
+            LGD_matrix = domains_data[worsening_domain[i]].indicators[worsening_indicator[i]].data.LGD;
+            AA_matrix = domains_data[worsening_domain[i]].indicators[worsening_indicator[i]].data.AA;
+            EQ_matrix = domains_data[worsening_domain[i]].indicators[worsening_indicator[i]].data.EQ;
+    
+    
+            // Output "More data" paragraph
+            var data_info = "You can view data ";
+    
+            if (NI_matrix != "") {
+                data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + NI_matrix + '" target = "_blank">Northern Ireland level</a>, ';
+            }
+    
+            if (LGD_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + LGD_matrix + '" target = "_blank">Local Government District</a>, ';
+            }
+    
+            if (AA_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + AA_matrix + '" target = "_blank">Assembly Area</a>, ';
+            }
+    
+            if (EQ_matrix != "") {
+                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + EQ_matrix + '" target = "_blank">Equality Groups</a>, ';
+            }
+    
+            data_info = data_info + ' on the NISRA Data Portal.'
+    
+            if (data_info.lastIndexOf(",") > 0 ) {
+                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+            }
+    
+            if (data_info.lastIndexOf(",") > 0 ) {
+                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+            }
+    
+            document.getElementById("data-info").innerHTML = data_info;
+    
+        }
+    
     }
 
-}, 1000);
+    document.getElementById("loading-img").style.display = "none";
+    document.getElementById("overall-hexes").style.display = "block";
+
+}, 3000);
