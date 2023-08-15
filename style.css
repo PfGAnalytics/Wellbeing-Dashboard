@@ -282,6 +282,11 @@ h2 {
     margin-left: 20px;
 }
 
+#indicator-hexes {
+    margin-left: 75px;
+    margin-top: 15px;
+}
+
 .row {
     margin-left: 0px;
     margin-right: 0px;
