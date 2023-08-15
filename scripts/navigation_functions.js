@@ -706,3 +706,15 @@ setTimeout(function () {
     document.getElementById("overall-hexes").style.display = "block";
 
 }, 3000);
+
+setTimeout(function () {
+
+    not_loading = document.createElement("div");
+    not_loading.id = "not-loading";
+    not_loading.innerHTML = "<p>Data not loading? <a href='.'>Click here to refresh</a></p>"
+
+    if (document.getElementById("overall-hexes").style.display != "block") {
+        document.getElementById("overall-scrn").appendChild(not_loading);
+    }
+
+}, 5000)
