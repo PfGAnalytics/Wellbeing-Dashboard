@@ -8,7 +8,7 @@ var domains_data = {
             "source": "Care Leavers Statistical publication",
             "source_link": "https://www.health-ni.gov.uk/sites/default/files/publications/health/nicl-21-22.pdf",
             "ci": 1,
-            "chart_title": "Percentage of care leavers, aged 19, who were in education, training or employment",
+            "chart_title": "Percentage of care leavers, aged 18, who were in education, training or employment",
             "y_axis_label": "%",
             "data": {
                "NI": "",
@@ -33,7 +33,7 @@ var domains_data = {
                "EQ": ""
             },
             "improvement": "decrease"
-         }
+         },
       }
     },
     "Cleaner Environment": {
