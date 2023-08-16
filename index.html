@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>PfG Dashboard</title>
+    <link rel="icon" type="image" href="img/Northern_Ireland_Executive_icon.svg">
 
     <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +26,7 @@
         <h1>SEEDS of Wellbeing<br>in Northern Ireland</h1>
         <div id = "overall-btn" class = "top-menu-item selected-item"><i class = "fa fa-th-large"></i> Overall</div>
         <div id = "domains-btn" class = "top-menu-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span></i> Domains</div>
-        <div id = "maps-btn" class = "top-menu-item"><img id = "ni-icon" src = "img/noun-northern-ireland-1019239.svg" style = "width: 20px;"></i> Maps</div>
+        <div id = "maps-btn" class = "top-menu-item"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" style = "width: 20px;"></i> Maps</div>
         <div id = "help-btn" class = "top-menu-item"><i class = "fa fa-question"></i> Help</div>
     </div>
 
@@ -115,7 +116,30 @@
             </div>
 
             <div id = "maps-scrn" class = "screen" style = "display: none;">
-                <div id="INDSLATTGAPLGD-map" class="pxwidget" style = "width: 700px;"></div>
+                <h2>Mapping the indicators</h2>
+                <div class = "row">
+                    <div id = "INDSLATTGAPLGD-map" class = "pxwidget" style = "width: 700px;"></div>
+                    <div class = "box-container">
+                        <div class = "grey-box">
+                            <strong>Source:</strong>
+                            <p id = "source-info-map">This indicator is collected from the <a href="https://www.education-ni.gov.uk/articles/school-leavers">Qualifications and Destinations of Northern Ireland School Leavers report</a>.</p>
+                            <strong>More data:</strong>
+                            <p id = "data-info-map">You can view data by <a href="https://ppdata.nisra.gov.uk/table/INDSLATTGAPLGD" target="_blank">Local Government District</a>, by <a href="https://ppdata.nisra.gov.uk/table/INDSLATTGAPAA" target="_blank">Assembly Area</a> and  by <a href="https://ppdata.nisra.gov.uk/table/INDSLATTGAPEQ" target="_blank">Equality Groups</a>  on the NISRA Data Portal.</p>
+                        </div>
+                        <div class= "red-box">
+                            <strong>Impact of Covid-19</strong>
+                            <p>The collection method for this Indicator changed due to Covid-19</p>
+                        </div>
+                    </div>
+                </div>
+                <div class = "row" style = "margin-top: 20px;">
+                    <div class = "blue-label">What is this Indicator telling us?</div>
+                    <div id = "change-info-map" class = "white-box base-statement">Things have improved since the baseline in 2019/20.</div>
+                </div>
+                <div class = "row" style = "margin-top: 15px;">
+                    <div class = "blue-label">Why is this Indicator important?</div>
+                    <div id = "ind-important-map" class = "white-box">Ensuring children have the best start in life includes empowering young people to achieve their potential and make informed and effective decisions throughout their lives. It supports our young people to develop as individuals and as contributors to society, the economy, and the environment. Educational attainment provides a measure of their life chances and readiness for future health and wellbeing, and the gap in attainment provides a measure of educational disadvantage.</div>
+                </div>
             </div>
 
             <div id = "help-scrn"></div>
