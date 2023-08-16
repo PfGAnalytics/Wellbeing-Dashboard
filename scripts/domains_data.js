@@ -16,7 +16,12 @@ var domains_data = {
                "LGD": "INDCHSCLGD",
                "EQ": "INDCHSCEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "There are generally more opportunities for care leavers.",
+               "no_change": "There are generally the same amount of opportunities for care leavers.",
+               "worsened": "There are generally fewer opportunities for care leavers." 
+            }
          },
          "Small for gestational age": {
             "importance": "Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
@@ -32,7 +37,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement": "decrease"
+            "improvement": "decrease",
+            "telling": {
+               "improved": "The gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas is getting narrower.",
+               "no_change": "The gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas has remained constant.",
+               "worsened": "The gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas is increasing." 
+            }
          },
       }
     },
@@ -53,7 +63,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "The air we breathe is generally cleaner.",
+               "no_change": "The level of pollution in the air we breathe remains constant.",
+               "worsened": "The level of pollution in the air we breathe is increasing." 
+            }
          },
          "Greenhouse gas emissions": {
             "importance": "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
@@ -69,7 +84,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "There are less greenhouse gases in our ecosystem.",
+               "no_change": "The levle of greenhouse gases in our ecosystem remains constant.",
+               "worsened": "There are more greenhouse gases in our ecosystem." 
+            }
          },
          "Low carbon and renewable energy employment": {
             "importance": "This indicator reports the number of full-time equivalent employees in the low carbon and renewable energy economy to enable change over time to be monitored in line with the aims of the Energy Strategy - Path to Net Zero Energy.",
@@ -85,7 +105,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "There are more people employed in the renewable energy sector.",
+               "no_change": "The number of people employed in the renewable energy sector remains constant.",
+               "worsened": "There are fewer people employed in the renewable energy sector." 
+            }
          },
          "Recycled waste": {
             "importance": "The Earth has limited resources which need to be utilised in a sustainable manner while minimising impacts on the environment. A low carbon, resource efficient society in which resources are valued and reused, putting them back into the economy while preventing waste is desired. Waste is produced by households, by industrial processes, by the construction and demolition industry, through commercial activities and agricultural practices and by public services and utilities. Waste can affect the environment through its visual impact or by emissions to the air, groundwater and surface water as well as the contamination of land. Increasing the amount of waste reused, recycled or composted will reduce the total going to landfill and contribute to better resource use.",
@@ -101,7 +126,12 @@ var domains_data = {
                "LGD": "INDRECWSTELGD",
                "EQ": ""
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "More household waste is being recycled.",
+               "no_change": "The amount of household waste being recycled remains the same.",
+               "worsened": "Less household waste is being recycled." 
+            }
          },
          "River water quality": {
             "importance": "Water is an essential natural resource and plays a vital role in maintaining biodiversity, our health and social welfare and our economic development. Our rivers, lakes, estuaries, seas and groundwater provide water to sustain many of our core social and economic activities, and also provide drinking water for our population. Soluble reactive phosphorus is a plant nutrient, which, when present in rivers in elevated concentrations, can lead to accelerated growth of algae and other plants. The impact on the composition and abundance of plant species can have adverse implications for other aspects of water quality, such as oxygen levels, and for the characteristics of river habitats. These various changes can cause undesirable disturbances to populations of water animals, such as invertebrates and fish.",
@@ -117,7 +147,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement" : "increase"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "There is less phosporous in our river water.",
+               "no_change": "The level of phosporous in our river water remains the same.",
+               "worsened": "There is more phosporous in our river water." 
+            }
          }
        }
     },
@@ -138,7 +173,12 @@ var domains_data = {
                "LGD": "",
                "EQ": "INDCULTIDEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "More people feel their cultural identity is respected by society.",
+               "no_change": "The proportion of people who feel their cultural identity is respected by society reamins the same.",
+               "worsened": "Fewer people feel their cultural identity is respected by society." 
+            }
          },
          "Income deprivation": {
             "importance": "Absolute poverty is a measure of whether the lowest income households are seeing their incomes rise in real terms over time. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
@@ -154,7 +194,12 @@ var domains_data = {
                "LGD": "INDINCDPLGD",
                "EQ": "INDINCDPEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "Fewer people are living in absolute poverty.",
+               "no_change": "The level of absolute poverty in Northern Ireland remains the same.",
+               "worsened": "More people are living in absolute poverty." 
+            }
          },
          "Income inequality": {
             "importance": "Relative poverty is a measure of whether the lowest income households are seeing their incomes keep pace with the population as a whole. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
@@ -170,7 +215,12 @@ var domains_data = {
                "LGD": "INDINCIEQLGD",
                "EQ": "INDINCIEQEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "Fewer people are living in relative poverty.",
+               "no_change": "The level of relative poverty in Northern Ireland remains the same.",
+               "worsened": "More people are living in relative poverty." 
+            }
          },
          "Respect": {
             "importance": "Building and promoting respect helps support the development of an inclusive society and therefore provides a foundation for good relations.",
@@ -186,7 +236,12 @@ var domains_data = {
                "LGD": "",
                "EQ": "INDRESPECTEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "More people feel respected by society.",
+               "no_change": "The proportion of people who feel respected by society remains the same.",
+               "worsened": "Fewer people feel respected by society." 
+            }
          }
       }
     },
@@ -207,7 +262,12 @@ var domains_data = {
                "LGD": "",
                "EQ": "INDHLEFEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Healthy life expectancy (males)": {
             "importance": "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in ‘good health’ or ‘very good health’ from birth.",
@@ -223,7 +283,12 @@ var domains_data = {
                "LGD": "",
                "EQ": "INDHLEMEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Mental health": {
             "importance": "GHQ-12 is a measure of current mental health among the population. Poor mental health while not only affecting social circumstances such as employment, family relationships and community participation can also be a key factor in determining physical wellbeing as well.",
@@ -239,7 +304,12 @@ var domains_data = {
                "LGD": "",
                "EQ": "INDMHEALTHEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Preventable deaths": {
             "importance": "Preventable deaths relate to causes of deaths that could potentially be avoided by the public health interventions in the broadest sense.",
@@ -255,7 +325,12 @@ var domains_data = {
                "LGD": "INDPREVDTHLGD",
                "EQ": "INDPREVDTHEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Sports and physical activity": {
             "importance": "This indicator provides the proportion of adults in Northern Ireland who engage sport and physical activity.  There is a correlation between engagement in sport and physical activities and higher levels of personal wellbeing.",
@@ -271,7 +346,12 @@ var domains_data = {
                "LGD": "INDSPORTSLGD",
                "EQ": "INDSPORTSEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          }
        }
     },
@@ -292,7 +372,12 @@ var domains_data = {
                "LGD": "INDARTCULLGD",
                "EQ": "INDARTCULEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Life satisfaction": {
             "importance": "Life satisfaction is a key aspect of personal wellbeing and is strongly linked to health, employment and relationships.",
@@ -308,7 +393,12 @@ var domains_data = {
                "LGD": "INDLIFESATLGD",
                "EQ": "INDLIFESATEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "School leavers' attainment gap": {
             "importance": "Ensuring children have the best start in life includes empowering young people to achieve their potential and make informed and effective decisions throughout their lives. It supports our young people to develop as individuals and as contributors to society, the economy, and the environment. Educational attainment provides a measure of their life chances and readiness for future health and wellbeing, and the gap in attainment provides a measure of educational disadvantage.",
@@ -324,7 +414,12 @@ var domains_data = {
                "LGD": "INDSLATTGAPLGD",
                "EQ": "INDSLATTGAPEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Self-efficacy": {
             "importance": "Self-efficacy is the degree to which people feel they can influence the events that affect their lives. Higher self-efficacy contributes to an accountable society where people feel more able to effect change within their own lives, which can lead to reduced pressures on public services.",
@@ -340,7 +435,12 @@ var domains_data = {
                "LGD": "INDSELFEFFLGD",
                "EQ": "INDSELFEFFEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          }
        }
     },
@@ -361,7 +461,12 @@ var domains_data = {
                "LGD": "INDECONINACTLGD",
                "EQ": "INDECONINACTEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Employment rate": {
             "importance": "The employment rate is important as a key labour market indicator. Those who are employed have money to spend which can contribute towards economic growth.",
@@ -377,7 +482,12 @@ var domains_data = {
                "LGD": "INDEMPRATELGD",
                "EQ": "INDEMPRATEEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "External sales rate": {
             "importance": "Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a “Trade and Investment Strategy for a 10x economy” in which they note “Trade can support the ambitions of our ‘10X Economy’ across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become.”",
@@ -393,7 +503,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Local graduates in narrow STEM subjects": {
             "importance": "We need to drive increased participation in Narrow STEM subjects, which have particular economic relevance in Northern Ireland and include some of the best opportunities for individuals to develop rewarding careers in the coming decades. As low participation of women in this area is a particular concern, increasing involvement of females in Narrow STEM study and careers is a strategic priority for our economy and society.",
@@ -409,7 +524,12 @@ var domains_data = {
                "LGD": "INDGRADSLGD",
                "EQ": "INDGRADSEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "International reputation": {
             "importance": "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation will affect people’s willingness to live, study, visit, do business with and invest in NI and this has a significant impact on our economy.",
@@ -425,7 +545,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Northern Ireland Composite Economic Index": {
             "importance": "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
@@ -441,7 +566,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Skills": {
             "importance": "The proportion of the workforce with low or no qualifications (level 2 or below) has been a persistent problem in Northern Ireland. Whilst substantial progress was made, continued improvement will be required to keep pace with other comparable small advanced economies.",
@@ -457,7 +587,12 @@ var domains_data = {
                "LGD": "INDSKILLSLGD",
                "EQ": "INDSKILLSEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          }
        }
     },
@@ -478,7 +613,12 @@ var domains_data = {
                "LGD": "INDCRIMELGD",
                "EQ": "INDCRIMEEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Reoffending rate": {
             "importance": "Within the broad category of people who have offended, there are particular groups who have additional needs and require further support in order to address this behaviour. A reduction in reoffending links with helping these individuals to confront and resolve the factors that lead to offending.",
@@ -494,7 +634,12 @@ var domains_data = {
                "LGD": "",
                "EQ": "INDREOFREQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          }
        }
     },
@@ -515,7 +660,12 @@ var domains_data = {
                "LGD": "",
                "EQ": ""
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Loneliness": {
             "importance": "Everyone is likely to experience feelings of loneliness at some point during their lifetime, however, frequent feelings of loneliness can have a serious negative impact, not only on a person’s mental health and wellbeing, but also on their physical health, as frequent loneliness is associated with early death.",
@@ -531,7 +681,12 @@ var domains_data = {
                "LGD": "INDLONELGD",
                "EQ": "INDLONEEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Volunteering": {
             "importance": "This indicator provides the proportion of adults in Northern Ireland who volunteer, providing a measure of civic engagement.",
@@ -547,7 +702,12 @@ var domains_data = {
                "LGD": "INDVOLLGD",
                "EQ": "INDVOLEQ"
             },
-            "improvement" : "increase"
+            "improvement" : "increase",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          }
        }
     },
@@ -568,7 +728,12 @@ var domains_data = {
                "LGD": "INDHOMELNLGD",
                "EQ": "INDHOMELNEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Housing costs as a proportion of household income": {
             "importance": "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
@@ -584,7 +749,12 @@ var domains_data = {
                "LGD": "INDHOUSCTLGD",
                "EQ": "INDHOUSCTEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          },
          "Housing stress": {
             "importance": "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
@@ -600,7 +770,12 @@ var domains_data = {
                "LGD": "INDHSTRESLGD",
                "EQ": "INDHSTRESEQ"
             },
-            "improvement" : "decrease"
+            "improvement" : "decrease",
+            "telling": {
+               "improved": "",
+               "no_change": "",
+               "worsened": "" 
+            }
          }
        }
     }

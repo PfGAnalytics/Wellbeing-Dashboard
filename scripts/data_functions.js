@@ -169,7 +169,7 @@ async function createLineChart (id, title, statistic, geography, matrix, y_label
     
 };
 
-async function determineChangeNI(matrix, base, ci, improvement) {
+async function determineChangeNI(matrix, base, ci, improvement, telling) {
 
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
@@ -186,11 +186,11 @@ async function determineChangeNI(matrix, base, ci, improvement) {
    const change_from_baseline = value[value.length - 1] - value[baseline_index];         
 
    if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
-      base_statement = "Things have improved since the baseline in " + base + ".";
+      base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
    } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + base + ".";
+      base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
    } else {
-      base_statement = "There has been no significant change since the baseline in " + base + ".";
+      base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
    };
    
    base_statement_div = document.createElement("div");
@@ -204,7 +204,7 @@ async function determineChangeNI(matrix, base, ci, improvement) {
 
 };
 
-async function determineChangeLGD(matrix, base, ci, improvement) {
+async function determineChangeLGD(matrix, base, ci, improvement, telling) {
 
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
@@ -227,11 +227,11 @@ async function determineChangeLGD(matrix, base, ci, improvement) {
    const change_from_baseline = current_value - base_value;
 
    if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
-      base_statement = "Things have improved since the baseline in " + base + ".";
+      base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
    } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + base + ".";
+      base_statement = "Things have worsened since the baseline in " + base + "." + telling.worsened;
    } else {
-      base_statement = "There has been no significant change since the baseline in " + base + ".";
+      base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
    };
    
    base_statement_div = document.createElement("div");
@@ -245,7 +245,7 @@ async function determineChangeLGD(matrix, base, ci, improvement) {
 
 }
 
-async function determineChangeEQ (matrix, base, ci, improvement) {
+async function determineChangeEQ (matrix, base, ci, improvement, telling) {
 
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
@@ -268,11 +268,11 @@ async function determineChangeEQ (matrix, base, ci, improvement) {
    const change_from_baseline = current_value - base_value;
 
    if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
-      base_statement = "Things have improved since the baseline in " + base + ".";
+      base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
    } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + base + ".";
+      base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
    } else {
-      base_statement = "There has been no significant change since the baseline in " + base + ".";
+      base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
    };
    
    base_statement_div = document.createElement("div");
@@ -301,6 +301,7 @@ for (let i = 0; i < domains.length; i++) {
         var this_ci = Object.values(indicators)[j].ci;
         var this_baseline = Object.values(indicators)[j].base_year;
         var this_improvement = Object.values(indicators)[j].improvement;
+        var this_telling = Object.values(indicators)[j].telling;
 
         var NI_matrix = Object.values(indicators)[j].data.NI;
         var LGD_matrix = Object.values(indicators)[j].data.LGD;
@@ -317,7 +318,7 @@ for (let i = 0; i < domains.length; i++) {
                this_statistic = this_matrix.substring(0, this_matrix.length - 2);
             }            
 
-            determineChangeNI(NI_matrix, this_baseline, this_ci, this_improvement);
+            determineChangeNI(NI_matrix, this_baseline, this_ci, this_improvement, this_telling);
 
 
         } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_matrix)) { // first 3 exclusions have no NI in LGD dataset, other 3 not on data portal yet
@@ -326,7 +327,7 @@ for (let i = 0; i < domains.length; i++) {
             this_geography = "LGD2014";
             this_statistic = this_matrix.substring(0, this_matrix.length - 3);
 
-            determineChangeLGD(LGD_matrix, this_baseline, this_ci, this_improvement);
+            determineChangeLGD(LGD_matrix, this_baseline, this_ci, this_improvement, this_telling);
 
         } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_matrix)) { // not on data portal yet
 
@@ -334,7 +335,7 @@ for (let i = 0; i < domains.length; i++) {
             this_geography = "EQUALGROUPS";
             this_statistic = this_matrix.substring(0, this_matrix.length - 2);
 
-            determineChangeEQ(EQ_matrix, this_baseline, this_ci, this_improvement);
+            determineChangeEQ(EQ_matrix, this_baseline, this_ci, this_improvement, this_telling);
 
         } else {
          this_matrix = ""
