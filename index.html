@@ -23,7 +23,7 @@
     
     <div id="top-menu" class = "row">
         <img id = "top-menu-exec-logo" src = "img/Northern_Ireland_Executive_logo.svg">
-        <h1>SEEDS of Wellbeing<br>in Northern Ireland</h1>
+        <h1>PfG Wellbeing<br>Framework</h1>
         <div id = "overall-btn" class = "top-menu-item selected-item"><i class = "fa fa-th-large"></i> Overall</div>
         <div id = "domains-btn" class = "top-menu-item"><span class = "fa-rotate-270" style = "display: inline-block;"><i class = "far fa-chart-bar fa-flip-vertical"></i></span></i> Domains</div>
         <div id = "maps-btn" class = "top-menu-item"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" style = "width: 20px;"></i> Maps</div>
@@ -55,29 +55,27 @@
             </div>
 
             <div id = "domains-scrn" class = "screen" style = "display:none;">
-                <h2>Social, Economic & Environmental Domains</h2>
-                <div id = "domain-intro">To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing.</div>
+                <h2 style="width: 100%; text-align: center;">Nine Wellbeing Domains</h2>
+                <div id = "domain-intro">We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made.</div>
                 <p class = "indicators-intro" style = "display: none"></p>
                 <div class = "row">
-                    <div>
-                        <img src = "img/leaf.svg" width = "300px;">
-                        <div id = "seeds-label">SEEDS of Wellbeing in Northern Ireland</div>
-                    </div>
                     <div id = "domains-grid-container" style= "display: block;"></div>
                     <div id = "click-to-see">Click on a domain to see the indicators</div>
-                    <div id = "domain-info" style = "display:none;">
-                        <div id = "back-button-1" class = "back-button">
-                            <i class="fa-solid fa-arrow-left"></i> Back
-                        </div>
-                        <div class = "row">
-                            <div class = "hex">
-                                <div id = "clicked-hex" class = "hex-inner"></div>
+                    <div id = "domain-info-container">
+                        <div id = "domain-info" style = "display:none;">
+                            <div id = "back-button-1" class = "back-button">
+                                <i class="fa-solid fa-arrow-left"></i> Back
                             </div>
-                            <div id = "desc-container">
-                                <div id = "clicked-desc" class = "blue-label" style = "width: 300px;"></div>
+                            <div class = "row">
+                                <div class = "hex">
+                                    <div id = "clicked-hex" class = "hex-inner"></div>
+                                </div>
+                                <div id = "desc-container">
+                                    <div id = "clicked-desc" class = "blue-label" style = "width: 300px;"></div>
+                                </div>
                             </div>
+                            <div id = "indicator-hexes"></div>
                         </div>
-                        <div id = "indicator-hexes"></div>
                     </div>
                 </div>
             </div>
@@ -118,7 +116,8 @@
             <div id = "maps-scrn" class = "screen" style = "display: none;">
                 <h2>Mapping the indicators</h2>
                 <div class = "row">
-                    <div id = "INDSLATTGAPLGD-map" class = "pxwidget" style = "width: 700px;"></div>
+                    <!-- <div id = "INDSLATTGAPLGD-map" class = "pxwidget" style = "width: 700px;"></div> -->
+                    <iframe src = "maps/INDSLATTGAPLGD.html" loading = "lazy" style = "width:750px; height: 550px;"></iframe>
                     <div class = "box-container">
                         <div class = "grey-box">
                             <strong>Source:</strong>

@@ -84,12 +84,15 @@ h2 {
 
 #domains-grid-container {
     width: 700px;
+    margin-left: 250px;
 }
 
-#domain-info {
-    width: 900px;
-    padding-left: 20px;
+#domain-info-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
+
 
 #seeds-label {
     background-color: #142062;
@@ -257,7 +260,7 @@ h2 {
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     background-color: #ff914d;
-    color: #ffffff55;
+    color: #ffffff44;
     font-size: 100px;
   }
 
@@ -320,4 +323,8 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+iframe {
+    border: none;
 }

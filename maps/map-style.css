@@ -1,0 +1,11 @@
+.pxwidget-canvas-wrapper {
+    height: 500px !important;
+    width: 700px;
+}
+
+body {
+    width:700px;
+    height: 540px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
