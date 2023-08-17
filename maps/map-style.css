@@ -10,6 +10,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.pwwidget {
-    background: none;
+.map {
+    background: none !important;
 }

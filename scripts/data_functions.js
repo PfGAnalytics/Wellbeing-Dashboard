@@ -229,7 +229,7 @@ async function determineChangeLGD(matrix, base, ci, improvement, telling) {
    if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
    } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + base + "." + telling.worsened;
+      base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
    } else {
       base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
    };
@@ -311,17 +311,11 @@ for (let i = 0; i < domains.length; i++) {
 
             this_matrix = NI_matrix;
             this_geography = "NI";
-
-            if (["INDGREENHGNI", "INDNICEINI", "INDRIVERQNI"].includes(this_matrix)) {
-               this_statistic = this_matrix;
-            } else {
-               this_statistic = this_matrix.substring(0, this_matrix.length - 2);
-            }            
+            this_statistic = this_matrix.substring(0, this_matrix.length - 2);                       
 
             determineChangeNI(NI_matrix, this_baseline, this_ci, this_improvement, this_telling);
 
-
-        } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_matrix)) { // first 3 exclusions have no NI in LGD dataset, other 3 not on data portal yet
+        } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_matrix)) { // first 3 exclusions have no NI in LGD dataset, other 3 not on data portal yet
 
             this_matrix = LGD_matrix;
             this_geography = "LGD2014";
@@ -329,7 +323,7 @@ for (let i = 0; i < domains.length; i++) {
 
             determineChangeLGD(LGD_matrix, this_baseline, this_ci, this_improvement, this_telling);
 
-        } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_matrix)) { // not on data portal yet
+        } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_matrix)) { // not on data portal yet
 
             this_matrix = EQ_matrix;
             this_geography = "EQUALGROUPS";

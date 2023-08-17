@@ -47,7 +47,7 @@ var domains_data = {
       }
     },
     "Cleaner Environment": {
-       "description": "Climate change",
+       "description": "We live and work sustainably - protecting, improving and enjoying the environment",
        "indicators": {
          "Air pollution": {
             "importance": "The air that we breathe is vital to our health and wellbeing. Good air quality is essential for human health, the climate, habitats and the built environment. Pollutants from human activity are present in our atmosphere which may adversely impact upon our health and natural environment. Nitrogen dioxide is part of a group of gaseous air pollutants produced as a result of road traffic and other fossil fuel combustion processes. It can irritate the lungs and lower resistance to respiratory infections such as influenza.",
@@ -157,7 +157,7 @@ var domains_data = {
        }
     },
     "Equal Society": {
-       "description": "Everyone being included fairly and equally",
+       "description": "We have an equal and inclusive society where everyone is valued and treated with respect",
        "indicators": {
          "Cultural identity": {
             "importance": "Building and promoting respect for cultural identity helps support tackling sectarianism and therefore provides a foundation for good relations.",
@@ -246,7 +246,7 @@ var domains_data = {
       }
     },
     "Healthier Lives": {
-       "description": "Good health",
+       "description": "We all enjoy long, healthy active lives",
        "indicators": {
          "Healthy life expectancy (females)": {
             "importance": "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in ‘good health’ or ‘very good health’ from birth.",
@@ -264,9 +264,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "Females are generally living longer, healthier lives.",
+               "no_change": "The healthy life expectancy for females is generally the same.",
+               "worsened": "Females are generally living shorter, unhealthier lives." 
             }
          },
          "Healthy life expectancy (males)": {
@@ -285,9 +285,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "Males are generally living longer, healthier lives.",
+               "no_change": "The healthy life expectancy for males is generally the same.",
+               "worsened": "Males are generally living shorter, unhealthier lives."  
             }
          },
          "Mental health": {
@@ -306,9 +306,9 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "There are fewer people reporting problems with their mental health.",
+               "no_change": "The level of people reporting problems with their mental health remains unchanged.",
+               "worsened": "There are more people reporting problems with their mental health." 
             }
          },
          "Preventable deaths": {
@@ -327,9 +327,9 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "There are fewer preventable deaths.",
+               "no_change": "The level of preventable deaths remains unchanged.",
+               "worsened": "There are more preventable deaths." 
             }
          },
          "Sports and physical activity": {
@@ -348,15 +348,15 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "More people are participating in sports.",
+               "no_change": "The level of participation in sports remains the same.",
+               "worsened": "Fewer people are participating in sports." 
             }
          }
        }
     },
     "Brighter Futures": {
-       "description": "Everyone having the chance to do well in life",
+       "description": "Everyone can reach their potential",
        "indicators": {
          "Arts and cultural activities": {
             "importance": "This indicator provides the proportion of adults in Northern Ireland who engage with art and cultural activities.  There is a correlation between engagement in cultural activities and higher levels of personal wellbeing.",
@@ -374,9 +374,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "More people are engaging with the arts.",
+               "no_change": "The level of engagement with the arts remains the same.",
+               "worsened": "Fewer people are engaging with the arts." 
             }
          },
          "Life satisfaction": {
@@ -395,9 +395,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "People are generally happier.",
+               "no_change": "People are generally indifferent.",
+               "worsened": "People are generally more miserable." 
             }
          },
          "School leavers' attainment gap": {
@@ -416,9 +416,9 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "More children from disadvanted backgrounds are getting a better start at life.",
+               "no_change": "A similar number of children from disadvanted backgrounds are getting a better start at life.",
+               "worsened": "Fewer children from disadvanted backgrounds are getting a better start at life." 
             }
          },
          "Self-efficacy": {
@@ -437,15 +437,15 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "People feel they have more influence over the events that affect their life.",
+               "no_change": "People feel they have the same level of influence over the events that affect their life.",
+               "worsened": "People feel they have less influence over the events that affect their life." 
             }
          }
        }
     },
     "Better Economy": {
-       "description": "This is how well people in Northern Ireland are working, creating jobs and making money",
+       "description": "Our economy is globally competitive, regionally balanced and carbon-neutral",
        "indicators": {
          "Economic inactivity": {
             "importance": "This indicator shows the percentage of people who are not engaged in the labour market. It is important as a high economic inactivity rate can restrict labour supply which may in turn affect economic growth.",
@@ -463,9 +463,9 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "More people are economically active.",
+               "no_change": "The number of people being economically inactive has stayed constant.",
+               "worsened": "More people are economically inactive." 
             }
          },
          "Employment rate": {
@@ -484,9 +484,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "More working age people are employed.",
+               "no_change": "The employment rate has remained the same.",
+               "worsened": "Fewer working age people are employed." 
             }
          },
          "External sales rate": {
@@ -505,9 +505,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "There are more goods being exported.",
+               "no_change": "The number of goods being exported remains the same.",
+               "worsened": "There are fewer good being exported." 
             }
          },
          "Local graduates in narrow STEM subjects": {
@@ -526,9 +526,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "More young people are pursuing STEM careers.",
+               "no_change": "The number of young people pursing STEM careers remains constant.",
+               "worsened": "Fewer young people are pursuing STEM careers." 
             }
          },
          "International reputation": {
@@ -547,9 +547,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "Other countries think Northern Ireland is class.",
+               "no_change": "Other countries think Northern Ireland is fairly middling.",
+               "worsened": "Other countries aren't buzzing about Northern Ireland right now." 
             }
          },
          "Northern Ireland Composite Economic Index": {
@@ -568,9 +568,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "The economy is flying.",
+               "no_change": "The economy could be better.",
+               "worsened": "A pint costs how much now???" 
             }
          },
          "Skills": {
@@ -589,15 +589,15 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "People are better skilled.",
+               "no_change": "Skills are the same.",
+               "worsened": "Skills are dropping." 
             }
          }
        }
     },
     "Safer Communities": {
-       "description": "Feeling safe and secure",
+       "description": "Everyone feels safe, we all protect the law and each other",
        "indicators": {
          "Crime prevalence rate": {
             "importance": "The crime prevalence rate gives the proportion of households/adults who have been a victim of a crime covered by the survey. It will capture incidents experienced by people living in private households, irrespective of whether or not these crimes were reported to, or recorded by, the police.",
@@ -636,15 +636,15 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "Fewer people are victims of crime.",
+               "no_change": "A similar amount of people are victims of crime.",
+               "worsened": "More people are victims of crime." 
             }
          }
        }
     },
     "Caring Society": {
-       "description": "Having respect for each other",
+       "description": "We have a caring society that supports people throughout their lives",
        "indicators": {
          "Adult social care": {
             "importance": "The HSC has a duty to provide social services to meet the health and social well-being needs of older people and adults with disabilities and health conditions, including people with learning disabilities and mental health conditions.  The established direction is the provision of services to individuals which promote independence in order that adults with care and support needs can live in their own home and outside of institutional settings. This indicator measures the delivery of the DoH’s policy objective to provide services which support adults with care needs to live independently in their own homes and which delay or avoid the need for provision of institutional care. It measures the number of people being provided with care at home comparative to the overall number of people identified as having a social care need and whose needs are not being met through provision of social care services in their own home. This indicator is important for monitoring the effectiveness of social care services in meeting the needs of the population, and for identifying areas where additional support may be required to meet the needs of those who are not currently receiving services, all of which can inform policy and resource allocation decisions.",
@@ -662,9 +662,9 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "More adults are getting the care they need.",
+               "no_change": "The level of adults receiving the care they need is the same.",
+               "worsened": "Fewer adults are getting the care they need." 
             }
          },
          "Loneliness": {
@@ -683,9 +683,9 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "People are less lonely.",
+               "no_change": "Loneliness is about the same.",
+               "worsened": "People are more lonely." 
             }
          },
          "Volunteering": {
@@ -704,15 +704,15 @@ var domains_data = {
             },
             "improvement" : "increase",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "More adults are volunteering.",
+               "no_change": "Volunteering remains constant.",
+               "worsened": "Fewer adults are volunteering." 
             }
          }
        }
     },
     "Better Homes": {
-       "description": "Living in a nice place",
+       "description": "Everyone has access to good quality, affordable and sustainable homes that are appropriate for their needs",
        "indicators": {
          "Homelessness": {
             "importance": "Indicator provides information on the number of households who have presented and been accepted as homeless by the NI Housing Executive. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
@@ -730,14 +730,14 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "Homelessness is decreasing.",
+               "no_change": "Homelessness is the same.",
+               "worsened": "Homeless is" 
             }
          },
          "Housing costs as a proportion of household income": {
             "importance": "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            "base_year": "2019/20",
+            "base_year": "2017/18 - 2019/20",
             "source": "Family Resources Survey",
             "source_link": "https://www.communities-ni.gov.uk/topics/family-resources-survey",
             "ci": 3,
@@ -751,9 +751,9 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "Fewer households are spending 30% or more of household income on housing costs",
+               "no_change": "Many households are still spending 30% or more of household income on housing costs",
+               "worsened": "More households are spending 30% or more of household income on housing costs" 
             }
          },
          "Housing stress": {
@@ -767,14 +767,14 @@ var domains_data = {
             "data": {
                "NI": "",
                "AA": "",
-               "LGD": "INDHSTRESLGD",
-               "EQ": "INDHSTRESEQ"
+               "LGD": "INDHOUSTRSLGD",
+               "EQ": "INDHOUSTRSEQ"
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "Housing stress is rising.",
+               "no_change": "Housing stress remains the same.",
+               "worsened": "Housing stress is falling." 
             }
          }
        }

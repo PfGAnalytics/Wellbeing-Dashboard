@@ -129,9 +129,9 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
             if (NI_data != "") {
                 base_text = document.getElementById(NI_data + "-base-statement").textContent;
-            } else if (LGD_data != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_data)) {
+            } else if (LGD_data != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_data)) {
                 base_text = document.getElementById(LGD_data + "-base-statement").textContent;
-            }  else if (EQ_data != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_data)) {
+            }  else if (EQ_data != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_data)) {
                 base_text = document.getElementById(EQ_data + "-base-statement").textContent;
             } else {
                 base_text = "";
@@ -196,14 +196,10 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
 
                 if (NI_matrix != "") {
+                    
+                    chart_id = NI_matrix.substring(0, NI_matrix.length - 2) + "-line";                               
 
-                    if (["INDGREENHGNI", "INDNICEINI", "INDRIVERQNI"].includes(NI_matrix)) {
-                        chart_id = NI_matrix + "-line";
-                    } else {
-                        chart_id = NI_matrix.substring(0, NI_matrix.length - 2) + "-line";
-                    }            
-
-                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_matrix)) {
+                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_matrix)) {
 
                     chart_id = LGD_matrix.substring(0, LGD_matrix.length - 3) + "-line";
 
@@ -264,9 +260,9 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 // Output things have improved/worsened
                 if (NI_matrix != "") {
                     base_id = NI_matrix + "-base-statement"
-                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_matrix)) {
+                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_matrix)) {
                     base_id = LGD_matrix + "-base-statement"
-                } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_matrix)) {
+                } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_matrix)) {
                     base_id = EQ_matrix + "-base-statement"
                 } else {
                     base_id = ""
@@ -349,19 +345,15 @@ setTimeout(function () {
 
             if (NI_data != "") {
                 base_id = NI_data + "-base-statement";
+                
+                chart_id = NI_data.substring(0, NI_data.length - 2) + "-line";                
 
-                if (["INDGREENHGNI", "INDNICEINI", "INDRIVERQNI"].includes(NI_data)) {
-                    chart_id = NI_data + "-line";
-                } else {
-                    chart_id = NI_data.substring(0, NI_data.length - 2) + "-line";
-                }
-
-            } else if (LGD_data != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD", "INDHSTRESLGD", "INDSPORTSLGD"].includes(LGD_data)) {
+            } else if (LGD_data != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_data)) {
                 base_id = LGD_data + "-base-statement";
 
                 chart_id = LGD_data.substring(0, LGD_data.length - 3) + "-line";
 
-            } else if (EQ_data != "" & !["INDGRADSEQ", "INDHOMELNEQ", "INDHSTRESEQ", "INDSPORTSEQ"].includes(EQ_data)) {
+            } else if (EQ_data != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_data)) {
                 base_id = EQ_data + "-base-statement";
 
                 chart_id = EQ_data.substring(0, EQ_data.length - 2) + "-line";
