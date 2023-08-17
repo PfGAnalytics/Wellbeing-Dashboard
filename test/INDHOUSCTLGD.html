@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script>
+    <link rel ="stylesheet" href ="map-style.css">
+</head>
+
+<body>
+    <div id = "INDHOUSCTLGD-map" class = "pxwidget" style = "width: 700px;"></div>
+</body>
+
+<script src = "../scripts/map_function.js"></script>
+
+<script>
+
+   createMap(id = "INDHOUSCTLGD-map",
+           title = "Proportion of households spending 30% or more of household income on housing costs",
+           matrix = "INDHOUSCTLGD",
+           indicator = "INDHOUSCT")
+
+</script>
+</html>

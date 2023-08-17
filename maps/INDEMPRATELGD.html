@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script>
+    <link rel ="stylesheet" href ="map-style.css">
+</head>
+
+<body>
+    <div id = "INDEMPRATELGD-map" class = "pxwidget" style = "width: 700px;"></div>
+</body>
+
+<script src = "../scripts/map_function.js"></script>
+
+<script>
+
+   createMap(id = "INDEMPRATELGD-map",
+           title = "Percentage in employment (aged 16 to 64)",
+           matrix = "INDEMPRATELGD",
+           indicator = "INDEMPRATE")
+
+</script>
+</html>
