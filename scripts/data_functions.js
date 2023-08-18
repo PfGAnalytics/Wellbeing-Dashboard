@@ -169,7 +169,7 @@ async function createLineChart (id, title, statistic, geography, matrix, y_label
     
 };
 
-async function determineChangeNI(matrix, base, ci, improvement, telling) {
+async function determineChange(matrix, base, ci, improvement, telling) {
 
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
@@ -179,11 +179,41 @@ async function determineChangeNI(matrix, base, ci, improvement, telling) {
 
    const years = Object.values(dimension)[1].category.index;
 
-   const baseline_index = years.indexOf(base) - 1;
+   if (matrix.slice(-2) == "NI") {
 
-   const labels = years.slice(baseline_index, years.length);
+      var baseline_index = years.indexOf(base) - 1;
+      var labels = years.slice(baseline_index, years.length);
+      var change_from_baseline = value[value.length - 1] - value[baseline_index];
 
-   const change_from_baseline = value[value.length - 1] - value[baseline_index];         
+   } else if (matrix.slice(-3) == "LGD") {
+      var geographies = Object.values(dimension)[2].category.index;
+
+      var num_years = years.length;
+      var base_position = years.indexOf(base);
+
+      var num_geog = geographies.length;
+      var NI_position = geographies.indexOf("N92000002");
+
+      var base_value = value[num_geog * (base_position - 1) + NI_position];
+      var current_value = value[num_geog * (num_years - 1) + NI_position];
+
+      var change_from_baseline = current_value - base_value;
+
+   } else if (matrix.slice(-2) == "EQ") {
+      const groups = Object.values(dimension)[2].category.index;
+
+      var num_years = years.length;
+      var base_position = years.indexOf(base);
+
+      var num_groups = groups.length;
+      var NI_position = groups.indexOf("N92000002");
+
+      var base_value = value[num_groups * base_position + NI_position];
+      var current_value = value[num_groups * (num_years - 1) + NI_position];
+
+      var change_from_baseline = current_value - base_value;
+
+   }
 
    if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
@@ -203,88 +233,6 @@ async function determineChangeNI(matrix, base, ci, improvement, telling) {
    document.getElementById("change-info").appendChild(base_statement_div);
 
 };
-
-async function determineChangeLGD(matrix, base, ci, improvement, telling) {
-
-   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
-
-   const response = await fetch(api_url);
-   const data = await response.json();
-   const {value, dimension} = data;
-
-   const years = Object.values(dimension)[1].category.index;
-   const geographies = Object.values(dimension)[2].category.index;
-
-   const num_years = years.length;
-   const base_position = years.indexOf(base);
-
-   const num_geog = geographies.length;
-   const NI_position = geographies.indexOf("N92000002");
-
-   const base_value = value[num_geog * (base_position - 1) + NI_position];
-   const current_value = value[num_geog * (num_years - 1) + NI_position];
-
-   const change_from_baseline = current_value - base_value;
-
-   if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
-      base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
-   } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
-   } else {
-      base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
-   };
-   
-   base_statement_div = document.createElement("div");
-   base_statement_div.id = matrix + "-base-statement";
-   base_statement_div.classList.add("white-box");
-   base_statement_div.classList.add("base-statement");
-   base_statement_div.style.display = "none";
-   base_statement_div.innerHTML = base_statement;
-
-   document.getElementById("change-info").appendChild(base_statement_div);
-
-}
-
-async function determineChangeEQ (matrix, base, ci, improvement, telling) {
-
-   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
-
-   const response = await fetch(api_url);
-   const data = await response.json();
-   const {value, dimension} = data;
-
-   const years = Object.values(dimension)[1].category.index;
-   const groups = Object.values(dimension)[2].category.index;
-
-   const num_years = years.length;
-   const base_position = years.indexOf(base);
-
-   const num_groups = groups.length;
-   const NI_position = groups.indexOf("N92000002");
-
-   const base_value = value[num_groups * base_position + NI_position];
-   const current_value = value[num_groups * (num_years - 1) + NI_position];
-
-   const change_from_baseline = current_value - base_value;
-
-   if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
-      base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
-   } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
-   } else {
-      base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
-   };
-   
-   base_statement_div = document.createElement("div");
-   base_statement_div.id = matrix + "-base-statement";
-   base_statement_div.classList.add("white-box");
-   base_statement_div.classList.add("base-statement");
-   base_statement_div.style.display = "none";
-   base_statement_div.innerHTML = base_statement;
-
-   document.getElementById("change-info").appendChild(base_statement_div);
-}
-
 
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
 // Assign list of domains to variable "domains"
@@ -313,7 +261,7 @@ for (let i = 0; i < domains.length; i++) {
             this_geography = "NI";
             this_statistic = this_matrix.substring(0, this_matrix.length - 2);                       
 
-            determineChangeNI(NI_matrix, this_baseline, this_ci, this_improvement, this_telling);
+            determineChange(NI_matrix, this_baseline, this_ci, this_improvement, this_telling);
 
         } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_matrix)) { // first 3 exclusions have no NI in LGD dataset, other 3 not on data portal yet
 
@@ -321,7 +269,7 @@ for (let i = 0; i < domains.length; i++) {
             this_geography = "LGD2014";
             this_statistic = this_matrix.substring(0, this_matrix.length - 3);
 
-            determineChangeLGD(LGD_matrix, this_baseline, this_ci, this_improvement, this_telling);
+            determineChange(LGD_matrix, this_baseline, this_ci, this_improvement, this_telling);
 
         } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_matrix)) { // not on data portal yet
 
@@ -329,7 +277,7 @@ for (let i = 0; i < domains.length; i++) {
             this_geography = "EQUALGROUPS";
             this_statistic = this_matrix.substring(0, this_matrix.length - 2);
 
-            determineChangeEQ(EQ_matrix, this_baseline, this_ci, this_improvement, this_telling);
+            determineChange(EQ_matrix, this_baseline, this_ci, this_improvement, this_telling);
 
         } else {
          this_matrix = ""
@@ -360,3 +308,10 @@ for (let i = 0; i < domains.length; i++) {
     }
 
 }
+
+
+
+// var doc = document.getElementById('map-frame').contentWindow.document;
+// doc.open();
+// doc.write('<!DOCTYPE html><html><head><script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script><link rel ="stylesheet" href ="maps/map-style.css"></head><body><div id = "INDSLATTGAPLGD-map" class = "pxwidget" style = "width: 700px;"></div></body><script src = "scripts/map_function.js"></script><script>createMap(id = "INDSLATTGAPLGD-map", title = "Gap between percentage of non-free school meal entitlement (non-FSME) school leavers and percentage of FSME school leavers achieving at level 2 or above including English and Maths", matrix = "INDSLATTGAPLGD", indicator = "INDSLATTGAP")</script></html>');
+// doc.close();

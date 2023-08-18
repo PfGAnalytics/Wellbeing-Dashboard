@@ -33,6 +33,12 @@
     <div class = "content-centre">
         <div id = "main-container">
 
+            <div id = "breadcrumbs" class = "row">
+                <div id = "breadcrumb-1" class = "b-crumb">Overall</div>
+                <div id = "breadcrumb-2" class = "b-crumb"></div>
+                <div id = "breadcrumb-3" class = "b-crumb"></div>
+            </div>
+
             <div id = "overall-scrn" class = "screen" style = "display: block;">
                 <p class = "indicators-intro"></p>
                 <div id = "loading-img">
@@ -56,16 +62,12 @@
 
             <div id = "domains-scrn" class = "screen" style = "display:none;">
                 <h2 style="width: 100%; text-align: center;">Nine Wellbeing Domains</h2>
-                <div id = "domain-intro">We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made.</div>
-                <p class = "indicators-intro" style = "display: none"></p>
+                <p class = "indicators-intro"></p>
                 <div class = "row">
                     <div id = "domains-grid-container" style= "display: block;"></div>
                     <div id = "click-to-see">Click on a domain to see the indicators</div>
-                    <div id = "domain-info-container">
-                        <div id = "domain-info" style = "display: none;">
-                            <div id = "back-button-1" class = "back-button">
-                                <i class="fa-solid fa-arrow-left"></i> Back
-                            </div>
+                    <div id = "domain-info-container" style = "display: none;">
+                        <div id = "domain-info">
                             <div class = "row">
                                 <div class = "hex" style = "cursor: default;">
                                     <div id = "clicked-hex" class = "hex-inner"></div>
@@ -83,9 +85,6 @@
 
             <div id = "indicator-scrn" class = "screen" style = "display:none;">
                 <div class = "row">
-                    <div id = "back-button-2" class = "back-button">
-                        <i class="fa-solid fa-arrow-left"></i> Back
-                    </div>
                     <div id = "domain-title" class = "blue-label"></div>
                     <h2 id = "indicator-title"></h2>
                 </div>
@@ -117,7 +116,7 @@
             <div id = "maps-scrn" class = "screen" style = "display: none;">
                 <h2>Mapping the indicators</h2>
                 <div class = "row">
-                    <iframe src = "maps/INDSLATTGAPLGD.html" loading = "lazy" style = "width:750px; height: 600px;"></iframe>
+                    <iframe src="maps/INDSLATTGAPLGD.html" loading = "lazy" style = "width:750px; height: 600px;"></iframe>
                     <div class = "box-container">
                         <div class = "grey-box">
                             <strong>Source:</strong>

@@ -205,24 +205,10 @@ h2 {
     width: 1200px;
 }
 
-.back-button {
-    background-color: #353535;
-    color: white;
-    width: 100px;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.back-button:hover {
-    background-color: #454545;
-}
-
 .shake-hex:hover {
-    animation: shake 1.5s;
+    animation: shake 1s;
     animation-iteration-count: infinite;
-    filter: saturate(80%);
+    filter: saturate(70%);
 }
 
 @keyframes shake {
@@ -251,7 +237,7 @@ h2 {
 }
 
 .ind-hex-container:hover {
-    filter: saturate(65%);
+    filter: saturate(75%);
 }
 
 .ind-hex {
@@ -326,4 +312,19 @@ h2 {
 
 iframe {
     border: none;
+}
+
+.b-crumb {
+    margin-left: 5px;
+    color: #157c70;
+    cursor: pointer;
+    font-size: 16pt;
+}
+
+.b-crumb:hover {
+    color: #333333
+}
+
+#breadcrumbs {
+    margin-bottom: 10px;
 }

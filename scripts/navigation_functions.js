@@ -1,5 +1,8 @@
-// Menu navigation function
+// Top menu navigation function
 var top_menu_items = document.getElementsByClassName("top-menu-item");
+var breadcrumb_1 = document.getElementById("breadcrumb-1");
+var breadcrumb_2 = document.getElementById("breadcrumb-2");
+var breadcrumb_3 = document.getElementById("breadcrumb-3");
 
 for (let i = 0; i < top_menu_items.length; i++) {
 
@@ -9,17 +12,21 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
         for (let j = 0; j < top_menu_items.length; j++) {
 
-            var clicked_id = document.getElementById(top_menu_items[j].id);
+            var clicked_id = document.getElementById(top_menu_items[j].id);            
 
             if (document.getElementById(top_menu_items[i].id) == clicked_id) {
                 clicked_id.classList.add("selected-item");
                 clicked_id.firstChild.classList.add("selected-icon");
-                document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";                
+                document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";
+                breadcrumb_1.innerHTML = clicked_id.textContent;
             } else {
                 clicked_id.classList.remove("selected-item");
                 clicked_id.firstChild.classList.remove("selected-icon");
                 document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "none";
             }
+
+            breadcrumb_2.innerHTML = "";
+            breadcrumb_3.innerHTML = "";
 
         }        
 
@@ -29,13 +36,9 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
 var indicator_intros = document.getElementsByClassName("indicators-intro");
 
-
-
 for (let i = 0; i < indicator_intros.length; i++)  {
     indicator_intros[i].innerHTML = "We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made."
 }
-
-
 
 // Generate hex grid of domains
 var domains = Object.keys(domains_data);
@@ -78,13 +81,13 @@ for (let i = 0; i < hex_rows.length; i++) {
 // Click on a domain
 var hexagons = document.getElementsByClassName("hex-inner");
 var domains_heading = document.getElementById("domains-scrn").getElementsByTagName("h2")[0];
-var domain_intro = document.getElementById("domain-intro");
-var domain_info = document.getElementById("domain-info");
+var domain_info = document.getElementById("domain-info-container");
 var clicked_hex = document.getElementById("clicked-hex");
 var click_to_see = document.getElementById("click-to-see");
 var clicked_desc = document.getElementById("clicked-desc");
 var indicator_hexes = document.getElementById("indicator-hexes");
 var indicator_intro = document.getElementById("domains-scrn").getElementsByClassName("indicators-intro")[0];
+
 
 for (let i = 0; i < hexagons.length - 1; i++) {
 
@@ -93,8 +96,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
     hexagons[i].onclick = function() {
 
         domains_heading.style.display = "none";
-        domain_intro.style.display = "none";
-        domain_info.style.display = "block";
+        domain_info.style.display = "flex";
         domains_grid_container.style.display = "none";
         click_to_see.style.display = "none";
         indicator_intro.style.display = "block";
@@ -102,6 +104,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
         var domain_name = hexagons[i].innerHTML;
 
         clicked_hex.innerHTML = domain_name;
+        breadcrumb_2.innerHTML = "> " + domain_name;
 
         clicked_desc.innerHTML = domains_data[domain_name].description;
 
@@ -179,6 +182,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
             indicator_links[j].onclick = function() {
 
                 var indicator_name = indicator_links[j].getElementsByClassName("ind-hex-label")[0].innerHTML;
+                breadcrumb_3.innerHTML = "> " + indicator_name;
 
                 document.getElementById("domains-scrn").style.display = "none";
                 document.getElementById("overall-scrn").style.display = "none";
@@ -286,25 +290,6 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
     }
 
-}
-
-// Click back button
-var back_button_1 = document.getElementById("back-button-1");
-
-back_button_1.onclick = function() {
-    domains_heading.style.display = "block";
-        domain_intro.style.display = "block";
-        domain_info.style.display = "none";
-        domains_grid_container.style.display = "block";
-        click_to_see.style.display = "block";
-        indicator_intro.style.display = "none";
-}
-
-var back_button_2 = document.getElementById("back-button-2");
-
-back_button_2.onclick = function () {
-    document.getElementById("domains-scrn").style.display = "block";
-    document.getElementById("indicator-scrn").style.display = "none";
 }
 
 // Overall screen
@@ -424,15 +409,14 @@ setTimeout(function () {
         hex_row.appendChild(hex_container);
 
         hex_container.onclick = function() {
-            document.getElementById("domains-btn").classList.add("selected-item");
-            document.getElementById("overall-btn").classList.remove("selected-item");
-            document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
             document.getElementById("overall-scrn").style.display = "none";
             document.getElementById("indicator-scrn").style.display = "block";
             document.getElementById("indicator-title").innerHTML = improving_indicator[i];
             document.getElementById("domain-title").innerHTML = improving_domain[i];
             document.getElementById("ind-important").innerHTML = improving_importance[i];
             document.getElementById("source-info").innerHTML = improving_source[i];
+
+            breadcrumb_2.innerHTML = "> " + improving_indicator[i];
 
             base_statements = document.getElementsByClassName("base-statement");
 
@@ -525,15 +509,14 @@ setTimeout(function () {
         hex_row.appendChild(hex_container);
     
         hex_container.onclick = function() {
-            document.getElementById("domains-btn").classList.add("selected-item");
-            document.getElementById("overall-btn").classList.remove("selected-item");
-            document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
             document.getElementById("overall-scrn").style.display = "none";
             document.getElementById("indicator-scrn").style.display = "block";
             document.getElementById("indicator-title").innerHTML = no_change_indicator[i];
             document.getElementById("domain-title").innerHTML = no_change_domain[i];
             document.getElementById("ind-important").innerHTML = no_change_importance[i];
             document.getElementById("source-info").innerHTML = no_change_source[i];
+
+            breadcrumb_2.innerHTML = "> " + no_change_indicator[i];
     
             base_statements = document.getElementsByClassName("base-statement");
     
@@ -627,15 +610,14 @@ setTimeout(function () {
         hex_row.appendChild(hex_container);
     
         hex_container.onclick = function() {
-            document.getElementById("domains-btn").classList.add("selected-item");
-            document.getElementById("overall-btn").classList.remove("selected-item");
-            document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
             document.getElementById("overall-scrn").style.display = "none";
             document.getElementById("indicator-scrn").style.display = "block";
             document.getElementById("indicator-title").innerHTML = worsening_indicator[i];
             document.getElementById("domain-title").innerHTML = worsening_domain[i];
             document.getElementById("ind-important").innerHTML = worsening_importance[i];
             document.getElementById("source-info").innerHTML = worsening_source[i];
+
+            breadcrumb_2.innerHTML = "> " + worsening_indicator[i];
     
             base_statements = document.getElementsByClassName("base-statement");
     
@@ -710,3 +692,40 @@ setTimeout(function () {
     }
 
 }, 5000)
+
+// Click on breadcrumb 1
+breadcrumb_1.onclick = function() {
+
+    text_content = breadcrumb_1.textContent.trim();
+
+    if (text_content == "Domains") {
+        document.getElementById("domains-scrn").style.display = "block";
+        document.getElementById("domains-scrn").getElementsByTagName("h2")[0].style.display = "block";
+        document.getElementById("indicator-scrn").style.display = "none";
+        document.getElementById("domain-info-container").style.display = "none";
+        document.getElementById("domains-grid-container").style.display = "block";
+        document.getElementById("click-to-see").style.display = "block";
+    } else if (text_content == "Overall") {
+        document.getElementById("overall-scrn").style.display = "block";
+        document.getElementById("indicator-scrn").style.display = "none";
+    }
+
+    breadcrumb_2.innerHTML = "";
+    breadcrumb_3.innerHTML = "";
+
+}
+
+// Click on breadcrumb 2
+breadcrumb_2.onclick = function() {
+
+    text_content_1 = breadcrumb_1.textContent.trim();
+    text_content_2 = breadcrumb_2.textContent.replace(">", "").trim();
+
+    if (text_content_1 == "Domains") {
+        document.getElementById("domains-scrn").style.display = "block";
+        document.getElementById("indicator-scrn").style.display = "none";
+    }
+
+    breadcrumb_3.innerHTML = "";
+
+}
