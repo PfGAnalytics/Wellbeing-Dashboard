@@ -9,12 +9,10 @@ local({
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
 
-p_load("here", "V8")
-
-setwd(here())
+p_load("V8")
 
 cx <- v8()
-cx$source("scripts/domains_data.js")
+cx$source("../scripts/domains_data.js")
 domains <- cx$get("domains_data")
 
 
@@ -72,7 +70,7 @@ for (i in 1:length(map_matrices)) {
                  "</script>",
                  "</html>")
   
-  writeLines(html_code, paste0("maps/", map_matrices[i], ".html"))
+  writeLines(html_code, paste0("../maps/", map_matrices[i], ".html"))
   
 }
 
