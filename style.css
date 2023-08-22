@@ -64,6 +64,31 @@ h1 {
     margin-right: 2vh;
 }
 
+#footer-nisra-logo {
+    height: 100px;
+    margin: 0 10px;
+	padding: 5px 5px;
+	margin-right: -50px;
+	float:right;
+	cursor: pointer;
+    filter: brightness(0) invert(1);
+}
+
+#fb-icon {
+    margin: 0 5px;
+    filter: brightness(0) invert(1);
+}
+
+#twitter-icon {
+    margin: 0 5px;
+    filter: brightness(0) invert(1);
+}
+
+#youtube-icon {
+    margin: 0 5px;
+    filter: brightness(0) invert(1);
+}
+
 h2 {
     font-size: 26pt;
     color: #142062;
@@ -394,3 +419,27 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     padding: 10px 0;
     font-size: 1em;
   }
+
+  .nisrafooter ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+	font-size: 18px;
+	font-weight:700;
+}
+
+
+.nisrafooter li {
+	margin-right: 18px;
+    display: inline-block;
+	color: #FFFFFF;
+	font-size: 18px;
+}
+
+.nisrafooter a {
+	color: #FFFFFF !important;
+}
