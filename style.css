@@ -94,11 +94,11 @@ h2 {
     color: #142062;
 }
 
-.content-centre {
+#content-centre {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 25px;
+    padding-top: 25px;
 }
 
 #main-container {
@@ -442,4 +442,32 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
 
 .nisrafooter a {
 	color: #FFFFFF !important;
+}
+
+.cc-li a {
+	color: #FFFFFF !important;
+}
+
+.flex-list-footer {
+	position: relative;
+    margin: 0em; /* T R B L */
+	display:block;
+    overflow: hidden;
+}
+
+.cc-li {
+	flex-grow: 1;
+    flex-basis: auto;
+    margin: 0.25em 0;
+    padding: 0 1em;
+    text-align: center;
+    border-left: 1px solid #ccc;
+    font-size: 14px;
+    list-style-type: none;
+}
+
+footer {
+    color: #ffffff;
+    background-color: #157c70;
+    margin-top: 25px;
 }

@@ -554,3 +554,19 @@ breadcrumb_2.onclick = function() {
     breadcrumb_3.innerHTML = "";
 
 }
+
+// Content height
+mainContainerHeight = function() {
+    top_menu = document.getElementById("top-menu");
+    footer = document.getElementsByTagName("footer")[0];
+    main_container = document.getElementById("main-container");
+
+    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight;
+
+    main_container.style.minHeight = ideal_height + "px";
+}
+
+window.onload = mainContainerHeight;
+
+window.onresize = mainContainerHeight;
+
