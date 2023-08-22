@@ -4,27 +4,44 @@ var breadcrumb_1 = document.getElementById("breadcrumb-1");
 var breadcrumb_2 = document.getElementById("breadcrumb-2");
 var breadcrumb_3 = document.getElementById("breadcrumb-3");
 
+// Create a function for each top menu item
 for (let i = 0; i < top_menu_items.length; i++) {
 
     top_menu_items[i].onclick = function() {
 
+        // Hides the indicators screen
         document.getElementById("indicator-scrn").style.display = "none";
 
         for (let j = 0; j < top_menu_items.length; j++) {
 
+            // the id of the clicked menu item
             var clicked_id = document.getElementById(top_menu_items[j].id);            
 
+            // Switch view to screen relating to clicked item
             if (document.getElementById(top_menu_items[i].id) == clicked_id) {
+
+                // Extra steps for domain screen when indicator screen is foreground
+                if(top_menu_items[i].id == "domains-btn") {
+                    document.getElementById("domains-scrn").getElementsByTagName("h2")[0].style.display = "block";
+                    document.getElementById("domain-info-container").style.display = "none";
+                    document.getElementById("domains-grid-container").style.display = "block";
+                    document.getElementById("click-to-see").style.display = "block";
+                }
+
+                // Updates highlighted item in menu and brings relevant screen to foreground
                 clicked_id.classList.add("selected-item");
                 clicked_id.firstChild.classList.add("selected-icon");
                 document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";
                 breadcrumb_1.innerHTML = clicked_id.textContent;
+
             } else {
+                // Hides all other screens that don't match the one clicked
                 clicked_id.classList.remove("selected-item");
                 clicked_id.firstChild.classList.remove("selected-icon");
                 document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "none";
             }
 
+            // Removes all text from position 2 and 3 of breadcrumb trail
             breadcrumb_2.innerHTML = "";
             breadcrumb_3.innerHTML = "";
 

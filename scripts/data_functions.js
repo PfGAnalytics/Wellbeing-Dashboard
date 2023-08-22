@@ -1,4 +1,5 @@
-async function createLineChart (id, title, statistic, geography, matrix, y_label) {   
+// Function below uses the api to fetch the data and plots it in a line chart
+async function createLineChart (id, title, statistic, breakdown, matrix, y_label) {   
 
     pxWidget.queue('chart', id, {
         "autoupdate": true,
@@ -50,14 +51,14 @@ async function createLineChart (id, title, statistic, geography, matrix, y_label
                        "method": "PxStat.Data.Cube_API.ReadDataset",
                        "params": {
                           "class": "query",
-                          "id": ["STATISTIC", geography],
+                          "id": ["STATISTIC", breakdown],
                           "dimension": {
                              "STATISTIC": {
                                 "category": {
                                    "index": [statistic]
                                 }
                              },
-                             [geography]: {
+                             [breakdown]: {
                                 "category": {
                                    "index": ["N92000002"]
                                 }
@@ -169,6 +170,7 @@ async function createLineChart (id, title, statistic, geography, matrix, y_label
     
 };
 
+// Function below determines the type of change between the current year and the base year
 async function determineChange(matrix, base, ci, improvement, telling) {
 
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
@@ -179,31 +181,18 @@ async function determineChange(matrix, base, ci, improvement, telling) {
 
    const years = Object.values(dimension)[1].category.index;
 
+   var base_position = years.indexOf(base);
+
    if (matrix.slice(-2) == "NI") {
 
-      var baseline_index = years.indexOf(base) - 1;
-      var labels = years.slice(baseline_index, years.length);
-      var change_from_baseline = value[value.length - 1] - value[baseline_index];
+      // var labels = years.slice(baseline_index, years.length);
+      var change_from_baseline = value[value.length - 1] - value[base_position];
 
-   } else if (matrix.slice(-3) == "LGD") {
-      var geographies = Object.values(dimension)[2].category.index;
+   } else {
 
-      var num_years = years.length;
-      var base_position = years.indexOf(base);
-
-      var num_geog = geographies.length;
-      var NI_position = geographies.indexOf("N92000002");
-
-      var base_value = value[num_geog * (base_position - 1) + NI_position];
-      var current_value = value[num_geog * (num_years - 1) + NI_position];
-
-      var change_from_baseline = current_value - base_value;
-
-   } else if (matrix.slice(-2) == "EQ") {
-      const groups = Object.values(dimension)[2].category.index;
+      var groups = Object.values(dimension)[2].category.index;
 
       var num_years = years.length;
-      var base_position = years.indexOf(base);
 
       var num_groups = groups.length;
       var NI_position = groups.indexOf("N92000002");
@@ -213,7 +202,7 @@ async function determineChange(matrix, base, ci, improvement, telling) {
 
       var change_from_baseline = current_value - base_value;
 
-   }
+   }   
 
    if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
@@ -242,49 +231,43 @@ for (let i = 0; i < domains.length; i++) {
     // Inside each domain we will return a list of "indicators"
     var indicators = domains_data[domains[i]].indicators;
 
+    // Loop through each indicator
     for (let j = 0; j < Object.keys(indicators).length; j++) {
 
-        var chart_title = Object.values(indicators)[j].chart_title;
-        var y_axis_label = Object.values(indicators)[j].y_axis_label;
-        var this_ci = Object.values(indicators)[j].ci;
-        var this_baseline = Object.values(indicators)[j].base_year;
-        var this_improvement = Object.values(indicators)[j].improvement;
-        var this_telling = Object.values(indicators)[j].telling;
+        var indicator = Object.values(indicators)[j];
+        var data = indicator.data;
 
-        var NI_matrix = Object.values(indicators)[j].data.NI;
-        var LGD_matrix = Object.values(indicators)[j].data.LGD;
-        var EQ_matrix = Object.values(indicators)[j].data.EQ;
+        // Use NI data if available
+        if (data.NI != "") {
 
-        if (NI_matrix != "") {
+            this_matrix = data.NI;
+            this_breakdown = "NI";
+            this_statistic = this_matrix.slice(0, -2);                       
 
-            this_matrix = NI_matrix;
-            this_geography = "NI";
-            this_statistic = this_matrix.substring(0, this_matrix.length - 2);                       
+        // Use LGD data if available
+        } else if (data.LGD != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) { // first 3 exclusions have no NI in LGD dataset, other 3 not on data portal yet
 
-            determineChange(NI_matrix, this_baseline, this_ci, this_improvement, this_telling);
+            this_matrix = data.LGD;
+            this_breakdown = "LGD2014";
+            this_statistic = this_matrix.slice(0, -3);
 
-        } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_matrix)) { // first 3 exclusions have no NI in LGD dataset, other 3 not on data portal yet
+        // Use EQ data if available
+        } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) { // not on data portal yet
 
-            this_matrix = LGD_matrix;
-            this_geography = "LGD2014";
-            this_statistic = this_matrix.substring(0, this_matrix.length - 3);
-
-            determineChange(LGD_matrix, this_baseline, this_ci, this_improvement, this_telling);
-
-        } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_matrix)) { // not on data portal yet
-
-            this_matrix = EQ_matrix;
-            this_geography = "EQUALGROUPS";
-            this_statistic = this_matrix.substring(0, this_matrix.length - 2);
-
-            determineChange(EQ_matrix, this_baseline, this_ci, this_improvement, this_telling);
-
+            this_matrix = data.EQ;
+            this_breakdown = "EQUALGROUPS";
+            this_statistic = this_matrix.slice(0, -2);
+         // Do nothing if no data available
         } else {
-         this_matrix = ""
+            this_matrix = "";
         }
 
         if (this_matrix != "") {
 
+         // Run the above function determineChange() for this indicator
+         determineChange(this_matrix, indicator.base_year, indicator.ci, indicator.improvement, indicator.telling);
+
+         // Create the "What is this indicator telling us" box and append to HTML
          var this_id = this_statistic + "-line";
 
          chart_container = document.createElement("div");
@@ -296,22 +279,16 @@ for (let i = 0; i < domains.length; i++) {
 
          document.getElementById("line-chart-container").appendChild(chart_container);
 
+         // Plot line chart using createLineChart() function
          createLineChart(id = this_id,
-            title = chart_title,
+            title = indicator.chart_title,
             statistic = this_statistic,
-            geography = this_geography,
+            breakdown = this_breakdown,
             matrix = this_matrix,
-            y_label = y_axis_label)
+            y_label = indicator.y_axis_label)
 
         }          
 
     }
 
 }
-
-
-
-// var doc = document.getElementById('map-frame').contentWindow.document;
-// doc.open();
-// doc.write('<!DOCTYPE html><html><head><script src="https://cdn.jsdelivr.net/gh/DisseminationNI/PxWidget@1.1.6/js/isogram.min.js"></script><link rel ="stylesheet" href ="maps/map-style.css"></head><body><div id = "INDSLATTGAPLGD-map" class = "pxwidget" style = "width: 700px;"></div></body><script src = "scripts/map_function.js"></script><script>createMap(id = "INDSLATTGAPLGD-map", title = "Gap between percentage of non-free school meal entitlement (non-FSME) school leavers and percentage of FSME school leavers achieving at level 2 or above including English and Maths", matrix = "INDSLATTGAPLGD", indicator = "INDSLATTGAP")</script></html>');
-// doc.close();

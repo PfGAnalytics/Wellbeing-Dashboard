@@ -41,10 +41,12 @@ for (i in 1:length(domains)) {
 
 for (i in 1:length(map_matrices)) {
   
-  indicator <- if (substr(map_matrices[i], nchar(map_matrices[i]) - 2, nchar(map_matrices[i])) == "LGD") {
-    substr(map_matrices[i], 1, nchar(map_matrices[i]) - 3)
+  if (substr(map_matrices[i], nchar(map_matrices[i]) - 2, nchar(map_matrices[i])) == "LGD") {
+    statistic <- substr(map_matrices[i], 1, nchar(map_matrices[i]) - 3)
+    dimension <- "LGD2014"
   } else {
-    substr(map_matrices[i], 1, nchar(map_matrices[i]) - 2)
+    statistic <- substr(map_matrices[i], 1, nchar(map_matrices[i]) - 2)
+    dimension <- "AA"
   }
   
   html_code <- c("<!DOCTYPE html>",
@@ -65,7 +67,8 @@ for (i in 1:length(map_matrices)) {
                  paste0('   createMap(id = "', map_matrices[i], '-map",'),
                  paste0('           title = "', map_titles[i], '",'),
                  paste0('           matrix = "', map_matrices[i], '",'),
-                 paste0('           indicator = "', indicator, '")'),
+                 paste0('           statistic = "', statistic, '",'),
+                 paste0('           dimension = "', dimension, '");'),
                  "",
                  "</script>",
                  "</html>")
@@ -73,5 +76,3 @@ for (i in 1:length(map_matrices)) {
   writeLines(html_code, paste0("../maps/", map_matrices[i], ".html"))
   
 }
-
-

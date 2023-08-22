@@ -1,19 +1,18 @@
-function createMap(id, title, matrix, indicator) {
+function createMap(id, title, matrix, statistic, dimension) {
 
     pxWidget.queue('map', id, {
        "autoupdate": true,
        "matrix": null,
-       "mapDimension": "LGD2014",
-       "copyright": true,
-       "link": `<a href="https://ppdata.nisra.gov.uk/table/${matrix}" target="_blank">See data here</a>`,
+       "mapDimension": dimension,
+       "copyright": false,
+       "link": null,
        "title": title,
        "borders": true,
-       "colorScale": "red",
+       "colorScale": "blue",
        "tooltipTitle": null,
        "fullScreen": {
        "title": "View Fullscreen",
-       "titleCancel": "Exit Fullscreen",
-       "center": [54.65, -6.8]
+       "titleCancel": "Exit Fullscreen"
        },
        "data": {
        "datasets": [{
@@ -29,12 +28,12 @@ function createMap(id, title, matrix, indicator) {
                        "dimension": {
                            "STATISTIC": {
                                "category": {
-                               "index": [indicator]
+                               "index": [statistic]
                                }
                            },
                            "TLIST(A1)": {
                                "category": {
-                               "index": ["2020/21"]
+                               "index": []
                                }
                            }
                        },
@@ -80,7 +79,7 @@ function createMap(id, title, matrix, indicator) {
        }
        },
        "options": {
-       "mode": "e",
+       "mode": "q",
        },
        "baseMap": {
        "leaflet": [],
