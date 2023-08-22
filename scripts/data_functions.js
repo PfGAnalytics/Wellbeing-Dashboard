@@ -223,6 +223,74 @@ async function determineChange(matrix, base, ci, improvement, telling) {
 
 };
 
+async function getData(matrix, id) {
+
+   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+
+   const response = await fetch(api_url);
+   const fetched_data = await response.json();
+   const {value, dimension} = fetched_data;
+
+   var years = Object.values(dimension)[1].category.index;
+
+   // setup 
+ const data = {
+   labels: years,
+   datasets: [{
+     label: 'Northern Ireland',
+     data: value,
+     borderColor: "#000000",
+     fill: false,
+     tension: 0.4
+
+   }]
+ };
+
+ // config 
+ const config = {
+   type: 'line',
+   data,
+   options: {
+    responsive: true,
+    maintainAspectRatio: false,
+     plugins: {
+         autocolors: false,
+         annotation: {
+             annotations: {
+                 box1: {
+                     type: "box",
+                     xMin: 0.5,
+                     xMax: 3.5,
+                     yMin: 5.9,
+                     yMax: value.max,
+                     backgroundColor: "#aa000077"
+                 }
+             }
+         },
+         legend: {
+            display: false
+         }
+     },
+     scales: {
+       y: {
+         beginAtZero: false
+       }
+     }
+   }
+ };
+
+ // render init block
+ const myChart = new Chart(
+   document.getElementById(id),
+   config
+ );
+
+   
+
+ }
+
+
+
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
 // Assign list of domains to variable "domains"
 var domains = Object.keys(domains_data);
@@ -268,27 +336,42 @@ for (let i = 0; i < domains.length; i++) {
          determineChange(this_matrix, indicator.base_year, indicator.ci, indicator.improvement, indicator.telling);
 
          // Create the "What is this indicator telling us" box and append to HTML
-         var this_id = this_statistic + "-line";
+         var this_id = this_statistic + "-line";         
 
-         chart_container = document.createElement("div");
-         chart_container.id = this_id;
-         chart_container.classList.add("pxwidget");
-         chart_container.classList.add("line-chart");
-         chart_container.style.display = "none";
-         chart_container.style.height = "500px";
+         // Plot line chart using createLineChart() function
+
+         if (this_matrix != "INDSFGANI") {
+
+            chart_container = document.createElement("div");
+            chart_container.id = this_id;
+            chart_container.classList.add("pxwidget");
+            chart_container.classList.add("line-chart");
+            chart_container.style.display = "none";
+            chart_container.style.height = "500px";
 
          document.getElementById("line-chart-container").appendChild(chart_container);
 
-         // Plot line chart using createLineChart() function
-         createLineChart(id = this_id,
-            title = indicator.chart_title,
-            statistic = this_statistic,
-            breakdown = this_breakdown,
-            matrix = this_matrix,
-            y_label = indicator.y_axis_label)
+            createLineChart(id = this_id,
+               title = indicator.chart_title,
+               statistic = this_statistic,
+               breakdown = this_breakdown,
+               matrix = this_matrix,
+               y_label = indicator.y_axis_label)
+
+         } else {
+
+            chart_canvas = document.createElement("canvas");
+            chart_canvas.id = this_id;
+            chart_canvas.style.display = "none";
+            chart_canvas.classList.add("line-chart");
+            document.getElementById("line-chart-container").appendChild(chart_canvas);
+            
+            getData(this_matrix, this_id);
+         }
 
         }          
 
     }
 
 }
+

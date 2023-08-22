@@ -394,3 +394,9 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     padding: 10px 0;
     font-size: 1em;
   }
+
+#line-chart-container {
+    position: relative;
+    width: 700px; 
+    height: 500px;
+ }
