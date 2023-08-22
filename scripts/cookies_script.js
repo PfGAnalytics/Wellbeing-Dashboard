@@ -58,7 +58,7 @@ document.getElementById('reject-cookies').onclick = function() {
   cookieBanner.style.display = 'none';
 }
 
-window.onload = function() {
+function showCookieBanner() {
   if(!checkCookieExists()) {
     cookieBanner.style.display = 'block';
   } else {

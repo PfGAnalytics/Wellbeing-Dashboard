@@ -566,7 +566,10 @@ mainContainerHeight = function() {
     main_container.style.minHeight = ideal_height + "px";
 }
 
-window.onload = mainContainerHeight;
+window.onload = function() {
+    showCookieBanner();
+    mainContainerHeight();
+};
 
 window.onresize = mainContainerHeight;
 
