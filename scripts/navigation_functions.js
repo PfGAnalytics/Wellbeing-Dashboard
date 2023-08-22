@@ -42,7 +42,6 @@ for (let i = 0; i < indicator_intros.length; i++)  {
 
 // Generate hex grid of domains
 var domains = Object.keys(domains_data);
-
 var domains_grid_container = document.getElementById("domains-grid-container");
 
 for (let i = 0; i < domains.length; i++) {
@@ -193,23 +192,20 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 document.getElementById("indicator-title").innerHTML = indicator_name;
                 document.getElementById("ind-important").innerHTML = domains_data[domain_name].indicators[indicator_name].importance;
 
-                var NI_matrix = domains_data[domain_name].indicators[indicator_name].data.NI;
-                var LGD_matrix = domains_data[domain_name].indicators[indicator_name].data.LGD;
-                var EQ_matrix = domains_data[domain_name].indicators[indicator_name].data.EQ;
-                var AA_matrix = domains_data[domain_name].indicators[indicator_name].data.AA;
+                
+                var data = domains_data[domain_name].indicators[indicator_name].data;
 
-
-                if (NI_matrix != "") {
+                if (data.NI != "") {
                     
-                    chart_id = NI_matrix.substring(0, NI_matrix.length - 2) + "-line";                               
+                    chart_id = data.NI.slice(0, -2) + "-line";                               
 
-                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_matrix)) {
+                } else if (data.LGD != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) {
 
-                    chart_id = LGD_matrix.substring(0, LGD_matrix.length - 3) + "-line";
+                    chart_id = data.LGD.slice(0, -3) + "-line";
 
-                } else if (EQ_matrix != "") {
+                } else if (data.EQ != "") {
 
-                    chart_id = EQ_matrix.substring(0, EQ_matrix.length - 2) + "-line";
+                    chart_id = data.EQ.slice(0, -2) + "-line";
 
                 }
 
@@ -233,20 +229,20 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 // Output "More data" paragraph
                 var data_info = "You can view data ";
 
-                if (NI_matrix != "") {
-                    data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + NI_matrix + '" target = "_blank">Northern Ireland level</a>, ';
+                if (data.NI != "") {
+                    data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + data.NI + '" target = "_blank">Northern Ireland level</a>, ';
                 }
 
-                if (LGD_matrix != "") {
-                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + LGD_matrix + '" target = "_blank">Local Government District</a>, ';
+                if (data.LGD != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
                 }
 
-                if (AA_matrix != "") {
-                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + AA_matrix + '" target = "_blank">Assembly Area</a>, ';
+                if (data.AA != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
                 }
 
-                if (EQ_matrix != "") {
-                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + EQ_matrix + '" target = "_blank">Equality Groups</a>, ';
+                if (data.EQ != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
                 }
 
                 data_info = data_info + ' on the NISRA Data Portal.'
@@ -262,12 +258,12 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 document.getElementById("data-info").innerHTML = data_info;
 
                 // Output things have improved/worsened
-                if (NI_matrix != "") {
-                    base_id = NI_matrix + "-base-statement"
-                } else if (LGD_matrix != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_matrix)) {
-                    base_id = LGD_matrix + "-base-statement"
-                } else if (EQ_matrix != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_matrix)) {
-                    base_id = EQ_matrix + "-base-statement"
+                if (data.NI != "") {
+                    base_id = data.NI + "-base-statement"
+                } else if (data.LGD != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) {
+                    base_id = data.LGD + "-base-statement"
+                } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) {
+                    base_id = data.EQ + "-base-statement"
                 } else {
                     base_id = ""
                 }
@@ -318,51 +314,49 @@ setTimeout(function () {
 
     for (let i = 0; i < domains.length; i++) {
 
-        indicators = Object.keys(domains_data[domains[i]].indicators);
+        indicators = domains_data[domains[i]].indicators;
 
-        for (let j = 0; j < indicators.length; j++) {
+        for (let j = 0; j < Object.keys(indicators).length; j++) {
             
-            NI_data = domains_data[domains[i]].indicators[indicators[j]].data.NI;
-            LGD_data = domains_data[domains[i]].indicators[indicators[j]].data.LGD;
-            EQ_data = domains_data[domains[i]].indicators[indicators[j]].data.EQ;
-            importance = domains_data[domains[i]].indicators[indicators[j]].importance;
-            source = domains_data[domains[i]].indicators[indicators[j]].source;
+            data = Object.values(indicators)[j].data;
+            importance = Object.values(indicators)[j].importance;
+            source = Object.values(indicators)[j].source;
 
-            if (NI_data != "") {
-                base_id = NI_data + "-base-statement";
-                
-                chart_id = NI_data.substring(0, NI_data.length - 2) + "-line";                
+            if (data.NI != "") {
 
-            } else if (LGD_data != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_data)) {
-                base_id = LGD_data + "-base-statement";
+                base_id = data.NI + "-base-statement";
+                chart_id = data.NI.slice(0, -2) + "-line";                              
 
-                chart_id = LGD_data.substring(0, LGD_data.length - 3) + "-line";
+            } else if (data.LGD != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) {
 
-            } else if (EQ_data != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_data)) {
-                base_id = EQ_data + "-base-statement";
+                base_id = data.LGD + "-base-statement";
+                chart_id = data.LGD.slice(0, -3) + "-line";
 
-                chart_id = EQ_data.substring(0, EQ_data.length - 2) + "-line";
+            } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) {
+
+                base_id = data.EQ + "-base-statement";
+                chart_id = data.EQ.slice(0, -2) + "-line";
 
             }
             
             base_text = document.getElementById(base_id).textContent;
 
             if (base_text.includes("improved")) {
-                improving_indicator.push(indicators[j]);
+                improving_indicator.push(Object.keys(indicators)[j]);
                 improving_domain.push(domains[i]);
                 improving_importance.push(importance);
                 improving_base_id.push(base_id);
                 improving_source.push(source);
                 improving_chart.push(chart_id);
             } else if (base_text.includes("worsened")) {
-                worsening_indicator.push(indicators[j]);
+                worsening_indicator.push(Object.keys(indicators)[j]);
                 worsening_domain.push(domains[i]);
                 worsening_importance.push(importance);
                 worsening_base_id.push(base_id);
                 worsening_source.push(source);
                 worsening_chart.push(chart_id);
             } else {
-                no_change_indicator.push(indicators[j]);
+                no_change_indicator.push(Object.keys(indicators)[j]);
                 no_change_domain.push(domains[i]);
                 no_change_importance.push(importance);
                 no_change_base_id.push(base_id);
@@ -374,307 +368,121 @@ setTimeout(function () {
 
     }
 
-    for (let i = 0; i < improving_indicator.length; i++) {
+    plotOverallHexes = function(change_type) {
 
-        if (i % 6 == 0) {
-            var hex_row = document.createElement("div");
-            hex_row.classList.add("row");
-            hex_row.classList.add("improving-hex-row");
-            document.getElementById("improving-hexes").appendChild(hex_row);
-        }
+        for (let i = 0; i < eval(change_type + "_indicator").length; i++) {
 
-        if (i % 12 == 6) {
-            hex_row.style.marginLeft = "75px"
-        }
+            className = change_type.replace("_", "-");
 
-        if (i >= 6) {
-            hex_row.style.marginTop = "-25px";
-        }
-
-        var hex_container = document.createElement("div");
-        var hex = document.createElement("div");
-        var hex_label = document.createElement("div");
-        var label_text = document.createTextNode(improving_indicator[i]);
-
-        hex_container.classList.add("ind-hex-container");
-        hex.classList.add("ind-hex");            
-        hex_label.classList.add("ind-hex-label");
-
-        hex_label.appendChild(label_text);
-        hex_container.appendChild(hex);
-        hex_container.appendChild(hex_label);
-
-        hex.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
-        hex.classList.add("positive");
-        hex_row.appendChild(hex_container);
-
-        hex_container.onclick = function() {
-            document.getElementById("overall-scrn").style.display = "none";
-            document.getElementById("indicator-scrn").style.display = "block";
-            document.getElementById("indicator-title").innerHTML = improving_indicator[i];
-            document.getElementById("domain-title").innerHTML = improving_domain[i];
-            document.getElementById("ind-important").innerHTML = improving_importance[i];
-            document.getElementById("source-info").innerHTML = improving_source[i];
-
-            breadcrumb_2.innerHTML = "> " + improving_indicator[i];
-
-            base_statements = document.getElementsByClassName("base-statement");
-
-            for (let j = 0; j < base_statements.length; j++) {
-                base_statements[j].style.display = "none";
+            if (i % 6 == 0) {
+                var hex_row = document.createElement("div");
+                hex_row.classList.add("row");
+                hex_row.classList.add(className + "-hex-row");
+                document.getElementById(className + "-hexes").appendChild(hex_row);
+            }
+    
+            if (i % 12 == 6) {
+                hex_row.style.marginLeft = "75px"
+            }
+    
+            if (i >= 6) {
+                hex_row.style.marginTop = "-25px";
+            }
+    
+            var hex_container = document.createElement("div");
+            var hex = document.createElement("div");
+            var hex_label = document.createElement("div");
+            var label_text = document.createTextNode(eval(change_type + "_indicator")[i]);
+    
+            hex_container.classList.add("ind-hex-container");
+            hex.classList.add("ind-hex");            
+            hex_label.classList.add("ind-hex-label");
+    
+            hex_label.appendChild(label_text);
+            hex_container.appendChild(hex);
+            hex_container.appendChild(hex_label);
+    
+            if (change_type == "improving") {
+                hex.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+                hex.classList.add("positive");
+            } else if (change_type == "no_change") {
+                hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+            } else if (change_type == "worsening") {
+                hex.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+                hex.classList.add("negative");
             }
 
-            document.getElementById(improving_base_id[i]).style.display = "block";
-
-            line_charts = document.getElementsByClassName("line-chart");
-
-            for (let j = 0; j < line_charts.length; j++) {
-                line_charts[j].style.display = "none";
+            hex_row.appendChild(hex_container);
+    
+            hex_container.onclick = function() {
+                document.getElementById("overall-scrn").style.display = "none";
+                document.getElementById("indicator-scrn").style.display = "block";
+                document.getElementById("indicator-title").innerHTML = eval(change_type + "_indicator")[i];
+                document.getElementById("domain-title").innerHTML = eval(change_type + "_domain")[i];
+                document.getElementById("ind-important").innerHTML = eval(change_type + "_importance")[i];
+                document.getElementById("source-info").innerHTML = eval(change_type + "_source")[i];
+    
+                breadcrumb_2.innerHTML = "> " + eval(change_type + "_indicator")[i];
+    
+                base_statements = document.getElementsByClassName("base-statement");
+    
+                for (let j = 0; j < base_statements.length; j++) {
+                    base_statements[j].style.display = "none";
+                }
+    
+                document.getElementById(eval(change_type + "_base_id")[i]).style.display = "block";
+    
+                line_charts = document.getElementsByClassName("line-chart");
+    
+                for (let j = 0; j < line_charts.length; j++) {
+                    line_charts[j].style.display = "none";
+                }
+    
+                document.getElementById(eval(change_type + "_chart")[i]).style.display = "block";
+    
+                data = domains_data[eval(change_type + "_domain")[i]].indicators[eval(change_type + "_indicator")[i]].data;   
+    
+                // Output "More data" paragraph
+                var data_info = "You can view data ";
+    
+                if (data.NI != "") {
+                    data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + data.NI + '" target = "_blank">Northern Ireland level</a>, ';
+                }
+    
+                if (data.LGD != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
+                }
+    
+                if (data.AA != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
+                }
+    
+                if (data.EQ != "") {
+                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
+                }
+    
+                data_info = data_info + ' on the NISRA Data Portal.'
+    
+                if (data_info.lastIndexOf(",") > 0 ) {
+                    data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+                }
+    
+                if (data_info.lastIndexOf(",") > 0 ) {
+                    data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+                }
+    
+                document.getElementById("data-info").innerHTML = data_info;
+    
             }
-
-            document.getElementById(improving_chart[i]).style.display = "block";
-
-            NI_matrix = domains_data[improving_domain[i]].indicators[improving_indicator[i]].data.NI;
-            LGD_matrix = domains_data[improving_domain[i]].indicators[improving_indicator[i]].data.LGD;
-            AA_matrix = domains_data[improving_domain[i]].indicators[improving_indicator[i]].data.AA;
-            EQ_matrix = domains_data[improving_domain[i]].indicators[improving_indicator[i]].data.EQ;
-
-
-            // Output "More data" paragraph
-            var data_info = "You can view data ";
-
-            if (NI_matrix != "") {
-                data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + NI_matrix + '" target = "_blank">Northern Ireland level</a>, ';
-            }
-
-            if (LGD_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + LGD_matrix + '" target = "_blank">Local Government District</a>, ';
-            }
-
-            if (AA_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + AA_matrix + '" target = "_blank">Assembly Area</a>, ';
-            }
-
-            if (EQ_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + EQ_matrix + '" target = "_blank">Equality Groups</a>, ';
-            }
-
-            data_info = data_info + ' on the NISRA Data Portal.'
-
-            if (data_info.lastIndexOf(",") > 0 ) {
-                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-            }
-
-            if (data_info.lastIndexOf(",") > 0 ) {
-                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-            }
-
-            document.getElementById("data-info").innerHTML = data_info;
-
+    
         }
 
     }
 
-    for (let i = 0; i < no_change_indicator.length; i++) {
+    plotOverallHexes("improving");
+    plotOverallHexes("no_change");
+    plotOverallHexes("worsening");
 
-        if (i % 6 == 0) {
-            var hex_row = document.createElement("div");
-            hex_row.classList.add("row");
-            hex_row.classList.add("no-change-hex-row");
-            document.getElementById("no-change-hexes").appendChild(hex_row);
-        }
-    
-        if (i % 12 == 6) {
-            hex_row.style.marginLeft = "75px"
-        }
-    
-        if (i >= 6) {
-            hex_row.style.marginTop = "-25px";
-        }
-    
-        var hex_container = document.createElement("div");
-        var hex = document.createElement("div");
-        var hex_label = document.createElement("div");
-        var label_text = document.createTextNode(no_change_indicator[i]);
-    
-        hex_container.classList.add("ind-hex-container");
-        hex.classList.add("ind-hex");            
-        hex_label.classList.add("ind-hex-label");
-    
-        hex_label.appendChild(label_text);
-        hex_container.appendChild(hex);
-        hex_container.appendChild(hex_label);
-    
-        hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
-        hex_row.appendChild(hex_container);
-    
-        hex_container.onclick = function() {
-            document.getElementById("overall-scrn").style.display = "none";
-            document.getElementById("indicator-scrn").style.display = "block";
-            document.getElementById("indicator-title").innerHTML = no_change_indicator[i];
-            document.getElementById("domain-title").innerHTML = no_change_domain[i];
-            document.getElementById("ind-important").innerHTML = no_change_importance[i];
-            document.getElementById("source-info").innerHTML = no_change_source[i];
-
-            breadcrumb_2.innerHTML = "> " + no_change_indicator[i];
-    
-            base_statements = document.getElementsByClassName("base-statement");
-    
-            for (let j = 0; j < base_statements.length; j++) {
-                base_statements[j].style.display = "none";
-            }
-    
-            document.getElementById(no_change_base_id[i]).style.display = "block";
-    
-            line_charts = document.getElementsByClassName("line-chart");
-    
-            for (let j = 0; j < line_charts.length; j++) {
-                line_charts[j].style.display = "none";
-            }
-    
-            document.getElementById(no_change_chart[i]).style.display = "block";
-    
-            NI_matrix = domains_data[no_change_domain[i]].indicators[no_change_indicator[i]].data.NI;
-            LGD_matrix = domains_data[no_change_domain[i]].indicators[no_change_indicator[i]].data.LGD;
-            AA_matrix = domains_data[no_change_domain[i]].indicators[no_change_indicator[i]].data.AA;
-            EQ_matrix = domains_data[no_change_domain[i]].indicators[no_change_indicator[i]].data.EQ;
-    
-    
-            // Output "More data" paragraph
-            var data_info = "You can view data ";
-    
-            if (NI_matrix != "") {
-                data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + NI_matrix + '" target = "_blank">Northern Ireland level</a>, ';
-            }
-    
-            if (LGD_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + LGD_matrix + '" target = "_blank">Local Government District</a>, ';
-            }
-    
-            if (AA_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + AA_matrix + '" target = "_blank">Assembly Area</a>, ';
-            }
-    
-            if (EQ_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + EQ_matrix + '" target = "_blank">Equality Groups</a>, ';
-            }
-    
-            data_info = data_info + ' on the NISRA Data Portal.'
-    
-            if (data_info.lastIndexOf(",") > 0 ) {
-                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-            }
-    
-            if (data_info.lastIndexOf(",") > 0 ) {
-                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-            }
-    
-            document.getElementById("data-info").innerHTML = data_info;
-    
-        }
-    
-    }
-
-    for (let i = 0; i < worsening_indicator.length; i++) {
-
-        if (i % 6 == 0) {
-            var hex_row = document.createElement("div");
-            hex_row.classList.add("row");
-            hex_row.classList.add("worsening-hex-row");
-            document.getElementById("worsening-hexes").appendChild(hex_row);
-        }
-    
-        if (i % 12 == 6) {
-            hex_row.style.marginLeft = "75px"
-        }
-    
-        if (i >= 6) {
-            hex_row.style.marginTop = "-25px";
-        }
-    
-        var hex_container = document.createElement("div");
-        var hex = document.createElement("div");
-        var hex_label = document.createElement("div");
-        var label_text = document.createTextNode(worsening_indicator[i]);
-    
-        hex_container.classList.add("ind-hex-container");
-        hex.classList.add("ind-hex");            
-        hex_label.classList.add("ind-hex-label");
-    
-        hex_label.appendChild(label_text);
-        hex_container.appendChild(hex);
-        hex_container.appendChild(hex_label);
-    
-        hex.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
-        hex.classList.add("negative");
-        hex_row.appendChild(hex_container);
-    
-        hex_container.onclick = function() {
-            document.getElementById("overall-scrn").style.display = "none";
-            document.getElementById("indicator-scrn").style.display = "block";
-            document.getElementById("indicator-title").innerHTML = worsening_indicator[i];
-            document.getElementById("domain-title").innerHTML = worsening_domain[i];
-            document.getElementById("ind-important").innerHTML = worsening_importance[i];
-            document.getElementById("source-info").innerHTML = worsening_source[i];
-
-            breadcrumb_2.innerHTML = "> " + worsening_indicator[i];
-    
-            base_statements = document.getElementsByClassName("base-statement");
-    
-            for (let j = 0; j < base_statements.length; j++) {
-                base_statements[j].style.display = "none";
-            }
-    
-            document.getElementById(worsening_base_id[i]).style.display = "block";
-    
-            line_charts = document.getElementsByClassName("line-chart");
-    
-            for (let j = 0; j < line_charts.length; j++) {
-                line_charts[j].style.display = "none";
-            }
-    
-            document.getElementById(worsening_chart[i]).style.display = "block";
-    
-            NI_matrix = domains_data[worsening_domain[i]].indicators[worsening_indicator[i]].data.NI;
-            LGD_matrix = domains_data[worsening_domain[i]].indicators[worsening_indicator[i]].data.LGD;
-            AA_matrix = domains_data[worsening_domain[i]].indicators[worsening_indicator[i]].data.AA;
-            EQ_matrix = domains_data[worsening_domain[i]].indicators[worsening_indicator[i]].data.EQ;
-    
-    
-            // Output "More data" paragraph
-            var data_info = "You can view data ";
-    
-            if (NI_matrix != "") {
-                data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + NI_matrix + '" target = "_blank">Northern Ireland level</a>, ';
-            }
-    
-            if (LGD_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + LGD_matrix + '" target = "_blank">Local Government District</a>, ';
-            }
-    
-            if (AA_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + AA_matrix + '" target = "_blank">Assembly Area</a>, ';
-            }
-    
-            if (EQ_matrix != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + EQ_matrix + '" target = "_blank">Equality Groups</a>, ';
-            }
-    
-            data_info = data_info + ' on the NISRA Data Portal.'
-    
-            if (data_info.lastIndexOf(",") > 0 ) {
-                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-            }
-    
-            if (data_info.lastIndexOf(",") > 0 ) {
-                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-            }
-    
-            document.getElementById("data-info").innerHTML = data_info;
-    
-        }
-    
-    }
 
     document.getElementById("loading-img").style.display = "none";
     document.getElementById("overall-hexes").style.display = "block";
@@ -691,7 +499,7 @@ setTimeout(function () {
         document.getElementById("overall-scrn").appendChild(not_loading);
     }
 
-}, 5000)
+}, 3001)
 
 // Click on breadcrumb 1
 breadcrumb_1.onclick = function() {
