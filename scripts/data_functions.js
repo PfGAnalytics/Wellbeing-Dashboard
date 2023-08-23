@@ -1,175 +1,3 @@
-// Function below uses the api to fetch the data and plots it in a line chart
-async function createLineChart (id, title, statistic, breakdown, matrix, y_label) {   
-
-    pxWidget.queue('chart', id, {
-        "autoupdate": true,
-        "matrix": null,
-        "type": "line",
-        "copyright": false,
-        "link": "",
-        "sort": false,
-        "metadata": {
-           "xAxis": {
-              "TLIST(A1)": [],
-              "role": "time"
-           },
-           "fluidTime": [],
-           "api": {
-              "query": {
-                 "url": "https://ppws-data.nisra.gov.uk/public/api.jsonrpc",
-                 "data": {
-                    "jsonrpc": "2.0",
-                    "method": "PxStat.Data.Cube_API.ReadMetadata",
-                    "params": {
-                       "matrix": matrix,
-                       "language": "en",
-                       "format": {
-                          "type": "JSON-stat",
-                          "version": "2.0"
-                       }
-                    },
-                    "version": "2.0"
-                 }
-              },
-              "response": {}
-           }
-        },
-        "data": {
-           "labels": [],
-           "datasets": [{
-              "label": "Northern Ireland",
-              "borderColor": "#000000",
-              "pointBackgroundColor": "#000000",
-              "pointBorderColor": "#000000",
-              "pointRadius": 3,
-              "pointHoverRadius": 4,
-              "api": {
-                 "query": {
-                    "url": "https://ppws-data.nisra.gov.uk/public/api.jsonrpc",
-                    "data": {
-                       "jsonrpc": "2.0",
-                       "method": "PxStat.Data.Cube_API.ReadDataset",
-                       "params": {
-                          "class": "query",
-                          "id": ["STATISTIC", breakdown],
-                          "dimension": {
-                             "STATISTIC": {
-                                "category": {
-                                   "index": [statistic]
-                                }
-                             },
-                             [breakdown]: {
-                                "category": {
-                                   "index": ["N92000002"]
-                                }
-                             }
-                          },
-                          "extension": {
-                             "language": {
-                                "code": "en"
-                             },
-                             "format": {
-                                "type": "JSON-stat",
-                                "version": "2.0"
-                             },
-                             "matrix": matrix,
-                             "m2m": false
-                          },
-                          "version": "2.0"
-                       }
-                    }
-                 },
-                 "response": {}
-              },
-              "data": [],
-              "unit": [],
-              "decimal": [],
-              "fluidTime": [],
-              "fill": false
-           }],
-           "null": ".."
-        },
-        "options": {
-           "responsive": true,
-           "maintainAspectRatio": false,
-           "title": {
-              "display": true,
-              "text": [title]
-           },
-           "tooltips": {
-              "mode": "index",
-              "callbacks": {}
-           },
-           "hover": {
-              "mode": "nearest",
-              "intersect": true
-           },
-           "scales": {
-              "xAxes": [{
-                 "ticks": {
-                    "beginAtZero": false,
-                    "maxTicksLimit": null,
-                    "reverse": false,
-                    "minRotation": 0,
-                    "maxRotation": 0
-                 },
-                 "gridLines": {
-                    "display": false
-                 },
-                 "scaleLabel": {
-                    "display": false,
-                    "labelString": null
-                 },
-                 "stacked": false
-              }],
-              "yAxes": [{
-                 "display": true,
-                 "position": "left",
-                 "id": "y-axis-1",
-                 "ticks": {
-                    "beginAtZero": false
-                 },
-                 "callback": null,
-                 "scaleLabel": {
-                    "display": true,
-                    "labelString": y_label
-                 },
-                 "stacked": false
-              }]
-           },
-           "plugins": {
-              "stacked100": {
-                 "enable": false
-              },
-              "colorschemes": {
-                 "scheme": "tableau.Tableau10"
-              }
-           },
-           "legend": {
-              "display": false,
-              "position": "bottom"
-           },
-           "elements": {
-              "line": {
-                 "tension": 0.4
-              }
-           },
-           "updated": "",
-           "layout": {
-              "padding": {
-                 "left": 22,
-                 "right": 22,
-                 "top": 0,
-                 "bottom": 22
-              }
-           }
-        },
-        "datasetLabels": ["Northern Ireland"],
-        "plugins": [{}]
-     });
-    
-};
-
 // Function below determines the type of change between the current year and the base year
 async function determineChange(matrix, base, ci, improvement, telling) {
 
@@ -223,6 +51,146 @@ async function determineChange(matrix, base, ci, improvement, telling) {
 
 };
 
+// Function below uses the api to fetch the data and plots it in a line chart
+async function createLineChart(matrix, id, title, base, ci, improvement, y_label) {
+
+   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+
+   const response = await fetch(api_url);
+   const fetched_data = await response.json();
+   const {value, dimension} = fetched_data;
+
+   var years = Object.values(dimension)[1].category.index;
+
+   var base_position = years.indexOf(base);
+
+   if (matrix.slice(-2) == "NI") {
+      var base_value = value[base_position];
+      var data_series = value;
+   } else {
+      var groups = Object.values(dimension)[2].category.index;
+
+      var num_groups = groups.length;
+      var NI_position = groups.indexOf("N92000002");
+
+      var base_value = value[num_groups * base_position + NI_position];
+
+      var data_series = [];
+
+      for (let i = 0; i < value.length; i ++) {
+         if (i % num_groups == NI_position) {
+            data_series.push(value[i]);
+         }
+      }
+   }
+
+   if (improvement == "increase") {
+      red_box_yMin = Math.floor((base_value - ci) * 0.8);
+      red_box_yMax = base_value - ci;
+      green_box_yMin = base_value + ci;
+      green_box_yMax = Math.ceil((base_value + ci) * 1.2);
+   } else {
+      red_box_yMin = base_value + ci;
+      red_box_yMax = Math.ceil((base_value + ci) * 1.2);
+      green_box_yMin = Math.floor((base_value - ci) * 0.8);
+      green_box_yMax = base_value - ci;
+   }
+
+   const data = {
+      labels: years,
+      datasets: [{
+         label: 'Northern Ireland',
+         data: data_series,
+         borderColor: "#000000",
+         fill: false,
+         tension: 0.4
+      }]
+   };
+
+
+   const config = {
+      type: 'line',
+      data,
+      options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+            autocolors: false,
+            title: {
+               display: true,
+               text: title
+            },
+            annotation: {
+               annotations: {
+                  red_box: {
+                        type: "box",
+                        xMin: base_position,
+                        xMax: years.length - 1,
+                        yMin: red_box_yMin,
+                        yMax: red_box_yMax,
+                        backgroundColor: "#aa000055"
+                  },
+                  red_text: {
+                     type: "label",
+                     xValue: (base_position + (years.length - 1)) / 2,
+                     yValue: (red_box_yMin + red_box_yMax) / 2,
+                     content: "Worsening",
+                     font: {
+                        size: 16,
+                        weight: "bold",
+                        style: "italic"
+                     }
+                  },
+                  green_box: {
+                     type: "box",
+                     xMin: base_position,
+                     xMax: years.length - 1,
+                     yMin: green_box_yMin,
+                     yMax: green_box_yMax,
+                     backgroundColor: "#00aa0055"
+                  },
+                  green_text: {
+                     type: "label",
+                     xValue: (base_position + (years.length - 1)) / 2,
+                     yValue: (green_box_yMin + green_box_yMax) / 2,
+                     content: "Improving",
+                     font: {
+                        size: 16,
+                        weight: "bold",
+                        style: "italic"
+                     }
+                  }
+               }
+            },
+            legend: {
+               display: false
+            }
+      },
+      scales: {
+         x: {
+            grid: {
+               display: false
+            }
+         },
+         y: {
+            beginAtZero: false,
+            title: {
+               display: true,
+               text: y_label
+            }
+         }
+      }
+      }
+   };
+
+
+   const myChart = new Chart(
+      document.getElementById(id),
+      config
+   );   
+
+ }
+
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
 // Assign list of domains to variable "domains"
 var domains = Object.keys(domains_data);
@@ -268,27 +236,28 @@ for (let i = 0; i < domains.length; i++) {
          determineChange(this_matrix, indicator.base_year, indicator.ci, indicator.improvement, indicator.telling);
 
          // Create the "What is this indicator telling us" box and append to HTML
-         var this_id = this_statistic + "-line";
-
-         chart_container = document.createElement("div");
-         chart_container.id = this_id;
-         chart_container.classList.add("pxwidget");
-         chart_container.classList.add("line-chart");
-         chart_container.style.display = "none";
-         chart_container.style.height = "500px";
-
-         document.getElementById("line-chart-container").appendChild(chart_container);
+         var this_id = this_statistic + "-line";         
 
          // Plot line chart using createLineChart() function
-         createLineChart(id = this_id,
-            title = indicator.chart_title,
-            statistic = this_statistic,
-            breakdown = this_breakdown,
-            matrix = this_matrix,
-            y_label = indicator.y_axis_label)
+            chart_canvas = document.createElement("canvas");
+            chart_canvas.id = this_id;
+            chart_canvas.style.display = "none";
+            chart_canvas.classList.add("line-chart");
+            document.getElementById("line-chart-container").appendChild(chart_canvas);
+            
+            createLineChart(matrix = this_matrix,
+                    id = this_id,
+                    title = indicator.chart_title,
+                    base = indicator.base_year,
+                    ci = indicator.ci,
+                    improvement = indicator.improvement,
+                    y_label = indicator.y_axis_label);
+         
+
 
         }          
 
     }
 
 }
+
