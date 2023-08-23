@@ -337,7 +337,7 @@ setTimeout(function () {
             
             data = Object.values(indicators)[j].data;
             importance = Object.values(indicators)[j].importance;
-            source = Object.values(indicators)[j].source;
+            source = "This indicator is collected from the <a href='" + Object.values(indicators)[j].source_link + "' target='_blank'>" + Object.values(indicators)[j].source + "</a>.";
 
             if (data.NI != "") {
 
