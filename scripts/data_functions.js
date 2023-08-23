@@ -13,7 +13,6 @@ async function determineChange(matrix, base, ci, improvement, telling) {
 
    if (matrix.slice(-2) == "NI") {
 
-      // var labels = years.slice(baseline_index, years.length);
       var change_from_baseline = value[value.length - 1] - value[base_position];
 
    } else {
@@ -84,15 +83,20 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       }
    }
 
+   var value_range = Math.max.apply(Math, data_series) - Math.min.apply(Math, data_series);
+
+   var min_value = Math.floor(Math.min.apply(Math, data_series) - value_range);
+   var max_value = Math.ceil(Math.max.apply(Math, data_series) + value_range);
+
    if (improvement == "increase") {
-      red_box_yMin = Math.floor((base_value - ci) * 0.8);
+      red_box_yMin = min_value;
       red_box_yMax = base_value - ci;
       green_box_yMin = base_value + ci;
-      green_box_yMax = Math.ceil((base_value + ci) * 1.2);
+      green_box_yMax = max_value;
    } else {
       red_box_yMin = base_value + ci;
-      red_box_yMax = Math.ceil((base_value + ci) * 1.2);
-      green_box_yMin = Math.floor((base_value - ci) * 0.8);
+      red_box_yMax = max_value;
+      green_box_yMin = min_value;
       green_box_yMax = base_value - ci;
    }
 
@@ -174,6 +178,8 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          },
          y: {
             beginAtZero: false,
+            min: min_value,
+            max: max_value,
             title: {
                display: true,
                text: y_label
