@@ -140,7 +140,7 @@ var domains_data = {
             "source_link": "https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report",
             "ci": 0.01,
             "chart_title": "River Water Quality",
-            "y_axis_label": "mg/l soluble reactive phosporus (SRP)",
+            "y_axis_label": "mg/l soluble reactive phosphorus (SRP)",
             "data": {
                "NI": "INDRIVERQNI", 
                "AA": "",

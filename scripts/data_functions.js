@@ -50,6 +50,180 @@ async function determineChange(matrix, base, ci, improvement, telling) {
 
 };
 
+// customTitle plugin for chart.js
+// source from https://stackoverflow.com/questions/71379551/ability-to-rotate-y-axis-title-in-chart-js
+// and adapted to include up to 6 line breaks
+const customTitle = {
+   id: 'customTitle',
+   beforeLayout: (chart, args, opts) => {
+     const {
+       display,
+       font
+     } = opts;
+     if (!display) {
+       return;
+     }
+ 
+     const {
+       ctx
+     } = chart;
+     ctx.font = font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
+ 
+     const {
+       width
+     } = ctx.measureText(opts.text);
+      if (width > 42) {
+         chart.options.layout.padding.left = 80;
+      } else {
+         chart.options.layout.padding.left = width;
+      };
+   },
+   afterDraw: (chart, args, opts) => {
+     const {
+       font,
+       text,
+       color
+     } = opts;
+     const {
+       ctx,
+       chartArea: {
+         top,
+         bottom,
+         left,
+         right
+       }
+     } = chart;
+ 
+     if (opts.display) {      
+      
+       ctx.fillStyle = color || Chart.defaults.color
+       ctx.font = font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
+
+      text1 = text.slice(0, 9);
+      text2 = text.slice(9, 19);
+      text3 = text.slice(19, 29);
+      text4 = text.slice(29, 39);
+      text5 = text.slice(39, 49);
+      text6 = text.slice(49, 59);
+
+      if (text2.charAt(0) != " " & text1.charAt(text1.length - 1) != " ") {
+         space = text1.lastIndexOf(" ");
+         n_space = text2.lastIndexOf(" ");
+         if (space != -1) {
+            text2 = text1.slice(space + 1) + text2;
+            text1 = text1.slice(0, space);
+         } else if (n_space != -1) {
+            text1 = text1 + text2.slice(0, n_space);
+            text2 = text2.slice(n_space + 1);
+         } else {
+            text1 = text1 + text2;
+            text2 = "";
+         }
+      }
+     
+      if (text3.charAt(0) != " " & text2.charAt(text2.length - 1) != " ") {
+         space = text2.lastIndexOf(" ");
+         n_space = text3.lastIndexOf(" ");
+         if (space != -1) {
+            text3 = text2.slice(space + 1) + text3;
+            text2 = text2.slice(0, space);   
+         } else if (n_space != -1) {
+            text2 = text2 + text3.slice(0, n_space);
+            text3 = text3.slice(n_space + 1);
+         } else {
+            text2 = text2 + text3;
+            text3 = "";
+         }
+      }
+     
+      if (text4.charAt(0) != " " & text3.charAt(text3.length - 1) != " ") {
+         space = text3.lastIndexOf(" ");
+         n_space = text4.lastIndexOf(" ");
+         if (space != -1) {
+            text4 = text3.slice(space + 1) + text4;
+            text3 = text3.slice(0, space);    
+         } else if (n_space != -1) {
+            text3 = text3 + text4.slice(0, n_space);
+            text4 = text4.slice(n_space + 1);
+         }  else {
+            text3 = text3 + text4;
+            text4 = "";
+         }
+      }
+     
+      if (text5.charAt(0) != " " & text4.charAt(text4.length - 1) != " ") {
+         space = text4.lastIndexOf(" ");
+         n_space = text5.lastIndexOf(" ");
+         if (space != -1) {
+            text5 = text4.slice(space + 1) + text5;
+            text4 = text4.slice(0, space);
+         } else if (n_space != -1) {
+            text4 = text4 + text5.slice(0, n_space);
+            text5 = text5.slice(n_space + 1);
+         } else {
+            text4 = text4 + text5;
+            text5 = "";
+         }   
+      }
+     
+      if (text6.charAt(0) != " " & text5.charAt(text5.length - 1) != " ") {
+         space = text5.lastIndexOf(" ");
+         n_space = text6.lastIndexOf(" ");
+         if (space != -1) {
+            text6 = text5.slice(space + 1) + text6;
+            text5 = text5.slice(0, space);
+         } else if (n_space != -1) {
+            text5 = text5 + text6.slice(0, n_space);
+            text6 = text6.slice(n_space + 1);
+         } else {
+            text5 = text5 + text6;
+            text6 = "";
+         }
+      }
+
+       var lines = [];
+
+       for (let i = 1; i <= 6; i++) {         
+
+         if (eval("text" + i) != "") {
+            lines.push(eval("text" + i).trim())
+         }
+
+       }
+
+
+       if (lines.length == 1) {
+         ctx.fillText([lines[0]], 3, (top + bottom) / 2)
+      } else if (lines.length == 2) {
+         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 6.5)
+         ctx.fillText([lines[1]], 3, (top + bottom) / 2 + 6.5)
+      } else if (lines.length == 3) {
+         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 13)
+         ctx.fillText([lines[1]], 3, (top + bottom) / 2)
+         ctx.fillText([lines[2]], 3, (top + bottom) / 2 + 13)
+      } else if (lines.length == 4) {
+         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 19.5)
+         ctx.fillText([lines[1]], 3, (top + bottom) / 2 - 6.5)
+         ctx.fillText([lines[2]], 3, (top + bottom) / 2 + 6.5)
+         ctx.fillText([lines[3]], 3, (top + bottom) / 2 + 19.5)
+      } else if (lines.length == 5) {
+         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 26)
+         ctx.fillText([lines[1]], 3, (top + bottom) / 2 - 13)
+         ctx.fillText([lines[2]], 3, (top + bottom) / 2)
+         ctx.fillText([lines[3]], 3, (top + bottom) / 2 + 13)
+         ctx.fillText([lines[4]], 3, (top + bottom) / 2 + 26)
+      } else if (lines.length == 6) {
+         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 32.5)
+         ctx.fillText([lines[1]], 3, (top + bottom) / 2 - 19.5)
+         ctx.fillText([lines[2]], 3, (top + bottom) / 2 - 6.5)
+         ctx.fillText([lines[3]], 3, (top + bottom) / 2 + 6.5)
+         ctx.fillText([lines[4]], 3, (top + bottom) / 2 + 19.5)
+         ctx.fillText([lines[5]], 3, (top + bottom) / 2 + 32.5)
+      }
+     }
+   }
+ }
+
 // Function below uses the api to fetch the data and plots it in a line chart
 async function createLineChart(matrix, id, title, base, ci, improvement, y_label) {
 
@@ -118,8 +292,6 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       title_array = [title.slice(0, split), title.slice(split + 1)]
    }
 
-   console.log(title.length, title_array)
-
    const data = {
       labels: years,
       datasets: [{
@@ -144,6 +316,10 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
                display: true,
                text: title_array,
             },
+            customTitle: {
+               display: true,
+               text: y_label
+             },
             annotation: {
                annotations: {
                   red_box: {
@@ -208,17 +384,14 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             beginAtZero: false,
             min: min_value,
             max: max_value,
-            title: {
-               display: true,
-               text: y_label
-            },
             ticks: {
                minRotation: 0,
                maxRotation: 0
             }
          }
       }
-      }
+      },
+      plugins: [customTitle]
    };
 
 
@@ -277,21 +450,19 @@ for (let i = 0; i < domains.length; i++) {
          var this_id = this_statistic + "-line";         
 
          // Plot line chart using createLineChart() function
-            chart_canvas = document.createElement("canvas");
-            chart_canvas.id = this_id;
-            chart_canvas.style.display = "none";
-            chart_canvas.classList.add("line-chart");
-            document.getElementById("line-chart-container").appendChild(chart_canvas);
-            
-            createLineChart(matrix = this_matrix,
-                    id = this_id,
-                    title = indicator.chart_title,
-                    base = indicator.base_year,
-                    ci = indicator.ci,
-                    improvement = indicator.improvement,
-                    y_label = indicator.y_axis_label);
+         chart_canvas = document.createElement("canvas");
+         chart_canvas.id = this_id;
+         chart_canvas.style.display = "none";
+         chart_canvas.classList.add("line-chart");
+         document.getElementById("line-chart-container").appendChild(chart_canvas);
          
-
+         createLineChart(matrix = this_matrix,
+                         id = this_id,
+                         title = indicator.chart_title,
+                         base = indicator.base_year,
+                         ci = indicator.ci,
+                         improvement = indicator.improvement,
+                         y_label = indicator.y_axis_label);       
 
         }          
 
