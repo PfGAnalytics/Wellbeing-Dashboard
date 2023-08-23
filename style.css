@@ -64,16 +64,41 @@ h1 {
     margin-right: 2vh;
 }
 
+#footer-nisra-logo {
+    height: 100px;
+    margin: 0 10px;
+	padding: 5px 5px;
+	margin-right: -50px;
+	float:right;
+	cursor: pointer;
+    filter: brightness(0) invert(1);
+}
+
+#fb-icon {
+    margin: 0 5px;
+    filter: brightness(0) invert(1);
+}
+
+#twitter-icon {
+    margin: 0 5px;
+    filter: brightness(0) invert(1);
+}
+
+#youtube-icon {
+    margin: 0 5px;
+    filter: brightness(0) invert(1);
+}
+
 h2 {
     font-size: 26pt;
     color: #142062;
 }
 
-.content-centre {
+#content-centre {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 25px;
+    padding-top: 25px;
 }
 
 #main-container {
@@ -394,6 +419,58 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     padding: 10px 0;
     font-size: 1em;
   }
+
+  .nisrafooter ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+	font-size: 18px;
+	font-weight:700;
+}
+
+
+.nisrafooter li {
+	margin-right: 18px;
+    display: inline-block;
+	color: #FFFFFF;
+	font-size: 18px;
+}
+
+.nisrafooter a {
+	color: #FFFFFF !important;
+}
+
+.cc-li a {
+	color: #FFFFFF !important;
+}
+
+.flex-list-footer {
+	position: relative;
+    margin: 0em; /* T R B L */
+	display:block;
+    overflow: hidden;
+}
+
+.cc-li {
+	flex-grow: 1;
+    flex-basis: auto;
+    margin: 0.25em 0;
+    padding: 0 1em;
+    text-align: center;
+    border-left: 1px solid #ccc;
+    font-size: 14px;
+    list-style-type: none;
+}
+
+footer {
+    color: #ffffff;
+    background-color: #157c70;
+    margin-top: 25px;
+}
 
 #line-chart-container {
     position: relative;
