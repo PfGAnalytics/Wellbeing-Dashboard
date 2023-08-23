@@ -471,3 +471,9 @@ footer {
     background-color: #157c70;
     margin-top: 25px;
 }
+
+#line-chart-container {
+    position: relative;
+    width: 700px; 
+    height: 500px;
+ }
