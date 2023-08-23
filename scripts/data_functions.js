@@ -85,8 +85,19 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
 
    var value_range = Math.max.apply(Math, data_series) - Math.min.apply(Math, data_series);
 
-   var min_value = Math.floor(Math.min.apply(Math, data_series) - value_range);
-   var max_value = Math.ceil(Math.max.apply(Math, data_series) + value_range);
+   var min_value = Math.min.apply(Math, data_series) - ci - value_range;
+
+   if (min_value < 0) {
+      min_value = 0;
+   } else if (min_value > 1) {
+      var min_value = Math.floor(Math.min.apply(Math, data_series) - ci - value_range);
+   }
+
+   var max_value = Math.max.apply(Math, data_series) + ci + value_range;
+
+   if (max_value > 1) {
+      max_value = Math.ceil(max_value);
+   }
 
    if (improvement == "increase") {
       red_box_yMin = min_value;
@@ -99,6 +110,15 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       green_box_yMin = min_value;
       green_box_yMax = base_value - ci;
    }
+
+   if (title.length < 100) {
+      title_array = [title]
+   } else {
+      split = title.indexOf(" ", 100);
+      title_array = [title.slice(0, split), title.slice(split + 1)]
+   }
+
+   console.log(title.length, title_array)
 
    const data = {
       labels: years,
@@ -122,7 +142,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             autocolors: false,
             title: {
                display: true,
-               text: title
+               text: title_array,
             },
             annotation: {
                annotations: {
@@ -132,18 +152,20 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
                         xMax: years.length - 1,
                         yMin: red_box_yMin,
                         yMax: red_box_yMax,
-                        backgroundColor: "#aa000055"
+                        backgroundColor: "#aa000055",
+                        borderColor: "#aa0000"
                   },
                   red_text: {
                      type: "label",
-                     xValue: (base_position + (years.length - 1)) / 2,
+                     xValue: years.length - 1,
                      yValue: (red_box_yMin + red_box_yMax) / 2,
                      content: "Worsening",
                      font: {
                         size: 16,
                         weight: "bold",
                         style: "italic"
-                     }
+                     },
+                     position: "end"
                   },
                   green_box: {
                      type: "box",
@@ -151,18 +173,20 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
                      xMax: years.length - 1,
                      yMin: green_box_yMin,
                      yMax: green_box_yMax,
-                     backgroundColor: "#00aa0055"
+                     backgroundColor: "#00aa0055",
+                     borderColor: "#00aa00"
                   },
                   green_text: {
                      type: "label",
-                     xValue: (base_position + (years.length - 1)) / 2,
+                     xValue: years.length - 1,
                      yValue: (green_box_yMin + green_box_yMax) / 2,
                      content: "Improving",
                      font: {
                         size: 16,
                         weight: "bold",
                         style: "italic"
-                     }
+                     },
+                     position: "end"
                   }
                }
             },
@@ -174,6 +198,10 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          x: {
             grid: {
                display: false
+            },
+            ticks: {
+               minRotation: 0,
+               maxRotation: 0
             }
          },
          y: {
@@ -183,6 +211,10 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             title: {
                display: true,
                text: y_label
+            },
+            ticks: {
+               minRotation: 0,
+               maxRotation: 0
             }
          }
       }
