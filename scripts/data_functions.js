@@ -1,55 +1,3 @@
-// Function below determines the type of change between the current year and the base year
-async function determineChange(matrix, base, ci, improvement, telling) {
-
-   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
-
-   const response = await fetch(api_url);
-   const data = await response.json();
-   const {value, dimension} = data;
-
-   const years = Object.values(dimension)[1].category.index;
-
-   var base_position = years.indexOf(base);
-
-   if (matrix.slice(-2) == "NI") {
-
-      var change_from_baseline = value[value.length - 1] - value[base_position];
-
-   } else {
-
-      var groups = Object.values(dimension)[2].category.index;
-
-      var num_years = years.length;
-
-      var num_groups = groups.length;
-      var NI_position = groups.indexOf("N92000002");
-
-      var base_value = value[num_groups * base_position + NI_position];
-      var current_value = value[num_groups * (num_years - 1) + NI_position];
-
-      var change_from_baseline = current_value - base_value;
-
-   }   
-
-   if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
-      base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
-   } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
-   } else {
-      base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
-   };
-   
-   base_statement_div = document.createElement("div");
-   base_statement_div.id = matrix + "-base-statement";
-   base_statement_div.classList.add("white-box");
-   base_statement_div.classList.add("base-statement");
-   base_statement_div.style.display = "none";
-   base_statement_div.innerHTML = base_statement;
-
-   document.getElementById("change-info").appendChild(base_statement_div);
-
-};
-
 // customTitle plugin for chart.js
 // source from https://stackoverflow.com/questions/71379551/ability-to-rotate-y-axis-title-in-chart-js
 // and adapted to include up to 6 line breaks
@@ -99,99 +47,49 @@ const customTitle = {
        ctx.fillStyle = color || Chart.defaults.color
        ctx.font = font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
 
-      text1 = text.slice(0, 9);
-      text2 = text.slice(9, 19);
-      text3 = text.slice(19, 29);
-      text4 = text.slice(29, 39);
-      text5 = text.slice(39, 49);
-      text6 = text.slice(49, 59);
+      // Initially split text into 10 character long substrings
+       s_text = [];
 
-      if (text2.charAt(0) != " " & text1.charAt(text1.length - 1) != " ") {
-         space = text1.lastIndexOf(" ");
-         n_space = text2.lastIndexOf(" ");
-         if (space != -1) {
-            text2 = text1.slice(space + 1) + text2;
-            text1 = text1.slice(0, space);
-         } else if (n_space != -1) {
-            text1 = text1 + text2.slice(0, n_space);
-            text2 = text2.slice(n_space + 1);
-         } else {
-            text1 = text1 + text2;
-            text2 = "";
-         }
-      }
-     
-      if (text3.charAt(0) != " " & text2.charAt(text2.length - 1) != " ") {
-         space = text2.lastIndexOf(" ");
-         n_space = text3.lastIndexOf(" ");
-         if (space != -1) {
-            text3 = text2.slice(space + 1) + text3;
-            text2 = text2.slice(0, space);   
-         } else if (n_space != -1) {
-            text2 = text2 + text3.slice(0, n_space);
-            text3 = text3.slice(n_space + 1);
-         } else {
-            text2 = text2 + text3;
-            text3 = "";
-         }
-      }
-     
-      if (text4.charAt(0) != " " & text3.charAt(text3.length - 1) != " ") {
-         space = text3.lastIndexOf(" ");
-         n_space = text4.lastIndexOf(" ");
-         if (space != -1) {
-            text4 = text3.slice(space + 1) + text4;
-            text3 = text3.slice(0, space);    
-         } else if (n_space != -1) {
-            text3 = text3 + text4.slice(0, n_space);
-            text4 = text4.slice(n_space + 1);
-         }  else {
-            text3 = text3 + text4;
-            text4 = "";
-         }
-      }
-     
-      if (text5.charAt(0) != " " & text4.charAt(text4.length - 1) != " ") {
-         space = text4.lastIndexOf(" ");
-         n_space = text5.lastIndexOf(" ");
-         if (space != -1) {
-            text5 = text4.slice(space + 1) + text5;
-            text4 = text4.slice(0, space);
-         } else if (n_space != -1) {
-            text4 = text4 + text5.slice(0, n_space);
-            text5 = text5.slice(n_space + 1);
-         } else {
-            text4 = text4 + text5;
-            text5 = "";
-         }   
-      }
-     
-      if (text6.charAt(0) != " " & text5.charAt(text5.length - 1) != " ") {
-         space = text5.lastIndexOf(" ");
-         n_space = text6.lastIndexOf(" ");
-         if (space != -1) {
-            text6 = text5.slice(space + 1) + text6;
-            text5 = text5.slice(0, space);
-         } else if (n_space != -1) {
-            text5 = text5 + text6.slice(0, n_space);
-            text6 = text6.slice(n_space + 1);
-         } else {
-            text5 = text5 + text6;
-            text6 = "";
-         }
-      }
+       for (let i = 0; i < 6; i++) {
+          if (i == 0) {
+             s_text.push(text.slice(0, 9));
+          } else {
+             s_text.push(text.slice(i * 10 - 1, (i + 1) * 10 - 1));
+          }
+       }
+ 
+       // Fix string splits that occur in middle of a word
+       for (let i = 0; i < s_text.length - 1; i++) {
+ 
+          if (s_text[i + 1].charAt(0) != " " & s_text[i].charAt(s_text[i].length - 1) != " ") {
+             space = s_text[i].lastIndexOf(" ");
+             n_space = s_text[i + 1].lastIndexOf(" ");
+             if (space != -1) {
+                s_text[i + 1] = s_text[i].slice(space + 1) + s_text[i + 1];
+                s_text[i] = s_text[i].slice(0, space);
+             } else if (n_space != -1) {
+                s_text[i] = s_text[i] + s_text[i + 1].slice(0, n_space);
+                s_text[i + 1] = s_text[i + 1].slice(n_space + 1);
+             } else {
+                s_text[i] = s_text[i] + s_text[i + 1];
+                s_text[i + 1] = "";
+             }
+          }
+ 
+       }
 
-       var lines = [];
+       // Remove blank spaces
+       lines = [];     
 
-       for (let i = 1; i <= 6; i++) {         
+       for (let i = 0; i < s_text.length; i++) {         
 
-         if (eval("text" + i) != "") {
-            lines.push(eval("text" + i).trim())
+         if (s_text[i] != "") {
+            lines.push(s_text[i].trim())
          }
 
        }
 
-
+       // Center text along y axis depending on how many lines it was split over
        if (lines.length == 1) {
          ctx.fillText([lines[0]], 3, (top + bottom) / 2)
       } else if (lines.length == 2) {
@@ -224,39 +122,62 @@ const customTitle = {
    }
  }
 
-// Function below uses the api to fetch the data and plots it in a line chart
-async function createLineChart(matrix, id, title, base, ci, improvement, y_label) {
+ // Function to return Short month name from number 1-12
+ function getMonthName(monthNumber) {
+   const date = new Date();
+   date.setMonth(monthNumber - 1);
+ 
+   return date.toLocaleString('en-GB', {
+     month: 'short',
+   });
+ }
 
+// Function below uses the api to fetch the data and plots it in a line chart
+async function createLineChart(matrix, id, title, base, ci, improvement, y_label, telling) {
+
+   // URL to fetch data from Pre-production data portal
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
+   // Fetch data and store in object fetched_data
    const response = await fetch(api_url);
    const fetched_data = await response.json();
-   const {value, dimension} = fetched_data;
+   const {value, dimension, updated} = fetched_data;
+   
+   var years = Object.values(dimension)[1].category.index; // Array of years in data
+   
+   var base_position = years.indexOf(base); // Which position in the years array is base year
 
-   var years = Object.values(dimension)[1].category.index;
-
-   var base_position = years.indexOf(base);
-
+   // For NI datasets do the following:
    if (matrix.slice(-2) == "NI") {
-      var base_value = value[base_position];
-      var data_series = value;
+
+      var base_value = value[base_position]; // The value at the base year
+      var data_series = value; // The y axis values to plot
+      var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
+
    } else {
-      var groups = Object.values(dimension)[2].category.index;
 
-      var num_groups = groups.length;
-      var NI_position = groups.indexOf("N92000002");
+      var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA, EQ groups)
 
-      var base_value = value[num_groups * base_position + NI_position];
+      var num_groups = groups.length;     // The number of groups
+      var NI_position = groups.indexOf("N92000002");  // The position of Northern Ireland in the list of groups
 
-      var data_series = [];
+      var base_value = value[num_groups * base_position + NI_position];  // The value at the base year
+
+      var data_series = []; // Loop below will generate array of y-axis values
 
       for (let i = 0; i < value.length; i ++) {
          if (i % num_groups == NI_position) {
             data_series.push(value[i]);
          }
       }
+
+      var num_years = years.length;  // Number of years in data
+      var current_value = data_series[num_years - 1]; // Current value
+      var change_from_baseline = current_value - base_value; // The difference between base yaer value and last value
+
    }
 
+   // The following calculations set the ideal heights for the y axis as well as the green and red boxes
    var value_range = Math.max.apply(Math, data_series) - Math.min.apply(Math, data_series);
 
    var min_value = Math.min.apply(Math, data_series) - ci - value_range;
@@ -292,6 +213,10 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       title_array = [title.slice(0, split), title.slice(split + 1)]
    }
 
+   // Footnote on when data was last updated
+   var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4) +  "                                                                                                                                                ";
+
+   // Properties of the data series to be plotted
    const data = {
       labels: years,
       datasets: [{
@@ -303,7 +228,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       }]
    };
 
-
+   // Chart configuration
    const config = {
       type: 'line',
       data,
@@ -378,6 +303,10 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             ticks: {
                minRotation: 0,
                maxRotation: 0
+            },
+            title: {
+               display: true,
+               text: ["", updated_note]
             }
          },
          y: {
@@ -394,11 +323,37 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       plugins: [customTitle]
    };
 
+   // Create a new canvas object to place chart in
+   chart_canvas = document.createElement("canvas");
+   chart_canvas.id = id;
+   chart_canvas.style.display = "none";
+   chart_canvas.classList.add("line-chart");
+   document.getElementById("line-chart-container").appendChild(chart_canvas);
 
+   // Place chart in canvas
    const myChart = new Chart(
       document.getElementById(id),
       config
-   );   
+   );
+
+   // Statement to output based on performance of indicator
+   if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
+      base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
+   } else if ((change_from_baseline < (ci * -1) & improvement == "increase") || (change_from_baseline > ci & improvement == "decrease")) {
+      base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
+   } else {
+      base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
+   };
+   
+   // Create statement div
+   base_statement_div = document.createElement("div");
+   base_statement_div.id = matrix + "-base-statement";
+   base_statement_div.classList.add("white-box");
+   base_statement_div.classList.add("base-statement");
+   base_statement_div.style.display = "none";
+   base_statement_div.innerHTML = base_statement;
+
+   document.getElementById("change-info").appendChild(base_statement_div);
 
  }
 
@@ -443,30 +398,21 @@ for (let i = 0; i < domains.length; i++) {
 
         if (this_matrix != "") {
 
-         // Run the above function determineChange() for this indicator
-         determineChange(this_matrix, indicator.base_year, indicator.ci, indicator.improvement, indicator.telling);
-
-         // Create the "What is this indicator telling us" box and append to HTML
+         // An id to be used for the canvas containing the chart
          var this_id = this_statistic + "-line";         
 
-         // Plot line chart using createLineChart() function
-         chart_canvas = document.createElement("canvas");
-         chart_canvas.id = this_id;
-         chart_canvas.style.display = "none";
-         chart_canvas.classList.add("line-chart");
-         document.getElementById("line-chart-container").appendChild(chart_canvas);
-         
+         // Plot line chart using createLineChart() function         
          createLineChart(matrix = this_matrix,
                          id = this_id,
                          title = indicator.chart_title,
                          base = indicator.base_year,
                          ci = indicator.ci,
                          improvement = indicator.improvement,
-                         y_label = indicator.y_axis_label);       
+                         y_label = indicator.y_axis_label,
+                         telling = indicator.telling);       
 
         }          
 
     }
 
 }
-
