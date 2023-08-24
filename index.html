@@ -132,14 +132,18 @@
 
             <div id = "maps-scrn" class = "screen" style = "display: none;">
                 <h2>Mapping the indicators</h2>
+                <form>
+                    <label for="map-select">Select a map:</label>
+                    <select name = "map-select" id = "map-select"></select>
+                </form>
                 <div class = "row">
-                    <iframe src="maps/INDSLATTGAPLGD.html" loading = "lazy" style = "width:750px; height: 600px;"></iframe>
+                    <iframe id = "map-frame" src="maps/INDSLATTGAPLGD.html" loading = "lazy" style = "width:750px; height: 600px;"></iframe>
                     <div class = "box-container">
                         <div class = "grey-box">
                             <strong>Source:</strong>
-                            <p id = "source-info-map">This indicator is collected from the <a href="https://www.education-ni.gov.uk/articles/school-leavers">Qualifications and Destinations of Northern Ireland School Leavers report</a>.</p>
+                            <p id = "source-info-map"></p>
                             <strong>More data:</strong>
-                            <p id = "data-info-map">You can view data by <a href="https://ppdata.nisra.gov.uk/table/INDSLATTGAPLGD" target="_blank">Local Government District</a>, by <a href="https://ppdata.nisra.gov.uk/table/INDSLATTGAPAA" target="_blank">Assembly Area</a> and  by <a href="https://ppdata.nisra.gov.uk/table/INDSLATTGAPEQ" target="_blank">Equality Groups</a>  on the NISRA Data Portal.</p>
+                            <p id = "data-info-map"></p>
                         </div>
                         <div class= "red-box">
                             <strong>Impact of Covid-19</strong>
@@ -153,7 +157,7 @@
                 </div>
                 <div class = "row" style = "margin-top: 15px;">
                     <div class = "blue-label">Why is this Indicator important?</div>
-                    <div id = "ind-important-map" class = "white-box">Ensuring children have the best start in life includes empowering young people to achieve their potential and make informed and effective decisions throughout their lives. It supports our young people to develop as individuals and as contributors to society, the economy, and the environment. Educational attainment provides a measure of their life chances and readiness for future health and wellbeing, and the gap in attainment provides a measure of educational disadvantage.</div>
+                    <div id = "ind-important-map" class = "white-box"></div>
                 </div>
             </div>
 
