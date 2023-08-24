@@ -11,7 +11,7 @@ Documentation to outline the structure and processes needed to create or modify 
 | --- | --- |
 | `index.html` | The dashboard main page |
 | `style.css` | Pre-defined styling for the dashboards - colours, fonts, sizing, spacing etc. |
-| `domains_data.js` |  |
+| `domains_data.js` | Additional indicator information |
 | `data_functions.js` | Javascript functionality used for data throughout dashboard |
 | `map_functions.js` | Javascript functionality used for maps throughout dashboard |
 | `navigation_functions.js` | Javascript functionality used for navigation throughout dashboard |
@@ -39,8 +39,8 @@ Documentation to outline the structure and processes needed to create or modify 
 ## :bell: Processes
 
 ### Link with Data Portal
-Dashboard will automatically update when new data is uploaded to the data portal (provided it is named the same)
-Add something here for guidance in an indicator changes?
+- Dashboard will automatically update when new data is uploaded to the data portal (provided it is named the same)
+- Add something here for guidance in an indicator changes?
 
 ### Maps R script?
 
