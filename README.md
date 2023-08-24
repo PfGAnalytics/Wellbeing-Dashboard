@@ -21,7 +21,7 @@ Documentation to outline the structure and processes needed to create or modify 
 
 ### Input and outputs expected
 
-**Needed for this dashboard? Add something about data coming stright from data portal?
+**Needed for this dashboard? Add something about data coming stright from data portal? Short section on how api's work and include links at bottom?
 
 ### Code structure
 
