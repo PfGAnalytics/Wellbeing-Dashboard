@@ -8,7 +8,7 @@ function createMap(id, title, matrix, statistic, dimension) {
        "link": null,
        "title": title,
        "borders": true,
-       "colorScale": "blue",
+       "colorScale": "red",
        "tooltipTitle": null,
        "fullScreen": {
        "title": "View Fullscreen",

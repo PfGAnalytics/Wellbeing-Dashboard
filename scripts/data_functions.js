@@ -214,7 +214,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    }
 
    // Footnote on when data was last updated
-   var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4) +  "                                                                                                                                                ";
+   var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4) +  "                                                                                                                                            ";
 
    // Properties of the data series to be plotted
    const data = {

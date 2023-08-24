@@ -615,9 +615,9 @@ var domains_data = {
             },
             "improvement" : "decrease",
             "telling": {
-               "improved": "",
-               "no_change": "",
-               "worsened": "" 
+               "improved": "Fewer people are reporting being victims of crime.",
+               "no_change": "Crime prevalence rate remains steady.",
+               "worsened": "More people are reporting being victims of crime." 
             }
          },
          "Reoffending rate": {
