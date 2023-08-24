@@ -12,7 +12,7 @@ library(pacman)
 p_load("V8")
 
 cx <- v8()
-cx$source("../scripts/domains_data.js")
+cx$source("domains_data.js")
 domains <- cx$get("domains_data")
 
 

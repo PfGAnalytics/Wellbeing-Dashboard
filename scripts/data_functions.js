@@ -180,14 +180,6 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    // The following calculations set the ideal heights for the y axis as well as the green and red boxes
    var value_range = Math.max.apply(Math, data_series) - Math.min.apply(Math, data_series);
 
-   var min_value = Math.min.apply(Math, data_series) - ci - value_range;
-
-   if (min_value < 0) {
-      min_value = 0;
-   } else if (min_value > 1) {
-      var min_value = Math.floor(Math.min.apply(Math, data_series) - ci - value_range);
-   }
-
    var max_value = Math.max.apply(Math, data_series) + ci + value_range;
 
    if (max_value > 1) {
@@ -195,14 +187,14 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    }
 
    if (improvement == "increase") {
-      red_box_yMin = min_value;
+      red_box_yMin = 0;
       red_box_yMax = base_value - ci;
       green_box_yMin = base_value + ci;
       green_box_yMax = max_value;
    } else {
       red_box_yMin = base_value + ci;
       red_box_yMax = max_value;
-      green_box_yMin = min_value;
+      green_box_yMin = 0;
       green_box_yMax = base_value - ci;
    }
 
@@ -223,8 +215,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          label: 'Northern Ireland',
          data: data_series,
          borderColor: "#000000",
-         fill: false,
-         tension: 0.4
+         fill: false
       }]
    };
 
@@ -310,8 +301,8 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             }
          },
          y: {
-            beginAtZero: false,
-            min: min_value,
+            beginAtZero: true,
+            min: 0,
             max: max_value,
             ticks: {
                minRotation: 0,

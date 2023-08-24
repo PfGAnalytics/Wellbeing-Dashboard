@@ -655,7 +655,7 @@ for (let i = 0; i < maps.length; i++) {
 
 function mapUpdate() {
 
-    map_frame.src = "maps/"+ map_select.value + ".html";
+    map_frame.src = "maps/" + map_select.value + ".html";
     source_info_map.innerHTML = map_sources[maps.indexOf(map_select.value)];
     data_info_map.innerHTML = map_more_data[maps.indexOf(map_select.value)];
     ind_important_map.innerHTML = map_importance[maps.indexOf(map_select.value)];
