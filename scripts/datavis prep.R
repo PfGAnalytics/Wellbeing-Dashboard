@@ -13,9 +13,14 @@ p_load("magrittr")
 
 # Folder to store uploads in
 uploadDir <- "../dashboard-to-upload/"
+zipName <- paste0(substring(uploadDir, 1, nchar(uploadDir) - 1), ".zip")
 
 if (file.exists(uploadDir)) {
   unlink(uploadDir, recursive = TRUE)
+}
+
+if (file.exists(zipName)) {
+  unlink(zipName, recursive = TRUE)
 }
 
 dir.create(uploadDir)
@@ -69,7 +74,5 @@ suppressWarnings({
 # Add to zip file
 project_root <- getwd()
 setwd(uploadDir)
-files2zip <- dir(getwd())
-zip(zipfile = '../dashboard-to-upload', files = files2zip)
-
+zip(zipfile = zipName, files = dir(getwd()))
 setwd(project_root)

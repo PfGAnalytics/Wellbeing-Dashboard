@@ -178,12 +178,33 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    }
 
    // The following calculations set the ideal heights for the y axis as well as the green and red boxes
-   var value_range = Math.max.apply(Math, data_series) - Math.min.apply(Math, data_series);
+   var max_data = Math.max(...data_series);
+   var max_value = Math.max(base_value * 2, max_data);
 
-   var max_value = Math.max.apply(Math, data_series) + ci + value_range;
+   if (max_value < 0.2) {
+      max_value = Math.ceil(max_value / 0.02) * 0.02;
+   } else if (max_value < 20) {
+      max_value = Math.ceil(max_value / 2) * 2;
+   } else if (max_value < 40) {
+      max_value = Math.ceil(max_value / 5) * 5;
+   } else if (max_value < 70) {
+      max_value = Math.ceil(max_value / 10) * 10;
+   } else if (max_value < 200) {
+      max_value = Math.ceil(max_value / 20) * 20;
+   } else if (max_value < 500) {
+      max_value = Math.ceil(max_value / 50) * 50;
+   } else if (max_value < 20000) {
+      max_value = Math.ceil(max_value / 2000) * 2000;
+   } else {
+      max_value = Math.ceil(max_value / 10000) * 10000;
+   }
 
-   if (max_value > 1) {
-      max_value = Math.ceil(max_value);
+   if (y_label.includes("%") & max_value > 100) {
+      max_value = 100;
+   }
+
+   if (title.includes("life expectancy")) {
+      max_value = 80;
    }
 
    if (improvement == "increase") {
