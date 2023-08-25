@@ -568,12 +568,51 @@ mainContainerHeight = function() {
     main_container.style.minHeight = ideal_height + "px";
 }
 
+// Resizing for mobile
+function sizeForMobile() {
+    
+    var main_container = document.getElementById("main-container");
+    var line_chart_container = document.getElementById("line-chart-container");
+    var click_to_see = document.getElementById("click-to-see");
+    var domains_grid_container = document.getElementById("domains-grid-container");
+
+    if (window.innerWidth < 1200) {
+        main_container.style.width = window.innerWidth + "px";
+        line_chart_container.style.width = (window.innerWidth - 40) + "px";
+        line_chart_container.style.marginLeft = "20px";
+        line_chart_container.style.marginRight = "20px";
+        click_to_see.style.width = "100%";
+        domains_grid_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
+    } else {
+        main_container.removeAttribute("style");
+        line_chart_container.removeAttribute("style");
+        click_to_see.style.width = "100px";
+        domains_grid_container.style.marginLeft = "250px";
+    }
+
+    box_containers = document.getElementsByClassName("box-container");
+
+    for (let i = 0; i < box_containers.length; i++) {
+        if (window.innerWidth < 1200) {
+            box_containers[i].style.marginLeft = ((window.innerWidth - box_containers[i].clientWidth) / 2) + "px";
+        } else {
+            box_containers[i].removeAttribute("style");
+        }
+    }
+
+}
+
 window.onload = function() {
     showCookieBanner();
+    sizeForMobile(); 
     mainContainerHeight();
+       
 };
 
-window.onresize = mainContainerHeight;
+window.onresize = function() {
+    sizeForMobile();
+    mainContainerHeight();    
+}
 
 // Map select
 var maps = [];
@@ -680,3 +719,6 @@ function mapUpdate() {
 map_select.onchange = function() {
     mapUpdate();
 }
+
+
+

@@ -110,6 +110,7 @@ h2 {
 #domains-grid-container {
     width: 700px;
     margin-left: 250px;
+    margin-top: 20px;
 }
 
 #domain-info-container {
@@ -186,6 +187,7 @@ h2 {
 #click-to-see {
     width: 100px;
     text-align: center;
+    margin-top: 20px;
 }
 
 .hex {
@@ -224,10 +226,8 @@ h2 {
 
 .indicators-intro {
     text-align: center;
-    margin-left: 5%;
-    margin-right: 5%;
     margin-top: 10px;
-    width: 1200px;
+    width: 100%;
 }
 
 .shake-hex:hover {
@@ -352,6 +352,7 @@ iframe {
 
 #breadcrumbs {
     margin-bottom: 10px;
+    width: 100%;
 }
 
 #cookie-banner {
@@ -473,7 +474,22 @@ footer {
 }
 
 #line-chart-container {
+    width: 750px;
+}
+
+.canvas-container {
     position: relative;
-    width: 700px; 
+    width: 100%; 
     height: 500px;
+ }
+
+ .chart-date {
+    font-size: 10pt;
+    padding-left: 25px;
+    padding-top: 5px;
+ }
+
+ .chart-title {
+    width: 100%;
+    text-align: center;
  }

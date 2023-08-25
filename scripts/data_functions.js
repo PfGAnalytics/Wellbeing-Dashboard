@@ -219,15 +219,8 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       green_box_yMax = base_value - ci;
    }
 
-   if (title.length < 100) {
-      title_array = [title]
-   } else {
-      split = title.indexOf(" ", 100);
-      title_array = [title.slice(0, split), title.slice(split + 1)]
-   }
-
    // Footnote on when data was last updated
-   var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4) +  "                                                                                                                                            ";
+   var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
 
    // Properties of the data series to be plotted
    const data = {
@@ -249,10 +242,6 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       maintainAspectRatio: false,
       plugins: {
             autocolors: false,
-            title: {
-               display: true,
-               text: title_array,
-            },
             customTitle: {
                display: true,
                text: y_label
@@ -315,10 +304,6 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             ticks: {
                minRotation: 0,
                maxRotation: 0
-            },
-            title: {
-               display: true,
-               text: ["", updated_note]
             }
          },
          y: {
@@ -336,15 +321,34 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    };
 
    // Create a new canvas object to place chart in
+   chart_div = document.createElement("div");
+   chart_div.id = id;
+   chart_div.style.display = "none";
+   chart_div.classList.add("line-chart");
+
+   chart_title = document.createElement("div");
+   chart_title.classList.add("chart-title");
+   chart_title.innerHTML = title;
+
+   canvas_div = document.createElement("div");
+   canvas_div.classList.add("canvas-container");
+
    chart_canvas = document.createElement("canvas");
-   chart_canvas.id = id;
-   chart_canvas.style.display = "none";
-   chart_canvas.classList.add("line-chart");
-   document.getElementById("line-chart-container").appendChild(chart_canvas);
+   chart_canvas.id = id + "-canvas";
+   canvas_div.appendChild(chart_canvas);
+
+   date_div = document.createElement("div");
+   date_div.classList.add("chart-date");
+   date_div.innerHTML = updated_note;
+
+   chart_div.appendChild(chart_title);
+   chart_div.appendChild(canvas_div);
+   chart_div.appendChild(date_div);
+   document.getElementById("line-chart-container").appendChild(chart_div);
 
    // Place chart in canvas
    const myChart = new Chart(
-      document.getElementById(id),
+      document.getElementById(id + "-canvas"),
       config
    );
 
