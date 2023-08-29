@@ -104,7 +104,6 @@ var clicked_desc = document.getElementById("clicked-desc");
 var indicator_hexes = document.getElementById("indicator-hexes");
 var indicator_intro = document.getElementById("domains-scrn").getElementsByClassName("indicators-intro")[0];
 
-
 for (let i = 0; i < hexagons.length - 1; i++) {
 
     hexagons[i].parentElement.classList.add("shake-hex");
@@ -719,6 +718,3 @@ function mapUpdate() {
 map_select.onchange = function() {
     mapUpdate();
 }
-
-
-

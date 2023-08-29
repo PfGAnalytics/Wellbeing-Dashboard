@@ -199,12 +199,16 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       max_value = Math.ceil(max_value / 10000) * 10000;
    }
 
-   if (y_label.includes("%") & max_value > 100) {
+   if ((y_label.includes("%") || y_label.includes("out of 100")) & max_value > 100) {
       max_value = 100;
    }
 
    if (title.includes("life expectancy")) {
       max_value = 80;
+   }
+
+   if (title.includes("from 0 to 10")) {
+      max_value = 10;
    }
 
    if (improvement == "increase") {
