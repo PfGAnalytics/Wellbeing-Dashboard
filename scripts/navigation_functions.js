@@ -45,7 +45,9 @@ for (let i = 0; i < top_menu_items.length; i++) {
             breadcrumb_2.innerHTML = "";
             breadcrumb_3.innerHTML = "";
 
-        }        
+        }
+        
+        drawMap(map_select_3.value);
 
     }    
 
@@ -678,12 +680,20 @@ function updateMapSelect3() {
 
 async function drawMap(matrix) {
 
+    var map_container = document.getElementById("map-container");
+
+    while (map_container.firstChild) {
+        map_container.removeChild(map_container.firstChild);
+    }
+
     api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
    // Fetch data and store in object fetched_data
    const response = await fetch(api_url);
    const fetched_data = await response.json();
    const {value, dimension, updated} = fetched_data;
+
+   var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label;
 
    var years = Object.values(dimension)[1].category.index;
    var current_year = years[years.length-1];
@@ -695,15 +705,18 @@ async function drawMap(matrix) {
 
    var data_series = value.slice(value.length - num_groups, value.length);
 
+    console.log(groups, data_series)
+
    if (NI_position > -1) {
     data_series.splice(NI_position, 1);
    }
 
-   var map_container = document.getElementById("map-container");
+   var range = Math.max(...data_series) - Math.min(...data_series);
 
-   while (map_container.firstChild) {
-    map_container.removeChild(map_container.firstChild);
-}
+   colours = [];
+   for (let i = 0; i < data_series.length; i++) {
+    colours.push((data_series[i] - Math.min(...data_series)) / range);
+   }
 
    map_div = document.createElement("div");
    map_div.id = matrix + "map";
@@ -727,31 +740,38 @@ async function drawMap(matrix) {
         }).addTo(map);
 
         function getColor(d) {
-            // d should be between 0 and 1
-            //
-            // 5 scale reds
             var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
-            return red[Math.floor(d*5)];
+            return red[Math.round(d*4)];
+        }
+
+        if (matrix.slice(-3) == "LGD") {
+            area_var = "LGDNAME"
+        } else {
+            area_var = "PC_NAME"
         }
 
         function enhanceLayer(f,l){
 
-            // add popup
             if (f.properties){
-                l.bindTooltip(f.properties['LGDNAME']);
+                l.bindTooltip(f.properties[area_var] + " (" + current_year + "): <b>" + data_series[f.properties['OBJECTID'] - 1] + "</b> (" + unit + ")");
 
                 // http://leafletjs.com/reference.html#path-options
                 l.setStyle({
-                    fillColor: getColor(f.properties['OBJECTID']/12),
+                    fillColor: getColor(colours[f.properties['OBJECTID'] - 1]),
                     fillOpacity: 0.75,
                     stroke: true,
                     color: "#555555",
+                    opacity: 0.75,
                     weight: 1
                 });
             }
-        }
+        }        
 
-        var NImapdata = L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
+        if (matrix.slice(-3) == "LGD") {
+           L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
+        } else {
+            L.geoJSON(AA_map, {onEachFeature:enhanceLayer}).addTo(map);
+        }
 
 }
 

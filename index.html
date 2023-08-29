@@ -171,7 +171,7 @@
             </div>
 
             <div id = "help-scrn" class = "screen" style = "display: none;">
-                
+                <div id = "map" style = "height: 500px;"></div>
             </div>
 
             
@@ -220,61 +220,5 @@
 <script src = "scripts/cookies_script.js"></script>
 <script src = "scripts/data_functions.js"></script>
 <script src = "scripts/navigation_functions.js"></script>
-
-<script>
-
-    // document.getElementById("help-btn").onclick = function() {
-
-    //     document.getElementById("help-scrn").style.display = "block";
-    //     document.getElementById("overall-scrn").style.display = "none";
-
-    // var map = L.map('map',
-    //                     {zoomControl: false,
-    //                      dragging: false,
-    //                      touchZoom: false,
-    //                      doubleClickZoom: false,
-    //                      scrollWheelZoom: false,
-    //                      boxZoom: false,
-    //                      keyboard: false,
-    //                      attributionControl: false,
-    //                      tap: false}).setView([54.65, -6.8], 8);
-
-    //     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    //         maxZoom: 19,
-    //         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    //     }).addTo(map);
-
-    //     function getColor(d) {
-    //         // d should be between 0 and 1
-    //         //
-    //         // 5 scale reds
-    //         var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
-    //         return red[Math.floor(d*5)];
-    //     }
-
-    //     function enhanceLayer(f,l){
-
-    //         // add popup
-    //         if (f.properties){
-    //             l.bindTooltip(f.properties['LGDNAME']);
-
-    //             // http://leafletjs.com/reference.html#path-options
-    //             l.setStyle({
-    //                 fillColor: getColor(f.properties['OBJECTID']/12),
-    //                 fillOpacity: 0.75,
-    //                 stroke: true,
-    //                 color: "#555555",
-    //                 weight: 1
-    //             });
-    //         }
-    //         }
-
-        
-    //     var NImapdata = L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
-
-    // }
-
-          
-</script>
 
 </html>

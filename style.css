@@ -496,9 +496,13 @@ footer {
 
  .map {
     height: 500px;
-    width: 700px;
+    width: 600px;
  }
 
  select {
     width: 250px;
+ }
+
+ #map-container {
+    height: 500px;
  }
