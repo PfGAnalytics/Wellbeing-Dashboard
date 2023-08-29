@@ -15,7 +15,12 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js" integrity="sha512-Hn1w6YiiFw6p6S2lXv6yKeqTk0PLVzeCwWY9n32beuPjQ5HLcvz5l2QsP+KilEr1ws37rCTw3bZpvfvVIeTh0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src = "scripts/domains_data.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src = "scripts/domains_data.js"></script>    
+    <script src = "scripts/ni_map.js"></script>
 
     <link rel ="stylesheet" href ="style.css">
 
@@ -133,11 +138,15 @@
             <div id = "maps-scrn" class = "screen" style = "display: none;">
                 <h2>Mapping the indicators</h2>
                 <form>
-                    <label for="map-select">Select map:</label><br>
-                    <select name = "map-select" id = "map-select"></select>
+                    <label for="map-select-1">Domain:</label>
+                    <select name = "map-select-1" id = "map-select-1"></select>
+                    <label for="map-select-2">Indicator:</label>
+                    <select name = "map-select-2" id = "map-select-2"></select>
+                    <label for="map-select-3">Geography:</label>
+                    <select name = "map-select-3" id = "map-select-3"></select>
                 </form>
                 <div class = "row">
-                    <iframe id = "map-frame" loading = "lazy" style = "width:750px; height: 600px;"></iframe>
+                    <div id = "map-container"></div>
                     <div class = "box-container">
                         <div class = "grey-box">
                             <strong>Source:</strong>
@@ -161,7 +170,9 @@
                 </div>
             </div>
 
-            <div id = "help-scrn"></div>
+            <div id = "help-scrn" class = "screen" style = "display: none;">
+                
+            </div>
 
             
 
@@ -209,5 +220,61 @@
 <script src = "scripts/cookies_script.js"></script>
 <script src = "scripts/data_functions.js"></script>
 <script src = "scripts/navigation_functions.js"></script>
+
+<script>
+
+    // document.getElementById("help-btn").onclick = function() {
+
+    //     document.getElementById("help-scrn").style.display = "block";
+    //     document.getElementById("overall-scrn").style.display = "none";
+
+    // var map = L.map('map',
+    //                     {zoomControl: false,
+    //                      dragging: false,
+    //                      touchZoom: false,
+    //                      doubleClickZoom: false,
+    //                      scrollWheelZoom: false,
+    //                      boxZoom: false,
+    //                      keyboard: false,
+    //                      attributionControl: false,
+    //                      tap: false}).setView([54.65, -6.8], 8);
+
+    //     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    //         maxZoom: 19,
+    //         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    //     }).addTo(map);
+
+    //     function getColor(d) {
+    //         // d should be between 0 and 1
+    //         //
+    //         // 5 scale reds
+    //         var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
+    //         return red[Math.floor(d*5)];
+    //     }
+
+    //     function enhanceLayer(f,l){
+
+    //         // add popup
+    //         if (f.properties){
+    //             l.bindTooltip(f.properties['LGDNAME']);
+
+    //             // http://leafletjs.com/reference.html#path-options
+    //             l.setStyle({
+    //                 fillColor: getColor(f.properties['OBJECTID']/12),
+    //                 fillOpacity: 0.75,
+    //                 stroke: true,
+    //                 color: "#555555",
+    //                 weight: 1
+    //             });
+    //         }
+    //         }
+
+        
+    //     var NImapdata = L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
+
+    // }
+
+          
+</script>
 
 </html>

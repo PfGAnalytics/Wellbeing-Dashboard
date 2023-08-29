@@ -493,3 +493,12 @@ footer {
     width: 100%;
     text-align: center;
  }
+
+ .map {
+    height: 500px;
+    width: 700px;
+ }
+
+ select {
+    width: 250px;
+ }
