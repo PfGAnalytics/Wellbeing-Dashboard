@@ -439,6 +439,9 @@ for (let i = 0; i < domains.length; i++) {
 
 async function drawMap(matrix) {
 
+   var map_load = document.getElementById("map-load");
+   map_load.style.display = "flex";
+
    var map_container = document.getElementById("map-container");
 
    while (map_container.firstChild) {
@@ -606,5 +609,7 @@ async function drawMap(matrix) {
   update_div.classList.add("chart-date");
   update_div.innerHTML = updated_note;
   map_container.appendChild(update_div);
+
+  map_load.style.display = "none";
 
 }

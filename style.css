@@ -547,3 +547,11 @@ footer {
     position: relative;
     z-index: 1;
 }
+
+#map-load {
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
