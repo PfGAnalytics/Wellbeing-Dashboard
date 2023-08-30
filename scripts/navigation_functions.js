@@ -576,6 +576,7 @@ function sizeForMobile() {
     var line_chart_container = document.getElementById("line-chart-container");
     var click_to_see = document.getElementById("click-to-see");
     var domains_grid_container = document.getElementById("domains-grid-container");
+    var map_container = document.getElementById("map-container");
 
     if (window.innerWidth < 1200) {
         main_container.style.width = window.innerWidth + "px";
@@ -584,11 +585,13 @@ function sizeForMobile() {
         line_chart_container.style.marginRight = "20px";
         click_to_see.style.width = "100%";
         domains_grid_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
+        map_container.style.marginLeft = ((window.innerWidth - 600) / 2) + "px";
     } else {
         main_container.removeAttribute("style");
         line_chart_container.removeAttribute("style");
         click_to_see.style.width = "100px";
         domains_grid_container.style.marginLeft = "250px";
+        map_container.removeAttribute("style");
     }
 
     box_containers = document.getElementsByClassName("box-container");
@@ -596,6 +599,7 @@ function sizeForMobile() {
     for (let i = 0; i < box_containers.length; i++) {
         if (window.innerWidth < 1200) {
             box_containers[i].style.marginLeft = ((window.innerWidth - box_containers[i].clientWidth) / 2) + "px";
+            box_containers[i].style.marginTop = "10px";
         } else {
             box_containers[i].removeAttribute("style");
         }
@@ -609,7 +613,6 @@ window.onload = function() {
     mainContainerHeight();
     updateMapSelect2();
     updateMapSelect3();
-    drawMap(map_select_3.value);
 };
 
 window.onresize = function() {
@@ -654,7 +657,8 @@ function updateMapSelect2() {
 
 function updateMapSelect3() {
 
-    var data = domains_data[map_select_1.value].indicators[map_select_2.value].data;
+    var indicator = domains_data[map_select_1.value].indicators[map_select_2.value];
+    var data = indicator.data;
 
     while (map_select_3.firstChild) {
         map_select_3.removeChild(map_select_3.firstChild);
@@ -674,106 +678,45 @@ function updateMapSelect3() {
         map_select_3.appendChild(option);
     }
 
-}
+    var chart_title = document.getElementById("chart-title");
+    chart_title.innerHTML = indicator.chart_title;
 
+    var data_info_map = document.getElementById("data-info-map"); 
 
+    var data_info = "You can view data ";
 
-async function drawMap(matrix) {
-
-    var map_container = document.getElementById("map-container");
-
-    while (map_container.firstChild) {
-        map_container.removeChild(map_container.firstChild);
+    if (data.LGD != "") {
+        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
     }
 
-    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+    if (data.AA != "") {            
+        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
+    }
 
-   // Fetch data and store in object fetched_data
-   const response = await fetch(api_url);
-   const fetched_data = await response.json();
-   const {value, dimension, updated} = fetched_data;
+    if (data.EQ != "") {
+        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
+    }
 
-   var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label;
+    data_info = data_info + ' on the NISRA Data Portal.' 
+    
+    if (data_info.lastIndexOf(",") > 0 ) {
+        data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+    }
 
-   var years = Object.values(dimension)[1].category.index;
-   var current_year = years[years.length-1];
+    if (data_info.lastIndexOf(",") > 0 ) {
+        data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+    }
 
-   var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
+    data_info_map.innerHTML = data_info;
 
-   var num_groups = groups.length;     // The number of groups
-   var NI_position = groups.indexOf("N92000002");
+    var source_info_map = document.getElementById("source-info-map");
+    source_info_map.innerHTML = "This indicator is collected from the <a href='" + indicator.source_link + "' target='_blank'>" + indicator.source + "</a>.";
 
-   var data_series = value.slice(value.length - num_groups, value.length);
-
-    console.log(groups, data_series)
-
-   if (NI_position > -1) {
-    data_series.splice(NI_position, 1);
-   }
-
-   var range = Math.max(...data_series) - Math.min(...data_series);
-
-   colours = [];
-   for (let i = 0; i < data_series.length; i++) {
-    colours.push((data_series[i] - Math.min(...data_series)) / range);
-   }
-
-   map_div = document.createElement("div");
-   map_div.id = matrix + "map";
-   map_div.classList.add("map");
-   map_container.appendChild(map_div);
-
-   var map = L.map(matrix + "map",
-                        {zoomControl: false,
-                         dragging: false,
-                         touchZoom: false,
-                         doubleClickZoom: false,
-                         scrollWheelZoom: false,
-                         boxZoom: false,
-                         keyboard: false,
-                         attributionControl: false,
-                         tap: false}).setView([54.65, -6.8], 8);
-
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-
-        function getColor(d) {
-            var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
-            return red[Math.round(d*4)];
-        }
-
-        if (matrix.slice(-3) == "LGD") {
-            area_var = "LGDNAME"
-        } else {
-            area_var = "PC_NAME"
-        }
-
-        function enhanceLayer(f,l){
-
-            if (f.properties){
-                l.bindTooltip(f.properties[area_var] + " (" + current_year + "): <b>" + data_series[f.properties['OBJECTID'] - 1] + "</b> (" + unit + ")");
-
-                // http://leafletjs.com/reference.html#path-options
-                l.setStyle({
-                    fillColor: getColor(colours[f.properties['OBJECTID'] - 1]),
-                    fillOpacity: 0.75,
-                    stroke: true,
-                    color: "#555555",
-                    opacity: 0.75,
-                    weight: 1
-                });
-            }
-        }        
-
-        if (matrix.slice(-3) == "LGD") {
-           L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
-        } else {
-            L.geoJSON(AA_map, {onEachFeature:enhanceLayer}).addTo(map);
-        }
+    var ind_important_map = document.getElementById("ind-important-map");
+    ind_important_map.innerHTML = indicator.importance;
 
 }
+
 
 map_select_1.onchange =  function() {
     updateMapSelect2();
@@ -789,108 +732,3 @@ map_select_2.onchange = function() {
 map_select_3.onchange = function() {
     drawMap(map_select_3.value);
 }
-
-// var maps = [];
-// var map_labels = [];
-// var map_sources = [];
-// var map_more_data = [];
-// var map_importance = [];
-
-// var map_select = document.getElementById("map-select");
-// var map_frame = document.getElementById("map-frame");
-// var source_info_map = document.getElementById("source-info-map");
-// var data_info_map = document.getElementById("data-info-map");
-// var ind_important_map = document.getElementById("ind-important-map");
-// var change_info_map = document.getElementById("change-info-map");
-
-// for (let i = 0; i < domains.length; i++) {
-
-//     indicators = Object.keys(domains_data[domains[i]].indicators);
-
-//     for (let j = 0; j < indicators.length; j++) {
-
-//         var indicator = domains_data[domains[i]].indicators[indicators[j]];
-//         var data = indicator.data;        
-
-//         if (data.NI == "") {
-
-//             var data_info = "You can view data ";
-
-//             if (data.LGD != "") {
-//                 maps.push(data.LGD);
-//                 map_labels.push(indicators[j] + " by Local Government District");
-//                 map_sources.push("This indicator is collected from the <a href='" + indicator.source_link + "' target='_blank'>" + indicator.source + "</a>.");
-//                 data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
-//                 map_importance.push(indicator.importance);
-//             }
-
-//             if (data.AA != "") {            
-//                 maps.push(data.AA);
-//                 map_labels.push(indicators[j] + " by Assembly Area");
-//                 map_sources.push("This indicator is collected from the <a href='" + indicator.source_link + "' target='_blank'>" + indicator.source + "</a>.");
-//                 data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
-//                 map_importance.push(indicator.importance);
-//             }
-
-//             if (data.EQ != "") {
-//                 data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
-//             }
-
-//             data_info = data_info + ' on the NISRA Data Portal.' 
-            
-//             if (data_info.lastIndexOf(",") > 0 ) {
-//                 data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-//             }
-
-//             if (data_info.lastIndexOf(",") > 0 ) {
-//                 data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-//             }
-
-//             if (data.LGD != "") {
-//                 map_more_data.push(data_info);
-//             }
-
-//             if (data.AA != "") {
-//                 map_more_data.push(data_info);
-//             }
-
-//         }
-        
-//     }
-
-// }
-
-// for (let i = 0; i < maps.length; i++) {
-//     map_option = document.createElement("option");
-//     map_option.value = maps[i];
-//     map_option.innerHTML = map_labels[i];
-//     map_select.appendChild(map_option);
-// }
-
-// function mapUpdate() {
-
-//     map_frame.src = "maps/" + map_select.value + ".html";
-//     source_info_map.innerHTML = map_sources[maps.indexOf(map_select.value)];
-//     data_info_map.innerHTML = map_more_data[maps.indexOf(map_select.value)];
-//     ind_important_map.innerHTML = map_importance[maps.indexOf(map_select.value)];
-
-//     if (map_select.value.slice(-3) == "LGD") {
-//         LGD_id = map_select.value + "-base-statement";
-//         EQ_id = map_select.value.slice(0, -3) + "EQ-base-statement";
-//     } else {
-//         LGD_id = map_select.value.slice(0, -2) + "LGD-base-statement";
-//         EQ_id = map_select.value.slice(0, -2) + "EQ-base-statement";
-//     }
-
-//     if (document.getElementById(LGD_id)) {
-//         base_id = LGD_id;
-//     } else {
-//         base_id = EQ_id;
-//     }
-
-//     change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
-// }
-
-// map_select.onchange = function() {
-//     mapUpdate();
-// }

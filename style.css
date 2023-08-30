@@ -5,7 +5,7 @@ body {
 }
 
 #top-menu {
-    background-color: #157c70;
+    background-color: #008675;
     padding: 0px;
     width: 100%;
     margin: 0px;
@@ -205,7 +205,7 @@ h2 {
     position: absolute;
     top: 4px;
     left: 4px;
-    background-color: #157c70;
+    background-color: #008675;
     width: 192px;
     height: 192px;
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
@@ -341,7 +341,7 @@ iframe {
 
 .b-crumb {
     margin-left: 5px;
-    color: #157c70;
+    color: #008675;
     cursor: pointer;
     font-size: 16pt;
 }
@@ -361,31 +361,31 @@ iframe {
 	width: 100%;
 	background-color:#00205b;
 	color:#FFF;
-			padding: 10px;
+	padding: 10px;
 	text-align: left;
 }
 
 .cookies-infobar {
-background-color: rgb(0, 32, 91);
-color: #fff;
-width: 100%;
-left: 0;
-right: 0;
-top: 0;
-padding: 10px;
-text-align: left;
+    background-color: rgb(0, 32, 91);
+    color: #fff;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    text-align: left;
 }
 
 .cookies-infobar.cookies-infobar_accepted {
-  display: none;
+    display: none;
 }
 
 .cookies-infobar_wrapper {
-  margin: 10px;
+    margin: 10px;
 }
 
 .cookies-infobar a {
-  color: inherit;
+    color: inherit;
 }
 
 .cookies-infobar_btn {
@@ -469,7 +469,7 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
 
 footer {
     color: #ffffff;
-    background-color: #157c70;
+    background-color: #008675;
     margin-top: 25px;
 }
 
@@ -495,7 +495,7 @@ footer {
  }
 
  .map {
-    height: 500px;
+    height: 450px;
     width: 600px;
  }
 
@@ -506,3 +506,11 @@ footer {
  #map-container {
     height: 500px;
  }
+
+ #chart-title {
+    margin-top: 15px;
+ }
+
+ path.leaflet-interactive:focus {
+    outline: none;
+}
