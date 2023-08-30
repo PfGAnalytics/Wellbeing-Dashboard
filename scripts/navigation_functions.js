@@ -310,26 +310,10 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 // Overall screen
 setTimeout(function () {
 
-    improving_indicator = [];
-    improving_domain = [];
-    improving_importance = [];
-    improving_base_id = [];
-    improving_source = []
-    improving_chart = [];
+    improving_indicator = {};
+    no_change_indicator = {};
+    worsening_indicator = {};
 
-    no_change_indicator = [];
-    no_change_domain = [];
-    no_change_importance = [];
-    no_change_base_id = [];
-    no_change_source = []
-    no_change_chart = [];
-
-    worsening_indicator = [];
-    worsening_domain = [];
-    worsening_importance = [];
-    worsening_base_id = [];
-    worsening_source = []
-    worsening_chart = [];
 
     for (let i = 0; i < domains.length; i++) {
 
@@ -361,35 +345,59 @@ setTimeout(function () {
             base_text = document.getElementById(base_id).textContent;
 
             if (base_text.includes("improved")) {
-                improving_indicator.push(Object.keys(indicators)[j]);
-                improving_domain.push(domains[i]);
-                improving_importance.push(importance);
-                improving_base_id.push(base_id);
-                improving_source.push(source);
-                improving_chart.push(chart_id);
+                improving_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
+                                                                   importance: importance,
+                                                                   base_id: base_id,
+                                                                   source: source,
+                                                                   chart_id: chart_id,
+                                                                   data: data};
+
             } else if (base_text.includes("worsened")) {
-                worsening_indicator.push(Object.keys(indicators)[j]);
-                worsening_domain.push(domains[i]);
-                worsening_importance.push(importance);
-                worsening_base_id.push(base_id);
-                worsening_source.push(source);
-                worsening_chart.push(chart_id);
+                worsening_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
+                                                                   importance: importance,
+                                                                   base_id: base_id,
+                                                                   source: source,
+                                                                   chart_id: chart_id,
+                                                                   data: data};
+
             } else {
-                no_change_indicator.push(Object.keys(indicators)[j]);
-                no_change_domain.push(domains[i]);
-                no_change_importance.push(importance);
-                no_change_base_id.push(base_id);
-                no_change_source.push(source);
-                no_change_chart.push(chart_id);
+                no_change_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
+                                                                   importance: importance,
+                                                                   base_id: base_id,
+                                                                   source: source,
+                                                                   chart_id: chart_id,
+                                                                   data: data};
             }
 
         }
 
     }
 
+    function sortObject(o) {
+        var sorted = {},
+        key, a = [];
+    
+        for (key in o) {
+            if (o.hasOwnProperty(key)) {
+                a.push(key);
+            }
+        }
+    
+        a.sort();
+    
+        for (key = 0; key < a.length; key++) {
+            sorted[a[key]] = o[a[key]];
+        }
+        return sorted;
+    }
+
+    improving_indicator = sortObject(improving_indicator);
+    worsening_indicator = sortObject(worsening_indicator);
+    no_change_indicator = sortObject(no_change_indicator);
+
     plotOverallHexes = function(change_type) {
 
-        for (let i = 0; i < eval(change_type + "_indicator").length; i++) {
+        for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {
 
             className = change_type.replace("_", "-");
 
@@ -411,7 +419,7 @@ setTimeout(function () {
             var hex_container = document.createElement("div");
             var hex = document.createElement("div");
             var hex_label = document.createElement("div");
-            var label_text = document.createTextNode(eval(change_type + "_indicator")[i]);
+            var label_text = document.createTextNode(Object.keys(eval(change_type + "_indicator"))[i]);
     
             hex_container.classList.add("ind-hex-container");
             hex.classList.add("ind-hex");            
@@ -434,14 +442,18 @@ setTimeout(function () {
             hex_row.appendChild(hex_container);
     
             hex_container.onclick = function() {
+
+                var indicator_name = Object.keys(eval(change_type + "_indicator"))[i];
+                var indicator = eval(change_type + "_indicator")[indicator_name];
+
                 document.getElementById("overall-scrn").style.display = "none";
                 document.getElementById("indicator-scrn").style.display = "block";
-                document.getElementById("indicator-title").innerHTML = eval(change_type + "_indicator")[i];
-                document.getElementById("domain-title").innerHTML = eval(change_type + "_domain")[i];
-                document.getElementById("ind-important").innerHTML = eval(change_type + "_importance")[i];
-                document.getElementById("source-info").innerHTML = eval(change_type + "_source")[i];
+                document.getElementById("indicator-title").innerHTML = indicator_name;
+                document.getElementById("domain-title").innerHTML = indicator.domain;
+                document.getElementById("ind-important").innerHTML = indicator.importance;
+                document.getElementById("source-info").innerHTML = indicator.source;
     
-                breadcrumb_2.innerHTML = "> " + eval(change_type + "_indicator")[i];
+                breadcrumb_2.innerHTML = "> " + Object.keys(eval(change_type + "_indicator"))[i];
     
                 base_statements = document.getElementsByClassName("base-statement");
     
@@ -449,17 +461,16 @@ setTimeout(function () {
                     base_statements[j].style.display = "none";
                 }
     
-                document.getElementById(eval(change_type + "_base_id")[i]).style.display = "block";
-    
                 line_charts = document.getElementsByClassName("line-chart");
     
                 for (let j = 0; j < line_charts.length; j++) {
                     line_charts[j].style.display = "none";
                 }
     
-                document.getElementById(eval(change_type + "_chart")[i]).style.display = "block";
+                document.getElementById(indicator.chart_id).style.display = "block";
+                document.getElementById(indicator.base_id).style.display = "block";
     
-                data = domains_data[eval(change_type + "_domain")[i]].indicators[eval(change_type + "_indicator")[i]].data;   
+                data = indicator.data;   
     
                 // Output "More data" paragraph
                 var data_info = "You can view data ";
@@ -505,8 +516,6 @@ setTimeout(function () {
 
     document.getElementById("loading-img").style.display = "none";
     document.getElementById("overall-hexes").style.display = "block";
-
-    // mapUpdate();
 
 }, 3000);
 

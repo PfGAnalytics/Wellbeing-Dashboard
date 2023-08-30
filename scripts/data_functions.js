@@ -519,7 +519,7 @@ async function drawMap(matrix, improvement) {
            area_var = "PC_NAME"
        }
 
-       function enhanceLayer(f,l){
+       function enhanceLayer(f, l){
 
            if (f.properties){
                l.bindTooltip(f.properties[area_var] + " (" + current_year + "): <b>" + data_series[f.properties['OBJECTID'] - 1] + "</b> (" + unit + ")");
