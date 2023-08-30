@@ -438,7 +438,7 @@ for (let i = 0; i < domains.length; i++) {
 
 }
 
-async function drawMap(matrix) {
+async function drawMap(matrix, improvement) {
 
    var map_load = document.getElementById("map-load");
    map_load.style.display = "flex";
@@ -501,9 +501,16 @@ async function drawMap(matrix) {
        }).addTo(map);
 
        var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
+       var green = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
+
+       if (improvement == "increase") {
+         var palette = green;
+       } else {
+         var palette = red;
+       }
 
        function getColor(d) {
-           return red[Math.round(d*4)];
+           return palette[Math.round(d*4)];
        }
 
        if (matrix.slice(-3) == "LGD") {
@@ -585,9 +592,9 @@ async function drawMap(matrix) {
    legend_row_2 = document.createElement("div");
    legend_row_2.classList.add("row");
 
-   for (let i = 0; i < red.length; i++) {
+   for (let i = 0; i < palette.length; i++) {
       colour_block = document.createElement("div");
-      colour_block.style.backgroundColor = red[i];
+      colour_block.style.backgroundColor = palette[i];
       colour_block.classList.add("colour-block");
       legend_row_2.appendChild(colour_block);
       if (i == 0) {

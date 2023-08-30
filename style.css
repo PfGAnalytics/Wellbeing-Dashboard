@@ -562,3 +562,22 @@ footer {
     justify-content: center;
 }
 
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+#prototype {
+    color: #ffffff;
+    background-color: #142062;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    padding: 5px;
+    font-weight: bold;
+}
+

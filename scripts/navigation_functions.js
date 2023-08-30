@@ -47,7 +47,8 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
         }
         
-        drawMap(map_select_3.value);
+        drawMap(matrix = map_select_3.value,
+            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
 
     }    
 
@@ -563,8 +564,9 @@ mainContainerHeight = function() {
     top_menu = document.getElementById("top-menu");
     footer = document.getElementsByTagName("footer")[0];
     main_container = document.getElementById("main-container");
+    prototype = document.getElementById("prototype");
 
-    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - 50;
+    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - 50;
 
     main_container.style.minHeight = ideal_height + "px";
 }
@@ -720,14 +722,17 @@ function updateMapSelect3() {
 map_select_1.onchange =  function() {
     updateMapSelect2();
     updateMapSelect3();
-    drawMap(map_select_3.value);
+    drawMap(matrix = map_select_3.value,
+            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
 }
 
 map_select_2.onchange = function() {
     updateMapSelect3();
-    drawMap(map_select_3.value);
+    drawMap(matrix = map_select_3.value,
+        improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
 }
 
 map_select_3.onchange = function() {
-    drawMap(map_select_3.value);
+    drawMap(matrix = map_select_3.value,
+        improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
 }

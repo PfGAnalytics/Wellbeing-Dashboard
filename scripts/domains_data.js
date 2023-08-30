@@ -435,7 +435,7 @@ var domains_data = {
                "LGD": "INDSELFEFFLGD",
                "EQ": "INDSELFEFFEQ"
             },
-            "improvement" : "increase",
+            "improvement" : "decrease",
             "telling": {
                "improved": "People feel they have more influence over the events that affect their life.",
                "no_change": "People feel they have the same level of influence over the events that affect their life.",
