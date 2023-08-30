@@ -717,7 +717,6 @@ function updateMapSelect3() {
 
 }
 
-
 map_select_1.onchange =  function() {
     updateMapSelect2();
     updateMapSelect3();

@@ -606,7 +606,7 @@ async function drawMap(matrix) {
   var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
 
   update_div = document.createElement("div");
-  update_div.classList.add("chart-date");
+  update_div.classList.add("map-date");
   update_div.innerHTML = updated_note;
   map_container.appendChild(update_div);
 
