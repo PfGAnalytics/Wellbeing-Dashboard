@@ -596,7 +596,7 @@ function sizeForMobile() {
         line_chart_container.style.marginRight = "20px";
         click_to_see.style.width = "100%";
         domains_grid_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
-        map_container.style.marginLeft = ((window.innerWidth - 600) / 2) + "px";
+        map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
     } else {
         main_container.removeAttribute("style");
         line_chart_container.removeAttribute("style");
@@ -609,8 +609,10 @@ function sizeForMobile() {
 
     for (let i = 0; i < box_containers.length; i++) {
         if (window.innerWidth < 1200) {
-            box_containers[i].style.marginLeft = ((window.innerWidth - box_containers[i].clientWidth) / 2) + "px";
             box_containers[i].style.marginTop = "10px";
+            box_containers[i].style.width = "100%";
+            box_containers[i].style.paddingLeft = "5%";
+            box_containers[i].style.paddingRight = "5%";
         } else {
             box_containers[i].removeAttribute("style");
         }
