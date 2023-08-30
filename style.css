@@ -497,6 +497,8 @@ footer {
  .map {
     height: 450px;
     width: 600px;
+    position: relative;
+    z-index: 0
  }
 
  select {
@@ -513,4 +515,35 @@ footer {
 
  path.leaflet-interactive:focus {
     outline: none;
+}
+
+.colour-block {
+    height: 25px;
+    width: 25px;
+}
+
+.legend-min {
+    width: 50%;
+    font-size: 10pt;
+    padding-left: 7.5px;
+    font-weight: bold;
+}
+
+.legend-max {
+    width: 50%;
+    text-align: right;
+    font-size: 10pt;
+    padding-right: 7.5px;
+    font-weight: bold;
+}
+
+.map-legend {
+    width: 160px;
+    background-color: #ffffff77;
+    padding: 10px;
+    border-radius: 25px;
+    margin-top: -440px;
+    margin-left: 420px;
+    position: relative;
+    z-index: 1;
 }

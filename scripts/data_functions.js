@@ -478,19 +478,13 @@ async function drawMap(matrix) {
   
 
   map_div = document.createElement("div");
-  map_div.id = matrix + "map";
+  map_div.id = matrix + "-map";
   map_div.classList.add("map");
   map_container.appendChild(map_div);
 
-  // Footnote on when data was last updated
-  var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
+  
 
-  update_div = document.createElement("div");
-  update_div.classList.add("chart-date");
-  update_div.innerHTML = updated_note;
-  map_container.appendChild(update_div);
-
-  var map = L.map(matrix + "map",
+  var map = L.map(matrix + "-map",
                        {zoomControl: false,
                         dragging: false,
                         touchZoom: false,
@@ -506,8 +500,9 @@ async function drawMap(matrix) {
            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
        }).addTo(map);
 
+       var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
+
        function getColor(d) {
-           var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
            return red[Math.round(d*4)];
        }
 
@@ -567,5 +562,49 @@ async function drawMap(matrix) {
    }
 
    change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
+
+   // Legend
+   legend_div = document.createElement("div");
+   legend_div.id = matrix + "-legend";
+   legend_div.classList.add("map-legend");
+   legend_row_1 = document.createElement("div");
+   legend_row_1.classList.add("row");
+
+   min_value = document.createElement("div");
+   min_value.innerHTML = Math.min(...data_series);
+   min_value.classList.add("legend-min");
+   legend_row_1.appendChild(min_value);
+
+   max_value = document.createElement("div");
+   max_value.innerHTML = Math.max(...data_series);
+   max_value.classList.add("legend-max");
+   legend_row_1.appendChild(max_value);
+
+   legend_div.appendChild(legend_row_1);
+
+   legend_row_2 = document.createElement("div");
+   legend_row_2.classList.add("row");
+
+   for (let i = 0; i < red.length; i++) {
+      colour_block = document.createElement("div");
+      colour_block.style.backgroundColor = red[i];
+      colour_block.classList.add("colour-block");
+      legend_row_2.appendChild(colour_block);
+      if (i == 0) {
+         colour_block.style.marginLeft = "7.5px"
+      }
+   }
+
+   legend_div.appendChild(legend_row_2);
+
+   map_container.appendChild(legend_div);
+
+   // Footnote on when data was last updated
+  var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
+
+  update_div = document.createElement("div");
+  update_div.classList.add("chart-date");
+  update_div.innerHTML = updated_note;
+  map_container.appendChild(update_div);
 
 }
