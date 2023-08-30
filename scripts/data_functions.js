@@ -436,3 +436,180 @@ for (let i = 0; i < domains.length; i++) {
     }
 
 }
+
+async function drawMap(matrix) {
+
+   var map_load = document.getElementById("map-load");
+   map_load.style.display = "flex";
+
+   var map_container = document.getElementById("map-container");
+
+   while (map_container.firstChild) {
+       map_container.removeChild(map_container.firstChild);
+   }
+
+   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+
+  // Fetch data and store in object fetched_data
+  const response = await fetch(api_url);
+  const fetched_data = await response.json();
+  const {value, dimension, updated} = fetched_data;
+
+  var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label;
+
+  var years = Object.values(dimension)[1].category.index;
+  var current_year = years[years.length-1];
+
+  var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
+
+  var num_groups = groups.length;     // The number of groups
+  var NI_position = groups.indexOf("N92000002");
+
+  var data_series = value.slice(value.length - num_groups, value.length);
+
+  if (NI_position > -1) {
+   data_series.splice(NI_position, 1);
+  }
+
+  var range = Math.max(...data_series) - Math.min(...data_series);
+
+  colours = [];
+  for (let i = 0; i < data_series.length; i++) {
+   colours.push((data_series[i] - Math.min(...data_series)) / range);
+  }
+
+  
+
+  map_div = document.createElement("div");
+  map_div.id = matrix + "-map";
+  map_div.classList.add("map");
+  map_container.appendChild(map_div);
+
+  
+
+  var map = L.map(matrix + "-map",
+                       {zoomControl: false,
+                        dragging: false,
+                        touchZoom: false,
+                        doubleClickZoom: false,
+                        scrollWheelZoom: false,
+                        boxZoom: false,
+                        keyboard: false,
+                        attributionControl: false,
+                        tap: false}).setView([54.65, -6.8], 8);
+
+       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+           maxZoom: 19,
+           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+       }).addTo(map);
+
+       var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
+
+       function getColor(d) {
+           return red[Math.round(d*4)];
+       }
+
+       if (matrix.slice(-3) == "LGD") {
+           area_var = "LGDNAME"
+       } else {
+           area_var = "PC_NAME"
+       }
+
+       function enhanceLayer(f,l){
+
+           if (f.properties){
+               l.bindTooltip(f.properties[area_var] + " (" + current_year + "): <b>" + data_series[f.properties['OBJECTID'] - 1] + "</b> (" + unit + ")");
+
+               // http://leafletjs.com/reference.html#path-options
+               l.setStyle({
+                   fillColor: getColor(colours[f.properties['OBJECTID'] - 1]),
+                   fillOpacity: 0.75,
+                   stroke: true,
+                   color: "#555555",
+                   opacity: 0.75,
+                   weight: 1
+               });
+
+               l.on("mouseover", function (e) {
+                  l.setStyle({
+                     weight: 2,
+                     opacity: 1
+                  })
+               })
+
+               l.on("mouseout", function (e) {
+                  l.setStyle({
+                     weight: 1,
+                     opacity: 0.75
+                  })
+               })
+           }
+       }        
+
+   if (matrix.slice(-3) == "LGD") {
+       L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
+       LGD_id = matrix + "-base-statement";
+       EQ_id = matrix.slice(0, -3)  + "EQ-base-statement";
+   } else {
+       L.geoJSON(AA_map, {onEachFeature:enhanceLayer}).addTo(map);
+       LGD_id = matrix.slice(0, -2) + "LGD-base-statement";
+       EQ_id = matrix.slice(0, -2)  + "EQ-base-statement";
+   }
+   
+   var change_info_map = document.getElementById("change-info-map");
+
+   if (document.getElementById(LGD_id)) {
+       base_id = LGD_id;
+   } else {
+       base_id = EQ_id;
+   }
+
+   change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
+
+   // Legend
+   legend_div = document.createElement("div");
+   legend_div.id = matrix + "-legend";
+   legend_div.classList.add("map-legend");
+   legend_row_1 = document.createElement("div");
+   legend_row_1.classList.add("row");
+
+   min_value = document.createElement("div");
+   min_value.innerHTML = Math.min(...data_series);
+   min_value.classList.add("legend-min");
+   legend_row_1.appendChild(min_value);
+
+   max_value = document.createElement("div");
+   max_value.innerHTML = Math.max(...data_series);
+   max_value.classList.add("legend-max");
+   legend_row_1.appendChild(max_value);
+
+   legend_div.appendChild(legend_row_1);
+
+   legend_row_2 = document.createElement("div");
+   legend_row_2.classList.add("row");
+
+   for (let i = 0; i < red.length; i++) {
+      colour_block = document.createElement("div");
+      colour_block.style.backgroundColor = red[i];
+      colour_block.classList.add("colour-block");
+      legend_row_2.appendChild(colour_block);
+      if (i == 0) {
+         colour_block.style.marginLeft = "7.5px"
+      }
+   }
+
+   legend_div.appendChild(legend_row_2);
+
+   map_container.appendChild(legend_div);
+
+   // Footnote on when data was last updated
+  var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
+
+  update_div = document.createElement("div");
+  update_div.classList.add("map-date");
+  update_div.innerHTML = updated_note;
+  map_container.appendChild(update_div);
+
+  map_load.style.display = "none";
+
+}

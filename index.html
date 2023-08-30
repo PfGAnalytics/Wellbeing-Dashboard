@@ -15,7 +15,12 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js" integrity="sha512-Hn1w6YiiFw6p6S2lXv6yKeqTk0PLVzeCwWY9n32beuPjQ5HLcvz5l2QsP+KilEr1ws37rCTw3bZpvfvVIeTh0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src = "scripts/domains_data.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src = "scripts/domains_data.js"></script>    
+    <script src = "scripts/ni_map.js"></script>
 
     <link rel ="stylesheet" href ="style.css">
 
@@ -133,11 +138,19 @@
             <div id = "maps-scrn" class = "screen" style = "display: none;">
                 <h2>Mapping the indicators</h2>
                 <form>
-                    <label for="map-select">Select map:</label><br>
-                    <select name = "map-select" id = "map-select"></select>
+                    <label for="map-select-1">Domain:</label>
+                    <select name = "map-select-1" id = "map-select-1"></select>
+                    <label for="map-select-2">Indicator:</label>
+                    <select name = "map-select-2" id = "map-select-2"></select>
+                    <label for="map-select-3">Geography:</label>
+                    <select name = "map-select-3" id = "map-select-3"></select>
                 </form>
+                <div id = "chart-title"></div>
                 <div class = "row">
-                    <iframe id = "map-frame" loading = "lazy" style = "width:750px; height: 600px;"></iframe>
+                    <div id = "map-load">
+                        <img src = "img/page-loading.gif">
+                    </div>
+                    <div id = "map-container"></div>
                     <div class = "box-container">
                         <div class = "grey-box">
                             <strong>Source:</strong>
@@ -161,7 +174,9 @@
                 </div>
             </div>
 
-            <div id = "help-scrn"></div>
+            <div id = "help-scrn" class = "screen" style = "display: none;">
+                <div id = "map" style = "height: 500px;"></div>
+            </div>
 
             
 

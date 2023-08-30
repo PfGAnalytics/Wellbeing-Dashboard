@@ -45,7 +45,9 @@ for (let i = 0; i < top_menu_items.length; i++) {
             breadcrumb_2.innerHTML = "";
             breadcrumb_3.innerHTML = "";
 
-        }        
+        }
+        
+        drawMap(map_select_3.value);
 
     }    
 
@@ -503,7 +505,7 @@ setTimeout(function () {
     document.getElementById("loading-img").style.display = "none";
     document.getElementById("overall-hexes").style.display = "block";
 
-    mapUpdate();
+    // mapUpdate();
 
 }, 3000);
 
@@ -574,6 +576,7 @@ function sizeForMobile() {
     var line_chart_container = document.getElementById("line-chart-container");
     var click_to_see = document.getElementById("click-to-see");
     var domains_grid_container = document.getElementById("domains-grid-container");
+    var map_container = document.getElementById("map-container");
 
     if (window.innerWidth < 1200) {
         main_container.style.width = window.innerWidth + "px";
@@ -582,11 +585,13 @@ function sizeForMobile() {
         line_chart_container.style.marginRight = "20px";
         click_to_see.style.width = "100%";
         domains_grid_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
+        map_container.style.marginLeft = ((window.innerWidth - 600) / 2) + "px";
     } else {
         main_container.removeAttribute("style");
         line_chart_container.removeAttribute("style");
         click_to_see.style.width = "100px";
         domains_grid_container.style.marginLeft = "250px";
+        map_container.removeAttribute("style");
     }
 
     box_containers = document.getElementsByClassName("box-container");
@@ -594,6 +599,7 @@ function sizeForMobile() {
     for (let i = 0; i < box_containers.length; i++) {
         if (window.innerWidth < 1200) {
             box_containers[i].style.marginLeft = ((window.innerWidth - box_containers[i].clientWidth) / 2) + "px";
+            box_containers[i].style.marginTop = "10px";
         } else {
             box_containers[i].removeAttribute("style");
         }
@@ -605,7 +611,8 @@ window.onload = function() {
     showCookieBanner();
     sizeForMobile(); 
     mainContainerHeight();
-       
+    updateMapSelect2();
+    updateMapSelect3();
 };
 
 window.onresize = function() {
@@ -614,107 +621,113 @@ window.onresize = function() {
 }
 
 // Map select
-var maps = [];
-var map_labels = [];
-var map_sources = [];
-var map_more_data = [];
-var map_importance = [];
-
-var map_select = document.getElementById("map-select");
-var map_frame = document.getElementById("map-frame");
-var source_info_map = document.getElementById("source-info-map");
-var data_info_map = document.getElementById("data-info-map");
-var ind_important_map = document.getElementById("ind-important-map");
-var change_info_map = document.getElementById("change-info-map");
+var map_select_1 = document.getElementById("map-select-1");
+var map_select_2 = document.getElementById("map-select-2");
+var map_select_3 = document.getElementById("map-select-3");
 
 for (let i = 0; i < domains.length; i++) {
+    option = document.createElement("option");
+    option.value = domains[i];
+    option.innerHTML = domains[i];
+    map_select_1.appendChild(option);
+}
 
-    indicators = Object.keys(domains_data[domains[i]].indicators);
+function updateMapSelect2() {
 
-    for (let j = 0; j < indicators.length; j++) {
+    indicators = Object.keys(domains_data[map_select_1.value].indicators); 
 
-        var indicator = domains_data[domains[i]].indicators[indicators[j]];
-        var data = indicator.data;        
+    while (map_select_2.firstChild) {
+        map_select_2.removeChild(map_select_2.firstChild);
+    }
 
-        if (data.NI == "") {
+    for (let i = 0; i < indicators.length; i++) {
 
-            var data_info = "You can view data ";
+        var data = domains_data[map_select_1.value].indicators[indicators[i]].data;
 
-            if (data.LGD != "") {
-                maps.push(data.LGD);
-                map_labels.push(indicators[j] + " by Local Government District");
-                map_sources.push("This indicator is collected from the <a href='" + indicator.source_link + "' target='_blank'>" + indicator.source + "</a>.");
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
-                map_importance.push(indicator.importance);
-            }
+        if (data.AA != "" || data.LGD != "") {
 
-            if (data.AA != "") {            
-                maps.push(data.AA);
-                map_labels.push(indicators[j] + " by Assembly Area");
-                map_sources.push("This indicator is collected from the <a href='" + indicator.source_link + "' target='_blank'>" + indicator.source + "</a>.");
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
-                map_importance.push(indicator.importance);
-            }
-
-            if (data.EQ != "") {
-                data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
-            }
-
-            data_info = data_info + ' on the NISRA Data Portal.' 
-            
-            if (data_info.lastIndexOf(",") > 0 ) {
-                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-            }
-
-            if (data_info.lastIndexOf(",") > 0 ) {
-                data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-            }
-
-            if (data.LGD != "") {
-                map_more_data.push(data_info);
-            }
-
-            if (data.AA != "") {
-                map_more_data.push(data_info);
-            }
+            option = document.createElement("option");
+            option.value = indicators[i];
+            option.innerHTML = indicators[i];
+            map_select_2.appendChild(option);
 
         }
-        
     }
+}
+
+function updateMapSelect3() {
+
+    var indicator = domains_data[map_select_1.value].indicators[map_select_2.value];
+    var data = indicator.data;
+
+    while (map_select_3.firstChild) {
+        map_select_3.removeChild(map_select_3.firstChild);
+    }
+
+    if (data.AA != "") {
+        option = document.createElement("option");
+        option.value = data.AA;
+        option.innerHTML = "Assembly Area";
+        map_select_3.appendChild(option);
+    }
+
+    if (data.LGD != "") {
+        option = document.createElement("option");
+        option.value = data.LGD;
+        option.innerHTML = "Local Government District";
+        map_select_3.appendChild(option);
+    }
+
+    var chart_title = document.getElementById("chart-title");
+    chart_title.innerHTML = indicator.chart_title;
+
+    var data_info_map = document.getElementById("data-info-map"); 
+
+    var data_info = "You can view data ";
+
+    if (data.LGD != "") {
+        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
+    }
+
+    if (data.AA != "") {            
+        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
+    }
+
+    if (data.EQ != "") {
+        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
+    }
+
+    data_info = data_info + ' on the NISRA Data Portal.' 
+    
+    if (data_info.lastIndexOf(",") > 0 ) {
+        data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+    }
+
+    if (data_info.lastIndexOf(",") > 0 ) {
+        data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
+    }
+
+    data_info_map.innerHTML = data_info;
+
+    var source_info_map = document.getElementById("source-info-map");
+    source_info_map.innerHTML = "This indicator is collected from the <a href='" + indicator.source_link + "' target='_blank'>" + indicator.source + "</a>.";
+
+    var ind_important_map = document.getElementById("ind-important-map");
+    ind_important_map.innerHTML = indicator.importance;
 
 }
 
-for (let i = 0; i < maps.length; i++) {
-    map_option = document.createElement("option");
-    map_option.value = maps[i];
-    map_option.innerHTML = map_labels[i];
-    map_select.appendChild(map_option);
+map_select_1.onchange =  function() {
+    updateMapSelect2();
+    updateMapSelect3();
+    drawMap(map_select_3.value);
 }
 
-function mapUpdate() {
-
-    map_frame.src = "maps/" + map_select.value + ".html";
-    source_info_map.innerHTML = map_sources[maps.indexOf(map_select.value)];
-    data_info_map.innerHTML = map_more_data[maps.indexOf(map_select.value)];
-    ind_important_map.innerHTML = map_importance[maps.indexOf(map_select.value)];
-
-    if (map_select.value.slice(-3) == "LGD") {
-        LGD_id = map_select.value + "-base-statement";
-        EQ_id = map_select.value.slice(0, -3) + "EQ-base-statement";
-    } else {
-        LGD_id = map_select.value.slice(0, -2) + "LGD-base-statement";
-        EQ_id = map_select.value.slice(0, -2) + "EQ-base-statement";
-    }
-
-    if (document.getElementById(LGD_id)) {
-        base_id = LGD_id;
-    } else {
-        base_id = EQ_id;
-    }
-
-    change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
+map_select_2.onchange = function() {
+    updateMapSelect3();
+    drawMap(map_select_3.value);
 }
 
-map_select.onchange = function() {
-    mapUpdate();
+map_select_3.onchange = function() {
+    drawMap(map_select_3.value);
 }
