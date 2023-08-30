@@ -1,9 +1,9 @@
 
 local({
-r <- getOption("repos")
-r["CRAN"] <- "https://cran.rstudio.com/"
-r["CRANextra"] <- "https://cran.rstudio.com/"
-options(repos = r)
+  r <- getOption("repos")
+  r["CRAN"] <- "https://cran.rstudio.com/"
+  r["CRANextra"] <- "https://cran.rstudio.com/"
+  options(repos = r)
 })
 
 if(!require(pacman)) install.packages("pacman")
@@ -40,9 +40,9 @@ for (filename in list.files("../scripts", pattern = "*.js")) {
 }
 
 # Move maps folder content
-for (filename in list.files("../maps")) {
-  file.copy(paste0("../maps/", filename), uploadDir)
-}
+# for (filename in list.files("../maps")) {
+#   file.copy(paste0("../maps/", filename), uploadDir)
+# }
 
 suppressWarnings({
  
@@ -54,20 +54,20 @@ suppressWarnings({
   writeLines(index, paste0(uploadDir, "index.html"))
   
   # Rewrite link to maps in navigation_functions.js
-  navigation_functions <- readLines(paste0(uploadDir, "navigation_functions.js")) %>%
-    gsub('\"maps/\" + ', "", ., fixed = TRUE)
+  # navigation_functions <- readLines(paste0(uploadDir, "navigation_functions.js")) %>%
+  #   gsub('\"maps/\" + ', "", ., fixed = TRUE)
   
-  writeLines(navigation_functions, paste0(uploadDir, "navigation_functions.js"))
+  # writeLines(navigation_functions, paste0(uploadDir, "navigation_functions.js"))
   
   # Rewrite html file paths for all maps
-  htmlMaps <- list.files(uploadDir, pattern = ".html") %>% .[. != "index.html"]
+  # htmlMaps <- list.files(uploadDir, pattern = ".html") %>% .[. != "index.html"]
   
-  for (map in htmlMaps) {
-    map_text <- readLines(paste0(uploadDir, map)) %>%
-      gsub("../scripts/", "", ., fixed = TRUE)
+  # for (map in htmlMaps) {
+  #   map_text <- readLines(paste0(uploadDir, map)) %>%
+  #     gsub("../scripts/", "", ., fixed = TRUE)
       
-    writeLines(map_text, paste0(uploadDir, map))
-  }
+  #   writeLines(map_text, paste0(uploadDir, map))
+  # }
   
 })
 

@@ -396,21 +396,22 @@ for (let i = 0; i < domains.length; i++) {
 
             this_matrix = data.NI;
             this_breakdown = "NI";
-            this_statistic = this_matrix.slice(0, -2);                       
+            this_statistic = this_matrix.slice(0, -2);
+            
+         // Use EQ data if available
+        } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) { // not on data portal yet
+
+         this_matrix = data.EQ;
+         this_breakdown = "EQUALGROUPS";
+         this_statistic = this_matrix.slice(0, -2);
 
         // Use LGD data if available
-        } else if (data.LGD != "" & !["INDCHSCLGD", "INDINCDPLGD", "INDINCIEQLGD", "INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) { // first 3 exclusions have no NI in LGD dataset, other 3 not on data portal yet
+        } else if (data.LGD != "" & !["INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) { // not on data portal yet
 
             this_matrix = data.LGD;
             this_breakdown = "LGD2014";
             this_statistic = this_matrix.slice(0, -3);
 
-        // Use EQ data if available
-        } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) { // not on data portal yet
-
-            this_matrix = data.EQ;
-            this_breakdown = "EQUALGROUPS";
-            this_statistic = this_matrix.slice(0, -2);
          // Do nothing if no data available
         } else {
             this_matrix = "";
@@ -476,16 +477,12 @@ async function drawMap(matrix) {
   colours = [];
   for (let i = 0; i < data_series.length; i++) {
    colours.push((data_series[i] - Math.min(...data_series)) / range);
-  }
-
-  
+  }  
 
   map_div = document.createElement("div");
   map_div.id = matrix + "-map";
   map_div.classList.add("map");
-  map_container.appendChild(map_div);
-
-  
+  map_container.appendChild(map_div); 
 
   var map = L.map(matrix + "-map",
                        {zoomControl: false,
