@@ -196,46 +196,50 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       plugins: []
    };
 
-   // Create a new canvas object to place chart in
+   // Create a div to place all chart content in
    chart_div = document.createElement("div");
    chart_div.id = id;
    chart_div.style.display = "none";
    chart_div.classList.add("line-chart");
 
+   // Create a div to place chart title in
    chart_title = document.createElement("div");
    chart_title.classList.add("chart-title");
    chart_title.innerHTML = title;
 
+   // Create a div row so y axis label and chart sit side by side
    canvas_row = document.createElement("div");
    canvas_row.classList.add("row");
 
+   // Create a div for the y axis label
    y_label_div = document.createElement("div");
    y_label_div.classList.add("y-label");
    y_label_div.innerHTML = y_label;
    canvas_row.appendChild(y_label_div);
 
+   // Create a div for chart canvas to sit in
    canvas_div = document.createElement("div");
    canvas_div.classList.add("canvas-container");
    canvas_row.appendChild(canvas_div);
 
+   // Create a new canvas object to place chart in
    chart_canvas = document.createElement("canvas");
    chart_canvas.id = id + "-canvas";
    canvas_div.appendChild(chart_canvas);
 
+   // Create a div for updated on date div
    date_div = document.createElement("div");
    date_div.classList.add("chart-date");
    date_div.innerHTML = updated_note;
 
+   // Place all divs in chart_div and place chart_div in document
    chart_div.appendChild(chart_title);
    chart_div.appendChild(canvas_row);
    chart_div.appendChild(date_div);
    document.getElementById("line-chart-container").appendChild(chart_div);
 
    // Place chart in canvas
-   const myChart = new Chart(
-      document.getElementById(id + "-canvas"),
-      config
-   );
+   new Chart(chart_canvas, config);
 
    // Statement to output based on performance of indicator
    if ((change_from_baseline > ci & improvement == "increase") || (change_from_baseline < (ci * -1) & improvement == "decrease")) {
@@ -321,15 +325,19 @@ for (let i = 0; i < domains.length; i++) {
 
 async function drawMap(matrix, improvement) {
 
+   // Display the loading gif while this function runs
    var map_load = document.getElementById("map-load");
    map_load.style.display = "flex";
 
+   // Target div with id "map-container"
    var map_container = document.getElementById("map-container");
 
+   // Delete any map already inside map-container
    while (map_container.firstChild) {
        map_container.removeChild(map_container.firstChild);
    }
 
+   // URL to query
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
   // Fetch data and store in object fetched_data
@@ -337,36 +345,40 @@ async function drawMap(matrix, improvement) {
   const fetched_data = await response.json();
   const {value, dimension, updated} = fetched_data;
 
-  var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label;
+  var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label; // The unit of measurement according to the metadata
 
-  var years = Object.values(dimension)[1].category.index;
-  var current_year = years[years.length-1];
+  var years = Object.values(dimension)[1].category.index; // All years present in the data
+  var current_year = years[years.length-1]; // The current year
 
   var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
 
   var num_groups = groups.length;     // The number of groups
-  var NI_position = groups.indexOf("N92000002");
+  var NI_position = groups.indexOf("N92000002"); // Position of NI in list of groups
 
-  var data_series = value.slice(value.length - num_groups, value.length);
+  var data_series = value.slice(value.length - num_groups, value.length); // Take the last n values (n = number of groups)
 
+  // If NI appears as a group remove it from data_series
   if (NI_position > -1) {
    data_series.splice(NI_position, 1);
   }
 
-  var range = Math.max(...data_series) - Math.min(...data_series);
+  var range = Math.max(...data_series) - Math.min(...data_series); // Calculate the range of values
 
+  // Create an array colours, where each value is between 0 and 1 depending on where it falls in the range of values
   colours = [];
   for (let i = 0; i < data_series.length; i++) {
    colours.push((data_series[i] - Math.min(...data_series)) / range);
   }  
 
+  // Create a div for map to sit in
   map_div = document.createElement("div");
   map_div.id = matrix + "-map";
   map_div.classList.add("map");
   map_container.appendChild(map_div); 
 
+  // Create a map
   var map = L.map(matrix + "-map",
-                       {zoomControl: false,
+                       {zoomControl: false, // Turn off zoom controls
                         dragging: false,
                         touchZoom: false,
                         doubleClickZoom: false,
@@ -374,32 +386,33 @@ async function drawMap(matrix, improvement) {
                         boxZoom: false,
                         keyboard: false,
                         attributionControl: false,
-                        tap: false}).setView([54.65, -6.8], 8);
+                        tap: false}).setView([54.65, -6.8], 8); // Set initial co-ordinates and zoom
 
        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
            maxZoom: 19,
            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-       }).addTo(map);
+       }).addTo(map); // Add a background map
 
-       var red = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
-       var green = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
-
+       // Colour palettes for increasing/decreasing indicators
        if (improvement == "increase") {
-         var palette = green;
+         var palette = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
        } else {
-         var palette = red;
+         var palette = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
        }
 
+       // When called chooses a colour from above palette based on value of colours array
        function getColor(d) {
            return palette[Math.round(d*4)];
        }
 
+       // Variable name to use if geo data is LGD or AA
        if (matrix.slice(-3) == "LGD") {
            area_var = "LGDNAME"
        } else {
            area_var = "PC_NAME"
        }
 
+       // Function to add tool tip to each layer
        function enhanceLayer(f, l){
 
            if (f.properties){
@@ -431,6 +444,7 @@ async function drawMap(matrix, improvement) {
            }
        }        
 
+   // geojson data atted to map and enhanceLayer function applied to each feature    
    if (matrix.slice(-3) == "LGD") {
        L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
        LGD_id = matrix + "-base-statement";
@@ -441,17 +455,20 @@ async function drawMap(matrix, improvement) {
        EQ_id = matrix.slice(0, -2)  + "EQ-base-statement";
    }
    
+   // Target change info
    var change_info_map = document.getElementById("change-info-map");
 
+   // Which change info div to copy text from
    if (document.getElementById(LGD_id)) {
        base_id = LGD_id;
    } else {
        base_id = EQ_id;
    }
 
+   // Write content to change info box
    change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
 
-   // Legend
+   // Legend divs added to map
    legend_div = document.createElement("div");
    legend_div.id = matrix + "-legend";
    legend_div.classList.add("map-legend");
@@ -495,6 +512,7 @@ async function drawMap(matrix, improvement) {
   update_div.innerHTML = updated_note;
   map_container.appendChild(update_div);
 
+  // Hide loading gif after map is generated
   map_load.style.display = "none";
 
 }
