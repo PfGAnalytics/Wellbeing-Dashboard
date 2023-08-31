@@ -17,7 +17,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    // Fetch data and store in object fetched_data
    const response = await fetch(api_url);
    const fetched_data = await response.json();
-   const {value, dimension, updated} = fetched_data;
+   const {value, dimension, updated, note} = fetched_data;
    
    var years = Object.values(dimension)[1].category.index; // Array of years in data
    
@@ -259,6 +259,47 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    base_statement_div.innerHTML = base_statement;
 
    document.getElementById("change-info").appendChild(base_statement_div);
+
+   // Create further info div
+   var further_note = note[0];
+
+   if (further_note.indexOf("Further information") != -1) {
+      var further_string = "Further information";
+   } else if (further_note.indexOf("Further Information") != -1) {
+      var further_string = "Further Information";
+   } else if (further_note.indexOf("Notes:") != -1) {
+      var further_string = "Notes:";
+   } else {
+      further_note = "Not available";
+   }
+
+   if (further_note != "Not available") {
+      further_note = further_note.slice(further_note.indexOf(further_string) + further_string.length);
+      further_note = further_note.slice(further_note.indexOf("[/b]") + 4);
+      if (further_note.indexOf("[b]") != -1) {
+         further_note = further_note.slice(0, further_note.indexOf("[b]"))
+      }
+      further_note = further_note.replaceAll("[url=", "<a href = '");
+      further_note = further_note.replaceAll("[/url]", "' target = '_blank'>here</a>.")
+   }
+
+   for (let i = 2; i < 10; i++) {
+      further_note = further_note.replaceAll("\n" + i + ".", "<br><br>" + i + ".")
+   }
+
+   further_info_div = document.createElement("div");
+   further_info_div.id = matrix + "-further-info";
+   further_info_div.classList = "further-info-text";
+   further_info_div.style.display = "none";
+   further_info_div.innerHTML = further_note;
+
+   links = further_info_div.getElementsByTagName("a");
+
+   for (let i = 0; i < links.length; i++) {
+      links[i].href = links[i].href.slice(0, links[i].href.indexOf("]"));
+   }
+
+   document.getElementById("further-info").appendChild(further_info_div);
 
  }
 
@@ -516,3 +557,4 @@ async function drawMap(matrix, improvement) {
   map_load.style.display = "none";
 
 }
+
