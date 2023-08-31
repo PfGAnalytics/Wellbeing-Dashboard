@@ -1,127 +1,3 @@
-// customTitle plugin for chart.js
-// source from https://stackoverflow.com/questions/71379551/ability-to-rotate-y-axis-title-in-chart-js
-// and adapted to include up to 6 line breaks
-const customTitle = {
-   id: 'customTitle',
-   beforeLayout: (chart, args, opts) => {
-     const {
-       display,
-       font
-     } = opts;
-     if (!display) {
-       return;
-     }
- 
-     const {
-       ctx
-     } = chart;
-     ctx.font = font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
- 
-     const {
-       width
-     } = ctx.measureText(opts.text);
-      if (width > 42) {
-         chart.options.layout.padding.left = 80;
-      } else {
-         chart.options.layout.padding.left = width;
-      };
-   },
-   afterDraw: (chart, args, opts) => {
-     const {
-       font,
-       text,
-       color
-     } = opts;
-     const {
-       ctx,
-       chartArea: {
-         top,
-         bottom,
-         left,
-         right
-       }
-     } = chart;
- 
-     if (opts.display) {      
-      
-       ctx.fillStyle = color || Chart.defaults.color
-       ctx.font = font || '12px "Helvetica Neue", Helvetica, Arial, sans-serif'
-
-      // Initially split text into 10 character long substrings
-       s_text = [];
-
-       for (let i = 0; i < 6; i++) {
-          if (i == 0) {
-             s_text.push(text.slice(0, 9));
-          } else {
-             s_text.push(text.slice(i * 10 - 1, (i + 1) * 10 - 1));
-          }
-       }
- 
-       // Fix string splits that occur in middle of a word
-       for (let i = 0; i < s_text.length - 1; i++) {
- 
-          if (s_text[i + 1].charAt(0) != " " & s_text[i].charAt(s_text[i].length - 1) != " ") {
-             space = s_text[i].lastIndexOf(" ");
-             n_space = s_text[i + 1].lastIndexOf(" ");
-             if (space != -1) {
-                s_text[i + 1] = s_text[i].slice(space + 1) + s_text[i + 1];
-                s_text[i] = s_text[i].slice(0, space);
-             } else if (n_space != -1) {
-                s_text[i] = s_text[i] + s_text[i + 1].slice(0, n_space);
-                s_text[i + 1] = s_text[i + 1].slice(n_space + 1);
-             } else {
-                s_text[i] = s_text[i] + s_text[i + 1];
-                s_text[i + 1] = "";
-             }
-          }
- 
-       }
-
-       // Remove blank spaces
-       lines = [];     
-
-       for (let i = 0; i < s_text.length; i++) {         
-
-         if (s_text[i] != "") {
-            lines.push(s_text[i].trim())
-         }
-
-       }
-
-       // Center text along y axis depending on how many lines it was split over
-       if (lines.length == 1) {
-         ctx.fillText([lines[0]], 3, (top + bottom) / 2)
-      } else if (lines.length == 2) {
-         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 6.5)
-         ctx.fillText([lines[1]], 3, (top + bottom) / 2 + 6.5)
-      } else if (lines.length == 3) {
-         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 13)
-         ctx.fillText([lines[1]], 3, (top + bottom) / 2)
-         ctx.fillText([lines[2]], 3, (top + bottom) / 2 + 13)
-      } else if (lines.length == 4) {
-         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 19.5)
-         ctx.fillText([lines[1]], 3, (top + bottom) / 2 - 6.5)
-         ctx.fillText([lines[2]], 3, (top + bottom) / 2 + 6.5)
-         ctx.fillText([lines[3]], 3, (top + bottom) / 2 + 19.5)
-      } else if (lines.length == 5) {
-         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 26)
-         ctx.fillText([lines[1]], 3, (top + bottom) / 2 - 13)
-         ctx.fillText([lines[2]], 3, (top + bottom) / 2)
-         ctx.fillText([lines[3]], 3, (top + bottom) / 2 + 13)
-         ctx.fillText([lines[4]], 3, (top + bottom) / 2 + 26)
-      } else if (lines.length == 6) {
-         ctx.fillText([lines[0]], 3, (top + bottom) / 2 - 32.5)
-         ctx.fillText([lines[1]], 3, (top + bottom) / 2 - 19.5)
-         ctx.fillText([lines[2]], 3, (top + bottom) / 2 - 6.5)
-         ctx.fillText([lines[3]], 3, (top + bottom) / 2 + 6.5)
-         ctx.fillText([lines[4]], 3, (top + bottom) / 2 + 19.5)
-         ctx.fillText([lines[5]], 3, (top + bottom) / 2 + 32.5)
-      }
-     }
-   }
- }
-
  // Function to return Short month name from number 1-12
  function getMonthName(monthNumber) {
    const date = new Date();
@@ -246,10 +122,6 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       maintainAspectRatio: false,
       plugins: {
             autocolors: false,
-            customTitle: {
-               display: true,
-               text: y_label
-             },
             annotation: {
                annotations: {
                   red_box: {
@@ -321,7 +193,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          }
       }
       },
-      plugins: [customTitle]
+      plugins: []
    };
 
    // Create a new canvas object to place chart in
@@ -334,8 +206,17 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    chart_title.classList.add("chart-title");
    chart_title.innerHTML = title;
 
+   canvas_row = document.createElement("div");
+   canvas_row.classList.add("row");
+
+   y_label_div = document.createElement("div");
+   y_label_div.classList.add("y-label");
+   y_label_div.innerHTML = y_label;
+   canvas_row.appendChild(y_label_div);
+
    canvas_div = document.createElement("div");
    canvas_div.classList.add("canvas-container");
+   canvas_row.appendChild(canvas_div);
 
    chart_canvas = document.createElement("canvas");
    chart_canvas.id = id + "-canvas";
@@ -346,7 +227,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    date_div.innerHTML = updated_note;
 
    chart_div.appendChild(chart_title);
-   chart_div.appendChild(canvas_div);
+   chart_div.appendChild(canvas_row);
    chart_div.appendChild(date_div);
    document.getElementById("line-chart-container").appendChild(chart_div);
 

@@ -762,6 +762,7 @@ function sizeForMobile() {
         } else {
             box_containers[i].removeAttribute("style");
         }
-    }
+    }    
 
 }
+

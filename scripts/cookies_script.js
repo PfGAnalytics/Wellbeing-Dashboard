@@ -28,7 +28,6 @@ function checkCookieExists() {
 }
   
 var cookieBanner = document.getElementById('cookie-banner');
-
   
 function loadGoogleAnalytics() {
 
