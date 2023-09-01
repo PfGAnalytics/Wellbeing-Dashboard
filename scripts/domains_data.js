@@ -7,7 +7,7 @@ var domains_data = {
             "base_year": "2019/20",
             "source": "Care Leavers Statistical publication",
             "source_link": "https://www.health-ni.gov.uk/articles/care-leavers",
-            "ci": 1,
+            "ci": "1c",
             "chart_title": "Percentage of care leavers, aged 19, who were in education, training or employment",
             "y_axis_label": "%",
             "data": {
