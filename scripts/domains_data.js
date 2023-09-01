@@ -2,7 +2,7 @@ var domains_data = {
     "Happier Children": {
        description: "Our children and young people have the best start in life",
        indicators: {
-         "Childrens social care": {
+         "Children's social care": {
             importance: "The indicator gives an important insight into the overarching “We will give our children and young people the best start in life” outcome.  It illustrates that services provided to looked after children/care leavers are, for example, closing the education attainment gap between care-experienced children and other young people and that they have the same opportunities for training and employment as their peers.   It is also to be used as a key indicator for monitoring success in the “A life Deserved Strategy”.",
             base_year: "2019/20",
             source: "Care Leavers Statistical publication",
@@ -97,7 +97,7 @@ var domains_data = {
             source: "Low Carbon and Renewable Energy Economy Survey (ONS)",
             source_link: "https://www.ons.gov.uk/economy/environmentalaccounts",
             ci: 0,
-            chart_title: "Full Time Equivalent (FTE) employment in the carbon and renewable energy economy",
+            chart_title: "Full Time Equivalent (FTE) employment in the low carbon and renewable energy economy",
             y_axis_label: "FTE employment",
             data: {
                NI: "INDLCREENI",
@@ -176,7 +176,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "More people feel their cultural identity is respected by society.",
-               no_change: "The proportion of people who feel their cultural identity is respected by society reamins the same.",
+               no_change: "The proportion of people who feel their cultural identity is respected by society remains the same.",
                worsened: "Fewer people feel their cultural identity is respected by society." 
             }
          },
@@ -385,7 +385,7 @@ var domains_data = {
             source: "Continuous Household Survey",
             source_link: "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/wellbeing-northern-ireland",
             ci: 0.1,
-            chart_title: "Average Life Satisfaction score (from 0 to 10)",
+            chart_title: "Average life satisfaction score (from 0 to 10)",
             y_axis_label: "Life satisfaction score",
             data: {
                NI: "",
@@ -650,7 +650,7 @@ var domains_data = {
             importance: "The HSC has a duty to provide social services to meet the health and social well-being needs of older people and adults with disabilities and health conditions, including people with learning disabilities and mental health conditions.  The established direction is the provision of services to individuals which promote independence in order that adults with care and support needs can live in their own home and outside of institutional settings. This indicator measures the delivery of the DoH’s policy objective to provide services which support adults with care needs to live independently in their own homes and which delay or avoid the need for provision of institutional care. It measures the number of people being provided with care at home comparative to the overall number of people identified as having a social care need and whose needs are not being met through provision of social care services in their own home. This indicator is important for monitoring the effectiveness of social care services in meeting the needs of the population, and for identifying areas where additional support may be required to meet the needs of those who are not currently receiving services, all of which can inform policy and resource allocation decisions.",
             base_year: "2020",
             source: "annual survey of domiciliary care provision",
-            source_link: "hhttps://www.health-ni.gov.uk/articles/domiciliary-care",
+            source_link: "https://www.health-ni.gov.uk/articles/domiciliary-care",
             ci: 1,
             chart_title: "Number of adults receiving social care at home or self-directed support for social care services, as a percentage of the total number of adults needing care",
             y_axis_label: "%",

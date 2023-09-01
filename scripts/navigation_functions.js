@@ -257,7 +257,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 document.getElementById("source-info").innerHTML = source_info;
 
                 // Output "More data" paragraph
-                var data_info = "You can view data ";
+                var data_info = "You can view and download data ";
 
                 if (data.NI != "") {
                     data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + data.NI + '" target = "_blank">Northern Ireland level</a>, ';
@@ -326,9 +326,9 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
                 }
 
-        }
+            }
 
-}
+        }
 
     }
 
@@ -512,7 +512,7 @@ setTimeout(function () {
                 data = indicator.data;   
     
                 // Output "More data" paragraph
-                var data_info = "You can view data ";
+                var data_info = "You can view and download data ";
     
                 if (data.NI != "") {
                     data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + data.NI + '" target = "_blank">Northern Ireland level</a>, ';
@@ -717,7 +717,7 @@ function updateMapSelect3() {
 
     var data_info_map = document.getElementById("data-info-map"); 
 
-    var data_info = "You can view data ";
+    var data_info = "You can view and download data ";
 
     if (data.LGD != "") {
         data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';

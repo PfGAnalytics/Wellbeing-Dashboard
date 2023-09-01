@@ -92,7 +92,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       max_value = Math.ceil(max_value / 10000) * 10000;
    }
 
-   if ((y_label.includes("%") || y_label.includes("out of 100")) & max_value > 100) {
+   if ((y_label.includes("%") || y_label.includes("out of 100")) & max_value > 100 || title.includes("respected")) {
       max_value = 100;
    }
 
@@ -104,40 +104,29 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       max_value = 10;
    }
 
+   // When confidence interval is constant
    if (!isNaN(ci)) {
-
       var ci_value = ci;
-      var years_cumulated = 0;
-
-      if (improvement == "increase") {
-         red_box_yMin = 0;
-         red_box_yMax = base_value - ci;
-         green_box_yMin = base_value + ci;
-         green_box_yMax = max_value;
-      } else {
-         red_box_yMin = base_value + ci;
-         red_box_yMax = max_value;
-         green_box_yMin = 0;
-         green_box_yMax = base_value - ci;
-      }
-
-   } else {
-
+      var years_cumulated = 1;
+   } else { // When confidence interval changes year on year
       var ci_value = Number(ci.slice(0, -1));
       var years_cumulated = num_years - base_position - 1;
+   }
 
-      if (improvement == "increase") {
-         red_box_yMin = 0;
-         red_box_yMax = base_value - (ci_value * years_cumulated);
-         green_box_yMin = base_value + (ci_value * years_cumulated);
-         green_box_yMax = max_value;
-      } else {
-         red_box_yMin = base_value + (ci_value * years_cumulated);
-         red_box_yMax = max_value;
-         green_box_yMin = 0;
-         green_box_yMax = base_value - (ci_value * years_cumulated);
-      }
-
+   if (improvement == "increase") {
+      red_box_yMin = 0;
+      red_box_yMax = base_value - ci_value;
+      green_box_yMin = base_value + ci_value;
+      green_box_yMax = max_value;
+      green_box_yHeight = ((max_value - base_value) / 2) + base_value;
+      red_box_yHeight = base_value / 2;
+   } else {
+      red_box_yMin = base_value + ci_value;
+      red_box_yMax = max_value;
+      green_box_yMin = 0;
+      green_box_yMax = base_value - ci_value;
+      green_box_yHeight = base_value / 2;
+      red_box_yHeight = ((max_value - base_value) / 2) + base_value;
    }
 
    // Footnote on when data was last updated
@@ -154,6 +143,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       }]
    };
 
+   // Custom plugin for drawing top polygon
    const cumulative_top = {
       id: "drawing_top",
       afterDraw(chart, args, options) {
@@ -194,6 +184,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       }
    };
 
+   // Custom plugin for drawing bottom polygon
    const cumulative_bottom = {
       id: "drawing_bottom",
       afterDraw(chart, args, options) {
@@ -235,7 +226,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       }
    };
 
-   // Chart configuration
+   // Chart configuration for most charts
    const config = {
       type: 'line',
       data,
@@ -297,11 +288,14 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       scales: {
          x: {
             grid: {
-               display: false
+               display: true,
+               lineWidth: 0,
+               drawTicks: true,
+               tickWidth: 1
             },
             ticks: {
                minRotation: 0,
-               maxRotation: 0
+               maxRotation: 0,
             }
          },
          y: {
@@ -318,6 +312,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       plugins: []
    };
 
+   // Chart configuration for charts where improvement is year on year
    const config_c = {
       type: 'line',
       data,
@@ -331,7 +326,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
                   red_text: {
                      type: "label",
                      xValue: years.length - 1,
-                     yValue: (red_box_yMin + red_box_yMax) / 2,
+                     yValue: red_box_yHeight,
                      content: "Worsening",
                      font: {
                         size: 16,
@@ -343,7 +338,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
                   green_text: {
                      type: "label",
                      xValue: years.length - 1,
-                     yValue: (green_box_yMin + green_box_yMax) / 2,
+                     yValue: green_box_yHeight,
                      content: "Improving",
                      font: {
                         size: 16,
@@ -361,7 +356,9 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       scales: {
          x: {
             grid: {
-               display: false
+               display: true,
+               lineWidth: 0,
+               tickWidth: 1
             },
             ticks: {
                minRotation: 0,
@@ -433,9 +430,21 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    }
 
    // Statement to output based on performance of indicator
-   if ((change_from_baseline > ci_value & improvement == "increase") || (change_from_baseline < (ci_value * -1) & improvement == "decrease")) {
+   var current_ci = ci_value * years_cumulated;
+
+   Number.prototype.countDecimals = function () {
+      if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
+      return this.toString().split(".")[1].length || 0; 
+   }
+
+   var decimal_places = base_value.countDecimals();
+   change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
+
+   console.log(matrix, current_ci, change_from_baseline)
+  
+   if ((change_from_baseline >= current_ci & improvement == "increase") || (change_from_baseline <= (current_ci * -1) & improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
-   } else if ((change_from_baseline < (ci_value * -1) & improvement == "increase") || (change_from_baseline > ci_value & improvement == "decrease")) {
+   } else if ((change_from_baseline <= (current_ci * -1) & improvement == "increase") || (change_from_baseline >= current_ci & improvement == "decrease")) {
       base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
    } else {
       base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
