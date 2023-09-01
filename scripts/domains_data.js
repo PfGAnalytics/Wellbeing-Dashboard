@@ -737,7 +737,7 @@ var domains_data = {
          },
          "Housing costs as a proportion of household income": {
             "importance": "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            "base_year": "2017/18 - 2019/20",
+            "base_year": "2019/20",
             "source": "Family Resources Survey",
             "source_link": "https://www.communities-ni.gov.uk/topics/family-resources-survey",
             "ci": 3,
