@@ -321,7 +321,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                     if (further_infos[k].id == further_id) {
                         document.getElementById(further_id).classList.add("further-selected");
                     } else {
-                        further_infos[k].classList.add("further-selected");
+                        further_infos[k].classList.remove("further-selected");
                     }
 
                 }
