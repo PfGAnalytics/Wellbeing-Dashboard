@@ -20,8 +20,26 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    const {value, dimension, updated, note} = fetched_data;
    
    var years = Object.values(dimension)[1].category.index; // Array of years in data
+   var num_years = years.length;  // Number of years in data
    
    var base_position = years.indexOf(base); // Which position in the years array is base year
+   var current_year = years[years.length-1]; // The current year
+
+   var years_to_add = 2; // Number of blank data points after current year
+
+   if (!isNaN(Number(current_year))) {
+      for (let i = 1; i <= years_to_add; i++) {
+         years.push(Number(current_year) + i);
+      }
+   } else if (current_year.indexOf("/") != -1) {
+      for (let i = 1; i <= years_to_add; i++) {
+         years.push((Number(current_year.slice(0, 4)) + i) + "/" + (Number(current_year.slice(-2)) + i));
+      }
+   } else if (current_year.indexOf("-") != -1) {
+      for (let i = 1; i <= years_to_add; i++) {
+         years.push((Number(current_year.slice(0, 4)) + i) + "-" + (Number(current_year.slice(-2)) + i));
+      }
+   }
 
    // For NI datasets do the following:
    if (matrix.slice(-2) == "NI") {
@@ -47,7 +65,6 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          }
       }
 
-      var num_years = years.length;  // Number of years in data
       var current_value = data_series[num_years - 1]; // Current value
       var change_from_baseline = current_value - base_value; // The difference between base yaer value and last value
 
