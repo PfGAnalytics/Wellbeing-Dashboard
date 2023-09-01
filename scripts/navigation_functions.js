@@ -340,8 +340,7 @@ setTimeout(function () {
     improving_indicator = {};
     no_change_indicator = {};
     worsening_indicator = {};
-
-
+    
     for (let i = 0; i < domains.length; i++) {
 
         indicators = domains_data[domains[i]].indicators;
@@ -367,7 +366,7 @@ setTimeout(function () {
             } else if (data.LGD != "" & !["INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) {
 
                 base_id = data.LGD + "-base-statement";
-                further_id = data.EQ + "-further-info";
+                further_id = data.LGD + "-further-info";
                 chart_id = data.LGD.slice(0, -3) + "-line";
 
             }
