@@ -107,6 +107,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    if (!isNaN(ci)) {
 
       var ci_value = ci;
+      var years_cumulated = 0;
 
       if (improvement == "increase") {
          red_box_yMin = 0;
@@ -123,8 +124,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    } else {
 
       var ci_value = Number(ci.slice(0, -1));
-
-      years_cumulated = num_years - base_position - 1;
+      var years_cumulated = num_years - base_position - 1;
 
       if (improvement == "increase") {
          red_box_yMin = 0;
@@ -154,79 +154,86 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       }]
    };
 
-   
-   const boxes = {
-      // red_box: {
-      //       type: "box",
-      //       xMin: base_position,
-      //       xMax: years.length - 1,
-      //       yMin: red_box_yMin,
-      //       yMax: red_box_yMax,
-      //       backgroundColor: "#aa000055",
-      //       borderColor: "#aa0000"
-      // },
-      // red_text: {
-      //    type: "label",
-      //    xValue: years.length - 1,
-      //    yValue: (red_box_yMin + red_box_yMax) / 2,
-      //    content: "Worsening",
-      //    font: {
-      //       size: 16,
-      //       weight: "bold",
-      //       style: "italic"
-      //    },
-      //    position: "end"
-      // },
-      // green_box: {
-      //    type: "box",
-      //    xMin: base_position,
-      //    xMax: years.length - 1,
-      //    yMin: green_box_yMin,
-      //    yMax: green_box_yMax,
-      //    backgroundColor: "#00aa0055",
-      //    borderColor: "#00aa00"
-      // },
-      // green_text: {
-      //    type: "label",
-      //    xValue: years.length - 1,
-      //    yValue: (green_box_yMin + green_box_yMax) / 2,
-      //    content: "Improving",
-      //    font: {
-      //       size: 16,
-      //       weight: "bold",
-      //       style: "italic"
-      //    },
-      //    position: "end"
-      // }
-   };
-
-   const drawing = {
-      id: "drawing",
+   const cumulative_top = {
+      id: "drawing_top",
       afterDraw(chart, args, options) {
          const { ctx } = chart;
          ctx.save();
 
-         width = ctx.canvas.clientWidth;
-         height = ctx.canvas.clientHeight;
+         canvas_width = chart.canvas.clientWidth;
+         canvas_height = chart.canvas.clientHeight;
 
-         startWidth = (base_position / years.length) * width;
-         startHeight = (1 - ((base_value + ci_value) / max_value)) * height;
+         chart_width = chart.chartArea.width;
+         chart_height = chart.chartArea.height;
 
-         endHeight = (1 - ((base_value + (ci_value * 4)) / max_value)) * height;
+         space_at_top = chart.chartArea.top;
+
+         startWidth = (base_position / (years.length - 1)) * chart_width + chart.chartArea.left;
+         startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;
+
+         endHeight = (1 - ((base_value + (ci_value * (years.length - base_position))) / max_value)) * chart_height + space_at_top;
 
          ctx.beginPath();
          ctx.moveTo(startWidth, startHeight);
-         ctx.lineTo(startWidth, 0);
-         ctx.lineTo(width, 0);
-         ctx.lineTo(width, endHeight);
-         ctx.fillStyle = "#00aa0055";
-         ctx.strokeStyle = "#00aa00";
+         ctx.lineTo(startWidth, space_at_top);
+         ctx.lineTo(chart.chartArea.right, space_at_top);
+         ctx.lineTo(chart.chartArea.right, endHeight);
+         ctx.lineTo(startWidth, startHeight);
+
+         if (improvement == "increase") {
+            ctx.fillStyle = "#00aa0055";
+            ctx.strokeStyle = "#00aa00";
+         } else {
+            ctx.fillStyle = "#aa000055";
+            ctx.strokeStyle = "#aa0000";
+         }
+
+         ctx.fill();
+         ctx.stroke();
+         
+      }
+   };
+
+   const cumulative_bottom = {
+      id: "drawing_bottom",
+      afterDraw(chart, args, options) {
+         const { ctx } = chart;
+         ctx.save();
+
+         canvas_width = chart.canvas.clientWidth;
+         canvas_height = chart.canvas.clientHeight;
+
+         chart_width = chart.chartArea.width;
+         chart_height = chart.chartArea.height;
+
+         space_at_bottom = chart.chartArea.bottom;
+         space_at_top = chart.chartArea.top;
+
+         startWidth = (base_position / (years.length - 1)) * chart_width + chart.chartArea.left;
+         startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;
+
+         endHeight = (1 - ((base_value - (ci_value * (years.length - base_position))) / max_value)) * chart_height + space_at_top;
+
+         ctx.beginPath();
+         ctx.moveTo(startWidth, startHeight);
+         ctx.lineTo(startWidth, space_at_bottom);
+         ctx.lineTo(chart.chartArea.right, space_at_bottom);
+         ctx.lineTo(chart.chartArea.right, endHeight);
+         ctx.lineTo(startWidth, startHeight);
+
+         if (improvement == "decrease") {
+            ctx.fillStyle = "#00aa0055";
+            ctx.strokeStyle = "#00aa00";
+         } else {
+            ctx.fillStyle = "#aa000055";
+            ctx.strokeStyle = "#aa0000";
+         }
+
          ctx.fill();
          ctx.stroke();
 
-         console.log(ctx);
       }
-   }
+   };
 
    // Chart configuration
    const config = {
@@ -238,7 +245,50 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       plugins: {
             autocolors: false,
             annotation: {
-               annotations: boxes
+               annotations: {
+                  red_box: {
+                        type: "box",
+                        xMin: base_position,
+                        xMax: years.length - 1,
+                        yMin: red_box_yMin,
+                        yMax: red_box_yMax,
+                        backgroundColor: "#aa000055",
+                        borderColor: "#aa0000"
+                  },
+                  red_text: {
+                     type: "label",
+                     xValue: years.length - 1,
+                     yValue: (red_box_yMin + red_box_yMax) / 2,
+                     content: "Worsening",
+                     font: {
+                        size: 16,
+                        weight: "bold",
+                        style: "italic"
+                     },
+                     position: "end"
+                  },
+                  green_box: {
+                     type: "box",
+                     xMin: base_position,
+                     xMax: years.length - 1,
+                     yMin: green_box_yMin,
+                     yMax: green_box_yMax,
+                     backgroundColor: "#00aa0055",
+                     borderColor: "#00aa00"
+                  },
+                  green_text: {
+                     type: "label",
+                     xValue: years.length - 1,
+                     yValue: (green_box_yMin + green_box_yMax) / 2,
+                     content: "Improving",
+                     font: {
+                        size: 16,
+                        weight: "bold",
+                        style: "italic"
+                     },
+                     position: "end"
+                  }
+               }
             },
             legend: {
                display: false
@@ -265,7 +315,72 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          }
       }
       },
-      plugins: [drawing]
+      plugins: []
+   };
+
+   const config_c = {
+      type: 'line',
+      data,
+      options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+            autocolors: false,
+            annotation: {
+               annotations: {
+                  red_text: {
+                     type: "label",
+                     xValue: years.length - 1,
+                     yValue: (red_box_yMin + red_box_yMax) / 2,
+                     content: "Worsening",
+                     font: {
+                        size: 16,
+                        weight: "bold",
+                        style: "italic"
+                     },
+                     position: "end"
+                  },
+                  green_text: {
+                     type: "label",
+                     xValue: years.length - 1,
+                     yValue: (green_box_yMin + green_box_yMax) / 2,
+                     content: "Improving",
+                     font: {
+                        size: 16,
+                        weight: "bold",
+                        style: "italic"
+                     },
+                     position: "end"
+                  }
+               }
+            },
+            legend: {
+               display: false
+            }
+      },
+      scales: {
+         x: {
+            grid: {
+               display: false
+            },
+            ticks: {
+               minRotation: 0,
+               maxRotation: 0
+            }
+         },
+         y: {
+            beginAtZero: true,
+            min: 0,
+            max: max_value,
+            ticks: {
+               minRotation: 0,
+               maxRotation: 0
+            }
+         }
+      }
+      },
+      plugins: [cumulative_top,
+                cumulative_bottom]
    };
 
    // Create a div to place all chart content in
@@ -311,7 +426,11 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    document.getElementById("line-chart-container").appendChild(chart_div);
 
    // Place chart in canvas
-   new Chart(chart_canvas, config);
+   if (!isNaN(ci)) {
+      new Chart(chart_canvas, config);
+   } else {
+      new Chart(chart_canvas, config_c);
+   }
 
    // Statement to output based on performance of indicator
    if ((change_from_baseline > ci_value & improvement == "increase") || (change_from_baseline < (ci_value * -1) & improvement == "decrease")) {
