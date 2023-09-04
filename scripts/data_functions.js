@@ -597,7 +597,9 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          further_note = further_note.slice(0, further_note.indexOf("[b]"))
       }
       further_note = further_note.replaceAll("[url=", "<a href = '");
-      further_note = further_note.replaceAll("[/url]", "' target = '_blank'>here</a>.")
+      further_note = further_note.replaceAll("[/url]", "' target = '_blank'>here</a>.");
+      further_note = further_note.replaceAll("[i]", "<em>");
+      further_note = further_note.replaceAll("[/i]", "</em>");
    }
 
    for (let i = 2; i < 10; i++) {
