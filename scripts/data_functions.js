@@ -91,7 +91,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    } else if (max_value < 20000) {
       max_value = Math.ceil(max_value / 2000) * 2000;
    } else {
-      max_value = Math.ceil(max_value / 10000) * 10000;
+      max_value = Math.round(max_value / 10000) * 10000;
    }
 
    if ((y_label.includes("%") || y_label.includes("out of 100")) & max_value > 100 || title.includes("respected")) {
@@ -106,6 +106,17 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       max_value = 10;
    }
 
+   if (title.includes("Housing Stress")) {
+      max_value = 40000;
+   }
+
+   if (matrix == "INDNICEINI") {
+      min_value = 85;
+      max_value = 115;
+   } else {
+      min_value = 0
+   }
+
    // When confidence interval is constant
    if (!isNaN(ci)) {
       var ci_value = ci;
@@ -116,7 +127,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    }
 
    if (improvement == "increase") {
-      red_box_yMin = 0;
+      red_box_yMin = min_value;
       red_box_yMax = base_value - ci_value;
       green_box_yMin = base_value + ci_value;
       green_box_yMax = max_value;
@@ -125,7 +136,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    } else {
       red_box_yMin = base_value + ci_value;
       red_box_yMax = max_value;
-      green_box_yMin = 0;
+      green_box_yMin = min_value;
       green_box_yMax = base_value - ci_value;
       green_box_yHeight = base_value / 2;
       red_box_yHeight = ((max_value - base_value) / 2) + base_value;
@@ -144,7 +155,8 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             label: 'Northern Ireland',
             data: data_series.slice(0, years.indexOf("2019/20")),
             borderColor: "#000000",
-            fill: false
+            fill: false,
+            pointBackgroundColor: "#000000"
          }]
       }
 
@@ -171,7 +183,8 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             label: "Northern Ireland",
             data: remaining_data,
             borderColor: "#000000",
-            fill: false
+            fill: false,
+            pointBackgroundColor: "#000000"
          })
       }
 
@@ -184,7 +197,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             data: data_series,
             borderColor: "#000000",
             fill: false,
-            order: 1
+            pointBackgroundColor: "#000000"
          }]
       };
    }
@@ -287,19 +300,21 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          if (tooltipItem.parsed.x >= base_position) {
             if (!isNaN(ci)) {
                if (improvement == "increase") {
-                  text = ["Improving value: > " + Math.round((base_value + ci) * 10 ** decimal_places) / 10 ** decimal_places,  "Worsening value: < " + Math.round((base_value - ci) * 10 ** decimal_places) / 10 ** decimal_places];
+                  text = ["Improving value: > " + (Math.round((base_value + ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+                          "Worsening value: < " + (Math.round((base_value - ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
                } else {
-                  text = ["Worsening value: > " + Math.round((base_value + ci) * 10 ** decimal_places) / 10 ** decimal_places,  "Improving value: < " + Math.round((base_value - ci) * 10 ** decimal_places) / 10 ** decimal_places];;
+                  text = ["Worsening value: > " + (Math.round((base_value + ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+                          "Improving value: < " + (Math.round((base_value - ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
                }
             } else {
                if (tooltipItem.parsed.x == base_position) {
                   text = ""
                } else if (improvement == "increase") {
-                  text = ["Improving value: > " + Math.round((base_value + ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places,
-                        "Worsening value: < " + Math.round((base_value - ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places]
+                  text = ["Improving value: > " + (Math.round((base_value + ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+                        "Worsening value: < " + (Math.round((base_value - ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
                } else {
-                  text = ["Worsening value: > " + Math.round((base_value + ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places,
-                          "Improving value: < " + Math.round((base_value - ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places]
+                  text = ["Worsening value: > " + (Math.round((base_value + ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+                          "Improving value: < " + (Math.round((base_value - ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
                }
             }
          } else {
@@ -394,7 +409,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             },
             y: {
                beginAtZero: true,
-               min: 0,
+               min: min_value,
                max: max_value,
                ticks: {
                   minRotation: 0,
@@ -470,7 +485,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             },
             y: {
                beginAtZero: true,
-               min: 0,
+               min: min_value,
                max: max_value,
                ticks: {
                   minRotation: 0,
@@ -694,19 +709,34 @@ async function drawMap(matrix, improvement) {
   var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label; // The unit of measurement according to the metadata
 
   var years = Object.values(dimension)[1].category.index; // All years present in the data
-  var current_year = years[years.length-1]; // The current year
+//   var current_year = years[years.length-1]; // The current year
 
   var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
 
   var num_groups = groups.length;     // The number of groups
   var NI_position = groups.indexOf("N92000002"); // Position of NI in list of groups
+  
+  // Loop back over previous years and plot map for year with data
+  var no_data = true;
+  var look_back = 0
+  while (no_data == true) {
+      data_series = value.slice(value.length - (num_groups * (look_back + 1)), value.length - (num_groups * look_back));
 
-  var data_series = value.slice(value.length - num_groups, value.length); // Take the last n values (n = number of groups)
+      // If NI appears as a group remove it from data_series
+      if (NI_position > -1) {
+         data_series.splice(NI_position, 1);
+      }
 
-  // If NI appears as a group remove it from data_series
-  if (NI_position > -1) {
-   data_series.splice(NI_position, 1);
-  }
+      for (let i = 0; i < data_series.length; i++) {
+         if (data_series[i] != null) {
+            no_data = false;
+            break
+         }
+      }
+
+      var current_year = years[years.length - look_back - 1]; // The current year
+      look_back = look_back + 1;
+   }
 
   var range = Math.max(...data_series) - Math.min(...data_series); // Calculate the range of values
 
@@ -762,7 +792,12 @@ async function drawMap(matrix, improvement) {
        function enhanceLayer(f, l){
 
            if (f.properties){
-               l.bindTooltip(f.properties[area_var] + " (" + current_year + "): <b>" + data_series[f.properties['OBJECTID'] - 1] + "</b> (" + unit + ")");
+               
+               if (data_series[f.properties['OBJECTID'] - 1] != null) {
+                  l.bindTooltip(f.properties[area_var] + " (" + current_year + "): <b>" + data_series[f.properties['OBJECTID'] - 1].toLocaleString("en-GB") + "</b> (" + unit + ")");
+               } else {
+                  l.bindTooltip(f.properties[area_var] + " (" + current_year + "): <b>Not available</b>");
+               }
 
                // http://leafletjs.com/reference.html#path-options
                l.setStyle({
@@ -826,12 +861,12 @@ async function drawMap(matrix, improvement) {
    legend_row_1.classList.add("row");
 
    min_value = document.createElement("div");
-   min_value.innerHTML = Math.min(...data_series);
+   min_value.innerHTML = Math.min(...data_series).toLocaleString("en-GB");
    min_value.classList.add("legend-min");
    legend_row_1.appendChild(min_value);
 
    max_value = document.createElement("div");
-   max_value.innerHTML = Math.max(...data_series);
+   max_value.innerHTML = Math.max(...data_series).toLocaleString("en-GB");
    max_value.classList.add("legend-max");
    legend_row_1.appendChild(max_value);
 
