@@ -230,24 +230,18 @@ h2 {
 }
 
 .shake-hex:hover {
-    animation: shake 1s;
-    animation-iteration-count: infinite;
+    animation: shake 0.5s;
+    animation-iteration-count: one;
     filter: saturate(70%);
 }
 
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
-  }
+    25% { transform: translate(-1px, -1px) rotate(-1deg); }
+    50% { transform: translate(-1px, 0px) rotate(1deg); }
+    75% { transform: translate(1px, 1px) rotate(0deg); }
+    100% { transform: translate(1px, -1px) rotate(1deg); }
+}
 
 .ind-hex-container {
    height: 150px;
@@ -298,6 +292,35 @@ h2 {
 #indicator-hexes {
     margin-left: 100px;
 }
+
+#key {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.key-hex {
+    height: 50px;
+    width: 50px;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background-color: #ff914d;
+    color: #ffffff44;
+    font-size: 33px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.key-hex.positive {
+    background-color: #00bf63;
+}
+
+.key-hex.negative {
+    background-color: #ff3131;
+}
+
 
 .row {
     margin-left: 0px;
@@ -600,7 +623,7 @@ footer a:hover {
     margin-left: 50px;
 }
 
-#further-expander {
+#further-expander, #further-expander-map  {
    cursor: pointer 
 }
 

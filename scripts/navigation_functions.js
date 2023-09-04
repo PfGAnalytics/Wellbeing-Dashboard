@@ -151,6 +151,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
             }
 
             var hex_container = document.createElement("div");
+            hex_container.classList.add("shake-hex");
             var hex = document.createElement("div");
             var hex_label = document.createElement("div");
             var label_text = document.createTextNode(indicators[i]);
@@ -449,6 +450,7 @@ setTimeout(function () {
             }
     
             var hex_container = document.createElement("div");
+            hex_container.classList.add("shake-hex");
             var hex = document.createElement("div");
             var hex_label = document.createElement("div");
             var label_text = document.createTextNode(Object.keys(eval(change_type + "_indicator"))[i]);
@@ -658,6 +660,8 @@ window.onresize = function() {
 var map_select_1 = document.getElementById("map-select-1");
 var map_select_2 = document.getElementById("map-select-2");
 var map_select_3 = document.getElementById("map-select-3");
+var further_expander_map = document.getElementById("further-expander-map");
+var further_info_map = document.getElementById("further-info-map");
 
 for (let i = 0; i < domains.length; i++) {
     option = document.createElement("option");
@@ -749,6 +753,11 @@ function updateMapSelect3() {
     var ind_important_map = document.getElementById("ind-important-map");
     ind_important_map.innerHTML = indicator.importance;
 
+    further_info_map.style.display = "none";
+        further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
+        further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
+        further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+
 }
 
 map_select_1.onchange =  function() {
@@ -764,9 +773,16 @@ map_select_2.onchange = function() {
         improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
 }
 
+
 map_select_3.onchange = function() {
+
     drawMap(matrix = map_select_3.value,
         improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
+
+    further_info_map.style.display = "none";
+    further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
+    further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
+    further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
 }
 
 // Resizing for mobile
@@ -844,4 +860,22 @@ further_expander.onclick = function() {
       further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
       further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
    }
+}
+
+
+
+further_expander_map.onclick = function() {
+
+    if (further_info_map.style.display == "none") {
+        further_info_map.style.display = "block";
+        further_expander_map.getElementsByTagName("span")[0].textContent = "Click to hide";
+        further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-plus");
+        further_expander_map.getElementsByTagName("i")[0].classList.add("fa-minus");
+    } else {
+        further_info_map.style.display = "none";
+        further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
+        further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
+        further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+    }
+    
 }

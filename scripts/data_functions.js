@@ -13,6 +13,8 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
 
    // URL to fetch data from Pre-production data portal
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+   // URL when data is on data.nisra.gov.uk
+   // api_url = "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
    // Fetch data and store in object fetched_data
    const response = await fetch(api_url);
@@ -132,16 +134,59 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    // Footnote on when data was last updated
    var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
 
-   // Properties of the data series to be plotted
-   const data = {
-      labels: years,
-      datasets: [{
-         label: 'Northern Ireland',
-         data: data_series,
-         borderColor: "#000000",
-         fill: false
-      }]
-   };
+   // To plot points in School leavers attainment gap as individual points after 2018/19
+   if (matrix == "INDSLATTGAPEQ") {
+
+      // First plot the line as far as 2018/19
+      var data = {
+         labels: years,
+         datasets: [{
+            label: 'Northern Ireland',
+            data: data_series.slice(0, years.indexOf("2019/20")),
+            borderColor: "#000000",
+            fill: false
+         }]
+      }
+
+      // An array of all remaining points after 2018/19 to be plotted individually
+      var remaining_points = data_series.slice(years.indexOf("2019/20"));
+
+      // Loop through remaining_points
+      for (let i = 0; i < remaining_points.length; i++) {
+
+         // Need to create individual data series for each of the remaining points
+         var remaining_data = [];
+         
+         // Create a line that has a null value for every point except the remaining point
+         for (j = 0; j < years.length; j ++) {
+            if(j != years.indexOf("2019/20") + i) {
+               remaining_data.push(null)
+            } else {
+               remaining_data.push(remaining_points[i])
+            }
+         }
+
+         // Add those new datasets to the data object above
+         data.datasets.push({
+            label: "Northern Ireland",
+            data: remaining_data,
+            borderColor: "#000000",
+            fill: false
+         })
+      }
+
+   } else {
+      // Properties of the data series to be plotted for all other indicators
+      var data = {
+         labels: years,
+         datasets: [{
+            label: 'Northern Ireland',
+            data: data_series,
+            borderColor: "#000000",
+            fill: false
+         }]
+      };
+   }
 
    // Custom plugin for drawing top polygon
    const cumulative_top = {
@@ -439,10 +484,10 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
 
    var decimal_places = base_value.countDecimals();
    change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
-
-   console.log(matrix, current_ci, change_from_baseline)
   
-   if ((change_from_baseline >= current_ci & improvement == "increase") || (change_from_baseline <= (current_ci * -1) & improvement == "decrease")) {
+   if (current_year == base) {
+      base_statement = "The data for " + base + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
+   } else if ((change_from_baseline > current_ci & improvement == "increase") || (change_from_baseline < (current_ci * -1) & improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
    } else if ((change_from_baseline <= (current_ci * -1) & improvement == "increase") || (change_from_baseline >= current_ci & improvement == "decrease")) {
       base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
@@ -578,8 +623,11 @@ async function drawMap(matrix, improvement) {
        map_container.removeChild(map_container.firstChild);
    }
 
-   // URL to query
+   // URL to query (pre-production)
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+   // URL when data is on data.nisra.gov.uk
+   // api_url = "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+
 
   // Fetch data and store in object fetched_data
   const response = await fetch(api_url);
@@ -698,6 +746,7 @@ async function drawMap(matrix, improvement) {
    
    // Target change info
    var change_info_map = document.getElementById("change-info-map");
+   var further_info_map = document.getElementById("further-info-map");
 
    // Which change info div to copy text from
    if (document.getElementById(LGD_id)) {
@@ -706,8 +755,11 @@ async function drawMap(matrix, improvement) {
        base_id = EQ_id;
    }
 
+   further_id = base_id.replace("base-statement", "further-info");
+
    // Write content to change info box
    change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
+   further_info_map.innerHTML = document.getElementById(further_id).innerHTML;
 
    // Legend divs added to map
    legend_div = document.createElement("div");
