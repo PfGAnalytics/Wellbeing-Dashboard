@@ -183,7 +183,8 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             label: 'Northern Ireland',
             data: data_series,
             borderColor: "#000000",
-            fill: false
+            fill: false,
+            order: 1
          }]
       };
    }
@@ -191,7 +192,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    // Custom plugin for drawing top polygon
    const cumulative_top = {
       id: "drawing_top",
-      afterDraw(chart, args, options) {
+      beforeDraw(chart, args, options) {
          const { ctx } = chart;
          ctx.save();
 
@@ -232,7 +233,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    // Custom plugin for drawing bottom polygon
    const cumulative_bottom = {
       id: "drawing_bottom",
-      afterDraw(chart, args, options) {
+      beforeDraw(chart, args, options) {
          const { ctx } = chart;
          ctx.save();
 
@@ -265,94 +266,146 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
             ctx.strokeStyle = "#aa0000";
          }
 
+         ctx.lineWidth = 2;
+
          ctx.fill();
          ctx.stroke();
 
       }
    };
 
+   Number.prototype.countDecimals = function () {
+      if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
+      return this.toString().split(".")[1].length || 0; 
+   }
+
+   var decimal_places = base_value.countDecimals();
+
+   const footer = (tooltipItems) => {
+
+      tooltipItems.forEach(function(tooltipItem) {
+         if (tooltipItem.parsed.x >= base_position) {
+            if (!isNaN(ci)) {
+               if (improvement == "increase") {
+                  text = ["Improving value: > " + Math.round((base_value + ci) * 10 ** decimal_places) / 10 ** decimal_places,  "Worsening value: < " + Math.round((base_value - ci) * 10 ** decimal_places) / 10 ** decimal_places];
+               } else {
+                  text = ["Worsening value: > " + Math.round((base_value + ci) * 10 ** decimal_places) / 10 ** decimal_places,  "Improving value: < " + Math.round((base_value - ci) * 10 ** decimal_places) / 10 ** decimal_places];;
+               }
+            } else {
+               if (tooltipItem.parsed.x == base_position) {
+                  text = ""
+               } else if (improvement == "increase") {
+                  text = ["Improving value: > " + Math.round((base_value + ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places,
+                        "Worsening value: < " + Math.round((base_value - ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places]
+               } else {
+                  text = ["Worsening value: > " + Math.round((base_value + ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places,
+                          "Improving value: < " + Math.round((base_value - ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places]
+               }
+            }
+         } else {
+            text = ""
+         }
+      });
+
+      return text
+    };
+
    // Chart configuration for most charts
    const config = {
       type: 'line',
       data,
       options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-            autocolors: false,
-            annotation: {
-               annotations: {
-                  red_box: {
+         responsive: true,
+         maintainAspectRatio: false,
+         plugins: {
+               autocolors: false,
+               annotation: {
+                  annotations: {
+                     red_box: {
+                           type: "box",
+                           xMin: base_position,
+                           xMax: years.length - 1,
+                           yMin: red_box_yMin,
+                           yMax: red_box_yMax,
+                           backgroundColor: "#aa000055",
+                           borderColor: "#aa0000",
+                           borderWidth: 2,
+                           z: -1
+                     },
+                     red_text: {
+                        type: "label",
+                        xValue: years.length - 1,
+                        yValue: (red_box_yMin + red_box_yMax) / 2,
+                        content: "Worsening",
+                        font: {
+                           size: 16,
+                           weight: "bold",
+                           style: "italic"
+                        },
+                        position: "end"
+                     },
+                     green_box: {
                         type: "box",
                         xMin: base_position,
                         xMax: years.length - 1,
-                        yMin: red_box_yMin,
-                        yMax: red_box_yMax,
-                        backgroundColor: "#aa000055",
-                        borderColor: "#aa0000"
-                  },
-                  red_text: {
-                     type: "label",
-                     xValue: years.length - 1,
-                     yValue: (red_box_yMin + red_box_yMax) / 2,
-                     content: "Worsening",
-                     font: {
-                        size: 16,
-                        weight: "bold",
-                        style: "italic"
+                        yMin: green_box_yMin,
+                        yMax: green_box_yMax,
+                        backgroundColor: "#00aa0055",
+                        borderColor: "#00aa00",
+                        borderWidth: 2,
+                        z: -1
                      },
-                     position: "end"
-                  },
-                  green_box: {
-                     type: "box",
-                     xMin: base_position,
-                     xMax: years.length - 1,
-                     yMin: green_box_yMin,
-                     yMax: green_box_yMax,
-                     backgroundColor: "#00aa0055",
-                     borderColor: "#00aa00"
-                  },
-                  green_text: {
-                     type: "label",
-                     xValue: years.length - 1,
-                     yValue: (green_box_yMin + green_box_yMax) / 2,
-                     content: "Improving",
-                     font: {
-                        size: 16,
-                        weight: "bold",
-                        style: "italic"
-                     },
-                     position: "end"
+                     green_text: {
+                        type: "label",
+                        xValue: years.length - 1,
+                        yValue: (green_box_yMin + green_box_yMax) / 2,
+                        content: "Improving",
+                        font: {
+                           size: 16,
+                           weight: "bold",
+                           style: "italic"
+                        },
+                        position: "end"
+                     }
+                  }
+               },
+               legend: {
+                  display: false
+               },
+               tooltip: {
+                  callbacks: {
+                     footer: footer
                   }
                }
+
+         },
+         scales: {
+            x: {
+               grid: {
+                  display: true,
+                  lineWidth: 0,
+                  drawTicks: true,
+                  tickWidth: 1
+               },
+               ticks: {
+                  minRotation: 0,
+                  maxRotation: 0
+               }
             },
-            legend: {
-               display: false
-            }
-      },
-      scales: {
-         x: {
-            grid: {
-               display: true,
-               lineWidth: 0,
-               drawTicks: true,
-               tickWidth: 1
-            },
-            ticks: {
-               minRotation: 0,
-               maxRotation: 0,
+            y: {
+               beginAtZero: true,
+               min: 0,
+               max: max_value,
+               ticks: {
+                  minRotation: 0,
+                  maxRotation: 0
+               }
             }
          },
-         y: {
-            beginAtZero: true,
-            min: 0,
-            max: max_value,
-            ticks: {
-               minRotation: 0,
-               maxRotation: 0
-            }
+         interaction: {
+            intersect: false,
+            mode: "index"
          }
-      }
       },
       plugins: []
    };
@@ -362,67 +415,76 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       type: 'line',
       data,
       options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-            autocolors: false,
-            annotation: {
-               annotations: {
-                  red_text: {
-                     type: "label",
-                     xValue: years.length - 1,
-                     yValue: red_box_yHeight,
-                     content: "Worsening",
-                     font: {
-                        size: 16,
-                        weight: "bold",
-                        style: "italic"
+         responsive: true,
+         maintainAspectRatio: false,
+         plugins: {
+               autocolors: false,
+               annotation: {
+                  annotations: {
+                     red_text: {
+                        type: "label",
+                        xValue: years.length - 1,
+                        yValue: red_box_yHeight,
+                        content: "Worsening",
+                        font: {
+                           size: 16,
+                           weight: "bold",
+                           style: "italic"
+                        },
+                        position: "end"
                      },
-                     position: "end"
-                  },
-                  green_text: {
-                     type: "label",
-                     xValue: years.length - 1,
-                     yValue: green_box_yHeight,
-                     content: "Improving",
-                     font: {
-                        size: 16,
-                        weight: "bold",
-                        style: "italic"
-                     },
-                     position: "end"
+                     green_text: {
+                        type: "label",
+                        xValue: years.length - 1,
+                        yValue: green_box_yHeight,
+                        content: "Improving",
+                        font: {
+                           size: 16,
+                           weight: "bold",
+                           style: "italic"
+                        },
+                        position: "end"
+                     }
                   }
+               },
+               legend: {
+                  display: false
+               },
+               tooltip: {
+                  callbacks: {
+                     footer: footer,
+                  },
+               }
+         },
+         scales: {
+            x: {
+               grid: {
+                  display: true,
+                  lineWidth: 0,
+                  tickWidth: 1
+               },
+               ticks: {
+                  minRotation: 0,
+                  maxRotation: 0
                }
             },
-            legend: {
-               display: false
-            }
-      },
-      scales: {
-         x: {
-            grid: {
-               display: true,
-               lineWidth: 0,
-               tickWidth: 1
+            y: {
+               beginAtZero: true,
+               min: 0,
+               max: max_value,
+               ticks: {
+                  minRotation: 0,
+                  maxRotation: 0
+               }
             },
-            ticks: {
-               minRotation: 0,
-               maxRotation: 0
-            }
          },
-         y: {
-            beginAtZero: true,
-            min: 0,
-            max: max_value,
-            ticks: {
-               minRotation: 0,
-               maxRotation: 0
-            }
+         interaction: {
+            intersect: false,
+            mode: "index"
          }
-      }
-      },
-      plugins: [cumulative_top,
-                cumulative_bottom]
+         },
+         plugins: [cumulative_top,
+                  cumulative_bottom]
    };
 
    // Create a div to place all chart content in
@@ -477,12 +539,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    // Statement to output based on performance of indicator
    var current_ci = ci_value * years_cumulated;
 
-   Number.prototype.countDecimals = function () {
-      if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
-      return this.toString().split(".")[1].length || 0; 
-   }
-
-   var decimal_places = base_value.countDecimals();
+   
    change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
   
    if (current_year == base) {
