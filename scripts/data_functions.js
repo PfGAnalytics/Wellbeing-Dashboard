@@ -206,7 +206,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          startWidth = (base_position / (years.length - 1)) * chart_width + chart.chartArea.left;
          startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;
 
-         endHeight = (1 - ((base_value + (ci_value * (years.length - base_position))) / max_value)) * chart_height + space_at_top;
+         endHeight = (1 - ((base_value + (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;
 
          ctx.beginPath();
          ctx.moveTo(startWidth, startHeight);
@@ -248,7 +248,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          startWidth = (base_position / (years.length - 1)) * chart_width + chart.chartArea.left;
          startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;
 
-         endHeight = (1 - ((base_value - (ci_value * (years.length - base_position))) / max_value)) * chart_height + space_at_top;
+         endHeight = (1 - ((base_value - (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;
 
          ctx.beginPath();
          ctx.moveTo(startWidth, startHeight);
@@ -570,7 +570,7 @@ for (let i = 0; i < domains.length; i++) {
             this_statistic = this_matrix.slice(0, -2);
             
          // Use EQ data if available
-        } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) { // not on data portal yet
+        } else if (data.EQ != "" & !["INDHOMELNEQ"].includes(data.EQ)) { // not on data portal yet
 
          this_matrix = data.EQ;
          this_breakdown = "EQUALGROUPS";

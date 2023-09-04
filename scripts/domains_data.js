@@ -512,7 +512,7 @@ var domains_data = {
          },
          "Local graduates in narrow STEM subjects": {
             importance: "We need to drive increased participation in Narrow STEM subjects, which have particular economic relevance in Northern Ireland and include some of the best opportunities for individuals to develop rewarding careers in the coming decades. As low participation of women in this area is a particular concern, increasing involvement of females in Narrow STEM study and careers is a strategic priority for our economy and society.",
-            base_year: "2019/20",
+            base_year: "2021/22",
             source: "NI Higher Education Qualifications Bulletin",
             source_link: "https://www.economy-ni.gov.uk/articles/higher-education-enrolments",
             ci: 1,

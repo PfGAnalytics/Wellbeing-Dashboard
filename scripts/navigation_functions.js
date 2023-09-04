@@ -162,9 +162,9 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
             if (NI_data != "") {
                 base_text = document.getElementById(NI_data + "-base-statement").textContent;
-            } else if (EQ_data != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(EQ_data)) {
+            } else if (EQ_data != "" & !["INDHOMELNEQ"].includes(EQ_data)) {
                 base_text = document.getElementById(EQ_data + "-base-statement").textContent;
-            } else if (LGD_data != "" & !["INDGRADSLGD", "INDHOMELNLGD"].includes(LGD_data)) {
+            } else if (LGD_data != "" & !["INDHOMELNLGD"].includes(LGD_data)) {
                 base_text = document.getElementById(LGD_data + "-base-statement").textContent;
             }  else {
                 base_text = "";
@@ -230,11 +230,11 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                     
                     chart_id = data.NI.slice(0, -2) + "-line";                               
 
-                } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) {
+                } else if (data.EQ != "" & !["INDHOMELNEQ"].includes(data.EQ)) {
 
                     chart_id = data.EQ.slice(0, -2) + "-line";
 
-                } else if (data.LGD != "" & !["INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) {
+                } else if (data.LGD != "" & !["INDHOMELNLGD"].includes(data.LGD)) {
 
                     chart_id = data.LGD.slice(0, -3) + "-line";
 
@@ -292,10 +292,10 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 if (data.NI != "") {
                     base_id = data.NI + "-base-statement"
                     further_id = data.NI + "-further-info"
-                } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) {
+                } else if (data.EQ != "" & !["INDHOMELNEQ"].includes(data.EQ)) {
                     base_id = data.EQ + "-base-statement"
                     further_id = data.EQ + "-further-info"
-                } else if (data.LGD != "" & !["INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) {
+                } else if (data.LGD != "" & !["INDHOMELNLGD"].includes(data.LGD)) {
                     base_id = data.LGD + "-base-statement"
                     further_id = data.LGD + "-further-info"
                 } else {
@@ -358,13 +358,13 @@ setTimeout(function () {
                 further_id = data.NI + "-further-info";
                 chart_id = data.NI.slice(0, -2) + "-line";                              
 
-            } else if (data.EQ != "" & !["INDGRADSEQ", "INDHOMELNEQ"].includes(data.EQ)) {
+            } else if (data.EQ != "" & !["INDHOMELNEQ"].includes(data.EQ)) {
 
                 base_id = data.EQ + "-base-statement";
                 further_id = data.EQ + "-further-info";
                 chart_id = data.EQ.slice(0, -2) + "-line";
 
-            } else if (data.LGD != "" & !["INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) {
+            } else if (data.LGD != "" & !["INDHOMELNLGD"].includes(data.LGD)) {
 
                 base_id = data.LGD + "-base-statement";
                 further_id = data.LGD + "-further-info";
