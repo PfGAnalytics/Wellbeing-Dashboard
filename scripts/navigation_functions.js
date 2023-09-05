@@ -48,7 +48,8 @@ for (let i = 0; i < top_menu_items.length; i++) {
         }
         
         drawMap(matrix = map_select_3.value,
-            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
+                improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement,
+                title = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title);
 
         var further_infos = document.getElementsByClassName("further-info-text");
         var further_expander = document.getElementById("further-expander");
@@ -721,8 +722,8 @@ function updateMapSelect3() {
         map_select_3.appendChild(option);
     }
 
-    var chart_title = document.getElementById("chart-title");
-    chart_title.innerHTML = indicator.chart_title;
+    var map_title = document.getElementById("map-title");
+    map_title.innerHTML = indicator.chart_title;
 
     var data_info_map = document.getElementById("data-info-map"); 
 
@@ -764,20 +765,23 @@ map_select_1.onchange =  function() {
     updateMapSelect2();
     updateMapSelect3();
     drawMap(matrix = map_select_3.value,
-            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
+            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement,
+            title = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title);
 }
 
 map_select_2.onchange = function() {
     updateMapSelect3();
     drawMap(matrix = map_select_3.value,
-        improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
+            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement,
+            title = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title);
 }
 
 
 map_select_3.onchange = function() {
 
     drawMap(matrix = map_select_3.value,
-        improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
+            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement,
+            title = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title);
 
     further_info_map.removeAttribute("style");
     further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";

@@ -682,7 +682,7 @@ for (let i = 0; i < domains.length; i++) {
 
 }
 
-async function drawMap(matrix, improvement) {
+async function drawMap(matrix, improvement, title) {
 
    // Display the loading gif while this function runs
    var map_load = document.getElementById("map-load");
@@ -897,6 +897,9 @@ async function drawMap(matrix, improvement) {
   update_div.classList.add("map-date");
   update_div.innerHTML = updated_note;
   map_container.appendChild(update_div);
+
+  var map_title = document.getElementById("map-title");
+  map_title.innerHTML = title + " (" + current_year + ")";
 
   // Hide loading gif after map is generated
   map_load.style.display = "none";

@@ -1,4 +1,4 @@
-
+# Set CRAN repo
 local({
   r <- getOption("repos")
   r["CRAN"] <- "https://cran.rstudio.com/"
@@ -6,48 +6,43 @@ local({
   options(repos = r)
 })
 
+# Load package manager
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
 
+# Load packages
 p_load("magrittr", "base64enc", "httpuv")
 
 # Folder to store uploads in
 uploadDir <- "../dashboard-to-upload/"
-zipName <- paste0(substring(uploadDir, 1, nchar(uploadDir) - 1), ".zip")
 
+# Delete any previous version
 if (file.exists(uploadDir)) {
   unlink(uploadDir, recursive = TRUE)
 }
 
-if (file.exists(zipName)) {
-  unlink(zipName, recursive = TRUE)
-}
-
+# Create folder again
 dir.create(uploadDir)
 
-# Copy main html
-file.copy("../index.html", uploadDir)
+suppressWarnings({ # Turn off warnings
 
-
-suppressWarnings({
-
-  index <- readLines(paste0(uploadDir, "index.html"))
+  # Convert html to character vector
+  index <- readLines("../index.html")
   
-  # Embed css
+  # Embed css in html
   index <- gsub("style.css",
                 paste0("data:text/css;base64,", base64encode("../style.css")),
                 index,
                 fixed = TRUE)
   
-  # Embed gif
+  # Embed gif in html
   index <- gsub("img/page-loading.gif",
                 paste0("data:image/gif;base64,", base64encode("../img/page-loading.gif")),
                 index,
                 fixed = TRUE)
 
-  # Embed script folder content
+  # Embed all javascript files in scripts folder
   scripts <-  list.files("../scripts", pattern = "*.js")
-  
   for (script in scripts) {
     
     index <- gsub(paste0('<script src = "scripts/', script, '"></script>'),
@@ -56,9 +51,8 @@ suppressWarnings({
                   fixed = TRUE)
   }
   
-  # Embed svgs
+  # Embed all svg files in img folder
   SVGs <- list.files("../img", pattern = "*.svg")
-  
   for (svg in SVGs) {
     
     index <- gsub(paste0("img/", svg),
@@ -71,6 +65,7 @@ suppressWarnings({
     
   }
   
+  # Write out new html file
   writeLines(index, paste0(uploadDir, "index.html"))
   
 })
