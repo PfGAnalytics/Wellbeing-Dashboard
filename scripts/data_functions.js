@@ -556,10 +556,12 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
 
    
    change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
+
+   console.log(matrix, current_ci, change_from_baseline)
   
    if (current_year == base) {
       base_statement = "The data for " + base + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
-   } else if ((change_from_baseline > current_ci & improvement == "increase") || (change_from_baseline < (current_ci * -1) & improvement == "decrease")) {
+   } else if ((change_from_baseline >= current_ci & improvement == "increase") || (change_from_baseline <= (current_ci * -1) & improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
    } else if ((change_from_baseline <= (current_ci * -1) & improvement == "increase") || (change_from_baseline >= current_ci & improvement == "decrease")) {
       base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;

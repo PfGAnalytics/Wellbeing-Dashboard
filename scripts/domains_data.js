@@ -96,7 +96,7 @@ var domains_data = {
             base_year: "2019",
             source: "Low Carbon and Renewable Energy Economy Survey (ONS)",
             source_link: "https://www.ons.gov.uk/economy/environmentalaccounts",
-            ci: 0,
+            ci: 2000,
             chart_title: "Full Time Equivalent (FTE) employment in the low carbon and renewable energy economy",
             y_axis_label: "FTE employment",
             data: {
@@ -405,7 +405,7 @@ var domains_data = {
             base_year: "2019/20",
             source: "Qualifications and Destinations of Northern Ireland School Leavers report",
             source_link: "https://www.education-ni.gov.uk/articles/school-leavers",
-            ci: 1,
+            ci: 4,
             chart_title: "Gap between percentage of non-free school meal entitlement (non-FSME) school leavers and percentage of FSME school leavers achieving at level 2 or above including English and Maths",
             y_axis_label: "%",
             data: {
