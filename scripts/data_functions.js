@@ -609,7 +609,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    further_info_div = document.createElement("div");
    further_info_div.id = matrix + "-further-info";
    further_info_div.classList = "further-info-text";
-   further_info_div.style.display = "none";
+   // further_info_div.style.display = "none";
    further_info_div.innerHTML = further_note;
 
    links = further_info_div.getElementsByTagName("a");

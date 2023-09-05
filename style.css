@@ -627,6 +627,16 @@ footer a:hover {
    cursor: pointer 
 }
 
+.further-info-text, #further-info-map {
+    max-height: 0px;
+    -webkit-transition: max-height 1s; 
+    -moz-transition: max-height 1s; 
+    -ms-transition: max-height 1s; 
+    -o-transition: max-height 1s; 
+    transition: max-height 1s;  
+    overflow: hidden;
+}
+
 .separator {
     width: 100%;
     height: 5px;

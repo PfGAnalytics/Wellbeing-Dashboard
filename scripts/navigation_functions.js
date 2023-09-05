@@ -54,7 +54,7 @@ for (let i = 0; i < top_menu_items.length; i++) {
         var further_expander = document.getElementById("further-expander");
 
         for (let i = 0; i < further_infos.length; i++) {
-            further_infos[i].style.display = "none";
+            further_infos[i].removeAttribute("style");
             further_infos[i].classList.remove("further-selected");
             further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
             further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
@@ -596,7 +596,7 @@ breadcrumb_1.onclick = function() {
     var further_expander = document.getElementById("further-expander");
 
     for (let i = 0; i < further_infos.length; i++) {
-        further_infos[i].style.display = "none";
+        further_infos[i].removeAttribute("style");
         further_infos[i].classList.remove("further-selected");
         further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
         further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
@@ -622,7 +622,7 @@ breadcrumb_2.onclick = function() {
     var further_expander = document.getElementById("further-expander");
 
     for (let i = 0; i < further_infos.length; i++) {
-        further_infos[i].style.display = "none";
+        further_infos[i].removeAttribute("style");
         further_infos[i].classList.remove("further-selected");
         further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
         further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
@@ -695,6 +695,11 @@ function updateMapSelect2() {
 
 function updateMapSelect3() {
 
+    further_info_map.removeAttribute("style");
+    further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
+    further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
+    further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+
     var indicator = domains_data[map_select_1.value].indicators[map_select_2.value];
     var data = indicator.data;
 
@@ -751,12 +756,7 @@ function updateMapSelect3() {
     source_info_map.innerHTML = "This indicator is collected from the <a href='" + indicator.source_link + "' target='_blank'>" + indicator.source + "</a>.";
 
     var ind_important_map = document.getElementById("ind-important-map");
-    ind_important_map.innerHTML = indicator.importance;
-
-    further_info_map.style.display = "none";
-        further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
-        further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
-        further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+    ind_important_map.innerHTML = indicator.importance;    
 
 }
 
@@ -779,7 +779,7 @@ map_select_3.onchange = function() {
     drawMap(matrix = map_select_3.value,
         improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement);
 
-    further_info_map.style.display = "none";
+    further_info_map.removeAttribute("style");
     further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
     further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
     further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
@@ -849,16 +849,18 @@ var further_expander = document.getElementById("further-expander");
 further_expander.onclick = function() {
    info_div = document.getElementsByClassName("further-selected")[0];
 
-   if (info_div.style.display == "none") {
-      info_div.style.display = "block";
+   if (info_div.clientHeight == 0) {
+      info_div.style.maxHeight = "5000px";
       further_expander.getElementsByTagName("span")[0].textContent = "Click to hide";
       further_expander.getElementsByTagName("i")[0].classList.remove("fa-plus");
       further_expander.getElementsByTagName("i")[0].classList.add("fa-minus");
    } else {
-      info_div.style.display = "none";
-      further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-      further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-      further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
+      info_div.removeAttribute("style");
+      setTimeout(function() {
+        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
+        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
+        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
+      }, 800)
    }
 }
 
@@ -866,16 +868,18 @@ further_expander.onclick = function() {
 
 further_expander_map.onclick = function() {
 
-    if (further_info_map.style.display == "none") {
-        further_info_map.style.display = "block";
+    if (further_info_map.clientHeight == 0) {
+        further_info_map.style.maxHeight = "5000px";
         further_expander_map.getElementsByTagName("span")[0].textContent = "Click to hide";
         further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-plus");
         further_expander_map.getElementsByTagName("i")[0].classList.add("fa-minus");
     } else {
-        further_info_map.style.display = "none";
-        further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
-        further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
-        further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+        further_info_map.removeAttribute("style");
+        setTimeout(function() {
+            further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
+            further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
+            further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+        }, 800)
     }
     
 }
