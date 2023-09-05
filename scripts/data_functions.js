@@ -553,11 +553,8 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
 
    // Statement to output based on performance of indicator
    var current_ci = ci_value * years_cumulated;
-
    
    change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
-
-   console.log(matrix, current_ci, change_from_baseline)
   
    if (current_year == base) {
       base_statement = "The data for " + base + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."

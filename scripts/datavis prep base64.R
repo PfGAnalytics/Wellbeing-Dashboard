@@ -9,7 +9,7 @@ local({
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
 
-p_load("magrittr", "base64enc")
+p_load("magrittr", "base64enc", "httpuv")
 
 # Folder to store uploads in
 uploadDir <- "../dashboard-to-upload/"
@@ -25,34 +25,27 @@ if (file.exists(zipName)) {
 
 dir.create(uploadDir)
 
-# Copy main html and css
+# Copy main html
 file.copy("../index.html", uploadDir)
-file.copy("../style.css", uploadDir)
-
-# Copy img folder contents
-images <- list.files("../img") %>%
-  .[. != "Northern_Ireland_Executive_logo.svg"]
-
-for (filename in images) {
-  file.copy(paste0("../img/", filename), uploadDir)
-}
 
 
 suppressWarnings({
+
+  index <- readLines(paste0(uploadDir, "index.html"))
   
-  ni_exec_logo <- readLines("../img/Northern_Ireland_Executive_logo.svg")
-  ni_exec_logo <- ni_exec_logo[which(ni_exec_logo == "<svg"): length(ni_exec_logo)]
-  ni_exec_logo[which(ni_exec_logo == "<svg")] <- '<svg id = "top-menu-exec-logo"'
-  ni_exec_logo <- paste(ni_exec_logo, collapse = " ")
+  # Embed css
+  index <- gsub("style.css",
+                paste0("data:text/css;base64,", base64encode("../style.css")),
+                index,
+                fixed = TRUE)
   
-  # Rewrite html folder paths in index.html
-  index <- readLines(paste0(uploadDir, "index.html")) %>%
-     gsub("img/", "", ., fixed = TRUE) %>%
-    gsub('<img id = "top-menu-exec-logo" src = "Northern_Ireland_Executive_logo.svg">',
-         ni_exec_logo,
-         ., fixed = TRUE)
-  
-  # Move scripts folder content
+  # Embed gif
+  index <- gsub("img/page-loading.gif",
+                paste0("data:image/gif;base64,", base64encode("../img/page-loading.gif")),
+                index,
+                fixed = TRUE)
+
+  # Embed script folder content
   scripts <-  list.files("../scripts", pattern = "*.js")
   
   for (script in scripts) {
@@ -63,13 +56,21 @@ suppressWarnings({
                   fixed = TRUE)
   }
   
+  # Embed svgs
+  SVGs <- list.files("../img", pattern = "*.svg")
+  
+  for (svg in SVGs) {
+    
+    index <- gsub(paste0("img/", svg),
+                  paste0("data:image/svg+xml,",
+                         readLines(paste0("../img/", svg)) %>%
+                           paste(collapse = " ") %>%
+                           encodeURIComponent()),
+                  index,
+                  fixed = TRUE)
+    
+  }
   
   writeLines(index, paste0(uploadDir, "index.html"))
   
 })
-
-# Add to zip file
-project_root <- getwd()
-setwd(uploadDir)
-zip(zipfile = zipName, files = dir(getwd()))
-setwd(project_root)
