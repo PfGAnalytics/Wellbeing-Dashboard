@@ -176,13 +176,13 @@ for (let i = 0; i < hexagons.length - 1; i++) {
             }
 
             if (base_text.includes("worsened")) {
-                hex.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+                hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';
                 hex.classList.add("negative");
             } else if (base_text.includes("improved")) {
-                hex.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+                hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';
                 hex.classList.add("positive");
             } else {
-                hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+                hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';
             }
 
             hex_container.classList.add("ind-hex-container");
@@ -490,12 +490,12 @@ setTimeout(function () {
             hex_container.appendChild(hex_label);
     
             if (change_type == "improving") {
-                hex.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+                hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';
                 hex.classList.add("positive");
             } else if (change_type == "no_change") {
-                hex.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+                hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';
             } else if (change_type == "worsening") {
-                hex.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+                hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';
                 hex.classList.add("negative");
             }
 
