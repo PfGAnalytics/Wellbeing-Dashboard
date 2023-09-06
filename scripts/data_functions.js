@@ -905,4 +905,3 @@ async function drawMap(matrix, improvement, title) {
   map_load.style.display = "none";
 
 }
-

@@ -836,12 +836,15 @@ function sizeForMobile() {
     var white_box = document.getElementsByClassName("white-box");
     var top_container = document.getElementById("top-container");
     var dashboard_title = document.getElementById("dashboard-title");
-    var top_menu_exec_logo = document.getElementById("")
+    var nisra_logo_container = document.getElementById("nisra-logo-container");
+    var footer_container = document.getElementById("footer-container");
 
     var map_form = document.getElementById("map-form");
     var map_label_2 = document.getElementById("map-label-2");
     var map_label_3 = document.getElementById("map-label-3");
-    var breaks = map_form.getElementsByTagName('br');    
+    var breaks = map_form.getElementsByTagName('br');
+
+    nisra_logo_container.style.width = footer_container.clientWidth - 565 + "px"
 
     // screen is less than 1200px wide
     if (window.innerWidth < 1200) {
@@ -857,6 +860,7 @@ function sizeForMobile() {
         top_menu_items_div.style.marginTop= "10px";
         top_menu_items_div.style.width = "100%";
         dashboard_title.style.width = (top_container.clientWidth - 300) + "px";
+        
 
         for (let i = 0; i < top_menu_items.length; i++) {
             top_menu_items[i].style.fontSize = "18pt";
@@ -933,8 +937,6 @@ further_expander.onclick = function() {
       }, 800)
    }
 }
-
-
 
 further_expander_map.onclick = function() {
 

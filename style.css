@@ -73,37 +73,8 @@ h1 {
     align-items: center;
 }
 
-#nisra-logo {
-    height: 100px;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin-bottom: 2vh;
-    margin-right: 2vh;
-}
-
 #footer-nisra-logo {
-    height: 100px;
-    margin: 0 10px;
-	padding: 5px 5px;
-	margin-right: -50px;
-	float:right;
-	cursor: pointer;
-    filter: brightness(0) invert(1);
-}
-
-#fb-icon {
-    margin: 0 5px;
-    filter: brightness(0) invert(1);
-}
-
-#twitter-icon {
-    margin: 0 5px;
-    filter: brightness(0) invert(1);
-}
-
-#youtube-icon {
-    margin: 0 5px;
+    width: 200px;
     filter: brightness(0) invert(1);
 }
 
@@ -122,8 +93,6 @@ h2 {
 #main-container {
     width: 1200px;
 }
-
-
 
 #domains-grid-container {
     width: 700px;
@@ -514,6 +483,20 @@ footer {
     color: #ffffff;
     background-color: #008675;
     margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+#footer-container {
+    width: 1200px;
+}
+
+#nisra-logo-container {
+    height: 210px;
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 1200px;
 }
 
 #line-chart-container {
@@ -660,11 +643,11 @@ footer a:hover {
 }
 
 .separator {
-    width: 100%;
+    width: 96%;
     height: 5px;
     background-color: #142062;
     margin-top: 20px;
     border-radius: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
