@@ -4,26 +4,45 @@ body {
     background-color: #fafafa;
 }
 
-#top-menu {
+#top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #008675;
+    width: 100%
+}
+
+#top-menu {
     padding: 0px;
-    width: 100%;
+    width: 1200px;
     margin: 0px;
     align-items: center;
+    justify-content: center;
 }
 
 #top-menu-exec-logo {
-    padding-left: 25px;
-    width: 25%;
-    height: 75px;
+    width: 300px;
+    padding-left: 15px;
+    padding-top: 10px;
+    margin-bottom: 10px;
     filter: brightness(0) invert(1);
+}
+
+#dashboard-title {
+    width: 400px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#top-menu-items {
+    width: 500px;
+    justify-content: center;
 }
 
 h1 {
     font-weight: bold;
     color: white;
-    padding-left: 20px;
-    width: 25%;
 }
 
 .top-menu-item {
@@ -34,7 +53,6 @@ h1 {
     font-size: 14pt;
     cursor: pointer;
     border-radius: 25px;
-    height: 45px;
 }
 
 .top-menu-item:hover {
@@ -227,6 +245,8 @@ h2 {
     text-align: center;
     margin-top: 10px;
     width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .shake-hex:hover {
@@ -279,9 +299,9 @@ h2 {
 .ind-hex-label {
     position: absolute;
     color: #ffffff;
-    font-size: 12pt;
+    font-size: 13pt;
     line-height: 1em;
-    padding: 10px;
+    padding: 5%;
     font-weight: bold;
 }
 
@@ -337,6 +357,7 @@ h2 {
     width: 150px;
     display: flex;
     align-items: center;
+    padding-left: 15px;
 }
 
 .overall-container {
@@ -373,6 +394,7 @@ iframe {
 }
 
 #breadcrumbs {
+    padding-left: 15px;
     margin-bottom: 10px;
     width: 100%;
 }
@@ -643,6 +665,6 @@ footer a:hover {
     background-color: #142062;
     margin-top: 20px;
     border-radius: 5px;
-    margin-left: 15px;
-    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }

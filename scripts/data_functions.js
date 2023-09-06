@@ -751,7 +751,7 @@ async function drawMap(matrix, improvement, title) {
   map_div = document.createElement("div");
   map_div.id = matrix + "-map";
   map_div.classList.add("map");
-  map_container.appendChild(map_div); 
+  map_container.appendChild(map_div);
 
   // Create a map
   var map = L.map(matrix + "-map",

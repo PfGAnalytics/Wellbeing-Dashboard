@@ -62,6 +62,10 @@ for (let i = 0; i < top_menu_items.length; i++) {
             further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
         }
 
+        plotOverallHexes("improving");
+        plotOverallHexes("no_change");
+        plotOverallHexes("worsening");
+
     }    
 
 }
@@ -332,6 +336,11 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
         }
 
+        // Position of key
+        num_rows = indicator_hexes.childElementCount;
+        var key = document.getElementById("key");
+        key.style.marginTop = (400 - indicator_hexes.clientHeight) + "px";
+
     }
 
 }
@@ -425,28 +434,43 @@ setTimeout(function () {
         return sorted;
     }
 
+
     improving_indicator = sortObject(improving_indicator);
     worsening_indicator = sortObject(worsening_indicator);
     no_change_indicator = sortObject(no_change_indicator);
 
     plotOverallHexes = function(change_type) {
+        
+        gridWidth = document.getElementById("overall-scrn").clientWidth;
 
-        for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {
+        if (Math.floor((gridWidth - 90) / 150) > 6) {
+            h = 6
+        } else {
+            h = Math.floor((gridWidth - 90) / 150);
+        }
 
-            className = change_type.replace("_", "-");
+        className = change_type.replace("_", "-");
+        
+        while (document.getElementById(className + "-hexes").firstChild) {
+            document.getElementById(className + "-hexes").removeChild(document.getElementById(className + "-hexes").firstChild)
+        }
 
-            if (i % 6 == 0) {
+        for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {            
+
+            if (i % h == 0) {
                 var hex_row = document.createElement("div");
                 hex_row.classList.add("row");
                 hex_row.classList.add(className + "-hex-row");
                 document.getElementById(className + "-hexes").appendChild(hex_row);
+            }            
+    
+            if (i % (h * 2) == h) {
+                hex_row.style.marginLeft = "90px";
+            } else if (i % (h * 2) == 0) {
+                hex_row.style.marginLeft = "15px";
             }
     
-            if (i % 12 == 6) {
-                hex_row.style.marginLeft = "75px"
-            }
-    
-            if (i >= 6) {
+            if (i >= h) {
                 hex_row.style.marginTop = "-25px";
             }
     
@@ -457,6 +481,7 @@ setTimeout(function () {
             var label_text = document.createTextNode(Object.keys(eval(change_type + "_indicator"))[i]);
     
             hex_container.classList.add("ind-hex-container");
+
             hex.classList.add("ind-hex");            
             hex_label.classList.add("ind-hex-label");
     
@@ -604,6 +629,10 @@ breadcrumb_1.onclick = function() {
         further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
     }
 
+    plotOverallHexes("improving");
+    plotOverallHexes("no_change");
+    plotOverallHexes("worsening");
+
 }
 
 // Click on breadcrumb 2
@@ -649,12 +678,15 @@ window.onload = function() {
     sizeForMobile(); 
     mainContainerHeight();
     updateMapSelect2();
-    updateMapSelect3();
+    updateMapSelect3();    
 };
 
 window.onresize = function() {
     sizeForMobile();
-    mainContainerHeight();    
+    mainContainerHeight();
+    plotOverallHexes("improving");
+    plotOverallHexes("no_change");
+    plotOverallHexes("worsening");
 }
 
 // Map select
@@ -789,21 +821,31 @@ map_select_3.onchange = function() {
     further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
 }
 
+
+
 // Resizing for mobile
 function sizeForMobile() {
     
+    // Elements to variables
     var main_container = document.getElementById("main-container");
     var line_chart_container = document.getElementById("line-chart-container");
     var click_to_see = document.getElementById("click-to-see");
     var domains_grid_container = document.getElementById("domains-grid-container");
     var map_container = document.getElementById("map-container");
+    var top_menu_items_div = document.getElementById("top-menu-items");
+    var white_box = document.getElementsByClassName("white-box");
+    var top_container = document.getElementById("top-container");
+    var dashboard_title = document.getElementById("dashboard-title");
+    var top_menu_exec_logo = document.getElementById("")
 
     var map_form = document.getElementById("map-form");
     var map_label_2 = document.getElementById("map-label-2");
     var map_label_3 = document.getElementById("map-label-3");
     var breaks = map_form.getElementsByTagName('br');    
 
+    // screen is less than 1200px wide
     if (window.innerWidth < 1200) {
+
         main_container.style.width = window.innerWidth + "px";
         line_chart_container.style.width = (window.innerWidth - 40) + "px";
         line_chart_container.style.marginLeft = "20px";
@@ -811,6 +853,18 @@ function sizeForMobile() {
         click_to_see.style.width = "100%";
         domains_grid_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
         map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
+        top_menu_items_div.style.marginBottom = "20px";
+        top_menu_items_div.style.marginTop= "10px";
+        top_menu_items_div.style.width = "100%";
+        dashboard_title.style.width = (top_container.clientWidth - 300) + "px";
+
+        for (let i = 0; i < top_menu_items.length; i++) {
+            top_menu_items[i].style.fontSize = "18pt";
+        }
+
+        for (let i = 0; i < white_box.length; i++) {
+            white_box[i].style.fontSize = "14pt";
+        }
         
         while (breaks[0]) {
             map_form.removeChild(breaks[0]);
@@ -820,11 +874,23 @@ function sizeForMobile() {
         map_form.insertBefore(document.createElement("br"), map_label_3);
         
     } else {
+
         main_container.removeAttribute("style");
         line_chart_container.removeAttribute("style");
         click_to_see.style.width = "100px";
         domains_grid_container.style.marginLeft = "250px";
         map_container.removeAttribute("style");
+        top_menu_items_div.removeAttribute("style");
+        dashboard_title.removeAttribute("style");
+
+        for (let i = 0; i < top_menu_items.length; i++) {
+            top_menu_items[i].removeAttribute("style");
+        }
+
+        for (let i = 0; i < white_box.length; i++) {
+            white_box[i].style.fontSize = "12pt";
+        }
+        
 
         while (breaks[0]) {
             map_form.removeChild(breaks[0]);
