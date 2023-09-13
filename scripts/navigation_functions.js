@@ -955,3 +955,19 @@ further_expander_map.onclick = function() {
     }
     
 }
+
+user_guide_link = document.getElementById("user-guide-link");
+
+user_guide_link.onclick = function() {
+
+    document.getElementById("domains-scrn").style.display = "none";
+    document.getElementById("help-scrn").style.display = "block";
+
+    document.getElementById("domains-btn").classList.remove("selected-item");
+    document.getElementById("domains-btn").firstChild.classList.remove("selected-icon");
+    document.getElementById("help-btn").classList.add("selected-item");
+
+    document.getElementById("breadcrumb-1").textContent = "Help";
+    
+
+}

@@ -93,6 +93,7 @@ h2 {
     width: 800px;
     margin-left: 200px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #domain-info-container {
@@ -288,6 +289,7 @@ h2 {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .key-hex {
@@ -652,4 +654,13 @@ footer a:hover {
     border-radius: 5px;
     padding-left: 2%;
     padding-right: 2%;
+}
+
+#user-guide-link {
+    color: #007bff;
+    cursor: pointer;
+}
+
+#user-guide-link:hover {
+    text-decoration: underline;
 }
