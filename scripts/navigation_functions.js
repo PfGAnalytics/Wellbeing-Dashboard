@@ -26,6 +26,8 @@ for (let i = 0; i < top_menu_items.length; i++) {
                     document.getElementById("domain-info-container").style.display = "none";
                     document.getElementById("domains-grid-container").style.display = "block";
                     document.getElementById("click-to-see").style.display = "block";
+                    document.getElementById("domains-intro").style.display = "block";
+                    document.getElementById("indicator-intro").style.display = "none";
                 }
 
                 // Updates highlighted item in menu and brings relevant screen to foreground
@@ -68,14 +70,16 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
 }
 
-var indicator_intros = document.getElementsByClassName("indicators-intro");
 
-for (let i = 0; i < indicator_intros.length; i++)  {
-    indicator_intros[i].innerHTML = "We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made."
-}
+
+var overall_intro = document.getElementById("overall-intro");
+overall_intro.innerHTML = "We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made."
+
 
 // Generate hex grid of domains
 var domains = Object.keys(domains_data);
+document.getElementById("domains-title").textContent = number_to_word(domains.length) + " Wellbeing Domains"
+
 var domains_grid_container = document.getElementById("domains-grid-container");
 
 for (let i = 0; i < domains.length; i++) {
@@ -119,10 +123,8 @@ var clicked_hex = document.getElementById("clicked-hex");
 var click_to_see = document.getElementById("click-to-see");
 var clicked_desc = document.getElementById("clicked-desc");
 var indicator_hexes = document.getElementById("indicator-hexes");
-var indicator_intro = document.getElementById("domains-scrn").getElementsByClassName("indicators-intro")[0];
-
-// Remove living peacefully
-
+var domains_intro = document.getElementById("domains-intro");
+var indicator_intro = document.getElementById("indicator-intro");
 
 for (let i = 0; i < hexagons.length - 1; i++) {
 
@@ -134,6 +136,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
         domain_info.style.display = "flex";
         domains_grid_container.style.display = "none";
         click_to_see.style.display = "none";
+        domains_intro.style.display = "none";
         indicator_intro.style.display = "block";
 
         var domain_name = hexagons[i].innerHTML;
@@ -611,6 +614,8 @@ breadcrumb_1.onclick = function() {
         document.getElementById("domain-info-container").style.display = "none";
         document.getElementById("domains-grid-container").style.display = "block";
         document.getElementById("click-to-see").style.display = "block";
+        document.getElementById("domains-intro").style.display = "block";
+        document.getElementById("indicator-intro").style.display = "none";
     } else if (text_content == "Overall") {
         document.getElementById("overall-scrn").style.display = "block";
         document.getElementById("indicator-scrn").style.display = "none";

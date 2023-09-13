@@ -49,13 +49,13 @@
         <div id = "main-container">
 
             <div id = "breadcrumbs" class = "row">
-                <div id = "breadcrumb-1" class = "b-crumb">Overall</div>
+                <div id = "breadcrumb-1" class = "b-crumb">Domains</div>
                 <div id = "breadcrumb-2" class = "b-crumb"></div>
                 <div id = "breadcrumb-3" class = "b-crumb"></div>
             </div>
 
             <div id = "overall-scrn" class = "screen" style = "display: none;">
-                <div class = "indicators-intro"></div>
+                <div id = "overall-intro" class = "intro"></div>
                 <div id = "loading-img">
                     <img src = "img/page-loading.gif">
                 </div>
@@ -78,8 +78,19 @@
             </div>
 
             <div id = "domains-scrn" class = "screen" style = "display:block;">
-                <h2 style="width: 100%; text-align: center;">Nine Wellbeing Domains</h2>
-                <div class = "indicators-intro"></div>
+                <h2 id = "domains-title" style="width: 100%; text-align: center;"></h2>
+                <div id = "domains-intro" class = "intro">
+                    <p>This dashboard uses the latest data to show how people in Northern Ireland are doing, as individuals, communities and as a society across ten domains of wellbeing.</p>
+                    <p>To measure this, we have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and the areas where progress still needs to be made.</p>
+                    <p>Analysing these indicators across different parts of our society can help us uncover any inequalities and focus on areas that need attention. Policy makers, service providers and researchers can use this information to tackle issues, inform their own research and guide decisions. With this clearer understanding, we can create positive changes that benefit everyone.</p>
+                    <p>For more detail on the methods, sources and methodology used in this dashboard, please read our User Guide.</p>
+                    <p>The data for this dashboard is hosted on the NISRA Data Portal.</p>
+                </div>
+                <div id = "indicator-intro" class = "intro">
+                    <p>This overview shows how well Northern Ireland is doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
+                    <p>For more detail on the methods, sources and methodology used in this dashboard, please read our User Guide.</p>
+                    <p>The data for this dashboard is hosted on the NISRA Data Portal.</p>    
+                </div>
                 <div class = "row">
                     <div id = "domains-grid-container" style= "display: block;"></div>
                     <div id = "click-to-see">Click on a domain to see the indicators</div>
@@ -155,9 +166,7 @@
                 </form>
                 <div id = "map-title"></div>
                 <div class = "row">
-                    <div id = "map-load">
-                        <img src = "img/page-loading.gif">
-                    </div>
+                    <div id = "map-load"><img src = "img/page-loading.gif"></div>
                     <div id = "map-container"></div>
                     <div id = "map-boxes" class = "box-container">
                         <div class = "grey-box">

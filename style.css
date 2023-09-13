@@ -210,12 +210,18 @@ h2 {
     text-align: left;
 }
 
-.indicators-intro {
+.intro {
     text-align: center;
     margin-top: 10px;
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
+    font-size: 12pt;
+    text-align: left;
+}
+
+#indicator-intro {
+    display: none;
 }
 
 .shake-hex:hover {
