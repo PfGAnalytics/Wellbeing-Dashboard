@@ -68,11 +68,6 @@ h1 {
     filter: brightness(0) saturate(100%) invert(12%) sepia(94%) saturate(1827%) hue-rotate(221deg) brightness(82%) contrast(101%);
 }
 
-.screen {
-    display: flex;
-    align-items: center;
-}
-
 #footer-nisra-logo {
     width: 200px;
     filter: brightness(0) invert(1);

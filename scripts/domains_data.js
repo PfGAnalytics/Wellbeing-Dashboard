@@ -8,8 +8,6 @@ var domains_data = {
             source: "Care Leavers Statistical publication",
             source_link: "https://www.health-ni.gov.uk/articles/care-leavers",
             ci: "1c",
-            chart_title: "Percentage of care leavers, aged 19, who were in education, training or employment",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "INDCHSCAA",
@@ -29,8 +27,6 @@ var domains_data = {
             source: "Health Inequalities publication",
             source_link: "https://www.health-ni.gov.uk/articles/health-inequalities-statistics",
             ci: 1,
-            chart_title: "Gap between percentage of babies found to be small for gestational age for those living in the most and least deprived areas",
-            y_axis_label: "Percentage points",
             data: {
                NI: "INDSFGANI",
                AA: "",
@@ -55,8 +51,6 @@ var domains_data = {
             source: "Northern Ireland environmental statistics report",
             source_link: "https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report",
             ci: 1,
-            chart_title: "Air Pollution",
-            y_axis_label: "Annual mean nitrogen dioxide concentration (μg/m³)",
             data: {
                NI: "INDAIRPOLNI",
                AA: "",
@@ -76,8 +70,6 @@ var domains_data = {
             source: "Northern Ireland greenhouse gas inventory",
             source_link: "https://www.daera-ni.gov.uk/articles/northern-ireland-greenhouse-gas-inventory",
             ci: "1c",
-            chart_title: "Greenhouse Gas Emissions",
-            y_axis_label: "MtCO₂e",
             data: {
                NI: "INDGREENHGNI",
                AA: "",
@@ -97,8 +89,6 @@ var domains_data = {
             source: "Low Carbon and Renewable Energy Economy Survey (ONS)",
             source_link: "https://www.ons.gov.uk/economy/environmentalaccounts",
             ci: 2000,
-            chart_title: "Full Time Equivalent (FTE) employment in the low carbon and renewable energy economy",
-            y_axis_label: "FTE employment",
             data: {
                NI: "INDLCREENI",
                AA: "",
@@ -118,8 +108,6 @@ var domains_data = {
             source: "Northern Ireland local authority collected municipal waste management statistics",
             source_link: "https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics",
             ci: "0.5c",
-            chart_title: "Recycled Waste",
-            y_axis_label: "% household waste that is reused, recycled or composted",
             data: {
                NI: "",
                AA: "",
@@ -139,8 +127,6 @@ var domains_data = {
             source: "Northern Ireland environmental statistics report",
             source_link: "https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report",
             ci: 0.01,
-            chart_title: "River Water Quality",
-            y_axis_label: "mg/l soluble reactive phosphorus (SRP)",
             data: {
                NI: "INDRIVERQNI", 
                AA: "",
@@ -165,8 +151,6 @@ var domains_data = {
             source: "NI Life and Times Survey",
             source_link: "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/good-relations",
             ci: 2.7,
-            chart_title: "Percentage of the population who believe their cultural identity is respected by society",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -186,8 +170,6 @@ var domains_data = {
             source: "Northern Ireland Poverty Bulletin",
             source_link: "https://www.communities-ni.gov.uk/topics/family-resources-survey",
             ci: 4,
-            chart_title: "Percentage of population living in absolute poverty before housing costs",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -207,8 +189,6 @@ var domains_data = {
             source: "Northern Ireland Poverty Bulletin",
             source_link: "https://www.communities-ni.gov.uk/topics/family-resources-survey",
             ci: 4,
-            chart_title: "Percentage of population living in relative poverty before housing costs",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -228,8 +208,6 @@ var domains_data = {
             source: "NI Life and Times Survey",
             source_link: "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/good-relations",
             ci: 2.2,
-            chart_title: "Percentage who feel respected",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -254,8 +232,6 @@ var domains_data = {
             source: "Life Expectancy in NI publication",
             source_link: "https://www.health-ni.gov.uk/articles/life-expectancy-northern-ireland",
             ci: 1.5,
-            chart_title: "Healthy life expectancy at birth for females",
-            y_axis_label: "Years",
             data: {
                NI: "",
                AA: "",
@@ -275,8 +251,6 @@ var domains_data = {
             source: "Life Expectancy in NI publication",
             source_link: "https://www.health-ni.gov.uk/articles/life-expectancy-northern-ireland",
             ci: 1.5,
-            chart_title: "Healthy life expectancy at birth for males",
-            y_axis_label: "Years",
             data: {
                NI: "",
                AA: "",
@@ -296,8 +270,6 @@ var domains_data = {
             source: "Health Survey Northern Ireland publication",
             source_link: "https://www.health-ni.gov.uk/topics/health-survey-northern-ireland",
             ci: 2,
-            chart_title: "Percentage with general health questionnaire-12 (GHQ12) scores ≥4 (signifying possible mental health problem)",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -317,8 +289,6 @@ var domains_data = {
             source: "Health Inequalities publication",
             source_link: "https://www.health-ni.gov.uk/articles/health-inequalities-statistics",
             ci: 5,
-            chart_title: "Age standardised death rate for causes considered preventable",
-            y_axis_label: "Deaths per 100,000 population",
             data: {
                NI: "",
                AA: "INDPREVDTHAA",
@@ -338,8 +308,6 @@ var domains_data = {
             source: "Continuous Household Survey",
             source_link: "https://www.communities-ni.gov.uk/topics/statistics-and-research/sport-museums-and-libraries-statistics",
             ci: 2,
-            chart_title: "Percentage participating in sport and physical activity",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -364,8 +332,6 @@ var domains_data = {
             source: "Continuous Household Survey",
             source_link: "https://www.communities-ni.gov.uk/topics/statistics-and-research/sport-museums-and-libraries-statistics",
             ci: 2,
-            chart_title: "% engaging in arts/cultural activities in the past year",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -385,8 +351,6 @@ var domains_data = {
             source: "Continuous Household Survey",
             source_link: "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/wellbeing-northern-ireland",
             ci: 0.1,
-            chart_title: "Average life satisfaction score (from 0 to 10)",
-            y_axis_label: "Life satisfaction score",
             data: {
                NI: "",
                AA: "INDLIFESATAA",
@@ -406,8 +370,6 @@ var domains_data = {
             source: "Qualifications and Destinations of Northern Ireland School Leavers report",
             source_link: "https://www.education-ni.gov.uk/articles/school-leavers",
             ci: 4,
-            chart_title: "Gap between percentage of non-free school meal entitlement (non-FSME) school leavers and percentage of FSME school leavers achieving at level 2 or above including English and Maths",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "INDSLATTGAPAA",
@@ -427,8 +389,6 @@ var domains_data = {
             source: "Continuous Household Survey",
             source_link: "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/wellbeing-northern-ireland",
             ci: 2,
-            chart_title: "Percentage with low self-efficacy",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "INDSELFEFFAA",
@@ -453,8 +413,6 @@ var domains_data = {
             source: "Labour Force Survey",
             source_link: "https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey",
             ci: 1.6,
-            chart_title: "Percentage who are inactive for any reason other than being a student (aged 16 to 64)",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "INDECONINACTAA",
@@ -474,8 +432,6 @@ var domains_data = {
             source: "Labour Force Survey",
             source_link: "https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey",
             ci: 1.8,
-            chart_title: "Percentage in employment (aged 16 to 64)",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "INDEMPRATEAA",
@@ -495,8 +451,6 @@ var domains_data = {
             source: "Northern Ireland Economic Trade Statistics",
             source_link: "https://www.nisra.gov.uk/statistics/business-statistics/broad-economy-sales-and-exports-statistics",
             ci: 0.7,
-            chart_title: "Proportion of all survey-eligible businesses that sell outside Northern Ireland",
-            y_axis_label: "%",
             data: {
                NI: "INDEXSALENI",
                AA: "",
@@ -516,8 +470,6 @@ var domains_data = {
             source: "NI Higher Education Qualifications Bulletin",
             source_link: "https://www.economy-ni.gov.uk/articles/higher-education-enrolments",
             ci: 1,
-            chart_title: "Proportion of local graduates leaving NI Higher Education Institutions with degrees and post-graduate qualifications in Narrow STEM subjects",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "INDGRADSAA",
@@ -537,8 +489,6 @@ var domains_data = {
             source: "Anholt-Ipsos Nation Brands Survey",
             source_link: "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/nation-brands-index",
             ci: 1,
-            chart_title: "Northern Ireland's score on Nation Brands Index",
-            y_axis_label: "NBI score (out of 100)",
             data: {
                NI: "INDINTREPNI",
                AA: "",
@@ -558,8 +508,6 @@ var domains_data = {
             source: "NI Composite Economic Index statistical bulletin",
             source_link: "https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index",
             ci: 1,
-            chart_title: "Private sector NICEI",
-            y_axis_label: "Index (base 2013-100)",
             data: {
                NI: "INDNICEINI",
                AA: "",
@@ -579,8 +527,6 @@ var domains_data = {
             source: "Labour Force Survey",
             source_link: "https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey",
             ci: 1.7,
-            chart_title: "Proportion of the population aged 16 to 64 with qualifications at Level 2 and above",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -605,8 +551,6 @@ var domains_data = {
             source: "Safe Community Survey",
             source_link: "https://www.justice-ni.gov.uk/topics/statistics-and-research/northern-ireland-safe-community-survey",
             ci: 1,
-            chart_title: "Households / adults victims of crime once or more (%)",
-            y_axis_label: "% households / adults victimised",
             data: {
                NI: "",
                AA: "INDCRIMEAA",
@@ -626,8 +570,6 @@ var domains_data = {
             source: "Adult and Youth Reoffending statistics in Northern Ireland report",
             source_link: "https://www.justice-ni.gov.uk/topics/statistics-and-research/reoffending-statistics",
             ci: "0.5c",
-            chart_title: "Reoffending rate",
-            y_axis_label: "One-year proven reoffending rate (%)",
             data: {
                NI: "",
                AA: "",
@@ -652,8 +594,6 @@ var domains_data = {
             source: "annual survey of domiciliary care provision",
             source_link: "https://www.health-ni.gov.uk/articles/domiciliary-care",
             ci: 1,
-            chart_title: "Number of adults receiving social care at home or self-directed support for social care services, as a percentage of the total number of adults needing care",
-            y_axis_label: "%",
             data: {
                NI: "INDADSCNI",
                AA: "",
@@ -673,8 +613,6 @@ var domains_data = {
             source: "Continuous Household Survey",
             source_link: "https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/wellbeing-northern-ireland",
             ci: 1.96,
-            chart_title: "Percentage who were lonely 'often/always' or 'some of the time'",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "INDLONEAA",
@@ -694,8 +632,6 @@ var domains_data = {
             source: "Continuous Household Survey",
             source_link: "https://www.communities-ni.gov.uk/topics/sport-museums-and-libraries-statistics",
             ci: 2,
-            chart_title: "% volunteering",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -720,8 +656,6 @@ var domains_data = {
             source: "Northern Ireland Housing Bulletin",
             source_link: "https://www.communities-ni.gov.uk/topics/housing-statistics",
             ci: 0,
-            chart_title: "Number of households who are homeless",
-            y_axis_label: "Number of households",
             data: {
                NI: "",
                AA: "INDHOMELNAA",
@@ -741,8 +675,6 @@ var domains_data = {
             source: "Family Resources Survey",
             source_link: "https://www.communities-ni.gov.uk/topics/family-resources-survey",
             ci: 3,
-            chart_title: "Proportion of households spending 30% or more of household income on housing costs",
-            y_axis_label: "%",
             data: {
                NI: "",
                AA: "",
@@ -762,8 +694,6 @@ var domains_data = {
             source: "Northern Ireland Housing Statistics",
             source_link: "https://www.communities-ni.gov.uk/topics/housing-statistics",
             ci: 0,
-            chart_title: "Number of Households in Housing Stress",
-            y_axis_label: "Number of Applicants",
             data: {
                NI: "",
                AA: "",

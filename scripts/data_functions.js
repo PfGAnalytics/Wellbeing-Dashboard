@@ -13,13 +13,16 @@ async function createLineChart(indicator) {
 
    if (indicator.data.NI != "") {
       var matrix = indicator.data.NI;
-      var id = matrix.slice(0, -2) + "-line";
+      var statistic = matrix.slice(0, -2);
+      var id = statistic + "-line";
    } else if (indicator.data.EQ != "") {
       var matrix = indicator.data.EQ;
-      var id = matrix.slice(0, -2) + "-line";
+      var statistic = matrix.slice(0, -2);
+      var id = statistic + "-line";
    } else {
       var matrix = indicator.data.LGD;
-      var id = matrix.slice(0, -3) + "-line";
+      var statistic = matrix.slice(0, -3);
+      var id = statistic + "-line";
    }
 
    // URL to fetch data from Pre-production data portal
@@ -83,6 +86,13 @@ async function createLineChart(indicator) {
 
    }
 
+   // Pull chart title and y axis label from metadata
+   chart_title = dimension.STATISTIC.category.label[statistic];
+   y_axis_label = dimension.STATISTIC.category.unit[statistic].label;
+
+   chart_title = chart_title.replace("?g/m3", "μg/m³");
+   chart_title = chart_title.replace("MTCO2e", "MtCO₂e");
+
    // The following calculations set the ideal heights for the y axis as well as the green and red boxes
    var max_data = Math.max(...data_series);
    var max_value = Math.max(base_value * 2, max_data);
@@ -105,19 +115,19 @@ async function createLineChart(indicator) {
       max_value = Math.round(max_value / 10000) * 10000;
    }
 
-   if ((indicator.y_axis_label.includes("%") || indicator.y_axis_label.includes("out of 100")) & max_value > 100 || indicator.chart_title.includes("respected")) {
+   if ((y_axis_label.includes("%") || y_axis_label.includes("out of 100")) & max_value > 100 || chart_title.includes("respected")) {
       max_value = 100;
    }
 
-   if (indicator.chart_title.includes("life expectancy")) {
+   if (chart_title.includes("life expectancy")) {
       max_value = 80;
    }
 
-   if (indicator.chart_title.includes("from 0 to 10")) {
+   if (chart_title.includes("from 0 to 10")) {
       max_value = 10;
    }
 
-   if (indicator.chart_title.includes("Housing Stress")) {
+   if (chart_title.includes("housing stress")) {
       max_value = 40000;
    }
 
@@ -520,9 +530,9 @@ async function createLineChart(indicator) {
    chart_div.classList.add("line-chart");
 
    // Create a div to place chart title in
-   chart_title = document.createElement("div");
-   chart_title.classList.add("chart-title");
-   chart_title.innerHTML = indicator.chart_title;
+   chart_title_div = document.createElement("div");
+   chart_title_div.classList.add("chart-title");
+   chart_title_div.innerHTML = chart_title;
 
    // Create a div row so y axis label and chart sit side by side
    canvas_row = document.createElement("div");
@@ -531,7 +541,7 @@ async function createLineChart(indicator) {
    // Create a div for the y axis label
    y_label_div = document.createElement("div");
    y_label_div.classList.add("y-label");
-   y_label_div.innerHTML = indicator.y_axis_label;
+   y_label_div.innerHTML = y_axis_label;
    canvas_row.appendChild(y_label_div);
 
    // Create a div for chart canvas to sit in
@@ -550,7 +560,7 @@ async function createLineChart(indicator) {
    date_div.innerHTML = updated_note;
 
    // Place all divs in chart_div and place chart_div in document
-   chart_div.appendChild(chart_title);
+   chart_div.appendChild(chart_title_div);
    chart_div.appendChild(canvas_row);
    chart_div.appendChild(date_div);
    document.getElementById("line-chart-container").appendChild(chart_div);
@@ -676,7 +686,7 @@ async function drawMap() {
   // Fetch data and store in object fetched_data
   const response = await fetch(api_url);
   const fetched_data = await response.json();
-  const {value, dimension, updated} = fetched_data;
+  const {value, dimension, updated, note} = fetched_data;
 
   var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label; // The unit of measurement according to the metadata
 
@@ -819,11 +829,38 @@ async function drawMap() {
        base_id = EQ_id;
    }
 
-   further_id = base_id.replace("base-statement", "further-info");
+   // Create further info div
+   var further_note = note[0];
+
+   if (further_note.indexOf("Further information") != -1) {
+      var further_string = "Further information";
+   } else if (further_note.indexOf("Further Information") != -1) {
+      var further_string = "Further Information";
+   } else if (further_note.indexOf("Notes:") != -1) {
+      var further_string = "Notes:";
+   } else {
+      further_note = "Not available";
+   }
+
+   if (further_note != "Not available") {
+      further_note = further_note.slice(further_note.indexOf(further_string) + further_string.length);
+      further_note = further_note.slice(further_note.indexOf("[/b]") + 4);
+      if (further_note.indexOf("[b]") != -1) {
+         further_note = further_note.slice(0, further_note.indexOf("[b]"))
+      }
+      further_note = further_note.replaceAll("[url=", "<a href = '");
+      further_note = further_note.replaceAll("[/url]", "' target = '_blank'>here</a>.");
+      further_note = further_note.replaceAll("[i]", "<em>");
+      further_note = further_note.replaceAll("[/i]", "</em>");
+   }
+
+   for (let i = 2; i < 10; i++) {
+      further_note = further_note.replaceAll("\n" + i + ".", "<br><br>" + i + ".")
+   }
 
    // Write content to change info box
    change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
-   further_info_map.innerHTML = document.getElementById(further_id).innerHTML;
+   further_info_map.innerHTML = further_note;
 
    // Legend divs added to map
    legend_div = document.createElement("div");
@@ -869,8 +906,10 @@ async function drawMap() {
   update_div.innerHTML = updated_note;
   map_container.appendChild(update_div);
 
+  chart_title = Object.values(dimension.STATISTIC.category.label)[0];
+
   var map_title = document.getElementById("map-title");
-  map_title.innerHTML = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title + " (" + current_year + ")";
+  map_title.innerHTML = chart_title + " (" + current_year + ")";
 
   // Hide loading gif after map is generated
   map_load.style.display = "none";
