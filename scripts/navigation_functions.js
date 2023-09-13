@@ -456,6 +456,12 @@ setTimeout(function () {
     worsening_indicator = sortObject(worsening_indicator);
     no_change_indicator = sortObject(no_change_indicator);
 
+    num_indicators = Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length + Object.keys(no_change_indicator).length;
+    
+    document.getElementById("improving-label").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
+    document.getElementById("no-change-label").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
+    document.getElementById("worsening-label").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
+
     plotOverallHexes = function(change_type) {
         
         gridWidth = document.getElementById("overall-scrn").clientWidth;

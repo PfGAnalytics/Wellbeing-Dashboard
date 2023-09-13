@@ -600,7 +600,7 @@ var domains_data = {
             telling: {
                improved: "Homelessness is decreasing.",
                no_change: "Homelessness is the same.",
-               worsened: "Homeless is" 
+               worsened: "Homeless is increasing." 
             }
          },
          "Housing costs as a proportion of household income": {
