@@ -235,6 +235,38 @@ async function createLineChart(indicator) {
          })
       }
 
+   } else if (matrix == "INDRECWSTENI") {
+
+      // First plot the line as far as 2012/13
+      var data = {
+         labels: years,
+         datasets: [{
+            label: 'Northern Ireland',
+            data: data_series.slice(0, years.indexOf("2012/13") + 1),
+            borderColor: "#000000",
+            fill: false,
+            pointBackgroundColor: "#000000"
+         }]
+      }
+
+      var remaining_data = [];
+
+      for (let i = 0; i < data_series.length; i ++) {
+         if (i <= years.indexOf("2012/13")) {
+            remaining_data.push(null)
+         } else {
+            remaining_data.push(data_series[i])
+         }
+      }
+
+      data.datasets.push({
+         label: "Northern Ireland",
+         data: remaining_data,
+         borderColor: "#000000",
+         fill: false,
+         pointBackgroundColor: "#000000"
+      })
+
    } else {
       // Properties of the data series to be plotted for all other indicators
       var data = {
@@ -860,10 +892,12 @@ async function drawMap() {
        L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
        LGD_id = matrix + "-base-statement";
        EQ_id = matrix.slice(0, -3)  + "EQ-base-statement";
+       NI_id = matrix.slice(0, -3) + "NI-base-statement";
    } else {
        L.geoJSON(AA_map, {onEachFeature:enhanceLayer}).addTo(map);
        LGD_id = matrix.slice(0, -2) + "LGD-base-statement";
        EQ_id = matrix.slice(0, -2)  + "EQ-base-statement";
+       NI_id = matrix.slice(0, -2) + "NI-base-statement";
    }
    
    // Target change info
@@ -873,6 +907,8 @@ async function drawMap() {
    // Which change info div to copy text from
    if (document.getElementById(LGD_id)) {
        base_id = LGD_id;
+   } else if (document.getElementById(NI_id)) {
+       base_id = NI_id;
    } else {
        base_id = EQ_id;
    }
