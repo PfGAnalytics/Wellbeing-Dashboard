@@ -47,9 +47,7 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
         }
         
-        drawMap(matrix = map_select_3.value,
-                improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement,
-                title = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title);
+        drawMap();
 
         var further_infos = document.getElementsByClassName("further-info-text");
         var further_expander = document.getElementById("further-expander");
@@ -799,24 +797,18 @@ function updateMapSelect3() {
 map_select_1.onchange =  function() {
     updateMapSelect2();
     updateMapSelect3();
-    drawMap(matrix = map_select_3.value,
-            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement,
-            title = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title);
+    drawMap();
 }
 
 map_select_2.onchange = function() {
     updateMapSelect3();
-    drawMap(matrix = map_select_3.value,
-            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement,
-            title = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title);
+    drawMap();
 }
 
 
 map_select_3.onchange = function() {
 
-    drawMap(matrix = map_select_3.value,
-            improvement = domains_data[map_select_1.value].indicators[map_select_2.value].improvement,
-            title = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title);
+    drawMap();
 
     further_info_map.removeAttribute("style");
     further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";

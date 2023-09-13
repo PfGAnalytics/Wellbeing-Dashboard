@@ -651,7 +651,7 @@ for (let i = 0; i < domains.length; i ++) {
 
 }
 
-async function drawMap(matrix, improvement, title) {
+async function drawMap() {
 
    // Display the loading gif while this function runs
    var map_load = document.getElementById("map-load");
@@ -664,6 +664,8 @@ async function drawMap(matrix, improvement, title) {
    while (map_container.firstChild) {
        map_container.removeChild(map_container.firstChild);
    }
+
+   var matrix = map_select_3.value;
 
    // URL to query (pre-production)
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
@@ -740,7 +742,7 @@ async function drawMap(matrix, improvement, title) {
        }).addTo(map); // Add a background map
 
        // Colour palettes for increasing/decreasing indicators
-       if (improvement == "increase") {
+       if (domains_data[map_select_1.value].indicators[map_select_2.value].improvement == "increase") {
          var palette = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
        } else {
          var palette = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
@@ -868,7 +870,7 @@ async function drawMap(matrix, improvement, title) {
   map_container.appendChild(update_div);
 
   var map_title = document.getElementById("map-title");
-  map_title.innerHTML = title + " (" + current_year + ")";
+  map_title.innerHTML = domains_data[map_select_1.value].indicators[map_select_2.value].chart_title + " (" + current_year + ")";
 
   // Hide loading gif after map is generated
   map_load.style.display = "none";
