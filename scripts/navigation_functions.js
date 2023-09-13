@@ -82,7 +82,7 @@ var domains_grid_container = document.getElementById("domains-grid-container");
 
 for (let i = 0; i < domains.length; i++) {
 
-    if (i % 3 == 0) {
+    if (i == 0 || i == 3 || i == 7) {
         var hex_row = document.createElement("div");
         hex_row.classList.add("row");
         hex_row.classList.add("hex-row");
@@ -104,7 +104,7 @@ for (let i = 0; i < domains.length; i++) {
 var hex_rows = document.getElementsByClassName("hex-row");
 
 for (let i = 0; i < hex_rows.length; i++) {
-    if (i % 2 == 1) {
+    if (i % 2 == 0) {
         hex_rows[i].style.marginLeft = "100px";
     }
 
@@ -122,6 +122,9 @@ var click_to_see = document.getElementById("click-to-see");
 var clicked_desc = document.getElementById("clicked-desc");
 var indicator_hexes = document.getElementById("indicator-hexes");
 var indicator_intro = document.getElementById("domains-scrn").getElementsByClassName("indicators-intro")[0];
+
+// Remove living peacefully
+
 
 for (let i = 0; i < hexagons.length - 1; i++) {
 
@@ -854,7 +857,7 @@ function sizeForMobile() {
         line_chart_container.style.marginLeft = "20px";
         line_chart_container.style.marginRight = "20px";
         click_to_see.style.width = "100%";
-        domains_grid_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
+        domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";
         map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
         top_menu_items_div.style.marginBottom = "20px";
         top_menu_items_div.style.marginTop= "10px";
@@ -882,7 +885,7 @@ function sizeForMobile() {
         main_container.removeAttribute("style");
         line_chart_container.removeAttribute("style");
         click_to_see.style.width = "100px";
-        domains_grid_container.style.marginLeft = "250px";
+        domains_grid_container.style.marginLeft = "200px";
         map_container.removeAttribute("style");
         top_menu_items_div.removeAttribute("style");
         dashboard_title.removeAttribute("style");

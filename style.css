@@ -95,8 +95,8 @@ h2 {
 }
 
 #domains-grid-container {
-    width: 700px;
-    margin-left: 250px;
+    width: 800px;
+    margin-left: 200px;
     margin-top: 20px;
 }
 
@@ -239,6 +239,7 @@ h2 {
    display: flex;
    justify-content: center;
    align-items: center;
+   text-align: center;
    text-align: center;
    cursor: pointer;
 }

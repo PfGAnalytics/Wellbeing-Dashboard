@@ -778,5 +778,9 @@ var domains_data = {
             }
          }
        }
+    },
+    "Living Peacefully": {
+      description: "",
+      indicators: {}
     }
  };

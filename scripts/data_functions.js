@@ -9,7 +9,18 @@
  }
 
 // Function below uses the api to fetch the data and plots it in a line chart
-async function createLineChart(matrix, id, title, base, ci, improvement, y_label, telling) {
+async function createLineChart(indicator) {
+
+   if (indicator.data.NI != "") {
+      var matrix = indicator.data.NI;
+      var id = matrix.slice(0, -2) + "-line";
+   } else if (indicator.data.EQ != "") {
+      var matrix = indicator.data.EQ;
+      var id = matrix.slice(0, -2) + "-line";
+   } else {
+      var matrix = indicator.data.LGD;
+      var id = matrix.slice(0, -2) + "-line";
+   }
 
    // URL to fetch data from Pre-production data portal
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
@@ -24,7 +35,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    var years = Object.values(dimension)[1].category.index; // Array of years in data
    var num_years = years.length;  // Number of years in data
    
-   var base_position = years.indexOf(base); // Which position in the years array is base year
+   var base_position = years.indexOf(indicator.base_year); // Which position in the years array is base year
    var current_year = years[years.length-1]; // The current year
 
    var years_to_add = 2; // Number of blank data points after current year
@@ -94,19 +105,19 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
       max_value = Math.round(max_value / 10000) * 10000;
    }
 
-   if ((y_label.includes("%") || y_label.includes("out of 100")) & max_value > 100 || title.includes("respected")) {
+   if ((indicator.y_axis_label.includes("%") || indicator.y_axis_label.includes("out of 100")) & max_value > 100 || indicator.chart_title.includes("respected")) {
       max_value = 100;
    }
 
-   if (title.includes("life expectancy")) {
+   if (indicator.chart_title.includes("life expectancy")) {
       max_value = 80;
    }
 
-   if (title.includes("from 0 to 10")) {
+   if (indicator.chart_title.includes("from 0 to 10")) {
       max_value = 10;
    }
 
-   if (title.includes("Housing Stress")) {
+   if (indicator.chart_title.includes("Housing Stress")) {
       max_value = 40000;
    }
 
@@ -118,15 +129,15 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    }
 
    // When confidence interval is constant
-   if (!isNaN(ci)) {
-      var ci_value = ci;
+   if (!isNaN(indicator.ci)) {
+      var ci_value = indicator.ci;
       var years_cumulated = 1;
    } else { // When confidence interval changes year on year
-      var ci_value = Number(ci.slice(0, -1));
+      var ci_value = Number(indicator.ci.slice(0, -1));
       var years_cumulated = num_years - base_position - 1;
    }
 
-   if (improvement == "increase") {
+   if (indicator.improvement == "increase") {
       red_box_yMin = min_value;
       red_box_yMax = base_value - ci_value;
       green_box_yMin = base_value + ci_value;
@@ -229,7 +240,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          ctx.lineTo(chart.chartArea.right, endHeight);
          ctx.lineTo(startWidth, startHeight);
 
-         if (improvement == "increase") {
+         if (indicator.improvement == "increase") {
             ctx.fillStyle = "#00aa0055";
             ctx.strokeStyle = "#00aa00";
          } else {
@@ -271,7 +282,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
          ctx.lineTo(chart.chartArea.right, endHeight);
          ctx.lineTo(startWidth, startHeight);
 
-         if (improvement == "decrease") {
+         if (indicator.improvement == "decrease") {
             ctx.fillStyle = "#00aa0055";
             ctx.strokeStyle = "#00aa00";
          } else {
@@ -298,23 +309,23 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
 
       tooltipItems.forEach(function(tooltipItem) {
          if (tooltipItem.parsed.x >= base_position) {
-            if (!isNaN(ci)) {
-               if (improvement == "increase") {
-                  text = ["Improving value: > " + (Math.round((base_value + ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-                          "Worsening value: < " + (Math.round((base_value - ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
+            if (!isNaN(indicator.ci)) {
+               if (indicator.improvement == "increase") {
+                  text = ["Improving value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+                          "Worsening value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
                } else {
-                  text = ["Worsening value: > " + (Math.round((base_value + ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-                          "Improving value: < " + (Math.round((base_value - ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
+                  text = ["Worsening value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+                          "Improving value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
                }
             } else {
                if (tooltipItem.parsed.x == base_position) {
                   text = ""
-               } else if (improvement == "increase") {
-                  text = ["Improving value: > " + (Math.round((base_value + ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-                        "Worsening value: < " + (Math.round((base_value - ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
+               } else if (indicator.improvement == "increase") {
+                  text = ["Improving value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+                        "Worsening value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
                } else {
-                  text = ["Worsening value: > " + (Math.round((base_value + ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-                          "Improving value: < " + (Math.round((base_value - ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
+                  text = ["Worsening value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+                          "Improving value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
                }
             }
          } else {
@@ -511,7 +522,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    // Create a div to place chart title in
    chart_title = document.createElement("div");
    chart_title.classList.add("chart-title");
-   chart_title.innerHTML = title;
+   chart_title.innerHTML = indicator.chart_title;
 
    // Create a div row so y axis label and chart sit side by side
    canvas_row = document.createElement("div");
@@ -520,7 +531,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    // Create a div for the y axis label
    y_label_div = document.createElement("div");
    y_label_div.classList.add("y-label");
-   y_label_div.innerHTML = y_label;
+   y_label_div.innerHTML = indicator.y_axis_label;
    canvas_row.appendChild(y_label_div);
 
    // Create a div for chart canvas to sit in
@@ -545,7 +556,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    document.getElementById("line-chart-container").appendChild(chart_div);
 
    // Place chart in canvas
-   if (!isNaN(ci)) {
+   if (!isNaN(indicator.ci)) {
       new Chart(chart_canvas, config);
    } else {
       new Chart(chart_canvas, config_c);
@@ -556,14 +567,14 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    
    change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
   
-   if (current_year == base) {
-      base_statement = "The data for " + base + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
-   } else if ((change_from_baseline >= current_ci & improvement == "increase") || (change_from_baseline <= (current_ci * -1) & improvement == "decrease")) {
-      base_statement = "Things have improved since the baseline in " + base + ". " + telling.improved;
-   } else if ((change_from_baseline <= (current_ci * -1) & improvement == "increase") || (change_from_baseline >= current_ci & improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + base + ". " + telling.worsened;
+   if (current_year == indicator.base_year) {
+      base_statement = "The data for " + indicator.base_year + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
+   } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
+      base_statement = "Things have improved since the baseline in " + indicator.base_year + ". " + indicator.telling.improved;
+   } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
+      base_statement = "Things have worsened since the baseline in " + indicator.base_year + ". " + indicator.telling.worsened;
    } else {
-      base_statement = "There has been no significant change since the baseline in " + base + ". " + telling.no_change;
+      base_statement = "There has been no significant change since the baseline in " + indicator.base_year + ". " + indicator.telling.no_change;
    };
    
    // Create statement div
@@ -608,7 +619,7 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
    further_info_div = document.createElement("div");
    further_info_div.id = matrix + "-further-info";
    further_info_div.classList = "further-info-text";
-   // further_info_div.style.display = "none";
+   
    further_info_div.innerHTML = further_note;
 
    links = further_info_div.getElementsByTagName("a");
@@ -623,64 +634,26 @@ async function createLineChart(matrix, id, title, base, ci, improvement, y_label
 
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
 // Assign list of domains to variable "domains"
-var domains = Object.keys(domains_data);
+domains = Object.keys(domains_data);
 
-for (let i = 0; i < domains.length; i++) {
-    // Inside each domain we will return a list of "indicators"
-    var indicators = domains_data[domains[i]].indicators;
+// Loop through all domains
+for (let i = 0; i < domains.length; i ++) {
 
-    // Loop through each indicator
-    for (let j = 0; j < Object.keys(indicators).length; j++) {
+   // List of indicators
+   indicators = Object.keys(domains_data[domains[i]].indicators);
 
-        var indicator = Object.values(indicators)[j];
-        var data = indicator.data;
-
-        // Use NI data if available
-        if (data.NI != "") {
-
-            this_matrix = data.NI;
-            this_breakdown = "NI";
-            this_statistic = this_matrix.slice(0, -2);
-            
-         // Use EQ data if available
-        } else if (data.EQ != "" & !["INDHOMELNEQ"].includes(data.EQ)) { // not on data portal yet
-
-         this_matrix = data.EQ;
-         this_breakdown = "EQUALGROUPS";
-         this_statistic = this_matrix.slice(0, -2);
-
-        // Use LGD data if available
-        } else if (data.LGD != "" & !["INDGRADSLGD", "INDHOMELNLGD"].includes(data.LGD)) { // not on data portal yet
-
-            this_matrix = data.LGD;
-            this_breakdown = "LGD2014";
-            this_statistic = this_matrix.slice(0, -3);
-
-         // Do nothing if no data available
-        } else {
-            this_matrix = "";
-        }
-
-        if (this_matrix != "") {
-
-         // An id to be used for the canvas containing the chart
-         var this_id = this_statistic + "-line";         
-
-         // Plot line chart using createLineChart() function         
-         createLineChart(matrix = this_matrix,
-                         id = this_id,
-                         title = indicator.chart_title,
-                         base = indicator.base_year,
-                         ci = indicator.ci,
-                         improvement = indicator.improvement,
-                         y_label = indicator.y_axis_label,
-                         telling = indicator.telling);       
-
-        }          
-
-    }
+   // Loop through each indicator and run create line chart
+   for (let j = 0; j < indicators.length; j++) {
+      if (indicators[j] != "Homelessness") {
+         createLineChart(domains_data[domains[i]].indicators[indicators[j]])
+      }
+   }
 
 }
+
+
+
+// createLineChart(domains_data["Happier Children"].indicators["Children's social care"]);
 
 async function drawMap(matrix, improvement, title) {
 
