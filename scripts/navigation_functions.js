@@ -261,11 +261,6 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
                 }
 
-                // Output source
-                var source_info = "This indicator is collected from the <a href='" + domains_data[domain_name].indicators[indicator_name].source_link + "' target='_blank'>" + domains_data[domain_name].indicators[indicator_name].source + "</a>.";
-
-                document.getElementById("source-info").innerHTML = source_info;
-
                 // Output "More data" paragraph
                 var data_info = "You can view and download data ";
 
@@ -301,15 +296,19 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                 if (data.NI != "") {
                     base_id = data.NI + "-base-statement"
                     further_id = data.NI + "-further-info"
+                    source_id = data.NI + "-source-info"
                 } else if (data.EQ != "" & !["INDHOMELNEQ"].includes(data.EQ)) {
                     base_id = data.EQ + "-base-statement"
                     further_id = data.EQ + "-further-info"
+                    source_id = data.EQ + "-source-info"
                 } else if (data.LGD != "" & !["INDHOMELNLGD"].includes(data.LGD)) {
                     base_id = data.LGD + "-base-statement"
                     further_id = data.LGD + "-further-info"
+                    source_id = data.LGD + "-source-info"
                 } else {
                     base_id = ""
                     further_id = ""
+                    source_id = ""
                 }
 
                 var base_statements = document.getElementsByClassName("base-statement");
@@ -332,6 +331,18 @@ for (let i = 0; i < hexagons.length - 1; i++) {
                         document.getElementById(further_id).classList.add("further-selected");
                     } else {
                         further_infos[k].classList.remove("further-selected");
+                    }
+
+                }
+
+                var source_infos = document.getElementsByClassName("source-info-text");
+
+                for (let k = 0; k < source_infos.length; k++) {
+
+                    if (source_infos[k].id == source_id) {
+                        document.getElementById(source_id).style.display = "block";
+                    } else {
+                        source_infos[k].style.display = "none";
                     }
 
                 }
@@ -364,24 +375,26 @@ setTimeout(function () {
             
             data = Object.values(indicators)[j].data;
             importance = Object.values(indicators)[j].importance;
-            source = "This indicator is collected from the <a href='" + Object.values(indicators)[j].source_link + "' target='_blank'>" + Object.values(indicators)[j].source + "</a>.";
 
             if (data.NI != "") {
 
                 base_id = data.NI + "-base-statement";
                 further_id = data.NI + "-further-info";
+                source_id = data.NI + "-source-info";
                 chart_id = data.NI.slice(0, -2) + "-line";                              
 
             } else if (data.EQ != "" & !["INDHOMELNEQ"].includes(data.EQ)) {
 
                 base_id = data.EQ + "-base-statement";
                 further_id = data.EQ + "-further-info";
+                source_id = data.EQ + "-source-info";
                 chart_id = data.EQ.slice(0, -2) + "-line";
 
             } else if (data.LGD != "" & !["INDHOMELNLGD"].includes(data.LGD)) {
 
                 base_id = data.LGD + "-base-statement";
                 further_id = data.LGD + "-further-info";
+                source_id = data.LGD + "-source-info";
                 chart_id = data.LGD.slice(0, -3) + "-line";
 
             }
@@ -392,7 +405,7 @@ setTimeout(function () {
                 improving_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
                                                                    importance: importance,
                                                                    base_id: base_id,
-                                                                   source: source,
+                                                                   source: source_id,
                                                                    chart_id: chart_id,
                                                                    data: data,
                                                                    further_id: further_id};
@@ -401,7 +414,7 @@ setTimeout(function () {
                 worsening_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
                                                                    importance: importance,
                                                                    base_id: base_id,
-                                                                   source: source,
+                                                                   source: source_id,
                                                                    chart_id: chart_id,
                                                                    data: data,
                                                                    further_id: further_id};
@@ -410,7 +423,7 @@ setTimeout(function () {
                 no_change_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
                                                                    importance: importance,
                                                                    base_id: base_id,
-                                                                   source: source,
+                                                                   source: source_id,
                                                                    chart_id: chart_id,
                                                                    data: data,
                                                                    further_id: further_id};
@@ -515,7 +528,6 @@ setTimeout(function () {
                 document.getElementById("indicator-title").innerHTML = indicator_name;
                 document.getElementById("domain-title").innerHTML = indicator.domain;
                 document.getElementById("ind-important").innerHTML = indicator.importance;
-                document.getElementById("source-info").innerHTML = indicator.source;
     
                 breadcrumb_2.innerHTML = "> " + Object.keys(eval(change_type + "_indicator"))[i];
     
@@ -530,6 +542,13 @@ setTimeout(function () {
                 for (let j = 0; j < further_infos.length; j++) {
                     further_infos[j].classList.remove("further-selected");
                 }
+
+                source_infos = document.getElementsByClassName("source-info-text");
+    
+                for (let j = 0; j < source_infos.length; j++) {
+                    source_infos[j].style.display = "none";
+                }
+
     
                 line_charts = document.getElementsByClassName("line-chart");
     
@@ -539,6 +558,7 @@ setTimeout(function () {
     
                 document.getElementById(indicator.chart_id).style.display = "block";
                 document.getElementById(indicator.base_id).style.display = "block";
+                document.getElementById(indicator.source).style.display = "block";
                 document.getElementById(indicator.further_id).classList.add("further-selected");
     
                 data = indicator.data;   
@@ -790,9 +810,6 @@ function updateMapSelect3() {
     }
 
     data_info_map.innerHTML = data_info;
-
-    var source_info_map = document.getElementById("source-info-map");
-    source_info_map.innerHTML = "This indicator is collected from the <a href='" + indicator.source_link + "' target='_blank'>" + indicator.source + "</a>.";
 
     var ind_important_map = document.getElementById("ind-important-map");
     ind_important_map.innerHTML = indicator.importance;    

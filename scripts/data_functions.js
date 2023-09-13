@@ -640,6 +640,30 @@ async function createLineChart(indicator) {
 
    document.getElementById("further-info").appendChild(further_info_div);
 
+  source_info = note[0];
+
+  source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
+  source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
+  source_info = source_info.slice(0, source_info.indexOf("[b]"));  
+
+  if (source_info.indexOf("[url=") > 2) {
+   source_name = source_info.slice(0, source_info.indexOf("[url=")).trim();
+  } else {
+   source_name = source_info.slice(source_info.indexOf("]") + 1);
+   source_name = source_name.slice(0, source_name.indexOf("[/url]"));
+  }
+
+  source_link = source_info.slice(source_info.indexOf("[url=") + 5);
+  source_link = source_link.slice(0, source_link.indexOf("]"));
+
+  source_info_div = document.createElement("div");
+  source_info_div.id = matrix + "-source-info";
+  source_info_div.classList.add("source-info-text");
+  source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
+
+  document.getElementById("source-info").appendChild(source_info_div);
+
+
  }
 
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
@@ -910,6 +934,26 @@ async function drawMap() {
 
   var map_title = document.getElementById("map-title");
   map_title.innerHTML = chart_title + " (" + current_year + ")";
+
+  var source_info_map = document.getElementById("source-info-map");
+
+  source_info = note[0];
+
+  source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
+  source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
+  source_info = source_info.slice(0, source_info.indexOf("[b]"));  
+
+  if (source_info.indexOf("[url=") > 2) {
+   source_name = source_info.slice(0, source_info.indexOf("[url=")).trim();
+  } else {
+   source_name = source_info.slice(source_info.indexOf("]") + 1);
+   source_name = source_name.slice(0, source_name.indexOf("[/url]"));
+  }
+
+  source_link = source_info.slice(source_info.indexOf("[url=") + 5);
+  source_link = source_link.slice(0, source_link.indexOf("]"));
+
+  source_info_map.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
 
   // Hide loading gif after map is generated
   map_load.style.display = "none";
