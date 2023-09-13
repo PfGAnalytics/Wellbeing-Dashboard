@@ -88,10 +88,36 @@ async function createLineChart(indicator) {
 
    // Pull chart title and y axis label from metadata
    chart_title = dimension.STATISTIC.category.label[statistic];
-   y_axis_label = dimension.STATISTIC.category.unit[statistic].label;
+   var y_axis_label = dimension.STATISTIC.category.unit[statistic].label;
 
    chart_title = chart_title.replace("?g/m3", "μg/m³");
    chart_title = chart_title.replace("MTCO2e", "MtCO₂e");
+
+   if (indicator.data.NI == "INDINTREPNI") {
+      y_axis_label = "NBI score (out of 100)";
+   } else if (indicator.data.EQ == "INDLIFESATEQ") {
+      y_axis_label = "Average (mean) Life Satisfaction score"
+   } else if (indicator.data.NI == "INDLCREENI") {
+      y_axis_label = "FTE employment"
+   } else if (indicator.data.EQ == "INDPREVDTHEQ") {
+      y_axis_label = "Deaths per 100,000 population"
+   } else if (indicator.data.NI == "INDSFGANI") {
+      y_axis_label = "Percentage points"
+   }  else if (indicator.data.NI == "INDHOMELNNI") {
+      y_axis_label = "Number of households"
+   } else if (indicator.data.EQ == "INDHOUSTRSEQ") {
+      y_axis_label = "Number of Applicants"
+   } else if (indicator.data.NI == "INDRIVERQNI") {
+      y_axis_label = "mg/l soluble reactive phosphorus (SRP)"
+   } else if (indicator.data.NI == "INDGREENHGNI") {
+      y_axis_label = "MtCO₂e"
+   } else if (indicator.data.NI == "INDAIRPOLNI") {
+      y_axis_label = "Annual mean nitrogen dioxide concentration (μg/m³)"
+   } else if (indicator.data.NI == "INDNICEINI") {
+      y_axis_label = "Index (base 2013-100)"
+   } else if (y_axis_label == "ppts" || y_axis_label == "Percentage") {
+      y_axis_label = "%"
+   }
 
    // The following calculations set the ideal heights for the y axis as well as the green and red boxes
    var max_data = Math.max(...data_series);
