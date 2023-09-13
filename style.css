@@ -656,11 +656,15 @@ footer a:hover {
     padding-right: 2%;
 }
 
-#user-guide-link {
+.user-guide-link {
     color: #007bff;
     cursor: pointer;
 }
 
-#user-guide-link:hover {
+.user-guide-link:hover {
     text-decoration: underline;
+}
+
+#worsening-hexes {
+    margin-bottom: 20px;
 }

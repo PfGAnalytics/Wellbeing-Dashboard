@@ -70,12 +70,6 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
 }
 
-
-
-var overall_intro = document.getElementById("overall-intro");
-overall_intro.innerHTML = "We have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and where progress still needs to be made."
-
-
 // Generate hex grid of domains
 var domains = Object.keys(domains_data);
 document.getElementById("domains-title").textContent = number_to_word(domains.length) + " Wellbeing Domains"
@@ -979,18 +973,25 @@ further_expander_map.onclick = function() {
     
 }
 
-user_guide_link = document.getElementById("user-guide-link");
+user_guide_link = document.getElementsByClassName("user-guide-link");
 
-user_guide_link.onclick = function() {
+for (let i = 0; i < user_guide_link.length; i ++) {
 
-    document.getElementById("domains-scrn").style.display = "none";
-    document.getElementById("help-scrn").style.display = "block";
+    user_guide_link[i].onclick = function() {
 
-    document.getElementById("domains-btn").classList.remove("selected-item");
-    document.getElementById("domains-btn").firstChild.classList.remove("selected-icon");
-    document.getElementById("help-btn").classList.add("selected-item");
+        document.getElementById("domains-scrn").style.display = "none";
+        document.getElementById("overall-scrn").style.display = "none";
+        document.getElementById("help-scrn").style.display = "block";
 
-    document.getElementById("breadcrumb-1").textContent = "Help";
+        document.getElementById("domains-btn").classList.remove("selected-item");
+        document.getElementById("domains-btn").firstChild.classList.remove("selected-icon");
+        document.getElementById("overall-btn").classList.remove("selected-item");
+        document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
+        document.getElementById("help-btn").classList.add("selected-item");
+
+        document.getElementById("breadcrumb-1").textContent = "Help";
+
+}
     
 
 }
