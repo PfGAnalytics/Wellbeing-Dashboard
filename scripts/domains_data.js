@@ -97,7 +97,7 @@ var domains_data = {
             base_year: "2019/20",
             ci: "0.5c",
             data: {
-               NI: "",
+               NI: "INDRECWSTENI",
                AA: "",
                LGD: "INDRECWSTELGD",
                EQ: ""
@@ -591,7 +591,7 @@ var domains_data = {
             base_year: "2019/20",
             ci: 0,
             data: {
-               NI: "",
+               NI: "INDHOMELNNI",
                AA: "INDHOMELNAA",
                LGD: "INDHOMELNLGD",
                EQ: "INDHOMELNEQ"

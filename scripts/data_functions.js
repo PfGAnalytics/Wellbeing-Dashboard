@@ -678,9 +678,7 @@ for (let i = 0; i < domains.length; i ++) {
 
    // Loop through each indicator and run create line chart
    for (let j = 0; j < indicators.length; j++) {
-      if (indicators[j] != "Homelessness") {
-         createLineChart(domains_data[domains[i]].indicators[indicators[j]])
-      }
+      createLineChart(domains_data[domains[i]].indicators[indicators[j]])
    }
 
 }
