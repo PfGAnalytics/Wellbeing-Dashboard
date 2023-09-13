@@ -651,10 +651,6 @@ for (let i = 0; i < domains.length; i ++) {
 
 }
 
-
-
-// createLineChart(domains_data["Happier Children"].indicators["Children's social care"]);
-
 async function drawMap(matrix, improvement, title) {
 
    // Display the loading gif while this function runs
