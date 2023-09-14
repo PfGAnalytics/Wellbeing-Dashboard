@@ -1,8 +1,5 @@
 // Top menu navigation function
 var top_menu_items = document.getElementsByClassName("top-menu-item");
-var breadcrumb_1 = document.getElementById("breadcrumb-1");
-var breadcrumb_2 = document.getElementById("breadcrumb-2");
-var breadcrumb_3 = document.getElementById("breadcrumb-3");
 
 // Create a function for each top menu item
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -34,7 +31,6 @@ for (let i = 0; i < top_menu_items.length; i++) {
                 clicked_id.classList.add("selected-item");
                 clicked_id.firstChild.classList.add("selected-icon");
                 document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";
-                breadcrumb_1.innerHTML = clicked_id.textContent;
 
             } else {
                 // Hides all other screens that don't match the one clicked
@@ -42,10 +38,6 @@ for (let i = 0; i < top_menu_items.length; i++) {
                 clicked_id.firstChild.classList.remove("selected-icon");
                 document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "none";
             }
-
-            // Removes all text from position 2 and 3 of breadcrumb trail
-            breadcrumb_2.innerHTML = "";
-            breadcrumb_3.innerHTML = "";
 
         }
         
@@ -137,7 +129,6 @@ for (let i = 0; i < hexagons.length - 1; i++) {
         var domain_name = hexagons[i].innerHTML;
 
         clicked_hex.innerHTML = domain_name;
-        breadcrumb_2.innerHTML = "> " + domain_name;
 
         clicked_desc.innerHTML = domains_data[domain_name].description;
 
@@ -216,7 +207,6 @@ for (let i = 0; i < hexagons.length - 1; i++) {
             indicator_links[j].onclick = function() {
 
                 var indicator_name = indicator_links[j].getElementsByClassName("ind-hex-label")[0].innerHTML;
-                breadcrumb_3.innerHTML = "> " + indicator_name;
 
                 document.getElementById("domains-scrn").style.display = "none";
                 document.getElementById("overall-scrn").style.display = "none";
@@ -530,8 +520,6 @@ setTimeout(function () {
                 document.getElementById("domain-title").innerHTML = indicator.domain;
                 document.getElementById("ind-important").innerHTML = indicator.importance;
     
-                breadcrumb_2.innerHTML = "> " + Object.keys(eval(change_type + "_indicator"))[i];
-    
                 base_statements = document.getElementsByClassName("base-statement");
     
                 for (let j = 0; j < base_statements.length; j++) {
@@ -623,70 +611,6 @@ setTimeout(function () {
 
 }, 3001)
 
-// Click on breadcrumb 1
-breadcrumb_1.onclick = function() {
-
-    text_content = breadcrumb_1.textContent.trim();
-
-    if (text_content == "Domains") {
-        document.getElementById("domains-scrn").style.display = "block";
-        document.getElementById("domains-scrn").getElementsByTagName("h2")[0].style.display = "block";
-        document.getElementById("indicator-scrn").style.display = "none";
-        document.getElementById("domain-info-container").style.display = "none";
-        document.getElementById("domains-grid-container").style.display = "block";
-        document.getElementById("click-to-see").style.display = "block";
-        document.getElementById("domains-intro").style.display = "block";
-        document.getElementById("indicator-intro").style.display = "none";
-    } else if (text_content == "Overall") {
-        document.getElementById("overall-scrn").style.display = "block";
-        document.getElementById("indicator-scrn").style.display = "none";
-    }
-
-    breadcrumb_2.innerHTML = "";
-    breadcrumb_3.innerHTML = "";
-
-    var further_infos = document.getElementsByClassName("further-info-text");
-    var further_expander = document.getElementById("further-expander");
-
-    for (let i = 0; i < further_infos.length; i++) {
-        further_infos[i].removeAttribute("style");
-        further_infos[i].classList.remove("further-selected");
-        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
-    }
-
-    plotOverallHexes("improving");
-    plotOverallHexes("no_change");
-    plotOverallHexes("worsening");
-
-}
-
-// Click on breadcrumb 2
-breadcrumb_2.onclick = function() {
-
-    text_content_1 = breadcrumb_1.textContent.trim();
-    text_content_2 = breadcrumb_2.textContent.replace(">", "").trim();
-
-    if (text_content_1 == "Domains") {
-        document.getElementById("domains-scrn").style.display = "block";
-        document.getElementById("indicator-scrn").style.display = "none";
-    }
-
-    breadcrumb_3.innerHTML = "";
-
-    var further_infos = document.getElementsByClassName("further-info-text");
-    var further_expander = document.getElementById("further-expander");
-
-    for (let i = 0; i < further_infos.length; i++) {
-        further_infos[i].removeAttribute("style");
-        further_infos[i].classList.remove("further-selected");
-        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
-    }
-
-}
 
 // Content height
 mainContainerHeight = function() {
@@ -989,8 +913,6 @@ for (let i = 0; i < user_guide_link.length; i ++) {
         document.getElementById("overall-btn").classList.remove("selected-item");
         document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
         document.getElementById("help-btn").classList.add("selected-item");
-
-        document.getElementById("breadcrumb-1").textContent = "Help";
 
 }
     

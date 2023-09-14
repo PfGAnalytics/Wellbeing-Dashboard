@@ -355,23 +355,6 @@ iframe {
     border: none;
 }
 
-.b-crumb {
-    margin-left: 5px;
-    color: #008675;
-    cursor: pointer;
-    font-size: 16pt;
-}
-
-.b-crumb:hover {
-    color: #333333
-}
-
-#breadcrumbs {
-    padding-left: 15px;
-    margin-bottom: 10px;
-    width: 100%;
-}
-
 #cookie-banner {
 	top: 0;
 	left: 0;
