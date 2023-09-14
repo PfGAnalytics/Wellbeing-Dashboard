@@ -38,49 +38,22 @@
             <div id = "dashboard-title"><h1>PfG Wellbeing Framework</h1></div>
             <div id = "top-menu-items" class = "row">
                 <div id = "domains-btn" class = "top-menu-item selected-item"><i class = "fas fa-chart-line"></i> Domains</div>
-                <div id = "overall-btn" class = "top-menu-item"><i class = "fa fa-th-large"></i> Overall</div>
+                <div id = "overall-btn" class = "top-menu-item"><img id = "ni-icon" src = "img/three-hexagons.svg" style = "width: 20px;"></i> Overall</div>
                 <div id = "maps-btn" class = "top-menu-item"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" style = "width: 20px;"></i> Maps</div>
                 <div id = "help-btn" class = "top-menu-item"><i class = "fa fa-question"></i> Help</div>
             </div>
         </div>
     </div>
 
-    <div id = "button-row">
-        <div id = "button-container" class = "row">
-            <div id = "back-btn" class = "nav-btn"><i class="fa-solid fa-backward"></i> Back</div>
-            <div id = "forward-btn" class = "nav-btn">Forward <i class="fa-solid fa-forward"></i></div>
-        </div>
+    <div class= "button-row" style = "display: none;">
+            <div id = "back-button-container"></div>
+    </div>
+    <div class= "button-row" style = "display: none;">
+            <div id = "button-container" class = "row"></div>
     </div>
 
     <div id = "content-centre">
         <div id = "main-container">
-
-            <div id = "overall-scrn" class = "screen" style = "display: none;">
-                <div id = "overall-intro" class = "intro">
-                    <p>This overview shows how well Northern Ireland is doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
-                </div>
-                <div id = "loading-img">
-                    <img src = "img/page-loading.gif">
-                </div>
-                <div id = "overall-hexes" style = "display: none;">
-                    <div class = "row">
-                        <div id = "improving-label" class = "overall-label"></div>
-                        <div id = "improving-hexes" class = "overall-container"></div>
-                    </div>
-                    <div class = "separator"></div>
-                    <div class = "row">
-                        <div id = "no-change-label" class = "overall-label"></div>
-                        <div id = "no-change-hexes" class = "row overall-container"></div>
-                    </div>
-                    <div class = "separator"></div>
-                    <div class = "row">
-                        <div id = "worsening-label" class = "overall-label"></div>
-                        <div id = "worsening-hexes" class = "row overall-container"></div>
-                    </div>
-                    <p style = "font-size: 12pt;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">User Guide</span>.</p>
-                <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
-                </div>
-            </div>
 
             <div id = "domains-scrn" class = "screen" style = "display:block;">
                 <h2 id = "domains-title" style="width: 100%; text-align: center;"></h2>
@@ -90,7 +63,7 @@
                     <p>Analysing these indicators across different parts of our society can help us uncover any inequalities and focus on areas that need attention. Policy makers, service providers and researchers can use this information to tackle issues, inform their own research and guide decisions. With this clearer understanding, we can create positive changes that benefit everyone.</p>
                 </div>
                 <div id = "indicator-intro" class = "intro">
-                    <p>This overview shows how well Northern Ireland is doing across all the indicators in the <span id = "domain-name"></span> domain. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
+                    <p>This overview shows how well Northern Ireland is doing across the indicators that fall under the <span id = "domain-name"></span> domain. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
                 </div>
                 <div class = "row">
                     <div id = "domains-grid-container" style= "display: block;"></div>
@@ -121,6 +94,33 @@
                 </div>
                 <p style = "font-size: 12pt;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">User Guide</span>.</p>
                 <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
+            </div>
+
+            <div id = "overall-scrn" class = "screen" style = "display: none;">
+                <div id = "overall-intro" class = "intro">
+                    <p>This overview shows how well Northern Ireland is doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
+                </div>
+                <div id = "loading-img">
+                    <img src = "img/page-loading.gif">
+                </div>
+                <div id = "overall-hexes" style = "display: none;">
+                    <div class = "row">
+                        <div id = "improving-label" class = "overall-label"></div>
+                        <div id = "improving-hexes" class = "overall-container"></div>
+                    </div>
+                    <div class = "separator"></div>
+                    <div class = "row">
+                        <div id = "no-change-label" class = "overall-label"></div>
+                        <div id = "no-change-hexes" class = "row overall-container"></div>
+                    </div>
+                    <div class = "separator"></div>
+                    <div class = "row">
+                        <div id = "worsening-label" class = "overall-label"></div>
+                        <div id = "worsening-hexes" class = "row overall-container"></div>
+                    </div>
+                    <p style = "font-size: 12pt;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">User Guide</span>.</p>
+                <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
+                </div>
             </div>
 
             <div id = "indicator-scrn" class = "screen" style = "display:none;">

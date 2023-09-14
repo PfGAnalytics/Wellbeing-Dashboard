@@ -279,6 +279,7 @@ h2 {
 
 #indicator-title {
     margin-left: 20px;
+    margin-top: 8px;
 }
 
 #indicator-hexes {
@@ -652,13 +653,13 @@ footer a:hover {
     margin-bottom: 20px;
 }
 
-#button-row {
-    height: 30px;
+.button-row {
     color: #ffffff;
-    background-color: #14206288;
+    background-color: #14206299;
     width: 100%;
     display: flex;
     justify-content: center;
+    padding-bottom: 5px;
 }
 
 .nav-btn {
@@ -666,7 +667,6 @@ footer a:hover {
     margin-right: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    width: 120px;
     cursor: pointer;
     border-radius: 25px;
 }
