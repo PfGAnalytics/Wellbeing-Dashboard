@@ -651,3 +651,30 @@ footer a:hover {
 #worsening-hexes {
     margin-bottom: 20px;
 }
+
+#button-row {
+    height: 30px;
+    color: #ffffff;
+    background-color: #14206288;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-btn {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 120px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+#forward-btn {
+    text-align: right;
+}
+
+.nav-btn:hover {
+    background-color: #14206244;
+}

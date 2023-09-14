@@ -107,6 +107,7 @@ var hexagons = document.getElementsByClassName("hex-inner");
 var domains_heading = document.getElementById("domains-scrn").getElementsByTagName("h2")[0];
 var domain_info = document.getElementById("domain-info-container");
 var clicked_hex = document.getElementById("clicked-hex");
+var domain_name_text = document.getElementById("domain-name");
 var click_to_see = document.getElementById("click-to-see");
 var clicked_desc = document.getElementById("clicked-desc");
 var indicator_hexes = document.getElementById("indicator-hexes");
@@ -129,6 +130,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
         var domain_name = hexagons[i].innerHTML;
 
         clicked_hex.innerHTML = domain_name;
+        domain_name_text.textContent = domain_name;
 
         clicked_desc.innerHTML = domains_data[domain_name].description;
 
@@ -916,5 +918,38 @@ for (let i = 0; i < user_guide_link.length; i ++) {
 
 }
     
+
+}
+
+back_btn = document.getElementById("back-btn");
+forward_btn = document.getElementById("forward-btn");
+
+back_btn.onclick = function () {
+
+    if (document.getElementById("domains-scrn").style.display == "block") {
+
+        document.getElementById("domains-title").style.display = "block";
+        document.getElementById("domains-intro").style.display = "block";
+        document.getElementById("indicator-intro").style.display = "none";
+        document.getElementById("domains-grid-container").style.display = "block";
+        document.getElementById("click-to-see").style.display = "block";
+        document.getElementById("domain-info-container").style.display = "none";
+
+    } else if (document.getElementById("indicator-scrn").style.display == "block") {
+
+        if (document.getElementById("domains-btn").classList.contains("selected-item")) {
+
+            document.getElementById("indicator-scrn").style.display = "none";
+            document.getElementById("domains-scrn").style.display = "block";
+
+        } else if (document.getElementById("overall-btn").classList.contains("selected-item")) {
+
+            document.getElementById("indicator-scrn").style.display = "none";
+            document.getElementById("overall-scrn").style.display = "block";
+
+        }
+
+    }
+
 
 }
