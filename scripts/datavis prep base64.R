@@ -24,7 +24,26 @@ if (file.exists(uploadDir)) {
 # Create folder again
 dir.create(uploadDir)
 
+# List all svg files in img folder
+SVGs <- list.files("../img", pattern = "*.svg")
+
+originalNav <- readLines("../scripts/navigation_functions.js")
+fixedNav <- originalNav
+
 suppressWarnings({ # Turn off warnings
+  
+  # Fix image paths in navigation_functions.js
+  for (svg in SVGs) {
+    fixedNav <- gsub(paste0("img/", svg),
+                     paste0("data:image/svg+xml,",
+                            readLines(paste0("../img/", svg)) %>%
+                              paste(collapse = " ") %>%
+                              encodeURIComponent()),
+                     fixedNav,
+                     fixed = TRUE)
+  }
+  
+  writeLines(fixedNav, "../scripts/navigation_functions.js")
 
   # Convert html to character vector
   index <- readLines("../index.html")
@@ -51,8 +70,7 @@ suppressWarnings({ # Turn off warnings
                   fixed = TRUE)
   }
   
-  # Embed all svg files in img folder
-  SVGs <- list.files("../img", pattern = "*.svg")
+  
   for (svg in SVGs) {
     
     index <- gsub(paste0("img/", svg),
@@ -63,9 +81,14 @@ suppressWarnings({ # Turn off warnings
                   index,
                   fixed = TRUE)
     
+    
+    
   }
   
   # Write out new html file
   writeLines(index, paste0(uploadDir, "index.html"))
+  
+  # Restore navigation_functions.js to its original state
+  writeLines(originalNav, "../scripts/navigation_functions.js")
   
 })
