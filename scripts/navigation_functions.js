@@ -3,6 +3,8 @@ var top_menu_items = document.getElementsByClassName("top-menu-item");
 
 var back_button_container = document.getElementById("back-button-container");
 var button_container = document.getElementById("button-container");
+var button_left = document.getElementById("button-left");
+var button_right = document.getElementById("button-right");
 
 // Create a function for each top menu item
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -84,7 +86,7 @@ var domains_grid_container = document.getElementById("domains-grid-container");
 
 for (let i = 0; i < domains.length; i++) {
 
-    if (i == 0 || i == 3 || i == 7) {
+    if (i == 0 || i == 3 || i == 7 || i == 10) {
         var hex_row = document.createElement("div");
         hex_row.classList.add("row");
         hex_row.classList.add("hex-row");
@@ -249,6 +251,113 @@ function generateIndicatorPage(d, e) {
 
     }
 
+    map_link = document.getElementById("map-link");
+
+    while(map_link.firstChild) {
+        map_link.removeChild(map_link.firstChild);
+    }
+
+    if (data.AA != "" || data.LGD != "") {
+
+        see_maps = document.createElement("div");
+        see_maps.id = "see-maps";
+        see_maps.textContent = "See this indicator mapped by:"
+
+        map_link.appendChild(see_maps)
+
+    }
+
+    function jumpToMap(geography) {
+
+        document.getElementById("indicator-scrn").style.display = "none";
+        document.getElementById("maps-scrn").style.display = "block";
+
+        document.getElementById("domains-btn").classList.remove("selected-item");
+        document.getElementById("overall-btn").classList.remove("selected-item");
+        document.getElementById("maps-btn").classList.add("selected-item");
+
+        document.getElementById("domains-btn").firstChild.classList.remove("selected-icon");
+        document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
+        document.getElementById("maps-btn").firstChild.classList.add("selected-icon");
+
+        document.getElementById("map-select-1").value = d;
+        updateMapSelect2();
+        document.getElementById("map-select-2").value = e;
+        updateMapSelect3();
+        document.getElementById("map-select-3").value = data[geography];
+        drawMap();
+
+        button_container.style.display = "none";
+        
+        back_buttons = back_button_container.getElementsByTagName("div");
+        for (let i = 0; i < back_buttons.length; i ++) {
+            back_buttons[i].style.display = "none";
+        }
+
+        back_btn_4 = document.createElement("div");
+        back_btn_4.id = "back-btn-4";
+        back_btn_4.classList.add("nav-btn");
+        back_btn_4.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>'+ e +'</strong> indicator';
+
+        back_button_container.appendChild(back_btn_4);
+
+        back_btn_4.onclick = function() {
+
+            document.getElementById("maps-scrn").style.display = "none";
+            document.getElementById("indicator-scrn").style.display = "block";
+
+            document.getElementById("maps-btn").classList.remove("selected-item");
+            document.getElementById("maps-btn").firstChild.classList.remove("selected-icon");
+
+            button_container.style.display = "flex";
+
+            back_button_container.removeChild(back_btn_4);            
+
+            if (back_button_container.firstChild.id == "back-btn") {
+                
+                document.getElementById("domains-btn").classList.add("selected-item");
+                document.getElementById("domains-btn").firstChild.classList.add("selected-icon");
+
+                back_btn_2.style.display = "block";
+
+            } else if (back_button_container.firstChild.id == "back-btn-3") {
+                
+                document.getElementById("overall-btn").classList.add("selected-item");
+                document.getElementById("overall-btn").firstChild.classList.add("selected-icon");
+
+                back_btn_3.style.display = "block";
+
+            }
+        }
+
+    }
+
+    if (data.AA != "") {
+
+        AA_link = document.createElement("div");
+        AA_link.id = "AA-link";
+        AA_link.innerHTML = "<img id = 'assembly-logo' src = 'img/NI_Assembly.svg'>Assembly Area";
+        map_link.appendChild(AA_link);
+
+        AA_link.onclick = function () {
+            jumpToMap("AA")
+        }
+
+    }
+
+    if (data.LGD != "") {
+
+        LGD_link = document.createElement("div");
+        LGD_link.id = "LGD-link";
+        LGD_link.innerHTML = "<img id = 'council-logo' src = 'img/Northern_Ireland_outline.svg'>Local Government District";
+        map_link.appendChild(LGD_link);
+
+        LGD_link.onclick = function () {
+            jumpToMap("LGD")
+        }
+
+    }
+
 }
 
 // Function to generate Hexagons on a domain page
@@ -331,7 +440,7 @@ function generateHexagons (d) {
         indicator_links[j].onclick = function() {
 
             // Remove nav buttons
-            nav_buttons = button_container.getElementsByTagName("div");
+            nav_buttons = button_container.getElementsByClassName("nav-btn");
             for (let i = 0; i < nav_buttons.length; i ++) {
                 nav_buttons[i].style.display = "none";
             }
@@ -343,7 +452,7 @@ function generateHexagons (d) {
 
             // Generate button for "back to Domains"
             back_btn_2 = document.createElement("div");
-            back_btn_2.id = "back-to-domain-screen";
+            back_btn_2.id = "back-btn-2";
             back_btn_2.classList.add("nav-btn");
             back_btn_2.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + d + '</strong> domain';
 
@@ -360,7 +469,7 @@ function generateHexagons (d) {
                 previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + indicator_links[current_index - 1].textContent +'</strong>';
             }
 
-            button_container.appendChild(previous_btn_2);
+            button_left.appendChild(previous_btn_2);
 
             // "Next indicator" button
             next_btn_2 = document.createElement("div");
@@ -371,7 +480,7 @@ function generateHexagons (d) {
                 next_btn_2.innerHTML = 'Next indicator: <strong>' + indicator_links[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
             }
 
-            button_container.appendChild(next_btn_2);
+            button_right.appendChild(next_btn_2);
 
             // Function inside "back to Domains" to hide indicators and display grid again
             back_btn_2.onclick = function () {
@@ -388,8 +497,8 @@ function generateHexagons (d) {
                 }
 
                 back_button_container.removeChild(back_btn_2);
-                button_container.removeChild(previous_btn_2);
-                button_container.removeChild(next_btn_2);
+                button_left.removeChild(previous_btn_2);
+                button_right.removeChild(next_btn_2);
             
             }
 
@@ -475,13 +584,17 @@ for (let i = 0; i < hexagons.length - 1; i++) {
         }        
 
         // Remove buttons from nav bar
-        while (button_container.firstChild) {
-            button_container.removeChild(button_container.firstChild);
+        while (button_left.firstChild) {
+            button_left.removeChild(button_left.firstChild);
+        }
+
+        while (button_right.firstChild) {
+            button_right.removeChild(button_right.firstChild);
         }
 
         // Generate button for "back to Domains"
         back_btn = document.createElement("div");
-        back_btn.id = "back-to-domains";
+        back_btn.id = "back-btn";
         back_btn.classList.add("nav-btn");
         back_btn.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Domains</strong> grid';
 
@@ -516,7 +629,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
             previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
         }
 
-        button_container.appendChild(previous_btn);
+        button_left.appendChild(previous_btn);
 
         // Generate "see Next domain" button
         next_btn = document.createElement("div");
@@ -527,7 +640,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {
             next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
         }
 
-        button_container.appendChild(next_btn);
+        button_right.appendChild(next_btn);
 
         // Function behind previous button
         previous_btn.onclick = function () {
@@ -669,9 +782,15 @@ plotOverallHexes = function(change_type) {
                 back_button_container.removeChild(back_button_container.firstChild)
             }
 
-            while(button_container.firstChild) {
-                button_container.removeChild(button_container.firstChild)
+            while(button_left.firstChild) {
+                button_left.removeChild(button_left.firstChild)
             }
+
+            while(button_right.firstChild) {
+                button_right.removeChild(button_right.firstChild)
+            }
+
+            button_container.style.display = "flex";
 
             for (let i = 0; i < button_rows.length; i++) {
                 button_rows[i].style.display = "flex";
@@ -679,7 +798,7 @@ plotOverallHexes = function(change_type) {
 
             // Generate button for "back to Overall"
             back_btn_3 = document.createElement("div");
-            back_btn_3.id = "back-to-domain-screen";
+            back_btn_3.id = "back-btn-3";
             back_btn_3.classList.add("nav-btn");
             back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';
 
@@ -696,7 +815,7 @@ plotOverallHexes = function(change_type) {
                 previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index - 1] +'</strong>';
             }
 
-            button_container.appendChild(previous_btn_3);
+            button_left.appendChild(previous_btn_3);
 
             // "Next indicator" button
             next_btn_3 = document.createElement("div");
@@ -707,7 +826,7 @@ plotOverallHexes = function(change_type) {
                 next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
             }
 
-            button_container.appendChild(next_btn_3);
+            button_right.appendChild(next_btn_3);
 
             // Function inside "back to Overall" to hide indicators and display grid again
             back_btn_3.onclick = function () {
@@ -1061,7 +1180,11 @@ function sizeForMobile() {
         top_menu_items_div.style.marginTop= "10px";
         top_menu_items_div.style.width = "100%";
         dashboard_title.style.width = (top_container.clientWidth - 300) + "px";
-        
+
+        button_left.style.width = "100%";
+        button_left.style.justifyContent = "center";
+        button_right.style.width = "100%";
+        button_right.style.justifyContent = "center";        
 
         for (let i = 0; i < top_menu_items.length; i++) {
             top_menu_items[i].style.fontSize = "18pt";
@@ -1097,7 +1220,7 @@ function sizeForMobile() {
         }
 
         for (let i = 0; i < button_rows.length; i++) {
-            button_rows[i].style.fontSize = "14pt";
+            button_rows[i].style.fontSize = "12pt";
         }
 
         for (let i = 0; i < white_box.length; i++) {
@@ -1108,6 +1231,11 @@ function sizeForMobile() {
         while (breaks[0]) {
             map_form.removeChild(breaks[0]);
         }
+
+        button_left.style.width = "600px";
+        button_left.style.justifyContent = "end";
+        button_right.style.width = "600px";
+        button_right.style.justifyContent = "baseline";
 
     }
 
@@ -1182,5 +1310,93 @@ for (let i = 0; i < user_guide_link.length; i ++) {
         document.getElementById("help-btn").classList.add("selected-item");
 
     }    
+
+}
+
+chart_link = document.getElementById("chart-link");
+
+chart_link.onclick = function() {
+
+    document.getElementById("maps-scrn").style.display = "none";
+    document.getElementById("indicator-scrn").style.display = "block";
+
+    document.getElementById("maps-btn").classList.remove("selected-item");
+    document.getElementById("maps-btn").firstChild.classList.remove("selected-icon");
+    
+    document.getElementById("overall-btn").classList.add("selected-item");
+    document.getElementById("overall-btn").firstChild.classList.add("selected-icon");
+
+    button_rows = document.getElementsByClassName("button-row");
+
+    for (let i = 0; i < button_rows.length; i ++) {
+        button_rows[i].style.display = "flex";
+    }
+
+    buttons = document.getElementsByClassName("nav-btn");
+
+    for (let i = 0; i < buttons.length; i ++) {
+        buttons[i].style.display = "none"
+    }
+    
+    generateIndicatorPage(map_select_1.value, map_select_2.value);
+
+    back_btn_5 = document.createElement("div");
+    back_btn_5.id = "back-btn-5";
+    back_btn_5.classList.add("nav-btn");
+    back_btn_5.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>'+ map_select_2.value +'</strong> map';
+
+    
+
+    if (document.getElementById("back-btn-3")) {
+        document.getElementById("back-btn-3").style.display = "block";
+    } else {
+
+        // Generate button for "back to Overall"
+        back_btn_3 = document.createElement("div");
+        back_btn_3.id = "back-btn-3";
+        back_btn_3.classList.add("nav-btn");
+        back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';
+
+        back_button_container.appendChild(back_btn_3);
+
+        back_btn_3.onclick = function () {
+
+            document.getElementById("indicator-scrn").style.display = "none";
+            document.getElementById("overall-scrn").style.display = "block";
+           
+            for (let i = 0; i < button_rows.length; i++) {
+                button_rows[i].style.display = "none";
+            }
+
+            plotOverallHexes("improving");
+            plotOverallHexes("no_change");
+            plotOverallHexes("worsening");
+
+            back_button_container.removeChild(back_btn_3);
+        
+        }
+
+    }
+
+    back_button_container.appendChild(back_btn_5);
+
+    back_btn_5.onclick = function() {
+
+        document.getElementById("maps-scrn").style.display = "block";
+        document.getElementById("indicator-scrn").style.display = "none";
+
+        document.getElementById("maps-btn").classList.add("selected-item");
+        document.getElementById("maps-btn").firstChild.classList.add("selected-icon");
+    
+        document.getElementById("overall-btn").classList.remove("selected-item");
+        document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
+
+        back_button_container.removeChild(back_btn_5);
+
+        for (let i = 0; i < button_rows.length; i ++) {
+            button_rows[i].style.display = "none";
+        }
+
+    }
 
 }
