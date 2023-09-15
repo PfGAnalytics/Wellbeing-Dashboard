@@ -13,7 +13,6 @@ Documentation to outline the structure and processes needed to create or modify 
 | `style.css` | Pre-defined styling for the dashboards - colours, fonts, sizing, spacing etc. |
 | `domains_data.js` | Additional indicator information |
 | `data_functions.js` | Javascript functionality used for data throughout dashboard |
-| `map_functions.js` | Javascript functionality used for maps throughout dashboard |
 | `navigation_functions.js` | Javascript functionality used for navigation throughout dashboard |
 | `cookies_script.js` | Javascript functionality for cookies |
 | `ni_map.js` | Javascript used to create NI basemap |
@@ -64,7 +63,7 @@ When modifications have been made (new data or otherwise), carry out a systemati
 
 ### 'Live' check :sun_with_face:
 1. Once the dashboard has gone live, re-run the 'Testing phase' actions from above to ensure they have translated to the DataVis platform
-1. Perform checks on mobile devices as necessary to ensure functionality and accessibility
+2. Perform checks on mobile devices as necessary to ensure functionality and accessibility
 
 ## :warning: Troubleshooting
 - No charts are appearing
