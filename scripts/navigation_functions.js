@@ -115,7 +115,7 @@ for (let i = 0; i < hex_rows.length; i++) {
     }
 }
 
-// Click on a domain
+
 var hexagons = document.getElementsByClassName("hex-inner");
 var domains_title = document.getElementById("domains-title");
 var domain_info = document.getElementById("domain-info-container");
@@ -128,7 +128,7 @@ var domains_intro = document.getElementById("domains-intro");
 var indicator_intro = document.getElementById("indicator-intro");
 var button_rows = document.getElementsByClassName("button-row");
 
-
+// Function to generate indicator page when indicator hexagon is clicked on
 function generateIndicatorPage(d, e) {
 
     document.getElementById("domains-scrn").style.display = "none";
@@ -614,56 +614,23 @@ setTimeout(function () {
             importance = Object.values(indicators)[j].importance;
 
             if (data.NI != "") {
-
-                base_id = data.NI + "-base-statement";
-                further_id = data.NI + "-further-info";
-                source_id = data.NI + "-source-info";
-                chart_id = data.NI.slice(0, -2) + "-line";                              
-
+                base_id = data.NI + "-base-statement";                              
             } else if (data.EQ != "") {
-
                 base_id = data.EQ + "-base-statement";
-                further_id = data.EQ + "-further-info";
-                source_id = data.EQ + "-source-info";
-                chart_id = data.EQ.slice(0, -2) + "-line";
-
             } else if (data.LGD != "") {
-
                 base_id = data.LGD + "-base-statement";
-                further_id = data.LGD + "-further-info";
-                source_id = data.LGD + "-source-info";
-                chart_id = data.LGD.slice(0, -3) + "-line";
-
             }
             
             base_text = document.getElementById(base_id).textContent;
 
             if (base_text.includes("improved")) {
-                improving_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
-                                                                   importance: importance,
-                                                                   base_id: base_id,
-                                                                   source: source_id,
-                                                                   chart_id: chart_id,
-                                                                   data: data,
-                                                                   further_id: further_id};
+                improving_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
 
             } else if (base_text.includes("worsened")) {
-                worsening_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
-                                                                   importance: importance,
-                                                                   base_id: base_id,
-                                                                   source: source_id,
-                                                                   chart_id: chart_id,
-                                                                   data: data,
-                                                                   further_id: further_id};
+                worsening_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
 
             } else {
-                no_change_indicator[Object.keys(indicators)[j]] = {domain: domains[i],
-                                                                   importance: importance,
-                                                                   base_id: base_id,
-                                                                   source: source_id,
-                                                                   chart_id: chart_id,
-                                                                   data: data,
-                                                                   further_id: further_id};
+                no_change_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
             }
 
         }
@@ -764,76 +731,9 @@ setTimeout(function () {
             hex_container.onclick = function() {
 
                 var indicator_name = Object.keys(eval(change_type + "_indicator"))[i];
-                var indicator = eval(change_type + "_indicator")[indicator_name];
+                var domain_name = eval(change_type + "_indicator")[indicator_name].domain;
 
-                document.getElementById("overall-scrn").style.display = "none";
-                document.getElementById("indicator-scrn").style.display = "block";
-                document.getElementById("indicator-title").innerHTML = indicator_name;
-                document.getElementById("domain-title").innerHTML = indicator.domain;
-                document.getElementById("ind-important").innerHTML = indicator.importance;
-    
-                base_statements = document.getElementsByClassName("base-statement");
-    
-                for (let j = 0; j < base_statements.length; j++) {
-                    base_statements[j].style.display = "none";
-                }
-
-                further_infos = document.getElementsByClassName("further-info-text");
-    
-                for (let j = 0; j < further_infos.length; j++) {
-                    further_infos[j].classList.remove("further-selected");
-                }
-
-                source_infos = document.getElementsByClassName("source-info-text");
-    
-                for (let j = 0; j < source_infos.length; j++) {
-                    source_infos[j].style.display = "none";
-                }
-
-    
-                line_charts = document.getElementsByClassName("line-chart");
-    
-                for (let j = 0; j < line_charts.length; j++) {
-                    line_charts[j].style.display = "none";
-                }
-    
-                document.getElementById(indicator.chart_id).style.display = "block";
-                document.getElementById(indicator.base_id).style.display = "block";
-                document.getElementById(indicator.source).style.display = "block";
-                document.getElementById(indicator.further_id).classList.add("further-selected");
-    
-                data = indicator.data;   
-    
-                // Output "More data" paragraph
-                var data_info = "You can view and download data ";
-    
-                if (data.NI != "") {
-                    data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + data.NI + '" target = "_blank">Northern Ireland level</a>, ';
-                }
-    
-                if (data.LGD != "") {
-                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
-                }
-    
-                if (data.AA != "") {
-                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
-                }
-    
-                if (data.EQ != "") {
-                    data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
-                }
-    
-                data_info = data_info + ' on the NISRA Data Portal.'
-    
-                if (data_info.lastIndexOf(",") > 0 ) {
-                    data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-                }
-    
-                if (data_info.lastIndexOf(",") > 0 ) {
-                    data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-                }
-    
-                document.getElementById("data-info").innerHTML = data_info;
+                generateIndicatorPage(domain_name, indicator_name);               
     
             }
     
@@ -1175,7 +1075,7 @@ for (let i = 0; i < user_guide_link.length; i ++) {
         document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
         document.getElementById("help-btn").classList.add("selected-item");
 
-}
+    }
     
 
 }
