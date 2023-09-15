@@ -353,7 +353,7 @@ function generateHexagons (d) {
 
             // "Previous indicator" button
             previous_btn_2 = document.createElement("div");
-            previous_btn_2.id = "previous-domain";
+            previous_btn_2.id = "previous-indicator";
             previous_btn_2.classList.add("nav-btn");
 
             if (current_index != 0) {
@@ -364,7 +364,7 @@ function generateHexagons (d) {
 
             // "Next indicator" button
             next_btn_2 = document.createElement("div");
-            next_btn_2.id = "next-domain";
+            next_btn_2.id = "next-indicator";
             next_btn_2.classList.add("nav-btn");
 
             if (current_index != indicator_links.length - 1) {
@@ -598,6 +598,187 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 }
 
 // Overall screen
+plotOverallHexes = function(change_type) {
+        
+    gridWidth = document.getElementById("overall-scrn").clientWidth;
+
+    if (Math.floor((gridWidth - 90) / 150) > 6) {
+        h = 6
+    } else {
+        h = Math.floor((gridWidth - 90) / 150);
+    }
+
+    className = change_type.replace("_", "-");
+    
+    while (document.getElementById(className + "-hexes").firstChild) {
+        document.getElementById(className + "-hexes").removeChild(document.getElementById(className + "-hexes").firstChild)
+    }
+
+    for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {            
+
+        if (i % h == 0) {
+            var hex_row = document.createElement("div");
+            hex_row.classList.add("row");
+            hex_row.classList.add(className + "-hex-row");
+            document.getElementById(className + "-hexes").appendChild(hex_row);
+        }            
+
+        if (i % (h * 2) == h) {
+            hex_row.style.marginLeft = "90px";
+        } else if (i % (h * 2) == 0) {
+            hex_row.style.marginLeft = "15px";
+        }
+
+        if (i >= h) {
+            hex_row.style.marginTop = "-25px";
+        }
+
+        var hex_container = document.createElement("div");
+        hex_container.classList.add("shake-hex");
+        var hex = document.createElement("div");
+        var hex_label = document.createElement("div");
+        var label_text = document.createTextNode(Object.keys(eval(change_type + "_indicator"))[i]);
+
+        hex_container.classList.add("ind-hex-container");
+
+        hex.classList.add("ind-hex");            
+        hex_label.classList.add("ind-hex-label");
+
+        hex_label.appendChild(label_text);
+        hex_container.appendChild(hex);
+        hex_container.appendChild(hex_label);
+
+        if (change_type == "improving") {
+            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';
+            hex.classList.add("positive");
+        } else if (change_type == "no_change") {
+            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';
+        } else if (change_type == "worsening") {
+            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';
+            hex.classList.add("negative");
+        }
+
+        hex_row.appendChild(hex_container);
+
+        hex_container.onclick = function() {
+
+            var indicator_name = Object.keys(eval(change_type + "_indicator"))[i];
+            var domain_name = eval(change_type + "_indicator")[indicator_name].domain;                
+
+            while(back_button_container.firstChild) {
+                back_button_container.removeChild(back_button_container.firstChild)
+            }
+
+            while(button_container.firstChild) {
+                button_container.removeChild(button_container.firstChild)
+            }
+
+            for (let i = 0; i < button_rows.length; i++) {
+                button_rows[i].style.display = "flex";
+            }
+
+            // Generate button for "back to Overall"
+            back_btn_3 = document.createElement("div");
+            back_btn_3.id = "back-to-domain-screen";
+            back_btn_3.classList.add("nav-btn");
+            back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';
+
+            back_button_container.appendChild(back_btn_3);
+
+            current_index = i;
+            
+            // "Previous indicator" button
+            previous_btn_3 = document.createElement("div");
+            previous_btn_3.id = "previous-indicator";
+            previous_btn_3.classList.add("nav-btn");
+
+            if (current_index != 0) {
+                previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index - 1] +'</strong>';
+            }
+
+            button_container.appendChild(previous_btn_3);
+
+            // "Next indicator" button
+            next_btn_3 = document.createElement("div");
+            next_btn_3.id = "next-indicator";
+            next_btn_3.classList.add("nav-btn");
+
+            if (current_index != Object.keys(eval(change_type + "_indicator")).length - 1) {
+                next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+            }
+
+            button_container.appendChild(next_btn_3);
+
+            // Function inside "back to Overall" to hide indicators and display grid again
+            back_btn_3.onclick = function () {
+
+                document.getElementById("indicator-scrn").style.display = "none";
+                document.getElementById("overall-scrn").style.display = "block";
+               
+                for (let i = 0; i < button_rows.length; i++) {
+                    button_rows[i].style.display = "none";
+                }
+
+                back_button_container.removeChild(back_btn_3);
+            
+            }
+
+            // "Previous indicator" function
+            previous_btn_3.onclick = function() {
+
+                var previous_indicator_name = Object.keys(eval(change_type + "_indicator"))[current_index - 1];
+                var previous_domain_name = eval(change_type + "_indicator")[previous_indicator_name].domain; 
+
+                generateIndicatorPage(previous_domain_name, previous_indicator_name);
+
+                current_index = current_index - 1;
+
+                if (current_index != 0) {
+                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index - 1] +'</strong>';
+                } else {
+                    previous_btn_3.innerHTML = "";
+                }
+
+                if (current_index != Object.keys(eval(change_type + "_indicator")).length - 1) {
+                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+                } else {
+                    next_btn_3.innerHTML = ""
+                }
+
+            }
+
+            // "Next indicator" function
+            next_btn_3.onclick = function() {
+
+                var next_indicator_name = Object.keys(eval(change_type + "_indicator"))[current_index + 1];
+                var next_domain_name = eval(change_type + "_indicator")[next_indicator_name].domain; 
+
+                generateIndicatorPage(next_domain_name, next_indicator_name);
+
+                current_index = current_index + 1;
+
+                if (current_index != 0) {
+                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index - 1] +'</strong>';
+                } else {
+                    previous_btn_3.innerHTML = "";
+                }
+
+                if (current_index != Object.keys(eval(change_type + "_indicator")).length - 1) {
+                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+                } else {
+                    next_btn_3.innerHTML = ""
+                }
+
+            }
+
+            generateIndicatorPage(domain_name, indicator_name);               
+
+        }
+
+    }
+
+}
+
 setTimeout(function () {
 
     improving_indicator = {};
@@ -665,81 +846,6 @@ setTimeout(function () {
     document.getElementById("improving-label").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
     document.getElementById("no-change-label").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
     document.getElementById("worsening-label").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
-
-    plotOverallHexes = function(change_type) {
-        
-        gridWidth = document.getElementById("overall-scrn").clientWidth;
-
-        if (Math.floor((gridWidth - 90) / 150) > 6) {
-            h = 6
-        } else {
-            h = Math.floor((gridWidth - 90) / 150);
-        }
-
-        className = change_type.replace("_", "-");
-        
-        while (document.getElementById(className + "-hexes").firstChild) {
-            document.getElementById(className + "-hexes").removeChild(document.getElementById(className + "-hexes").firstChild)
-        }
-
-        for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {            
-
-            if (i % h == 0) {
-                var hex_row = document.createElement("div");
-                hex_row.classList.add("row");
-                hex_row.classList.add(className + "-hex-row");
-                document.getElementById(className + "-hexes").appendChild(hex_row);
-            }            
-    
-            if (i % (h * 2) == h) {
-                hex_row.style.marginLeft = "90px";
-            } else if (i % (h * 2) == 0) {
-                hex_row.style.marginLeft = "15px";
-            }
-    
-            if (i >= h) {
-                hex_row.style.marginTop = "-25px";
-            }
-    
-            var hex_container = document.createElement("div");
-            hex_container.classList.add("shake-hex");
-            var hex = document.createElement("div");
-            var hex_label = document.createElement("div");
-            var label_text = document.createTextNode(Object.keys(eval(change_type + "_indicator"))[i]);
-    
-            hex_container.classList.add("ind-hex-container");
-
-            hex.classList.add("ind-hex");            
-            hex_label.classList.add("ind-hex-label");
-    
-            hex_label.appendChild(label_text);
-            hex_container.appendChild(hex);
-            hex_container.appendChild(hex_label);
-    
-            if (change_type == "improving") {
-                hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';
-                hex.classList.add("positive");
-            } else if (change_type == "no_change") {
-                hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';
-            } else if (change_type == "worsening") {
-                hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';
-                hex.classList.add("negative");
-            }
-
-            hex_row.appendChild(hex_container);
-    
-            hex_container.onclick = function() {
-
-                var indicator_name = Object.keys(eval(change_type + "_indicator"))[i];
-                var domain_name = eval(change_type + "_indicator")[indicator_name].domain;
-
-                generateIndicatorPage(domain_name, indicator_name);               
-    
-            }
-    
-        }
-
-    }
 
     plotOverallHexes("improving");
     plotOverallHexes("no_change");
@@ -1075,7 +1181,6 @@ for (let i = 0; i < user_guide_link.length; i ++) {
         document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
         document.getElementById("help-btn").classList.add("selected-item");
 
-    }
-    
+    }    
 
 }
