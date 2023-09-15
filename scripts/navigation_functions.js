@@ -1232,10 +1232,8 @@ function sizeForMobile() {
             map_form.removeChild(breaks[0]);
         }
 
-        button_left.style.width = "600px";
-        button_left.style.justifyContent = "end";
-        button_right.style.width = "600px";
-        button_right.style.justifyContent = "baseline";
+        button_left.removeAttribute("style");
+        button_right.removeAttribute("style");
 
     }
 

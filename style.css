@@ -723,4 +723,5 @@ footer a:hover {
 #button-right {
     width: 600px;
     display: flex;
+    justify-content: baseline;
 }
