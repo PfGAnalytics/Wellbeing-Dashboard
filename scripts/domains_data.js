@@ -640,7 +640,59 @@ var domains_data = {
        }
     },
     "Living Peacefully": {
-      description: "",
-      indicators: {}
+      description: "Everyone feels safe, we all protect the law and each other",
+      indicators: {
+         "Community relations": {
+            importance: "It is important that relations between Protestants and Catholics improve",
+            base_year: "2020",
+            ci: 2,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "",
+               EQ: "INDCOMRELEQ"
+            },
+            improvement: "increase",
+            telling : {
+               improved: "",
+               no_change: "",
+               worsened: ""
+            }
+         },
+         "Safe towns and city centres": {
+            importance: "It is important that towns and city centres are safe for everyone.",
+            base_year: "2020",
+            ci: 2,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "",
+               EQ: "INDSAFETOWNEQ"
+            },
+            improvement: "increase",
+            telling : {
+               improved: "",
+               no_change: "",
+               worsened: ""
+            }
+         },
+         "Shared community": {
+            importance: "It is important that more people are welcoming of mixed communities",
+            base_year: "2020",
+            ci: 2,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "",
+               EQ: "INSHARCOMEQ"
+            },
+            improvement: "increase",
+            telling: {
+               improved: "",
+               no_change: "",
+               worsened: ""
+            }
+         }
+      }
     }
  };

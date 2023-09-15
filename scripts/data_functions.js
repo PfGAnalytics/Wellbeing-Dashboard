@@ -25,6 +25,10 @@ async function createLineChart(indicator) {
       var id = statistic + "-line";
    }
 
+   if (statistic.slice(0, 3) != "IND") {
+      statistic = "IND" + statistic.slice(2);
+   }
+
    // URL to fetch data from Pre-production data portal
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
    // URL when data is on data.nisra.gov.uk

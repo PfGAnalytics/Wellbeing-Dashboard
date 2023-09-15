@@ -279,6 +279,7 @@ h2 {
 
 #indicator-title {
     margin-left: 20px;
+    margin-top: 8px;
 }
 
 #indicator-hexes {
@@ -353,23 +354,6 @@ h2 {
 
 iframe {
     border: none;
-}
-
-.b-crumb {
-    margin-left: 5px;
-    color: #008675;
-    cursor: pointer;
-    font-size: 16pt;
-}
-
-.b-crumb:hover {
-    color: #333333
-}
-
-#breadcrumbs {
-    padding-left: 15px;
-    margin-bottom: 10px;
-    width: 100%;
 }
 
 #cookie-banner {
@@ -667,4 +651,76 @@ footer a:hover {
 
 #worsening-hexes {
     margin-bottom: 20px;
+}
+
+.button-row {
+    color: #ffffff;
+    background-color: #14206299;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+    font-size: 12pt;
+}
+
+.nav-btn {
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    border-radius: 25px;
+    width: fit-content;
+}
+
+#forward-btn {
+    text-align: right;
+}
+
+.nav-btn:hover {
+    background-color: #14206244;
+}
+
+#map-link {
+    margin-left: 15px;
+}
+
+#AA-link, #LGD-link {
+    color: #142062;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+#chart-link {
+    text-align: center;
+    color: #142062;
+    cursor: pointer;
+}
+
+#AA-link:hover, #LGD-link:hover, #chart-link:hover {
+    color: #008675;
+    filter: brightness(0) saturate(100%) invert(36%) sepia(23%) saturate(2416%) hue-rotate(132deg) brightness(100%) contrast(101%);;
+}
+
+#AA-link {
+    margin-bottom: 10px;
+}
+
+#assembly-logo, #council-logo {
+    width: 35px;
+    filter: brightness(0) saturate(100%) invert(12%) sepia(94%) saturate(1827%) hue-rotate(221deg) brightness(82%) contrast(101%);
+    margin-right: 10px;
+}
+
+#see-maps {
+    font-weight: bold;
+}
+
+#button-left {
+    width: 600px;
+    display: flex;
+    justify-content: end;
+}
+
+#button-right {
+    width: 600px;
+    display: flex;
 }
