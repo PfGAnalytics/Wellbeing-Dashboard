@@ -69,7 +69,7 @@ h1 {
 }
 
 #footer-nisra-logo {
-    width: 200px;
+    width: 250px;
     filter: brightness(0) invert(1);
 }
 
@@ -235,8 +235,8 @@ h2 {
 }
 
 .ind-hex-container {
-   height: 150px;
-   width: 150px;
+   height: 180px;
+   width: 180px;
    position: relative;
    display: flex;
    justify-content: center;
@@ -251,17 +251,17 @@ h2 {
 }
 
 .ind-hex {
-    height: 150px;
-    width: 150px;
+    height: 180px;
+    width: 180px;
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-    background-color: #ff914d;
+    background-color: #FF6200;
     color: #ffffff44;
-    font-size: 100px;
+    font-size: 120px;
   }
 
 .ind-hex.positive {
-    background-color: #00bf63;
+    background-color: #00A857;
 }
 
 .ind-hex.negative {
@@ -271,10 +271,28 @@ h2 {
 .ind-hex-label {
     position: absolute;
     color: #ffffff;
-    font-size: 13pt;
+    font-size: 14pt;
     line-height: 1em;
     padding: 5%;
     font-weight: bold;
+    text-shadow: -2px -2px 0 #FF6200,  
+                2px -2px 0 #FF6200,
+                -2px 2px 0 #FF6200,
+                2px 2px 0 #FF6200;
+}
+
+.ind-hex-label.positive {
+    text-shadow: -2px -2px 0 #00A857,  
+                2px -2px 0 #00A857,
+                -2px 2px 0 #00A857,
+                2px 2px 0 #00A857;
+}
+
+.ind-hex-label.negative {
+    text-shadow: -2px -2px 0 #ff3131,  
+                2px -2px 0 #ff3131,
+                -2px 2px 0 #ff3131,
+                2px 2px 0 #ff3131;
 }
 
 #indicator-title {
@@ -298,7 +316,7 @@ h2 {
     width: 50px;
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-    background-color: #ff914d;
+    background-color: #FF6200;
     color: #ffffff44;
     font-size: 33px;
     margin-left: 15px;
@@ -308,7 +326,7 @@ h2 {
   }
 
 .key-hex.positive {
-    background-color: #00bf63;
+    background-color: #00A857;
 }
 
 .key-hex.negative {
@@ -335,7 +353,7 @@ h2 {
 }
 
 .overall-container {
-    width: 1050px;
+    max-width: 1050px;
     margin-top: 20px
 }
 
@@ -429,7 +447,7 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
-	font-size: 18px;
+	font-size: 14pt;
 	font-weight:700;
 }
 
@@ -451,7 +469,7 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
 
 .flex-list-footer {
 	position: relative;
-    margin: 0em; /* T R B L */
+    margin: 20px 0em 0em 0em; /* T R B L */
 	display:block;
     overflow: hidden;
 }
@@ -463,7 +481,7 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     padding: 0 1em;
     text-align: center;
     border-left: 1px solid #ccc;
-    font-size: 14px;
+    font-size: 14pt;
     list-style-type: none;
 }
 

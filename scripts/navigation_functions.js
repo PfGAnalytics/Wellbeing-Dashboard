@@ -318,7 +318,9 @@ function generateIndicatorPage(d, e) {
 
             button_container.style.display = "flex";
 
-            back_button_container.removeChild(back_btn_4);            
+            if (document.getElementById("back-btn-4")) {
+                back_button_container.removeChild(back_btn_4);
+            }
 
             if (back_button_container.firstChild.id == "back-btn") {
                 
@@ -408,9 +410,11 @@ function generateHexagons (d) {
         if (base_text.includes("worsened")) {
             hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';
             hex.classList.add("negative");
+            hex_label.classList.add("negative");
         } else if (base_text.includes("improved")) {
             hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';
             hex.classList.add("positive");
+            hex_label.classList.add("positive");
         } else {
             hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';
         }
@@ -431,11 +435,11 @@ function generateHexagons (d) {
 
     for (let j = 0; j < ind_hex_rows.length; j++) {
         if (j % 2 == 1) {
-            ind_hex_rows[j].style.marginLeft = "75px";
+            ind_hex_rows[j].style.marginLeft = "90px";
         }
     
         if (j > 0) {
-            ind_hex_rows[j].style.marginTop = "-25px";
+            ind_hex_rows[j].style.marginTop = "-30px";
         }
     }
 
@@ -567,7 +571,7 @@ function generateHexagons (d) {
     // Position of key
     num_rows = indicator_hexes.childElementCount;
     var key = document.getElementById("key");
-    key.style.marginTop = (400 - indicator_hexes.clientHeight) + "px";
+    key.style.marginTop = (480 - indicator_hexes.clientHeight) + "px";
 
 }
 
@@ -720,12 +724,12 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 // Overall screen
 plotOverallHexes = function(change_type) {
         
-    gridWidth = document.getElementById("overall-scrn").clientWidth;
+    gridWidth = document.getElementById("overall-scrn").clientWidth - 150;
 
-    if (Math.floor((gridWidth - 90) / 150) > 6) {
+    if (Math.floor((gridWidth - 105) / 175) > 6) {
         h = 6
     } else {
-        h = Math.floor((gridWidth - 90) / 150);
+        h = Math.floor((gridWidth - 105) / 175);
     }
 
     className = change_type.replace("_", "-");
@@ -744,13 +748,13 @@ plotOverallHexes = function(change_type) {
         }            
 
         if (i % (h * 2) == h) {
-            hex_row.style.marginLeft = "90px";
+            hex_row.style.marginLeft = "105px";
         } else if (i % (h * 2) == 0) {
             hex_row.style.marginLeft = "15px";
         }
 
         if (i >= h) {
-            hex_row.style.marginTop = "-25px";
+            hex_row.style.marginTop = "-30px";
         }
 
         var hex_container = document.createElement("div");
@@ -771,11 +775,13 @@ plotOverallHexes = function(change_type) {
         if (change_type == "improving") {
             hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';
             hex.classList.add("positive");
+            hex_label.classList.add("positive")
         } else if (change_type == "no_change") {
             hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';
         } else if (change_type == "worsening") {
             hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';
             hex.classList.add("negative");
+            hex_label.classList.add("negative");
         }
 
         hex_row.appendChild(hex_container);
