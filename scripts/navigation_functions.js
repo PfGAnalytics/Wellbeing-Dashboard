@@ -480,7 +480,7 @@ function generateHexagons (d) {
 
             // "Next indicator" button
             next_btn_2 = document.createElement("div");
-            next_btn_2.id = "next-indicator";
+            next_btn_2.id = "next-btn-2";
             next_btn_2.classList.add("nav-btn");
 
             if (current_index != indicator_links.length - 1) {
@@ -812,6 +812,18 @@ plotOverallHexes = function(change_type) {
             back_button_container.appendChild(back_btn_3);
 
             current_index = i;
+            current_change = change_type;
+
+            if (current_change == "improving") {
+                next_change = "no_change";
+                previous_change = "worsening";
+            } else if (current_change == "no_change") {
+                next_change = "worsening";
+                previous_change = "improving";
+            } else if (current_change == "worsening") {
+                next_change = "improving";
+                previous_change = "no_change";
+            }
             
             // "Previous indicator" button
             previous_btn_3 = document.createElement("div");
@@ -819,18 +831,22 @@ plotOverallHexes = function(change_type) {
             previous_btn_3.classList.add("nav-btn");
 
             if (current_index != 0) {
-                previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index - 1] +'</strong>';
+                previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
+            } else {
+                previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
             }
 
             button_left.appendChild(previous_btn_3);
 
             // "Next indicator" button
             next_btn_3 = document.createElement("div");
-            next_btn_3.id = "next-indicator";
+            next_btn_3.id = "next-btn-3";
             next_btn_3.classList.add("nav-btn");
 
-            if (current_index != Object.keys(eval(change_type + "_indicator")).length - 1) {
-                next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+            if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
+                next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+            } else {
+                next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(next_change + "_indicator"))[0] +'</strong> <i class="fa-solid fa-forward"></i> ';
             }
 
             button_right.appendChild(next_btn_3);
@@ -852,23 +868,42 @@ plotOverallHexes = function(change_type) {
             // "Previous indicator" function
             previous_btn_3.onclick = function() {
 
-                var previous_indicator_name = Object.keys(eval(change_type + "_indicator"))[current_index - 1];
-                var previous_domain_name = eval(change_type + "_indicator")[previous_indicator_name].domain; 
+                if (current_index == 0) {
+
+                    current_change = previous_change;
+
+                    if (current_change == "improving") {
+                        next_change = "no_change";
+                        previous_change = "worsening";
+                    } else if (current_change == "no_change") {
+                        next_change = "worsening";
+                        previous_change = "improving";
+                    } else if (current_change == "worsening") {
+                        next_change = "improving";
+                        previous_change = "no_change";
+                    }
+
+                    current_index = Object.keys(eval(current_change + "_indicator")).length;
+
+                }
+
+                var previous_indicator_name = Object.keys(eval(current_change + "_indicator"))[current_index - 1];
+                var previous_domain_name = eval(current_change + "_indicator")[previous_indicator_name].domain; 
 
                 generateIndicatorPage(previous_domain_name, previous_indicator_name);
 
                 current_index = current_index - 1;
 
                 if (current_index != 0) {
-                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index - 1] +'</strong>';
+                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
                 } else {
-                    previous_btn_3.innerHTML = "";
+                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
                 }
 
-                if (current_index != Object.keys(eval(change_type + "_indicator")).length - 1) {
-                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+                if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
+                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
                 } else {
-                    next_btn_3.innerHTML = ""
+                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(next_change + "_indicator"))[0] +'</strong> <i class="fa-solid fa-forward"></i> ';
                 }
 
             }
@@ -876,23 +911,42 @@ plotOverallHexes = function(change_type) {
             // "Next indicator" function
             next_btn_3.onclick = function() {
 
-                var next_indicator_name = Object.keys(eval(change_type + "_indicator"))[current_index + 1];
-                var next_domain_name = eval(change_type + "_indicator")[next_indicator_name].domain; 
+                if (current_index == Object.keys(eval(current_change + "_indicator")).length - 1) {
+
+                    current_change = next_change;
+
+                    if (current_change == "improving") {
+                        next_change = "no_change";
+                        previous_change = "worsening";
+                    } else if (current_change == "no_change") {
+                        next_change = "worsening";
+                        previous_change = "improving";
+                    } else if (current_change == "worsening") {
+                        next_change = "improving";
+                        previous_change = "no_change";
+                    }
+
+                    current_index = -1;
+
+                }
+
+                var next_indicator_name = Object.keys(eval(current_change + "_indicator"))[current_index + 1];
+                var next_domain_name = eval(current_change + "_indicator")[next_indicator_name].domain; 
 
                 generateIndicatorPage(next_domain_name, next_indicator_name);
 
                 current_index = current_index + 1;
 
                 if (current_index != 0) {
-                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index - 1] +'</strong>';
+                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
                 } else {
-                    previous_btn_3.innerHTML = "";
+                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
                 }
 
-                if (current_index != Object.keys(eval(change_type + "_indicator")).length - 1) {
-                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(change_type + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+                if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
+                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
                 } else {
-                    next_btn_3.innerHTML = ""
+                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(next_change + "_indicator"))[0] +'</strong> <i class="fa-solid fa-forward"></i> ';
                 }
 
             }
