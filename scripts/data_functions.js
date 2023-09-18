@@ -15,29 +15,33 @@ async function createLineChart(indicator) {
       var matrix = indicator.data.NI;
       var statistic = matrix.slice(0, -2);
       var id = statistic + "-line";
+      api_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
    } else if (indicator.data.EQ != "") {
       var matrix = indicator.data.EQ;
       var statistic = matrix.slice(0, -2);
       var id = statistic + "-line";
+      api_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22"+ matrix + "%22%7D,%22version%22:%222.0%22%7D%7D";
    } else {
       var matrix = indicator.data.LGD;
       var statistic = matrix.slice(0, -3);
       var id = statistic + "-line";
+      api_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22LGD2014%22%5D,%22dimension%22:%7B%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
    }
 
    if (statistic.slice(0, 3) != "IND") {
       statistic = "IND" + statistic.slice(2);
    }
 
-   // URL to fetch data from Pre-production data portal
-   api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
-   // URL when data is on data.nisra.gov.uk
-   // api_url = "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
 
    // Fetch data and store in object fetched_data
    const response = await fetch(api_url);
    const fetched_data = await response.json();
-   const {value, dimension, updated, note} = fetched_data;
+   const {result} = fetched_data;
+
+   const dimension = result.dimension;
+   const value = result.value;
+   const updated = result.updated;
+   const note = result.note;
    
    var years = Object.values(dimension)[1].category.index; // Array of years in data
    var num_years = years.length;  // Number of years in data
@@ -61,34 +65,9 @@ async function createLineChart(indicator) {
       }
    }
 
-   // For NI datasets do the following:
-   if (matrix.slice(-2) == "NI") {
-
-      var base_value = value[base_position]; // The value at the base year
-      var data_series = value; // The y axis values to plot
-      var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
-
-   } else {
-
-      var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA, EQ groups)
-
-      var num_groups = groups.length;     // The number of groups
-      var NI_position = groups.indexOf("N92000002");  // The position of Northern Ireland in the list of groups
-
-      var base_value = value[num_groups * base_position + NI_position];  // The value at the base year
-
-      var data_series = []; // Loop below will generate array of y-axis values
-
-      for (let i = 0; i < value.length; i ++) {
-         if (i % num_groups == NI_position) {
-            data_series.push(value[i]);
-         }
-      }
-
-      var current_value = data_series[num_years - 1]; // Current value
-      var change_from_baseline = current_value - base_value; // The difference between base yaer value and last value
-
-   }
+   var base_value = value[base_position]; // The value at the base year
+   var data_series = value; // The y axis values to plot
+   var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
 
    // Pull chart title and y axis label from metadata
    chart_title = dimension.STATISTIC.category.label[statistic];
@@ -168,7 +147,7 @@ async function createLineChart(indicator) {
       min_value = 0
    }
 
-   // When confidence interval is constant
+//    // When confidence interval is constant
    if (!isNaN(indicator.ci)) {
       var ci_value = indicator.ci;
       var years_cumulated = 1;
@@ -283,6 +262,7 @@ async function createLineChart(indicator) {
             pointBackgroundColor: "#000000"
          }]
       };
+
    }
 
    // Custom plugin for drawing top polygon
@@ -706,7 +686,7 @@ async function createLineChart(indicator) {
 
   source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
   source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
-  source_info = source_info.slice(0, source_info.indexOf("[b]"));  
+  source_info = source_info.slice(0, source_info.indexOf("[b]")).trim();  
 
   if (source_info.indexOf("[url=") > 2) {
    source_name = source_info.slice(0, source_info.indexOf("[url=")).trim();
@@ -725,6 +705,26 @@ async function createLineChart(indicator) {
 
   document.getElementById("source-info").appendChild(source_info_div);
 
+  measure_text = note[0];
+
+  measure_string = "[b]How do we measure this?[/b]"
+
+  if (measure_text.indexOf(measure_string) > -1) {
+   measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length);
+   measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
+  } else {
+   measure_text = "";
+  }
+
+  measure_note = document.createElement("div");
+  measure_note.id = matrix + "-measure-info";
+  measure_note.classList.add("measure-info-text");
+  measure_note.classList.add("white-box");
+  measure_note.style.display = "none";
+
+  measure_note.innerHTML = measure_text;
+
+  document.getElementById("measure-info").appendChild(measure_note);
 
  }
 
@@ -763,9 +763,6 @@ async function drawMap() {
 
    // URL to query (pre-production)
    api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
-   // URL when data is on data.nisra.gov.uk
-   // api_url = "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
-
 
   // Fetch data and store in object fetched_data
   const response = await fetch(api_url);
@@ -906,6 +903,7 @@ async function drawMap() {
    
    // Target change info
    var change_info_map = document.getElementById("change-info-map");
+   var measure_info_map = document.getElementById("measure-info-map");
    var further_info_map = document.getElementById("further-info-map");
 
    // Which change info div to copy text from
@@ -916,6 +914,8 @@ async function drawMap() {
    } else {
        base_id = EQ_id;
    }
+
+   measure_id = base_id.replace("base-statement", "measure-info");
 
    // Create further info div
    var further_note = note[0];
@@ -948,6 +948,7 @@ async function drawMap() {
 
    // Write content to change info box
    change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
+   measure_info_map.innerHTML = document.getElementById(measure_id).innerHTML;
    further_info_map.innerHTML = further_note;
 
    // Legend divs added to map

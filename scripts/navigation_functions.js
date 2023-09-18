@@ -198,22 +198,17 @@ function generateIndicatorPage(d, e) {
 
     // Output things have improved/worsened
     if (data.NI != "") {
-        base_id = data.NI + "-base-statement"
-        further_id = data.NI + "-further-info"
-        source_id = data.NI + "-source-info"
+        matrix = data.NI;
     } else if (data.EQ != "") {
-        base_id = data.EQ + "-base-statement"
-        further_id = data.EQ + "-further-info"
-        source_id = data.EQ + "-source-info"
+        matrix = data.EQ;
     } else if (data.LGD != "") {
-        base_id = data.LGD + "-base-statement"
-        further_id = data.LGD + "-further-info"
-        source_id = data.LGD + "-source-info"
-    } else {
-        base_id = ""
-        further_id = ""
-        source_id = ""
+        matrix = data.LGD;
     }
+
+    base_id = matrix + "-base-statement";
+    further_id = matrix + "-further-info";
+    source_id = matrix + "-source-info";
+    measure_id = matrix + "-measure-info";
 
     var base_statements = document.getElementsByClassName("base-statement");
 
@@ -247,6 +242,18 @@ function generateIndicatorPage(d, e) {
             document.getElementById(source_id).style.display = "block";
         } else {
             source_infos[k].style.display = "none";
+        }
+
+    }
+
+    var measure_infos = document.getElementsByClassName("measure-info-text");
+
+    for (let k = 0; k < measure_infos.length; k++) {
+
+        if (measure_infos[k].id == measure_id) {
+            document.getElementById(measure_id).style.display = "block";
+        } else {
+            measure_infos[k].style.display = "none";
         }
 
     }
