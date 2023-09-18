@@ -102,6 +102,10 @@ h2 {
     justify-content: center;
 }
 
+#domain-info {
+    width: 730px;
+}
+
 
 #seeds-label {
     background-color: #142062;
@@ -673,7 +677,7 @@ footer a:hover {
 
 .button-row {
     color: #ffffff;
-    background-color: #14206299;
+    background-color: #69729B;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -694,7 +698,7 @@ footer a:hover {
 }
 
 .nav-btn:hover {
-    background-color: #14206244;
+    background-color: #5C5F8A;
 }
 
 #map-link {
