@@ -91,7 +91,7 @@ h2 {
 
 #domains-grid-container {
     width: 800px;
-    margin-left: 200px;
+    margin-left: 50px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -174,6 +174,7 @@ h2 {
     width: 100px;
     text-align: center;
     margin-top: 20px;
+    margin-left: 50px;
 }
 
 .hex {
@@ -189,14 +190,15 @@ h2 {
 
   .hex .hex-inner {
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 5px;
+    left: 5px;
     background-color: #008675;
-    width: 192px;
-    height: 192px;
+    width: 190px;
+    height: 190px;
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-    font-size: 18pt;
+    font-size: 20pt;
+    line-height: 1.25em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -682,6 +684,7 @@ footer a:hover {
     display: flex;
     justify-content: center;
     padding-bottom: 5px;
+    padding-top: 5px;
     font-size: 12pt;
 }
 

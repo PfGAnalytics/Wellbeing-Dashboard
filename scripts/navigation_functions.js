@@ -46,8 +46,10 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
         }
         
+        // Run the function to draw a map
         drawMap();
 
+        // Hide expanded further info if navigating from indicator page
         var further_infos = document.getElementsByClassName("further-info-text");
         var further_expander = document.getElementById("further-expander");
 
@@ -67,6 +69,7 @@ for (let i = 0; i < top_menu_items.length; i++) {
             button_rows[i].style.display = "none";
         } 
 
+        // Re draw overall hexagon grid
         plotOverallHexes("improving");
         plotOverallHexes("no_change");
         plotOverallHexes("worsening");
@@ -77,47 +80,50 @@ for (let i = 0; i < top_menu_items.length; i++) {
 
 }
 
-// Generate hex grid of domains
-var domains = Object.keys(domains_data);
+// Count the number of domains in domains_data.js and update text on Domains screen
 document.getElementById("domains-title").textContent = number_to_word(domains.length) + " Wellbeing Domains";
 document.getElementById("domain-count").textContent = number_to_word(domains.length).toLowerCase();
 
+// Generate hex grid of domains
+var domains = Object.keys(domains_data);
 var domains_grid_container = document.getElementById("domains-grid-container");
 
+// Loop through every domain in order to create hexagon and place each hexagon in a grid
 for (let i = 0; i < domains.length; i++) {
 
-    if (i == 0 || i == 3 || i == 7 || i == 10) {
-        var hex_row = document.createElement("div");
-        hex_row.classList.add("row");
-        hex_row.classList.add("hex-row");
-        domains_grid_container.appendChild(hex_row);
+    // Plot the domain hexagons in alternating rows of 3 and 4 hexagons
+    if (i % 7 == 0 || i % 7 == 3) {
+        var hex_row = document.createElement("div");    // Create a div for the hexagon row
+        hex_row.classList.add("row");                   // Add the class "row"
+        hex_row.classList.add("hex-row");               // Add the class "hex-row"
+        domains_grid_container.appendChild(hex_row);    // Place the div in the div "domains-grid-container"
     }
 
-    var hex = document.createElement("div");
-    var hex_inner = document.createElement("div");
-    var label = document.createTextNode(domains[i]);
+    var hex = document.createElement("div");            // Create the first div which will be the blue hexagon that acts as a border
+    var hex_inner = document.createElement("div");      // Create the second div which is the green heaxagon
 
-    hex.classList.add("hex");
-    hex_inner.classList.add("hex-inner");
-    hex_inner.appendChild(label);
-    hex.appendChild(hex_inner);
-    hex_row.appendChild(hex);
+    hex.classList.add("hex");                           // Give outer hexagon class "hex"
+    hex_inner.classList.add("hex-inner");               // Give inner hexagon class "hex-inner"
+    hex_inner.textContent = domains[i];                 // Label the inner div with the name of the domain
+    hex.appendChild(hex_inner);                         // Place the inner div in the outer one
+    hex_row.appendChild(hex);                           // Place the outer hexagon div in the hexagon row
 
 }
 
+// Loop through each row that has been created and indent
 var hex_rows = document.getElementsByClassName("hex-row");
 
 for (let i = 0; i < hex_rows.length; i++) {
     if (i % 2 == 0) {
-        hex_rows[i].style.marginLeft = "100px";
+        hex_rows[i].style.marginLeft = "100px"; // Every odd numbered row will be indented by the width of half a hexagon
     }
 
     if (i > 0) {
-        hex_rows[i].style.marginTop = "-25px";
+        hex_rows[i].style.marginTop = "-33px";  // Every row after the first row will be moved up so hexagons appear closer together
     }
 }
 
-
+// Create variable names for various html elements so they can be referred to further down the code
 var hexagons = document.getElementsByClassName("hex-inner");
 var domains_title = document.getElementById("domains-title");
 var domain_info = document.getElementById("domain-info-container");
@@ -129,405 +135,405 @@ var indicator_hexes = document.getElementById("indicator-hexes");
 var domains_intro = document.getElementById("domains-intro");
 var indicator_intro = document.getElementById("indicator-intro");
 var button_rows = document.getElementsByClassName("button-row");
+var domains_scrn = document.getElementById("domains-scrn");
+var overall_scrn = document.getElementById("overall-scrn");
+var indicator_scrn = document.getElementById("indicator-scrn");
+var maps_scrn = document.getElementById("maps-scrn");
+var domain_title = document.getElementById("domain-title");
+var indicator_title = document.getElementById("indicator-title");
+var ind_important = document.getElementById("ind-important");
+var data_info = document.getElementById("data-info");
+var map_link = document.getElementById("map-link");
+var domains_btn = document.getElementById("domains-btn");
+var maps_btn = document.getElementById("maps-btn");
+var overall_btn = document.getElementById("overall-btn");
+var map_select_1 = document.getElementById("map-select-1");
+var map_select_2 = document.getElementById("map-select-2");
+var map_select_3 = document.getElementById("map-select-3");
+var key = document.getElementById("key");
 
-// Function to generate indicator page when indicator hexagon is clicked on
+// Function to generate indicator page for domain "d" and indicator "e"
+// The function is called when an indicator hexagon is clicked on or when a
+// "next indicator" or "previous indicator" button is clicked
 function generateIndicatorPage(d, e) {
 
-    document.getElementById("domains-scrn").style.display = "none";
-    document.getElementById("overall-scrn").style.display = "none";
-    document.getElementById("indicator-scrn").style.display = "block";
+    domains_scrn.style.display = "none";    // If visible hide Domains screen
+    overall_scrn.style.display = "none";    // and hide Overall screen
+    indicator_scrn.style.display = "block"; // then show the Indicator screen
 
-    document.getElementById("domain-title").innerHTML = d;
+    domain_title.innerHTML = d;             // Place the domain name inside the "domain-title" div element
 
-    document.getElementById("indicator-title").innerHTML = e;
-    document.getElementById("ind-important").innerHTML = domains_data[d].indicators[e].importance;
-
+    indicator_title.innerHTML = e;          // Place the indicator name inside the div element "indicator-title"
+    ind_important.innerHTML = domains_data[d].indicators[e].importance;   // Update the indicator importance div element
     
-    var data = domains_data[d].indicators[e].data;
+    var data = domains_data[d].indicators[e].data;      // The nested "data" object for the relevant indicator
 
+    // Need to determine the data portal matrix and id of the chart created for this indicator. (see createLineChart() function in "data-functions.js" script)
     if (data.NI != "") {
-        chart_id = data.NI.slice(0, -2) + "-line";                               
+        chart_id = data.NI.slice(0, -2) + "-line";
+        matrix = data.NI;                               
     } else if (data.EQ != "") {
         chart_id = data.EQ.slice(0, -2) + "-line";
-    } else if (data.LGD != "") {
-        chart_id = data.LGD.slice(0, -3) + "-line";
-    }
-
-    var line_charts = document.getElementsByClassName("line-chart");
-
-    for (let k = 0; k < line_charts.length; k++) {
-
-        if (line_charts[k].id == chart_id) {
-            document.getElementById(chart_id).style.display = "block";
-        } else {
-            line_charts[k].style.display = "none";
-        }
-
-    }
-
-    // Output "More data" paragraph
-    var data_info = "You can view and download data ";
-
-    if (data.NI != "") {
-        data_info = data_info + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + data.NI + '" target = "_blank">Northern Ireland level</a>, ';
-    }
-
-    if (data.LGD != "") {
-        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
-    }
-
-    if (data.AA != "") {
-        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
-    }
-
-    if (data.EQ != "") {
-        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
-    }
-
-    data_info = data_info + ' on the NISRA Data Portal.'
-
-    if (data_info.lastIndexOf(",") > 0 ) {
-        data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-    }
-
-    if (data_info.lastIndexOf(",") > 0 ) {
-        data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-    }
-
-    document.getElementById("data-info").innerHTML = data_info;
-
-    // Output things have improved/worsened
-    if (data.NI != "") {
-        matrix = data.NI;
-    } else if (data.EQ != "") {
         matrix = data.EQ;
     } else if (data.LGD != "") {
+        chart_id = data.LGD.slice(0, -3) + "-line";
         matrix = data.LGD;
     }
 
+    // An array of all line charts
+    var line_charts = document.getElementsByClassName("line-chart");
+
+    // Loop through the array of all line charts
+    for (let k = 0; k < line_charts.length; k++) {
+
+        if (line_charts[k].id == chart_id) {
+            document.getElementById(chart_id).style.display = "block";  // If the id of a line chart matches the one generated above "chart_id" then display it
+        } else {
+            line_charts[k].style.display = "none";      // Otherwise hide it
+        }
+
+    }
+
+    // Output "More data" sentence
+    var data_info_text = "You can view and download data ";  // Start the sentence with this text
+
+    if (data.NI != "") {    // If there is NI level data add a link to it to the sentence
+        data_info_text = data_info_text + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + data.NI + '" target = "_blank">Northern Ireland level</a>, ';
+    }
+
+    if (data.LGD != "") {   // If there is LGD data add a link to it to the sentence
+        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
+    }
+
+    if (data.AA != "") {    // If there is AA data add a link to it to the sentence
+        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
+    }
+
+    if (data.EQ != "") {    // If there is EQ data add a link to it to the sentence
+        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
+    }
+
+    data_info_text = data_info_text + ' on the NISRA Data Portal.'        // Close the sentence with this 
+
+    if (data_info_text.lastIndexOf(",") > 0 ) { // Remove the last comma from the sentence
+        data_info_text = data_info_text.substring(0, data_info_text.lastIndexOf(",")) + data_info_text.substring(data_info_text.lastIndexOf(",") + 1, data_info_text.length);
+    }
+
+    if (data_info_text.lastIndexOf(",") > 0 ) {  // Change the comma that is now the last comma into the word "and"
+        data_info_text = data_info_text.substring(0, data_info_text.lastIndexOf(",")) + " and " + data_info_text.substring(data_info_text.lastIndexOf(",") + 1, data_info_text.length);
+    }
+
+    data_info.innerHTML = data_info_text;   // Place sentence in "data-info" div
+
+    // Determine the id of the baseline statemnent generated in createLineChart() (see "data_functions.js")
     base_id = matrix + "-base-statement";
-    further_id = matrix + "-further-info";
-    source_id = matrix + "-source-info";
-    measure_id = matrix + "-measure-info";
 
+    // Array of all baseline statements
     var base_statements = document.getElementsByClassName("base-statement");
-
-    for (let k = 0; k < base_statements.length; k++) {
-
-        if (base_statements[k].id == base_id) {
-            document.getElementById(base_id).style.display = "block";
-        } else {
-            base_statements[k].style.display = "none";
-        }
-
-    }
-
     var further_infos = document.getElementsByClassName("further-info-text");
-
-    for (let k = 0; k < further_infos.length; k++) {
-
-        if (further_infos[k].id == further_id) {
-            document.getElementById(further_id).classList.add("further-selected");
-        } else {
-            further_infos[k].classList.remove("further-selected");
-        }
-
-    }
-
     var source_infos = document.getElementsByClassName("source-info-text");
-
-    for (let k = 0; k < source_infos.length; k++) {
-
-        if (source_infos[k].id == source_id) {
-            document.getElementById(source_id).style.display = "block";
-        } else {
-            source_infos[k].style.display = "none";
-        }
-
-    }
-
     var measure_infos = document.getElementsByClassName("measure-info-text");
 
-    for (let k = 0; k < measure_infos.length; k++) {
+    for (let i = 0; i < base_statements.length; i++) {          // Loop through all baseline statements
 
-        if (measure_infos[k].id == measure_id) {
-            document.getElementById(measure_id).style.display = "block";
-        } else {
-            measure_infos[k].style.display = "none";
+        if (base_statements[i].id == base_id) { // if id matches "base_id" then show the relevant baseline statement, further info, source info and how we measure this info
+            document.getElementById(base_id).style.display = "block";   
+            document.getElementById(base_id.replace("base-statement", "further-info")).classList.add("further-selected");
+            document.getElementById(base_id.replace("base-statement", "source-info")).style.display = "block";
+            document.getElementById(base_id.replace("base-statement", "measure-info")).style.display = "block";
+        } else {    // Otherwise hide these for other indicators
+            base_statements[i].style.display = "none";      
+            further_infos[i].classList.remove("further-selected");
+            source_infos[i].style.display = "none";
+            measure_infos[i].style.display = "none";
+        }
+
+    }    
+
+    // This next section will add a link to the relevant map on an indicator page. If available
+    while(map_link.firstChild) {
+        map_link.removeChild(map_link.firstChild);  // Remove any map links already generated on previous indicator pages viewed
+    }
+
+    if (data.AA != "" || data.LGD != "") { // When there is AA or LGD data present for the indicator in domains_data
+
+        see_maps = document.createElement("div");               // Create a new div element
+        see_maps.id = "see-maps";                               // Give this div an id "see-maps"
+        see_maps.textContent = "See this indicator mapped by:"  // Add text to div
+
+        map_link.appendChild(see_maps);                         // Add this div to the div "map-link"
+
+    }
+
+    // When AA data is present generate a link to it
+    if (data.AA != "") {
+
+        AA_link = document.createElement("div");    // new div element for AA link
+        AA_link.id = "AA-link";                     // Given id "AA-link"
+        AA_link.innerHTML = "<img id = 'assembly-logo' src = 'img/NI_Assembly.svg'>Assembly Area";  // Add text and icon
+        map_link.appendChild(AA_link);      // Add link to "map-link" div
+
+        AA_link.onclick = function () {
+            jumpToMap("AA");   // Function to execute when link is clicked (see below)
         }
 
     }
 
-    map_link = document.getElementById("map-link");
+    // When LGD data is present generate a link to it
+    if (data.LGD != "") {
 
-    while(map_link.firstChild) {
-        map_link.removeChild(map_link.firstChild);
-    }
+        LGD_link = document.createElement("div"); // new div element for LGD link
+        LGD_link.id = "LGD-link";                 // Given id "AA-link"
+        LGD_link.innerHTML = "<img id = 'council-logo' src = 'img/Northern_Ireland_outline.svg'>Local Government District";  // Add text and icon
+        map_link.appendChild(LGD_link);      // Add link to "map-link" div
 
-    if (data.AA != "" || data.LGD != "") {
-
-        see_maps = document.createElement("div");
-        see_maps.id = "see-maps";
-        see_maps.textContent = "See this indicator mapped by:"
-
-        map_link.appendChild(see_maps)
+        LGD_link.onclick = function () {
+            jumpToMap("LGD");       // Function to execute when link is clicked (see below)
+        }
 
     }
 
+    // Function to execute when either LGD or AA link is clicked
     function jumpToMap(geography) {
 
-        document.getElementById("indicator-scrn").style.display = "none";
-        document.getElementById("maps-scrn").style.display = "block";
+        indicator_scrn.style.display = "none";  // Hide indicator screen
+        maps_scrn.style.display = "block";      // Display maps screen
 
-        document.getElementById("domains-btn").classList.remove("selected-item");
-        document.getElementById("overall-btn").classList.remove("selected-item");
-        document.getElementById("maps-btn").classList.add("selected-item");
+        domains_btn.classList.remove("selected-item");  // Update domains button display
+        overall_btn.classList.remove("selected-item");  // Update overall button display
+        maps_btn.classList.add("selected-item");        // Update maps button display
 
-        document.getElementById("domains-btn").firstChild.classList.remove("selected-icon");
-        document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
-        document.getElementById("maps-btn").firstChild.classList.add("selected-icon");
+        domains_btn.firstChild.classList.remove("selected-icon");   // Update domains button icon display
+        overall_btn.firstChild.classList.remove("selected-icon");   // Update overall button icon display
+        maps_btn.firstChild.classList.add("selected-icon");         // Update maps button icon display
 
-        document.getElementById("map-select-1").value = d;
-        updateMapSelect2();
-        document.getElementById("map-select-2").value = e;
-        updateMapSelect3();
-        document.getElementById("map-select-3").value = data[geography];
-        drawMap();
+        map_select_1.value = d;     // Select the domain "d" in the first dropdown menu on maps screen
+        updateMapSelect2();         // Run updateMapSelect2() funciton (see below) to update the items in second dropdown menu
+        map_select_2.value = e;     // Select the indicator "e" in the second dropdown menu on maps screen
+        updateMapSelect3();         // Run updateMapSelect3() funciton (see below) to update the items in third dropdown menu
+        map_select_3.value = data[geography];   // Select AA or LGD map in third menu
+        drawMap();                  // Run the drawMap() function (see "data_functions.js") based on selections
 
+        // Hide the "next indicator" and "previous indicator" buttons
         button_container.style.display = "none";
         
+        // Hide the existing back button
         back_buttons = back_button_container.getElementsByTagName("div");
         for (let i = 0; i < back_buttons.length; i ++) {
             back_buttons[i].style.display = "none";
         }
 
-        back_btn_4 = document.createElement("div");
-        back_btn_4.id = "back-btn-4";
-        back_btn_4.classList.add("nav-btn");
-        back_btn_4.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>'+ e +'</strong> indicator';
+        // Create a new back button that will direct user back to indicator screen they were on before clicking the map link
+        back_btn_4 = document.createElement("div");     // new div for back button
+        back_btn_4.id = "back-btn-4";           // id for new back button
+        back_btn_4.classList.add("nav-btn");    // "nav-btn" class applied
+        back_btn_4.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>'+ e +'</strong> indicator'; // Icon and text on button
 
-        back_button_container.appendChild(back_btn_4);
+        back_button_container.appendChild(back_btn_4);  // Back button inserted into "back-button-container"
 
+        // Function to execute when "back-btn-4" is clicked
         back_btn_4.onclick = function() {
 
-            document.getElementById("maps-scrn").style.display = "none";
-            document.getElementById("indicator-scrn").style.display = "block";
+            maps_scrn.style.display = "none";   // Hide map screen
+            indicator_scrn.style.display = "block"; // Display indicator screen
 
-            document.getElementById("maps-btn").classList.remove("selected-item");
-            document.getElementById("maps-btn").firstChild.classList.remove("selected-icon");
+            maps_btn.classList.remove("selected-item");     // Change display of maps button
+            maps_btn.firstChild.classList.remove("selected-icon");  // Change display of maps button icon
 
-            button_container.style.display = "flex";
+            button_container.style.display = "flex";    // Show "next" and "previous" buttons again
 
             if (document.getElementById("back-btn-4")) {
-                back_button_container.removeChild(back_btn_4);
+                back_button_container.removeChild(back_btn_4);  // Remove "back-btn-4"
             }
 
-            if (back_button_container.firstChild.id == "back-btn") {
+            if (back_button_container.firstChild.id == "back-btn") {    // if user was viewing indicator via Domains page do following:
                 
-                document.getElementById("domains-btn").classList.add("selected-item");
-                document.getElementById("domains-btn").firstChild.classList.add("selected-icon");
+                domains_btn.classList.add("selected-item");         // Change display of domains button
+                domains_btn.firstChild.classList.add("selected-icon");  // Change display of domains button icon
 
-                back_btn_2.style.display = "block";
+                back_btn_2.style.display = "block";     // Show back button that directs user "Back to Domains grid"
 
-            } else if (back_button_container.firstChild.id == "back-btn-3") {
+            } else if (back_button_container.firstChild.id == "back-btn-3") { // if user was viewing indicator via Overall page do following:
                 
-                document.getElementById("overall-btn").classList.add("selected-item");
-                document.getElementById("overall-btn").firstChild.classList.add("selected-icon");
+                overall_btn.classList.add("selected-item");             // Change display of overall button
+                overall_btn.firstChild.classList.add("selected-icon");  // Change display of overall button icon
 
-                back_btn_3.style.display = "block";
+                back_btn_3.style.display = "block";     // Show back button that directs user "Back to Overall grid"
 
             }
         }
 
     }
 
-    if (data.AA != "") {
-
-        AA_link = document.createElement("div");
-        AA_link.id = "AA-link";
-        AA_link.innerHTML = "<img id = 'assembly-logo' src = 'img/NI_Assembly.svg'>Assembly Area";
-        map_link.appendChild(AA_link);
-
-        AA_link.onclick = function () {
-            jumpToMap("AA")
-        }
-
-    }
-
-    if (data.LGD != "") {
-
-        LGD_link = document.createElement("div");
-        LGD_link.id = "LGD-link";
-        LGD_link.innerHTML = "<img id = 'council-logo' src = 'img/Northern_Ireland_outline.svg'>Local Government District";
-        map_link.appendChild(LGD_link);
-
-        LGD_link.onclick = function () {
-            jumpToMap("LGD")
-        }
-
-    }
+    
 
 }
 
-// Function to generate Hexagons on a domain page
+// This function generates a page when any of the hexagons on the Domains screen are clicked
+// "d" refers to the name of the Domain clicked
 function generateHexagons (d) {
 
+    // Remove any hexagons inside the div with the id "indicator-hexes"
     while (indicator_hexes.firstChild) {
         indicator_hexes.removeChild(indicator_hexes.firstChild);
     } 
 
+    // An array of the indicators contained inside the selected domain
     indicators = Object.keys(domains_data[d].indicators);
-            
-    for (let j = 0; j < indicators.length; j++) {
+    
+    // Loop through all the indicators for this domain and plot a hexagon for each one:
+    for (let i = 0; i < indicators.length; i++) {
 
-        if (j % 3 == 0) {
-            var hex_row = document.createElement("div");
-            hex_row.classList.add("row");
-            hex_row.classList.add("ind-hex-row");
-            indicator_hexes.appendChild(hex_row);
+        if (i % 3 == 0) {   // Rows of three hexagons
+            var hex_row = document.createElement("div");    // Create a div for a new row of hexagons
+            hex_row.classList.add("row");                   // Add the class "row"
+            hex_row.classList.add("ind-hex-row");           // Add the class "ind-hex-row"
+            indicator_hexes.appendChild(hex_row);           // Add the row to the div element "indicator-hexes"
         }
 
-        var hex_container = document.createElement("div");
-        hex_container.classList.add("shake-hex");
-        var hex = document.createElement("div");
-        var hex_label = document.createElement("div");
-        var label_text = document.createTextNode(indicators[j]);
+        var hex_container = document.createElement("div");  // Create a new div for the hexagon container (into which the hexagon and its label will be nested)
+        hex_container.classList.add("shake-hex");           // Give it the class "shake-hex"
+        var hex = document.createElement("div");            // Create a new div for the hexagon
+        var hex_label = document.createElement("div");      // Create a new div for the label text
 
-        var NI_data = domains_data[d].indicators[indicators[j]].data.NI;
-        var LGD_data = domains_data[d].indicators[indicators[j]].data.LGD;
-        var EQ_data = domains_data[d].indicators[indicators[j]].data.EQ;
+        var data = domains_data[d].indicators[indicators[i]].data; // The data object within this indicator
 
-        if (NI_data != "") {
-            base_text = document.getElementById(NI_data + "-base-statement").textContent;
-        } else if (EQ_data != "") {
-            base_text = document.getElementById(EQ_data + "-base-statement").textContent;
-        } else if (LGD_data != "") {
-            base_text = document.getElementById(LGD_data + "-base-statement").textContent;
-        }  else {
-            base_text = "";
+        // Extract the text content of the baseline statement for each indicator
+        if (data.NI != "") {
+            base_text = document.getElementById(data.NI + "-base-statement").textContent;
+        } else if (data.EQ != "") {
+            base_text = document.getElementById(data.EQ + "-base-statement").textContent;
+        } else if (data.LGD != "") {
+            base_text = document.getElementById(data.LGD + "-base-statement").textContent;
         }
 
-        if (base_text.includes("worsened")) {
-            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';
-            hex.classList.add("negative");
-            hex_label.classList.add("negative");
-        } else if (base_text.includes("improved")) {
-            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';
-            hex.classList.add("positive");
-            hex_label.classList.add("positive");
-        } else {
-            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';
+        if (base_text.includes("worsened")) {   // If the word "worsened" appears in the baseline statement:
+            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
+            hex.classList.add("negative");      // Add the class "negative" to the hexagon
+            hex_label.classList.add("negative");    // Add the class "negative" to the label text
+        } else if (base_text.includes("improved")) {    // If the word "improved" appears in the baseline statement:
+            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
+            hex.classList.add("positive");              // Add the class "positive" to the hexagon
+            hex_label.classList.add("positive");        // Add the class "negative" to the label text
+        } else {    // Otherwise:
+            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
         }
 
-        hex_container.classList.add("ind-hex-container");
-        hex.classList.add("ind-hex");            
-        hex_label.classList.add("ind-hex-label");
+        hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
+        hex.classList.add("ind-hex");               // Add class "ind-hex" to the hexagon
+        hex_label.classList.add("ind-hex-label");   // Add class "ind-hex-label" to the label
 
-        hex_label.appendChild(label_text);
-        hex_container.appendChild(hex);
-        hex_container.appendChild(hex_label);
-
-        hex_row.appendChild(hex_container);
+        hex_label.textContent = indicators[i];      // Place the indicator name in the label
+        hex_container.appendChild(hex);             // Place the hexagon in the hexagon container
+        hex_container.appendChild(hex_label);       // Place the label in the hexagon container
+                
+        hex_row.appendChild(hex_container);         // Place the hexagon container into the hexagon row
 
     }
 
+    // After all hexagons are plotted we will get an array of all the hexagon rows
     ind_hex_rows = document.getElementsByClassName("ind-hex-row");
 
-    for (let j = 0; j < ind_hex_rows.length; j++) {
-        if (j % 2 == 1) {
-            ind_hex_rows[j].style.marginLeft = "90px";
+    for (let i = 0; i < ind_hex_rows.length; i++) { // Loop through the rows
+        if (i % 2 == 1) {   
+            ind_hex_rows[i].style.marginLeft = "90px";      // Even numbered rows will be indented half the width of one hexagon
         }
     
-        if (j > 0) {
-            ind_hex_rows[j].style.marginTop = "-30px";
+        if (i > 0) {
+            ind_hex_rows[i].style.marginTop = "-30px";      // All rows after first row will be moved up by 30px
         }
     }
 
     // Clinking an indicator name
     var indicator_links = document.getElementById("indicator-hexes").getElementsByClassName("ind-hex-container");
 
-    for (let j = 0; j < indicator_links.length; j++) {
+    for (let i = 0; i < indicator_links.length; i++) {
 
-        indicator_links[j].onclick = function() {
+        indicator_links[i].onclick = function() {
 
-            // Remove nav buttons
-            nav_buttons = button_container.getElementsByClassName("nav-btn");
-            for (let i = 0; i < nav_buttons.length; i ++) {
-                nav_buttons[i].style.display = "none";
+            // Generate indicator page for clicked hexagon
+            var indicator_name = indicator_links[i].getElementsByClassName("ind-hex-label")[0].innerHTML;
+
+            // Run generateIndicatorPage() function (see above) for initial selection
+            generateIndicatorPage(d, indicator_name);
+
+            // Hide nav buttons currently on display
+            nav_buttons = document.getElementsByClassName("nav-btn");
+            for (let j = 0; j < nav_buttons.length; j ++) {
+                nav_buttons[j].style.display = "none";
             }
 
-            back_buttons = back_button_container.getElementsByTagName("div");
-            for (let i = 0; i < back_buttons.length; i ++) {
-                back_buttons[i].style.display = "none";
-            }
+            // Generate button for "Back to Domains"
+            back_btn_2 = document.createElement("div");     // Div for back button
+            back_btn_2.id = "back-btn-2";                   // Give it id "back-btn-2"
+            back_btn_2.classList.add("nav-btn");            // Add class "nav-btn"
+            back_btn_2.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + d + '</strong> domain';  // Text and icon on button
 
-            // Generate button for "back to Domains"
-            back_btn_2 = document.createElement("div");
-            back_btn_2.id = "back-btn-2";
-            back_btn_2.classList.add("nav-btn");
-            back_btn_2.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + d + '</strong> domain';
+            back_button_container.appendChild(back_btn_2);  // Append "Back to Domains" to the div "back-button-container"
 
-            back_button_container.appendChild(back_btn_2);           
-
-            current_index = j;
+            // The "Previous Indicator" and "Next Indicator" buttons:
+            current_index = i;  // A numeric index of the indicator currently in view
 
             // "Previous indicator" button
-            previous_btn_2 = document.createElement("div");
-            previous_btn_2.id = "previous-indicator";
-            previous_btn_2.classList.add("nav-btn");
+            previous_btn_2 = document.createElement("div");     // Div for previous indicator button
+            previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
+            previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
 
+            // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
             if (current_index != 0) {
                 previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + indicator_links[current_index - 1].textContent +'</strong>';
             }
 
-            button_left.appendChild(previous_btn_2);
+            button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
 
             // "Next indicator" button
-            next_btn_2 = document.createElement("div");
-            next_btn_2.id = "next-btn-2";
-            next_btn_2.classList.add("nav-btn");
+            next_btn_2 = document.createElement("div");     // Div for next indicator button
+            next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
+            next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
 
+            // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
             if (current_index != indicator_links.length - 1) {
                 next_btn_2.innerHTML = 'Next indicator: <strong>' + indicator_links[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
             }
 
-            button_right.appendChild(next_btn_2);
+            button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
 
-            // Function inside "back to Domains" to hide indicators and display grid again
+            // Function inside "Back to Domains" to hide indicators and display grid again
             back_btn_2.onclick = function () {
 
-                document.getElementById("indicator-scrn").style.display = "none";
-                document.getElementById("domains-scrn").style.display = "block";
+                indicator_scrn.style.display = "none";  // Hide indicator screen
+                domains_scrn.style.display = "block";   // Show domains screen
 
-                for (let i = 0; i < nav_buttons.length; i ++) {
-                    nav_buttons[i].style.display = "block";
+                for (let j = 0; j < nav_buttons.length; j ++) {
+                    nav_buttons[j].style.display = "block"; // Show the buttons previously hidden by clicking on one of the Domains
                 }
 
-                for (let i = 0; i < back_buttons.length; i ++) {
-                    back_buttons[i].style.display = "block";
-                }
-
-                back_button_container.removeChild(back_btn_2);
-                button_left.removeChild(previous_btn_2);
-                button_right.removeChild(next_btn_2);
+                back_button_container.removeChild(back_btn_2);  // Remove the "Back to Domains" button
+                button_left.removeChild(previous_btn_2);        // Remove "Previous Indicator button"
+                button_right.removeChild(next_btn_2);           // Remove "Next Indicator button"
             
             }
 
-            // "Previous indicator" function
+            // Function inside "Previous indicator" button
             previous_btn_2.onclick = function() {
 
-                var previous_indicator_name = indicator_links[current_index - 1].getElementsByClassName("ind-hex-label")[0].innerHTML;
+                // Get the name of previous indicator from the button text
+                var previous_indicator_name = previous_btn_2.textContent.replace("Previous indicator:", "").trim();
 
+                // Run generateIndicatorPage() function (see above) for previous_indicator_name
                 generateIndicatorPage(d, previous_indicator_name);
 
+                // Update the current_index counter to one less than its current value
                 current_index = current_index - 1;
 
+                // Generate new text on "Previous indicator" button (except when user is looking at first indicator for that domain)
                 if (current_index != 0) {
                     previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + indicator_links[current_index - 1].textContent +'</strong>';
                 } else {
                     previous_btn_2.innerHTML = "";
                 }
 
+                // Generate new text on "Next indicator" button (except when user is looking at last indicator for that domain)
                 if (current_index != indicator_links.length - 1) {
                     next_btn_2.innerHTML = 'Next indicator: <strong>' + indicator_links[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
                 } else {
@@ -536,21 +542,26 @@ function generateHexagons (d) {
 
             }
 
-            // "Next indicator" function
+            // Function inside "Next indicator" button
             next_btn_2.onclick = function() {
 
-                var next_indicator_name = indicator_links[current_index + 1].getElementsByClassName("ind-hex-label")[0].innerHTML;
+                // Get the name of next indicator from the button text
+                var next_indicator_name = next_btn_2.textContent.replace("Next indicator:", "").trim();
 
+                // Run generateIndicatorPage() function (see above) for next_indicator_name
                 generateIndicatorPage(d, next_indicator_name);
 
+                // Update the current_index counter to one more than its current value
                 current_index = current_index + 1;
 
+                // Generate new text on "Previous indicator" button (except when user is looking at first indicator for that domain)
                 if (current_index != 0) {
                     previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + indicator_links[current_index - 1].textContent +'</strong>';
                 } else {
                     previous_btn_2.innerHTML = "";
                 }
 
+                // Generate new text on "Next indicator" button (except when user is looking at last indicator for that domain)
                 if (current_index != indicator_links.length - 1) {
                     next_btn_2.innerHTML = 'Next indicator: <strong>' + indicator_links[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
                 } else {
@@ -558,120 +569,131 @@ function generateHexagons (d) {
                 }
 
             }
-
-            // Generate indicator page for clicked hexagon
-            var indicator_name = indicator_links[j].getElementsByClassName("ind-hex-label")[0].innerHTML;
-
-            generateIndicatorPage(d, indicator_name);
 
         }
 
     }
 
-    // Position of key
-    num_rows = indicator_hexes.childElementCount;
-    var key = document.getElementById("key");
-    key.style.marginTop = (480 - indicator_hexes.clientHeight) + "px";
+    // Position of key at bottom of domain page (stop it varying depending on Domain)
+    key.style.marginTop = (508 - indicator_hexes.clientHeight) + "px";
 
 }
 
+// This next loop will go through all the hexagons on the Domains screen and functionality for clicking on each Domain
+for (let i = 0; i < hexagons.length - 1; i++) {     // "hexagons.length - 1" is used to exclude the Hexagon that serves as a title on the individual Domain pages
 
-for (let i = 0; i < hexagons.length - 1; i++) {    
+    hexagons[i].parentElement.classList.add("shake-hex");   // Add the "shake-hex" class to each hexagon
 
-    hexagons[i].parentElement.classList.add("shake-hex");
-
+    // Add click functionality
     hexagons[i].onclick = function() {
 
         // Hide domains grid and display indicators
-        domains_title.style.display = "none";
-        domain_info.style.display = "flex";
-        domains_grid_container.style.display = "none";
-        click_to_see.style.display = "none";
-        domains_intro.style.display = "none";
-        indicator_intro.style.display = "block";
+        domains_title.style.display = "none";   // Hide the "domains-title" div
+        domain_info.style.display = "flex";     // Show the "domain-info" div
+        domains_grid_container.style.display = "none";  // Hide the domains grid
+        click_to_see.style.display = "none";        // Hide the "click-to-see" div
+        domains_intro.style.display = "none";       // Hide the "domains-intro" div
+        indicator_intro.style.display = "block";    // Show the "indicator-intro" div
+
+        var domain_name = hexagons[i].innerHTML;    // Obtain domain name from hexagon text
+
+        clicked_hex.innerHTML = domain_name;    // Update text inside "clicked-hex"
+        domain_name_text.textContent = domain_name;     // Update "domain-name-text" inside intro paragraph
+
+        clicked_desc.innerHTML = domains_data[domain_name].description; // Update description of domain
+
+        // Run generateHexagons(d) function (see above) for selected domain
+        generateHexagons(domain_name);
 
         for (let i = 0; i < button_rows.length; i ++) {
-            button_rows[i].style.display = "flex";
+            button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
         }        
 
         // Remove buttons from nav bar
         while (button_left.firstChild) {
-            button_left.removeChild(button_left.firstChild);
+            button_left.removeChild(button_left.firstChild);    // Remove any "Previous indicator" or "Previous domain" buttons previously generated
         }
 
         while (button_right.firstChild) {
-            button_right.removeChild(button_right.firstChild);
+            button_right.removeChild(button_right.firstChild);  // Remove any "Next indicator" or "Next domain" buttons previously generated
         }
 
-        // Generate button for "back to Domains"
-        back_btn = document.createElement("div");
-        back_btn.id = "back-btn";
-        back_btn.classList.add("nav-btn");
-        back_btn.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Domains</strong> grid';
+        // Generate button for "Back to Domains"
+        back_btn = document.createElement("div");       // New div for "Back to Domains" button
+        back_btn.id = "back-btn";                       // Give it the id "back-btn"
+        back_btn.classList.add("nav-btn");              // Give it the class "nav-btn"
+        back_btn.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Domains</strong> grid';      // Icon and text put inside button
 
-        back_button_container.appendChild(back_btn);
+        back_button_container.appendChild(back_btn);    // "back-btn" is added to "back-button-container" div
 
-        // Function inside "back to Domains" to hide indicators and display grid again
+        // Function inside "Back to Domains" to hide indicators and display grid again
         back_btn.onclick = function () {
 
-            domains_title.style.display = "block";
-            domains_intro.style.display = "block";
-            indicator_intro.style.display = "none";
-            domains_grid_container.style.display = "block";
-            click_to_see.style.display = "block";
-            domain_info.style.display = "none";
+            domains_title.style.display = "block";  // Show the "domains-title" div
+            domains_intro.style.display = "block";  // Show the "domains-intro" div
+            indicator_intro.style.display = "none"; // Hide the "indicator-intro" div
+            domains_grid_container.style.display = "block"; // Show the "domains-grid-container" div
+            click_to_see.style.display = "block";   // Show the "click-to-see" div
+            domain_info.style.display = "none";     // Hide the "domain-info" div
 
             for (let i = 0; i < button_rows.length; i ++) {
-                button_rows[i].style.display = "none";
+                button_rows[i].style.display = "none";  // Hide all divs with class "button-row"
             } 
 
-            back_button_container.removeChild(back_btn);
+            back_button_container.removeChild(back_btn);    // Remove the "back-btn" div
         
         }
 
-        var current_index = i;
+        // The "Previous Domain" and "Next Domain" buttons:
+        var current_index = i;  // A numeric counter of the Domain currently on view
 
         // Generate "see Previous domain" button
-        previous_btn = document.createElement("div");
-        previous_btn.id = "previous-domain";
-        previous_btn.classList.add("nav-btn");
+        previous_btn = document.createElement("div");   // Div for previous domain button
+        previous_btn.id = "previous-domain";            // Given the id "previous-domain"
+        previous_btn.classList.add("nav-btn");          // Given the class "nav-btn"
 
+        // The button text and icon are generated (except when the first Domain is clicked)
         if (current_index != 0) {
             previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
         }
 
-        button_left.appendChild(previous_btn);
+        button_left.appendChild(previous_btn);  // Button is added to div "button-left"
 
         // Generate "see Next domain" button
-        next_btn = document.createElement("div");
-        next_btn.id = "next-domain";
-        next_btn.classList.add("nav-btn");
+        next_btn = document.createElement("div");       // Div for next domain button
+        next_btn.id = "next-domain";                    // Given the id "next-domain"
+        next_btn.classList.add("nav-btn");              // Given the class "nav-btn"
 
+        // The button text and icon are generated (except when the last Domain is clicked)
         if (current_index != hexagons.length - 2) {
             next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
         }
 
-        button_right.appendChild(next_btn);
+        button_right.appendChild(next_btn);   // Button is added to div "button-right"
 
-        // Function behind previous button
+        // Function behind "Previous Domain" button
         previous_btn.onclick = function () {
 
+            // Get the name of previous domain from the hexagon text
             previous_domain_name = hexagons[current_index - 1].textContent;
             
-            clicked_hex.innerHTML = previous_domain_name;
-            domain_name_text.textContent = previous_domain_name;
-            clicked_desc.innerHTML = domains_data[previous_domain_name].description;                       
+            clicked_hex.innerHTML = previous_domain_name;   // Update the text content inside the "clicked-hex" hexagon
+            clicked_desc.innerHTML = domains_data[previous_domain_name].description;    // Update the description                       
 
+            // Run generateHexagons(d) function (see above) for previous_domain_name
             generateHexagons(previous_domain_name);
             
+            // Update the current_index counter to one less than its current value
             current_index = current_index - 1;
 
+            // Generate new text on "Previous domain" button (except when user is looking at first Domain)
             if (current_index != 0) {
                 previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
             } else {
                 previous_btn.innerHTML = "";
             }
 
+            // Generate new text on "Next domain" button (except when user is looking at last Domain)
             if (current_index != hexagons.length - 2) {
                 next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
             } else {
@@ -680,26 +702,30 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
         }
         
-        // Function behind next button
+        // Function behind "Next Domain" button
         next_btn.onclick = function () {
 
+            // Get the name of next domain from the hexagon text
             next_domain_name = hexagons[current_index + 1].textContent;
             
-            clicked_hex.innerHTML = next_domain_name;
-            domain_name_text.textContent = next_domain_name;
-            clicked_desc.innerHTML = domains_data[next_domain_name].description;                       
+            clicked_hex.innerHTML = next_domain_name;   // Update the text content inside the "clicked-hex" hexagon
+            clicked_desc.innerHTML = domains_data[next_domain_name].description;   // Update the description                                           
 
+            // Run generateHexagons(d) function (see above) for next_domain_name
             generateHexagons(next_domain_name);
             
+            // Update the current_index counter to one less than its current value
             current_index = current_index + 1;
             next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
 
+            // Generate new text on "Previous domain" button (except when user is looking at first Domain)
             if (current_index != 0) {
                 previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
             } else {
                 previous_btn.innerHTML = "";
             }
 
+            // Generate new text on "Next domain" button (except when user is looking at last Domain)
             if (current_index != hexagons.length - 2) {
                 next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
             } else {
@@ -708,14 +734,6 @@ for (let i = 0; i < hexagons.length - 1; i++) {
 
         }
 
-        var domain_name = hexagons[i].innerHTML;
-
-        clicked_hex.innerHTML = domain_name;
-        domain_name_text.textContent = domain_name;
-
-        clicked_desc.innerHTML = domains_data[domain_name].description;
-
-        generateHexagons(domain_name);
 
     }
 
@@ -868,6 +886,10 @@ plotOverallHexes = function(change_type) {
                 }
 
                 back_button_container.removeChild(back_btn_3);
+
+                plotOverallHexes("improving");
+                plotOverallHexes("no_change");
+                plotOverallHexes("worsening");
             
             }
 
@@ -965,11 +987,11 @@ plotOverallHexes = function(change_type) {
 
 }
 
-setTimeout(function () {
+improving_indicator = {};
+no_change_indicator = {};
+worsening_indicator = {};
 
-    improving_indicator = {};
-    no_change_indicator = {};
-    worsening_indicator = {};
+setTimeout(function () {    
     
     for (let i = 0; i < domains.length; i++) {
 
@@ -1063,7 +1085,13 @@ mainContainerHeight = function() {
     main_container = document.getElementById("main-container");
     prototype = document.getElementById("prototype");
 
-    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - 50;
+    button_rows = document.getElementsByClassName("button-row");
+    button_height = 0;
+    for (let i = 0; i < button_rows.length; i ++) {
+        button_height = button_height + button_rows[i].clientHeight;
+    }
+
+    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - button_height - 50;
 
     main_container.style.minHeight = ideal_height + "px";
 }
@@ -1085,9 +1113,6 @@ window.onresize = function() {
 }
 
 // Map select
-var map_select_1 = document.getElementById("map-select-1");
-var map_select_2 = document.getElementById("map-select-2");
-var map_select_3 = document.getElementById("map-select-3");
 var further_expander_map = document.getElementById("further-expander-map");
 var further_info_map = document.getElementById("further-info-map");
 
@@ -1277,7 +1302,7 @@ function sizeForMobile() {
         main_container.removeAttribute("style");
         line_chart_container.removeAttribute("style");
         click_to_see.style.width = "100px";
-        domains_grid_container.style.marginLeft = "200px";
+        domains_grid_container.style.marginLeft = "50px";
         map_container.removeAttribute("style");
         top_menu_items_div.removeAttribute("style");
         dashboard_title.removeAttribute("style");
