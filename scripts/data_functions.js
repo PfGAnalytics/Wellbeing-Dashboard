@@ -10,21 +10,22 @@
 
 // A function to sort items alphabetically inside an object based on the object key
 function sortObject(o) {
-var sorted = {},
-key, a = [];
+   var sorted = {},
+   key, a = [];
 
-for (key in o) {
-      if (o.hasOwnProperty(key)) {
-         a.push(key);
-      }
-}
+   for (key in o) {
+         if (o.hasOwnProperty(key)) {
+            a.push(key);
+         }
+   }
 
-a.sort();
+   a.sort();
 
-for (key = 0; key < a.length; key++) {
-      sorted[a[key]] = o[a[key]];
-}
-return sorted;
+   for (key = 0; key < a.length; key++) {
+         sorted[a[key]] = o[a[key]];
+   }
+   
+   return sorted;
 }
 
 // Function below uses the api to fetch the data and plots it in a line chart
@@ -160,7 +161,7 @@ async function createLineChart(indicator) {
       min_value = 0
    }
 
-//    // When confidence interval is constant
+   // When confidence interval is constant
    if (!isNaN(indicator.ci)) {
       var ci_value = indicator.ci;
       var years_cumulated = 1;

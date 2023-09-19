@@ -118,6 +118,7 @@ for (let i = 0; i < top_menu_items.length; i++) {
             further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
         }
 
+        // Remove any navigation buttons:
         while (back_button_container.firstChild) {
             back_button_container.removeChild(back_button_container.firstChild);
         }
@@ -126,7 +127,7 @@ for (let i = 0; i < top_menu_items.length; i++) {
             button_rows[i].style.display = "none";
         } 
 
-        // Re draw overall hexagon grid
+        // Re-draw overall hexagon grid (see function below)
         plotOverallHexes("improving");
         plotOverallHexes("no_change");
         plotOverallHexes("worsening");
