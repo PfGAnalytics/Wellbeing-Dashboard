@@ -1,18 +1,75 @@
-// Top menu navigation function
+// Create variable names for various html elements defined in "index.html" so they can be referred to with shorter names further down the code
 var top_menu_items = document.getElementsByClassName("top-menu-item");
-
 var back_button_container = document.getElementById("back-button-container");
 var button_container = document.getElementById("button-container");
 var button_left = document.getElementById("button-left");
 var button_right = document.getElementById("button-right");
+var domains_grid_container = document.getElementById("domains-grid-container");
+var hexagons = document.getElementsByClassName("hex-inner");
+var domains_title = document.getElementById("domains-title");
+var domain_info = document.getElementById("domain-info-container");
+var clicked_hex = document.getElementById("clicked-hex");
+var domain_name_text = document.getElementById("domain-name");
+var click_to_see = document.getElementById("click-to-see");
+var clicked_desc = document.getElementById("clicked-desc");
+var indicator_hexes = document.getElementById("indicator-hexes");
+var domains_intro = document.getElementById("domains-intro");
+var indicator_intro = document.getElementById("indicator-intro");
+var button_rows = document.getElementsByClassName("button-row");
+var domains_scrn = document.getElementById("domains-scrn");
+var overall_scrn = document.getElementById("overall-scrn");
+var indicator_scrn = document.getElementById("indicator-scrn");
+var maps_scrn = document.getElementById("maps-scrn");
+var domain_title = document.getElementById("domain-title");
+var indicator_title = document.getElementById("indicator-title");
+var ind_important = document.getElementById("ind-important");
+var data_info = document.getElementById("data-info");
+var map_link = document.getElementById("map-link");
+var domains_btn = document.getElementById("domains-btn");
+var maps_btn = document.getElementById("maps-btn");
+var overall_btn = document.getElementById("overall-btn");
+var map_select_1 = document.getElementById("map-select-1");
+var map_select_2 = document.getElementById("map-select-2");
+var map_select_3 = document.getElementById("map-select-3");
+var key = document.getElementById("key");
+var top_menu = document.getElementById("top-menu");
+var footer = document.getElementsByTagName("footer")[0];
+var main_container = document.getElementById("main-container");
+var prototype = document.getElementById("prototype");
+var further_expander_map = document.getElementById("further-expander-map");
+var further_info_map = document.getElementById("further-info-map");
+var map_title = document.getElementById("map-title");
+var data_info_map = document.getElementById("data-info-map");
+var ind_important_map = document.getElementById("ind-important-map");
+var line_chart_container = document.getElementById("line-chart-container");
+var map_container = document.getElementById("map-container");
+var top_menu_items_div = document.getElementById("top-menu-items");
+var white_box = document.getElementsByClassName("white-box");
+var top_container = document.getElementById("top-container");
+var dashboard_title = document.getElementById("dashboard-title");
+var nisra_logo_container = document.getElementById("nisra-logo-container");
+var footer_container = document.getElementById("footer-container");
+var button_rows = document.getElementsByClassName("button-row");
+var map_form = document.getElementById("map-form");
+var map_label_2 = document.getElementById("map-label-2");
+var map_label_3 = document.getElementById("map-label-3");
+var breaks = map_form.getElementsByTagName('br');
+var domain_info_container = document.getElementById("domain-info-container");
+var domain_count = document.getElementById("domain-count");
+var box_containers = document.getElementsByClassName("box-container");
+var further_expander = document.getElementById("further-expander");
+var user_guide_link = document.getElementsByClassName("user-guide-link");
+var help_scrn = document.getElementById("help-scrn");
+var help_btn = document.getElementById("help-btn");
+var chart_link = document.getElementById("chart-link");
 
-// Create a function for each top menu item
+// Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
-
+    // Create a function for each top menu item
     top_menu_items[i].onclick = function() {
 
         // Hides the indicators screen
-        document.getElementById("indicator-scrn").style.display = "none";
+        indicator_scrn.style.display = "none";
 
         for (let j = 0; j < top_menu_items.length; j++) {
 
@@ -23,17 +80,17 @@ for (let i = 0; i < top_menu_items.length; i++) {
             if (document.getElementById(top_menu_items[i].id) == clicked_id) {
 
                 // Extra steps for domain screen when indicator screen is foreground
-                if(top_menu_items[i].id == "domains-btn") {
-                    document.getElementById("domains-scrn").getElementsByTagName("h2")[0].style.display = "block";
-                    document.getElementById("domain-info-container").style.display = "none";
-                    document.getElementById("domains-grid-container").style.display = "block";
-                    document.getElementById("click-to-see").style.display = "block";
-                    document.getElementById("domains-intro").style.display = "block";
-                    document.getElementById("indicator-intro").style.display = "none";
+                if (top_menu_items[i].id == "domains-btn") {
+                    domains_scrn.getElementsByTagName("h2")[0].style.display = "block"; // Show the title
+                    domain_info_container.style.display = "none";       // Hide the domain info
+                    domains_grid_container.style.display = "block";     // Show the domains grid
+                    click_to_see.style.display = "block";               // Show click to see text
+                    domains_intro.style.display = "block";              // Show the domains intro
+                    indicator_intro.style.display = "none";             // Hide the indicator intro
                 }
 
                 // Updates highlighted item in menu and brings relevant screen to foreground
-                clicked_id.classList.add("selected-item");
+                clicked_id.classList.add("selected-item");                                          
                 clicked_id.firstChild.classList.add("selected-icon");
                 document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";
 
@@ -81,12 +138,11 @@ for (let i = 0; i < top_menu_items.length; i++) {
 }
 
 // Count the number of domains in domains_data.js and update text on Domains screen
-document.getElementById("domains-title").textContent = number_to_word(domains.length) + " Wellbeing Domains";
-document.getElementById("domain-count").textContent = number_to_word(domains.length).toLowerCase();
+domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
+domain_count.textContent = number_to_word(domains.length).toLowerCase();
 
 // Generate hex grid of domains
 var domains = Object.keys(domains_data);
-var domains_grid_container = document.getElementById("domains-grid-container");
 
 // Loop through every domain in order to create hexagon and place each hexagon in a grid
 for (let i = 0; i < domains.length; i++) {
@@ -123,34 +179,8 @@ for (let i = 0; i < hex_rows.length; i++) {
     }
 }
 
-// Create variable names for various html elements so they can be referred to further down the code
-var hexagons = document.getElementsByClassName("hex-inner");
-var domains_title = document.getElementById("domains-title");
-var domain_info = document.getElementById("domain-info-container");
-var clicked_hex = document.getElementById("clicked-hex");
-var domain_name_text = document.getElementById("domain-name");
-var click_to_see = document.getElementById("click-to-see");
-var clicked_desc = document.getElementById("clicked-desc");
-var indicator_hexes = document.getElementById("indicator-hexes");
-var domains_intro = document.getElementById("domains-intro");
-var indicator_intro = document.getElementById("indicator-intro");
-var button_rows = document.getElementsByClassName("button-row");
-var domains_scrn = document.getElementById("domains-scrn");
-var overall_scrn = document.getElementById("overall-scrn");
-var indicator_scrn = document.getElementById("indicator-scrn");
-var maps_scrn = document.getElementById("maps-scrn");
-var domain_title = document.getElementById("domain-title");
-var indicator_title = document.getElementById("indicator-title");
-var ind_important = document.getElementById("ind-important");
-var data_info = document.getElementById("data-info");
-var map_link = document.getElementById("map-link");
-var domains_btn = document.getElementById("domains-btn");
-var maps_btn = document.getElementById("maps-btn");
-var overall_btn = document.getElementById("overall-btn");
-var map_select_1 = document.getElementById("map-select-1");
-var map_select_2 = document.getElementById("map-select-2");
-var map_select_3 = document.getElementById("map-select-3");
-var key = document.getElementById("key");
+
+
 
 // Function to generate indicator page for domain "d" and indicator "e"
 // The function is called when an indicator hexagon is clicked on or when a
@@ -194,36 +224,7 @@ function generateIndicatorPage(d, e) {
 
     }
 
-    // Output "More data" sentence
-    var data_info_text = "You can view and download data ";  // Start the sentence with this text
-
-    if (data.NI != "") {    // If there is NI level data add a link to it to the sentence
-        data_info_text = data_info_text + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + data.NI + '" target = "_blank">Northern Ireland level</a>, ';
-    }
-
-    if (data.LGD != "") {   // If there is LGD data add a link to it to the sentence
-        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
-    }
-
-    if (data.AA != "") {    // If there is AA data add a link to it to the sentence
-        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
-    }
-
-    if (data.EQ != "") {    // If there is EQ data add a link to it to the sentence
-        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
-    }
-
-    data_info_text = data_info_text + ' on the NISRA Data Portal.'        // Close the sentence with this 
-
-    if (data_info_text.lastIndexOf(",") > 0 ) { // Remove the last comma from the sentence
-        data_info_text = data_info_text.substring(0, data_info_text.lastIndexOf(",")) + data_info_text.substring(data_info_text.lastIndexOf(",") + 1, data_info_text.length);
-    }
-
-    if (data_info_text.lastIndexOf(",") > 0 ) {  // Change the comma that is now the last comma into the word "and"
-        data_info_text = data_info_text.substring(0, data_info_text.lastIndexOf(",")) + " and " + data_info_text.substring(data_info_text.lastIndexOf(",") + 1, data_info_text.length);
-    }
-
-    data_info.innerHTML = data_info_text;   // Place sentence in "data-info" div
+    data_info.innerHTML = writeDataInfo(data);   // Place sentence in "data-info" div
 
     // Determine the id of the baseline statemnent generated in createLineChart() (see "data_functions.js")
     base_id = matrix + "-base-statement";
@@ -809,15 +810,14 @@ plotOverallHexes = function(change_type) {
         hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
         }
 
-        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row
+        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row        
 
-
-        // Funciton below for what happens when an Overall screen hexagon is clicked on
+        // Function below for what happens when an Overall screen hexagon is clicked on
         hex_container.onclick = function() {
 
-            var indicator_name = hex_container.textContent;     // Indicator name is obtained from the hexagon
+            var indicator_name = Object.keys(eval(change_type + "_indicator"))[i];     // Indicator name is computed
             var domain_name = eval(change_type + "_indicator")[indicator_name].domain;  // The domain name is computed
-            
+
             // The generateIndicatorPage(d, e) function (see above) is called on the selection
             generateIndicatorPage(domain_name, indicator_name);
 
@@ -1021,6 +1021,41 @@ plotOverallHexes = function(change_type) {
 
 }
 
+// Function to Write the "More data" sentence on indicator and map pages
+function writeDataInfo(d) {
+    // Output "More data" sentence
+    var data_info_text = "You can view and download data ";  // Start the sentence with this text
+
+    if (d.NI != "") {    // If there is NI level data add a link to it to the sentence
+        data_info_text = data_info_text + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + d.NI + '" target = "_blank">Northern Ireland level</a>, ';
+    }
+
+    if (d.LGD != "") {   // If there is LGD data add a link to it to the sentence
+        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + d.LGD + '" target = "_blank">Local Government District</a>, ';
+    }
+
+    if (d.AA != "") {    // If there is AA data add a link to it to the sentence
+        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + d.AA + '" target = "_blank">Assembly Area</a>, ';
+    }
+
+    if (d.EQ != "") {    // If there is EQ data add a link to it to the sentence
+        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + d.EQ + '" target = "_blank">Equality Groups</a>, ';
+    }
+
+    data_info_text = data_info_text + ' on the NISRA Data Portal.'        // Close the sentence with this 
+
+    if (data_info_text.lastIndexOf(",") > 0 ) { // Remove the last comma from the sentence
+        data_info_text = data_info_text.substring(0, data_info_text.lastIndexOf(",")) + data_info_text.substring(data_info_text.lastIndexOf(",") + 1, data_info_text.length);
+    }
+
+    if (data_info_text.lastIndexOf(",") > 0 ) {  // Change the comma that is now the last comma into the word "and"
+        data_info_text = data_info_text.substring(0, data_info_text.lastIndexOf(",")) + " and " + data_info_text.substring(data_info_text.lastIndexOf(",") + 1, data_info_text.length);
+    }
+
+    return data_info_text;
+
+}
+
 // Function below waits until all the functions in "data_functions.js" have completed and then determines the change type of each indicator
 // Start by declaring three empty objects for each change type:
 improving_indicator = {};
@@ -1106,413 +1141,406 @@ setTimeout(function () {
 }, 3001)    // Time out set to 3001ms
 
 
-// Content height
+// Main container height function
+// This function will set a minimum height for the "main container" (ie, the space between the header and the footer)
+// Doing this will guarantee that the footer never appears halfway up the page or with any extra white space below it
 mainContainerHeight = function() {
-    top_menu = document.getElementById("top-menu");
-    footer = document.getElementsByTagName("footer")[0];
-    main_container = document.getElementById("main-container");
-    prototype = document.getElementById("prototype");
 
+    // Determine the heights of any button rows visible on the page when function is called
     button_rows = document.getElementsByClassName("button-row");
     button_height = 0;
     for (let i = 0; i < button_rows.length; i ++) {
         button_height = button_height + button_rows[i].clientHeight;
     }
 
+    // Determine the height for the main container by substracting header, footer, etc heights from the window height. Allowing 50px for top and bottom margins
     var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - button_height - 50;
 
+    // Set a minimum height for the main container
     main_container.style.minHeight = ideal_height + "px";
 }
 
+// Execute the following functions when window loads for first time:
 window.onload = function() {
-    showCookieBanner();
-    sizeForMobile(); 
-    mainContainerHeight();
-    updateMapSelect2();
-    updateMapSelect3();    
+    showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
+    sizeForMobile();            // Resize and re-position page elements (see below)
+    mainContainerHeight();      // See above
+    updateMapSelect2();         // Update list of options inside second map drop down menu
+    updateMapSelect3();         // Update list of options inside third map drop down menu
 };
 
+// Execute the following functions anytime the window is resized:
 window.onresize = function() {
-    sizeForMobile();
-    mainContainerHeight();
-    plotOverallHexes("improving");
-    plotOverallHexes("no_change");
-    plotOverallHexes("worsening");
+    sizeForMobile();                // Resize and re-position page elements (see below)
+    mainContainerHeight();          // See above
+    plotOverallHexes("improving");  // Re-plot improving hexagons on Overall screen (see above)
+    plotOverallHexes("no_change");  // Re-plot no change hexagons Overall screen (see above)
+    plotOverallHexes("worsening");  // Re-plot worsening hexagons Overall screen (see above)
 }
 
-// Map select
-var further_expander_map = document.getElementById("further-expander-map");
-var further_info_map = document.getElementById("further-info-map");
+// Use the list of Domains to create the items inside the first Maps dropdown menu
+for (let i = 0; i < domains.length; i ++) {
 
-for (let i = 0; i < domains.length; i++) {
-    option = document.createElement("option");
-    option.value = domains[i];
-    option.innerHTML = domains[i];
-    map_select_1.appendChild(option);
+    // List of indicators inside each domain
+    indicators = Object.keys(domains_data[domains[i]].indicators);
+
+    // Check that at least one indicator inside the domain has geo data (ie, AA or LGD data)
+    var has_geo_data = false;   // First set value "has_geo_data" to false
+
+    for (let j = 0; j < indicators.length; j ++) {  // Then loop through indicators
+
+        data = domains_data[domains[i]].indicators[indicators[j]].data; // The data object for that indicator
+
+        if (data.AA != "" || data.LGD != "") {
+            has_geo_data = true;    // If LGD or AA data are found "has_geo_data" is set to true
+            break;                  // Loop stops iterating
+        }
+
+    }
+                
+    if (has_geo_data == true) {                     // When there is geographical data for any indicator in this domain:
+        option = document.createElement("option");      // Create an "option" element
+        option.value = domains[i];                      // Set the value of the option to the Domain name
+        option.innerHTML = domains[i];                  // Set the text label of the option to the Domain name
+        map_select_1.appendChild(option);               // Add the option to the first dropdown menu on Maps screen
+    }
+
 }
 
+// This function updates the second dropdown menu on the maps screen based on what has been selected by the user in the first dropdown menu
 function updateMapSelect2() {
 
+    // List all the indicators in the domain selected in first dropdown:
     indicators = Object.keys(domains_data[map_select_1.value].indicators); 
 
+    // Remove any options already in second dropdown menu:
     while (map_select_2.firstChild) {
         map_select_2.removeChild(map_select_2.firstChild);
     }
 
+    // Loop through all indicators under the domain:
     for (let i = 0; i < indicators.length; i++) {
 
+        // The data object:
         var data = domains_data[map_select_1.value].indicators[indicators[i]].data;
 
+        // If data exists for either AA or LGD generate an option in second dropdown menu:
         if (data.AA != "" || data.LGD != "") {
 
-            option = document.createElement("option");
-            option.value = indicators[i];
-            option.innerHTML = indicators[i];
-            map_select_2.appendChild(option);
+            option = document.createElement("option");      // Create an "option" element
+            option.value = indicators[i];                   // Set the value of the option to the Indicator name
+            option.innerHTML = indicators[i];               // Set the text label of the option to the Indicator name
+            map_select_2.appendChild(option);               // Add the option to the second dropdown menu on Maps screen
 
         }
     }
 }
 
+// This function updates the third dropdown menu on the maps screen based on what has been selected by the user in the second dropdown menu
 function updateMapSelect3() {
 
-    further_info_map.removeAttribute("style");
-    further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
-    further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
-    further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+    // If the further info has been expanded when looking at the lsat map then collapse it again:
+    further_info_map.removeAttribute("style");  // Remove style attributes
+    further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand"; // Change text back to "click to expand"
+    further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");         // remove minus sign icon   
+    further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");             // add plus sign icon
 
+    // The indicator based on selections in first two dropdowns:
     var indicator = domains_data[map_select_1.value].indicators[map_select_2.value];
-    var data = indicator.data;
+    var data = indicator.data;      // The data object within that indicator
 
+    // Remove any options in third dropdown
     while (map_select_3.firstChild) {
         map_select_3.removeChild(map_select_3.firstChild);
     }
 
+    // If AA data is available then add a dropdown option:
     if (data.AA != "") {
-        option = document.createElement("option");
-        option.value = data.AA;
-        option.innerHTML = "Assembly Area";
-        map_select_3.appendChild(option);
+        option = document.createElement("option");  // Create an "option" element
+        option.value = data.AA;                     // Set the value of the option to the AA matrix name
+        option.innerHTML = "Assembly Area";         // Set the text label to "Assembly Area"
+        map_select_3.appendChild(option);           // Add the option to the third dropdown menu on the Map screen
     }
 
-    if (data.LGD != "") {
-        option = document.createElement("option");
-        option.value = data.LGD;
-        option.innerHTML = "Local Government District";
-        map_select_3.appendChild(option);
+    // If LGD data is available then add a dropdown option:
+    if (data.LGD != "") {               
+        option = document.createElement("option");          // Create an "option" element
+        option.value = data.LGD;                            // Set the value of the option to the LGD matrix name
+        option.innerHTML = "Local Government District";     // Set the text label to "Local Government District"
+        map_select_3.appendChild(option);                   // Add the option to the third dropdown menu on the Map screen
     }
 
-    var map_title = document.getElementById("map-title");
+    // Update the map title div
     map_title.innerHTML = indicator.chart_title;
 
-    var data_info_map = document.getElementById("data-info-map"); 
+    // Update the More data section (see writeDataInfo() function above)
+    data_info_map.innerHTML = writeDataInfo(data);
 
-    var data_info = "You can view and download data ";
-
-    if (data.LGD != "") {
-        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.LGD + '" target = "_blank">Local Government District</a>, ';
-    }
-
-    if (data.AA != "") {            
-        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.AA + '" target = "_blank">Assembly Area</a>, ';
-    }
-
-    if (data.EQ != "") {
-        data_info = data_info + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + data.EQ + '" target = "_blank">Equality Groups</a>, ';
-    }
-
-    data_info = data_info + ' on the NISRA Data Portal.' 
-    
-    if (data_info.lastIndexOf(",") > 0 ) {
-        data_info = data_info.substring(0, data_info.lastIndexOf(",")) + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-    }
-
-    if (data_info.lastIndexOf(",") > 0 ) {
-        data_info = data_info.substring(0, data_info.lastIndexOf(",")) + " and " + data_info.substring(data_info.lastIndexOf(",") + 1, data_info.length);
-    }
-
-    data_info_map.innerHTML = data_info;
-
-    var ind_important_map = document.getElementById("ind-important-map");
+    // Update "Why is this indicator important" section
     ind_important_map.innerHTML = indicator.importance;    
 
 }
 
+// When there is any change to the first dropdown menu on the maps screen run the following functions:
 map_select_1.onchange =  function() {
-    updateMapSelect2();
-    updateMapSelect3();
-    drawMap();
+    updateMapSelect2();     // Update options in second dropdown (see above)
+    updateMapSelect3();     // Update options in third dropdown (see above)
+    drawMap();              // Draw the map based on current selections (see data_functions.js)
 }
 
+// When there is any change to the second dropdown menu on the maps screen run the following functions:
 map_select_2.onchange = function() {
-    updateMapSelect3();
-    drawMap();
+    updateMapSelect3();     // Update options in third dropdown (see above)
+    drawMap();              // Draw the map based on current selections (see data_functions.js)
 }
 
-
+// When there is any change to the third dropdown menu on the maps screen run the following functions:
 map_select_3.onchange = function() {
 
-    drawMap();
+    drawMap();      // Draw the map based on current selections (see data_functions.js)
 
-    further_info_map.removeAttribute("style");
-    further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
-    further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
-    further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+    // If the further info has been expanded when looking at the lsat map then collapse it again:
+    further_info_map.removeAttribute("style");  // Remove style attributes
+    further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand"; // Change text back to "click to expand"
+    further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");         // remove minus sign icon   
+    further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");             // add plus sign icon
 }
 
 
 
 // Resizing for mobile
 function sizeForMobile() {
-    
-    // Elements to variables
-    var main_container = document.getElementById("main-container");
-    var line_chart_container = document.getElementById("line-chart-container");
-    var click_to_see = document.getElementById("click-to-see");
-    var domains_grid_container = document.getElementById("domains-grid-container");
-    var map_container = document.getElementById("map-container");
-    var top_menu_items_div = document.getElementById("top-menu-items");
-    var white_box = document.getElementsByClassName("white-box");
-    var top_container = document.getElementById("top-container");
-    var dashboard_title = document.getElementById("dashboard-title");
-    var nisra_logo_container = document.getElementById("nisra-logo-container");
-    var footer_container = document.getElementById("footer-container");
-    var button_rows = document.getElementsByClassName("button-row");
 
-    var map_form = document.getElementById("map-form");
-    var map_label_2 = document.getElementById("map-label-2");
-    var map_label_3 = document.getElementById("map-label-3");
-    var breaks = map_form.getElementsByTagName('br');
-
+    // Size of the NISRA logo container
     nisra_logo_container.style.width = footer_container.clientWidth - 565 + "px"
 
-    // screen is less than 1200px wide
+    // If screen is less than 1200px wide do following:
     if (window.innerWidth < 1200) {
 
-        main_container.style.width = window.innerWidth + "px";
-        line_chart_container.style.width = (window.innerWidth - 40) + "px";
-        line_chart_container.style.marginLeft = "20px";
-        line_chart_container.style.marginRight = "20px";
-        click_to_see.style.width = "100%";
-        domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";
-        map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";
-        top_menu_items_div.style.marginBottom = "20px";
-        top_menu_items_div.style.marginTop= "10px";
-        top_menu_items_div.style.width = "100%";
-        dashboard_title.style.width = (top_container.clientWidth - 300) + "px";
+        main_container.style.width = window.innerWidth + "px";  // Update the main container width to match that of the screen
+        line_chart_container.style.width = (window.innerWidth - 40) + "px";     // have the line chart take up the full width (less 40px)
+        line_chart_container.style.marginLeft = "20px";         // 20px margin to left of chart
+        line_chart_container.style.marginRight = "20px";        // 20px margin to right of chart
+        click_to_see.style.width = "100%";                      // Click to see div is now full width
+        domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";   // Re-position domains grid in middle of screen
+        map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";        // Re-position map in middle of screen
+        top_menu_items_div.style.marginBottom = "20px";                                 // Extra space underneath top menu items
+        top_menu_items_div.style.marginTop= "10px";                                     // Extra space above top menu items
+        top_menu_items_div.style.width = "100%";                                        // Move top menu onto its own row by setting it to full width
+        dashboard_title.style.width = (top_container.clientWidth - 300) + "px";         // Space for title to 300px less than window width
 
-        button_left.style.width = "100%";
-        button_left.style.justifyContent = "center";
-        button_right.style.width = "100%";
-        button_right.style.justifyContent = "center";        
+        button_left.style.width = "100%";                       // "Previous indicator/domain" button to its own row by making it full width
+        button_left.style.justifyContent = "center";            // Centre the button
+        button_right.style.width = "100%";                      // "Next indicator/domain" button to its own row by making it full width
+        button_right.style.justifyContent = "center";           // Centre the button
 
         for (let i = 0; i < top_menu_items.length; i++) {
-            top_menu_items[i].style.fontSize = "18pt";
+            top_menu_items[i].style.fontSize = "18pt";          // Top menu buttons to size 18pt
         }
 
         for (let i = 0; i < button_rows.length; i++) {
-            button_rows[i].style.fontSize = "18pt";
+            button_rows[i].style.fontSize = "18pt";             // Navigation buttons to size 18pt
         }
 
         for (let i = 0; i < white_box.length; i++) {
-            white_box[i].style.fontSize = "14pt";
+            white_box[i].style.fontSize = "14pt";           // Text inside white boxes to 14pt
         }
         
         while (breaks[0]) {
-            map_form.removeChild(breaks[0]);
+            map_form.removeChild(breaks[0]);                // Remove any line breaks between map dropdown menus
         }
 
-        map_form.insertBefore(document.createElement("br"), map_label_2);
-        map_form.insertBefore(document.createElement("br"), map_label_3);
+        map_form.insertBefore(document.createElement("br"), map_label_2);   // Insert a line break before second dropdown
+        map_form.insertBefore(document.createElement("br"), map_label_3);   // Insert a line break before third dropdown
         
-    } else {
+    } else {    // When screen size is over 1200px wide:
 
-        main_container.removeAttribute("style");
-        line_chart_container.removeAttribute("style");
-        click_to_see.style.width = "100px";
-        domains_grid_container.style.marginLeft = "50px";
-        map_container.removeAttribute("style");
-        top_menu_items_div.removeAttribute("style");
-        dashboard_title.removeAttribute("style");
+        main_container.removeAttribute("style");            // Remove any style attributes set above for main container
+        line_chart_container.removeAttribute("style");      // Remove any style attributes set above for line chart container
+        click_to_see.style.width = "100px";                 // Reset click-to-see width to 100px
+        domains_grid_container.style.marginLeft = "50px";   // Reset domains grid left margin to 50px
+        map_container.removeAttribute("style");             // Remove any style attributes set above for map container
+        top_menu_items_div.removeAttribute("style");        // Remove any style attributes set above for top menu items div
+        dashboard_title.removeAttribute("style");           // Remove any style attributes set above dashboard title
 
         for (let i = 0; i < top_menu_items.length; i++) {
-            top_menu_items[i].removeAttribute("style");
+            top_menu_items[i].removeAttribute("style");     // Remove any style attributes set above for top menu items
         }
 
         for (let i = 0; i < button_rows.length; i++) {
-            button_rows[i].style.fontSize = "12pt";
+            button_rows[i].style.fontSize = "12pt";         // Reset button font size to 12pt
         }
 
         for (let i = 0; i < white_box.length; i++) {
-            white_box[i].style.fontSize = "12pt";
+            white_box[i].style.fontSize = "12pt";           // Reset white box text to 12pt
         }
         
 
         while (breaks[0]) {
-            map_form.removeChild(breaks[0]);
+            map_form.removeChild(breaks[0]);            // Remove any line breaks between dropdown menus
         }
 
-        button_left.removeAttribute("style");
-        button_right.removeAttribute("style");
+        button_left.removeAttribute("style");           // Remove any style attributes set above on "previous indicator/domain" button
+        button_right.removeAttribute("style");           // Remove any style attributes set above on "next indicator/domain" button
 
     }
-
-    box_containers = document.getElementsByClassName("box-container");
-
+    
+    // Resize box containers
     for (let i = 0; i < box_containers.length; i++) {
-        if (window.innerWidth < 1200) {
-            box_containers[i].style.marginTop = "10px";
-            box_containers[i].style.width = "100%";
-            box_containers[i].style.paddingLeft = "5%";
-            box_containers[i].style.paddingRight = "5%";
-        } else {
-            box_containers[i].removeAttribute("style");
+        if (window.innerWidth < 1200) { // When width is less than 1200px:
+            box_containers[i].style.marginTop = "10px";     // Top margin of 10px
+            box_containers[i].style.width = "100%";         // Full width of page
+            box_containers[i].style.paddingLeft = "5%";     // 5% spacing on left
+            box_containers[i].style.paddingRight = "5%";    // 5% spacing on right
+        } else {    // Greater than 1200px:
+            box_containers[i].removeAttribute("style");     // Remove all above
         }
     }    
 
 }
 
-// Expand further information
-var further_expander = document.getElementById("further-expander");
-
+// Functionality when user clicks on "Expand further information"
 further_expander.onclick = function() {
-   info_div = document.getElementsByClassName("further-selected")[0];
 
-   if (info_div.clientHeight == 0) {
-      info_div.style.maxHeight = "5000px";
-      further_expander.getElementsByTagName("span")[0].textContent = "Click to hide";
-      further_expander.getElementsByTagName("i")[0].classList.remove("fa-plus");
-      further_expander.getElementsByTagName("i")[0].classList.add("fa-minus");
-   } else {
-      info_div.removeAttribute("style");
+   info_div = document.getElementsByClassName("further-selected")[0];   // The div containing the further information for the relevant indicator
+
+   if (info_div.clientHeight == 0) {        // When the "info_div" isn't visible, then show it:
+      info_div.style.maxHeight = "5000px";                                                  // Set max height to very high value to allow it to expand
+      further_expander.getElementsByTagName("span")[0].textContent = "Click to hide";       // Change display text
+      further_expander.getElementsByTagName("i")[0].classList.remove("fa-plus");            // Remove plus sign icon
+      further_expander.getElementsByTagName("i")[0].classList.add("fa-minus");              // Show minus sign icon
+   } else {     // When it is shown, hide it:
+      info_div.removeAttribute("style");    // Revert style applid above
       setTimeout(function() {
-        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
+        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand";   // Change display text
+        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");         // Remove minus sign icon
+        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");             // Add plus sign icon
       }, 800)
    }
 }
 
 further_expander_map.onclick = function() {
 
-    if (further_info_map.clientHeight == 0) {
-        further_info_map.style.maxHeight = "5000px";
-        further_expander_map.getElementsByTagName("span")[0].textContent = "Click to hide";
-        further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-plus");
-        further_expander_map.getElementsByTagName("i")[0].classList.add("fa-minus");
+    if (further_info_map.clientHeight == 0) { // When the "further_info_map" div isn't visible, then show it:
+        further_info_map.style.maxHeight = "5000px";                                              // Set max height to very high value to allow it to expand
+        further_expander_map.getElementsByTagName("span")[0].textContent = "Click to hide";       // Change display text
+        further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-plus");            // Remove plus sign icon
+        further_expander_map.getElementsByTagName("i")[0].classList.add("fa-minus");              // Show minus sign icon
     } else {
-        further_info_map.removeAttribute("style");
+        further_info_map.removeAttribute("style");    // Revert style applid above
         setTimeout(function() {
-            further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";
-            further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");
-            further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");
+            further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";   // Change display text
+            further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");         // Remove minus sign icon
+            further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");             // Add plus sign icon
         }, 800)
     }
     
 }
 
-user_guide_link = document.getElementsByClassName("user-guide-link");
 
+// Any link on the dashboard that directs the user to the Help Screen
 for (let i = 0; i < user_guide_link.length; i ++) {
 
     user_guide_link[i].onclick = function() {
 
-        document.getElementById("domains-scrn").style.display = "none";
-        document.getElementById("overall-scrn").style.display = "none";
-        document.getElementById("help-scrn").style.display = "block";
+        domains_scrn.style.display = "none";    // Hide domains screen
+        overall_scrn.style.display = "none";    // Hide overall screen
+        help_scrn.style.display = "block";      // Show Help screen
 
-        document.getElementById("domains-btn").classList.remove("selected-item");
-        document.getElementById("domains-btn").firstChild.classList.remove("selected-icon");
-        document.getElementById("overall-btn").classList.remove("selected-item");
-        document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
-        document.getElementById("help-btn").classList.add("selected-item");
+        domains_btn.classList.remove("selected-item");              // Remove highlight from domains button
+        domains_btn.firstChild.classList.remove("selected-icon");   // Remove highlight from domains icon
+        overall_btn.classList.remove("selected-item");              // Remove highlight from overall button
+        overall_btn.firstChild.classList.remove("selected-icon");   // Remove highlight from overall icon
+        help_btn.classList.add("selected-item");                    // Add highlight to help button
 
     }    
 
 }
 
-chart_link = document.getElementById("chart-link");
 
+// The link to the Indicator page on map screen:
 chart_link.onclick = function() {
 
-    document.getElementById("maps-scrn").style.display = "none";
-    document.getElementById("indicator-scrn").style.display = "block";
+    maps_scrn.style.display = "none";       // Hide maps screen
+    indicator_scrn.style.display = "block"; // Show indicators screen
 
-    document.getElementById("maps-btn").classList.remove("selected-item");
-    document.getElementById("maps-btn").firstChild.classList.remove("selected-icon");
+    maps_btn.classList.remove("selected-item");     // Remove highlight from maps button
+    maps_btn.firstChild.classList.remove("selected-icon");  // Remove hightlight from maps icon
     
-    document.getElementById("overall-btn").classList.add("selected-item");
-    document.getElementById("overall-btn").firstChild.classList.add("selected-icon");
-
-    button_rows = document.getElementsByClassName("button-row");
+    overall_btn.classList.add("selected-item");             // Add highlight to overall button
+    overall_btn.firstChild.classList.add("selected-icon");  // Add highlight to overall icon
 
     for (let i = 0; i < button_rows.length; i ++) {
-        button_rows[i].style.display = "flex";
+        button_rows[i].style.display = "flex";          // Show navigation button containers
     }
 
     buttons = document.getElementsByClassName("nav-btn");
 
-    for (let i = 0; i < buttons.length; i ++) {
-        buttons[i].style.display = "none"
+    for (let i = 0; i < buttons.length; i ++) {     
+        buttons[i].style.display = "none";       // Hide navigation buttons
     }
     
-    generateIndicatorPage(map_select_1.value, map_select_2.value);
+    // Use the values in the first two dropdown menus to generate the indicator page
+    // See above for function
+    generateIndicatorPage(map_select_1.value, map_select_2.value); 
 
-    back_btn_5 = document.createElement("div");
-    back_btn_5.id = "back-btn-5";
-    back_btn_5.classList.add("nav-btn");
-    back_btn_5.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>'+ map_select_2.value +'</strong> map';
-
-    
+    // Generate a back button to take user back to map:
+    back_btn_5 = document.createElement("div");     // Create a div for back button
+    back_btn_5.id = "back-btn-5";                   // Give div the id "back-btn-5"
+    back_btn_5.classList.add("nav-btn");            // Give it the class "nav-btn"
+    back_btn_5.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>'+ map_select_2.value +'</strong> map';      // Text and icon for button
 
     if (document.getElementById("back-btn-3")) {
-        document.getElementById("back-btn-3").style.display = "block";
+        document.getElementById("back-btn-3").style.display = "block";      // If the back to Overall button already exists, show it again
     } else {
 
-        // Generate button for "back to Overall"
-        back_btn_3 = document.createElement("div");
-        back_btn_3.id = "back-btn-3";
-        back_btn_3.classList.add("nav-btn");
-        back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';
+        // If back to Overall buttons 
+        back_btn_3 = document.createElement("div");     // Create a div for back button
+        back_btn_3.id = "back-btn-3";                   // Give the div id "back-btn-3"
+        back_btn_3.classList.add("nav-btn");            // Give it class "nav-btn"
+        back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';      // Text and icon for back button
 
-        back_button_container.appendChild(back_btn_3);
+        back_button_container.appendChild(back_btn_3);  // Add it to back button container
 
+        // Function behind new "back to overall" button
         back_btn_3.onclick = function () {
 
-            document.getElementById("indicator-scrn").style.display = "none";
-            document.getElementById("overall-scrn").style.display = "block";
+            document.getElementById("indicator-scrn").style.display = "none";   // Hide indicator screen
+            document.getElementById("overall-scrn").style.display = "block";    // Show Overall screen
            
             for (let i = 0; i < button_rows.length; i++) {
-                button_rows[i].style.display = "none";
+                button_rows[i].style.display = "none";          // Hide buttons
             }
 
+            // Re-run plotOverallHexes to account for any screen resizes (See above)
             plotOverallHexes("improving");
             plotOverallHexes("no_change");
             plotOverallHexes("worsening");
 
-            back_button_container.removeChild(back_btn_3);
+            back_button_container.removeChild(back_btn_3);  // Remove "back to overall button"
         
         }
 
     }
 
-    back_button_container.appendChild(back_btn_5);
+    back_button_container.appendChild(back_btn_5);  // Add "back to map" button to back button container
 
+    // Function inside "back to map" button:
     back_btn_5.onclick = function() {
 
-        document.getElementById("maps-scrn").style.display = "block";
-        document.getElementById("indicator-scrn").style.display = "none";
+        document.getElementById("maps-scrn").style.display = "block";       // Show maps screen
+        document.getElementById("indicator-scrn").style.display = "none";   // Hide indicator screen
 
-        document.getElementById("maps-btn").classList.add("selected-item");
-        document.getElementById("maps-btn").firstChild.classList.add("selected-icon");
+        document.getElementById("maps-btn").classList.add("selected-item");             // Highlight maps button
+        document.getElementById("maps-btn").firstChild.classList.add("selected-icon");  // Highlight maps icon
     
-        document.getElementById("overall-btn").classList.remove("selected-item");
-        document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");
+        document.getElementById("overall-btn").classList.remove("selected-item");               // Remove highlight from Overall button
+        document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");    // Remove highlight from Overall icon
 
-        back_button_container.removeChild(back_btn_5);
+        back_button_container.removeChild(back_btn_5);      // Remove "back to map" button
 
         for (let i = 0; i < button_rows.length; i ++) {
-            button_rows[i].style.display = "none";
+            button_rows[i].style.display = "none";  // Hide all buttons
         }
 
     }
