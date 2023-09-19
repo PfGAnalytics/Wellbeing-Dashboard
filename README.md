@@ -16,12 +16,14 @@ Documentation to outline the structure and processes needed to create or modify 
 | `navigation_functions.js` | Javascript functionality used for navigation throughout dashboard |
 | `cookies_script.js` | Javascript functionality for cookies |
 | `ni_map.js` | Javascript used to create NI basemap |
-| `datavis prep.R` | R script used to prepare the files for upload to the DataVis server |
+| `maps` | Folder containing shape files for maps |
+| `datavis prep base64.R` | R script used to prepare the files for upload to the DataVis server |
 | `*.png, *.jpg` | Logos, photographs, icons |
 
-### Input and outputs expected
+### Data Input
 
-**Needed for this dashboard? Add something about data coming stright from data portal? Short section on how api's work and include links at bottom?
+Data for the dashboard is directly linked to data availale for each indicator stored in the 'Programme for Government' folder on the NISRA Data Portal. The relevant datasets on NISRA Data Portal are linked to the dashboard using an API query. The dashboard will automatically update as data is updated on the NISRA Data Portal provided the it is uploaded using the same naming conventions.
+
 
 ### Code structure
 
@@ -29,7 +31,7 @@ Documentation to outline the structure and processes needed to create or modify 
 | --- | --- |
 | Head | Page title, import css and js dependencies, Google Analytics code and header |
 | Body | Header and branding, more Google Analytics code, cookie banner, top menu, overall screen, domains screen, indicator screen, maps screen, help screen, footer |
-| Domains Screen | 10x hexagons for each domain |
+| Domains Screen | 9x hexagons for each domain |
 | Overall Screen | Hexagons generated for each indicator and categorised as 'improving', 'no change' or 'worsening' based on the data |
 | Indicator Screen | Chart.js line chart for each indicator alongside additional information |
 | Map Screen | Maps to display indicator data, dropdown menu to swicth between indicators |
