@@ -8,6 +8,25 @@
    });
  }
 
+// A function to sort items alphabetically inside an object based on the object key
+function sortObject(o) {
+var sorted = {},
+key, a = [];
+
+for (key in o) {
+      if (o.hasOwnProperty(key)) {
+         a.push(key);
+      }
+}
+
+a.sort();
+
+for (key = 0; key < a.length; key++) {
+      sorted[a[key]] = o[a[key]];
+}
+return sorted;
+}
+
 // Function below uses the api to fetch the data and plots it in a line chart
 async function createLineChart(indicator) {
 
@@ -26,11 +45,6 @@ async function createLineChart(indicator) {
    }
 
    var id = statistic + "-line";
-
-   if (statistic.slice(0, 3) != "IND") {
-      statistic = "IND" + statistic.slice(2);
-   }
-
 
    // Fetch data and store in object fetched_data
    const response = await fetch(api_url);

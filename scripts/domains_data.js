@@ -684,7 +684,7 @@ var domains_data = {
                NI: "",
                AA: "",
                LGD: "",
-               EQ: "INSHARCOMEQ"
+               EQ: "INDSHARCOMEQ"
             },
             improvement: "increase",
             telling: {

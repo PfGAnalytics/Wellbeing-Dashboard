@@ -740,154 +740,176 @@ for (let i = 0; i < hexagons.length - 1; i++) {     // "hexagons.length - 1" is 
 }
 
 // Overall screen
+// The function below plots the Hexagons on the Overall and is called three times. Once each for "improving", "no_change" and "worsening" indicators
+// The function runs any time the user resizes the window and when the Overall screen is accessed via the menu at top or a back button
 plotOverallHexes = function(change_type) {
         
-    gridWidth = document.getElementById("overall-scrn").clientWidth - 150;
+    // Use the user's screen size to determine a value "h" which will be the number of hexagons that can fit in a single row
+    gridWidth = overall_scrn.clientWidth - 150;
 
-    if (Math.floor((gridWidth - 105) / 175) > 6) {
+    // Set "h" to a maximum of 6 or the number of hexagons that will fit on screen
+    if (Math.floor((gridWidth - 105) / 180) > 6) {
         h = 6
     } else {
-        h = Math.floor((gridWidth - 105) / 175);
+        h = Math.floor((gridWidth - 105) / 180);
     }
 
+    // The change type "no_change" has the class "no-change"
     className = change_type.replace("_", "-");
     
+    // Remove any hexagons created in previous calls of plotOverallHexes()
     while (document.getElementById(className + "-hexes").firstChild) {
         document.getElementById(className + "-hexes").removeChild(document.getElementById(className + "-hexes").firstChild)
     }
 
+    // Loop through the indicators within each change_type
     for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {            
 
+        // Ensuring there are "h" hexagons per row
         if (i % h == 0) {
-            var hex_row = document.createElement("div");
-            hex_row.classList.add("row");
-            hex_row.classList.add(className + "-hex-row");
-            document.getElementById(className + "-hexes").appendChild(hex_row);
+            var hex_row = document.createElement("div");    // Create a div for a new row
+            hex_row.classList.add("row");                   // Give div the class "row"
+            hex_row.classList.add(className + "-hex-row");  // Give div the class 'className + "-hex-row"' (eg, "improving-hex-row")
+            document.getElementById(className + "-hexes").appendChild(hex_row);     // Place hex-row in relevant div on Overall page (eg, "improving-hex-row" goes into "improving-hexes")
         }            
 
         if (i % (h * 2) == h) {
-            hex_row.style.marginLeft = "105px";
+            hex_row.style.marginLeft = "105px"; // Even numbered rows are indented by 105px
         } else if (i % (h * 2) == 0) {
-            hex_row.style.marginLeft = "15px";
+            hex_row.style.marginLeft = "15px";  // And odd numbered ones by 15px
         }
 
         if (i >= h) {
-            hex_row.style.marginTop = "-30px";
+            hex_row.style.marginTop = "-30px";  // All rows after first row are moved up by 30px
         }
 
-        var hex_container = document.createElement("div");
-        hex_container.classList.add("shake-hex");
-        var hex = document.createElement("div");
-        var hex_label = document.createElement("div");
-        var label_text = document.createTextNode(Object.keys(eval(change_type + "_indicator"))[i]);
+        var hex_container = document.createElement("div");      // Create a hexagon container div. The hexagon div and the hexagon label div will be nested under this one
+        hex_container.classList.add("shake-hex");               // Give it the class "shake-hex"
+        var hex = document.createElement("div");                // Create a hexagon div
+        var hex_label = document.createElement("div");          // Create a hexagon label
 
-        hex_container.classList.add("ind-hex-container");
+        hex_container.classList.add("ind-hex-container");       // Give hexagon conatiner the class "ind-hex-container"
 
-        hex.classList.add("ind-hex");            
-        hex_label.classList.add("ind-hex-label");
+        hex.classList.add("ind-hex");                           // Give hexagon the class "ind-hex"
+        hex_label.classList.add("ind-hex-label");               // Give hexagon label the class "ind-hex-label"
 
-        hex_label.appendChild(label_text);
-        hex_container.appendChild(hex);
-        hex_container.appendChild(hex_label);
+        hex_label.textContent = Object.keys(eval(change_type + "_indicator"))[i];   // Hexagon label text is outputted
+        hex_container.appendChild(hex);                                             // Hexagon is placed inside the hexagon container
+        hex_container.appendChild(hex_label);                                       // Hexagon label is placed inside the hexagon container
 
-        if (change_type == "improving") {
-            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';
-            hex.classList.add("positive");
-            hex_label.classList.add("positive")
-        } else if (change_type == "no_change") {
-            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';
-        } else if (change_type == "worsening") {
-            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';
-            hex.classList.add("negative");
-            hex_label.classList.add("negative");
+        if (change_type == "improving") {   // For improving indicators:
+            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';      // Up arrow is placed in hexagon
+            hex.classList.add("positive");                              // Hexagon is given class "positive"
+            hex_label.classList.add("positive");                        // Hexagon label is given class "positive" 
+        } else if (change_type == "no_change") { // For no_change indicators:
+            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Right arrow is placed in hexagon
+        } else if (change_type == "worsening") {    // For worsening indicators:
+            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Down arrow is placed in hexagon
+            hex.classList.add("negative");                              // Hexagon is given class "negative"
+        hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
         }
 
-        hex_row.appendChild(hex_container);
+        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row
 
+
+        // Funciton below for what happens when an Overall screen hexagon is clicked on
         hex_container.onclick = function() {
 
-            var indicator_name = Object.keys(eval(change_type + "_indicator"))[i];
-            var domain_name = eval(change_type + "_indicator")[indicator_name].domain;                
+            var indicator_name = hex_container.textContent;     // Indicator name is obtained from the hexagon
+            var domain_name = eval(change_type + "_indicator")[indicator_name].domain;  // The domain name is computed
+            
+            // The generateIndicatorPage(d, e) function (see above) is called on the selection
+            generateIndicatorPage(domain_name, indicator_name);
 
+            // Any back buttons previously generated are removed
             while(back_button_container.firstChild) {
                 back_button_container.removeChild(back_button_container.firstChild)
             }
 
+            // Any "Previous domain" or "Previous indicator" previously generated are removed
             while(button_left.firstChild) {
                 button_left.removeChild(button_left.firstChild)
             }
 
+            // Any "Next domain" or "Next indicator" previously generated are removed
             while(button_right.firstChild) {
                 button_right.removeChild(button_right.firstChild)
             }
 
+            // The button container is displayed
             button_container.style.display = "flex";
 
+            // All button rows are displayed
             for (let i = 0; i < button_rows.length; i++) {
                 button_rows[i].style.display = "flex";
             }
 
             // Generate button for "back to Overall"
-            back_btn_3 = document.createElement("div");
-            back_btn_3.id = "back-btn-3";
-            back_btn_3.classList.add("nav-btn");
-            back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';
+            back_btn_3 = document.createElement("div");     // New div for "Back to Overall grid" button
+            back_btn_3.id = "back-btn-3";                   // Given the id "back-btn-3"
+            back_btn_3.classList.add("nav-btn");            // Given the class "nav-btn"
+            back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';  // Icon and text generated
 
-            back_button_container.appendChild(back_btn_3);
+            back_button_container.appendChild(back_btn_3);  // Button is placed in the "back-button-container" div
 
-            current_index = i;
-            current_change = change_type;
+            // Next and previous indicator buttons:
+            current_index = i;          // A numeric index of the current selected indicator
+            current_change = change_type;   // The current change type the user is cycling through if clicking "next" and "previous" buttons
 
-            if (current_change == "improving") {
-                next_change = "no_change";
-                previous_change = "worsening";
-            } else if (current_change == "no_change") {
-                next_change = "worsening";
-                previous_change = "improving";
-            } else if (current_change == "worsening") {
-                next_change = "improving";
-                previous_change = "no_change";
+            // Which indicator to move to if the user is on the first or last indicator within a particular change type
+            if (current_change == "improving") {            // If cycling through "improving" indicators:
+                next_change = "no_change";                      // Move to "no change" indicators after clicking Next on the last "improving" indicator
+                previous_change = "worsening";                  // Move to "worsening" indicators after clicking Previous on the first "improving" indicator
+            } else if (current_change == "no_change") {     // If cycling through "no change" indicators:
+                next_change = "worsening";                      // Move to "worsening" indicators after clicking Next on the last "no change" indicator
+                previous_change = "improving";                  // Move to "improving" indicators after clicking Previous on the first "no change" indicator
+            } else if (current_change == "worsening") {     // If cycling through "worsening" indicators:
+                next_change = "improving";                      // Move to "improving" indicators after clicking Next on the last "worsening" indicator
+                previous_change = "no_change";                  // Move to "no change" indicators after clicking Previous on the first "worsening" indicator
             }
             
             // "Previous indicator" button
-            previous_btn_3 = document.createElement("div");
-            previous_btn_3.id = "previous-indicator";
-            previous_btn_3.classList.add("nav-btn");
+            previous_btn_3 = document.createElement("div");     // New div for "Previous indicator" button
+            previous_btn_3.id = "previous-btn-3";               // Give div id "previous-btn-3"
+            previous_btn_3.classList.add("nav-btn");            // Give div class "nav-btn"
 
+            // The button text and icon are generated (as either the previous indicator within that change type or the last indicator within the previous change type)
             if (current_index != 0) {
                 previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
             } else {
                 previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
             }
 
-            button_left.appendChild(previous_btn_3);
+            button_left.appendChild(previous_btn_3);    // Button is added to div "button-left"
 
             // "Next indicator" button
-            next_btn_3 = document.createElement("div");
-            next_btn_3.id = "next-btn-3";
-            next_btn_3.classList.add("nav-btn");
+            next_btn_3 = document.createElement("div");     // New div for "Next indicator" button
+            next_btn_3.id = "next-btn-3";                   // Give div id "next-btn-3"
+            next_btn_3.classList.add("nav-btn");            // Give div class "nav-btn"
 
+            // The button text and icon are generated (as either the next indicator within that change type or the first indicator within the next change type)
             if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
                 next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
             } else {
                 next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(next_change + "_indicator"))[0] +'</strong> <i class="fa-solid fa-forward"></i> ';
             }
 
-            button_right.appendChild(next_btn_3);
+            button_right.appendChild(next_btn_3);    // Button is added to div "button-right"
 
             // Function inside "back to Overall" to hide indicators and display grid again
             back_btn_3.onclick = function () {
 
-                document.getElementById("indicator-scrn").style.display = "none";
-                document.getElementById("overall-scrn").style.display = "block";
+                indicator_scrn.style.display = "none";   // Hide indicator screen
+                overall_scrn.style.display = "block";    // Show Overall screen
                
                 for (let i = 0; i < button_rows.length; i++) {
-                    button_rows[i].style.display = "none";
+                    button_rows[i].style.display = "none";      // Hide all div elements with the class "button-row"
                 }
 
-                back_button_container.removeChild(back_btn_3);
+                back_button_container.removeChild(back_btn_3);  // Remove the "back-btn-3" div
 
-                plotOverallHexes("improving");
+                // Re-run plotOverallHexes() on all three change types to allow for any window resizing that may have happened when viewing Indicator page
+                plotOverallHexes("improving");      
                 plotOverallHexes("no_change");
                 plotOverallHexes("worsening");
             
@@ -896,38 +918,45 @@ plotOverallHexes = function(change_type) {
             // "Previous indicator" function
             previous_btn_3.onclick = function() {
 
-                if (current_index == 0) {
+                if (current_index == 0) {       // Only when currently on the first indicator of a change type:
 
+                    // Change the value of "current_change" to be that of "previous_change"
                     current_change = previous_change;
 
-                    if (current_change == "improving") {
-                        next_change = "no_change";
-                        previous_change = "worsening";
-                    } else if (current_change == "no_change") {
-                        next_change = "worsening";
-                        previous_change = "improving";
-                    } else if (current_change == "worsening") {
-                        next_change = "improving";
-                        previous_change = "no_change";
+                    // Re-compute values of "previous_change" and "next_change" based on the new value of "current_change"
+                    if (current_change == "improving") {            // If cycling through "improving" indicators:
+                        next_change = "no_change";                      // Move to "no change" indicators after clicking Next on the last "improving" indicator
+                        previous_change = "worsening";                  // Move to "worsening" indicators after clicking Previous on the first "improving" indicator
+                    } else if (current_change == "no_change") {     // If cycling through "no change" indicators:
+                        next_change = "worsening";                      // Move to "worsening" indicators after clicking Next on the last "no change" indicator
+                        previous_change = "improving";                  // Move to "improving" indicators after clicking Previous on the first "no change" indicator
+                    } else if (current_change == "worsening") {     // If cycling through "worsening" indicators:
+                        next_change = "improving";                      // Move to "improving" indicators after clicking Next on the last "worsening" indicator
+                        previous_change = "no_change";                  // Move to "no change" indicators after clicking Previous on the first "worsening" indicator
                     }
 
+                    // Update "current_index" to be the last value in the new "current_change" type
                     current_index = Object.keys(eval(current_change + "_indicator")).length;
 
                 }
 
-                var previous_indicator_name = Object.keys(eval(current_change + "_indicator"))[current_index - 1];
-                var previous_domain_name = eval(current_change + "_indicator")[previous_indicator_name].domain; 
+                var previous_indicator_name = Object.keys(eval(current_change + "_indicator"))[current_index - 1];  // Derive name of previous indicator
+                var previous_domain_name = eval(current_change + "_indicator")[previous_indicator_name].domain;     // Derive domain of previous indicator
 
+                // Run generateIndicatorPage() function (see above) for previous_indicator_name
                 generateIndicatorPage(previous_domain_name, previous_indicator_name);
 
+                // Update the current_index counter to one less than its current value
                 current_index = current_index - 1;
 
+                // The button text and icon are generated (as either the previous indicator within that change type or the last indicator within the previous change type)
                 if (current_index != 0) {
                     previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
                 } else {
                     previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
                 }
 
+                // The button text and icon are generated (as either the next indicator within that change type or the first indicator within the next change type)
                 if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
                     next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
                 } else {
@@ -939,47 +968,52 @@ plotOverallHexes = function(change_type) {
             // "Next indicator" function
             next_btn_3.onclick = function() {
 
-                if (current_index == Object.keys(eval(current_change + "_indicator")).length - 1) {
+                if (current_index == Object.keys(eval(current_change + "_indicator")).length - 1) {     // Only when currently on the last indicator of a change type:
 
+                    // Change the value of "current_change" to be that of "next_change"
                     current_change = next_change;
 
-                    if (current_change == "improving") {
-                        next_change = "no_change";
-                        previous_change = "worsening";
-                    } else if (current_change == "no_change") {
-                        next_change = "worsening";
-                        previous_change = "improving";
-                    } else if (current_change == "worsening") {
-                        next_change = "improving";
-                        previous_change = "no_change";
+                    // Re-compute values of "previous_change" and "next_change" based on the new value of "current_change"
+                    if (current_change == "improving") {            // If cycling through "improving" indicators:
+                        next_change = "no_change";                      // Move to "no change" indicators after clicking Next on the last "improving" indicator
+                        previous_change = "worsening";                  // Move to "worsening" indicators after clicking Previous on the first "improving" indicator
+                    } else if (current_change == "no_change") {     // If cycling through "no change" indicators:
+                        next_change = "worsening";                      // Move to "worsening" indicators after clicking Next on the last "no change" indicator
+                        previous_change = "improving";                  // Move to "improving" indicators after clicking Previous on the first "no change" indicator
+                    } else if (current_change == "worsening") {     // If cycling through "worsening" indicators:
+                        next_change = "improving";                      // Move to "improving" indicators after clicking Next on the last "worsening" indicator
+                        previous_change = "no_change";                  // Move to "no change" indicators after clicking Previous on the first "worsening" indicator
                     }
 
+                    // Update "current_index" to be the first value in the new "current_change" type
                     current_index = -1;
 
                 }
 
-                var next_indicator_name = Object.keys(eval(current_change + "_indicator"))[current_index + 1];
-                var next_domain_name = eval(current_change + "_indicator")[next_indicator_name].domain; 
+                var next_indicator_name = Object.keys(eval(current_change + "_indicator"))[current_index + 1];  // Derive name of next indicator
+                var next_domain_name = eval(current_change + "_indicator")[next_indicator_name].domain;         // Derive name of next domain
 
+                // Run generateIndicatorPage() function (see above) for next_indicator_name
                 generateIndicatorPage(next_domain_name, next_indicator_name);
 
+                // Update the current_index counter to one more than its current value
                 current_index = current_index + 1;
 
+                // The button text and icon are generated (as either the previous indicator within that change type or the last indicator within the previous change type)
                 if (current_index != 0) {
                     previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
                 } else {
                     previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
                 }
 
+                // The button text and icon are generated (as either the next indicator within that change type or the first indicator within the next change type)
                 if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
                     next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
                 } else {
                     next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(next_change + "_indicator"))[0] +'</strong> <i class="fa-solid fa-forward"></i> ';
                 }
 
-            }
-
-            generateIndicatorPage(domain_name, indicator_name);               
+            }               
 
         }
 
@@ -987,21 +1021,27 @@ plotOverallHexes = function(change_type) {
 
 }
 
+// Function below waits until all the functions in "data_functions.js" have completed and then determines the change type of each indicator
+// Start by declaring three empty objects for each change type:
 improving_indicator = {};
 no_change_indicator = {};
 worsening_indicator = {};
 
-setTimeout(function () {    
+setTimeout(function () {    // setTimeOut() puts a time delay on the execution of the code inside this function. This is set below to 3000ms
     
-    for (let i = 0; i < domains.length; i++) {
+    // Loop through all domains
+    for (let i = 0; i < domains.length; i ++) {
 
+        // All the indicators inside the domain:
         indicators = domains_data[domains[i]].indicators;
 
+        // Then loop through each indicator:
         for (let j = 0; j < Object.keys(indicators).length; j++) {
             
+            // The data object for each indicator
             data = Object.values(indicators)[j].data;
-            importance = Object.values(indicators)[j].importance;
 
+            // Determine the id of the baseline statement based on which data is available:
             if (data.NI != "") {
                 base_id = data.NI + "-base-statement";                              
             } else if (data.EQ != "") {
@@ -1010,14 +1050,17 @@ setTimeout(function () {
                 base_id = data.LGD + "-base-statement";
             }
             
+            // Extract the text from the baseline statement
             base_text = document.getElementById(base_id).textContent;
 
+            // If the baseline text contains the word "improved" then add this indicator and its domain name to the "improving_indicator" object
             if (base_text.includes("improved")) {
                 improving_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
 
+            // If the baseline text contains the word "worsened" then add this indicator and its domain name to the "worsening_indicator" object
             } else if (base_text.includes("worsened")) {
                 worsening_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
-
+            // Otherwise add this indicator and its domain name to the "no_change_indicator" object
             } else {
                 no_change_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
             }
@@ -1026,56 +1069,41 @@ setTimeout(function () {
 
     }
 
-    function sortObject(o) {
-        var sorted = {},
-        key, a = [];
-    
-        for (key in o) {
-            if (o.hasOwnProperty(key)) {
-                a.push(key);
-            }
-        }
-    
-        a.sort();
-    
-        for (key = 0; key < a.length; key++) {
-            sorted[a[key]] = o[a[key]];
-        }
-        return sorted;
-    }
-
-
+    // Sort each of the three change type objects alphabetically:
     improving_indicator = sortObject(improving_indicator);
     worsening_indicator = sortObject(worsening_indicator);
     no_change_indicator = sortObject(no_change_indicator);
 
+    // The total number of indicators being measured
     num_indicators = Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length + Object.keys(no_change_indicator).length;
     
+    // Output text on overall screen showing what proportion of indicators are found in each change type:
     document.getElementById("improving-label").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
     document.getElementById("no-change-label").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
     document.getElementById("worsening-label").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
 
+    // Run plotOverallHexes() function (see above) on all three change types
     plotOverallHexes("improving");
     plotOverallHexes("no_change");
     plotOverallHexes("worsening");
 
+    document.getElementById("loading-img").style.display = "none";      // Hide the loading screen gif
+    document.getElementById("overall-hexes").style.display = "block";   // Show the "overall-hexes" div
 
-    document.getElementById("loading-img").style.display = "none";
-    document.getElementById("overall-hexes").style.display = "block";
+}, 3000);   // Time out set to 3000ms
 
-}, 3000);
-
+// This function displays a message about not loading if there is a data portal error:
 setTimeout(function () {
 
-    not_loading = document.createElement("div");
-    not_loading.id = "not-loading";
-    not_loading.innerHTML = "<p>Data not loading? <a href='.'>Click here to refresh</a></p>"
+    not_loading = document.createElement("div");    // New div for "not loading" message
+    not_loading.id = "not-loading";                 // Given id of "not-loading"
+    not_loading.innerHTML = "<p>Data not loading? <a href='.'>Click here to refresh</a></p>"    // Next with link to refresh page generated
 
     if (document.getElementById("overall-hexes").style.display != "block") {
-        document.getElementById("overall-scrn").appendChild(not_loading);
+        document.getElementById("overall-scrn").appendChild(not_loading);       // If the "overall-hexes" div has failed to display (usually due to data portal problems) then generate the not loading message
     }
 
-}, 3001)
+}, 3001)    // Time out set to 3001ms
 
 
 // Content height
