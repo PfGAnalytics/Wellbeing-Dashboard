@@ -1,4 +1,4 @@
- // Function to return Short month name from number 1-12
+ // Function to return Short month name from number 1-12 (eg, 1 returns "Jan", 2 returns "Feb")
  function getMonthName(monthNumber) {
    const date = new Date();
    date.setMonth(monthNumber - 1);
@@ -29,8 +29,13 @@ function sortObject(o) {
 }
 
 // Function below uses the api to fetch the data and plots it in a line chart
+// It also generates the baseline statement, the source information, the further information and how do we measure this
+// using information on the data portal. The only input to the function is an indicator object key from "domains_data.js"
+// The function is called inside a loop below which runs over all indicators to create all charts as the page loads
 async function createLineChart(indicator) {
 
+   // In the first instance the function checks for NI data for the particular indicator,
+   // then it checks for EQ and finally LGD data. The latter two api_url queries have filters that select only the NI data.
    if (indicator.data.NI != "") {
       var matrix = indicator.data.NI;
       var statistic = matrix.slice(0, -2);
@@ -45,17 +50,15 @@ async function createLineChart(indicator) {
       api_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22LGD2014%22%5D,%22dimension%22:%7B%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
    }
 
+   // The id the line chart canvas element will use
    var id = statistic + "-line";
 
    // Fetch data and store in object fetched_data
-   const response = await fetch(api_url);
-   const fetched_data = await response.json();
-   const {result} = fetched_data;
+   const response = await fetch(api_url);          // fetches the content of the url
+   const fetched_data = await response.json();     // we tell it the data is in json format
+   const {result} = fetched_data;                  // and extract the result object key
 
-   const dimension = result.dimension;
-   const value = result.value;
-   const updated = result.updated;
-   const note = result.note;
+   const {dimension, value, updated, note} = result;  // from result we then extract the object keys we need
    
    var years = Object.values(dimension)[1].category.index; // Array of years in data
    var num_years = years.length;  // Number of years in data
@@ -84,12 +87,14 @@ async function createLineChart(indicator) {
    var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
 
    // Pull chart title and y axis label from metadata
-   chart_title = dimension.STATISTIC.category.label[statistic];
+   var chart_title = dimension.STATISTIC.category.label[statistic];
    var y_axis_label = dimension.STATISTIC.category.unit[statistic].label;
 
+   // Recodes of chart titles:
    chart_title = chart_title.replace("?g/m3", "μg/m³");
    chart_title = chart_title.replace("MTCO2e", "MtCO₂e");
 
+   // Recodes of y axis labels:
    if (indicator.data.NI == "INDINTREPNI") {
       y_axis_label = "NBI score (out of 100)";
    } else if (indicator.data.EQ == "INDLIFESATEQ") {
@@ -138,6 +143,7 @@ async function createLineChart(indicator) {
       max_value = Math.round(max_value / 10000) * 10000;
    }
 
+   // Manual recodes for max_value:
    if ((y_axis_label.includes("%") || y_axis_label.includes("out of 100")) & max_value > 100 || chart_title.includes("respected")) {
       max_value = 100;
    }
@@ -170,6 +176,8 @@ async function createLineChart(indicator) {
       var years_cumulated = num_years - base_position - 1;
    }
 
+   // Set the size and position of the red box and green box depending on whether improvement is measured by
+   // the value increaseing or decreasing over time:
    if (indicator.improvement == "increase") {
       red_box_yMin = min_value;
       red_box_yMax = base_value - ci_value;
@@ -279,122 +287,127 @@ async function createLineChart(indicator) {
 
    }
 
-   // Custom plugin for drawing top polygon
+   // Custom plugin for drawing top polygon for indicators with year on year improvements
    const cumulative_top = {
       id: "drawing_top",
       beforeDraw(chart, args, options) {
          const { ctx } = chart;
          ctx.save();
 
-         canvas_width = chart.canvas.clientWidth;
-         canvas_height = chart.canvas.clientHeight;
+         canvas_width = chart.canvas.clientWidth;     // Return the width of the canvas in pixels
+         canvas_height = chart.canvas.clientHeight;   // Return the height of the canvas in pixels
 
-         chart_width = chart.chartArea.width;
-         chart_height = chart.chartArea.height;
+         chart_width = chart.chartArea.width;         // Return the width of the chart area in pixels
+         chart_height = chart.chartArea.height;       // Return the height of the chart area in pixels
+         
+         space_at_top = chart.chartArea.top;          // Return the size of the gap between the top of the canvas and top of chart in pixels
+         space_at_left = chart.chartArea.left;        // Return the size of the gap between the left edge of the canvas and left edge of chart in pixels
 
-         space_at_top = chart.chartArea.top;
+         startWidth = (base_position / (years.length - 1)) * chart_width + space_at_left;    // The pixel position of the x co-ordinate of the first point in the polygon
+         startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;         // The pixel position of the y co-ordinate of the first point in the polygon
 
-         startWidth = (base_position / (years.length - 1)) * chart_width + chart.chartArea.left;
-         startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;
+         endHeight = (1 - ((base_value + (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;    // The pixel position of the y co-ordinate of the last point in the polygon
 
-         endHeight = (1 - ((base_value + (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;
+         ctx.beginPath();                                      // Start drawing a polygon
+         ctx.moveTo(startWidth, startHeight);                  // Start at the points calculted above
+         ctx.lineTo(startWidth, space_at_top);                 // Draw line to top of chart area
+         ctx.lineTo(chart.chartArea.right, space_at_top);      // Draw line to right edge of chart area
+         ctx.lineTo(chart.chartArea.right, endHeight);         // Draw line to end position calculated above
+         ctx.lineTo(startWidth, startHeight);                  // Draw line back to start point to complete polygon
 
-         ctx.beginPath();
-         ctx.moveTo(startWidth, startHeight);
-         ctx.lineTo(startWidth, space_at_top);
-         ctx.lineTo(chart.chartArea.right, space_at_top);
-         ctx.lineTo(chart.chartArea.right, endHeight);
-         ctx.lineTo(startWidth, startHeight);
-
-         if (indicator.improvement == "increase") {
+         if (indicator.improvement == "increase") {            // Top box is coloured green on increasing indicators
             ctx.fillStyle = "#00aa0055";
             ctx.strokeStyle = "#00aa00";
-         } else {
+         } else {                                              // or red for decreasing indicators
             ctx.fillStyle = "#aa000055";
             ctx.strokeStyle = "#aa0000";
          }
 
+         ctx.lineWidth = 2;            // Set line width then apply stroke and fill
          ctx.fill();
          ctx.stroke();
          
       }
    };
 
-   // Custom plugin for drawing bottom polygon
+   // Custom plugin for drawing bottom polygon for indicators with year on year improvements
    const cumulative_bottom = {
       id: "drawing_bottom",
       beforeDraw(chart, args, options) {
          const { ctx } = chart;
          ctx.save();
 
-         canvas_width = chart.canvas.clientWidth;
-         canvas_height = chart.canvas.clientHeight;
+         canvas_width = chart.canvas.clientWidth;     // Return the width of the canvas in pixels
+         canvas_height = chart.canvas.clientHeight;   // Return the height of the canvas in pixels
 
-         chart_width = chart.chartArea.width;
-         chart_height = chart.chartArea.height;
+         chart_width = chart.chartArea.width;         // Return the width of the chart area in pixels
+         chart_height = chart.chartArea.height;       // Return the height of the chart area in pixels
 
-         space_at_bottom = chart.chartArea.bottom;
-         space_at_top = chart.chartArea.top;
+         space_at_bottom = chart.chartArea.bottom;    // Return the size of the gap between the top of the canvas and top of chart in pixels
+         space_at_top = chart.chartArea.top;          // Return the size of the gap between the bottom of the canvas and bottom of chart in pixels
+         space_at_left = chart.chartArea.left;        // Return the size of the gap between the left edge of the canvas and left edge of chart in pixels
 
-         startWidth = (base_position / (years.length - 1)) * chart_width + chart.chartArea.left;
-         startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;
+         startWidth = (base_position / (years.length - 1)) * chart_width + space_at_left;    // The pixel position of the x co-ordinate of the first point in the polygon
+         startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;         // The pixel position of the y co-ordinate of the first point in the polygon
 
-         endHeight = (1 - ((base_value - (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;
+         endHeight = (1 - ((base_value - (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;    // The pixel position of the y co-ordinate of the last point in the polygon
 
-         ctx.beginPath();
-         ctx.moveTo(startWidth, startHeight);
-         ctx.lineTo(startWidth, space_at_bottom);
-         ctx.lineTo(chart.chartArea.right, space_at_bottom);
-         ctx.lineTo(chart.chartArea.right, endHeight);
+         ctx.beginPath();                                      // Start drawing a polygon
+         ctx.moveTo(startWidth, startHeight);                  // Start at the points calculted above
+         ctx.lineTo(startWidth, space_at_bottom);              // Draw line to top of chart area
+         ctx.lineTo(chart.chartArea.right, space_at_bottom);   // Draw line to right edge of chart area
+         ctx.lineTo(chart.chartArea.right, endHeight);         // Draw line to end position calculated above       
          ctx.lineTo(startWidth, startHeight);
 
-         if (indicator.improvement == "decrease") {
+         if (indicator.improvement == "decrease") {         // Bottom box is coloured red on increasing indicators
             ctx.fillStyle = "#00aa0055";
             ctx.strokeStyle = "#00aa00";
-         } else {
+         } else {                                          // or green for decreasing indicators
             ctx.fillStyle = "#aa000055";
             ctx.strokeStyle = "#aa0000";
          }
 
-         ctx.lineWidth = 2;
-
+         ctx.lineWidth = 2;            // Set line width then apply stroke and fill
          ctx.fill();
          ctx.stroke();
 
       }
    };
 
+   // Function to count the number of decimal places present in a number
    Number.prototype.countDecimals = function () {
       if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
       return this.toString().split(".")[1].length || 0; 
    }
 
+   // The number of decimal places present in the base_value
    var decimal_places = base_value.countDecimals();
 
+   // This puts extra text in the tooltip to display "Improving value" and "Worsening value" on years after the base year
    const footer = (tooltipItems) => {
 
       tooltipItems.forEach(function(tooltipItem) {
          if (tooltipItem.parsed.x >= base_position) {
-            if (!isNaN(indicator.ci)) {
-               if (indicator.improvement == "increase") {
+            if (!isNaN(indicator.ci)) {   // For indicators with constant value improvements:
+               if (indicator.improvement == "increase") {   // For increasing indicators in this category:
                   text = ["Improving value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
                           "Worsening value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
-               } else {
+               } else {       // For decreasing indicators in this category:
                   text = ["Worsening value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
                           "Improving value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
                }
-            } else {
-               if (tooltipItem.parsed.x == base_position) {
+            } else {    // For indicators with year-on-year improvements:
+               if (tooltipItem.parsed.x == base_position) {    // Blank out the value in the base year itself
                   text = ""
-               } else if (indicator.improvement == "increase") {
+               } else if (indicator.improvement == "increase") {   // For increasing indicators in this category:
                   text = ["Improving value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
                         "Worsening value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
-               } else {
+               } else {       // For decreasing indicators in this category:
                   text = ["Worsening value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
                           "Improving value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
                }
             }
-         } else {
+         } else {    // Don't add extra tooltip text for years all before base year:
             text = ""
          }
       });
@@ -402,18 +415,17 @@ async function createLineChart(indicator) {
       return text
     };
 
-   // Chart configuration for most charts
+   // Chart configuration for charts with constant increasing/decreasing value:
    const config = {
       type: 'line',
       data,
       options: {
-         responsive: true,
-         maintainAspectRatio: false,
+         responsive: true,                   //  Allow resizing of canvas
+         maintainAspectRatio: false,         // Any aspect ratio
          plugins: {
-               autocolors: false,
                annotation: {
                   annotations: {
-                     red_box: {
+                     red_box: {                             // Red box plotted with co-ordinates
                            type: "box",
                            xMin: base_position,
                            xMax: years.length - 1,
@@ -421,10 +433,9 @@ async function createLineChart(indicator) {
                            yMax: red_box_yMax,
                            backgroundColor: "#aa000055",
                            borderColor: "#aa0000",
-                           borderWidth: 2,
-                           z: -1
+                           borderWidth: 2
                      },
-                     red_text: {
+                     red_text: {                                        // Text inside red box
                         type: "label",
                         xValue: years.length - 1,
                         yValue: (red_box_yMin + red_box_yMax) / 2,
@@ -436,7 +447,7 @@ async function createLineChart(indicator) {
                         },
                         position: "end"
                      },
-                     green_box: {
+                     green_box: {                             // Green box plotted with co-ordinates
                         type: "box",
                         xMin: base_position,
                         xMax: years.length - 1,
@@ -444,10 +455,9 @@ async function createLineChart(indicator) {
                         yMax: green_box_yMax,
                         backgroundColor: "#00aa0055",
                         borderColor: "#00aa00",
-                        borderWidth: 2,
-                        z: -1
+                        borderWidth: 2
                      },
-                     green_text: {
+                     green_text: {                                        // Text inside green box
                         type: "label",
                         xValue: years.length - 1,
                         yValue: (green_box_yMin + green_box_yMax) / 2,
@@ -462,11 +472,11 @@ async function createLineChart(indicator) {
                   }
                },
                legend: {
-                  display: false
+                  display: false       // Legend turned off
                },
                tooltip: {
                   callbacks: {
-                     footer: footer
+                     footer: footer       // Add footer to tooltip (defined above)
                   }
                }
 
@@ -474,28 +484,27 @@ async function createLineChart(indicator) {
          scales: {
             x: {
                grid: {
-                  display: true,
-                  lineWidth: 0,
-                  drawTicks: true,
-                  tickWidth: 1
+                  lineWidth: 0,     // Remove vertical grid lines
+                  drawTicks: true,     // Add ticklines
+                  tickWidth: 1         // tickline width
                },
                ticks: {
-                  minRotation: 0,
+                  minRotation: 0,      // Stop rotating labels (for accessibility)
                   maxRotation: 0
                }
             },
             y: {
-               beginAtZero: true,
-               min: min_value,
+               beginAtZero: true,      // Set axis to begin at zero
+               min: min_value,         // Use calculated min and max
                max: max_value,
                ticks: {
-                  minRotation: 0,
+                  minRotation: 0,      // Stop rotating labels (for accessibility)
                   maxRotation: 0
                }
             }
          },
          interaction: {
-            intersect: false,
+            intersect: false,   // Allow mouse interaction when mouse near points 
             mode: "index"
          }
       },
@@ -503,6 +512,7 @@ async function createLineChart(indicator) {
    };
 
    // Chart configuration for charts where improvement is year on year
+   // Red box and green box annotations are removed and top 
    const config_c = {
       type: 'line',
       data,
@@ -510,7 +520,6 @@ async function createLineChart(indicator) {
          responsive: true,
          maintainAspectRatio: false,
          plugins: {
-               autocolors: false,
                annotation: {
                   annotations: {
                      red_text: {
@@ -644,7 +653,7 @@ async function createLineChart(indicator) {
    };
    
    // Create statement div
-   base_statement_div = document.createElement("div");
+   base_statement_div = document.createElement("div");      
    base_statement_div.id = matrix + "-base-statement";
    base_statement_div.classList.add("white-box");
    base_statement_div.classList.add("base-statement");
@@ -656,6 +665,7 @@ async function createLineChart(indicator) {
    // Create further info div
    var further_note = note[0];
 
+   // Looks for a heading within the note object key that might donate a "Further Information" paragraph:
    if (further_note.indexOf("Further information") != -1) {
       var further_string = "Further information";
    } else if (further_note.indexOf("Further Information") != -1) {
@@ -666,22 +676,24 @@ async function createLineChart(indicator) {
       further_note = "Not available";
    }
 
+   // The "Further Information" paragraph is then extracted from the larger text string:
    if (further_note != "Not available") {
       further_note = further_note.slice(further_note.indexOf(further_string) + further_string.length);
       further_note = further_note.slice(further_note.indexOf("[/b]") + 4);
       if (further_note.indexOf("[b]") != -1) {
          further_note = further_note.slice(0, further_note.indexOf("[b]"))
       }
-      further_note = further_note.replaceAll("[url=", "<a href = '");
+      further_note = further_note.replaceAll("[url=", "<a href = '");                        // URLS are converted
       further_note = further_note.replaceAll("[/url]", "' target = '_blank'>here</a>.");
-      further_note = further_note.replaceAll("[i]", "<em>");
+      further_note = further_note.replaceAll("[i]", "<em>");                              // Italic text tags are converted
       further_note = further_note.replaceAll("[/i]", "</em>");
    }
 
    for (let i = 2; i < 10; i++) {
-      further_note = further_note.replaceAll("\n" + i + ".", "<br><br>" + i + ".")
+      further_note = further_note.replaceAll("\n" + i + ".", "<br><br>" + i + ".")  // Line breaks are inserted between individidual points within "Further Information"
    }
 
+   // Div element created for "Further information" and placed in html document:
    further_info_div = document.createElement("div");
    further_info_div.id = matrix + "-further-info";
    further_info_div.classList = "further-info-text";
@@ -691,13 +703,16 @@ async function createLineChart(indicator) {
    links = further_info_div.getElementsByTagName("a");
 
    for (let i = 0; i < links.length; i++) {
-      links[i].href = links[i].href.slice(0, links[i].href.indexOf("]"));
+      links[i].href = links[i].href.slice(0, links[i].href.indexOf("]"));  // Hyperlinks are formatted
    }
 
    document.getElementById("further-info").appendChild(further_info_div);
 
+
+  // The source info is pulled out of the note object
   source_info = note[0];
 
+  // The paragraph containing the source information is isolated:
   source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
   source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
   source_info = source_info.slice(0, source_info.indexOf("[b]")).trim();  
@@ -709,9 +724,11 @@ async function createLineChart(indicator) {
    source_name = source_name.slice(0, source_name.indexOf("[/url]"));
   }
 
+  // URL formatted
   source_link = source_info.slice(source_info.indexOf("[url=") + 5);
   source_link = source_link.slice(0, source_link.indexOf("]"));
 
+  // Div element created and placed in html document:
   source_info_div = document.createElement("div");
   source_info_div.id = matrix + "-source-info";
   source_info_div.classList.add("source-info-text");
@@ -719,6 +736,7 @@ async function createLineChart(indicator) {
 
   document.getElementById("source-info").appendChild(source_info_div);
 
+  // The "how we measure this" is pulled out of the note object
   measure_text = note[0];
 
   measure_string = "[b]How do we measure this?[/b]"
@@ -730,6 +748,7 @@ async function createLineChart(indicator) {
    measure_text = "";
   }
 
+  // Div element created and placed in html document:
   measure_note = document.createElement("div");
   measure_note.id = matrix + "-measure-info";
   measure_note.classList.add("measure-info-text");
@@ -741,6 +760,8 @@ async function createLineChart(indicator) {
   document.getElementById("measure-info").appendChild(measure_note);
 
  }
+
+// This is where the above function is called:
 
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
 // Assign list of domains to variable "domains"
@@ -759,6 +780,7 @@ for (let i = 0; i < domains.length; i ++) {
 
 }
 
+// Function to draw a map. This function is called when there are any changes to the dropdown menus on the map screen
 async function drawMap() {
 
    // Display the loading gif while this function runs
@@ -804,6 +826,7 @@ async function drawMap() {
          data_series.splice(NI_position, 1);
       }
 
+      // Loop through data set to find first year that isn't all null for all groups
       for (let i = 0; i < data_series.length; i++) {
          if (data_series[i] != null) {
             no_data = false;
@@ -811,10 +834,12 @@ async function drawMap() {
          }
       }
 
+      // compute current year value and increment look_back by 1
       var current_year = years[years.length - look_back - 1]; // The current year
       look_back = look_back + 1;
    }
 
+ 
   var range = Math.max(...data_series) - Math.min(...data_series); // Calculate the range of values
 
   // Create an array colours, where each value is between 0 and 1 depending on where it falls in the range of values
@@ -1016,6 +1041,7 @@ async function drawMap() {
 
   var source_info_map = document.getElementById("source-info-map");
 
+  // Source info pulled from data portal:
   source_info = note[0];
 
   source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
@@ -1039,6 +1065,7 @@ async function drawMap() {
 
 }
 
+// This function converts a number to a word
 function number_to_word(n) {
    if (n < 0)
      return false;
