@@ -24,7 +24,6 @@ Documentation to outline the structure and processes needed to create or modify 
 
 Data for the dashboard is directly linked to data availale for each indicator stored in the 'Programme for Government' folder on the NISRA Data Portal. The relevant datasets on NISRA Data Portal are linked to the dashboard using an API query. The dashboard will automatically update as data is updated on the NISRA Data Portal provided the it is uploaded using the same naming conventions.
 
-
 ### Code structure
 
 | Section | Purpose  |
@@ -39,6 +38,12 @@ Data for the dashboard is directly linked to data availale for each indicator st
 | Footer | Standard NISRA footer |
 
 ## :bell: Processes
+
+### Process Diagram
+
+<div style="width: 100%;">
+  <img src="img/data-flow-chart.svg" style="width: 100%;" alt="Click to see the source">
+</div>
 
 ### Link with Data Portal
 - Dashboard will automatically update when new data is uploaded to the data portal (provided it is named the same)
