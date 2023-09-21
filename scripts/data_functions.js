@@ -380,8 +380,16 @@ async function createLineChart(indicator) {
       return this.toString().split(".")[1].length || 0; 
    }
 
-   // The number of decimal places present in the base_value
-   var decimal_places = base_value.countDecimals();
+   // The number of decimal places present in the data
+   var decimals = [];
+
+   for (let i = 0; i < data_series.length; i ++) {
+      if (data_series[i] != null) {
+         decimals.push(data_series[i].countDecimals())
+      }
+   }
+
+   var decimal_places = Math.max(...decimals);
 
    // This puts extra text in the tooltip to display "Improving value" and "Worsening value" on years after the base year
    const footer = (tooltipItems) => {
