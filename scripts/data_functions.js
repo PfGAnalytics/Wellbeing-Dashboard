@@ -850,6 +850,13 @@ async function drawMap() {
    
    years = Object.keys(data_by_year);
 
+   all_values = [];
+   for (let i = 0; i < data_series.length; i ++) {
+      if (data_series[i] != null && data_series[i] != "N/A") {
+         all_values.push(data_series[i])
+      }
+   }
+
    map_select_4 = document.getElementById("map-select-4");
    date_display = document.getElementById("date-display");
 
@@ -887,13 +894,16 @@ async function drawMap() {
       date_display.textContent = selected_year;
 
       selected_data = data_by_year[selected_year];
+
+      var range_min = Math.floor(Math.min(...all_values));
+      var range_max = Math.ceil(Math.max(...all_values));
       
-      var range = Math.max(...selected_data) - Math.min(...selected_data); // Calculate the range of values
+      var range = range_max - range_min; // Calculate the range of values
 
       // Create an array colours, where each value is between 0 and 1 depending on where it falls in the range of values
       colours = [];
       for (let i = 0; i < selected_data.length; i++) {
-         colours.push((selected_data[i] - Math.min(...selected_data)) / range);
+         colours.push((selected_data[i] - range_min) / range);
       }
 
       // Colour palettes for increasing/decreasing indicators
@@ -905,7 +915,12 @@ async function drawMap() {
 
       // When called chooses a colour from above palette based on value of colours array
       function getColor(d) {
-         return palette[Math.round(d*4)];
+
+         if (d < 0) {
+            return "#d3d3d3";
+         } else {
+            return palette[Math.round(d*4)];
+         }
       }
 
       // Variable name to use if geo data is LGD or AA
@@ -1057,8 +1072,8 @@ async function drawMap() {
 
       }        
 
-      min_value.innerHTML = Math.min(...selected_data).toLocaleString("en-GB");       
-      max_value.innerHTML = Math.max(...selected_data).toLocaleString("en-GB");      
+      min_value.innerHTML = range_min.toLocaleString("en-GB");       
+      max_value.innerHTML = range_max.toLocaleString("en-GB");      
 
       chart_title = Object.values(dimension.STATISTIC.category.label)[0];
 
@@ -1085,7 +1100,7 @@ async function drawMap() {
       source_link = source_link.slice(0, source_link.indexOf("]"));
 
       source_info_map.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
-         }
+   }
 
    mapForYear();
 
