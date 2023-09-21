@@ -27,12 +27,14 @@ dir.create(uploadDir)
 # List all svg files in img folder
 SVGs <- list.files("../img", pattern = "*.svg")
 
-originalNav <- readLines("../scripts/navigation_functions.js")
-fixedNav <- originalNav
 
 suppressWarnings({ # Turn off warnings
   
-  # Fix image paths in navigation_functions.js
+  # Read in navigation_functions.js as "original Nav" and take copy of it "fixedNav"
+  originalNav <- readLines("../scripts/navigation_functions.js")
+  fixedNav <- originalNav
+  
+  # Fix image paths in navigation_functions.js by converting svg images to xml
   for (svg in SVGs) {
     fixedNav <- gsub(paste0("img/", svg),
                      paste0("data:image/svg+xml,",
@@ -43,6 +45,7 @@ suppressWarnings({ # Turn off warnings
                      fixed = TRUE)
   }
   
+  # Write out fixedNav to navigation_functions.js
   writeLines(fixedNav, "../scripts/navigation_functions.js")
 
   # Convert html to character vector
