@@ -4,13 +4,13 @@
 
 // domains_data = {
 //    "Domain 1": {
-//       description: "A description of the Domain 1",
+//       description: "A description of Domain 1",
 //       indicators: {
 //          ...
 //       }
 //    },
 //    "Domain 2": {
-//       description: "A description of the Domain 2",
+//       description: "A description of Domain 2",
 //       indicators: {
 //          ...
 //       }
@@ -33,8 +33,8 @@
 //       improvement: "increase" or "decrease",
 //       telling: {
 //          improved: "Sentence to output when indicator performance is improving",
-//          no_change: "Sentence to output when indicator performance is improving",
-//          worsened: "Sentence to output when indicator performance is improving"
+//          no_change: "Sentence to output when indicator performance is not changing",
+//          worsened: "Sentence to output when indicator performance is worsening"
 //       }
 //    },
 //    "Indicator 2": {
