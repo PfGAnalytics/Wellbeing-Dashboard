@@ -22,7 +22,9 @@ Documentation to outline the structure and processes needed to create or modify 
 
 ### Data Input
 
-Data for the dashboard is directly linked to data availale for each indicator stored in the 'Programme for Government' folder on the NISRA Data Portal. The relevant datasets on NISRA Data Portal are linked to the dashboard using an API query. The dashboard will automatically update as data is updated on the NISRA Data Portal provided the it is uploaded using the same naming conventions.
+Data for the dashboard is directly linked to data available for each indicator stored in the 'Programme for Government' folder on the NISRA Data Portal. The relevant datasets on NISRA Data Portal are linked to the dashboard using an API query. The dashboard will automatically update as data is updated on the NISRA Data Portal provided it is uploaded using the same naming conventions.
+
+The `domains_data.js` script is an additional 'input' which contains additional domain/indiactor information. 
 
 ### Code structure
 
@@ -47,13 +49,10 @@ Data for the dashboard is directly linked to data availale for each indicator st
 
 ### Link with Data Portal
 - Dashboard will automatically update when new data is uploaded to the data portal (provided it is named the same)
-- Add something here for guidance if an indicator changes?
+- If an indicator is added or changes this will need to be updated in the `domains_data.js` script.
 
-### Update the dashboard with any necessary changes :chart_with_upwards_trend:
-These may be things such as:
-- Updating text or definitions/information boxes
-- Adding/removing charts or sections
-- Replacing images
+### Update the dashboard with any commentary on trends :chart_with_upwards_trend:
+Commentary on indicator trends should be added to the `domains_data.js` script.
 
 ### Testing phase :mortar_board:
 When modifications have been made (new data or otherwise), carry out a systematic testing of content:
@@ -62,7 +61,7 @@ When modifications have been made (new data or otherwise), carry out a systemati
 - All links are still working e.g. Downloads, share buttons, links to external websites, links that make referene to other parts of the dashboard etc.
 
 ### Datavis hosting :computer:
-1. Ensure the dashboard project is 'flat' i.e. there are no subfolders. All files must be at the same level e.g. `.html`, `.js`, `.png`, `.css` etc. files must all be in the same folder beside each other **Add instructions for datavis prep Rscript **
+1. Ensure the dashboard project is 'flat' i.e. there are no subfolders. All files must be at the same level e.g. `.html`, `.js`, `.png`, `.css` etc. files must all be in the same folder beside each other. The simplest way to do this is to open R Studio and run the `datavis prep base64.R` script. 
 1. Arrange for all files to be uploaded to the DataVis server - ensure that the files are scheduled for release in line with your pre-announced publication date (for new statistics) or as necessary for fixes/minor updates.
 1. ITassist will need to create:
    - A subdomain e.g. `spending.nisra.gov.uk`
