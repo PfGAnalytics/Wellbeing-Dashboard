@@ -63,6 +63,7 @@ var help_scrn = document.getElementById("help-scrn");
 var help_btn = document.getElementById("help-btn");
 var chart_link = document.getElementById("chart-link");
 var further_infos = document.getElementsByClassName("further-info-text");
+var hex_rows = document.getElementsByClassName("hex-row");
 
 // Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -167,8 +168,6 @@ for (let i = 0; i < domains.length; i++) {
 }
 
 // Loop through each row that has been created and indent
-var hex_rows = document.getElementsByClassName("hex-row");
-
 for (let i = 0; i < hex_rows.length; i++) {
     if (i % 2 == 0) {
         hex_rows[i].style.marginLeft = "100px"; // Every odd numbered row will be indented by the width of half a hexagon

@@ -47,7 +47,7 @@ var domains_data = {
        description: "Our children and young people have the best start in life",
        indicators: {
          "Children's social care": {
-            importance: "The indicator gives an important insight into the overarching “We will give our children and young people the best start in life” outcome.  It illustrates that services provided to looked after children/care leavers are, for example, closing the education attainment gap between care-experienced children and other young people and that they have the same opportunities for training and employment as their peers.   It is also to be used as a key indicator for monitoring success in the “A life Deserved Strategy”.",
+            importance: 'The indicator gives an important insight into the overarching "We will give our children and young people the best start in life" outcome.  It illustrates that services provided to looked after children/care leavers are, for example, closing the education attainment gap between care-experienced children and other young people and that they have the same opportunities for training and employment as their peers.   It is also to be used as a key indicator for monitoring success in the "A life Deserved Strategy".',
             base_year: "2019/20",
             ci: "1c",
             data: {
@@ -249,7 +249,7 @@ var domains_data = {
        description: "We all enjoy long, healthy active lives",
        indicators: {
          "Healthy life expectancy (females)": {
-            importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in ‘good health’ or ‘very good health’ from birth.",
+            importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
             base_year: "2017-19",
             ci: 1.5,
             data: {
@@ -266,7 +266,7 @@ var domains_data = {
             }
          },
          "Healthy life expectancy (males)": {
-            importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in ‘good health’ or ‘very good health’ from birth.",
+            importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
             base_year: "2017-19",
             ci: 1.5,
             data: {
@@ -446,7 +446,7 @@ var domains_data = {
             }
          },
          "External sales rate": {
-            importance: "Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a “Trade and Investment Strategy for a 10x economy” in which they note “Trade can support the ambitions of our ‘10X Economy’ across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become.”",
+            importance: 'Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a "Trade and Investment Strategy for a 10x economy" in which they note "Trade can support the ambitions of our \'10X Economy\' across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become."',
             base_year: "2019",
             ci: 0.7,
             data: {
@@ -676,9 +676,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Housing stress is rising.",
+               improved: "Housing stress is reducing.",
                no_change: "Housing stress remains the same.",
-               worsened: "Housing stress is falling." 
+               worsened: "Housing stress is rising." 
             }
          }
        }
