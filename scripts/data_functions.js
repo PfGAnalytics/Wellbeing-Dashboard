@@ -380,9 +380,8 @@ async function createLineChart(indicator) {
       return this.toString().split(".")[1].length || 0; 
    }
 
-   // The number of decimal places present in the data
+   // The number of decimal places present in the data set
    var decimals = [];
-
    for (let i = 0; i < data_series.length; i ++) {
       if (data_series[i] != null) {
          decimals.push(data_series[i].countDecimals())

@@ -62,6 +62,7 @@ var user_guide_link = document.getElementsByClassName("user-guide-link");
 var help_scrn = document.getElementById("help-scrn");
 var help_btn = document.getElementById("help-btn");
 var chart_link = document.getElementById("chart-link");
+var further_infos = document.getElementsByClassName("further-info-text");
 
 // Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -107,16 +108,14 @@ for (let i = 0; i < top_menu_items.length; i++) {
         drawMap();
 
         // Hide expanded further info if navigating from indicator page
-        var further_infos = document.getElementsByClassName("further-info-text");
-        var further_expander = document.getElementById("further-expander");
-
         for (let i = 0; i < further_infos.length; i++) {
             further_infos[i].removeAttribute("style");
             further_infos[i].classList.remove("further-selected");
-            further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-            further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-            further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
         }
+
+        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
+        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
+        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
 
         // Remove any navigation buttons:
         while (back_button_container.firstChild) {
@@ -519,6 +518,16 @@ function generateHexagons (d) {
             // Function inside "Previous indicator" button
             previous_btn_2.onclick = function() {
 
+                // Hide expanded further info
+                for (let i = 0; i < further_infos.length; i++) {
+                    further_infos[i].removeAttribute("style");
+                    further_infos[i].classList.remove("further-selected");
+                }
+
+                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
+                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
+                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
+
                 // Get the name of previous indicator from the button text
                 var previous_indicator_name = previous_btn_2.textContent.replace("Previous indicator:", "").trim();
 
@@ -546,6 +555,16 @@ function generateHexagons (d) {
 
             // Function inside "Next indicator" button
             next_btn_2.onclick = function() {
+
+                // Hide expanded further info
+                for (let i = 0; i < further_infos.length; i++) {
+                    further_infos[i].removeAttribute("style");
+                    further_infos[i].classList.remove("further-selected");
+                }
+
+                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
+                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
+                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
 
                 // Get the name of next indicator from the button text
                 var next_indicator_name = next_btn_2.textContent.replace("Next indicator:", "").trim();
@@ -919,6 +938,16 @@ plotOverallHexes = function(change_type) {
             // "Previous indicator" function
             previous_btn_3.onclick = function() {
 
+                // Hide expanded further info
+                for (let i = 0; i < further_infos.length; i++) {
+                    further_infos[i].removeAttribute("style");
+                    further_infos[i].classList.remove("further-selected");
+                }
+
+                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
+                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
+                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
+
                 if (current_index == 0) {       // Only when currently on the first indicator of a change type:
 
                     // Change the value of "current_change" to be that of "previous_change"
@@ -968,6 +997,16 @@ plotOverallHexes = function(change_type) {
 
             // "Next indicator" function
             next_btn_3.onclick = function() {
+
+                // Hide expanded further info
+                for (let i = 0; i < further_infos.length; i++) {
+                    further_infos[i].removeAttribute("style");
+                    further_infos[i].classList.remove("further-selected");
+                }
+
+                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
+                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
+                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
 
                 if (current_index == Object.keys(eval(current_change + "_indicator")).length - 1) {     // Only when currently on the last indicator of a change type:
 
