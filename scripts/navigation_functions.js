@@ -67,6 +67,7 @@ var hex_rows = document.getElementsByClassName("hex-row");
 var nav_buttons = document.getElementsByClassName("nav-btn");
 var search_btn = document.getElementById("search-btn");
 var search_text = document.getElementById("search-text");
+var search_bar = document.getElementById("search-bar");
 
 // Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -1195,7 +1196,7 @@ mainContainerHeight = function() {
     }
 
     // Determine the height for the main container by substracting header, footer, etc heights from the window height. Allowing 50px for top and bottom margins
-    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - button_height - 50;
+    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - search_bar.clientHeight - button_height - 50;
 
     // Set a minimum height for the main container
     main_container.style.minHeight = ideal_height + "px";

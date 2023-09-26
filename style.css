@@ -496,6 +496,7 @@ footer {
     background-color: #008675;
     display: flex;
     justify-content: center;
+    margin-top: 25px;
 }
 
 #footer-container {
@@ -820,7 +821,7 @@ footer a:hover {
     border-top: none;
     z-index: 99;
     /*position the autocomplete items to be the same width as the container:*/
-    bottom: 100%;
+    top: 100%;
     left: 0;
     right: 0;
   }
@@ -844,8 +845,7 @@ footer a:hover {
     display: flex;
     justify-content: center;
     background-color: #008675;
-    margin-top: 25px;
-    padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   .btn {
