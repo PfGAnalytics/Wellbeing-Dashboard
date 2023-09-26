@@ -64,6 +64,9 @@ var help_btn = document.getElementById("help-btn");
 var chart_link = document.getElementById("chart-link");
 var further_infos = document.getElementsByClassName("further-info-text");
 var hex_rows = document.getElementsByClassName("hex-row");
+var nav_buttons = document.getElementsByClassName("nav-btn");
+var search_btn = document.getElementById("search-btn");
+var search_text = document.getElementById("search-text");
 
 // Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -458,7 +461,6 @@ function generateHexagons (d) {
             generateIndicatorPage(d, indicator_name);
 
             // Hide nav buttons currently on display
-            nav_buttons = document.getElementsByClassName("nav-btn");
             for (let j = 0; j < nav_buttons.length; j ++) {
                 nav_buttons[j].style.display = "none";
             }
@@ -1583,5 +1585,260 @@ chart_link.onclick = function() {
         }
 
     }
+
+}
+
+// Create list of all indicators and sort alphabetically
+var all_indicators = []
+
+for (let i = 0; i < domains.length; i ++) {
+    all_indicators.push(Object.keys(domains_data[domains[i]].indicators));
+}
+
+all_indicators = all_indicators.flat().sort();
+
+// Function adapted from one found on https://www.w3schools.com/howto/howto_css_searchbar.asp
+function autocomplete(inp, arr) {
+    /*the autocomplete function takes two arguments,
+    the text field element and an array of possible autocompleted values:*/
+    var currentFocus;
+    /*execute a function when someone writes in the text field:*/
+    inp.addEventListener("input", function(e) {
+        var a, b, i, val = this.value;
+        /*close any already open lists of autocompleted values*/
+        closeAllLists();
+        if (!val) { return false;}
+        currentFocus = -1;
+        /*create a div element that will contain the items (values):*/
+        a = document.createElement("div");
+        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("class", "autocomplete-items");
+        /*append the DIV element as a child of the autocomplete container:*/
+        this.parentNode.insertBefore(a, search_text);
+        /*for each item in the array...*/
+        for (i = 0; i < arr.length; i++) {
+          /*check if the item starts with the same letters as the text field value:*/
+          if (arr[i].toUpperCase().includes(val.toUpperCase())) {
+            /*create a DIV element for each matching element:*/
+            b = document.createElement("div");
+            /*make the matching letters bold:*/
+            b.innerHTML = arr[i].substr(0, arr[i].toUpperCase().indexOf(val.toUpperCase()));
+            b.innerHTML += "<strong>" + arr[i].substr(arr[i].toUpperCase().indexOf(val.toUpperCase()), val.length) + "</strong>";
+            b.innerHTML += arr[i].substr(arr[i].toUpperCase().indexOf(val.toUpperCase()) + val.length);
+
+            /*insert a input field that will hold the current array item's value:*/
+            b.innerHTML += '<input type="hidden" value="' + arr[i] + '">';
+            /*execute a function when someone clicks on the item value (DIV element):*/
+                b.addEventListener("click", function(e) {
+                /*insert the value for the autocomplete text field:*/
+                inp.value = this.getElementsByTagName("input")[0].value;
+                /*close the list of autocompleted values,
+                (or any other open lists of autocompleted values:*/
+                closeAllLists();
+            });
+            a.appendChild(b);
+          }
+        }
+    });
+    /*execute a function presses a key on the keyboard:*/
+    inp.addEventListener("keydown", function(e) {
+        var x = document.getElementById(this.id + "autocomplete-list");
+        if (x) x = x.getElementsByTagName("div");
+        if (e.keyCode == 40) {
+          /*If the arrow DOWN key is pressed,
+          increase the currentFocus variable:*/
+          currentFocus++;
+          /*and and make the current item more visible:*/
+          addActive(x);
+        } else if (e.keyCode == 38) { //up
+          /*If the arrow UP key is pressed,
+          decrease the currentFocus variable:*/
+          currentFocus--;
+          /*and and make the current item more visible:*/
+          addActive(x);
+        } else if (e.keyCode == 13) {
+          /*If the ENTER key is pressed, prevent the form from being submitted,*/
+          e.preventDefault();
+
+          if (all_indicators.includes(this.value)) {
+            search_btn.click()
+          } else {
+            search_text.value = "";
+            search_text.placeholder = "Not a valid indicator name"
+          }
+
+          if (currentFocus > -1) {
+            /*and simulate a click on the "active" item:*/
+            if (x) x[currentFocus].click();
+          }
+
+        }
+    });
+    function addActive(x) {
+      /*a function to classify an item as "active":*/
+      if (!x) return false;
+      /*start by removing the "active" class on all items:*/
+      removeActive(x);
+      if (currentFocus >= x.length) currentFocus = 0;
+      if (currentFocus < 0) currentFocus = (x.length - 1);
+      /*add class "autocomplete-active":*/
+      x[currentFocus].classList.add("autocomplete-active");
+    }
+    function removeActive(x) {
+      /*a function to remove the "active" class from all autocomplete items:*/
+      for (var i = 0; i < x.length; i++) {
+        x[i].classList.remove("autocomplete-active");
+      }
+    }
+    function closeAllLists(elmnt) {
+      /*close all autocomplete lists in the document,
+      except the one passed as an argument:*/
+      var x = document.getElementsByClassName("autocomplete-items");
+      for (var i = 0; i < x.length; i++) {
+        if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+  }
+
+
+// Run above function
+autocomplete(search_text, all_indicators);
+
+// Code to execute when someone clicks on search button
+search_btn.onclick = function () {
+
+    // Run search when value in search bar matches one of the indicator names
+    if (all_indicators.includes(search_text.value)) {
+
+        // Hide any back buttons etc
+        for (let i = 0; i < nav_buttons.length; i ++) {
+            nav_buttons[i].style.display = "none";
+        }
+
+        // show container for buttons if currently hidden
+        for (let i = 0; i < button_rows.length; i ++) {
+            button_rows[i].style.display = "flex";
+        }
+
+        // Create a new back button
+        back_btn_6 = document.createElement("div");
+        back_btn_6.id = "back-btn-6";
+        back_btn_6.classList.add("nav-btn");
+        back_button_container.appendChild(back_btn_6);
+
+        // New back button directs user back to page they were on before searching:
+        if (indicator_scrn.style.display == "block") {
+
+            last_indicator = indicator_title.textContent;
+            last_domain = domain_title.textContent;
+
+            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + last_indicator + '</strong> indicator';
+
+            back_btn_6.onclick = function() {
+
+                generateIndicatorPage(last_domain, last_indicator)
+
+                back_button_container.removeChild(back_btn_6);
+
+                back_btn_2.style.display = "block";
+                previous_btn_2.style.display = "block";
+                next_btn_2.style.display = "block";                
+
+            }
+
+        } else if (domains_scrn.style.display == "block") {
+
+            if (domains_grid_container.style.display == "block") {
+                back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Domains</strong> grid';
+            } else {
+                back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + clicked_hex.textContent + '</strong> domain';
+            }
+
+            back_btn_6.onclick = function () {
+                indicator_scrn.style.display = "none";
+                domains_scrn.style.display = "block";
+
+                if (domains_grid_container.style.display == "block") {
+                    for (let i = 0; i < button_rows.length; i ++) {
+                        button_rows[i].style.display = "none";
+                    }
+                } else {
+                    back_btn.style.display = "block";
+                    previous_btn.style.display = "block";
+                    next_btn.style.display = "block";
+                }
+
+                back_button_container.removeChild(back_btn_6);
+            }
+
+        } else if (help_scrn.style.display == "block") {
+
+            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Help</strong> screen';
+
+            back_btn_6.onclick = function() {
+                indicator_scrn.style.display = "none";
+                help_scrn.style.display = "block";
+                back_button_container.removeChild(back_btn_6);
+            }
+
+        } else if (maps_scrn.style.display == "block") {
+
+            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + map_select_2.value + '</strong> map';
+
+            back_btn_6.onclick = function() {
+                indicator_scrn.style.display = "none";
+                maps_scrn.style.display = "block";
+                back_button_container.removeChild(back_btn_6);
+            }
+
+        } else if (overall_scrn.style.display == "block") {
+
+            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';
+
+            back_btn_6.onclick = function() {
+                indicator_scrn.style.display = "none";
+                overall_scrn.style.display = "block";
+                back_button_container.removeChild(back_btn_6);
+
+                for (let i = 0; i < button_rows.length; i ++) {
+                    button_rows[i].style.display = "none";
+                }
+            }
+
+        }        
+
+        // Hide all screens except for indicator screen
+        domains_scrn.style.display = "none";
+        help_scrn.style.display = "none";
+        maps_scrn.style.display = "none";
+        overall_scrn.style.display = "none";
+        indicator_scrn.style.display = "block";
+    
+        // Obtain the domain name for the given indicator
+        for (let i = 0; i < domains.length; i ++) {
+            if (Object.keys(domains_data[domains[i]].indicators).includes(search_text.value)) {
+                search_domain = domains[i];
+                break;
+            };
+        }
+    
+        // Produce the indicator page
+        generateIndicatorPage(search_domain, search_text.value)
+
+        // Reset the text in search bar
+        search_text.value = "";
+        search_text.placeholder = "Search by indicator"
+
+    } else {
+        // If indicator not found inform user inside search bar
+        search_text.value = "";
+        search_text.placeholder = "Not a valid indicator name"
+    } 
 
 }
