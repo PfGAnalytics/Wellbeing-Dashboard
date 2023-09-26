@@ -68,6 +68,7 @@ var nav_buttons = document.getElementsByClassName("nav-btn");
 var search_btn = document.getElementById("search-btn");
 var search_text = document.getElementById("search-text");
 var search_bar = document.getElementById("search-bar");
+var search_box = document.getElementById("search-box");
 
 // Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -1659,13 +1660,16 @@ function autocomplete(inp, arr) {
           addActive(x);
         } else if (e.keyCode == 13) {
           /*If the ENTER key is pressed, prevent the form from being submitted,*/
-          e.preventDefault();
+          e.preventDefault();          
 
           if (all_indicators.includes(this.value)) {
-            search_btn.click()
+            search_btn.click();
           } else {
             search_text.value = "";
-            search_text.placeholder = "Not a valid indicator name"
+            search_text.placeholder = "Not a valid indicator name";
+            search_box.removeAttribute("style");
+            search_box.style.animation = "shake 0.5s";
+            search_box.style.animationIterationCount =  "one"; 
           }
 
           if (currentFocus > -1) {
@@ -1834,12 +1838,16 @@ search_btn.onclick = function () {
 
         // Reset the text in search bar
         search_text.value = "";
-        search_text.placeholder = "Search by indicator"
+        search_text.placeholder = "Search by indicator";
+        search_box.removeAttribute("style");
 
     } else {
         // If indicator not found inform user inside search bar
         search_text.value = "";
-        search_text.placeholder = "Not a valid indicator name"
+        search_text.placeholder = "Not a valid indicator name";
+        search_box.removeAttribute("style");
+        search_box.style.animation = "shake 0.5s";
+        search_box.style.animationIterationCount =  "one";
     } 
 
 }

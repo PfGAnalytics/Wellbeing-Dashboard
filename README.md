@@ -47,6 +47,11 @@ The `domains_data.js` script is an additional 'input' which contains additional 
   <img src="img/data-flow-chart.svg" style="width: 100%;" alt="Click to see the source">
 </div>
 
+### Indicator sources
+<div style="width: 100%;">
+  <img src="img/indicator-sources.svg" style="width: 100%;" alt="Click to see the source">
+</div>
+
 ### Link with Data Portal
 - Dashboard will automatically update when new data is uploaded to the data portal (provided it is named the same)
 - If an indicator is added or changes this will need to be updated in the `domains_data.js` script.
