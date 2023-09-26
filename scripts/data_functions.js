@@ -794,6 +794,11 @@ async function drawMap() {
    // Display the loading gif while this function runs
    var map_load = document.getElementById("map-load");
    map_load.style.display = "flex";
+   
+
+   // Hide map title during load
+   var map_title = document.getElementById("map-title");
+   map_title.style.color = "#fafafa";
 
    // Target div with id "map-container"
    var map_container = document.getElementById("map-container");
@@ -1085,7 +1090,7 @@ async function drawMap() {
 
       chart_title = Object.values(dimension.STATISTIC.category.label)[0];
 
-      var map_title = document.getElementById("map-title");
+      
       map_title.innerHTML = chart_title + " (" + selected_year + ")";
 
       var source_info_map = document.getElementById("source-info-map");
@@ -1126,6 +1131,7 @@ async function drawMap() {
 
   // Hide loading gif after map is generated
   map_load.style.display = "none";
+  map_title.removeAttribute("style");
 
 }
 
