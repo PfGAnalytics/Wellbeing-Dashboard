@@ -240,14 +240,15 @@ async function createLineChart(indicator) {
          })
       }
 
+      // Gap in Recycled Waste graph:
    } else if (matrix == "INDRECWSTENI") {
 
-      // First plot the line as far as 2012/13
+      // First plot the line as far as 2011/12
       var data = {
          labels: years,
          datasets: [{
             label: 'Northern Ireland',
-            data: data_series.slice(0, years.indexOf("2012/13") + 1),
+            data: data_series.slice(0, years.indexOf("2011/12") + 1),
             borderColor: "#000000",
             fill: false,
             pointBackgroundColor: "#000000"
@@ -257,7 +258,7 @@ async function createLineChart(indicator) {
       var remaining_data = [];
 
       for (let i = 0; i < data_series.length; i ++) {
-         if (i <= years.indexOf("2012/13")) {
+         if (i <= years.indexOf("2011/12")) {
             remaining_data.push(null)
          } else {
             remaining_data.push(data_series[i])
