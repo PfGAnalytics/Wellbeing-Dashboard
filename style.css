@@ -509,6 +509,7 @@ footer {
     justify-content: flex-end;
     align-items: center;
     max-width: 1200px;
+    min-width: 250px;
 }
 
 #line-chart-container {
