@@ -64,6 +64,9 @@ var help_btn = document.getElementById("help-btn");
 var chart_link = document.getElementById("chart-link");
 var further_infos = document.getElementsByClassName("further-info-text");
 var hex_rows = document.getElementsByClassName("hex-row");
+var nav_buttons = document.getElementsByClassName("nav-btn");
+var search_btn = document.getElementById("search-btn");
+var search_text = document.getElementById("search-text");
 
 // Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -458,7 +461,6 @@ function generateHexagons (d) {
             generateIndicatorPage(d, indicator_name);
 
             // Hide nav buttons currently on display
-            nav_buttons = document.getElementsByClassName("nav-btn");
             for (let j = 0; j < nav_buttons.length; j ++) {
                 nav_buttons[j].style.display = "none";
             }
@@ -1586,6 +1588,7 @@ chart_link.onclick = function() {
 
 }
 
+// Create list of all indicators and sort alphabetically
 var all_indicators = []
 
 for (let i = 0; i < domains.length; i ++) {
@@ -1594,6 +1597,7 @@ for (let i = 0; i < domains.length; i ++) {
 
 all_indicators = all_indicators.flat().sort();
 
+// Function adapted from one found on https://www.w3schools.com/howto/howto_css_searchbar.asp
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
@@ -1605,12 +1609,12 @@ function autocomplete(inp, arr) {
         closeAllLists();
         if (!val) { return false;}
         currentFocus = -1;
-        /*create a DIV element that will contain the items (values):*/
+        /*create a div element that will contain the items (values):*/
         a = document.createElement("div");
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         /*append the DIV element as a child of the autocomplete container:*/
-        this.parentNode.appendChild(a);
+        this.parentNode.insertBefore(a, search_text);
         /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
           /*check if the item starts with the same letters as the text field value:*/
@@ -1655,10 +1659,19 @@ function autocomplete(inp, arr) {
         } else if (e.keyCode == 13) {
           /*If the ENTER key is pressed, prevent the form from being submitted,*/
           e.preventDefault();
+
+          if (all_indicators.includes(this.value)) {
+            search_btn.click()
+          } else {
+            search_text.value = "";
+            search_text.placeholder = "Not a valid indicator name"
+          }
+
           if (currentFocus > -1) {
             /*and simulate a click on the "active" item:*/
             if (x) x[currentFocus].click();
           }
+
         }
     });
     function addActive(x) {
@@ -1693,22 +1706,121 @@ function autocomplete(inp, arr) {
   });
   }
 
-search_text = document.getElementById("search-text");
 
+// Run above function
 autocomplete(search_text, all_indicators);
 
-search_btn = document.getElementById("search-btn");
-
+// Code to execute when someone clicks on search button
 search_btn.onclick = function () {
 
+    // Run search when value in search bar matches one of the indicator names
     if (all_indicators.includes(search_text.value)) {
 
+        // Hide any back buttons etc
+        for (let i = 0; i < nav_buttons.length; i ++) {
+            nav_buttons[i].style.display = "none";
+        }
+
+        // show container for buttons if currently hidden
+        for (let i = 0; i < button_rows.length; i ++) {
+            button_rows[i].style.display = "flex";
+        }
+
+        // Create a new back button
+        back_btn_6 = document.createElement("div");
+        back_btn_6.id = "back-btn-6";
+        back_btn_6.classList.add("nav-btn");
+        back_button_container.appendChild(back_btn_6);
+
+        // New back button directs user back to page they were on before searching:
+        if (indicator_scrn.style.display == "block") {
+
+            last_indicator = indicator_title.textContent;
+            last_domain = domain_title.textContent;
+
+            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + last_indicator + '</strong> indicator';
+
+            back_btn_6.onclick = function() {
+
+                generateIndicatorPage(last_domain, last_indicator)
+
+                back_button_container.removeChild(back_btn_6);
+
+                back_btn_2.style.display = "block";
+                previous_btn_2.style.display = "block";
+                next_btn_2.style.display = "block";                
+
+            }
+
+        } else if (domains_scrn.style.display == "block") {
+
+            if (domains_grid_container.style.display == "block") {
+                back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Domains</strong> grid';
+            } else {
+                back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + clicked_hex.textContent + '</strong> domain';
+            }
+
+            back_btn_6.onclick = function () {
+                indicator_scrn.style.display = "none";
+                domains_scrn.style.display = "block";
+
+                if (domains_grid_container.style.display == "block") {
+                    for (let i = 0; i < button_rows.length; i ++) {
+                        button_rows[i].style.display = "none";
+                    }
+                } else {
+                    back_btn.style.display = "block";
+                    previous_btn.style.display = "block";
+                    next_btn.style.display = "block";
+                }
+
+                back_button_container.removeChild(back_btn_6);
+            }
+
+        } else if (help_scrn.style.display == "block") {
+
+            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Help</strong> screen';
+
+            back_btn_6.onclick = function() {
+                indicator_scrn.style.display = "none";
+                help_scrn.style.display = "block";
+                back_button_container.removeChild(back_btn_6);
+            }
+
+        } else if (maps_scrn.style.display == "block") {
+
+            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + map_select_2.value + '</strong> map';
+
+            back_btn_6.onclick = function() {
+                indicator_scrn.style.display = "none";
+                maps_scrn.style.display = "block";
+                back_button_container.removeChild(back_btn_6);
+            }
+
+        } else if (overall_scrn.style.display == "block") {
+
+            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';
+
+            back_btn_6.onclick = function() {
+                indicator_scrn.style.display = "none";
+                overall_scrn.style.display = "block";
+                back_button_container.removeChild(back_btn_6);
+
+                for (let i = 0; i < button_rows.length; i ++) {
+                    button_rows[i].style.display = "none";
+                }
+            }
+
+        }        
+
+        // Hide all screens except for indicator screen
         domains_scrn.style.display = "none";
         help_scrn.style.display = "none";
         maps_scrn.style.display = "none";
         overall_scrn.style.display = "none";
         indicator_scrn.style.display = "block";
     
+        // Obtain the domain name for the given indicator
         for (let i = 0; i < domains.length; i ++) {
             if (Object.keys(domains_data[domains[i]].indicators).includes(search_text.value)) {
                 search_domain = domains[i];
@@ -1716,12 +1828,17 @@ search_btn.onclick = function () {
             };
         }
     
+        // Produce the indicator page
         generateIndicatorPage(search_domain, search_text.value)
 
+        // Reset the text in search bar
         search_text.value = "";
+        search_text.placeholder = "Search by indicator"
 
-    }
-    
-
+    } else {
+        // If indicator not found inform user inside search bar
+        search_text.value = "";
+        search_text.placeholder = "Not a valid indicator name"
+    } 
 
 }

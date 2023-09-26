@@ -494,7 +494,6 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
 footer {
     color: #ffffff;
     background-color: #008675;
-    margin-top: 25px;
     display: flex;
     justify-content: center;
 }
@@ -796,20 +795,19 @@ footer a:hover {
     display: inline-block;
   }
   input {
-    border: 1px solid transparent;
-    background-color: #008675;
+    border: none;
+    outline: none;
     padding: 10px;
     font-size: 16px;
     color: #fff;
   }
   input[type=text] {
-    background-color: #008675;
+    background-color: #00867500;
     width: 100%;
+    margin-left: 5px;
   }
-  input[type=submit] {
-    background-color: #142062;
-    
-  }
+  
+  
 
   ::placeholder{
     color: #ffffff
@@ -817,12 +815,12 @@ footer a:hover {
 
   .autocomplete-items {
     position: absolute;
-    border: 1px solid #d4d4d4;
+    /* border: 1px solid #d4d4d4; */
     border-bottom: none;
     border-top: none;
     z-index: 99;
     /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
+    bottom: 100%;
     left: 0;
     right: 0;
   }
@@ -846,8 +844,15 @@ footer a:hover {
     display: flex;
     justify-content: center;
     background-color: #008675;
+    margin-top: 25px;
+    padding-top: 5px;
   }
 
   .btn {
     color: #ffffff
+  }
+
+  #search-box {
+    border: 2px solid #ffffff;
+    border-radius: 25px;
   }
