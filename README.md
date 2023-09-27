@@ -48,16 +48,48 @@ The `domains_data.js` script is an additional 'input' which contains additional 
 </div>
 
 ### Indicator sources
-<div style="width: 100%;">
+<div style="width: 100%; margin-bottom: 20px">
   <img src="img/indicator-sources.svg" style="width: 100%;" alt="Click to see the source">
 </div>
 
+a. __Domain title__ This comes from the _domain_ name found in [`domains_data.js`](scripts/domains_data.js)
+
+b. __Indicator title__ This comes from the _indicator_ name found in [`domains_data.js`](scripts/domains_data.js)
+
+c. __Why is this indicator important?__ This is the value of the _importance_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
+
+d. __Chart title__ This is the value of the _label_ object taken from the result of the NISRA Data Portal query.
+
+e. __Source__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Notes__ are extracted. The preferred format for source information is: `Title of publication http://link.to.publication`
+
+f. __More data__ This sentence is outputted based on the values present under the _data_ object within each indicator in [`domains_data.js`](scripts/domains_data.js)
+
+g. __y axis label__ This is the value of the _unit_ object taken from the result of the NISRA Data Portal query.
+
+h. __data points__ These are obtained from the _value_ object in the result of the NISRA Data Portal query.
+
+i. __The real change interval__ This is the value of the _ci_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
+
+j. __Further information__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Further information__ are extracted.
+
+k. __x axis values__ These are obtained from the _TLIST(A1)_ object in the result of the NISRA Data Portal query.
+
+l. __Last updated date__  This is obtained from the _updated_ object in the result of the NISRA Data Portal query.
+
+m. __Things have improved/not changed/worsened__ This part of the sentence is outputted based on the results of the NISRA Data Portal Query.
+
+n. __Baseline year__ This is obtained from the _base_year_ value for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
+
+o. __Statement on performance__ This is output as one of the three values (_improved_, _no_change_ or _worsened_) found under the _telling_ object for the particular indicator in [`domains_data.js`](scripts/domains_data.js) 
+
+p. __How do we measure this?__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __How do we measure this__ are extracted.
+
 ### Link with Data Portal
 - Dashboard will automatically update when new data is uploaded to the data portal (provided it is named the same)
-- If an indicator is added or changes this will need to be updated in the `domains_data.js` script.
+- If an indicator is added or changes this will need to be updated in the [`domains_data.js`](scripts/domains_data.js) script.
 
 ### Update the dashboard with any commentary on trends :chart_with_upwards_trend:
-Commentary on indicator trends should be added to the `domains_data.js` script.
+Commentary on indicator trends should be added to the [`domains_data.js`](scripts/domains_data.js) script.
 
 ### Testing phase :mortar_board:
 When modifications have been made (new data or otherwise), carry out a systematic testing of content:
