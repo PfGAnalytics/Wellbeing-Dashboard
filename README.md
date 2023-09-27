@@ -39,6 +39,12 @@ The `domains_data.js` script is an additional 'input' which contains additional 
 | Help Screen | |
 | Footer | Standard NISRA footer |
 
+### Software Checklist
+
+- Visual Studio Code (with "Live Server" Extension)
+- R Studio
+- Git for Windows **(include code here)**
+
 ## :bell: Processes
 
 ### Process Diagram
@@ -90,6 +96,15 @@ p. __How do we measure this?__ This is taken from the _notes_ object from the NI
 
 ### Update the dashboard with any commentary on trends :chart_with_upwards_trend:
 Commentary on indicator trends should be added to the [`domains_data.js`](scripts/domains_data.js) script.
+
+### Process for updating code
+
+1. Open Visual Studio Code.
+2. Run a "Git pull" to ensure code is up to date with repository.
+3. Make any changes to the code.
+4. Save changes and push changes to Git.
+5. Open R Studio and run `datavis prep base64.R` script to embed JavaScript files in the [`index.html`](scripts/index.html).
+6. Replace existing [`index.html`](scripts/index.html) file on DataVis with the updated version. 
 
 ### Testing phase :mortar_board:
 When modifications have been made (new data or otherwise), carry out a systematic testing of content:
