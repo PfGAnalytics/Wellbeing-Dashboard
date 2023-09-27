@@ -5,7 +5,6 @@ var button_container = document.getElementById("button-container");
 var button_left = document.getElementById("button-left");
 var button_right = document.getElementById("button-right");
 var domains_grid_container = document.getElementById("domains-grid-container");
-var hexagons = document.getElementsByClassName("hex-inner");
 var domains_title = document.getElementById("domains-title");
 var domain_info = document.getElementById("domain-info-container");
 var clicked_hex = document.getElementById("clicked-hex");
@@ -69,6 +68,7 @@ var search_btn = document.getElementById("search-btn");
 var search_text = document.getElementById("search-text");
 var search_bar = document.getElementById("search-bar");
 var search_box = document.getElementById("search-box");
+var framework_structure = document.getElementById("framework-structure");
 
 // Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -166,7 +166,7 @@ for (let i = 0; i < domains.length; i++) {
 
     hex.classList.add("hex");                           // Give outer hexagon class "hex"
     hex_inner.classList.add("hex-inner");               // Give inner hexagon class "hex-inner"
-    hex_inner.textContent = domains[i];                 // Label the inner div with the name of the domain
+    hex_inner.innerHTML = domains[i].replace(" ", " <br>");                 // Label the inner div with the name of the domain
     hex.appendChild(hex_inner);                         // Place the inner div in the outer one
     hex_row.appendChild(hex);                           // Place the outer hexagon div in the hexagon row
 
@@ -604,7 +604,8 @@ function generateHexagons (d) {
 }
 
 // This next loop will go through all the hexagons on the Domains screen and functionality for clicking on each Domain
-for (let i = 0; i < hexagons.length - 1; i++) {     // "hexagons.length - 1" is used to exclude the Hexagon that serves as a title on the individual Domain pages
+hexagons = domains_grid_container.getElementsByClassName("hex-inner");
+for (let i = 0; i < hexagons.length; i++) {
 
     hexagons[i].parentElement.classList.add("shake-hex");   // Add the "shake-hex" class to each hexagon
 
@@ -619,7 +620,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {     // "hexagons.length - 1" is 
         domains_intro.style.display = "none";       // Hide the "domains-intro" div
         indicator_intro.style.display = "block";    // Show the "indicator-intro" div
 
-        var domain_name = hexagons[i].innerHTML;    // Obtain domain name from hexagon text
+        var domain_name = hexagons[i].textContent;    // Obtain domain name from hexagon text
 
         clicked_hex.innerHTML = domain_name;    // Update text inside "clicked-hex"
         domain_name_text.textContent = domain_name;     // Update "domain-name-text" inside intro paragraph
@@ -652,20 +653,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {     // "hexagons.length - 1" is 
 
         // Function inside "Back to Domains" to hide indicators and display grid again
         back_btn.onclick = function () {
-
-            domains_title.style.display = "block";  // Show the "domains-title" div
-            domains_intro.style.display = "block";  // Show the "domains-intro" div
-            indicator_intro.style.display = "none"; // Hide the "indicator-intro" div
-            domains_grid_container.style.display = "block"; // Show the "domains-grid-container" div
-            click_to_see.style.display = "block";   // Show the "click-to-see" div
-            domain_info.style.display = "none";     // Hide the "domain-info" div
-
-            for (let i = 0; i < button_rows.length; i ++) {
-                button_rows[i].style.display = "none";  // Hide all divs with class "button-row"
-            } 
-
-            back_button_container.removeChild(back_btn);    // Remove the "back-btn" div
-        
+            domains_btn.click() // Simulate clicking the Domains button
         }
 
         // The "Previous Domain" and "Next Domain" buttons:
@@ -689,7 +677,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {     // "hexagons.length - 1" is 
         next_btn.classList.add("nav-btn");              // Given the class "nav-btn"
 
         // The button text and icon are generated (except when the last Domain is clicked)
-        if (current_index != hexagons.length - 2) {
+        if (current_index != hexagons.length - 1) {
             next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
         }
 
@@ -718,7 +706,7 @@ for (let i = 0; i < hexagons.length - 1; i++) {     // "hexagons.length - 1" is 
             }
 
             // Generate new text on "Next domain" button (except when user is looking at last Domain)
-            if (current_index != hexagons.length - 2) {
+            if (current_index != hexagons.length - 1) {
                 next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
             } else {
                 next_btn.innerHTML = "";
@@ -922,19 +910,7 @@ plotOverallHexes = function(change_type) {
             // Function inside "back to Overall" to hide indicators and display grid again
             back_btn_3.onclick = function () {
 
-                indicator_scrn.style.display = "none";   // Hide indicator screen
-                overall_scrn.style.display = "block";    // Show Overall screen
-               
-                for (let i = 0; i < button_rows.length; i++) {
-                    button_rows[i].style.display = "none";      // Hide all div elements with the class "button-row"
-                }
-
-                back_button_container.removeChild(back_btn_3);  // Remove the "back-btn-3" div
-
-                // Re-run plotOverallHexes() on all three change types to allow for any window resizing that may have happened when viewing Indicator page
-                plotOverallHexes("improving");      
-                plotOverallHexes("no_change");
-                plotOverallHexes("worsening");
+                overall_btn.click() // Simulate clicking Overall button
             
             }
 
@@ -1154,11 +1130,27 @@ setTimeout(function () {    // setTimeOut() puts a time delay on the execution o
 
     // The total number of indicators being measured
     num_indicators = Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length + Object.keys(no_change_indicator).length;
-    
+
     // Output text on overall screen showing what proportion of indicators are found in each change type:
-    document.getElementById("improving-label").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
-    document.getElementById("no-change-label").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
-    document.getElementById("worsening-label").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
+    p_improving = document.createElement("p");
+    p_improving.style.marginLeft = "10px";
+    p_improving.style.marginBottom = "0px";
+    p_improving.textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
+
+    p_no_change = document.createElement("p");
+    p_no_change.style.marginLeft = "10px";
+    p_no_change.style.marginBottom = "0px";
+    p_no_change.textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
+
+    p_worsening = document.createElement("p");
+    p_worsening.style.marginLeft = "10px";
+    p_worsening.style.marginBottom = "0px";
+    p_worsening.textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
+    
+    
+    document.getElementById("improving-label").appendChild(p_improving);
+    document.getElementById("no-change-label").appendChild(p_no_change);
+    document.getElementById("worsening-label").appendChild(p_worsening);
 
     // Run plotOverallHexes() function (see above) on all three change types
     plotOverallHexes("improving");
@@ -1197,7 +1189,7 @@ mainContainerHeight = function() {
     }
 
     // Determine the height for the main container by substracting header, footer, etc heights from the window height. Allowing 50px for top and bottom margins
-    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - search_bar.clientHeight - button_height - 50;
+    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - button_height - 50;
 
     // Set a minimum height for the main container
     main_container.style.minHeight = ideal_height + "px";
@@ -1364,7 +1356,8 @@ function sizeForMobile() {
         line_chart_container.style.width = (window.innerWidth - 40) + "px";     // have the line chart take up the full width (less 40px)
         line_chart_container.style.marginLeft = "20px";         // 20px margin to left of chart
         line_chart_container.style.marginRight = "20px";        // 20px margin to right of chart
-        click_to_see.style.width = "100%";                      // Click to see div is now full width
+        click_to_see.style.width = "400px";                      // Click to see div is now full width
+        click_to_see.style.marginLeft = ((main_container.clientWidth - 400) / 2) + "px";
         domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";   // Re-position domains grid in middle of screen
         map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";        // Re-position map in middle of screen
         top_menu_items_div.style.marginBottom = "20px";                                 // Extra space underneath top menu items
@@ -1400,7 +1393,8 @@ function sizeForMobile() {
 
         main_container.removeAttribute("style");            // Remove any style attributes set above for main container
         line_chart_container.removeAttribute("style");      // Remove any style attributes set above for line chart container
-        click_to_see.style.width = "100px";                 // Reset click-to-see width to 100px
+        click_to_see.style.width = "125px";                 // Reset click-to-see width to 100px
+        click_to_see.style.marginLeft = "0px"
         domains_grid_container.style.marginLeft = "50px";   // Reset domains grid left margin to 50px
         map_container.removeAttribute("style");             // Remove any style attributes set above for map container
         top_menu_items_div.removeAttribute("style");        // Remove any style attributes set above for top menu items div
@@ -1486,15 +1480,7 @@ for (let i = 0; i < user_guide_link.length; i ++) {
 
     user_guide_link[i].onclick = function() {
 
-        domains_scrn.style.display = "none";    // Hide domains screen
-        overall_scrn.style.display = "none";    // Hide overall screen
-        help_scrn.style.display = "block";      // Show Help screen
-
-        domains_btn.classList.remove("selected-item");              // Remove highlight from domains button
-        domains_btn.firstChild.classList.remove("selected-icon");   // Remove highlight from domains icon
-        overall_btn.classList.remove("selected-item");              // Remove highlight from overall button
-        overall_btn.firstChild.classList.remove("selected-icon");   // Remove highlight from overall icon
-        help_btn.classList.add("selected-item");                    // Add highlight to help button
+        help_btn.click(); // Have it simulate clicking the help screen button in the menu
 
     }    
 
@@ -1548,19 +1534,7 @@ chart_link.onclick = function() {
         // Function behind new "back to overall" button
         back_btn_3.onclick = function () {
 
-            document.getElementById("indicator-scrn").style.display = "none";   // Hide indicator screen
-            document.getElementById("overall-scrn").style.display = "block";    // Show Overall screen
-           
-            for (let i = 0; i < button_rows.length; i++) {
-                button_rows[i].style.display = "none";          // Hide buttons
-            }
-
-            // Re-run plotOverallHexes to account for any screen resizes (See above)
-            plotOverallHexes("improving");
-            plotOverallHexes("no_change");
-            plotOverallHexes("worsening");
-
-            back_button_container.removeChild(back_btn_3);  // Remove "back to overall button"
+            overall_btn.click() // Simulate clicking Overall button
         
         }
 
@@ -1770,9 +1744,7 @@ search_btn.onclick = function () {
                 domains_scrn.style.display = "block";
 
                 if (domains_grid_container.style.display == "block") {
-                    for (let i = 0; i < button_rows.length; i ++) {
-                        button_rows[i].style.display = "none";
-                    }
+                    domains_btn.click() // Simulate clicking domains button
                 } else {
                     back_btn.style.display = "block";
                     previous_btn.style.display = "block";
@@ -1849,5 +1821,43 @@ search_btn.onclick = function () {
         search_box.style.animation = "shake 0.5s";
         search_box.style.animationIterationCount =  "one";
     } 
+
+}
+
+// Framework structure diagram
+// Start by looping through all domains
+for (let i = 0; i < domains.length; i ++) {
+
+    framework_row = document.createElement("div");      // Create a row for each heaxagon and blue label to sit in
+    framework_row.classList.add("row");                 // Give it class "row"
+
+    hex_outer = document.createElement("div");          // Create the outer blue hexagon
+    hex_outer.classList.add("hex");                     // Give it class "hex"
+    hex_outer.style.cursor = "default";                 // Remove the hand cursor as there is no clicking on these
+
+    hex_inner = document.createElement("div");                  // Create the inner green hexagon
+    hex_inner.classList.add("hex-inner");                       // give it class "hex_inner"
+    hex_inner.innerHTML = domains[i].replace(" ", " <br>")      // Insert domain name and line break between words
+
+    hex_outer.appendChild(hex_inner);                       // Place inner hex in outer hex
+    framework_row.appendChild(hex_outer);                   // Place outer hex in row
+
+    desc = document.createElement("div");                   // Create div for description to sit in
+    desc.classList.add("blue-label");                       // Give it the class "blue-label"
+    desc.style.width = "500px";                             // Set width to 500px
+    desc.style.minHeight = "76px";                          // Set min height to 76px
+    desc.textContent = domains_data[domains[i]].description;        // Insert domain description from domains_data
+
+    framework_row.appendChild(desc);                        // Place label in row
+
+    if (i % 2 == 1) {
+        framework_row.style.marginLeft = "100px";       // Indent even numbered rows by 100px
+    }
+
+    if (i > 0) {
+        framework_row.style.marginTop = "-33px";        // Move all rows after first row up by 33px
+    }
+
+    framework_structure.appendChild(framework_row)      // Insert row into html document
 
 }

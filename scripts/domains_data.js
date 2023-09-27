@@ -684,7 +684,7 @@ var domains_data = {
        }
     },
     "Living Peacefully": {
-      description: "Everyone feels safe, we all protect the law and each other",
+      description: "We have a lasting peace, ensuring a stable and harmonious society for all",
       indicators: {
          "Community relations": {
             importance: "It is important that relations between Protestants and Catholics improve",
@@ -698,6 +698,23 @@ var domains_data = {
             },
             improvement: "increase",
             telling : {
+               improved: "",
+               no_change: "",
+               worsened: ""
+            }
+         },
+         "Personal safety": {
+            importance: "It is important that everyone feels safe",
+            base_year: "2019/20",
+            ci: 2,
+            data: {
+               NI: "INDPERSSAFENI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "decrease",
+            telling: {
                improved: "",
                no_change: "",
                worsened: ""
@@ -731,6 +748,23 @@ var domains_data = {
                EQ: "INDSHARCOMEQ"
             },
             improvement: "increase",
+            telling: {
+               improved: "",
+               no_change: "",
+               worsened: ""
+            }
+         },
+         "Worry about crime": {
+            importance: "It is important that people worry less about crime.",
+            base_year: "2019/20",
+            ci: 2,
+            data: {
+               NI: "INDWORRYACNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "decrease",
             telling: {
                improved: "",
                no_change: "",

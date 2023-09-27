@@ -998,7 +998,6 @@ async function drawMap() {
       }      
 
       // Target change info
-      var change_info_map = document.getElementById("change-info-map");
       var measure_info_map = document.getElementById("measure-info-map");
       var further_info_map = document.getElementById("further-info-map");
 
@@ -1043,7 +1042,6 @@ async function drawMap() {
       }
 
       // Write content to change info box
-      change_info_map.innerHTML = document.getElementById(base_id).innerHTML;
       measure_info_map.innerHTML = document.getElementById(measure_id).innerHTML;
       further_info_map.innerHTML = further_note;
 
