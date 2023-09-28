@@ -1393,7 +1393,7 @@ function sizeForMobile() {
 
         main_container.removeAttribute("style");            // Remove any style attributes set above for main container
         line_chart_container.removeAttribute("style");      // Remove any style attributes set above for line chart container
-        click_to_see.style.width = "125px";                 // Reset click-to-see width to 100px
+        click_to_see.style.width = "150px";                 // Reset click-to-see width to 100px
         click_to_see.style.marginLeft = "0px"
         domains_grid_container.style.marginLeft = "50px";   // Reset domains grid left margin to 50px
         map_container.removeAttribute("style");             // Remove any style attributes set above for map container
