@@ -721,9 +721,12 @@ async function createLineChart(indicator) {
   source_info = note[0];
 
   // The paragraph containing the source information is isolated:
-  source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
+  source_info = source_info.slice(source_info.indexOf("Source") + "Source".length);
   source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
-  source_info = source_info.slice(0, source_info.indexOf("[b]")).trim();  
+
+  if (source_info.indexOf("[b]") > -1) {
+   source_info = source_info.slice(0, source_info.indexOf("[b]")).trim();
+  }  
 
   if (source_info.indexOf("[url=") > 2) {
    source_name = source_info.slice(0, source_info.indexOf("[url=")).trim();
@@ -732,9 +735,22 @@ async function createLineChart(indicator) {
    source_name = source_name.slice(0, source_name.indexOf("[/url]"));
   }
 
+  if (source_name.includes("The data come from the")) {
+   source_name = source_info.slice(source_info.indexOf("]") + 1);
+   source_name = source_name.slice(0, source_name.indexOf(".")).trim();
+  }
+
+  if (source_name.includes("http")) {
+   source_name = source_name.slice(0, source_name.indexOf("http")).trim();
+  }
+
   // URL formatted
-  source_link = source_info.slice(source_info.indexOf("[url=") + 5);
-  source_link = source_link.slice(0, source_link.indexOf("]"));
+  if (source_info.indexOf("[url=") > -1) {
+   source_link = source_info.slice(source_info.indexOf("[url=") + "[url=".length);
+   source_link = source_link.slice(0, source_link.indexOf("]"));
+  } else {
+   source_link = source_info.slice(source_info.indexOf("http"))
+  }
 
   // Div element created and placed in html document:
   source_info_div = document.createElement("div");
