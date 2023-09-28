@@ -275,7 +275,7 @@ function generateIndicatorPage(d, e) {
 
         AA_link = document.createElement("div");    // new div element for AA link
         AA_link.id = "AA-link";                     // Given id "AA-link"
-        AA_link.innerHTML = "<img id = 'assembly-logo' src = 'img/NI_Assembly.svg'>Assembly Area";  // Add text and icon
+        AA_link.innerHTML = "<img id = 'assembly-logo' src = 'img/NI_Assembly.svg' alt = 'Northern Ireland Assembly logo'>Assembly Area";  // Add text and icon
         map_link.appendChild(AA_link);      // Add link to "map-link" div
 
         AA_link.onclick = function () {
@@ -289,7 +289,7 @@ function generateIndicatorPage(d, e) {
 
         LGD_link = document.createElement("div"); // new div element for LGD link
         LGD_link.id = "LGD-link";                 // Given id "AA-link"
-        LGD_link.innerHTML = "<img id = 'council-logo' src = 'img/Northern_Ireland_outline.svg'>Local Government District";  // Add text and icon
+        LGD_link.innerHTML = "<img id = 'council-logo' src = 'img/Northern_Ireland_outline.svg' alt = 'Northern Ireland outline icon'>Local Government District";  // Add text and icon
         map_link.appendChild(LGD_link);      // Add link to "map-link" div
 
         LGD_link.onclick = function () {
