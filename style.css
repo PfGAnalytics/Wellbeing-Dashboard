@@ -354,6 +354,7 @@ h3 {
     text-align: left;
     -webkit-clip-path: polygon(0 0, 153px 0, 180px 43px, 153px 86px, 0 86px);
     clip-path: polygon(0 0, 153px 0, 180px 43px, 153px 86px, 0 86px);
+    z-index: 10;
 }
 
 .overall-arrow {

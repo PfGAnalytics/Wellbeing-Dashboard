@@ -69,6 +69,7 @@ var search_text = document.getElementById("search-text");
 var search_bar = document.getElementById("search-bar");
 var search_box = document.getElementById("search-box");
 var framework_structure = document.getElementById("framework-structure");
+var overall_labels = document.getElementsByClassName("overall-label");
 
 // Top menu navigation:
 for (let i = 0; i < top_menu_items.length; i++) {
@@ -1866,4 +1867,21 @@ for (let i = 0; i < domains.length; i ++) {
 
     framework_structure.appendChild(framework_row)      // Insert row into html document
 
+}
+
+
+// Pulsating icons on road signs
+for (let i = 0; i < overall_labels.length; i ++) {    
+
+    overall_labels[i].onmouseover = function() {
+        icon = overall_labels[i].getElementsByTagName("i")[0];
+        icon.classList.add("fa-beat");
+        overall_labels[i].style.cursor = "default";
+    }
+
+    overall_labels[i].onmouseout = function() {
+        icon = overall_labels[i].getElementsByTagName("i")[0];
+        icon.classList.remove("fa-beat")
+    }
+    
 }
