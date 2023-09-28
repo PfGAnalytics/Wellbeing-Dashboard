@@ -343,13 +343,27 @@ h3 {
 }
 
 .overall-label {
-    width: 150px;
+    width: 180px;
+    height: 86px;
+    font-size: 14pt;
     display: flex;
     align-items: center;
     padding: 15px 15px 15px 15px;
     color: #ffffff;
-    border-radius: 25px;
-    text-align: center;
+    border-radius: 15px;
+    text-align: left;
+    -webkit-clip-path: polygon(0 0, 153px 0, 180px 43px, 153px 86px, 0 86px);
+    clip-path: polygon(0 0, 153px 0, 180px 43px, 153px 86px, 0 86px);
+}
+
+.overall-arrow {
+    position: absolute;
+    width: 180px;
+    height: 86px;
+    background-color: #ffffff;
+    margin-top: -86px;
+    -webkit-clip-path: polygon(135px 4px, 151px 4px, 176px 43px, 151px 82px, 135px 82px, 160px 43px);
+    clip-path: polygon(135px 4px, 151px 4px, 176px 43px, 151px 82px, 135px 82px, 160px 43px);
 }
 
 #improving-label {
