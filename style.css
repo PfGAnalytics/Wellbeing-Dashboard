@@ -342,6 +342,11 @@ h3 {
     width: 700px;
 }
 
+#overall-click {
+    display: flex;
+    justify-content: center;
+}
+
 .overall-label {
     width: 180px;
     height: 86px;

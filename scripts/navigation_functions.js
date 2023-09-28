@@ -1817,7 +1817,7 @@ search_btn.onclick = function () {
 
         // Reset the text in search bar
         search_text.value = "";
-        search_text.placeholder = "Search by indicator";
+        search_text.placeholder = "Search by indicator name";
         search_box.removeAttribute("style");
 
     } else {
