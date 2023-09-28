@@ -763,7 +763,7 @@ for (let i = 0; i < hexagons.length; i++) {
 plotOverallHexes = function(change_type) {
         
     // Use the user's screen size to determine a value "h" which will be the number of hexagons that can fit in a single row
-    gridWidth = overall_scrn.clientWidth - 150;
+    gridWidth = overall_scrn.clientWidth - 180;
 
     // Set "h" to a maximum of 6 or the number of hexagons that will fit on screen
     if (Math.floor((gridWidth - 105) / 180) > 6) {
