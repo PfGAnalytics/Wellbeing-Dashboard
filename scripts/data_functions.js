@@ -747,7 +747,7 @@ async function createLineChart(indicator) {
   // The "how we measure this" is pulled out of the note object
   measure_text = note[0];
 
-  measure_string = "[b]How do we measure this?[/b]"
+  measure_string = "How do we measure this?[/b]"
 
   if (measure_text.indexOf(measure_string) > -1) {
    measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length);
@@ -987,32 +987,15 @@ async function drawMap() {
       // geojson data atted to map and enhanceLayer function applied to each feature    
       if (matrix.slice(-3) == "LGD") {
             shapes = L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
-            LGD_id = matrix + "-base-statement";
-            EQ_id = matrix.slice(0, -3)  + "EQ-base-statement";
-            NI_id = matrix.slice(0, -3) + "NI-base-statement";
       } else {
             shapes = L.geoJSON(AA_map, {onEachFeature:enhanceLayer}).addTo(map);
-            LGD_id = matrix.slice(0, -2) + "LGD-base-statement";
-            EQ_id = matrix.slice(0, -2)  + "EQ-base-statement";
-            NI_id = matrix.slice(0, -2) + "NI-base-statement";
       }      
 
-      // Target change info
+      // Further info and how do we measure this divs:
       var measure_info_map = document.getElementById("measure-info-map");
       var further_info_map = document.getElementById("further-info-map");
 
-      // Which change info div to copy text from
-      if (document.getElementById(LGD_id)) {
-         base_id = LGD_id;
-      } else if (document.getElementById(NI_id)) {
-         base_id = NI_id;
-      } else {
-         base_id = EQ_id;
-      }
-
-      measure_id = base_id.replace("base-statement", "measure-info");
-
-      // Create further info div
+      // Obtain further info text from query
       var further_note = note[0];
 
       if (further_note.indexOf("Further information") != -1) {
@@ -1041,8 +1024,20 @@ async function drawMap() {
          further_note = further_note.replaceAll("\n" + i + ".", "<br><br>" + i + ".")
       }
 
-      // Write content to change info box
-      measure_info_map.innerHTML = document.getElementById(measure_id).innerHTML;
+      // Obtain how do we measure this text from query
+      var measure_text = note[0];
+
+      measure_string = "How do we measure this?[/b]"
+
+      if (measure_text.indexOf(measure_string) > -1) {
+         measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length);
+         measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
+      } else {
+         measure_text = "";
+      }      
+
+      // Write content to info boxes
+      measure_info_map.innerHTML = measure_text;
       further_info_map.innerHTML = further_note;
 
       // Legend divs added to map
