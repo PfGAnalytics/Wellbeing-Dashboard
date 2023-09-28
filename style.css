@@ -362,8 +362,8 @@ h3 {
     height: 86px;
     background-color: #ffffff;
     margin-top: -86px;
-    -webkit-clip-path: polygon(136.5px 4px, 151.5px 4px, 176px 43px, 151.5px 82px, 136.5px 82px, 161px 43px);
-    clip-path: polygon(136.5px 4px, 151.5px 4px, 176px 43px, 151.5px 82px, 136.5px 82px, 161px 43px);
+    -webkit-clip-path: polygon(132.5px 4px, 151.5px 4px, 176px 43px, 151.5px 82px, 132.5px 82px, 157px 43px);
+    clip-path: polygon(132.5px 4px, 151.5px 4px, 176px 43px, 151.5px 82px, 132.5px 82px, 157px 43px);
 }
 
 .label-container {
