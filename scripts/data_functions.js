@@ -1040,6 +1040,12 @@ async function drawMap() {
       measure_info_map.innerHTML = measure_text;
       further_info_map.innerHTML = further_note;
 
+      if (further_note == "Not available") {
+         further_expander_map.style.display = "none";
+     } else {
+         further_expander_map.removeAttribute("style");
+     }
+
       // Legend divs added to map
       if (!document.getElementById(matrix + "-legend")) {
          legend_div = document.createElement("div");

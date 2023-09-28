@@ -253,7 +253,13 @@ function generateIndicatorPage(d, e) {
             measure_infos[i].style.display = "none";
         }
 
-    }    
+    }
+
+    if (document.getElementsByClassName("further-selected")[0].textContent == "Not available") {
+        further_expander.style.display = "none";
+    } else {
+        further_expander.removeAttribute("style");
+    }
 
     // This next section will add a link to the relevant map on an indicator page. If available
     while(map_link.firstChild) {
