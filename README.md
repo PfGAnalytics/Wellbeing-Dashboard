@@ -31,12 +31,12 @@ The `domains_data.js` script is an additional 'input' which contains additional 
 | Section | Purpose  |
 | --- | --- |
 | Head | Page title, import css and js dependencies, Google Analytics code and header |
-| Body | Header and branding, more Google Analytics code, cookie banner, top menu, overall screen, domains screen, indicator screen, maps screen, help screen, footer |
-| Domains Screen | 9x hexagons for each domain |
+| Body | Header and branding, cookie banner, top menu, overall screen, domains screen, indicator screen, maps screen, user guide, footer |
+| Domains Screen | Hexagons for showing the high level domains, clicking a domain shows the indicators for that domain |
 | Overall Screen | Hexagons generated for each indicator and categorised as 'improving', 'no change' or 'worsening' based on the data |
 | Indicator Screen | Chart.js line chart for each indicator alongside additional information |
 | Map Screen | Maps to display indicator data, dropdown menu to swicth between indicators |
-| Help Screen | |
+| User Guide | Background information on the indicators and their framework |
 | Footer | Standard NISRA footer |
 
 ### Software Checklist
