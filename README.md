@@ -162,7 +162,9 @@ When modifications have been made (new data or otherwise), carry out a systemati
 
 ## :warning: Troubleshooting
 - No charts are appearing
-  - Check for changes to Javascript - a single issue with JS/data can result in all charts failing to render
+  - This is likely an issue with the live fetch from Data Portal. Open your browsers Dev Tools and check the Console for warnings. Try refreshing the page. If the problem persists trying increasing the wait time in the _setTimeOut()_ functions found in [`navigation_functions.js`](scripts/navigation_functions.js) script.
+- Source information, Further information or How we measure this not appearing on indicator page
+  - Check the "notes" text for that indicator on the Data Portal. Heading should read "Source" "How do we measure this" or "Futher information" and be spelled correctly for _createLineChart()_ and _drawMap()_ functions to pick them up and display them.
 
 ## :question: Links
 - [Chart.js documentation](https://www.chartjs.org/docs/latest/)
@@ -170,6 +172,7 @@ When modifications have been made (new data or otherwise), carry out a systemati
 - [CSS / styling guide on W3schools](https://www.w3schools.com/Css/)
 - [HTML guide on W3schools](https://www.w3schools.com/html/default.asp)
 - [Javascript guide on W3schools](https://www.w3schools.com/js/default.asp)
+- [Free introductory html/css/js courses](https://www.codecademy.com/)
 - [Test HTML/css/javascript on web sandbox - DO NOT UPLOAD SENSITIVE DATA](https://jsfiddle.net/)
 - [Visual Studio Code documentation](https://code.visualstudio.com/Docs)
 - [Github.com documentation](https://docs.github.com/en)
