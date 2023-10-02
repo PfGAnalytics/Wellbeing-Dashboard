@@ -71,79 +71,6 @@ var search_box = document.getElementById("search-box");
 var framework_structure = document.getElementById("framework-structure");
 var overall_labels = document.getElementsByClassName("overall-label");
 
-// Top menu navigation:
-for (let i = 0; i < top_menu_items.length; i++) {
-    // Create a function for each top menu item
-    top_menu_items[i].onclick = function() {
-
-        // Hides the indicators screen
-        indicator_scrn.style.display = "none";
-
-        for (let j = 0; j < top_menu_items.length; j++) {
-
-            // the id of the clicked menu item
-            var clicked_id = document.getElementById(top_menu_items[j].id);            
-
-            // Switch view to screen relating to clicked item
-            if (document.getElementById(top_menu_items[i].id) == clicked_id) {
-
-                // Extra steps for domain screen when indicator screen is foreground
-                if (top_menu_items[i].id == "domains-btn") {
-                    domains_scrn.getElementsByTagName("h2")[0].style.display = "block"; // Show the title
-                    domain_info_container.style.display = "none";       // Hide the domain info
-                    domains_grid_container.style.display = "block";     // Show the domains grid
-                    click_to_see.style.display = "block";               // Show click to see text
-                    domains_intro.style.display = "block";              // Show the domains intro
-                    indicator_intro.style.display = "none";             // Hide the indicator intro
-                }
-
-                // Updates highlighted item in menu and brings relevant screen to foreground
-                clicked_id.classList.add("selected-item");                                          
-                clicked_id.firstChild.classList.add("selected-icon");
-                document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";
-
-            } else {
-                // Hides all other screens that don't match the one clicked
-                clicked_id.classList.remove("selected-item");
-                clicked_id.firstChild.classList.remove("selected-icon");
-                document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "none";
-            }
-
-        }
-        
-        // Run the function to draw a map
-        drawMap();
-
-        // Hide expanded further info if navigating from indicator page
-        for (let i = 0; i < further_infos.length; i++) {
-            further_infos[i].removeAttribute("style");
-            further_infos[i].classList.remove("further-selected");
-        }
-
-        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
-
-        // Remove any navigation buttons:
-        while (back_button_container.firstChild) {
-            back_button_container.removeChild(back_button_container.firstChild);
-        }
-
-        for (let i = 0; i < button_rows.length; i ++) {
-            button_rows[i].style.display = "none";
-        } 
-
-        // Re-draw overall hexagon grid (see function below)
-        plotOverallHexes("improving");
-        plotOverallHexes("no_change");
-        plotOverallHexes("worsening");
-
-    }
-
-    
-
-}
-
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
 domain_count.textContent = number_to_word(domains.length).toLowerCase();
@@ -183,9 +110,6 @@ for (let i = 0; i < hex_rows.length; i++) {
         hex_rows[i].style.marginTop = "-33px";  // Every row after the first row will be moved up so hexagons appear closer together
     }
 }
-
-
-
 
 // Function to generate indicator page for domain "d" and indicator "e"
 // The function is called when an indicator hexagon is clicked on or when a
@@ -1180,7 +1104,7 @@ setTimeout(function () {    // setTimeOut() puts a time delay on the execution o
 
 }, 3000);   // Time out set to 3000ms
 
-// This function displays a message about not loading if there is a data portal error:
+// This function activates the navigation menu at the top or displays a message about not loading if there is a data portal error:
 setTimeout(function () {
 
     not_loading = document.createElement("div");    // New div for "not loading" message
@@ -1189,6 +1113,204 @@ setTimeout(function () {
 
     if (document.getElementById("overall-hexes").style.display != "block") {
         document.getElementById("main-container").appendChild(not_loading);       // If the "overall-hexes" div has failed to display (usually due to data portal problems) then generate the not loading message
+    } else {
+        // Top menu navigation:
+        for (let i = 0; i < top_menu_items.length; i++) {
+            // Create a function for each top menu item
+            top_menu_items[i].onclick = function() {
+
+                // Hides the indicators screen
+                indicator_scrn.style.display = "none";
+
+                for (let j = 0; j < top_menu_items.length; j++) {
+
+                    // the id of the clicked menu item
+                    var clicked_id = document.getElementById(top_menu_items[j].id);            
+
+                    // Switch view to screen relating to clicked item
+                    if (document.getElementById(top_menu_items[i].id) == clicked_id) {
+
+                        // Extra steps for domain screen when indicator screen is foreground
+                        if (top_menu_items[i].id == "domains-btn") {
+                            domains_scrn.getElementsByTagName("h2")[0].style.display = "block"; // Show the title
+                            domain_info_container.style.display = "none";       // Hide the domain info
+                            domains_grid_container.style.display = "block";     // Show the domains grid
+                            click_to_see.style.display = "block";               // Show click to see text
+                            domains_intro.style.display = "block";              // Show the domains intro
+                            indicator_intro.style.display = "none";             // Hide the indicator intro
+                        }
+
+                        // Updates highlighted item in menu and brings relevant screen to foreground
+                        clicked_id.classList.add("selected-item");                                          
+                        clicked_id.firstChild.classList.add("selected-icon");
+                        document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";
+
+                    } else {
+                        // Hides all other screens that don't match the one clicked
+                        clicked_id.classList.remove("selected-item");
+                        clicked_id.firstChild.classList.remove("selected-icon");
+                        document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "none";
+                    }
+
+                }
+                
+                // Run the function to draw a map
+                drawMap();
+
+                // Hide expanded further info if navigating from indicator page
+                for (let i = 0; i < further_infos.length; i++) {
+                    further_infos[i].removeAttribute("style");
+                    further_infos[i].classList.remove("further-selected");
+                }
+
+                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
+                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
+                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
+
+                // Remove any navigation buttons:
+                while (back_button_container.firstChild) {
+                    back_button_container.removeChild(back_button_container.firstChild);
+                }
+
+                for (let i = 0; i < button_rows.length; i ++) {
+                    button_rows[i].style.display = "none";
+                } 
+
+                // Re-draw overall hexagon grid (see function below)
+                plotOverallHexes("improving");
+                plotOverallHexes("no_change");
+                plotOverallHexes("worsening");
+
+            }   
+
+        }
+
+        // Activate search bar:
+
+        // Create list of all indicators and sort alphabetically
+        var all_indicators = []
+
+        for (let i = 0; i < domains.length; i ++) {
+            all_indicators.push(Object.keys(domains_data[domains[i]].indicators));
+        }
+
+        all_indicators = all_indicators.flat().sort();
+
+        // Function adapted from one found on https://www.w3schools.com/howto/howto_css_searchbar.asp
+        function autocomplete(inp, arr) {
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function(e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) { return false;}
+                currentFocus = -1;
+                /*create a div element that will contain the items (values):*/
+                a = document.createElement("div");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.insertBefore(a, search_text);
+                /*for each item in the array...*/
+                for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (arr[i].toUpperCase().includes(val.toUpperCase())) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("div");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = arr[i].substr(0, arr[i].toUpperCase().indexOf(val.toUpperCase()));
+                    b.innerHTML += "<strong>" + arr[i].substr(arr[i].toUpperCase().indexOf(val.toUpperCase()), val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(arr[i].toUpperCase().indexOf(val.toUpperCase()) + val.length);
+
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += '<input type="hidden" value="' + arr[i] + '">';
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+                }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function(e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+                } else if (e.keyCode == 38) { //up
+                /*If the arrow UP key is pressed,
+                decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+                } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                e.preventDefault();          
+
+                if (all_indicators.includes(this.value)) {
+                    search_btn.click();
+                } else {
+                    search_text.value = "";
+                    search_text.placeholder = "Not a valid indicator name";
+                    search_box.removeAttribute("style");
+                    search_box.style.animation = "shake 0.5s";
+                    search_box.style.animationIterationCount =  "one"; 
+                }
+
+                if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                }
+
+                }
+            });
+            function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+            }
+            function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+            }
+            }
+            function closeAllLists(elmnt) {
+            /*close all autocomplete lists in the document,
+            except the one passed as an argument:*/
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                x[i].parentNode.removeChild(x[i]);
+            }
+            }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+        }
+
+
+        // Run above function
+        autocomplete(search_text, all_indicators);
     }
 
 }, 3001)    // Time out set to 3001ms
@@ -1581,131 +1703,6 @@ chart_link.onclick = function() {
     }
 
 }
-
-// Create list of all indicators and sort alphabetically
-var all_indicators = []
-
-for (let i = 0; i < domains.length; i ++) {
-    all_indicators.push(Object.keys(domains_data[domains[i]].indicators));
-}
-
-all_indicators = all_indicators.flat().sort();
-
-// Function adapted from one found on https://www.w3schools.com/howto/howto_css_searchbar.asp
-function autocomplete(inp, arr) {
-    /*the autocomplete function takes two arguments,
-    the text field element and an array of possible autocompleted values:*/
-    var currentFocus;
-    /*execute a function when someone writes in the text field:*/
-    inp.addEventListener("input", function(e) {
-        var a, b, i, val = this.value;
-        /*close any already open lists of autocompleted values*/
-        closeAllLists();
-        if (!val) { return false;}
-        currentFocus = -1;
-        /*create a div element that will contain the items (values):*/
-        a = document.createElement("div");
-        a.setAttribute("id", this.id + "autocomplete-list");
-        a.setAttribute("class", "autocomplete-items");
-        /*append the DIV element as a child of the autocomplete container:*/
-        this.parentNode.insertBefore(a, search_text);
-        /*for each item in the array...*/
-        for (i = 0; i < arr.length; i++) {
-          /*check if the item starts with the same letters as the text field value:*/
-          if (arr[i].toUpperCase().includes(val.toUpperCase())) {
-            /*create a DIV element for each matching element:*/
-            b = document.createElement("div");
-            /*make the matching letters bold:*/
-            b.innerHTML = arr[i].substr(0, arr[i].toUpperCase().indexOf(val.toUpperCase()));
-            b.innerHTML += "<strong>" + arr[i].substr(arr[i].toUpperCase().indexOf(val.toUpperCase()), val.length) + "</strong>";
-            b.innerHTML += arr[i].substr(arr[i].toUpperCase().indexOf(val.toUpperCase()) + val.length);
-
-            /*insert a input field that will hold the current array item's value:*/
-            b.innerHTML += '<input type="hidden" value="' + arr[i] + '">';
-            /*execute a function when someone clicks on the item value (DIV element):*/
-                b.addEventListener("click", function(e) {
-                /*insert the value for the autocomplete text field:*/
-                inp.value = this.getElementsByTagName("input")[0].value;
-                /*close the list of autocompleted values,
-                (or any other open lists of autocompleted values:*/
-                closeAllLists();
-            });
-            a.appendChild(b);
-          }
-        }
-    });
-    /*execute a function presses a key on the keyboard:*/
-    inp.addEventListener("keydown", function(e) {
-        var x = document.getElementById(this.id + "autocomplete-list");
-        if (x) x = x.getElementsByTagName("div");
-        if (e.keyCode == 40) {
-          /*If the arrow DOWN key is pressed,
-          increase the currentFocus variable:*/
-          currentFocus++;
-          /*and and make the current item more visible:*/
-          addActive(x);
-        } else if (e.keyCode == 38) { //up
-          /*If the arrow UP key is pressed,
-          decrease the currentFocus variable:*/
-          currentFocus--;
-          /*and and make the current item more visible:*/
-          addActive(x);
-        } else if (e.keyCode == 13) {
-          /*If the ENTER key is pressed, prevent the form from being submitted,*/
-          e.preventDefault();          
-
-          if (all_indicators.includes(this.value)) {
-            search_btn.click();
-          } else {
-            search_text.value = "";
-            search_text.placeholder = "Not a valid indicator name";
-            search_box.removeAttribute("style");
-            search_box.style.animation = "shake 0.5s";
-            search_box.style.animationIterationCount =  "one"; 
-          }
-
-          if (currentFocus > -1) {
-            /*and simulate a click on the "active" item:*/
-            if (x) x[currentFocus].click();
-          }
-
-        }
-    });
-    function addActive(x) {
-      /*a function to classify an item as "active":*/
-      if (!x) return false;
-      /*start by removing the "active" class on all items:*/
-      removeActive(x);
-      if (currentFocus >= x.length) currentFocus = 0;
-      if (currentFocus < 0) currentFocus = (x.length - 1);
-      /*add class "autocomplete-active":*/
-      x[currentFocus].classList.add("autocomplete-active");
-    }
-    function removeActive(x) {
-      /*a function to remove the "active" class from all autocomplete items:*/
-      for (var i = 0; i < x.length; i++) {
-        x[i].classList.remove("autocomplete-active");
-      }
-    }
-    function closeAllLists(elmnt) {
-      /*close all autocomplete lists in the document,
-      except the one passed as an argument:*/
-      var x = document.getElementsByClassName("autocomplete-items");
-      for (var i = 0; i < x.length; i++) {
-        if (elmnt != x[i] && elmnt != inp) {
-        x[i].parentNode.removeChild(x[i]);
-      }
-    }
-  }
-  /*execute a function when someone clicks in the document:*/
-  document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
-  });
-  }
-
-
-// Run above function
-autocomplete(search_text, all_indicators);
 
 // Code to execute when someone clicks on search button
 search_btn.onclick = function () {
