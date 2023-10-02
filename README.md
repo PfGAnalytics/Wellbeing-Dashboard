@@ -43,7 +43,7 @@ The `domains_data.js` script is an additional 'input' which contains additional 
 
 - Visual Studio Code (with "Live Server" Extension)
 - R Studio
-- Git for Windows **(include code here)**
+- Git for Windows
  
 #### Git set up
 
