@@ -412,34 +412,40 @@ function generateHexagons (d) {
 
         // Extract the text content of the baseline statement for each indicator
         if (data.NI != "") {
-            base_text = document.getElementById(data.NI + "-base-statement").textContent;
+            base_id = data.NI + "-base-statement";
         } else if (data.EQ != "") {
-            base_text = document.getElementById(data.EQ + "-base-statement").textContent;
+            base_id = data.EQ + "-base-statement";
         } else if (data.LGD != "") {
-            base_text = document.getElementById(data.LGD + "-base-statement").textContent;
+            base_id = data.LGD + "-base-statement";
         }
 
-        if (base_text.includes("worsened")) {   // If the word "worsened" appears in the baseline statement:
-            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
-            hex.classList.add("negative");      // Add the class "negative" to the hexagon
-            hex_label.classList.add("negative");    // Add the class "negative" to the label text
-        } else if (base_text.includes("improved")) {    // If the word "improved" appears in the baseline statement:
-            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
-            hex.classList.add("positive");              // Add the class "positive" to the hexagon
-            hex_label.classList.add("positive");        // Add the class "negative" to the label text
-        } else {    // Otherwise:
-            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
+        if (document.getElementById(base_id)) {     // Allow for rendering of rest of hexagons if one or more aren't working
+
+            base_text = document.getElementById(base_id).textContent;
+
+            if (base_text.includes("worsened")) {   // If the word "worsened" appears in the baseline statement:
+                hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
+                hex.classList.add("negative");      // Add the class "negative" to the hexagon
+                hex_label.classList.add("negative");    // Add the class "negative" to the label text
+            } else if (base_text.includes("improved")) {    // If the word "improved" appears in the baseline statement:
+                hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
+                hex.classList.add("positive");              // Add the class "positive" to the hexagon
+                hex_label.classList.add("positive");        // Add the class "negative" to the label text
+            } else {    // Otherwise:
+                hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
+            }
+
+            hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
+            hex.classList.add("ind-hex");               // Add class "ind-hex" to the hexagon
+            hex_label.classList.add("ind-hex-label");   // Add class "ind-hex-label" to the label
+
+            hex_label.textContent = indicators[i];      // Place the indicator name in the label
+            hex_container.appendChild(hex);             // Place the hexagon in the hexagon container
+            hex_container.appendChild(hex_label);       // Place the label in the hexagon container
+                    
+            hex_row.appendChild(hex_container);         // Place the hexagon container into the hexagon row
+
         }
-
-        hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
-        hex.classList.add("ind-hex");               // Add class "ind-hex" to the hexagon
-        hex_label.classList.add("ind-hex-label");   // Add class "ind-hex-label" to the label
-
-        hex_label.textContent = indicators[i];      // Place the indicator name in the label
-        hex_container.appendChild(hex);             // Place the hexagon in the hexagon container
-        hex_container.appendChild(hex_label);       // Place the label in the hexagon container
-                
-        hex_row.appendChild(hex_container);         // Place the hexagon container into the hexagon row
 
     }
 
@@ -1111,19 +1117,23 @@ setTimeout(function () {    // setTimeOut() puts a time delay on the execution o
                 base_id = data.LGD + "-base-statement";
             }
             
-            // Extract the text from the baseline statement
-            base_text = document.getElementById(base_id).textContent;
+            if (document.getElementById(base_id)) {     // Allow for rendering of rest of hexagons if one or more aren't working
 
-            // If the baseline text contains the word "improved" then add this indicator and its domain name to the "improving_indicator" object
-            if (base_text.includes("improved")) {
-                improving_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
+                // Extract the text from the baseline statement
+                base_text = document.getElementById(base_id).textContent;
 
-            // If the baseline text contains the word "worsened" then add this indicator and its domain name to the "worsening_indicator" object
-            } else if (base_text.includes("worsened")) {
-                worsening_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
-            // Otherwise add this indicator and its domain name to the "no_change_indicator" object
-            } else {
-                no_change_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
+                // If the baseline text contains the word "improved" then add this indicator and its domain name to the "improving_indicator" object
+                if (base_text.includes("improved")) {
+                    improving_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
+
+                // If the baseline text contains the word "worsened" then add this indicator and its domain name to the "worsening_indicator" object
+                } else if (base_text.includes("worsened")) {
+                    worsening_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
+                // Otherwise add this indicator and its domain name to the "no_change_indicator" object
+                } else {
+                    no_change_indicator[Object.keys(indicators)[j]] = {domain: domains[i]};
+                }
+
             }
 
         }

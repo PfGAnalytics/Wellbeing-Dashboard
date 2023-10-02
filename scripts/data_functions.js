@@ -58,6 +58,10 @@ async function createLineChart(indicator) {
    const fetched_data = await response.json();     // we tell it the data is in json format
    const {result} = fetched_data;                  // and extract the result object key
 
+    if (result == null) {
+      return;  // If one indicator is not working it will still attempt to render rest of them rather than crashing entire loop
+    }
+
    const {dimension, value, updated, note} = result;  // from result we then extract the object keys we need
    
    var years = Object.values(dimension)[1].category.index; // Array of years in data
