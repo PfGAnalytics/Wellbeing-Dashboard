@@ -348,7 +348,8 @@ h3 {
 }
 
 .overall-label {
-    width: 180px;
+    width: 150px;
+    margin-left: 30px;
     height: 86px;
     font-size: 14pt;
     display: flex;
@@ -357,19 +358,6 @@ h3 {
     color: #ffffff;
     border-radius: 15px;
     text-align: left;
-    -webkit-clip-path: polygon(0 0, 153px 0, 180px 43px, 153px 86px, 0 86px);
-    clip-path: polygon(0 0, 153px 0, 180px 43px, 153px 86px, 0 86px);
-    z-index: 10;
-}
-
-.overall-arrow {
-    position: absolute;
-    width: 180px;
-    height: 86px;
-    background-color: #ffffff;
-    margin-top: -86px;
-    -webkit-clip-path: polygon(132.5px 4px, 151.5px 4px, 176px 43px, 151.5px 82px, 132.5px 82px, 157px 43px);
-    clip-path: polygon(132.5px 4px, 151.5px 4px, 176px 43px, 151.5px 82px, 132.5px 82px, 157px 43px);
 }
 
 .label-container {
