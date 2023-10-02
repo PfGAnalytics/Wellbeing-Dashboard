@@ -1,5 +1,28 @@
 # #50 PfG Wellbeing Framework dashboard
 
+- [#50 PfG Wellbeing Framework dashboard](#50-pfg-wellbeing-framework-dashboard)
+  - [:newspaper: Aim](#newspaper-aim)
+  - [:house: Structure](#house-structure)
+    - [File structure](#file-structure)
+    - [Data Input](#data-input)
+    - [Code structure](#code-structure)
+    - [Software Checklist](#software-checklist)
+      - [Git set up](#git-set-up)
+  - [:arrows\_clockwise: Processes](#arrows_clockwise-processes)
+    - [Process Diagram](#process-diagram)
+  - [:information\_source: Indicator sources](#information_source-indicator-sources)
+    - [Updating an indicator](#updating-an-indicator)
+    - [Adding a new indicator/domain](#adding-a-new-indicatordomain)
+    - [Link with Data Portal](#link-with-data-portal)
+    - [Update the dashboard with any commentary on trends :chart\_with\_upwards\_trend:](#update-the-dashboard-with-any-commentary-on-trends-chart_with_upwards_trend)
+    - [Process for updating code](#process-for-updating-code)
+    - [Testing phase :mortar\_board:](#testing-phase-mortar_board)
+    - [Datavis hosting :computer:](#datavis-hosting-computer)
+    - ['Live' check :sun\_with\_face:](#live-check-sun_with_face)
+  - [:warning: Troubleshooting](#warning-troubleshooting)
+  - [:question: Links](#question-links)
+
+
 ## :newspaper: Aim
 Documentation to outline the structure and processes needed to create or modify the PfG Wellbeing Framework dashboard.
 
