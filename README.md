@@ -62,7 +62,7 @@ a. __Domain title__ This comes from the _domain_ name found in [`domains_data.js
 
 b. __Indicator title__ This comes from the _indicator_ name found in [`domains_data.js`](scripts/domains_data.js)
 
-c. __Why is this indicator important?__ This is the value of the _importance_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
+c. __How do we measure this?__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __How do we measure this__ are extracted.
 
 d. __Chart title__ This is the value of the _label_ object taken from the result of the NISRA Data Portal query.
 
@@ -88,7 +88,7 @@ n. __Baseline year__ This is obtained from the _base_year_ value for the particu
 
 o. __Statement on performance__ This is output as one of the three values (_improved_, _no_change_ or _worsened_) found under the _telling_ object for the particular indicator in [`domains_data.js`](scripts/domains_data.js) 
 
-p. __How do we measure this?__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __How do we measure this__ are extracted.
+p. __Why is this indicator important?__ This is the value of the _importance_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
 
 ### Link with Data Portal
 - Dashboard will automatically update when new data is uploaded to the data portal (provided it is named the same)
