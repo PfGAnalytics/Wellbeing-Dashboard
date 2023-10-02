@@ -1,6 +1,9 @@
 # #50 PfG Wellbeing Framework dashboard
 
+## Table of Contents
+
 - [#50 PfG Wellbeing Framework dashboard](#50-pfg-wellbeing-framework-dashboard)
+  - [Table of Contents](#table-of-contents)
   - [:newspaper: Aim](#newspaper-aim)
   - [:house: Structure](#house-structure)
     - [File structure](#file-structure)
@@ -21,7 +24,6 @@
     - ['Live' check :sun\_with\_face:](#live-check-sun_with_face)
   - [:warning: Troubleshooting](#warning-troubleshooting)
   - [:question: Links](#question-links)
-
 
 ## :newspaper: Aim
 Documentation to outline the structure and processes needed to create or modify the PfG Wellbeing Framework dashboard.
