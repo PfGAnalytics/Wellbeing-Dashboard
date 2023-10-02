@@ -71,6 +71,15 @@ var search_box = document.getElementById("search-box");
 var framework_structure = document.getElementById("framework-structure");
 var overall_labels = document.getElementsByClassName("overall-label");
 
+// Create list of all indicators and sort alphabetically
+var all_indicators = []
+
+for (let i = 0; i < domains.length; i ++) {
+    all_indicators.push(Object.keys(domains_data[domains[i]].indicators));
+}
+
+all_indicators = all_indicators.flat().sort();
+
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
 domain_count.textContent = number_to_word(domains.length).toLowerCase();
@@ -1186,16 +1195,6 @@ setTimeout(function () {
         }
 
         // Activate search bar:
-
-        // Create list of all indicators and sort alphabetically
-        var all_indicators = []
-
-        for (let i = 0; i < domains.length; i ++) {
-            all_indicators.push(Object.keys(domains_data[domains[i]].indicators));
-        }
-
-        all_indicators = all_indicators.flat().sort();
-
         // Function adapted from one found on https://www.w3schools.com/howto/howto_css_searchbar.asp
         function autocomplete(inp, arr) {
             /*the autocomplete function takes two arguments,
