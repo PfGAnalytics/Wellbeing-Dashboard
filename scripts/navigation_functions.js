@@ -1165,6 +1165,7 @@ setTimeout(function () {    // setTimeOut() puts a time delay on the execution o
     plotOverallHexes("worsening");
 
     document.getElementById("loading-img").style.display = "none";      // Hide the loading screen gif
+    document.getElementById("domains-scrn").style.display = "block"; // Show the main container
     document.getElementById("overall-hexes").style.display = "block";   // Show the "overall-hexes" div
 
 }, 3000);   // Time out set to 3000ms
@@ -1177,7 +1178,7 @@ setTimeout(function () {
     not_loading.innerHTML = "<p>Data not loading? <a href='.'>Click here to refresh</a></p>"    // Next with link to refresh page generated
 
     if (document.getElementById("overall-hexes").style.display != "block") {
-        document.getElementById("overall-scrn").appendChild(not_loading);       // If the "overall-hexes" div has failed to display (usually due to data portal problems) then generate the not loading message
+        document.getElementById("main-container").appendChild(not_loading);       // If the "overall-hexes" div has failed to display (usually due to data portal problems) then generate the not loading message
     }
 
 }, 3001)    // Time out set to 3001ms

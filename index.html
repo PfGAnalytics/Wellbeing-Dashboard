@@ -64,8 +64,14 @@
     </div>
 
     <div id = "content-centre">
+
         <div id = "main-container">
-            <div id = "domains-scrn" class = "screen" style = "display:block;">
+
+            <div id = "loading-img">
+                <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
+            </div>
+
+            <div id = "domains-scrn" class = "screen" style = "display:none;">
                 <h2 id = "domains-title" style="width: 100%; text-align: center;"></h2>
                 <div id = "domains-intro" class = "intro">
                     <p>This dashboard uses the latest data to show how people in Northern Ireland are doing, as individuals, communities and as a society across <span id = "domain-count"></span> domains of wellbeing.</p>
@@ -110,9 +116,6 @@
                 <h2>Overall</h2>
                 <div id = "overall-intro" class = "intro">
                     <p>This overview shows how well Northern Ireland is doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
-                </div>
-                <div id = "loading-img">
-                    <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
                 </div>
                 <div id = "overall-hexes" style = "display: none;">
                     <div id = "overall-click">
@@ -267,6 +270,7 @@
             </div>            
 
         </div>
+
     </div> 
 
     <footer>
