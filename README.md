@@ -95,7 +95,7 @@ The diagram below shows how the functionality behind this dashboard renders all 
 
 ### :information_source: Indicator sources
 
-The diagram below decpicts the _Economic inactivity_ indicator page with the source of each page of information on it highlighted. To change or update any piece of information below (for any indicator) refer to this diagram:
+The diagram below depicts the _Economic inactivity_ indicator page with the source of each page of information on it highlighted. To change or update any piece of information below (for any indicator) refer to this diagram:
 
 <div style="width: 100%; margin-bottom: 20px">
   <img src="img/indicator-sources.svg" style="width: 100%;" alt="Click to see the source">
