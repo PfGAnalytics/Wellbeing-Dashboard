@@ -71,8 +71,6 @@ var search_box = document.getElementById("search-box");
 var framework_structure = document.getElementById("framework-structure");
 var overall_labels = document.getElementsByClassName("overall-label");
 
-
-
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
 domain_count.textContent = number_to_word(domains.length).toLowerCase();
@@ -561,7 +559,7 @@ for (let i = 0; i < hexagons.length; i++) {
 
         var domain_name = hexagons[i].textContent;    // Obtain domain name from hexagon text
 
-        clicked_hex.innerHTML = domain_name;    // Update text inside "clicked-hex"
+        clicked_hex.innerHTML = domain_name.replace(" ", " <br>");    // Update text inside "clicked-hex"
         domain_name_text.textContent = domain_name;     // Update "domain-name-text" inside intro paragraph
 
         clicked_desc.innerHTML = domains_data[domain_name].description; // Update description of domain
@@ -685,7 +683,6 @@ for (let i = 0; i < hexagons.length; i++) {
 
         }
 
-
     }
 
 }
@@ -696,11 +693,10 @@ for (let i = 0; i < hexagons.length; i++) {
 plotOverallHexes = function(change_type) {
         
     // Use the user's screen size to determine a value "h" which will be the number of hexagons that can fit in a single row
-    gridWidth = overall_scrn.clientWidth - 180;
+    gridWidth = overall_scrn.clientWidth - 195;
 
     // Set "h" to the number of hexagons that will fit on screen
-    h = Math.floor((gridWidth - 15) / 180);
-    console.log(h)
+    h = Math.floor(gridWidth / 180);
 
     // The change type "no_change" has the class "no-change"
     className = change_type.replace("_", "-");

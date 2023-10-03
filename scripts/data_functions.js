@@ -55,7 +55,7 @@ var worsening_indicator = {};
 // The function is called inside a loop below which runs over all indicators to create all charts as the page loads
 async function createLineChart(d, e) {
 
-   var indicator = domains_data[d].indicators[e];
+   var indicator = domains_data[d].indicators[e];  // Select the information for the indicator from domains_data.js
 
    // In the first instance the function checks for NI data for the particular indicator,
    // then it checks for EQ and finally LGD data. The latter two api_url queries have filters that select only the NI data.
@@ -82,6 +82,8 @@ async function createLineChart(d, e) {
    const {result} = fetched_data;                  // and extract the result object key
 
     if (result == null) {
+      console.log("Warning: No indicator information found for " + e + ". Refresh to try again. Check matrix spelling for indicator in domains_data.js if problem persists.");
+      num_indicators = num_indicators - 1;
       return;  // If one indicator is not working it will still attempt to render rest of them rather than crashing entire loop
     }
 
@@ -681,18 +683,22 @@ async function createLineChart(d, e) {
       base_statement = "The data for " + indicator.base_year + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
       no_change_indicator[e] = {domain: d};
       document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
+      plotOverallHexes("no_change");
    } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + indicator.base_year + ". " + indicator.telling.improved;
       improving_indicator[e] = {domain: d};
       document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
+      plotOverallHexes("improving");
    } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
       base_statement = "Things have worsened since the baseline in " + indicator.base_year + ". " + indicator.telling.worsened;
       worsening_indicator[e] = {domain: d};
       document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
+      plotOverallHexes("worsening");
    } else {
       base_statement = "There has been no significant change since the baseline in " + indicator.base_year + ". " + indicator.telling.no_change;
       no_change_indicator[e] = {domain: d};
       document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
+      plotOverallHexes("no_change");
    };
    
    // Create statement div
@@ -704,6 +710,12 @@ async function createLineChart(d, e) {
    base_statement_div.innerHTML = base_statement;
 
    document.getElementById("change-info").appendChild(base_statement_div);
+
+   // Load/re-load a domain page if user clicks on hexagon while loop is still executing
+   var clicked_hex = document.getElementById("clicked-hex");
+   if (clicked_hex.textContent != "") {
+      generateHexagons(clicked_hex.textContent)
+   }
 
    // Create further info div
    var further_note = note[0];
