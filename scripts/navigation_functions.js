@@ -698,12 +698,9 @@ plotOverallHexes = function(change_type) {
     // Use the user's screen size to determine a value "h" which will be the number of hexagons that can fit in a single row
     gridWidth = overall_scrn.clientWidth - 180;
 
-    // Set "h" to a maximum of 6 or the number of hexagons that will fit on screen
-    if (Math.floor((gridWidth - 105) / 180) > 6) {
-        h = 6
-    } else {
-        h = Math.floor((gridWidth - 105) / 180);
-    }
+    // Set "h" to the number of hexagons that will fit on screen
+    h = Math.floor((gridWidth - 15) / 180);
+    console.log(h)
 
     // The change type "no_change" has the class "no-change"
     className = change_type.replace("_", "-");
@@ -716,22 +713,26 @@ plotOverallHexes = function(change_type) {
     // Loop through the indicators within each change_type
     for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {            
 
-        // Ensuring there are "h" hexagons per row
-        if (i % h == 0) {
+        // Ensuring there are "h" and "h - 1" hexagons in alternating rows
+        if (i % (2 * h - 1) == 0 || i % (2 * h - 1) == h)  {
             var hex_row = document.createElement("div");    // Create a div for a new row
             hex_row.classList.add("row");                   // Give div the class "row"
             hex_row.classList.add(className + "-hex-row");  // Give div the class 'className + "-hex-row"' (eg, "improving-hex-row")
             document.getElementById(className + "-hexes").appendChild(hex_row);     // Place hex-row in relevant div on Overall page (eg, "improving-hex-row" goes into "improving-hexes")
         }            
 
-        if (i % (h * 2) == h) {
+        if (i % (2 * h - 1) == h) {
             hex_row.style.marginLeft = "105px"; // Even numbered rows are indented by 105px
-        } else if (i % (h * 2) == 0) {
+        } else if (i % (2 * h - 1) == 0) {
             hex_row.style.marginLeft = "15px";  // And odd numbered ones by 15px
         }
 
         if (i >= h) {
             hex_row.style.marginTop = "-30px";  // All rows after first row are moved up by 30px
+        }
+
+        if (h < 2) {
+            hex_row.style.marginTop = "0px"; // Re-position hexagons if screen very narrow
         }
 
         var hex_container = document.createElement("div");      // Create a hexagon container div. The hexagon div and the hexagon label div will be nested under this one
