@@ -67,11 +67,7 @@
 
         <div id = "main-container">
 
-            <div id = "loading-img">
-                <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
-            </div>
-
-            <div id = "domains-scrn" class = "screen" style = "display:none;">
+            <div id = "domains-scrn" class = "screen">
                 <h2 id = "domains-title" style="width: 100%; text-align: center;"></h2>
                 <div id = "domains-intro" class = "intro">
                     <p>This dashboard uses the latest data to show how people in Northern Ireland are doing, as individuals, communities and as a society across <span id = "domain-count"></span> domains of wellbeing.</p>
@@ -117,27 +113,36 @@
                 <div id = "overall-intro" class = "intro">
                     <p>This overview shows how well Northern Ireland is doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
                 </div>
-                <div id = "overall-hexes" style = "display: none;">
+                <div id = "overall-hexes">
                     <div id = "overall-click">
                         <div class = "blue-label" style = "width: 400px; text-align: center; margin-top: 1rem"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
                     </div>
                     <div class = "row">
                         <div class = "label-container">
-                            <div id = "improving-label" class = "overall-label"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                            <div id = "improving-label" class = "overall-label">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                                <p id = "p-improving" class = "overall-text"></p>
+                            </div>
                         </div>
                         <div id = "improving-hexes" class = "overall-container"></div>
                     </div>
                     <div class = "separator"></div>
                     <div class = "row">
                         <div class = "label-container">
-                            <div id = "no-change-label" class = "overall-label"><i class="fa-solid fa-arrow-right-long"></i></div>
+                            <div id = "no-change-label" class = "overall-label">
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                                <p id = "p-no-change" class = "overall-text"></p>
+                            </div>
                         </div>
                         <div id = "no-change-hexes" class = "overall-container"></div>
                     </div>
                     <div class = "separator"></div>
                     <div class = "row">
                         <div class = "label-container">
-                            <div id = "worsening-label" class = "overall-label"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                            <div id = "worsening-label" class = "overall-label">
+                                <i class="fa-solid fa-arrow-trend-down"></i>
+                                <p id = "p-worsening" class = "overall-text"></p>
+                            </div>
                         </div>
                         <div id = "worsening-hexes" class = "overall-container"></div>
                     </div>

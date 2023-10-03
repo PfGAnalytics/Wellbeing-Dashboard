@@ -28,11 +28,34 @@ function sortObject(o) {
    return sorted;
 }
 
+
+
+// Create list of all indicators and sort alphabetically
+var domains = Object.keys(domains_data);     // All domains
+var all_indicators = []    // Empty list to be populated in loop below
+
+for (let i = 0; i < domains.length; i ++) {
+    all_indicators.push(Object.keys(domains_data[domains[i]].indicators));
+}
+
+all_indicators = all_indicators.flat().sort();     // Flatten the list and sort alphabetically
+
+// The total number of indicators being measured
+var num_indicators = all_indicators.length;
+
+// Empty objects for each type of indicator. When function is called below each indicator will be sorted into the
+// appropriate object and these will be used to place objects on the overall screen 
+var improving_indicator = {};
+var no_change_indicator = {};
+var worsening_indicator = {};
+
 // Function below uses the api to fetch the data and plots it in a line chart
 // It also generates the baseline statement, the source information, the further information and how do we measure this
-// using information on the data portal. The only input to the function is an indicator object key from "domains_data.js"
+// using information on the data portal. The two inputs to the function are a domain name "d" and indicator name "e"
 // The function is called inside a loop below which runs over all indicators to create all charts as the page loads
-async function createLineChart(indicator) {
+async function createLineChart(d, e) {
+
+   var indicator = domains_data[d].indicators[e];
 
    // In the first instance the function checks for NI data for the particular indicator,
    // then it checks for EQ and finally LGD data. The latter two api_url queries have filters that select only the NI data.
@@ -656,12 +679,20 @@ async function createLineChart(indicator) {
   
    if (current_year == indicator.base_year) {
       base_statement = "The data for " + indicator.base_year + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
+      no_change_indicator[e] = {domain: d};
+      document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
    } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + indicator.base_year + ". " + indicator.telling.improved;
+      improving_indicator[e] = {domain: d};
+      document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
    } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
       base_statement = "Things have worsened since the baseline in " + indicator.base_year + ". " + indicator.telling.worsened;
+      worsening_indicator[e] = {domain: d};
+      document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
    } else {
       base_statement = "There has been no significant change since the baseline in " + indicator.base_year + ". " + indicator.telling.no_change;
+      no_change_indicator[e] = {domain: d};
+      document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
    };
    
    // Create statement div
@@ -787,23 +818,20 @@ async function createLineChart(indicator) {
 
   document.getElementById("measure-info").appendChild(measure_note);
 
- }
+}
 
 // This is where the above function is called:
 
 // Loop through domains_data to generate line charts for each indicator (see domains_data.js)
-// Assign list of domains to variable "domains"
-domains = Object.keys(domains_data);
-
 // Loop through all domains
 for (let i = 0; i < domains.length; i ++) {
 
-   // List of indicators
+   // List of indicators for each domain
    indicators = Object.keys(domains_data[domains[i]].indicators);
 
    // Loop through each indicator and run create line chart
    for (let j = 0; j < indicators.length; j++) {
-      createLineChart(domains_data[domains[i]].indicators[indicators[j]])
+      createLineChart(domains[i], indicators[j])
    }
 
 }
