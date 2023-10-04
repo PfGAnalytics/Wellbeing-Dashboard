@@ -36,31 +36,28 @@
         <div id = "top-menu" class = "row">
             <img id = "top-menu-exec-logo" src = "img/Northern_Ireland_Executive_logo.svg" alt = "Northern Ireland Executive logo">
             <div id = "dashboard-title"><h1>PfG Wellbeing Framework</h1></div>
-            <div id = "top-menu-items" class = "row">
-                <div id = "domains-btn" class = "top-menu-item selected-item"><i class = "fas fa-chart-line"></i> Domains</div>
-                <div id = "overall-btn" class = "top-menu-item"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</div>
-                <div id = "maps-btn" class = "top-menu-item"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</div>
-                <div id = "help-btn" class = "top-menu-item"><i class="fa-regular fa-address-book"></i></i> User Guide</div>
-                <form id = "search-bar" autocomplete="off">
+            <form id = "top-menu-items" class = "row" action = "" autocomplete = "off">
+                <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
+                <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
+                <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
+                <button id = "help-btn" class = "top-menu-item" name = "tab" value = "help"><i class="fa-regular fa-address-book"></i></i> User Guide</button>
+                <div id = "search-bar">
                     <div id = "search-box">
                         <div class="autocomplete" style="width: 400px;">
-                        <input id="search-text" type="text" name="byIndicator" placeholder="Search by indicator name">
+                        <input id="search-text" type="text" placeholder="Search by indicator name">
                         </div>
-                        <div id = "search-btn" class = "btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <button type = "button" id = "search-btn" class = "btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>    
 
     <div class= "button-row" style = "display: none;">
-        <div id = "back-button-container"></div>
-    </div>
-    <div class= "button-row" style = "display: none;">
-        <div id = "button-container" class = "row">
+        <form id = "button-container" class = "row">
             <div id = "button-left"></div>
             <div id = "button-right"></div>
-        </div>
+        </form>
     </div>
 
     <div id = "content-centre">
@@ -79,7 +76,7 @@
                 </div>
                 <div class = "row">
                     <div id = "click-to-see" class = "blue-label"><p style = "margin-bottom: 0px"><i class="fa-solid fa-arrow-pointer"></i> Click on a domain to see the indicators</p></div>
-                    <div id = "domains-grid-container" style= "display: block;"></div>
+                    <form id = "domains-grid-container" style= "display: block;"></form>
                     <div id = "domain-info-container" style = "display: none;">
                         <div id = "domain-info">
                             <div class = "row">
@@ -90,7 +87,7 @@
                                     <div id = "clicked-desc" class = "blue-label" style = "width: 400px;"></div>
                                 </div>
                             </div>
-                            <div id = "indicator-hexes"></div>
+                            <form id = "indicator-hexes"></form>
                             <div class = "blue-label" style = "width: 400px; margin-left: 165px; text-align: center; margin-top: 1rem"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
                             <div id = "key" class = "row">
                                 Key:
@@ -113,7 +110,10 @@
                 <div id = "overall-intro" class = "intro">
                     <p>This overview shows how well Northern Ireland is doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
                 </div>
-                <div id = "overall-hexes">
+                <div id = "loading-img">
+                    <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
+                </div>
+                <div id = "overall-hexes" style = "display: none">
                     <div id = "overall-click">
                         <div class = "blue-label" style = "width: 400px; text-align: center; margin-top: 1rem"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
                     </div>
@@ -124,7 +124,7 @@
                                 <p id = "p-improving" class = "overall-text"></p>
                             </div>
                         </div>
-                        <div id = "improving-hexes" class = "overall-container"></div>
+                        <form id = "improving-hexes" class = "overall-container"></form>
                     </div>
                     <div class = "separator"></div>
                     <div class = "row">
@@ -134,7 +134,7 @@
                                 <p id = "p-no-change" class = "overall-text"></p>
                             </div>
                         </div>
-                        <div id = "no-change-hexes" class = "overall-container"></div>
+                        <form id = "no-change-hexes" class = "overall-container"></form>
                     </div>
                     <div class = "separator"></div>
                     <div class = "row">
@@ -144,7 +144,7 @@
                                 <p id = "p-worsening" class = "overall-text"></p>
                             </div>
                         </div>
-                        <div id = "worsening-hexes" class = "overall-container"></div>
+                        <form id = "worsening-hexes" class = "overall-container"></form>
                     </div>
                     <p style = "font-size: 12pt;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">User Guide</span>.</p>
                 <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 

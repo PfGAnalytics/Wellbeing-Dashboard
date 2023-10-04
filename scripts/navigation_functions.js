@@ -70,6 +70,8 @@ var search_bar = document.getElementById("search-bar");
 var search_box = document.getElementById("search-box");
 var framework_structure = document.getElementById("framework-structure");
 var overall_labels = document.getElementsByClassName("overall-label");
+var change_info = document.getElementById("change-info");
+var loading_img = document.getElementById("loading-img");
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -89,10 +91,13 @@ for (let i = 0; i < domains.length; i++) {
         domains_grid_container.appendChild(hex_row);    // Place the div in the div "domains-grid-container"
     }
 
-    var hex = document.createElement("div");            // Create the first div which will be the blue hexagon that acts as a border
+    var hex = document.createElement("button");            // Create the first div which will be the blue hexagon that acts as a border
     var hex_inner = document.createElement("div");      // Create the second div which is the green heaxagon
 
     hex.classList.add("hex");                           // Give outer hexagon class "hex"
+    hex.name = "domain";
+    hex.value = domains[i].toLowerCase();
+
     hex_inner.classList.add("hex-inner");               // Give inner hexagon class "hex-inner"
     hex_inner.innerHTML = domains[i].replace(" ", " <br>");                 // Label the inner div with the name of the domain
     hex.appendChild(hex_inner);                         // Place the inner div in the outer one
@@ -114,11 +119,7 @@ for (let i = 0; i < hex_rows.length; i++) {
 // Function to generate indicator page for domain "d" and indicator "e"
 // The function is called when an indicator hexagon is clicked on or when a
 // "next indicator" or "previous indicator" button is clicked
-function generateIndicatorPage(d, e) {
-
-    domains_scrn.style.display = "none";    // If visible hide Domains screen
-    overall_scrn.style.display = "none";    // and hide Overall screen
-    indicator_scrn.style.display = "block"; // then show the Indicator screen
+function generateIndicatorPage(d, e) {    
 
     domain_title.innerHTML = d;             // Place the domain name inside the "domain-title" div element
 
@@ -127,64 +128,7 @@ function generateIndicatorPage(d, e) {
     
     var data = domains_data[d].indicators[e].data;      // The nested "data" object for the relevant indicator
 
-    // Need to determine the data portal matrix and id of the chart created for this indicator. (see createLineChart() function in "data-functions.js" script)
-    if (data.NI != "") {
-        chart_id = data.NI.slice(0, -2) + "-line";
-        matrix = data.NI;                               
-    } else if (data.EQ != "") {
-        chart_id = data.EQ.slice(0, -2) + "-line";
-        matrix = data.EQ;
-    } else if (data.LGD != "") {
-        chart_id = data.LGD.slice(0, -3) + "-line";
-        matrix = data.LGD;
-    }
-
-    // An array of all line charts
-    var line_charts = document.getElementsByClassName("line-chart");
-
-    // Loop through the array of all line charts
-    for (let k = 0; k < line_charts.length; k++) {
-
-        if (line_charts[k].id == chart_id) {
-            document.getElementById(chart_id).style.display = "block";  // If the id of a line chart matches the one generated above "chart_id" then display it
-        } else {
-            line_charts[k].style.display = "none";      // Otherwise hide it
-        }
-
-    }
-
-    data_info.innerHTML = writeDataInfo(data);   // Place sentence in "data-info" div
-
-    // Determine the id of the baseline statemnent generated in createLineChart() (see "data_functions.js")
-    base_id = matrix + "-base-statement";
-
-    // Array of all baseline statements
-    var base_statements = document.getElementsByClassName("base-statement");
-    var further_infos = document.getElementsByClassName("further-info-text");
-    var source_infos = document.getElementsByClassName("source-info-text");
-    var measure_infos = document.getElementsByClassName("measure-info-text");
-
-    for (let i = 0; i < base_statements.length; i++) {          // Loop through all baseline statements
-
-        if (base_statements[i].id == base_id) { // if id matches "base_id" then show the relevant baseline statement, further info, source info and how we measure this info
-            document.getElementById(base_id).style.display = "block";   
-            document.getElementById(base_id.replace("base-statement", "further-info")).classList.add("further-selected");
-            document.getElementById(base_id.replace("base-statement", "source-info")).style.display = "block";
-            document.getElementById(base_id.replace("base-statement", "measure-info")).style.display = "block";
-        } else {    // Otherwise hide these for other indicators
-            base_statements[i].style.display = "none";      
-            further_infos[i].classList.remove("further-selected");
-            source_infos[i].style.display = "none";
-            measure_infos[i].style.display = "none";
-        }
-
-    }
-
-    if (document.getElementsByClassName("further-selected")[0].textContent == "Not available") {
-        further_expander.style.display = "none";
-    } else {
-        further_expander.removeAttribute("style");
-    }
+    data_info.innerHTML = writeDataInfo(data);   // Place sentence in "data-info" div    
 
     // This next section will add a link to the relevant map on an indicator page. If available
     while(map_link.firstChild) {
@@ -327,7 +271,7 @@ function generateHexagons (d) {
             indicator_hexes.appendChild(hex_row);           // Add the row to the div element "indicator-hexes"
         }
 
-        var hex_container = document.createElement("div");  // Create a new div for the hexagon container (into which the hexagon and its label will be nested)
+        var hex_container = document.createElement("button");  // Create a new div for the hexagon container (into which the hexagon and its label will be nested)
         hex_container.classList.add("shake-hex");           // Give it the class "shake-hex"
         var hex = document.createElement("div");            // Create a new div for the hexagon
         var hex_label = document.createElement("div");      // Create a new div for the label text
@@ -360,6 +304,8 @@ function generateHexagons (d) {
             }
 
             hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
+            hex_container.name = "indicator";
+            hex_container.value = indicators[i].replace(/[^a-z ]/gi, '').toLowerCase();
             hex.classList.add("ind-hex");               // Add class "ind-hex" to the hexagon
             hex_label.classList.add("ind-hex-label");   // Add class "ind-hex-label" to the label
 
@@ -386,155 +332,6 @@ function generateHexagons (d) {
         }
     }
 
-    // Clinking an indicator name
-    var indicator_links = document.getElementById("indicator-hexes").getElementsByClassName("ind-hex-container");
-
-    for (let i = 0; i < indicator_links.length; i++) {
-
-        indicator_links[i].onclick = function() {
-
-            // Generate indicator page for clicked hexagon
-            var indicator_name = indicator_links[i].getElementsByClassName("ind-hex-label")[0].innerHTML;
-
-            // Run generateIndicatorPage() function (see above) for initial selection
-            generateIndicatorPage(d, indicator_name);
-
-            // Hide nav buttons currently on display
-            for (let j = 0; j < nav_buttons.length; j ++) {
-                nav_buttons[j].style.display = "none";
-            }
-
-            // Generate button for "Back to Domains"
-            back_btn_2 = document.createElement("div");     // Div for back button
-            back_btn_2.id = "back-btn-2";                   // Give it id "back-btn-2"
-            back_btn_2.classList.add("nav-btn");            // Add class "nav-btn"
-            back_btn_2.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + d + '</strong> domain';  // Text and icon on button
-
-            back_button_container.appendChild(back_btn_2);  // Append "Back to Domains" to the div "back-button-container"
-
-            // The "Previous Indicator" and "Next Indicator" buttons:
-            current_index = i;  // A numeric index of the indicator currently in view
-
-            // "Previous indicator" button
-            previous_btn_2 = document.createElement("div");     // Div for previous indicator button
-            previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
-            previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
-
-            // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
-            if (current_index != 0) {
-                previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + indicator_links[current_index - 1].textContent +'</strong>';
-            }
-
-            button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
-
-            // "Next indicator" button
-            next_btn_2 = document.createElement("div");     // Div for next indicator button
-            next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
-            next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
-
-            // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
-            if (current_index != indicator_links.length - 1) {
-                next_btn_2.innerHTML = 'Next indicator: <strong>' + indicator_links[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
-            }
-
-            button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
-
-            // Function inside "Back to Domains" to hide indicators and display grid again
-            back_btn_2.onclick = function () {
-
-                indicator_scrn.style.display = "none";  // Hide indicator screen
-                domains_scrn.style.display = "block";   // Show domains screen
-
-                for (let j = 0; j < nav_buttons.length; j ++) {
-                    nav_buttons[j].style.display = "block"; // Show the buttons previously hidden by clicking on one of the Domains
-                }
-
-                back_button_container.removeChild(back_btn_2);  // Remove the "Back to Domains" button
-                button_left.removeChild(previous_btn_2);        // Remove "Previous Indicator button"
-                button_right.removeChild(next_btn_2);           // Remove "Next Indicator button"
-            
-            }
-
-            // Function inside "Previous indicator" button
-            previous_btn_2.onclick = function() {
-
-                // Hide expanded further info
-                for (let i = 0; i < further_infos.length; i++) {
-                    further_infos[i].removeAttribute("style");
-                    further_infos[i].classList.remove("further-selected");
-                }
-
-                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
-
-                // Get the name of previous indicator from the button text
-                var previous_indicator_name = previous_btn_2.textContent.replace("Previous indicator:", "").trim();
-
-                // Run generateIndicatorPage() function (see above) for previous_indicator_name
-                generateIndicatorPage(d, previous_indicator_name);
-
-                // Update the current_index counter to one less than its current value
-                current_index = current_index - 1;
-
-                // Generate new text on "Previous indicator" button (except when user is looking at first indicator for that domain)
-                if (current_index != 0) {
-                    previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + indicator_links[current_index - 1].textContent +'</strong>';
-                } else {
-                    previous_btn_2.innerHTML = "";
-                }
-
-                // Generate new text on "Next indicator" button (except when user is looking at last indicator for that domain)
-                if (current_index != indicator_links.length - 1) {
-                    next_btn_2.innerHTML = 'Next indicator: <strong>' + indicator_links[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
-                } else {
-                    next_btn_2.innerHTML = ""
-                }
-
-            }
-
-            // Function inside "Next indicator" button
-            next_btn_2.onclick = function() {
-
-                // Hide expanded further info
-                for (let i = 0; i < further_infos.length; i++) {
-                    further_infos[i].removeAttribute("style");
-                    further_infos[i].classList.remove("further-selected");
-                }
-
-                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
-
-                // Get the name of next indicator from the button text
-                var next_indicator_name = next_btn_2.textContent.replace("Next indicator:", "").trim();
-
-                // Run generateIndicatorPage() function (see above) for next_indicator_name
-                generateIndicatorPage(d, next_indicator_name);
-
-                // Update the current_index counter to one more than its current value
-                current_index = current_index + 1;
-
-                // Generate new text on "Previous indicator" button (except when user is looking at first indicator for that domain)
-                if (current_index != 0) {
-                    previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + indicator_links[current_index - 1].textContent +'</strong>';
-                } else {
-                    previous_btn_2.innerHTML = "";
-                }
-
-                // Generate new text on "Next indicator" button (except when user is looking at last indicator for that domain)
-                if (current_index != indicator_links.length - 1) {
-                    next_btn_2.innerHTML = 'Next indicator: <strong>' + indicator_links[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
-                } else {
-                    next_btn_2.innerHTML = ""
-                }
-
-            }
-
-        }
-
-    }
-
     // Position of key at bottom of domain page (stop it varying depending on Domain)
     key.style.marginTop = (508 - indicator_hexes.clientHeight) + "px";
 
@@ -545,145 +342,6 @@ hexagons = domains_grid_container.getElementsByClassName("hex-inner");
 for (let i = 0; i < hexagons.length; i++) {
 
     hexagons[i].parentElement.classList.add("shake-hex");   // Add the "shake-hex" class to each hexagon
-
-    // Add click functionality
-    hexagons[i].onclick = function() {
-
-        // Hide domains grid and display indicators
-        domains_title.style.display = "none";   // Hide the "domains-title" div
-        domain_info.style.display = "flex";     // Show the "domain-info" div
-        domains_grid_container.style.display = "none";  // Hide the domains grid
-        click_to_see.style.display = "none";        // Hide the "click-to-see" div
-        domains_intro.style.display = "none";       // Hide the "domains-intro" div
-        indicator_intro.style.display = "block";    // Show the "indicator-intro" div
-
-        var domain_name = hexagons[i].textContent;    // Obtain domain name from hexagon text
-
-        clicked_hex.innerHTML = domain_name.replace(" ", " <br>");    // Update text inside "clicked-hex"
-        domain_name_text.textContent = domain_name;     // Update "domain-name-text" inside intro paragraph
-
-        clicked_desc.innerHTML = domains_data[domain_name].description; // Update description of domain
-
-        // Run generateHexagons(d) function (see above) for selected domain
-        generateHexagons(domain_name);
-
-        for (let i = 0; i < button_rows.length; i ++) {
-            button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
-        }        
-
-        // Remove buttons from nav bar
-        while (button_left.firstChild) {
-            button_left.removeChild(button_left.firstChild);    // Remove any "Previous indicator" or "Previous domain" buttons previously generated
-        }
-
-        while (button_right.firstChild) {
-            button_right.removeChild(button_right.firstChild);  // Remove any "Next indicator" or "Next domain" buttons previously generated
-        }
-
-        // Generate button for "Back to Domains"
-        back_btn = document.createElement("div");       // New div for "Back to Domains" button
-        back_btn.id = "back-btn";                       // Give it the id "back-btn"
-        back_btn.classList.add("nav-btn");              // Give it the class "nav-btn"
-        back_btn.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Domains</strong> grid';      // Icon and text put inside button
-
-        back_button_container.appendChild(back_btn);    // "back-btn" is added to "back-button-container" div
-
-        // Function inside "Back to Domains" to hide indicators and display grid again
-        back_btn.onclick = function () {
-            domains_btn.click() // Simulate clicking the Domains button
-        }
-
-        // The "Previous Domain" and "Next Domain" buttons:
-        var current_index = i;  // A numeric counter of the Domain currently on view
-
-        // Generate "see Previous domain" button
-        previous_btn = document.createElement("div");   // Div for previous domain button
-        previous_btn.id = "previous-domain";            // Given the id "previous-domain"
-        previous_btn.classList.add("nav-btn");          // Given the class "nav-btn"
-
-        // The button text and icon are generated (except when the first Domain is clicked)
-        if (current_index != 0) {
-            previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
-        }
-
-        button_left.appendChild(previous_btn);  // Button is added to div "button-left"
-
-        // Generate "see Next domain" button
-        next_btn = document.createElement("div");       // Div for next domain button
-        next_btn.id = "next-domain";                    // Given the id "next-domain"
-        next_btn.classList.add("nav-btn");              // Given the class "nav-btn"
-
-        // The button text and icon are generated (except when the last Domain is clicked)
-        if (current_index != hexagons.length - 1) {
-            next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
-        }
-
-        button_right.appendChild(next_btn);   // Button is added to div "button-right"
-
-        // Function behind "Previous Domain" button
-        previous_btn.onclick = function () {
-
-            // Get the name of previous domain from the hexagon text
-            previous_domain_name = hexagons[current_index - 1].textContent;
-            
-            clicked_hex.innerHTML = previous_domain_name;   // Update the text content inside the "clicked-hex" hexagon
-            clicked_desc.innerHTML = domains_data[previous_domain_name].description;    // Update the description                       
-
-            // Run generateHexagons(d) function (see above) for previous_domain_name
-            generateHexagons(previous_domain_name);
-            
-            // Update the current_index counter to one less than its current value
-            current_index = current_index - 1;
-
-            // Generate new text on "Previous domain" button (except when user is looking at first Domain)
-            if (current_index != 0) {
-                previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
-            } else {
-                previous_btn.innerHTML = "";
-            }
-
-            // Generate new text on "Next domain" button (except when user is looking at last Domain)
-            if (current_index != hexagons.length - 1) {
-                next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
-            } else {
-                next_btn.innerHTML = "";
-            }
-
-        }
-        
-        // Function behind "Next Domain" button
-        next_btn.onclick = function () {
-
-            // Get the name of next domain from the hexagon text
-            next_domain_name = hexagons[current_index + 1].textContent;
-            
-            clicked_hex.innerHTML = next_domain_name;   // Update the text content inside the "clicked-hex" hexagon
-            clicked_desc.innerHTML = domains_data[next_domain_name].description;   // Update the description                                           
-
-            // Run generateHexagons(d) function (see above) for next_domain_name
-            generateHexagons(next_domain_name);
-            
-            // Update the current_index counter to one less than its current value
-            current_index = current_index + 1;
-            next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
-
-            // Generate new text on "Previous domain" button (except when user is looking at first Domain)
-            if (current_index != 0) {
-                previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
-            } else {
-                previous_btn.innerHTML = "";
-            }
-
-            // Generate new text on "Next domain" button (except when user is looking at last Domain)
-            if (current_index != hexagons.length - 2) {
-                next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
-            } else {
-                next_btn.innerHTML = "";
-            }
-
-        }
-
-    }
 
 }
 
@@ -731,12 +389,14 @@ plotOverallHexes = function(change_type) {
             hex_row.style.marginTop = "0px"; // Re-position hexagons if screen very narrow
         }
 
-        var hex_container = document.createElement("div");      // Create a hexagon container div. The hexagon div and the hexagon label div will be nested under this one
+        var hex_container = document.createElement("button");      // Create a hexagon container div. The hexagon div and the hexagon label div will be nested under this one
         hex_container.classList.add("shake-hex");               // Give it the class "shake-hex"
         var hex = document.createElement("div");                // Create a hexagon div
         var hex_label = document.createElement("div");          // Create a hexagon label
 
         hex_container.classList.add("ind-hex-container");       // Give hexagon conatiner the class "ind-hex-container"
+        hex_container.name = "oindicator";
+        hex_container.value = Object.keys(eval(change_type + "_indicator"))[i].replace(/[^a-z ]/gi, '').toLowerCase();
 
         hex.classList.add("ind-hex");                           // Give hexagon the class "ind-hex"
         hex_label.classList.add("ind-hex-label");               // Give hexagon label the class "ind-hex-label"
@@ -757,220 +417,7 @@ plotOverallHexes = function(change_type) {
         hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
         }
 
-        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row        
-
-        // Function below for what happens when an Overall screen hexagon is clicked on
-        hex_container.onclick = function() {
-
-            var indicator_name = Object.keys(eval(change_type + "_indicator"))[i];     // Indicator name is computed
-            var domain_name = eval(change_type + "_indicator")[indicator_name].domain;  // The domain name is computed
-
-            // The generateIndicatorPage(d, e) function (see above) is called on the selection
-            generateIndicatorPage(domain_name, indicator_name);
-
-            // Any back buttons previously generated are removed
-            while(back_button_container.firstChild) {
-                back_button_container.removeChild(back_button_container.firstChild)
-            }
-
-            // Any "Previous domain" or "Previous indicator" previously generated are removed
-            while(button_left.firstChild) {
-                button_left.removeChild(button_left.firstChild)
-            }
-
-            // Any "Next domain" or "Next indicator" previously generated are removed
-            while(button_right.firstChild) {
-                button_right.removeChild(button_right.firstChild)
-            }
-
-            // The button container is displayed
-            button_container.style.display = "flex";
-
-            // All button rows are displayed
-            for (let i = 0; i < button_rows.length; i++) {
-                button_rows[i].style.display = "flex";
-            }
-
-            // Generate button for "back to Overall"
-            back_btn_3 = document.createElement("div");     // New div for "Back to Overall grid" button
-            back_btn_3.id = "back-btn-3";                   // Given the id "back-btn-3"
-            back_btn_3.classList.add("nav-btn");            // Given the class "nav-btn"
-            back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';  // Icon and text generated
-
-            back_button_container.appendChild(back_btn_3);  // Button is placed in the "back-button-container" div
-
-            // Next and previous indicator buttons:
-            current_index = i;          // A numeric index of the current selected indicator
-            current_change = change_type;   // The current change type the user is cycling through if clicking "next" and "previous" buttons
-
-            // Which indicator to move to if the user is on the first or last indicator within a particular change type
-            if (current_change == "improving") {            // If cycling through "improving" indicators:
-                next_change = "no_change";                      // Move to "no change" indicators after clicking Next on the last "improving" indicator
-                previous_change = "worsening";                  // Move to "worsening" indicators after clicking Previous on the first "improving" indicator
-            } else if (current_change == "no_change") {     // If cycling through "no change" indicators:
-                next_change = "worsening";                      // Move to "worsening" indicators after clicking Next on the last "no change" indicator
-                previous_change = "improving";                  // Move to "improving" indicators after clicking Previous on the first "no change" indicator
-            } else if (current_change == "worsening") {     // If cycling through "worsening" indicators:
-                next_change = "improving";                      // Move to "improving" indicators after clicking Next on the last "worsening" indicator
-                previous_change = "no_change";                  // Move to "no change" indicators after clicking Previous on the first "worsening" indicator
-            }
-            
-            // "Previous indicator" button
-            previous_btn_3 = document.createElement("div");     // New div for "Previous indicator" button
-            previous_btn_3.id = "previous-btn-3";               // Give div id "previous-btn-3"
-            previous_btn_3.classList.add("nav-btn");            // Give div class "nav-btn"
-
-            // The button text and icon are generated (as either the previous indicator within that change type or the last indicator within the previous change type)
-            if (current_index != 0) {
-                previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
-            } else {
-                previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
-            }
-
-            button_left.appendChild(previous_btn_3);    // Button is added to div "button-left"
-
-            // "Next indicator" button
-            next_btn_3 = document.createElement("div");     // New div for "Next indicator" button
-            next_btn_3.id = "next-btn-3";                   // Give div id "next-btn-3"
-            next_btn_3.classList.add("nav-btn");            // Give div class "nav-btn"
-
-            // The button text and icon are generated (as either the next indicator within that change type or the first indicator within the next change type)
-            if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
-                next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
-            } else {
-                next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(next_change + "_indicator"))[0] +'</strong> <i class="fa-solid fa-forward"></i> ';
-            }
-
-            button_right.appendChild(next_btn_3);    // Button is added to div "button-right"
-
-            // Function inside "back to Overall" to hide indicators and display grid again
-            back_btn_3.onclick = function () {
-
-                overall_btn.click() // Simulate clicking Overall button
-            
-            }
-
-            // "Previous indicator" function
-            previous_btn_3.onclick = function() {
-
-                // Hide expanded further info
-                for (let i = 0; i < further_infos.length; i++) {
-                    further_infos[i].removeAttribute("style");
-                    further_infos[i].classList.remove("further-selected");
-                }
-
-                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
-
-                if (current_index == 0) {       // Only when currently on the first indicator of a change type:
-
-                    // Change the value of "current_change" to be that of "previous_change"
-                    current_change = previous_change;
-
-                    // Re-compute values of "previous_change" and "next_change" based on the new value of "current_change"
-                    if (current_change == "improving") {            // If cycling through "improving" indicators:
-                        next_change = "no_change";                      // Move to "no change" indicators after clicking Next on the last "improving" indicator
-                        previous_change = "worsening";                  // Move to "worsening" indicators after clicking Previous on the first "improving" indicator
-                    } else if (current_change == "no_change") {     // If cycling through "no change" indicators:
-                        next_change = "worsening";                      // Move to "worsening" indicators after clicking Next on the last "no change" indicator
-                        previous_change = "improving";                  // Move to "improving" indicators after clicking Previous on the first "no change" indicator
-                    } else if (current_change == "worsening") {     // If cycling through "worsening" indicators:
-                        next_change = "improving";                      // Move to "improving" indicators after clicking Next on the last "worsening" indicator
-                        previous_change = "no_change";                  // Move to "no change" indicators after clicking Previous on the first "worsening" indicator
-                    }
-
-                    // Update "current_index" to be the last value in the new "current_change" type
-                    current_index = Object.keys(eval(current_change + "_indicator")).length;
-
-                }
-
-                var previous_indicator_name = Object.keys(eval(current_change + "_indicator"))[current_index - 1];  // Derive name of previous indicator
-                var previous_domain_name = eval(current_change + "_indicator")[previous_indicator_name].domain;     // Derive domain of previous indicator
-
-                // Run generateIndicatorPage() function (see above) for previous_indicator_name
-                generateIndicatorPage(previous_domain_name, previous_indicator_name);
-
-                // Update the current_index counter to one less than its current value
-                current_index = current_index - 1;
-
-                // The button text and icon are generated (as either the previous indicator within that change type or the last indicator within the previous change type)
-                if (current_index != 0) {
-                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
-                } else {
-                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
-                }
-
-                // The button text and icon are generated (as either the next indicator within that change type or the first indicator within the next change type)
-                if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
-                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
-                } else {
-                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(next_change + "_indicator"))[0] +'</strong> <i class="fa-solid fa-forward"></i> ';
-                }
-
-            }
-
-            // "Next indicator" function
-            next_btn_3.onclick = function() {
-
-                // Hide expanded further info
-                for (let i = 0; i < further_infos.length; i++) {
-                    further_infos[i].removeAttribute("style");
-                    further_infos[i].classList.remove("further-selected");
-                }
-
-                further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-                further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-                further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
-
-                if (current_index == Object.keys(eval(current_change + "_indicator")).length - 1) {     // Only when currently on the last indicator of a change type:
-
-                    // Change the value of "current_change" to be that of "next_change"
-                    current_change = next_change;
-
-                    // Re-compute values of "previous_change" and "next_change" based on the new value of "current_change"
-                    if (current_change == "improving") {            // If cycling through "improving" indicators:
-                        next_change = "no_change";                      // Move to "no change" indicators after clicking Next on the last "improving" indicator
-                        previous_change = "worsening";                  // Move to "worsening" indicators after clicking Previous on the first "improving" indicator
-                    } else if (current_change == "no_change") {     // If cycling through "no change" indicators:
-                        next_change = "worsening";                      // Move to "worsening" indicators after clicking Next on the last "no change" indicator
-                        previous_change = "improving";                  // Move to "improving" indicators after clicking Previous on the first "no change" indicator
-                    } else if (current_change == "worsening") {     // If cycling through "worsening" indicators:
-                        next_change = "improving";                      // Move to "improving" indicators after clicking Next on the last "worsening" indicator
-                        previous_change = "no_change";                  // Move to "no change" indicators after clicking Previous on the first "worsening" indicator
-                    }
-
-                    // Update "current_index" to be the first value in the new "current_change" type
-                    current_index = -1;
-
-                }
-
-                var next_indicator_name = Object.keys(eval(current_change + "_indicator"))[current_index + 1];  // Derive name of next indicator
-                var next_domain_name = eval(current_change + "_indicator")[next_indicator_name].domain;         // Derive name of next domain
-
-                // Run generateIndicatorPage() function (see above) for next_indicator_name
-                generateIndicatorPage(next_domain_name, next_indicator_name);
-
-                // Update the current_index counter to one more than its current value
-                current_index = current_index + 1;
-
-                // The button text and icon are generated (as either the previous indicator within that change type or the last indicator within the previous change type)
-                if (current_index != 0) {
-                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index - 1] +'</strong>';
-                } else {
-                    previous_btn_3.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(eval(previous_change + "_indicator"))[Object.keys(eval(previous_change + "_indicator")).length - 1] +'</strong>';
-                }
-
-                // The button text and icon are generated (as either the next indicator within that change type or the first indicator within the next change type)
-                if (current_index != Object.keys(eval(current_change + "_indicator")).length - 1) {
-                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(current_change + "_indicator"))[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
-                } else {
-                    next_btn_3.innerHTML = 'Next indicator: <strong>' + Object.keys(eval(next_change + "_indicator"))[0] +'</strong> <i class="fa-solid fa-forward"></i> ';
-                }
-
-            }               
-
-        }
+        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row
 
     }
 
@@ -1022,76 +469,290 @@ plotOverallHexes("improving");
 plotOverallHexes("no_change");
 plotOverallHexes("worsening");
 
-// Top menu navigation:
-for (let i = 0; i < top_menu_items.length; i++) {
-    // Create a function for each top menu item
-    top_menu_items[i].onclick = function() {
+// Use the list of Domains to create the items inside the first Maps dropdown menu
+for (let i = 0; i < domains.length; i ++) {
 
-        // Hides the indicators screen
-        indicator_scrn.style.display = "none";
+    // List of indicators inside each domain
+    indicators = Object.keys(domains_data[domains[i]].indicators);
 
-        for (let j = 0; j < top_menu_items.length; j++) {
+    // Check that at least one indicator inside the domain has geo data (ie, AA or LGD data)
+    var has_geo_data = false;   // First set value "has_geo_data" to false
 
-            // the id of the clicked menu item
-            var clicked_id = document.getElementById(top_menu_items[j].id);            
+    for (let j = 0; j < indicators.length; j ++) {  // Then loop through indicators
 
-            // Switch view to screen relating to clicked item
-            if (document.getElementById(top_menu_items[i].id) == clicked_id) {
+        data = domains_data[domains[i]].indicators[indicators[j]].data; // The data object for that indicator
 
-                // Extra steps for domain screen when indicator screen is foreground
-                if (top_menu_items[i].id == "domains-btn") {
-                    domains_scrn.getElementsByTagName("h2")[0].style.display = "block"; // Show the title
-                    domain_info_container.style.display = "none";       // Hide the domain info
-                    domains_grid_container.style.display = "block";     // Show the domains grid
-                    click_to_see.style.display = "block";               // Show click to see text
-                    domains_intro.style.display = "block";              // Show the domains intro
-                    indicator_intro.style.display = "none";             // Hide the indicator intro
-                }
-
-                // Updates highlighted item in menu and brings relevant screen to foreground
-                clicked_id.classList.add("selected-item");                                          
-                clicked_id.firstChild.classList.add("selected-icon");
-                document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "block";
-
-            } else {
-                // Hides all other screens that don't match the one clicked
-                clicked_id.classList.remove("selected-item");
-                clicked_id.firstChild.classList.remove("selected-icon");
-                document.getElementById(clicked_id.id.replace("btn", "scrn")).style.display = "none";
-            }
-
-        }
-        
-        // Run the function to draw a map
-        drawMap();
-
-        // Hide expanded further info if navigating from indicator page
-        for (let i = 0; i < further_infos.length; i++) {
-            further_infos[i].removeAttribute("style");
-            further_infos[i].classList.remove("further-selected");
+        if (data.AA != "" || data.LGD != "") {
+            has_geo_data = true;    // If LGD or AA data are found "has_geo_data" is set to true
+            break;                  // Loop stops iterating
         }
 
-        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand"
-        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");
-        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");
-
-        // Remove any navigation buttons:
-        while (back_button_container.firstChild) {
-            back_button_container.removeChild(back_button_container.firstChild);
-        }
-
-        for (let i = 0; i < button_rows.length; i ++) {
-            button_rows[i].style.display = "none";
-        } 
-
-        // Re-draw overall hexagon grid (see function below)
-        plotOverallHexes("improving");
-        plotOverallHexes("no_change");
-        plotOverallHexes("worsening");
-
-    }   
+    }
+                
+    if (has_geo_data == true) {                     // When there is geographical data for any indicator in this domain:
+        option = document.createElement("option");      // Create an "option" element
+        option.value = domains[i];                      // Set the value of the option to the Domain name
+        option.innerHTML = domains[i];                  // Set the text label of the option to the Domain name
+        map_select_1.appendChild(option);               // Add the option to the first dropdown menu on Maps screen
+    }
 
 }
+
+// Top menu navigation:
+var currentURL = window.location.href;
+
+if (!currentURL.includes("?")) {
+    loading_img.style.display = "none";
+    domains_scrn.style.display = "block"
+}
+
+if (currentURL.includes("?tab=")) {
+
+    currentTab = currentURL.slice(currentURL.indexOf("?tab=") + "?tab=".length);
+
+    for (let i = 0; i < top_menu_items.length; i++) {        
+        
+        if (top_menu_items[i].id.includes(currentTab)) {
+            document.getElementById(currentTab + "-btn").classList.add("selected-item");
+            document.getElementById(currentTab + "-btn").firstChild.classList.add("selected-icon");
+            document.getElementById(top_menu_items[i].id.replace("btn", "scrn")).style.display = "block";
+        } else {
+            document.getElementById(top_menu_items[i].id.replace("btn", "scrn")).style.display = "none";
+            top_menu_items[i].classList.remove("selected-item");
+            top_menu_items[i].firstChild.classList.remove("selected-icon");
+        }
+
+        if (currentTab == "maps") {
+            updateMapSelect2();
+            updateMapSelect3();
+            drawMap();
+            loading_img.style.display = "none";
+            maps_scrn.style.display = "block"
+        } else if (currentTab == "overall") {
+
+            indicatorPerformance();
+           
+            
+        } else {
+            loading_img.style.display = "none";
+        }
+
+    }
+
+}
+
+// Page navigation when a domain hexagon is clicked:
+if (currentURL.includes("?domain=")) {
+
+    currentDomain = currentURL.slice(currentURL.indexOf("?domain=") + "?domain=".length);
+    var lookUpDomain = "";
+
+    for (let i = 0; i < domains.length; i ++) {
+        if (currentDomain == domains[i].toLowerCase().replace(" ", "+")) {
+            lookUpDomain = domains[i]
+        }
+    }
+
+    // List of indicators for selected domain
+    indicators = Object.keys(domains_data[lookUpDomain].indicators);
+
+    // Loop through each indicator and run create line chart
+    for (let j = 0; j < indicators.length; j++) {
+        createLineChart(lookUpDomain, indicators[j])
+    }
+
+    // Hide domains grid and display indicators
+    domains_title.style.display = "none";   // Hide the "domains-title" div
+    domain_info.style.display = "flex";     // Show the "domain-info" div
+    domains_grid_container.style.display = "none";  // Hide the domains grid
+    click_to_see.style.display = "none";        // Hide the "click-to-see" div
+    domains_intro.style.display = "none";       // Hide the "domains-intro" div
+    indicator_intro.style.display = "block";    // Show the "indicator-intro" div
+
+    var domain_name = lookUpDomain;    // Obtain domain name from hexagon text
+
+    clicked_hex.innerHTML = domain_name.replace(" ", " <br>");    // Update text inside "clicked-hex"
+    domain_name_text.textContent = domain_name;     // Update "domain-name-text" inside intro paragraph
+
+    clicked_desc.innerHTML = domains_data[domain_name].description; // Update description of domain
+
+    generateHexagons(lookUpDomain);
+
+    for (let i = 0; i < button_rows.length; i ++) {
+        button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
+    }
+
+    // The "Previous Domain" and "Next Domain" buttons:
+    var current_index = domains.indexOf(lookUpDomain);  // A numeric counter of the Domain currently on view
+
+    // Generate "see Previous domain" button
+    // The button text and icon are generated (except when the first Domain is clicked)
+    
+
+    if (current_index != 0) {
+        previous_btn = document.createElement("button");   // Div for previous domain button
+        previous_btn.id = "previous-domain";            // Given the id "previous-domain"
+        previous_btn.classList.add("nav-btn");          // Given the class "nav-btn"
+        previous_btn.name = "domain";
+        previous_btn.value = domains[current_index - 1].toLowerCase();
+        previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
+        button_left.appendChild(previous_btn);  // Button is added to div "button-left"
+    }
+
+
+
+    // Generate "see Next domain" button   
+    // The button text and icon are generated (except when the last Domain is clicked)
+    if (current_index != hexagons.length - 1) {
+        next_btn = document.createElement("button");       // Div for next domain button
+        next_btn.id = "next-domain";                    // Given the id "next-domain"
+        next_btn.classList.add("nav-btn");              // Given the class "nav-btn"
+        next_btn.name = "domain";        
+        next_btn.value = domains[current_index + 1].toLowerCase();
+        next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
+        button_right.appendChild(next_btn);   // Button is added to div "button-right"
+    }
+    
+}
+
+// Page navigation when indicator is clicked
+if (currentURL.includes("?indicator=")) {
+
+    currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
+
+    lookUpIndicator = "";
+    for (let i = 0; i < all_indicators.length; i ++) {
+        if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
+            lookUpIndicator = all_indicators[i]
+        }
+    }
+
+    lookUpDomain = "";
+    for (let i = 0; i < domains.length; i ++) {
+        
+        indicators = Object.keys(domains_data[domains[i]].indicators);
+
+        if (indicators.includes(lookUpIndicator)) {
+            lookUpDomain = domains[i];
+        }
+
+    }
+
+    domains_scrn.style.display = "none";    // Hide Domains screen
+    indicator_scrn.style.display = "block"; // Show the Indicator screen
+
+    createLineChart(lookUpDomain, lookUpIndicator);
+    generateIndicatorPage(lookUpDomain, lookUpIndicator);
+
+    for (let i = 0; i < button_rows.length; i ++) {
+        button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
+    }
+
+    // The "Previous Indicator" and "Next Indicator" buttons:
+    current_index = Object.keys(domains_data[lookUpDomain].indicators).indexOf(lookUpIndicator);  // A numeric index of the indicator currently in view
+
+    // "Previous indicator" button
+    // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
+    if (current_index != 0) {
+        previous_btn_2 = document.createElement("button");     // Div for previous indicator button
+        previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
+        previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        previous_btn_2.name = "indicator";
+        previous_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1] +'</strong>';
+        button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
+    }    
+
+    // "Next indicator" button   
+    // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
+    if (current_index != Object.keys(domains_data[lookUpDomain].indicators).length - 1) {
+        next_btn_2 = document.createElement("button");     // Div for next indicator button
+        next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
+        next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        next_btn_2.name = "indicator";
+        next_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        next_btn_2.innerHTML = 'Next indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+        button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
+    }
+
+}
+
+// Page navigation when indicator is clicked
+if (currentURL.includes("?oindicator=")) {
+
+    currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);
+
+    domains_btn.classList.remove("selected-item");
+    domains_btn.firstChild.classList.remove("selected-icon");
+    overall_btn.classList.add("selected-item");
+    overall_btn.firstChild.classList.add("selected-icon");
+
+    lookUpIndicator = "";
+    for (let i = 0; i < all_indicators.length; i ++) {
+        if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
+            lookUpIndicator = all_indicators[i]
+        }
+    }
+
+    lookUpDomain = "";
+    for (let i = 0; i < domains.length; i ++) {
+        
+        indicators = Object.keys(domains_data[domains[i]].indicators);
+
+        if (indicators.includes(lookUpIndicator)) {
+            lookUpDomain = domains[i];
+        }
+
+    }  
+
+    domains_scrn.style.display = "none";    // Hide Domains screen
+    indicator_scrn.style.display = "block"; // Show the Indicator screen
+
+    // indicatorPerformance();
+    
+    improving_indicator = sortObject(improving_indicator);
+    worsening_indicator = sortObject(worsening_indicator);
+    no_change_indicator = sortObject(no_change_indicator); 
+
+    createLineChart(lookUpDomain, lookUpIndicator);
+    generateIndicatorPage(lookUpDomain, lookUpIndicator);
+
+    console.log(change_info);
+
+    for (let i = 0; i < button_rows.length; i ++) {
+        button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
+    }
+
+    // The "Previous Indicator" and "Next Indicator" buttons:
+    current_index = Object.keys(domains_data[lookUpDomain].indicators).indexOf(lookUpIndicator);  // A numeric index of the indicator currently in view
+
+    // "Previous indicator" button
+    // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
+    if (current_index != 0) {
+        previous_btn_2 = document.createElement("button");     // Div for previous indicator button
+        previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
+        previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        previous_btn_2.name = "oindicator";
+        previous_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1] +'</strong>';
+        button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
+    }    
+
+    // "Next indicator" button   
+    // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
+    if (current_index != Object.keys(domains_data[lookUpDomain].indicators).length - 1) {
+        next_btn_2 = document.createElement("button");     // Div for next indicator button
+        next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
+        next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        next_btn_2.name = "oindicator";
+        next_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        next_btn_2.innerHTML = 'Next indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+        button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
+    }
+
+}
+
+
 
 // Activate search bar:
 // Function adapted from one found on https://www.w3schools.com/howto/howto_css_searchbar.asp
@@ -1246,34 +907,7 @@ window.onresize = function() {
     plotOverallHexes("worsening");  // Re-plot worsening hexagons Overall screen (see above)
 }
 
-// Use the list of Domains to create the items inside the first Maps dropdown menu
-for (let i = 0; i < domains.length; i ++) {
 
-    // List of indicators inside each domain
-    indicators = Object.keys(domains_data[domains[i]].indicators);
-
-    // Check that at least one indicator inside the domain has geo data (ie, AA or LGD data)
-    var has_geo_data = false;   // First set value "has_geo_data" to false
-
-    for (let j = 0; j < indicators.length; j ++) {  // Then loop through indicators
-
-        data = domains_data[domains[i]].indicators[indicators[j]].data; // The data object for that indicator
-
-        if (data.AA != "" || data.LGD != "") {
-            has_geo_data = true;    // If LGD or AA data are found "has_geo_data" is set to true
-            break;                  // Loop stops iterating
-        }
-
-    }
-                
-    if (has_geo_data == true) {                     // When there is geographical data for any indicator in this domain:
-        option = document.createElement("option");      // Create an "option" element
-        option.value = domains[i];                      // Set the value of the option to the Domain name
-        option.innerHTML = domains[i];                  // Set the text label of the option to the Domain name
-        map_select_1.appendChild(option);               // Add the option to the first dropdown menu on Maps screen
-    }
-
-}
 
 // This function updates the second dropdown menu on the maps screen based on what has been selected by the user in the first dropdown menu
 function updateMapSelect2() {

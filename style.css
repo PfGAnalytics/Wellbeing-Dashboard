@@ -53,6 +53,8 @@ h1 {
     font-size: 14pt;
     cursor: pointer;
     border-radius: 25px;
+    border-width: 0px;
+    background-color: #008675;
 }
 
 .top-menu-item:hover {
@@ -177,6 +179,8 @@ h3 {
     color: #ffffff;
     position: relative;
     cursor: pointer;
+    padding: 0px;
+    border: 0px;
   }
 
   .hex .hex-inner {
@@ -241,6 +245,14 @@ h3 {
    text-align: center;
    text-align: center;
    cursor: pointer;
+   border: 0px;
+   padding: 0px;
+   background-color: #ffffff00;
+}
+
+button:focus {
+    outline: none;
+    border: none
 }
 
 .ind-hex-container:hover {
@@ -533,7 +545,7 @@ footer {
 
 #line-chart-container {
     width: 750px;
-    height: 100%;
+    height: 553px;
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -715,6 +727,9 @@ footer a:hover {
     cursor: pointer;
     border-radius: 25px;
     width: fit-content;
+    background-color: #69729B;
+    border: 0px;
+    color: #ffffff;
 }
 
 #forward-btn {
