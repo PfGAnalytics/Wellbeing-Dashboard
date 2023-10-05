@@ -36,20 +36,22 @@
         <div id = "top-menu" class = "row">
             <img id = "top-menu-exec-logo" src = "img/Northern_Ireland_Executive_logo.svg" alt = "Northern Ireland Executive logo">
             <div id = "dashboard-title"><h1>PfG Wellbeing Framework</h1></div>
-            <form id = "top-menu-items" class = "row" action = "" autocomplete = "off">
-                <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
-                <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
-                <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
-                <button id = "help-btn" class = "top-menu-item" name = "tab" value = "help"><i class="fa-regular fa-address-book"></i></i> User Guide</button>
-                <div id = "search-bar">
+            <div>
+                <form id = "top-menu-items" class = "row" action = "" autocomplete = "off">
+                    <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
+                    <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
+                    <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
+                    <button id = "help-btn" class = "top-menu-item" name = "tab" value = "help"><i class="fa-regular fa-address-book"></i></i> User Guide</button>
+                </form>
+                <form id = "search-bar">
                     <div id = "search-box">
                         <div class="autocomplete" style="width: 400px;">
                         <input id="search-text" type="text" name = "indicator" placeholder="Search by indicator name">
                         </div>
                         <button type = "submit" id = "search-btn" class = "btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>    
 
@@ -181,7 +183,7 @@
                             <strong>Impact of Covid-19</strong>
                             <p>The collection method for this indicator changed due to Covid-19</p>
                         </div>
-                        <div id = "map-link"></div>
+                        <form id = "map-link"></form>
                     </div>
                 </div>
                 <div class = "row" style = "margin-top: 20px;">
@@ -198,11 +200,11 @@
                 <h2>Mapping the indicators</h2>
                 <form id = "map-form">
                     <label for="map-select-1">Domain:</label>
-                    <select name = "map-select-1" id = "map-select-1"></select>
+                    <select id = "map-select-1"></select>
                     <label for="map-select-2" id = "map-label-2">Indicator:</label>
-                    <select name = "map-select-2" id = "map-select-2"></select>
+                    <select id = "map-select-2"></select>
                     <label for="map-select-3" id = "map-label-3">Geography:</label>
-                    <select name = "map-select-3" id = "map-select-3"></select>
+                    <select name = "map" id = "map-select-3"></select>
                 </form>
                 <form>
                     <div class = "row">
@@ -232,7 +234,11 @@
                             <strong>Impact of Covid-19</strong>
                             <p>The collection method for this indicator changed due to Covid-19</p>
                         </div>
-                        <div id = "chart-link"><i class = "fas fa-chart-line"></i> See trend data for this indicator<br>at Northern Ireland level</div>
+                        <form style = "margin-top: 15px; display: flex; justify-content: center;">
+                            <button id = "chart-link" name = "indicator">
+                                <i class = "fas fa-chart-line"></i> See trend data for this indicator<br>at Northern Ireland level
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class = "row" style = "margin-top: 20px;">

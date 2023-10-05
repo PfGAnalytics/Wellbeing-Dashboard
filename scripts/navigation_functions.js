@@ -149,53 +149,26 @@ function generateIndicatorPage(d, e) {
     // When AA data is present generate a link to it
     if (data.AA != "") {
 
-        AA_link = document.createElement("div");    // new div element for AA link
+        AA_link = document.createElement("button");    // new button element for AA link
         AA_link.id = "AA-link";                     // Given id "AA-link"
         AA_link.innerHTML = "<img id = 'assembly-logo' src = 'img/NI_Assembly.svg' alt = 'Northern Ireland Assembly logo'>Assembly Area";  // Add text and icon
-        map_link.appendChild(AA_link);      // Add link to "map-link" div
-
-        AA_link.onclick = function () {
-            jumpToMap("AA");   // Function to execute when link is clicked (see below)
-        }
+        AA_link.name = "map";
+        AA_link.value = data.AA;
+        map_link.appendChild(AA_link);      // Add link to "map-link" button
 
     }
 
     // When LGD data is present generate a link to it
     if (data.LGD != "") {
 
-        LGD_link = document.createElement("div"); // new div element for LGD link
+        LGD_link = document.createElement("button"); // new button element for LGD link
         LGD_link.id = "LGD-link";                 // Given id "AA-link"
         LGD_link.innerHTML = "<img id = 'council-logo' src = 'img/Northern_Ireland_outline.svg' alt = 'Northern Ireland outline icon'>Local Government District";  // Add text and icon
+        LGD_link.name = "map";
+        LGD_link.value = data.LGD;
         map_link.appendChild(LGD_link);      // Add link to "map-link" div
 
-        LGD_link.onclick = function () {
-            jumpToMap("LGD");       // Function to execute when link is clicked (see below)
-        }
-
-    }
-
-    // Function to execute when either LGD or AA link is clicked
-    function jumpToMap(geography) {
-
-        indicator_scrn.style.display = "none";  // Hide indicator screen
-        maps_scrn.style.display = "block";      // Display maps screen
-
-        domains_btn.classList.remove("selected-item");  // Update domains button display
-        overall_btn.classList.remove("selected-item");  // Update overall button display
-        maps_btn.classList.add("selected-item");        // Update maps button display
-
-        domains_btn.firstChild.classList.remove("selected-icon");   // Update domains button icon display
-        overall_btn.firstChild.classList.remove("selected-icon");   // Update overall button icon display
-        maps_btn.firstChild.classList.add("selected-icon");         // Update maps button icon display
-
-        map_select_1.value = d;     // Select the domain "d" in the first dropdown menu on maps screen
-        updateMapSelect2();         // Run updateMapSelect2() funciton (see below) to update the items in second dropdown menu
-        map_select_2.value = e;     // Select the indicator "e" in the second dropdown menu on maps screen
-        updateMapSelect3();         // Run updateMapSelect3() funciton (see below) to update the items in third dropdown menu
-        map_select_3.value = data[geography];   // Select AA or LGD map in third menu
-        drawMap();                  // Run the drawMap() function (see "data_functions.js") based on selections
-
-    }    
+    }  
 
 }
 
@@ -477,11 +450,11 @@ if (currentURL.includes("tab=")) {
         }
 
         if (currentTab == "maps") {
-            updateMapSelect2();
-            updateMapSelect3();
-            drawMap();
             loading_img.style.display = "none";
-            maps_scrn.style.display = "block"
+            maps_scrn.style.display = "block";
+
+            updateMapSelect2();         // Update list of options inside second map drop down menu
+            updateMapSelect3();         // Update list of options inside third map drop down menu
         } else if (currentTab == "overall") {
 
             indicatorPerformance();
@@ -661,7 +634,6 @@ if (currentURL.includes("?oindicator=")) {
 
     domains_scrn.style.display = "none";    // Hide Domains screen
     loading_img_2.style.display = "flex";
-    // indicator_scrn.style.display = "block"; // Show the Indicator screen
 
     indicatorPerformance();
     createLineChart(lookUpDomain, lookUpIndicator);
@@ -669,6 +641,44 @@ if (currentURL.includes("?oindicator=")) {
 
 }
 
+if (currentURL.includes("map=")) {
+
+    currentMap = currentURL.slice(currentURL.indexOf("map=") + "map=".length);
+
+    domains_scrn.style.display = "none";
+    maps_scrn.style.display = "block";
+
+    // Find the domain and indicator name
+    for (let i = 0; i < domains.length; i ++) {
+
+        indicators = Object.keys(domains_data[domains[i]].indicators);
+
+        for (let j = 0; j < indicators.length; j ++) {
+
+            AA_data = domains_data[domains[i]].indicators[indicators[j]].data.AA;
+            LGD_data = domains_data[domains[i]].indicators[indicators[j]].data.LGD;
+
+            if (currentMap == AA_data && AA_data != "") {
+                currentDomain = domains[i];
+                currentIndicator = indicators[j];
+                break;
+            } else if (currentMap == LGD_data && LGD_data != "") {
+                currentDomain = domains[i];
+                currentIndicator = indicators[j];
+                break;
+            }
+            
+        }
+    }
+
+    map_select_1.value = currentDomain;
+    updateMapSelect2();
+    updateMapSelect3();
+    map_select_2.value = currentIndicator;
+    updateMapSelect3();
+    map_select_3.value = currentMap;
+
+}
 
 
 // Activate search bar:
@@ -811,8 +821,7 @@ window.onload = function() {
     showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
     sizeForMobile();            // Resize and re-position page elements (see below)
     mainContainerHeight();      // See above
-    updateMapSelect2();         // Update list of options inside second map drop down menu
-    updateMapSelect3();         // Update list of options inside third map drop down menu
+    drawMap();
 };
 
 // Execute the following functions anytime the window is resized:
@@ -904,28 +913,19 @@ function updateMapSelect3() {
 map_select_1.onchange =  function() {
     updateMapSelect2();     // Update options in second dropdown (see above)
     updateMapSelect3();     // Update options in third dropdown (see above)
-    drawMap();              // Draw the map based on current selections (see data_functions.js)
+    map_form.submit();
 }
 
 // When there is any change to the second dropdown menu on the maps screen run the following functions:
 map_select_2.onchange = function() {
     updateMapSelect3();     // Update options in third dropdown (see above)
-    drawMap();              // Draw the map based on current selections (see data_functions.js)
+    map_form.submit();
 }
 
 // When there is any change to the third dropdown menu on the maps screen run the following functions:
 map_select_3.onchange = function() {
-
-    drawMap();      // Draw the map based on current selections (see data_functions.js)
-
-    // If the further info has been expanded when looking at the lsat map then collapse it again:
-    further_info_map.removeAttribute("style");  // Remove style attributes
-    further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand"; // Change text back to "click to expand"
-    further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");         // remove minus sign icon   
-    further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");             // add plus sign icon
+    map_form.submit()
 }
-
-
 
 // Resizing for mobile
 function sizeForMobile() {
@@ -1074,14 +1074,7 @@ for (let i = 0; i < user_guide_link.length; i ++) {
 // The link to the Indicator page on map screen:
 chart_link.onclick = function() {
 
-    maps_scrn.style.display = "none";       // Hide maps screen
-    indicator_scrn.style.display = "block"; // Show indicators screen
-
-    maps_btn.classList.remove("selected-item");     // Remove highlight from maps button
-    maps_btn.firstChild.classList.remove("selected-icon");  // Remove hightlight from maps icon
-    
-    overall_btn.classList.add("selected-item");             // Add highlight to overall button
-    overall_btn.firstChild.classList.add("selected-icon");  // Add highlight to overall icon
+    chart_link.value = map_select_2.value.replace(/[^a-z ]/gi, '').toLowerCase();
 
 }
 
