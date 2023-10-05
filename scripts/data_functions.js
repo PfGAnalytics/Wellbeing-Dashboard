@@ -1119,7 +1119,8 @@ async function drawMap() {
       }
 
       if (map_select_2.value == "") {
-       location.reload()  
+       location.reload();
+       return;
       }
 
       // Colour palettes for increasing/decreasing indicators
