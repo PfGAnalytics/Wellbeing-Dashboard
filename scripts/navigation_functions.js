@@ -658,7 +658,7 @@ if (currentURL.includes("map=")) {
     map_select_3.value = currentMap;
 
     setTimeout(function() {
-        if (map_select_3.value == "") {
+        if (map_select_3.value != currentMap) {
             location.reload();
         }
     }, 1)
