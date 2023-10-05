@@ -144,6 +144,8 @@ function generateIndicatorPage(d, e) {
 
         map_link.appendChild(see_maps);                         // Add this div to the div "map-link"
 
+    } else {
+        map_link.style.display = "none"
     }
 
     // When AA data is present generate a link to it
@@ -168,7 +170,7 @@ function generateIndicatorPage(d, e) {
         LGD_link.value = data.LGD;
         map_link.appendChild(LGD_link);      // Add link to "map-link" div
 
-    }  
+    }
 
 }
 
@@ -380,17 +382,6 @@ function writeDataInfo(d) {
     return data_info_text;
 
 }
-
-
-// Sort each of the three change type objects alphabetically:
-improving_indicator = sortObject(improving_indicator);
-worsening_indicator = sortObject(worsening_indicator);
-no_change_indicator = sortObject(no_change_indicator); 
-
-// Run plotOverallHexes() function (see above) on all three change types
-plotOverallHexes("improving");
-plotOverallHexes("no_change");
-plotOverallHexes("worsening");
 
 // Use the list of Domains to create the items inside the first Maps dropdown menu
 for (let i = 0; i < domains.length; i ++) {
@@ -1087,17 +1078,20 @@ chart_link.onclick = function() {
 search_btn.onclick = function () {
 
     // Run search when value in search bar matches one of the indicator names
-    if (all_indicators.includes(search_text.value)) {
+    if (!all_indicators.includes(search_text.value) || search_text.value == "") {
 
-        search_text.value = search_text.value.replace(/[^a-z ]/gi, '').toLowerCase();
-
-    } else {
         // If indicator not found inform user inside search bar
         search_text.value = "";
         search_text.placeholder = "Not a valid indicator name";
         search_box.removeAttribute("style");
         search_box.style.animation = "shake 0.5s";
         search_box.style.animationIterationCount =  "one";
+
+        
+
+    } else {
+        search_text.value = search_text.value.replace(/[^a-z ]/gi, '').toLowerCase();
+        search_bar.submit()
     } 
 
 }
