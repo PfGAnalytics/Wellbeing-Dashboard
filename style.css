@@ -394,7 +394,7 @@ button:focus {
     margin-top: 20px
 }
 
-#loading-img {
+#loading-img, #loading-img-2 {
     display: flex;
     align-items: center;
     justify-content: center;

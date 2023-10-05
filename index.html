@@ -44,9 +44,9 @@
                 <div id = "search-bar">
                     <div id = "search-box">
                         <div class="autocomplete" style="width: 400px;">
-                        <input id="search-text" type="text" placeholder="Search by indicator name">
+                        <input id="search-text" type="text" name = "indicator" placeholder="Search by indicator name">
                         </div>
-                        <button type = "button" id = "search-btn" class = "btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button type = "submit" id = "search-btn" class = "btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
             </form>
@@ -149,6 +149,10 @@
                     <p style = "font-size: 12pt;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">User Guide</span>.</p>
                 <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
                 </div>
+            </div>
+
+            <div id = "loading-img-2" style = "display: none">
+                <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
             </div>
 
             <div id = "indicator-scrn" class = "screen" style = "display:none;">

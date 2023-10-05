@@ -49,7 +49,7 @@ var improving_indicator = {};
 var no_change_indicator = {};
 var worsening_indicator = {};
 
-async function indicatorPerformance () {   
+async function indicatorPerformance (ind = null) {   
 
    for (let i = 0; i < domains.length; i ++) {
 
@@ -146,6 +146,9 @@ async function indicatorPerformance () {
          };
 
          if (i == domains.length - 1 && j == indicators.length - 1) {
+            improving_indicator = sortObject(improving_indicator);
+            no_change_indicator = sortObject(no_change_indicator);
+            worsening_indicator = sortObject(worsening_indicator);
             plotOverallHexes("improving");
             plotOverallHexes("no_change");
             plotOverallHexes("worsening");
@@ -154,6 +157,55 @@ async function indicatorPerformance () {
          }
 
       }
+
+   }
+
+   var currentURL = window.location.href;
+
+   if (currentURL.includes("?oindicator=")) {
+      currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);
+
+      lookUpIndicator = "";
+      for (let i = 0; i < all_indicators.length; i ++) {
+         if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
+               lookUpIndicator = all_indicators[i]
+         }
+      }
+      
+      overall_sorted = [Object.keys(improving_indicator), Object.keys(no_change_indicator), Object.keys(worsening_indicator)].flat();
+
+      current_index = overall_sorted.indexOf(lookUpIndicator);
+
+      // "Previous indicator" button
+      // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
+    if (current_index != 0) {
+        previous_btn_2 = document.createElement("button");     // Div for previous indicator button
+        previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
+        previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        previous_btn_2.name = "oindicator";
+        previous_btn_2.value = overall_sorted[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + overall_sorted[current_index - 1] +'</strong>';
+        button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
+    }
+    
+    // "Next indicator" button   
+    // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
+    if (current_index != Object.keys(domains_data[lookUpDomain].indicators).length - 1) {
+        next_btn_2 = document.createElement("button");     // Div for next indicator button
+        next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
+        next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        next_btn_2.name = "oindicator";
+        next_btn_2.value = overall_sorted[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        next_btn_2.innerHTML = 'Next indicator: <strong>' + overall_sorted[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+        button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
+    }
+
+    for (let i = 0; i < button_rows.length; i ++) {
+      button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
+    }
+
+    document.getElementById("loading-img-2").style.display = "none";
+    document.getElementById("indicator-scrn").style.display = "block"
 
    }
 

@@ -72,6 +72,7 @@ var framework_structure = document.getElementById("framework-structure");
 var overall_labels = document.getElementsByClassName("overall-label");
 var change_info = document.getElementById("change-info");
 var loading_img = document.getElementById("loading-img");
+var loading_img_2 = document.getElementById("loading-img-2");
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -194,58 +195,7 @@ function generateIndicatorPage(d, e) {
         map_select_3.value = data[geography];   // Select AA or LGD map in third menu
         drawMap();                  // Run the drawMap() function (see "data_functions.js") based on selections
 
-        // Hide the "next indicator" and "previous indicator" buttons
-        button_container.style.display = "none";
-        
-        // Hide the existing back button
-        back_buttons = back_button_container.getElementsByTagName("div");
-        for (let i = 0; i < back_buttons.length; i ++) {
-            back_buttons[i].style.display = "none";
-        }
-
-        // Create a new back button that will direct user back to indicator screen they were on before clicking the map link
-        back_btn_4 = document.createElement("div");     // new div for back button
-        back_btn_4.id = "back-btn-4";           // id for new back button
-        back_btn_4.classList.add("nav-btn");    // "nav-btn" class applied
-        back_btn_4.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>'+ e +'</strong> indicator'; // Icon and text on button
-
-        back_button_container.appendChild(back_btn_4);  // Back button inserted into "back-button-container"
-
-        // Function to execute when "back-btn-4" is clicked
-        back_btn_4.onclick = function() {
-
-            maps_scrn.style.display = "none";   // Hide map screen
-            indicator_scrn.style.display = "block"; // Display indicator screen
-
-            maps_btn.classList.remove("selected-item");     // Change display of maps button
-            maps_btn.firstChild.classList.remove("selected-icon");  // Change display of maps button icon
-
-            button_container.style.display = "flex";    // Show "next" and "previous" buttons again
-
-            if (document.getElementById("back-btn-4")) {
-                back_button_container.removeChild(back_btn_4);  // Remove "back-btn-4"
-            }
-
-            if (back_button_container.firstChild.id == "back-btn") {    // if user was viewing indicator via Domains page do following:
-                
-                domains_btn.classList.add("selected-item");         // Change display of domains button
-                domains_btn.firstChild.classList.add("selected-icon");  // Change display of domains button icon
-
-                back_btn_2.style.display = "block";     // Show back button that directs user "Back to Domains grid"
-
-            } else if (back_button_container.firstChild.id == "back-btn-3") { // if user was viewing indicator via Overall page do following:
-                
-                overall_btn.classList.add("selected-item");             // Change display of overall button
-                overall_btn.firstChild.classList.add("selected-icon");  // Change display of overall button icon
-
-                back_btn_3.style.display = "block";     // Show back button that directs user "Back to Overall grid"
-
-            }
-        }
-
-    }
-
-    
+    }    
 
 }
 
@@ -506,9 +456,13 @@ if (!currentURL.includes("?")) {
     domains_scrn.style.display = "block"
 }
 
-if (currentURL.includes("?tab=")) {
+if (currentURL.includes("tab=")) {
 
-    currentTab = currentURL.slice(currentURL.indexOf("?tab=") + "?tab=".length);
+    currentTab = currentURL.slice(currentURL.indexOf("tab=") + "tab=".length);
+    
+    if (currentTab.indexOf("&") > - 1) {
+        currentTab = currentTab.slice(0, currentTab.indexOf("&"))
+    }
 
     for (let i = 0; i < top_menu_items.length; i++) {        
         
@@ -706,49 +660,12 @@ if (currentURL.includes("?oindicator=")) {
     }  
 
     domains_scrn.style.display = "none";    // Hide Domains screen
-    indicator_scrn.style.display = "block"; // Show the Indicator screen
+    loading_img_2.style.display = "flex";
+    // indicator_scrn.style.display = "block"; // Show the Indicator screen
 
-    // indicatorPerformance();
-    
-    improving_indicator = sortObject(improving_indicator);
-    worsening_indicator = sortObject(worsening_indicator);
-    no_change_indicator = sortObject(no_change_indicator); 
-
+    indicatorPerformance();
     createLineChart(lookUpDomain, lookUpIndicator);
     generateIndicatorPage(lookUpDomain, lookUpIndicator);
-
-    console.log(change_info);
-
-    for (let i = 0; i < button_rows.length; i ++) {
-        button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
-    }
-
-    // The "Previous Indicator" and "Next Indicator" buttons:
-    current_index = Object.keys(domains_data[lookUpDomain].indicators).indexOf(lookUpIndicator);  // A numeric index of the indicator currently in view
-
-    // "Previous indicator" button
-    // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
-    if (current_index != 0) {
-        previous_btn_2 = document.createElement("button");     // Div for previous indicator button
-        previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
-        previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
-        previous_btn_2.name = "oindicator";
-        previous_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
-        previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1] +'</strong>';
-        button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
-    }    
-
-    // "Next indicator" button   
-    // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
-    if (current_index != Object.keys(domains_data[lookUpDomain].indicators).length - 1) {
-        next_btn_2 = document.createElement("button");     // Div for next indicator button
-        next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
-        next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
-        next_btn_2.name = "oindicator";
-        next_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
-        next_btn_2.innerHTML = 'Next indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
-        button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
-    }
 
 }
 
@@ -1166,69 +1083,6 @@ chart_link.onclick = function() {
     overall_btn.classList.add("selected-item");             // Add highlight to overall button
     overall_btn.firstChild.classList.add("selected-icon");  // Add highlight to overall icon
 
-    for (let i = 0; i < button_rows.length; i ++) {
-        button_rows[i].style.display = "flex";          // Show navigation button containers
-    }
-
-    buttons = document.getElementsByClassName("nav-btn");
-
-    for (let i = 0; i < buttons.length; i ++) {     
-        buttons[i].style.display = "none";       // Hide navigation buttons
-    }
-    
-    // Use the values in the first two dropdown menus to generate the indicator page
-    // See above for function
-    generateIndicatorPage(map_select_1.value, map_select_2.value); 
-
-    // Generate a back button to take user back to map:
-    back_btn_5 = document.createElement("div");     // Create a div for back button
-    back_btn_5.id = "back-btn-5";                   // Give div the id "back-btn-5"
-    back_btn_5.classList.add("nav-btn");            // Give it the class "nav-btn"
-    back_btn_5.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>'+ map_select_2.value +'</strong> map';      // Text and icon for button
-
-    if (document.getElementById("back-btn-3")) {
-        document.getElementById("back-btn-3").style.display = "block";      // If the back to Overall button already exists, show it again
-    } else {
-
-        // If back to Overall buttons 
-        back_btn_3 = document.createElement("div");     // Create a div for back button
-        back_btn_3.id = "back-btn-3";                   // Give the div id "back-btn-3"
-        back_btn_3.classList.add("nav-btn");            // Give it class "nav-btn"
-        back_btn_3.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';      // Text and icon for back button
-
-        back_button_container.appendChild(back_btn_3);  // Add it to back button container
-
-        // Function behind new "back to overall" button
-        back_btn_3.onclick = function () {
-
-            overall_btn.click() // Simulate clicking Overall button
-        
-        }
-
-    }
-
-    back_button_container.appendChild(back_btn_5);  // Add "back to map" button to back button container
-
-    // Function inside "back to map" button:
-    back_btn_5.onclick = function() {
-
-        document.getElementById("maps-scrn").style.display = "block";       // Show maps screen
-        document.getElementById("indicator-scrn").style.display = "none";   // Hide indicator screen
-
-        document.getElementById("maps-btn").classList.add("selected-item");             // Highlight maps button
-        document.getElementById("maps-btn").firstChild.classList.add("selected-icon");  // Highlight maps icon
-    
-        document.getElementById("overall-btn").classList.remove("selected-item");               // Remove highlight from Overall button
-        document.getElementById("overall-btn").firstChild.classList.remove("selected-icon");    // Remove highlight from Overall icon
-
-        back_button_container.removeChild(back_btn_5);      // Remove "back to map" button
-
-        for (let i = 0; i < button_rows.length; i ++) {
-            button_rows[i].style.display = "none";  // Hide all buttons
-        }
-
-    }
-
 }
 
 // Code to execute when someone clicks on search button
@@ -1237,123 +1091,7 @@ search_btn.onclick = function () {
     // Run search when value in search bar matches one of the indicator names
     if (all_indicators.includes(search_text.value)) {
 
-        // Hide any back buttons etc
-        for (let i = 0; i < nav_buttons.length; i ++) {
-            nav_buttons[i].style.display = "none";
-        }
-
-        // show container for buttons if currently hidden
-        for (let i = 0; i < button_rows.length; i ++) {
-            button_rows[i].style.display = "flex";
-        }
-
-        // Create a new back button
-        back_btn_6 = document.createElement("div");
-        back_btn_6.id = "back-btn-6";
-        back_btn_6.classList.add("nav-btn");
-        back_button_container.appendChild(back_btn_6);
-
-        // New back button directs user back to page they were on before searching:
-        if (indicator_scrn.style.display == "block") {
-
-            last_indicator = indicator_title.textContent;
-            last_domain = domain_title.textContent;
-
-            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + last_indicator + '</strong> indicator';
-
-            back_btn_6.onclick = function() {
-
-                generateIndicatorPage(last_domain, last_indicator)
-
-                back_button_container.removeChild(back_btn_6);
-
-                back_btn_2.style.display = "block";
-                previous_btn_2.style.display = "block";
-                next_btn_2.style.display = "block";                
-
-            }
-
-        } else if (domains_scrn.style.display == "block") {
-
-            if (domains_grid_container.style.display == "block") {
-                back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Domains</strong> grid';
-            } else {
-                back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + clicked_hex.textContent + '</strong> domain';
-            }
-
-            back_btn_6.onclick = function () {
-                indicator_scrn.style.display = "none";
-                domains_scrn.style.display = "block";
-
-                if (domains_grid_container.style.display == "block") {
-                    domains_btn.click() // Simulate clicking domains button
-                } else {
-                    back_btn.style.display = "block";
-                    previous_btn.style.display = "block";
-                    next_btn.style.display = "block";
-                }
-
-                back_button_container.removeChild(back_btn_6);
-            }
-
-        } else if (help_scrn.style.display == "block") {
-
-            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Help</strong> screen';
-
-            back_btn_6.onclick = function() {
-                indicator_scrn.style.display = "none";
-                help_scrn.style.display = "block";
-                back_button_container.removeChild(back_btn_6);
-            }
-
-        } else if (maps_scrn.style.display == "block") {
-
-            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>' + map_select_2.value + '</strong> map';
-
-            back_btn_6.onclick = function() {
-                indicator_scrn.style.display = "none";
-                maps_scrn.style.display = "block";
-                back_button_container.removeChild(back_btn_6);
-            }
-
-        } else if (overall_scrn.style.display == "block") {
-
-            back_btn_6.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to <strong>Overall</strong> grid';
-
-            back_btn_6.onclick = function() {
-                indicator_scrn.style.display = "none";
-                overall_scrn.style.display = "block";
-                back_button_container.removeChild(back_btn_6);
-
-                for (let i = 0; i < button_rows.length; i ++) {
-                    button_rows[i].style.display = "none";
-                }
-            }
-
-        }        
-
-        // Hide all screens except for indicator screen
-        domains_scrn.style.display = "none";
-        help_scrn.style.display = "none";
-        maps_scrn.style.display = "none";
-        overall_scrn.style.display = "none";
-        indicator_scrn.style.display = "block";
-    
-        // Obtain the domain name for the given indicator
-        for (let i = 0; i < domains.length; i ++) {
-            if (Object.keys(domains_data[domains[i]].indicators).includes(search_text.value)) {
-                search_domain = domains[i];
-                break;
-            };
-        }
-    
-        // Produce the indicator page
-        generateIndicatorPage(search_domain, search_text.value)
-
-        // Reset the text in search bar
-        search_text.value = "";
-        search_text.placeholder = "Search by indicator name";
-        search_box.removeAttribute("style");
+        search_text.value = search_text.value.replace(/[^a-z ]/gi, '').toLowerCase();
 
     } else {
         // If indicator not found inform user inside search bar
