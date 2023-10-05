@@ -643,6 +643,11 @@ if (currentURL.includes("?oindicator=")) {
 
 if (currentURL.includes("map=")) {
 
+    domains_btn.classList.remove("selected-item");
+    domains_btn.firstChild.classList.remove("selected-icon");
+    maps_btn.classList.add("selected-item");
+    maps_btn.firstChild.classList.add("selected-icon");
+
     currentMap = currentURL.slice(currentURL.indexOf("map=") + "map=".length);
 
     domains_scrn.style.display = "none";
