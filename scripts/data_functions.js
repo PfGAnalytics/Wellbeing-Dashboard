@@ -1094,7 +1094,7 @@ async function drawMap() {
       attributionControl: false,
       tap: false}).setView([54.65, -6.8], 8); // Set initial co-ordinates and zoom
 
-   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+   L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
    }).addTo(map); // Add a background map   
@@ -1116,6 +1116,10 @@ async function drawMap() {
       colours = [];
       for (let i = 0; i < selected_data.length; i++) {
          colours.push((selected_data[i] - range_min) / range);
+      }
+
+      if (map_select_2.value == "") {
+       location.reload()  
       }
 
       // Colour palettes for increasing/decreasing indicators
