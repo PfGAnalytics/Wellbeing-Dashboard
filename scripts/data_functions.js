@@ -49,15 +49,21 @@ var improving_indicator = {};
 var no_change_indicator = {};
 var worsening_indicator = {};
 
-async function indicatorPerformance (ind = null) {   
+async function indicatorPerformance (dom = null) {   
 
-   for (let i = 0; i < domains.length; i ++) {
+   if (dom != null) {
+      var doms = [dom];
+   } else {
+      var doms = domains;
+   }
 
-      var indicators = Object.keys(domains_data[domains[i]].indicators);
+   for (let i = 0; i < doms.length; i ++) {
+
+      var indicators = Object.keys(domains_data[doms[i]].indicators);
 
       for (let j = 0; j < indicators.length; j ++) {
 
-         var indicator = domains_data[domains[i]].indicators[indicators[j]];  // Select the information for the indicator from domains_data.js
+         var indicator = domains_data[doms[i]].indicators[indicators[j]];  // Select the information for the indicator from domains_data.js
 
          // In the first instance the function checks for NI data for the particular indicator,
          // then it checks for EQ and finally LGD data. The latter two api_url queries have filters that select only the NI data.
@@ -132,20 +138,20 @@ async function indicatorPerformance (ind = null) {
          change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
       
          if (current_year == indicator.base_year) {
-            no_change_indicator[indicators[j]] = {domain: domains[i]};
+            no_change_indicator[indicators[j]] = {domain: doms[i]};
             document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
          } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
-            improving_indicator[indicators[j]] = {domain: domains[i]};
+            improving_indicator[indicators[j]] = {domain: doms[i]};
             document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
          } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
-            worsening_indicator[indicators[j]] = {domain: domains[i]};
+            worsening_indicator[indicators[j]] = {domain: doms[i]};
             document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
          } else {
-            no_change_indicator[indicators[j]] = {domain: domains[i]};
+            no_change_indicator[indicators[j]] = {domain: doms[i]};
             document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
          };
 
-         if (i == domains.length - 1 && j == indicators.length - 1) {
+         if (i == doms.length - 1 && j == indicators.length - 1) {
             improving_indicator = sortObject(improving_indicator);
             no_change_indicator = sortObject(no_change_indicator);
             worsening_indicator = sortObject(worsening_indicator);
@@ -161,6 +167,10 @@ async function indicatorPerformance (ind = null) {
    }
 
    var currentURL = window.location.href;
+
+   if (dom != null) {
+      generateHexagons(dom);
+   }
 
    if (currentURL.includes("?oindicator=")) {
       currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);

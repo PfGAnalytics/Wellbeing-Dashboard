@@ -6,7 +6,7 @@ var button_left = document.getElementById("button-left");
 var button_right = document.getElementById("button-right");
 var domains_grid_container = document.getElementById("domains-grid-container");
 var domains_title = document.getElementById("domains-title");
-var domain_info = document.getElementById("domain-info-container");
+var domain_info = document.getElementById("domain-info");
 var clicked_hex = document.getElementById("clicked-hex");
 var domain_name_text = document.getElementById("domain-name");
 var click_to_see = document.getElementById("click-to-see");
@@ -73,6 +73,7 @@ var overall_labels = document.getElementsByClassName("overall-label");
 var change_info = document.getElementById("change-info");
 var loading_img = document.getElementById("loading-img");
 var loading_img_2 = document.getElementById("loading-img-2");
+var loading_img_3 = document.getElementById("loading-img-3");
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -181,7 +182,7 @@ function generateHexagons (d) {
     // Remove any hexagons inside the div with the id "indicator-hexes"
     while (indicator_hexes.firstChild) {
         indicator_hexes.removeChild(indicator_hexes.firstChild);
-    } 
+    }
 
     // An array of the indicators contained inside the selected domain
     indicators = Object.keys(domains_data[d].indicators);
@@ -203,43 +204,33 @@ function generateHexagons (d) {
 
         var data = domains_data[d].indicators[indicators[i]].data; // The data object within this indicator
 
-        // Extract the text content of the baseline statement for each indicator
-        if (data.NI != "") {
-            base_id = data.NI + "-base-statement";
-        } else if (data.EQ != "") {
-            base_id = data.EQ + "-base-statement";
-        } else if (data.LGD != "") {
-            base_id = data.LGD + "-base-statement";
+        if (Object.keys(worsening_indicator).includes(indicators[i])) {   // If the word "worsened" appears in the baseline statement:
+            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
+            hex.classList.add("negative");      // Add the class "negative" to the hexagon
+            hex_label.classList.add("negative");    // Add the class "negative" to the label text
+        } else if (Object.keys(improving_indicator).includes(indicators[i])) {    // If the word "improved" appears in the baseline statement:
+            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
+            hex.classList.add("positive");              // Add the class "positive" to the hexagon
+            hex_label.classList.add("positive");        // Add the class "negative" to the label text
+        } else {    // Otherwise:
+            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
         }
 
-        if (document.getElementById(base_id)) {     // Allow for rendering of rest of hexagons if one or more aren't working
+        hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
+        hex_container.name = "indicator";
+        hex_container.value = indicators[i].replace(/[^a-z ]/gi, '').toLowerCase();
+        hex.classList.add("ind-hex");               // Add class "ind-hex" to the hexagon
+        hex_label.classList.add("ind-hex-label");   // Add class "ind-hex-label" to the label
 
-            base_text = document.getElementById(base_id).textContent;
+        hex_label.textContent = indicators[i];      // Place the indicator name in the label
+        hex_container.appendChild(hex);             // Place the hexagon in the hexagon container
+        hex_container.appendChild(hex_label);       // Place the label in the hexagon container
+                
+        hex_row.appendChild(hex_container);         // Place the hexagon container into the hexagon row
 
-            if (base_text.includes("worsened")) {   // If the word "worsened" appears in the baseline statement:
-                hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
-                hex.classList.add("negative");      // Add the class "negative" to the hexagon
-                hex_label.classList.add("negative");    // Add the class "negative" to the label text
-            } else if (base_text.includes("improved")) {    // If the word "improved" appears in the baseline statement:
-                hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
-                hex.classList.add("positive");              // Add the class "positive" to the hexagon
-                hex_label.classList.add("positive");        // Add the class "negative" to the label text
-            } else {    // Otherwise:
-                hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
-            }
-
-            hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
-            hex_container.name = "indicator";
-            hex_container.value = indicators[i].replace(/[^a-z ]/gi, '').toLowerCase();
-            hex.classList.add("ind-hex");               // Add class "ind-hex" to the hexagon
-            hex_label.classList.add("ind-hex-label");   // Add class "ind-hex-label" to the label
-
-            hex_label.textContent = indicators[i];      // Place the indicator name in the label
-            hex_container.appendChild(hex);             // Place the hexagon in the hexagon container
-            hex_container.appendChild(hex_label);       // Place the label in the hexagon container
-                    
-            hex_row.appendChild(hex_container);         // Place the hexagon container into the hexagon row
-
+        if (i == indicators.length - 1) {
+            loading_img_3.style.display = "none";
+            domain_info.style.display = "block";
         }
 
     }
@@ -265,15 +256,13 @@ function generateHexagons (d) {
 // This next loop will go through all the hexagons on the Domains screen and functionality for clicking on each Domain
 hexagons = domains_grid_container.getElementsByClassName("hex-inner");
 for (let i = 0; i < hexagons.length; i++) {
-
     hexagons[i].parentElement.classList.add("shake-hex");   // Add the "shake-hex" class to each hexagon
-
 }
 
 // Overall screen
 // The function below plots the Hexagons on the Overall and is called three times. Once each for "improving", "no_change" and "worsening" indicators
 // The function runs any time the user resizes the window and when the Overall screen is accessed via the menu at top or a back button
-plotOverallHexes = function(change_type) {
+function plotOverallHexes (change_type) {
         
     // Use the user's screen size to determine a value "h" which will be the number of hexagons that can fit in a single row
     gridWidth = overall_scrn.clientWidth - 195;
@@ -349,7 +338,7 @@ plotOverallHexes = function(change_type) {
 }
 
 // Function to Write the "More data" sentence on indicator and map pages
-function writeDataInfo(d) {
+function writeDataInfo (d) {
     // Output "More data" sentence
     var data_info_text = "You can view and download data ";  // Start the sentence with this text
 
@@ -474,14 +463,11 @@ if (currentURL.includes("?domain=")) {
     // List of indicators for selected domain
     indicators = Object.keys(domains_data[lookUpDomain].indicators);
 
-    // Loop through each indicator and run create line chart
-    for (let j = 0; j < indicators.length; j++) {
-        createLineChart(lookUpDomain, indicators[j])
-    }
+    indicatorPerformance(dom = lookUpDomain);
 
     // Hide domains grid and display indicators
     domains_title.style.display = "none";   // Hide the "domains-title" div
-    domain_info.style.display = "flex";     // Show the "domain-info" div
+    domain_info_container.style.display = "flex";     // Show the "domain-info" div
     domains_grid_container.style.display = "none";  // Hide the domains grid
     click_to_see.style.display = "none";        // Hide the "click-to-see" div
     domains_intro.style.display = "none";       // Hide the "domains-intro" div
@@ -493,8 +479,6 @@ if (currentURL.includes("?domain=")) {
     domain_name_text.textContent = domain_name;     // Update "domain-name-text" inside intro paragraph
 
     clicked_desc.innerHTML = domains_data[domain_name].description; // Update description of domain
-
-    generateHexagons(lookUpDomain);
 
     for (let i = 0; i < button_rows.length; i ++) {
         button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
@@ -817,7 +801,9 @@ window.onload = function() {
     showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
     sizeForMobile();            // Resize and re-position page elements (see below)
     mainContainerHeight();      // See above
-    drawMap();
+    if (maps_scrn.style.display == "block") {
+        drawMap();
+    }
 };
 
 // Execute the following functions anytime the window is resized:
