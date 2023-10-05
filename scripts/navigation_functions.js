@@ -328,7 +328,7 @@ function plotOverallHexes (change_type) {
         } else if (change_type == "worsening") {    // For worsening indicators:
             hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Down arrow is placed in hexagon
             hex.classList.add("negative");                              // Hexagon is given class "negative"
-        hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
+            hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
         }
 
         hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row
@@ -653,10 +653,15 @@ if (currentURL.includes("map=")) {
 
     map_select_1.value = currentDomain;
     updateMapSelect2();
-    updateMapSelect3();
     map_select_2.value = currentIndicator;
     updateMapSelect3();
     map_select_3.value = currentMap;
+
+    setTimeout(function() {
+        if (map_select_3.value == "") {
+            location.reload();
+        }
+    }, 1)
 
 }
 
@@ -1045,9 +1050,7 @@ further_expander_map.onclick = function() {
 for (let i = 0; i < user_guide_link.length; i ++) {
 
     user_guide_link[i].onclick = function() {
-
         help_btn.click(); // Have it simulate clicking the help screen button in the menu
-
     }    
 
 }
@@ -1055,9 +1058,7 @@ for (let i = 0; i < user_guide_link.length; i ++) {
 
 // The link to the Indicator page on map screen:
 chart_link.onclick = function() {
-
     chart_link.value = map_select_2.value.replace(/[^a-z ]/gi, '').toLowerCase();
-
 }
 
 // Code to execute when someone clicks on search button
