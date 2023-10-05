@@ -435,6 +435,13 @@ if (currentURL.includes("tab=")) {
 
             updateMapSelect2();         // Update list of options inside second map drop down menu
             updateMapSelect3();         // Update list of options inside third map drop down menu
+
+            setTimeout(function() {
+                if (map_select_3.value != map_select_3.options[0].value) {
+                    location.reload();
+                }
+            }, 1)
+
         } else if (currentTab == "overall") {
 
             indicatorPerformance();
