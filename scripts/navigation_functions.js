@@ -74,6 +74,8 @@ var change_info = document.getElementById("change-info");
 var loading_img = document.getElementById("loading-img");
 var loading_img_2 = document.getElementById("loading-img-2");
 var loading_img_3 = document.getElementById("loading-img-3");
+var intro = document.getElementsByClassName("intro");
+var domains_footer = document.getElementById("domains-footer")
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -524,6 +526,18 @@ if (currentURL.includes("?domain=")) {
     
 }
 
+domain_title.onclick = function() {
+
+    titleDomain = domain_title.textContent.toLowerCase();
+    domain_btns = document.getElementsByName("domain");
+
+    for (let i = 0; i < domain_btns.length; i ++) {
+        if (titleDomain == domain_btns[i].value) {
+            domain_btns[i].click();
+        }
+    }
+}
+
 // Page navigation when indicator is clicked
 if (currentURL.includes("?indicator=")) {
 
@@ -959,6 +973,12 @@ function sizeForMobile() {
         for (let i = 0; i < white_box.length; i++) {
             white_box[i].style.fontSize = "14pt";           // Text inside white boxes to 14pt
         }
+
+        for (let i = 0; i < intro.length; i++) {
+            intro[i].style.fontSize = "14pt";           // Intro text to 14pt
+        }
+
+        domains_footer.style.fontSize = "14pt";
         
         while (breaks[0]) {
             map_form.removeChild(breaks[0]);                // Remove any line breaks between map dropdown menus
@@ -989,6 +1009,12 @@ function sizeForMobile() {
         for (let i = 0; i < white_box.length; i++) {
             white_box[i].style.fontSize = "12pt";           // Reset white box text to 12pt
         }
+
+        for (let i = 0; i < intro.length; i++) {
+            intro[i].style.fontSize = "12pt";           // Intro text to 12pt
+        }
+
+        domains_footer.style.fontSize = "12pt";
         
 
         while (breaks[0]) {
@@ -1129,7 +1155,7 @@ for (let i = 0; i < domains.length; i ++) {
 }
 
 
-// Pulsating icons on road signs
+// Pulsating icons on labels
 for (let i = 0; i < overall_labels.length; i ++) {    
 
     overall_labels[i].onmouseover = function() {

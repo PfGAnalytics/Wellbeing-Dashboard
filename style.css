@@ -125,6 +125,10 @@ h3 {
     align-items: center;
 }
 
+#domain-title {
+    cursor: pointer;
+}
+
 .white-box {
     background-color: white;
     padding: 10px;
@@ -394,11 +398,15 @@ button:focus {
     margin-top: 20px
 }
 
-#loading-img, #loading-img-2 {
+#loading-img, #loading-img-2, #loading-img-3 {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 450px;
+}
+
+#loading-img-3 {
+    height: 842px;
 }
 
 #not-loading {
