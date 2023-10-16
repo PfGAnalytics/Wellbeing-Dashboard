@@ -75,7 +75,8 @@ var loading_img = document.getElementById("loading-img");
 var loading_img_2 = document.getElementById("loading-img-2");
 var loading_img_3 = document.getElementById("loading-img-3");
 var intro = document.getElementsByClassName("intro");
-var domains_footer = document.getElementById("domains-footer")
+var domains_footer = document.getElementById("domains-footer");
+var back_button = document.getElementById("back-button");
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -445,10 +446,7 @@ if (currentURL.includes("tab=")) {
             }, 1)
 
         } else if (currentTab == "overall") {
-
             indicatorPerformance();
-           
-            
         } else {
             loading_img.style.display = "none";
         }
@@ -523,6 +521,14 @@ if (currentURL.includes("?domain=")) {
         next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
         button_right.appendChild(next_btn);   // Button is added to div "button-right"
     }
+
+    // Generate "back to domains button"
+    back_btn = document.createElement("button");
+    back_btn.classList.add("nav-btn");
+    back_btn.name = "tab";
+    back_btn.value = "domains";
+    back_btn.innerHTML = '<i class="fa-solid fa-arrow-turn-up fa-flip-horizontal"></i> Back to <strong>Domains</strong> grid';
+    back_button.appendChild(back_btn);
     
 }
 
@@ -598,9 +604,16 @@ if (currentURL.includes("?indicator=")) {
         button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
     }
 
+    back_btn = document.createElement("button");
+    back_btn.classList.add("nav-btn");
+    back_btn.name = "domain";
+    back_btn.value = lookUpDomain.toLowerCase();
+    back_btn.innerHTML = '<i class="fa-solid fa-arrow-turn-up fa-flip-horizontal"></i> Back to <strong>' + lookUpDomain + '</strong> domain';
+    back_button.appendChild(back_btn);
+
 }
 
-// Page navigation when indicator is clicked
+// Page navigation when indicator is clicked from Overall screen
 if (currentURL.includes("?oindicator=")) {
 
     currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);
@@ -629,11 +642,19 @@ if (currentURL.includes("?oindicator=")) {
     }  
 
     domains_scrn.style.display = "none";    // Hide Domains screen
-    loading_img_2.style.display = "flex";
+    indicator_scrn.style.display = "block"
 
-    indicatorPerformance();
     createLineChart(lookUpDomain, lookUpIndicator);
     generateIndicatorPage(lookUpDomain, lookUpIndicator);
+
+    button_rows[0].style.display = "flex";
+
+    back_btn = document.createElement("button");
+    back_btn.classList.add("nav-btn");
+    back_btn.name = "tab";
+    back_btn.value = "overall";
+    back_btn.innerHTML = '<i class="fa-solid fa-arrow-turn-up fa-flip-horizontal"></i> Back to <strong>Overall</strong> grid';
+    back_button.appendChild(back_btn);
 
 }
 
