@@ -925,7 +925,7 @@ footer a:hover {
     border-radius: 25px;
   }
 
-  #framework-container {
+  #framework-container, #subpop-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -970,4 +970,13 @@ footer a:hover {
 
   #pop-up-title {
     margin-left: 25px;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+    font-size: 10pt;
+  }
+
+  td {
+    text-align: center;
   }

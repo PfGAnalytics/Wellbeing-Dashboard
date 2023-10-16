@@ -78,6 +78,8 @@ var intro = document.getElementsByClassName("intro");
 var domains_footer = document.getElementById("domains-footer");
 var back_button = document.getElementById("back-button");
 var pop_up_chart = document.getElementById("pop-up-chart");
+var subpop = document.getElementById("subpop");
+var subpop_container = document.getElementById("subpop-container");
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -462,6 +464,10 @@ if (currentURL.includes("tab=")) {
             loading_img.style.display = "none";
         }
 
+    }
+
+    if (currentTab == "help") {
+        subpopTable();
     }
 
 }
@@ -1202,3 +1208,178 @@ for (let i = 0; i < overall_labels.length; i ++) {
     }
     
 }
+
+async function subpopTable() {
+
+    subpop_table = document.createElement("table");
+    subpop_table.id = "subpop-table";
+
+    subpop_headers = document.createElement("tr");
+    subpop_headers.innerHTML = "<th>Indicator</th>" + 
+                               "<th>NI Level</th>" +
+                               "<th>Parliamentary Constituency</th>" +
+                               "<th>Local Government District</th>" +
+                               "<th>Deprivation</th>" +
+                               "<th>Age</th>" +
+                               "<th>Gender</th>" +
+                               "<th>Urban/ Rural</th>" +
+                               "<th>Marital Status</th>" +
+                               "<th>Religion</th>" +
+                               "<th>Political Opinion</th>" +
+                               "<th>Disability</th>" +
+                               "<th>Dependants</th>" +
+                               "<th>Sexual Orientation</th>" +
+                               "<th>Racial Group</th>"
+
+    subpop_table.appendChild(subpop_headers);
+
+    subpop_container.appendChild(subpop_table);
+
+    for (let i = 0; i < all_indicators.length; i ++) {
+
+        for (let j = 0; j < domains.length; j ++) {
+            if (Object.keys(domains_data[domains[j]].indicators).indexOf(all_indicators[i]) > -1) {
+                domain = domains[j];
+                break;
+            }
+        }
+
+        subpop_row = document.createElement("tr");
+
+        indicator_name = document.createElement("td");
+        indicator_name.textContent = all_indicators[i];
+        indicator_name.style.textAlign = "left";
+        subpop_row.appendChild(indicator_name);
+
+        ni_level = document.createElement("td");
+        if (domains_data[domain].indicators[all_indicators[i]].data.NI != "") {
+            ni_level.textContent = "✔️";
+        }
+        subpop_row.appendChild(ni_level);
+
+        aa = document.createElement("td");
+        if (domains_data[domain].indicators[all_indicators[i]].data.AA != "") {
+            aa.textContent = "✔️";
+        }
+        subpop_row.appendChild(aa);
+
+        lgd = document.createElement("td");
+        if (domains_data[domain].indicators[all_indicators[i]].data.LGD != "") {
+            lgd.textContent = "✔️";
+        }
+        subpop_row.appendChild(lgd);
+
+        if (domains_data[domain].indicators[all_indicators[i]].data.EQ == "") {
+            for (let j = 0; j < 11; j ++) {
+                td = document.createElement("td");
+                subpop_row.appendChild(td);
+            }
+        } else {
+            var api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "/JSON-stat/2.0/en";
+
+            // Fetch data and store in object fetched_data
+            try {
+                const response = await fetch(api_url);
+                const fetched_data = await response.json();
+                const {dimension} = fetched_data;
+
+                var labels = Object.values(dimension.EQUALGROUPS.category.label);
+
+                var eq_groups = [];
+    
+                for (let j = 0; j < labels.length; j ++) {
+                    if (labels[j] != "Northern Ireland") {
+            
+                    group = labels[j].slice(0, labels[j].indexOf("-")).trim();
+            
+                    if (group.includes("Age")) {
+                        group = "Age group"
+                    }
+            
+                    if (!eq_groups.includes(group)) {
+                        eq_groups.push(group)
+                    }
+                    }
+                }
+
+                deprivation = document.createElement("td");
+                if (eq_groups.includes("Deprivation")) {
+                    deprivation.textContent = "✔️";
+                }
+                subpop_row.appendChild(deprivation);
+
+                age = document.createElement("td");
+                if (eq_groups.includes("Age group")) {
+                    age.textContent = "✔️";
+                }
+                subpop_row.appendChild(age);
+
+                gender = document.createElement("td");
+                if (eq_groups.includes("Sex")) {
+                    gender.textContent = "✔️";
+                }
+                subpop_row.appendChild(gender);
+
+                urban = document.createElement("td");
+                if (eq_groups.includes("Urban Rural")) {
+                    urban.textContent = "✔️";
+                }
+                subpop_row.appendChild(urban);
+
+                marital = document.createElement("td");
+                if (eq_groups.includes("Marital status")) {
+                    marital.textContent = "✔️";
+                }
+                subpop_row.appendChild(marital);
+
+                religion = document.createElement("td");
+                if (eq_groups.includes("Religion")) {
+                    religion.textContent = "✔️";
+                }
+                subpop_row.appendChild(religion);
+
+                political = document.createElement("td");
+                if (eq_groups.includes("Political opinion")) {
+                    political.textContent = "✔️";
+                }
+                subpop_row.appendChild(political);
+
+                disability = document.createElement("td");
+                if (eq_groups.includes("Disability")) {
+                    disability.textContent = "✔️";
+                }
+                subpop_row.appendChild(disability);
+
+                depend = document.createElement("td");
+                if (eq_groups.includes("Dependants")) {
+                    depend.textContent = "✔️";
+                }
+                subpop_row.appendChild(depend);
+
+                so = document.createElement("td");
+                if (eq_groups.includes("Sexual orientation")) {
+                    so.textContent = "✔️";
+                }
+                subpop_row.appendChild(so);
+
+                racial = document.createElement("td");
+                if (eq_groups.includes("Ethnic group")) {
+                    racial.textContent = "✔️";
+                }
+                subpop_row.appendChild(racial);
+             }
+             catch(err) {
+                for (let j = 0; j < 11; j ++) {
+                    td = document.createElement("td");
+                    subpop_row.appendChild(td);
+                }
+             }          
+
+        }
+
+        subpop_table.appendChild(subpop_row);
+
+    } 
+
+}
+
