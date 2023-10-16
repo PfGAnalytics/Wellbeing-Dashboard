@@ -1030,17 +1030,32 @@ async function getEqualityGroups(d, e) {
   for (let i = 0; i < eq_groups.length; i ++) {
       eq_link = document.createElement("div");
       eq_link.classList.add("eq-link");
-      eq_link.textContent = eq_groups[i];
+      eq_link.textContent = "• " + eq_groups[i];
 
       eq_link.onclick = async function () {
+
+         if (document.getElementById("pop-up-chart")) {
+            main_container.removeChild(document.getElementById("pop-up-chart"));
+         }
 
          indicator_scrn.style.filter = "opacity(40%)";
 
          pop_up_chart = document.createElement("div");
          pop_up_chart.id = "pop-up-chart";
 
+         pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 25 + domain_title.clientHeight + "px";
+
+         if (window.innerWidth < 1200) {
+            pop_up_chart.style.width = "100%";
+         } else {
+            pop_up_chart.style.width = "1200px";
+         }
+
+         main_container.appendChild(pop_up_chart);
+
          close_pop_up = document.createElement("div");
          close_pop_up.id = "close-pop-up";
+         close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";
          close_pop_up.innerHTML = '<i class="fa-solid fa-xmark"></i>';
 
          close_pop_up.onclick = function () {
@@ -1144,12 +1159,16 @@ async function getEqualityGroups(d, e) {
 
          new Chart(pop_canvas, config);
 
-         main_container.appendChild(pop_up_chart);
+         
          
   
      }
 
-      map_link.appendChild(eq_link);
+     if (i % 2 == 0) {
+         document.getElementById("eq-col-1").appendChild(eq_link);
+     } else {
+         document.getElementById("eq-col-2").appendChild(eq_link);
+     }
       
   }
 

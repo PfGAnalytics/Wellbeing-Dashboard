@@ -556,7 +556,6 @@ footer {
     height: 553px;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
 }
 
 .canvas-container {
@@ -768,6 +767,15 @@ footer a:hover {
     background-color: #e8e8e8;
 }
 
+.eq-link {
+    margin-bottom: 0px;
+    font-weight: normal;
+}
+
+#eq-col-1, #eq-col-2 {
+    width: 50%
+}
+
 #chart-link {
     text-align: center;
     color: #142062;
@@ -930,16 +938,15 @@ footer a:hover {
   }
 
   #pop-up-chart {
-    width: 1200px;
-    height: 600px;
+    height: 650px;
     background-color: #ffffff;
     position: absolute;
     top: 0;
-    margin-top: 500px;
+    border-radius: 25px;
   }
 
   #pop-up-container {
-    width: 800px;
+    width: 66%;
     height: 553px;
     margin-left: 250px;
   }
@@ -949,7 +956,6 @@ footer a:hover {
     height: 30px;
     border-radius: 30px;
     background-color: #142062;
-    margin-left: 1170px;
     margin-top: -15px;
     color: #ffffff;
     display: flex;
@@ -960,4 +966,8 @@ footer a:hover {
 
   #close-pop-up:hover {
     background-color: #ff3131
+  }
+
+  #pop-up-title {
+    margin-left: 25px;
   }

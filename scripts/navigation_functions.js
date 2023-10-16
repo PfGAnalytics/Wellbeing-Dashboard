@@ -77,6 +77,7 @@ var loading_img_3 = document.getElementById("loading-img-3");
 var intro = document.getElementsByClassName("intro");
 var domains_footer = document.getElementById("domains-footer");
 var back_button = document.getElementById("back-button");
+var pop_up_chart = document.getElementById("pop-up-chart");
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -179,7 +180,8 @@ function generateIndicatorPage(d, e) {
 
     if (data.EQ != "") {
         see_eq = document.createElement("div");
-        see_eq.textContent = "See indicator trends by:"
+        see_eq.innerHTML = "See indicator trends by:" + 
+                            "<div class = 'row'><div id = 'eq-col-1'></div><div id = 'eq-col-2'></div></div>";
         see_eq.id = "see-eq";
         map_link.appendChild(see_eq);
         getEqualityGroups(d, e)           
@@ -969,7 +971,7 @@ map_select_3.onchange = function() {
 function sizeForMobile() {
 
     // Size of the NISRA logo container
-    nisra_logo_container.style.width = footer_container.clientWidth - 565 + "px"
+    nisra_logo_container.style.width = footer_container.clientWidth - 565 + "px";
 
     // If screen is less than 1200px wide do following:
     if (window.innerWidth < 1200) {
