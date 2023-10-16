@@ -53,6 +53,8 @@ h1 {
     font-size: 14pt;
     cursor: pointer;
     border-radius: 25px;
+    border-width: 0px;
+    background-color: #008675;
 }
 
 .top-menu-item:hover {
@@ -123,6 +125,10 @@ h3 {
     align-items: center;
 }
 
+#domain-title {
+    cursor: pointer;
+}
+
 .white-box {
     background-color: white;
     padding: 10px;
@@ -177,6 +183,8 @@ h3 {
     color: #ffffff;
     position: relative;
     cursor: pointer;
+    padding: 0px;
+    border: 0px;
   }
 
   .hex .hex-inner {
@@ -241,6 +249,14 @@ h3 {
    text-align: center;
    text-align: center;
    cursor: pointer;
+   border: 0px;
+   padding: 0px;
+   background-color: #ffffff00;
+}
+
+button:focus {
+    outline: none;
+    border: none
 }
 
 .ind-hex-container:hover {
@@ -382,11 +398,15 @@ h3 {
     margin-top: 20px
 }
 
-#loading-img {
+#loading-img, #loading-img-2, #loading-img-3 {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 450px;
+}
+
+#loading-img-3 {
+    height: 842px;
 }
 
 #not-loading {
@@ -533,7 +553,7 @@ footer {
 
 #line-chart-container {
     width: 750px;
-    height: 100%;
+    height: 553px;
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -659,6 +679,9 @@ footer a:hover {
 
 #map-boxes {
     margin-left: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #further-expander, #further-expander-map  {
@@ -715,6 +738,9 @@ footer a:hover {
     cursor: pointer;
     border-radius: 25px;
     width: fit-content;
+    background-color: #69729B;
+    border: 0px;
+    color: #ffffff;
 }
 
 #forward-btn {
@@ -727,27 +753,38 @@ footer a:hover {
 
 #map-link {
     margin-left: 15px;
+    background-color: #e8e8e8;
+    padding: 15px;
+    border-radius: 25px;
 }
 
 #AA-link, #LGD-link {
     color: #142062;
     margin-left: 15px;
     cursor: pointer;
+    margin-bottom: 10px;
+    border: 0px;
+    padding: 0px;
+    background-color: #e8e8e8;
 }
 
 #chart-link {
     text-align: center;
     color: #142062;
+    background-color: #e8e8e8;
     cursor: pointer;
+    border: 0px;
+    padding: 8px;
+    border-radius: 25px;
 }
 
-#AA-link:hover, #LGD-link:hover, #chart-link:hover {
+#chart-link:hover {
     color: #008675;
-    filter: brightness(0) saturate(100%) invert(36%) sepia(23%) saturate(2416%) hue-rotate(132deg) brightness(100%) contrast(101%);;
 }
 
-#AA-link {
-    margin-bottom: 10px;
+#AA-link:hover, #LGD-link:hover {
+    color: #008675;
+    /* filter: brightness(0) saturate(100%) invert(36%) sepia(23%) saturate(2416%) hue-rotate(132deg) brightness(100%) contrast(101%); */
 }
 
 #assembly-logo, #council-logo {
@@ -759,6 +796,8 @@ footer a:hover {
 #see-maps {
     font-weight: bold;
 }
+
+
 
 #button-left {
     width: 600px;

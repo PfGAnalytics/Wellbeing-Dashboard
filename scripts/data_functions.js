@@ -49,6 +49,178 @@ var improving_indicator = {};
 var no_change_indicator = {};
 var worsening_indicator = {};
 
+async function indicatorPerformance (dom = null) {   
+
+   if (dom != null) {
+      var doms = [dom];
+   } else {
+      var doms = domains;
+   }
+
+   for (let i = 0; i < doms.length; i ++) {
+
+      var indicators = Object.keys(domains_data[doms[i]].indicators);
+
+      for (let j = 0; j < indicators.length; j ++) {
+
+         var indicator = domains_data[doms[i]].indicators[indicators[j]];  // Select the information for the indicator from domains_data.js
+
+         // In the first instance the function checks for NI data for the particular indicator,
+         // then it checks for EQ and finally LGD data. The latter two api_url queries have filters that select only the NI data.
+         if (indicator.data.NI != "") {
+            var matrix = indicator.data.NI;
+            var statistic = matrix.slice(0, -2);
+            api_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
+         } else if (indicator.data.EQ != "") {
+            var matrix = indicator.data.EQ;
+            var statistic = matrix.slice(0, -2);
+            api_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22"+ matrix + "%22%7D,%22version%22:%222.0%22%7D%7D";
+         } else {
+            var matrix = indicator.data.LGD;
+            var statistic = matrix.slice(0, -3);
+            api_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22LGD2014%22%5D,%22dimension%22:%7B%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
+         }
+
+         // The id the line chart canvas element will use
+         var id = statistic + "-line";
+
+         // Fetch data and store in object fetched_data
+         const response = await fetch(api_url);          // fetches the content of the url
+         const fetched_data = await response.json();     // we tell it the data is in json format
+         const {result} = fetched_data;                  // and extract the result object key
+
+         if (result == null) {
+            console.log("Warning: No indicator information found for " + e + ". Refresh to try again. Check matrix spelling for indicator in domains_data.js if problem persists.");
+            num_indicators = num_indicators - 1;
+            return;  // If one indicator is not working it will still attempt to render rest of them rather than crashing entire loop
+         }
+
+         const {dimension, value} = result;  // from result we then extract the object keys we need
+
+         var years = Object.values(dimension)[1].category.index; // Array of years in data
+         var num_years = years.length;  // Number of years in data
+         
+         var base_position = years.indexOf(indicator.base_year); // Which position in the years array is base year
+         var current_year = years[years.length-1]; // The current year
+
+         var base_value = value[base_position]; // The value at the base year
+         var data_series = value; // The y axis values to plot
+         var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
+
+         // When confidence interval is constant
+         if (!isNaN(indicator.ci)) {
+            var ci_value = indicator.ci;
+            var years_cumulated = 1;
+         } else { // When confidence interval changes year on year
+            var ci_value = Number(indicator.ci.slice(0, -1));
+            var years_cumulated = num_years - base_position - 1;
+         }
+
+         // Statement to output based on performance of indicator
+         var current_ci = ci_value * years_cumulated;
+
+         // Function to count the number of decimal places present in a number
+         Number.prototype.countDecimals = function () {
+            if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
+            return this.toString().split(".")[1].length || 0; 
+         }
+
+         // The number of decimal places present in the data set
+         var decimals = [];
+         for (let i = 0; i < data_series.length; i ++) {
+            if (data_series[i] != null) {
+               decimals.push(data_series[i].countDecimals())
+            }
+         }
+
+         var decimal_places = Math.max(...decimals);
+         
+         change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
+      
+         if (current_year == indicator.base_year) {
+            no_change_indicator[indicators[j]] = {domain: doms[i]};
+            document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
+         } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
+            improving_indicator[indicators[j]] = {domain: doms[i]};
+            document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
+         } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
+            worsening_indicator[indicators[j]] = {domain: doms[i]};
+            document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
+         } else {
+            no_change_indicator[indicators[j]] = {domain: doms[i]};
+            document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
+         };
+
+         if (i == doms.length - 1 && j == indicators.length - 1) {
+            improving_indicator = sortObject(improving_indicator);
+            no_change_indicator = sortObject(no_change_indicator);
+            worsening_indicator = sortObject(worsening_indicator);
+            plotOverallHexes("improving");
+            plotOverallHexes("no_change");
+            plotOverallHexes("worsening");
+            document.getElementById("loading-img").style.display = "none";
+            document.getElementById("overall-hexes").style.display = "block";
+         }
+
+      }
+
+   }
+
+   var currentURL = window.location.href;
+
+   if (dom != null) {
+      generateHexagons(dom);
+   }
+
+   if (currentURL.includes("?oindicator=")) {
+      currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);
+
+      lookUpIndicator = "";
+      for (let i = 0; i < all_indicators.length; i ++) {
+         if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
+               lookUpIndicator = all_indicators[i]
+         }
+      }
+      
+      overall_sorted = [Object.keys(improving_indicator), Object.keys(no_change_indicator), Object.keys(worsening_indicator)].flat();
+
+      current_index = overall_sorted.indexOf(lookUpIndicator);
+
+      // "Previous indicator" button
+      // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
+    if (current_index != 0) {
+        previous_btn_2 = document.createElement("button");     // Div for previous indicator button
+        previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
+        previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        previous_btn_2.name = "oindicator";
+        previous_btn_2.value = overall_sorted[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + overall_sorted[current_index - 1] +'</strong>';
+        button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
+    }
+    
+    // "Next indicator" button   
+    // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
+    if (current_index != Object.keys(domains_data[lookUpDomain].indicators).length - 1) {
+        next_btn_2 = document.createElement("button");     // Div for next indicator button
+        next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
+        next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        next_btn_2.name = "oindicator";
+        next_btn_2.value = overall_sorted[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        next_btn_2.innerHTML = 'Next indicator: <strong>' + overall_sorted[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+        button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
+    }
+
+    for (let i = 0; i < button_rows.length; i ++) {
+      button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
+    }
+
+    document.getElementById("loading-img-2").style.display = "none";
+    document.getElementById("indicator-scrn").style.display = "block"
+
+   }
+
+}
+
 // Function below uses the api to fetch the data and plots it in a line chart
 // It also generates the baseline statement, the source information, the further information and how do we measure this
 // using information on the data portal. The two inputs to the function are a domain name "d" and indicator name "e"
@@ -628,7 +800,6 @@ async function createLineChart(d, e) {
    // Create a div to place all chart content in
    chart_div = document.createElement("div");
    chart_div.id = id;
-   chart_div.style.display = "none";
    chart_div.classList.add("line-chart");
 
    // Create a div to place chart title in
@@ -681,24 +852,16 @@ async function createLineChart(d, e) {
   
    if (current_year == indicator.base_year) {
       base_statement = "The data for " + indicator.base_year + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
-      no_change_indicator[e] = {domain: d};
       document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
-      plotOverallHexes("no_change");
    } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
       base_statement = "Things have improved since the baseline in " + indicator.base_year + ". " + indicator.telling.improved;
-      improving_indicator[e] = {domain: d};
       document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
-      plotOverallHexes("improving");
    } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
       base_statement = "Things have worsened since the baseline in " + indicator.base_year + ". " + indicator.telling.worsened;
-      worsening_indicator[e] = {domain: d};
       document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
-      plotOverallHexes("worsening");
    } else {
       base_statement = "There has been no significant change since the baseline in " + indicator.base_year + ". " + indicator.telling.no_change;
-      no_change_indicator[e] = {domain: d};
       document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
-      plotOverallHexes("no_change");
    };
    
    // Create statement div
@@ -706,7 +869,6 @@ async function createLineChart(d, e) {
    base_statement_div.id = matrix + "-base-statement";
    base_statement_div.classList.add("white-box");
    base_statement_div.classList.add("base-statement");
-   base_statement_div.style.display = "none";
    base_statement_div.innerHTML = base_statement;
 
    document.getElementById("change-info").appendChild(base_statement_div);
@@ -751,7 +913,8 @@ async function createLineChart(d, e) {
    // Div element created for "Further information" and placed in html document:
    further_info_div = document.createElement("div");
    further_info_div.id = matrix + "-further-info";
-   further_info_div.classList = "further-info-text";
+   further_info_div.classList.add("further-info-text");
+   further_info_div.classList.add("further-selected");
    
    further_info_div.innerHTML = further_note;
 
@@ -763,6 +926,9 @@ async function createLineChart(d, e) {
 
    document.getElementById("further-info").appendChild(further_info_div);
 
+   if (further_note == "Not available") {
+      document.getElementById("further-expander").style.display = "none";
+  }
 
   // The source info is pulled out of the note object
   source_info = note[0];
@@ -824,27 +990,10 @@ async function createLineChart(d, e) {
   measure_note.id = matrix + "-measure-info";
   measure_note.classList.add("measure-info-text");
   measure_note.classList.add("white-box");
-  measure_note.style.display = "none";
 
   measure_note.innerHTML = measure_text;
 
   document.getElementById("measure-info").appendChild(measure_note);
-
-}
-
-// This is where the above function is called:
-
-// Loop through domains_data to generate line charts for each indicator (see domains_data.js)
-// Loop through all domains
-for (let i = 0; i < domains.length; i ++) {
-
-   // List of indicators for each domain
-   indicators = Object.keys(domains_data[domains[i]].indicators);
-
-   // Loop through each indicator and run create line chart
-   for (let j = 0; j < indicators.length; j++) {
-      createLineChart(domains[i], indicators[j])
-   }
 
 }
 
@@ -955,7 +1104,7 @@ async function drawMap() {
       attributionControl: false,
       tap: false}).setView([54.65, -6.8], 8); // Set initial co-ordinates and zoom
 
-   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+   L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
    }).addTo(map); // Add a background map   
@@ -977,6 +1126,11 @@ async function drawMap() {
       colours = [];
       for (let i = 0; i < selected_data.length; i++) {
          colours.push((selected_data[i] - range_min) / range);
+      }
+
+      if (map_select_2.value == "") {
+       location.reload();
+       return;
       }
 
       // Colour palettes for increasing/decreasing indicators
