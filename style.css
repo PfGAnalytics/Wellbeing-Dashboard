@@ -758,7 +758,7 @@ footer a:hover {
     border-radius: 25px;
 }
 
-#AA-link, #LGD-link {
+#AA-link, #LGD-link, .eq-link {
     color: #142062;
     margin-left: 15px;
     cursor: pointer;
@@ -782,7 +782,7 @@ footer a:hover {
     color: #008675;
 }
 
-#AA-link:hover, #LGD-link:hover {
+#AA-link:hover, #LGD-link:hover, .eq-link:hover {
     color: #008675;
     /* filter: brightness(0) saturate(100%) invert(36%) sepia(23%) saturate(2416%) hue-rotate(132deg) brightness(100%) contrast(101%); */
 }
@@ -793,11 +793,9 @@ footer a:hover {
     margin-right: 10px;
 }
 
-#see-maps {
+#see-maps, #see-eq {
     font-weight: bold;
 }
-
-
 
 #button-left {
     width: 600px;
@@ -929,4 +927,37 @@ footer a:hover {
   .overall-text {
     margin-left: 10px;
     margin-bottom: 0px;
+  }
+
+  #pop-up-chart {
+    width: 1200px;
+    height: 600px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    margin-top: 500px;
+  }
+
+  #pop-up-container {
+    width: 800px;
+    height: 553px;
+    margin-left: 250px;
+  }
+
+  #close-pop-up {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #142062;
+    margin-left: 1170px;
+    margin-top: -15px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  #close-pop-up:hover {
+    background-color: #ff3131
   }

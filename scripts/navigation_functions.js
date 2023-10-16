@@ -140,13 +140,14 @@ function generateIndicatorPage(d, e) {
         map_link.removeChild(map_link.firstChild);  // Remove any map links already generated on previous indicator pages viewed
     }
 
-    if (data.AA != "" || data.LGD != "") { // When there is AA or LGD data present for the indicator in domains_data
+    if (data.AA != "" || data.LGD != "" || data.EQ != "") { // When there is AA or LGD data present for the indicator in domains_data
 
-        see_maps = document.createElement("div");               // Create a new div element
-        see_maps.id = "see-maps";                               // Give this div an id "see-maps"
-        see_maps.textContent = "See this indicator mapped by:"  // Add text to div
-
-        map_link.appendChild(see_maps);                         // Add this div to the div "map-link"
+        if (data.AA != "" || data.LGD != "") {
+            see_maps = document.createElement("div");               // Create a new div element
+            see_maps.textContent = "See this indicator mapped by:"  // Add text to div
+            see_maps.id = "see-maps";                               // Give this div an id "see-maps"
+            map_link.appendChild(see_maps);                         // Add this div to the div "map-link"
+        }       
 
     } else {
         map_link.style.display = "none"
@@ -174,6 +175,14 @@ function generateIndicatorPage(d, e) {
         LGD_link.value = data.LGD;
         map_link.appendChild(LGD_link);      // Add link to "map-link" div
 
+    }
+
+    if (data.EQ != "") {
+        see_eq = document.createElement("div");
+        see_eq.textContent = "See indicator trends by:"
+        see_eq.id = "see-eq";
+        map_link.appendChild(see_eq);
+        getEqualityGroups(d, e)           
     }
 
 }
