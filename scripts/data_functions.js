@@ -1093,6 +1093,7 @@ async function getEqualityGroups(d, e) {
 
          y_axis = document.createElement("div");
          y_axis.textContent = document.getElementsByClassName("y-label")[0].textContent;
+         y_axis.style.display = "none";
          y_axis.classList.add("y-label");
 
          chart_row.appendChild(y_axis);
@@ -1146,6 +1147,7 @@ async function getEqualityGroups(d, e) {
          }
 
          loading.style.display = "none";
+         y_axis.style.display = "flex";
          pop_up_chart.style.backgroundColor = "#FFFFFF";
 
          groups = Object.values(result.dimension.EQUALGROUPS.category.label);
