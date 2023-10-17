@@ -1112,7 +1112,7 @@ async function getEqualityGroups(d, e) {
          if (eq_groups[i] == "Sex") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%221%22,%222%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Age group") {
-            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22,%2269%22,%2270%22,%2271%22,%2272%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
+            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22,%2245%22,%2246%22,%2247%22,%2248%22,%2249%22,%2250%22,%2251%22,%2252%22,%2253%22,%2254%22,%2255%22,%2256%22,%2257%22,%2258%22,%2269%22,%2270%22,%2271%22,%2272%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Marital status") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%229%22,%2210%22,%2211%22,%2212%22,%2213%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Dependants") {
@@ -1151,6 +1151,9 @@ async function getEqualityGroups(d, e) {
 
             if (eq_groups[i] == "Age group") {
                group_label = groups[j].slice(groups[j].indexOf(" ")).trim();
+               if (group_label.indexOf("-") == 0) {
+                  group_label = group_label.slice(1).trim();
+               }
             } else {
                group_label = groups[j].slice(groups[j].indexOf("-") + 1).trim();
             }            
@@ -1183,7 +1186,7 @@ async function getEqualityGroups(d, e) {
                label: Object.keys(values)[j],
                data: values[Object.keys(values)[j]],
                backgroundColor: [
-                  colours[j]
+                  colours[j % colours.length]
                ]
             })
          }

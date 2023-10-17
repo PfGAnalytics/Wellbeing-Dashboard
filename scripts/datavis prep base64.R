@@ -27,12 +27,15 @@ dir.create(uploadDir)
 # List all svg files in img folder
 SVGs <- list.files("../img", pattern = "*.svg")
 
-
 suppressWarnings({ # Turn off warnings
   
-  # Read in navigation_functions.js as "original Nav" and take copy of it "fixedNav"
+  # Read in navigation_functions.js as "originalNav" and take copy of it "fixedNav"
   originalNav <- readLines("../scripts/navigation_functions.js")
   fixedNav <- originalNav
+  
+  # Read in data_functions.js as "originalData" and take copy of it "fixedData"
+  originalData <- readLines("../scripts/data_functions.js")
+  fixedData <- originalData
   
   # Fix image paths in navigation_functions.js by converting svg images to xml
   for (svg in SVGs) {
@@ -43,10 +46,18 @@ suppressWarnings({ # Turn off warnings
                               encodeURIComponent()),
                      fixedNav,
                      fixed = TRUE)
+    
   }
+  
+  # Embed gif in data_functions.js
+  fixedData <- gsub("img/page-loading.gif",
+                paste0("data:image/gif;base64,", base64encode("../img/page-loading.gif")),
+                fixedData,
+                fixed = TRUE)
   
   # Write out fixedNav to navigation_functions.js
   writeLines(fixedNav, "../scripts/navigation_functions.js")
+  writeLines(fixedData, "../scripts/data_functions.js")
 
   # Convert html to character vector
   index <- readLines("../index.html")
@@ -93,5 +104,6 @@ suppressWarnings({ # Turn off warnings
   
   # Restore navigation_functions.js to its original state
   writeLines(originalNav, "../scripts/navigation_functions.js")
+  writeLines(originalData, "../scripts/data_functions.js")
   
 })
