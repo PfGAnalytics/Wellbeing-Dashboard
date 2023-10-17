@@ -1164,49 +1164,38 @@ for (let i = 0; i < domains.length; i ++) {
     hex_outer = document.createElement("div");          // Create the outer blue hexagon
     hex_outer.classList.add("hex");                     // Give it class "hex"
     hex_outer.style.cursor = "default";                 // Remove the hand cursor as there is no clicking on these
+    hex_outer.style.height = "150px";
+    hex_outer.style.width = "150px";
 
     hex_inner = document.createElement("div");                  // Create the inner green hexagon
     hex_inner.classList.add("hex-inner");                       // give it class "hex_inner"
     hex_inner.innerHTML = domains[i].replace(" ", " <br>")      // Insert domain name and line break between words
+    hex_inner.style.height = "140px";
+    hex_inner.style.width = "140px";
+    hex_inner.style.fontSize = "16pt";
 
     hex_outer.appendChild(hex_inner);                       // Place inner hex in outer hex
     framework_row.appendChild(hex_outer);                   // Place outer hex in row
 
     desc = document.createElement("div");                   // Create div for description to sit in
     desc.classList.add("blue-label");                       // Give it the class "blue-label"
-    desc.style.width = "500px";                             // Set width to 500px
-    desc.style.minHeight = "76px";                          // Set min height to 76px
+    desc.style.width = "400px";                             // Set width to 500px
+    desc.style.minHeight = "68px";                          // Set min height to 76px
+    desc.style.fontSize = "12pt";
     desc.textContent = domains_data[domains[i]].description;        // Insert domain description from domains_data
 
     framework_row.appendChild(desc);                        // Place label in row
 
     if (i % 2 == 1) {
-        framework_row.style.marginLeft = "100px";       // Indent even numbered rows by 100px
+        framework_row.style.marginLeft = "75px";       // Indent even numbered rows by 100px
     }
 
     if (i > 0) {
-        framework_row.style.marginTop = "-33px";        // Move all rows after first row up by 33px
+        framework_row.style.marginTop = "-25px";        // Move all rows after first row up by 33px
     }
 
     framework_structure.appendChild(framework_row)      // Insert row into html document
 
-}
-
-
-// Pulsating icons on labels
-for (let i = 0; i < overall_labels.length; i ++) {    
-
-    overall_labels[i].onmouseover = function() {
-        icon = overall_labels[i].getElementsByTagName("i")[0];
-        icon.classList.add("fa-beat");
-        overall_labels[i].style.cursor = "default";
-    }
-
-    overall_labels[i].onmouseout = function() {
-        icon = overall_labels[i].getElementsByTagName("i")[0];
-        icon.classList.remove("fa-beat")
-    }
-    
 }
 
 async function subpopTable() {
@@ -1216,7 +1205,7 @@ async function subpopTable() {
 
     subpop_headers = document.createElement("tr");
     subpop_headers.innerHTML = "<th style = 'text-align: left;'>Indicator</th>" + 
-                               "<th>NI Level</th>" +
+                               "<th>NI Level only</th>" +
                                "<th>Parliamentary Constituency</th>" +
                                "<th>Local Government District</th>" +
                                "<th>Deprivation</th>" +
@@ -1253,19 +1242,19 @@ async function subpopTable() {
 
         ni_level = document.createElement("td");
         if (domains_data[domain].indicators[all_indicators[i]].data.NI != "") {
-            ni_level.textContent = "✔️";
+            ni_level.innerHTML = '<div class = "navy-dot"></div>';
         }
         subpop_row.appendChild(ni_level);
 
         aa = document.createElement("td");
         if (domains_data[domain].indicators[all_indicators[i]].data.AA != "") {
-            aa.textContent = "✔️";
+            aa.innerHTML = '<div class = "navy-dot"></div>';
         }
         subpop_row.appendChild(aa);
 
         lgd = document.createElement("td");
         if (domains_data[domain].indicators[all_indicators[i]].data.LGD != "") {
-            lgd.textContent = "✔️";
+            lgd.innerHTML = '<div class = "navy-dot"></div>';
         }
         subpop_row.appendChild(lgd);
 
@@ -1307,7 +1296,7 @@ async function subpopTable() {
                 for (let i = 0; i < headings.length; i ++) {
                     td = document.createElement("td");
                     if (eq_groups.includes(headings[i])) {
-                        td.textContent = "✔️";
+                        td.innerHTML = '<div class = "navy-dot"></div>';
                     }
                     subpop_row.appendChild(td)
                 }

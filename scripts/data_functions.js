@@ -1048,6 +1048,7 @@ async function getEqualityGroups(d, e) {
 
          pop_up_chart = document.createElement("div");
          pop_up_chart.id = "pop-up-chart";
+         pop_up_chart.style.backgroundColor = "#F2F2F2";
 
          pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 25 + domain_title.clientHeight + "px";
 
@@ -1077,9 +1078,30 @@ async function getEqualityGroups(d, e) {
 
          pop_up_chart.appendChild(pop_up_title);
 
+         loading = document.createElement("img");
+         loading.src = "img/page-loading.gif";
+         loading.alt = "Northern Ireland Executive Loading Screen animation";
+
+         pop_up_chart.appendChild(loading);
+
+         loading.style.marginLeft = (pop_up_chart.clientWidth - loading.clientWidth) / 2 + "px";
+         loading.style.marginTop = "100px";
+
+         chart_row = document.createElement("div");
+         chart_row.classList.add("row");
+         chart_row.style.marginLeft = "250px";
+
+         y_axis = document.createElement("div");
+         y_axis.textContent = document.getElementsByClassName("y-label")[0].textContent;
+         y_axis.classList.add("y-label");
+
+         chart_row.appendChild(y_axis);
+
+         pop_up_chart.appendChild(chart_row);
+
          pop_up_container = document.createElement("div");
          pop_up_container.id = "pop-up-container";
-         pop_up_chart.appendChild(pop_up_container);
+         chart_row.appendChild(pop_up_container);
 
          pop_canvas = document.createElement("canvas");
          pop_canvas.id = "pop-canvas";
@@ -1090,7 +1112,7 @@ async function getEqualityGroups(d, e) {
          if (eq_groups[i] == "Sex") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%221%22,%222%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Age group") {
-            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
+            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22,%2269%22,%2270%22,%2271%22,%2272%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Marital status") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%229%22,%2210%22,%2211%22,%2212%22,%2213%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Dependants") {
@@ -1111,10 +1133,15 @@ async function getEqualityGroups(d, e) {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2214%22,%2215%22,%2216%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          }
 
+         var result = null;   // Retry plotting chart if data portal link doesn't work first time
+         while (result == null) {
+            const response = await fetch(chart_data_url);          // fetches the content of the url
+            const fetched_data = await response.json();     // we tell it the data is in json format
+            var {result} = fetched_data;                  // and extract the result object key
+         }
 
-         const response = await fetch(chart_data_url);          // fetches the content of the url
-         const fetched_data = await response.json();     // we tell it the data is in json format
-         const {result} = fetched_data;                  // and extract the result object key
+         loading.style.display = "none";
+         pop_up_chart.style.backgroundColor = "#FFFFFF";
 
          groups = Object.values(result.dimension.EQUALGROUPS.category.label);
          
@@ -1122,7 +1149,11 @@ async function getEqualityGroups(d, e) {
          values = {};
          for (let j = 0; j < groups.length; j ++) {
 
-            group_label = groups[j].slice(groups[j].indexOf("-") + 1).trim();
+            if (eq_groups[i] == "Age group") {
+               group_label = groups[j].slice(groups[j].indexOf(" ")).trim();
+            } else {
+               group_label = groups[j].slice(groups[j].indexOf("-") + 1).trim();
+            }            
 
             group_labels.push(group_label);
 
@@ -1136,16 +1167,24 @@ async function getEqualityGroups(d, e) {
 
          }
 
+         if (eq_groups[i] == "Age group") {
+            values = sortObject(values);
+         }
+
          var data = {
             labels: years,
             datasets: []
          };
 
+         colours = ["#142062", "#008675", "#FF6200", "#00A857", "#ff3131", "#69729B"];
+
          for (let j = 0; j < group_labels.length; j ++) {
             data.datasets.push({
-               label: group_labels[j],
-               data: values[group_labels[j]],
-               borderWidth: 1
+               label: Object.keys(values)[j],
+               data: values[Object.keys(values)[j]],
+               backgroundColor: [
+                  colours[j]
+               ]
             })
          }
 
@@ -1178,10 +1217,7 @@ async function getEqualityGroups(d, e) {
             },
           };
 
-         new Chart(pop_canvas, config);
-
-         
-         
+         new Chart(pop_canvas, config);        
   
      }
 

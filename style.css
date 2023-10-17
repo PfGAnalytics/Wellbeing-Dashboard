@@ -755,6 +755,8 @@ footer a:hover {
     background-color: #e8e8e8;
     padding: 15px;
     border-radius: 25px;
+    margin-top: 15px;
+    width: 100%
 }
 
 #AA-link, #LGD-link, .eq-link {
@@ -948,7 +950,6 @@ footer a:hover {
   #pop-up-container {
     width: 66%;
     height: 553px;
-    margin-left: 250px;
   }
 
   #close-pop-up {
@@ -983,4 +984,23 @@ footer a:hover {
     padding-right: 3px;
   }
 
+  tr:hover {
+    background-color: #ccc;
+  }
  
+  td a {
+    color: #000000
+  }
+
+  td a:hover {
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .navy-dot {
+    background-color: #142062;
+    height: 17px;
+    width: 17px;
+    border-radius: 100%;
+    margin: auto;
+  }
