@@ -1231,6 +1231,12 @@ async function getEqualityGroups(d, e) {
          
          heading_text = "[b]" + eq_groups[i];
 
+         if (note_text.indexOf(heading_text) == -1) {
+            heading_text = heading_text.slice(0, heading_text.indexOf(" ") + 1) +
+                           heading_text.charAt(heading_text.indexOf(" ") + 1).toUpperCase() +
+                           heading_text.slice(heading_text.indexOf(" ") + 2);
+         }
+
          if (note_text.indexOf(heading_text) > -1) {
 
             note_text = note_text.slice(note_text.indexOf(heading_text) + heading_text.length);
