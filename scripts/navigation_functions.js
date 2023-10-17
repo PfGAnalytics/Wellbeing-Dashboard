@@ -1215,7 +1215,7 @@ async function subpopTable() {
     subpop_table.id = "subpop-table";
 
     subpop_headers = document.createElement("tr");
-    subpop_headers.innerHTML = "<th>Indicator</th>" + 
+    subpop_headers.innerHTML = "<th style = 'text-align: left;'>Indicator</th>" + 
                                "<th>NI Level</th>" +
                                "<th>Parliamentary Constituency</th>" +
                                "<th>Local Government District</th>" +
@@ -1247,7 +1247,7 @@ async function subpopTable() {
         subpop_row = document.createElement("tr");
 
         indicator_name = document.createElement("td");
-        indicator_name.textContent = all_indicators[i];
+        indicator_name.innerHTML = "<a href = '?indicator=" + all_indicators[i].replace(/[^a-z ]/gi, '').replaceAll(" ", "+").toLowerCase() + "'>" + all_indicators[i] + "</a>";
         indicator_name.style.textAlign = "left";
         subpop_row.appendChild(indicator_name);
 
@@ -1302,71 +1302,16 @@ async function subpopTable() {
                     }
                 }
 
-                deprivation = document.createElement("td");
-                if (eq_groups.includes("Deprivation")) {
-                    deprivation.textContent = "✔️";
-                }
-                subpop_row.appendChild(deprivation);
+                headings = ["Deprivation", "Age group", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group"];
 
-                age = document.createElement("td");
-                if (eq_groups.includes("Age group")) {
-                    age.textContent = "✔️";
+                for (let i = 0; i < headings.length; i ++) {
+                    td = document.createElement("td");
+                    if (eq_groups.includes(headings[i])) {
+                        td.textContent = "✔️";
+                    }
+                    subpop_row.appendChild(td)
                 }
-                subpop_row.appendChild(age);
 
-                gender = document.createElement("td");
-                if (eq_groups.includes("Sex")) {
-                    gender.textContent = "✔️";
-                }
-                subpop_row.appendChild(gender);
-
-                urban = document.createElement("td");
-                if (eq_groups.includes("Urban Rural")) {
-                    urban.textContent = "✔️";
-                }
-                subpop_row.appendChild(urban);
-
-                marital = document.createElement("td");
-                if (eq_groups.includes("Marital status")) {
-                    marital.textContent = "✔️";
-                }
-                subpop_row.appendChild(marital);
-
-                religion = document.createElement("td");
-                if (eq_groups.includes("Religion")) {
-                    religion.textContent = "✔️";
-                }
-                subpop_row.appendChild(religion);
-
-                political = document.createElement("td");
-                if (eq_groups.includes("Political opinion")) {
-                    political.textContent = "✔️";
-                }
-                subpop_row.appendChild(political);
-
-                disability = document.createElement("td");
-                if (eq_groups.includes("Disability")) {
-                    disability.textContent = "✔️";
-                }
-                subpop_row.appendChild(disability);
-
-                depend = document.createElement("td");
-                if (eq_groups.includes("Dependants")) {
-                    depend.textContent = "✔️";
-                }
-                subpop_row.appendChild(depend);
-
-                so = document.createElement("td");
-                if (eq_groups.includes("Sexual orientation")) {
-                    so.textContent = "✔️";
-                }
-                subpop_row.appendChild(so);
-
-                racial = document.createElement("td");
-                if (eq_groups.includes("Ethnic group")) {
-                    racial.textContent = "✔️";
-                }
-                subpop_row.appendChild(racial);
              }
              catch(err) {
                 for (let j = 0; j < 11; j ++) {
@@ -1383,3 +1328,16 @@ async function subpopTable() {
 
 }
 
+function highlightIcon() {
+    this.firstChild.style.filter = "brightness(0) saturate(100%) invert(36%) sepia(23%) saturate(2416%) hue-rotate(132deg) brightness(100%) contrast(101%)";
+}
+
+function removeHighlight() {
+    this.firstChild.removeAttribute("style");
+}
+
+AA_link.onmouseover = highlightIcon;
+LGD_link.onmouseover = highlightIcon;
+
+AA_link.onmouseout = removeHighlight;
+LGD_link.onmouseout = removeHighlight;
