@@ -1157,7 +1157,22 @@ async function getEqualityGroups(d, e) {
                maintainAspectRatio: false,         // Any aspect ratio
               scales: {
                 y: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  ticks: {
+                     minRotation: 0,
+                     maxRotation: 0
+                  }
+                },
+                x: {
+                  grid: {
+                     lineWidth: 0,
+                     drawTicks: true,
+                     tickWidth: 1
+                  },
+                  ticks: {
+                     minRotation: 0,
+                     maxRotation: 0
+                  }
                 }
               }
             },

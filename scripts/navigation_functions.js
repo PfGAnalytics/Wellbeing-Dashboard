@@ -1336,8 +1336,16 @@ function removeHighlight() {
     this.firstChild.removeAttribute("style");
 }
 
-AA_link.onmouseover = highlightIcon;
-LGD_link.onmouseover = highlightIcon;
 
-AA_link.onmouseout = removeHighlight;
-LGD_link.onmouseout = removeHighlight;
+if(document.getElementById("AA-link")) {
+    AA_link.onmouseover = highlightIcon;
+    AA_link.onmouseout = removeHighlight;
+}
+
+if (document.getElementById("LGD-link")) {
+    LGD_link.onmouseover = highlightIcon;
+    LGD_link.onmouseout = removeHighlight;
+}
+
+
+
