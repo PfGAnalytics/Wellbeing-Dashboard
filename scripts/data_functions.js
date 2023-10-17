@@ -1024,8 +1024,8 @@ async function getEqualityGroups(d, e) {
          group = labels[i].slice(0, labels[i].indexOf("-")).trim();
 
          if (group.includes("Age")) {
-            group = "Age group"
-         }
+            group = "Age"
+        }
 
          if (!eq_groups.includes(group)) {
             eq_groups.push(group)
@@ -1107,11 +1107,16 @@ async function getEqualityGroups(d, e) {
          pop_canvas.id = "pop-canvas";
          pop_up_container.appendChild(pop_canvas);
 
+         note = document.createElement("div");
+         note.style.marginLeft = "25px";
+         note.style.marginRight = "25px";
+         pop_up_chart.appendChild(note);
+
          var years = Object.values(dimension)[1].category.index; // Array of years in data
          
          if (eq_groups[i] == "Sex") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%221%22,%222%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
-         } else if (eq_groups[i] == "Age group") {
+         } else if (eq_groups[i] == "Age") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22,%2245%22,%2246%22,%2247%22,%2248%22,%2249%22,%2250%22,%2251%22,%2252%22,%2253%22,%2254%22,%2255%22,%2256%22,%2257%22,%2258%22,%2269%22,%2270%22,%2271%22,%2272%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Marital status") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%229%22,%2210%22,%2211%22,%2212%22,%2213%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
@@ -1149,7 +1154,7 @@ async function getEqualityGroups(d, e) {
          values = {};
          for (let j = 0; j < groups.length; j ++) {
 
-            if (eq_groups[i] == "Age group") {
+            if (eq_groups[i] == "Age") {
                group_label = groups[j].slice(groups[j].indexOf(" ")).trim();
                if (group_label.indexOf("-") == 0) {
                   group_label = group_label.slice(1).trim();
@@ -1170,7 +1175,7 @@ async function getEqualityGroups(d, e) {
 
          }
 
-         if (eq_groups[i] == "Age group") {
+         if (eq_groups[i] == "Age") {
             values = sortObject(values);
          }
 
@@ -1220,7 +1225,52 @@ async function getEqualityGroups(d, e) {
             },
           };
 
-         new Chart(pop_canvas, config);        
+         new Chart(pop_canvas, config);
+         
+         note_text = result.note[0].replaceAll("\r", "").replaceAll("\n", "").replaceAll("[b] ", "[b]");
+         
+         heading_text = "[b]" + eq_groups[i];
+
+         if (note_text.indexOf(heading_text) > -1) {
+
+            note_text = note_text.slice(note_text.indexOf(heading_text) + heading_text.length);
+            note_text = note_text.slice(0, note_text.indexOf("[b]"));
+
+            if (note_text.indexOf("ual orientation") == 0) {
+               note_text = ""
+            }
+
+            notes = [];
+
+            for (j = 1; j <= 20; j ++) {
+               if (note_text.indexOf(j + ". ") > -1) {
+                  var new_note = note_text.slice(note_text.indexOf(j + ". ") + (j + ". ").length);
+                  new_note = new_note.slice(0, new_note.indexOf(j + 1 + ". ")).trim();
+                  if (new_note.charAt(new_note.length - 1) == "1") {
+                     new_note = new_note.slice(0, new_note.length - 1).trim();
+                  }
+                  notes.push(new_note);
+               }
+            }
+
+            notes = [...new Set(notes)];
+
+            if (notes.length == 1) {
+               note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Note:</p>";
+            } else if (notes.length > 1) {
+               note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Notes:</p>";
+            }
+
+            for (j = 0; j < notes.length; j ++) {
+               notes[j] = j + 1 + ". " + notes[j];
+               if (notes[j].indexOf(["[url="]) > -1) {
+                  link = notes[j].slice(notes[j].indexOf("[url=") + "[url=".length);
+                  link = link.slice(0, link.indexOf("]"));
+                  notes[j] = notes[j].slice(0, notes[j].indexOf("[url=")) + "<a href = '" + link + "' target = '_blank'>" + link + "</a>";
+               }
+               note.innerHTML = note.innerHTML + "<p>" + notes[j] + "</p>";
+            }
+         };           
   
      }
 

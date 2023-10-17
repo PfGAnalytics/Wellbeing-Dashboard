@@ -183,7 +183,7 @@ function generateIndicatorPage(d, e) {
     if (data.EQ != "") {
         see_eq = document.createElement("div");
         see_eq.innerHTML = "See indicator trends by:" + 
-                            "<div class = 'row'><div id = 'eq-col-1'></div><div id = 'eq-col-2'></div></div>";
+                            "<div class = 'row' style = 'align-items: start'><div id = 'eq-col-1'></div><div id = 'eq-col-2'></div></div>";
         see_eq.id = "see-eq";
         map_link.appendChild(see_eq);
         getEqualityGroups(d, e)           
@@ -1282,7 +1282,7 @@ async function subpopTable() {
                     group = labels[j].slice(0, labels[j].indexOf("-")).trim();
             
                     if (group.includes("Age")) {
-                        group = "Age group"
+                        group = "Age"
                     }
             
                     if (!eq_groups.includes(group)) {
@@ -1291,7 +1291,7 @@ async function subpopTable() {
                     }
                 }
 
-                headings = ["Deprivation", "Age group", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group"];
+                headings = ["Deprivation", "Age", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group"];
 
                 for (let i = 0; i < headings.length; i ++) {
                     td = document.createElement("td");
@@ -1311,9 +1311,21 @@ async function subpopTable() {
 
         }
 
+        subpop_row.onmouseover = function () {
+            this.firstChild.style.fontWeight = "bold";
+        }
+
+        subpop_row.onmouseout = function () {
+            this.firstChild.style.fontWeight = "normal";
+        }
+
+        subpop_row.onclick = function () {
+            this.firstChild.firstChild.click();
+        }
+
         subpop_table.appendChild(subpop_row);
 
-    } 
+    }
 
 }
 
@@ -1335,6 +1347,8 @@ if (document.getElementById("LGD-link")) {
     LGD_link.onmouseover = highlightIcon;
     LGD_link.onmouseout = removeHighlight;
 }
+
+
 
 
 

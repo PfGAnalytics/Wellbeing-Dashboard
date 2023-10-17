@@ -940,7 +940,7 @@ footer a:hover {
   }
 
   #pop-up-chart {
-    height: 650px;
+    padding-bottom: 50px;
     background-color: #ffffff;
     position: absolute;
     top: 0;
@@ -984,8 +984,15 @@ footer a:hover {
     padding-right: 3px;
   }
 
+  th {
+    background-color: #008675;
+    color: #ffffff;
+    cursor: default;
+  }
+
   tr:hover {
     background-color: #ccc;
+    cursor: pointer;
   }
  
   td a {
@@ -995,12 +1002,13 @@ footer a:hover {
   td a:hover {
     color: #000000;
     text-decoration: none;
+    font-weight: bold;
   }
 
   .navy-dot {
     background-color: #142062;
-    height: 17px;
-    width: 17px;
+    height: 16px;
+    width: 16px;
     border-radius: 100%;
     margin: auto;
   }
