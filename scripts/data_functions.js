@@ -90,66 +90,68 @@ async function indicatorPerformance (dom = null) {
          const {result} = fetched_data;                  // and extract the result object key
 
          if (result == null) {
-            console.log("Warning: No indicator information found for " + e + ". Refresh to try again. Check matrix spelling for indicator in domains_data.js if problem persists.");
-            num_indicators = num_indicators - 1;
-            return;  // If one indicator is not working it will still attempt to render rest of them rather than crashing entire loop
-         }
-
-         const {dimension, value} = result;  // from result we then extract the object keys we need
-
-         var years = Object.values(dimension)[1].category.index; // Array of years in data
-         var num_years = years.length;  // Number of years in data
-         
-         var base_position = years.indexOf(indicator.base_year); // Which position in the years array is base year
-         var current_year = years[years.length-1]; // The current year
-
-         var base_value = value[base_position]; // The value at the base year
-         var data_series = value; // The y axis values to plot
-         var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
-
-         // When confidence interval is constant
-         if (!isNaN(indicator.ci)) {
-            var ci_value = indicator.ci;
-            var years_cumulated = 1;
-         } else { // When confidence interval changes year on year
-            var ci_value = Number(indicator.ci.slice(0, -1));
-            var years_cumulated = num_years - base_position - 1;
-         }
-
-         // Statement to output based on performance of indicator
-         var current_ci = ci_value * years_cumulated;
-
-         // Function to count the number of decimal places present in a number
-         Number.prototype.countDecimals = function () {
-            if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
-            return this.toString().split(".")[1].length || 0; 
-         }
-
-         // The number of decimal places present in the data set
-         var decimals = [];
-         for (let i = 0; i < data_series.length; i ++) {
-            if (data_series[i] != null) {
-               decimals.push(data_series[i].countDecimals())
-            }
-         }
-
-         var decimal_places = Math.max(...decimals);
-         
-         change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
-      
-         if (current_year == indicator.base_year) {
-            no_change_indicator[indicators[j]] = {domain: doms[i]};
-            document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
-         } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
-            improving_indicator[indicators[j]] = {domain: doms[i]};
-            document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
-         } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
-            worsening_indicator[indicators[j]] = {domain: doms[i]};
-            document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
+            console.log("Warning: No indicator information found for " + indicators[j] + ". Refresh to try again. Check matrix spelling for indicator in domains_data.js if problem persists.");
          } else {
-            no_change_indicator[indicators[j]] = {domain: doms[i]};
-            document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
-         };
+
+            const {dimension, value} = result;  // from result we then extract the object keys we need
+
+            var years = Object.values(dimension)[1].category.index; // Array of years in data
+            var num_years = years.length;  // Number of years in data
+            
+            var base_position = years.indexOf(indicator.base_year); // Which position in the years array is base year
+            var current_year = years[years.length-1]; // The current year
+
+            var base_value = value[base_position]; // The value at the base year
+            var data_series = value; // The y axis values to plot
+            var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
+
+            // When confidence interval is constant
+            if (!isNaN(indicator.ci)) {
+               var ci_value = indicator.ci;
+               var years_cumulated = 1;
+            } else { // When confidence interval changes year on year
+               var ci_value = Number(indicator.ci.slice(0, -1));
+               var years_cumulated = num_years - base_position - 1;
+            }
+
+            // Statement to output based on performance of indicator
+            var current_ci = ci_value * years_cumulated;
+
+            // Function to count the number of decimal places present in a number
+            Number.prototype.countDecimals = function () {
+               if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
+               return this.toString().split(".")[1].length || 0; 
+            }
+
+            // The number of decimal places present in the data set
+            var decimals = [];
+            for (let i = 0; i < data_series.length; i ++) {
+               if (data_series[i] != null) {
+                  decimals.push(data_series[i].countDecimals())
+               }
+            }
+
+            var decimal_places = Math.max(...decimals);
+            
+            change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
+         
+            if (current_year == indicator.base_year) {
+               no_change_indicator[indicators[j]] = {domain: doms[i]};
+               
+            } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
+               improving_indicator[indicators[j]] = {domain: doms[i]};
+               
+            } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
+               worsening_indicator[indicators[j]] = {domain: doms[i]};
+               
+            } else {
+               no_change_indicator[indicators[j]] = {domain: doms[i]};
+               
+            };
+
+            
+
+         }
 
          if (i == doms.length - 1 && j == indicators.length - 1) {
             improving_indicator = sortObject(improving_indicator);
@@ -158,6 +160,10 @@ async function indicatorPerformance (dom = null) {
             plotOverallHexes("improving");
             plotOverallHexes("no_change");
             plotOverallHexes("worsening");
+            tot_indicators = Object.keys(no_change_indicator).length + Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length;
+            document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + tot_indicators + ")";
+            document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + tot_indicators + ")";
+            document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + tot_indicators + ")";
             document.getElementById("loading-img").style.display = "none";
             document.getElementById("overall-hexes").style.display = "block";
          }

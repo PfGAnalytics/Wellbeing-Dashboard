@@ -770,6 +770,40 @@ var domains_data = {
                no_change: "",
                worsened: ""
             }
+         },
+         "Trust in the media": {
+            importance: "Integrity of the media is important in ensuring that people can access reliable information about matters of public interest that impact them. Trust in the media contributes to democratic wellbeing which can impact directly on personal wellbeing.",
+            base_year: "2019",
+            ci: 2,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "",
+               EQ: "INDTRUSTMEDIAEQ"
+            },
+            improvement: "increase",
+            telling: {
+               improved: "In 2021, 32% of people reported that they trusted the media.",
+               no_change: "In 2021, 32% of people reported that they trusted the media.",
+               worsened: "In 2021, 32% of people reported that they trusted the media."
+            }
+         },
+         "Trust in the NI Assembly": {
+            importance: "Trust in elected representatives is central to a functioning, democratic society.  Lack of trust in elected representatives can discourage people from democratic participation and people can feel as though they do not have a voice in decisions that affect them.  This in turn can influence wellbeing.",
+            base_year: "2019",
+            ci: 2,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "",
+               EQ: "INDTRUSTASMBEQ"
+            },
+            improvement: "increase",
+            telling: {
+               improved: "In 2021, 30% of people reported that they trusted the NI Assembly.",
+               no_change: "In 2021, 30% of people reported that they trusted the NI Assembly.",
+               worsened: "In 2021, 30% of people reported that they trusted the NI Assembly."
+            }
          }
       }
     }
