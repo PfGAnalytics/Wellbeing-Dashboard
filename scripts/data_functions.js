@@ -1188,6 +1188,12 @@ async function getEqualityGroups(d, e) {
                delete values["65-74"];
                delete values["75+"];
             }
+            if (e == "Reoffending rate") {
+               values = {
+                  "Adult": Object.values(values["Adult"]),
+                  "Youth": Object.values(values["Youth"]),
+               }
+            }
          }
 
          if (eq_groups[i] == "Deprivation") {
@@ -1202,14 +1208,7 @@ async function getEqualityGroups(d, e) {
                delete values["Separated"];
                delete values["Divorced"]
             }
-         }
-
-         if (e == "Reoffending rate") {
-            values = {
-               "Adult": Object.values(values["Adult"]),
-               "Youth": Object.values(values["Youth"]),
-            }
-         }
+         }        
 
          var data = {
             labels: years,
