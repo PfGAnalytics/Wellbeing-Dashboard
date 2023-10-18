@@ -1279,7 +1279,9 @@ async function getEqualityGroups(d, e) {
          if (note_text.indexOf(heading_text) > -1) {
 
             note_text = note_text.slice(note_text.indexOf(heading_text) + heading_text.length);
-            note_text = note_text.slice(0, note_text.indexOf("[b]"));
+            if (note_text.indexOf("[b]") > -1) {
+               note_text = note_text.slice(0, note_text.indexOf("[b]"));
+            }
 
             if (note_text.indexOf("ual orientation") == 0) {
                note_text = ""
