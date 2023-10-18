@@ -54,7 +54,7 @@ var map_label_2 = document.getElementById("map-label-2");
 var map_label_3 = document.getElementById("map-label-3");
 var breaks = map_form.getElementsByTagName('br');
 var domain_info_container = document.getElementById("domain-info-container");
-var domain_count = document.getElementById("domain-count");
+var domain_count = document.getElementsByClassName("domain-count");
 var box_containers = document.getElementsByClassName("box-container");
 var further_expander = document.getElementById("further-expander");
 var user_guide_link = document.getElementsByClassName("user-guide-link");
@@ -83,7 +83,11 @@ var subpop_container = document.getElementById("subpop-container");
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
-domain_count.textContent = number_to_word(domains.length).toLowerCase();
+
+for (let i = 0; i< domain_count.length; i ++) {
+    domain_count[i].textContent = number_to_word(domains.length).toLowerCase();
+}
+
 
 // Generate hex grid of domains
 var domains = Object.keys(domains_data);
@@ -263,9 +267,6 @@ function generateHexagons (d) {
             ind_hex_rows[i].style.marginTop = "-30px";      // All rows after first row will be moved up by 30px
         }
     }
-
-    // Position of key at bottom of domain page (stop it varying depending on Domain)
-    key.style.marginTop = (508 - indicator_hexes.clientHeight) + "px";
 
 }
 
@@ -979,7 +980,7 @@ function sizeForMobile() {
     // Size of the NISRA logo container
     nisra_logo_container.style.width = footer_container.clientWidth - 565 + "px";
 
-    subpop_container.style.maxHeight = window.innerHeight - footer_container.clientHeight - 100 + "px";
+    subpop_container.style.maxHeight = window.innerHeight - 100 + "px";
 
     // If screen is less than 1200px wide do following:
     if (window.innerWidth < 1200) {
@@ -1158,7 +1159,19 @@ search_btn.onclick = function () {
 
 // Framework structure diagram
 // Start by looping through all domains
+
+column_1 = document.createElement("div");
+column_2 = document.createElement("div");
+
+column_1.classList.add("framework-column");
+column_2.classList.add("framework_column");
+
+framework_structure.appendChild(column_1);
+framework_structure.appendChild(column_2);
+
 for (let i = 0; i < domains.length; i ++) {
+
+    
 
     framework_row = document.createElement("div");      // Create a row for each heaxagon and blue label to sit in
     framework_row.classList.add("row");                 // Give it class "row"
@@ -1181,7 +1194,7 @@ for (let i = 0; i < domains.length; i ++) {
 
     desc = document.createElement("div");                   // Create div for description to sit in
     desc.classList.add("blue-label");                       // Give it the class "blue-label"
-    desc.style.width = "400px";                             // Set width to 500px
+    desc.style.width = "350px";                             // Set width to 500px
     desc.style.minHeight = "68px";                          // Set min height to 76px
     desc.style.fontSize = "12pt";
     desc.textContent = domains_data[domains[i]].description;        // Insert domain description from domains_data
@@ -1196,18 +1209,28 @@ for (let i = 0; i < domains.length; i ++) {
         framework_row.style.marginTop = "-25px";        // Move all rows after first row up by 33px
     }
 
-    framework_structure.appendChild(framework_row)      // Insert row into html document
+    if (i < domains.length / 2) {
+        column_1.appendChild(framework_row);      // Insert row into html document
+    } else {
+        column_2.appendChild(framework_row);
+    }
+
+    
 
 }
 
 async function subpopTable() {
 
-    loading = document.createElement("img");
+    loading = document.createElement("div");
 
-    loading.src = src = "img/page-loading.gif";
-    loading.alt = "Northern Ireland Executive Loading Screen animation";
+    loading.innerHTML = '<img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation"></img>';
+
+    loading.style.display = "flex";
+    loading.style.alignItems = "center"; 
 
     subpop_container.appendChild(loading);
+
+    loading.style.height = window.innerHeight - 100 + "px";
 
     subpop_table = document.createElement("table");
     subpop_table.id = "subpop-table";
@@ -1358,8 +1381,3 @@ if (document.getElementById("LGD-link")) {
     LGD_link.onmouseover = highlightIcon;
     LGD_link.onmouseout = removeHighlight;
 }
-
-
-
-
-

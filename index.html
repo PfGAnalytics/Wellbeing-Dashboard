@@ -41,7 +41,7 @@
                     <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
                     <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
                     <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
-                    <button id = "help-btn" class = "top-menu-item" name = "tab" value = "help"><i class="fa-regular fa-address-book"></i></i> User Guide</button>
+                    <button id = "help-btn" class = "top-menu-item" name = "tab" value = "help"><i class="fa-regular fa-address-book"></i></i> Notes</button>
                 </form>
                 <form id = "search-bar" autocomplete = "off">
                     <div id = "search-box">
@@ -74,7 +74,7 @@
             <div id = "domains-scrn" class = "screen">
                 <h2 id = "domains-title" style="width: 100%; text-align: center;"></h2>
                 <div id = "domains-intro" class = "intro">
-                    <p>This dashboard uses the latest data to show how people in Northern Ireland are doing, as individuals, communities and as a society across <span id = "domain-count"></span> domains of wellbeing.</p>
+                    <p>This dashboard uses the latest data to show how people in Northern Ireland are doing, as individuals, communities and as a society across <span class = "domain-count"></span> domains of wellbeing.</p>
                     <p>To measure this, we have developed a set of indicators composed of Official and National Statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and the areas where progress still needs to be made.</p>
                     <p>Analysing these indicators across different parts of our society can help us uncover any inequalities and focus on areas that need attention. Policy makers, service providers and researchers can use this information to tackle issues, inform their own research and guide decisions. With this clearer understanding, we can create positive changes that benefit everyone.</p>
                 </div>
@@ -97,22 +97,24 @@
                                     <div id = "clicked-desc" class = "blue-label" style = "width: 400px;"></div>
                                 </div>
                             </div>
-                            <form id = "indicator-hexes"></form>
-                            <div class = "blue-label" style = "width: 400px; margin-left: 165px; text-align: center; margin-top: 1rem"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
-                            <div id = "key" class = "row">
-                                Key:
-                                <div class = "key-hex positive"><i class="fa-solid fa-up-long"></i></div>
-                                Improving
-                                <div class = "key-hex"><i class="fa-solid fa-right-long"></i></div>
-                                No Change
-                                <div class = "key-hex negative"><i class="fa-solid fa-down-long"></i></div>
-                                Worsening
+                            <div class = "row">
+                                <div id = "key">
+                                    Key:
+                                    <div class = "key-hex positive"><i class="fa-solid fa-up-long"></i></div>
+                                    Improving
+                                    <div class = "key-hex"><i class="fa-solid fa-right-long"></i></div>
+                                    No Change
+                                    <div class = "key-hex negative"><i class="fa-solid fa-down-long"></i></div>
+                                    Worsening
+                                </div>
+                                <form id = "indicator-hexes"></form>
                             </div>
+                            <div class = "blue-label" style = "width: 400px; margin-left: 165px; text-align: center; margin-top: 20px; margin-bottom: 20px;"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
                         </div>
                     </div>
                 </div>
                 <div id = "domains-footer">
-                    <p>For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">User Guide</span>.</p>
+                    <p>For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">Notes</span>.</p>
                     <p>The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
                 </div>
             </div>
@@ -158,7 +160,7 @@
                         </div>
                         <form id = "worsening-hexes" class = "overall-container"></form>
                     </div>
-                    <p style = "font-size: 12pt;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">User Guide</span>.</p>
+                    <p style = "font-size: 12pt;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">Notes</span>.</p>
                 <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
                 </div>
             </div>
@@ -263,7 +265,7 @@
             </div>
 
             <div id = "help-scrn" class = "screen" style = "display: none;">
-                <h2>User Guide</h2>
+                <h2>Notes</h2>
                 <h3>Development of the Programme for Government Wellbeing Framework</h3>
                 <p>In 2021, the Northern Ireland Executive consulted on an Outcomes Framework for a Programme for Government. That Outcomes Framework set out a list of areas on which the Executive was considering focusing on in the coming years.</p>
                 <p>The framework was to be underpinned by a robust set of Official and National Statistics which would help policy makers understand population wellbeing in Northern Ireland. Where problems or issues existed, that framework would help the Executive identify and respond to them. The methodology used learnings from the United Nations' Sustainable Development Goals and other international initiatives aimed at understanding wellbeing.</p>
@@ -271,11 +273,13 @@
                 <p>By keeping track of this information, we can understand our current situation, monitor progress, and address the most important priorities, including the global Sustainable Development Goals set by the United Nations.</p>
                 <p>Analysing these measures across different parts of our society can help us uncover any inequalities and focus on areas needing attention. Policy makers, service providers and researchers can use this information to tackle issues, inform their own research and guide decisions. With this clearer understanding, we can create positive changes that benefit everyone.</p>
                 <h3>Framework structure</h3>
-                <p>To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified nine strategic domains of wellbeing. These domains describe our state of wellbeing as a society and align with the Executive's stated Missions: People, Planet, Prosperity.</p>
+                <p>To capture the diverse elements that contribute to Northern Ireland's social, economic, and environmental wellbeing, we have identified <span class="domain-count"></span> strategic domains of wellbeing. These domains describe our state of wellbeing as a society and align with the Executive's stated Missions: People, Planet, Prosperity.</p>
                 <div id = "framework-container">
-                    <div id = "framework-structure"></div>
+                    <div id = "framework-structure" class = "row"></div>
                 </div>
                 <p>Each domain is supported by a number of indicators taken from Official and National Statistics, and while indicators are included under a particular domain, it is expected that many indicators may influence aspects of wellbeing relevant to multiple domains, and wellbeing overall.  We will update each indicator as additional data becomes available, providing a snapshot of Northern Ireland's state of wellbeing.</p>
+                <h3>Subpopulations available for each indicator</h3>
+                <div id = "subpop-container"></div>
                 <h3>Quality characteristics of the framework</h3>
                 <p>All of the indicators are composed of Official and National statistics which adhere to the <a href = "https://code.statisticsauthority.gov.uk/" target = "_blank">Code of Practice for Statistics</a>.  The Code is based on three pillars - Trustworthiness, Quality and Value.  It outlines principles and practices to follow when producing statistics to ensure high quality, reliable outputs.</p>
                 <p>The indicators have been identified in collaboration with departmental statisticians and policy colleagues to ensure they are relevant to wellbeing in NI.</p>
@@ -293,8 +297,6 @@
                 <p>We will engage with stakeholders and users to gather feedback on this dashboard and the indicator tables on the NISRA Data Portal.</p>
                 <p>There will be ongoing development of the indicator set to identify and address any potential gaps, and to improve or replace existing measures as need be.</p>
                 <p>We are keen to hear from users of the dashboard and you can contact us at <a href = "mailto:pfganalytics@executiveoffice-ni.gov.uk">pfganalytics@executiveoffice-ni.gov.uk</a> or complete our short <a href = "https://consultations.nidirect.gov.uk/teo/d8cf2dfc" target = "_blank">user survey</a> if you have any feedback.</p>
-                <h3>Subpopulations available for each indicator</h3>
-                <div id = "subpop-container"></div>
             </div>            
 
         </div>

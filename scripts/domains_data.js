@@ -58,9 +58,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "There are generally more opportunities for care leavers.",
-               no_change: "There are generally the same amount of opportunities for care leavers.",
-               worsened: "There are generally fewer opportunities for care leavers." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Small for gestational age": {
@@ -75,9 +75,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas is getting narrower.",
-               no_change: "The gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas has remained constant.",
-               worsened: "The gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas is increasing." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
       }
@@ -97,9 +97,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The air we breathe is generally cleaner.",
-               no_change: "The level of pollution in the air we breathe remains constant.",
-               worsened: "The level of pollution in the air we breathe is increasing." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Greenhouse gas emissions": {
@@ -114,9 +114,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "There are less greenhouse gases in our ecosystem.",
-               no_change: "The level of greenhouse gases in our ecosystem remains constant.",
-               worsened: "There are more greenhouse gases in our ecosystem." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Low carbon and renewable energy employment": {
@@ -131,9 +131,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "There are more people employed in the renewable energy sector.",
-               no_change: "The number of people employed in the renewable energy sector remains constant.",
-               worsened: "There are fewer people employed in the renewable energy sector." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Recycled waste": {
@@ -148,9 +148,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More household waste is being recycled.",
-               no_change: "The amount of household waste being recycled remains the same.",
-               worsened: "Less household waste is being recycled." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "River water quality": {
@@ -165,9 +165,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "There is less phosporous in our river water.",
-               no_change: "The level of phosporous in our river water remains the same.",
-               worsened: "There is more phosporous in our river water." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
        }
@@ -187,9 +187,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More people feel their cultural identity is respected by society.",
-               no_change: "The proportion of people who feel their cultural identity is respected by society remains the same.",
-               worsened: "Fewer people feel their cultural identity is respected by society." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Income deprivation": {
@@ -204,9 +204,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Fewer people are living in absolute poverty.",
-               no_change: "The level of absolute poverty in Northern Ireland remains the same.",
-               worsened: "More people are living in absolute poverty." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Income inequality": {
@@ -221,9 +221,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Fewer people are living in relative poverty.",
-               no_change: "The level of relative poverty in Northern Ireland remains the same.",
-               worsened: "More people are living in relative poverty." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Respect": {
@@ -238,9 +238,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More people feel respected by society.",
-               no_change: "The proportion of people who feel respected by society remains the same.",
-               worsened: "Fewer people feel respected by society." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
       }
@@ -260,9 +260,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Females are generally living longer, healthier lives.",
-               no_change: "The healthy life expectancy for females is generally the same.",
-               worsened: "Females are generally living shorter, unhealthier lives." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Healthy life expectancy (males)": {
@@ -277,9 +277,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Males are generally living longer, healthier lives.",
-               no_change: "The healthy life expectancy for males is generally the same.",
-               worsened: "Males are generally living shorter, unhealthier lives."  
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Mental health": {
@@ -294,9 +294,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "There are fewer people reporting problems with their mental health.",
-               no_change: "The level of people reporting problems with their mental health remains unchanged.",
-               worsened: "There are more people reporting problems with their mental health." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Preventable deaths": {
@@ -311,9 +311,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "There are fewer preventable deaths.",
-               no_change: "The level of preventable deaths remains unchanged.",
-               worsened: "There are more preventable deaths." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Sports and physical activity": {
@@ -328,9 +328,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More people are participating in sports.",
-               no_change: "The level of participation in sports remains the same.",
-               worsened: "Fewer people are participating in sports." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
        }
@@ -350,9 +350,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More people are engaging with the arts.",
-               no_change: "The level of engagement with the arts remains the same.",
-               worsened: "Fewer people are engaging with the arts." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Life satisfaction": {
@@ -367,9 +367,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "People are generally happier.",
-               no_change: "People are generally indifferent.",
-               worsened: "People are generally more miserable." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "School leavers' attainment gap": {
@@ -384,9 +384,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "More children from disadvanted backgrounds are getting a better start at life.",
-               no_change: "A similar number of children from disadvanted backgrounds are getting a better start at life.",
-               worsened: "Fewer children from disadvanted backgrounds are getting a better start at life." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Self-efficacy": {
@@ -401,9 +401,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "People feel they have more influence over the events that affect their life.",
-               no_change: "People feel they have the same level of influence over the events that affect their life.",
-               worsened: "People feel they have less influence over the events that affect their life." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
        }
@@ -423,9 +423,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "More people are economically active.",
-               no_change: "The number of people being economically inactive has stayed constant.",
-               worsened: "More people are economically inactive." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Employment rate": {
@@ -440,9 +440,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More working age people are employed.",
-               no_change: "The employment rate has remained the same.",
-               worsened: "Fewer working age people are employed." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "External sales rate": {
@@ -457,9 +457,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "There are more goods being exported.",
-               no_change: "The number of goods being exported remains the same.",
-               worsened: "There are fewer good being exported." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Local graduates in narrow STEM subjects": {
@@ -474,9 +474,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More young people are pursuing STEM careers.",
-               no_change: "The number of young people pursing STEM careers remains constant.",
-               worsened: "Fewer young people are pursuing STEM careers." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "International reputation": {
@@ -491,9 +491,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Other countries think Northern Ireland is class.",
-               no_change: "Other countries think Northern Ireland is fairly middling.",
-               worsened: "Other countries aren't buzzing about Northern Ireland right now." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Northern Ireland Composite Economic Index": {
@@ -508,9 +508,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The economy is flying.",
-               no_change: "The economy could be better.",
-               worsened: "A pint costs how much now???" 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Skills": {
@@ -525,9 +525,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "People are better skilled.",
-               no_change: "Skills are the same.",
-               worsened: "Skills are dropping." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
        }
@@ -547,9 +547,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Fewer people are reporting being victims of crime.",
-               no_change: "Crime prevalence rate remains steady.",
-               worsened: "More people are reporting being victims of crime." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Reoffending rate": {
@@ -564,9 +564,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Fewer people are victims of crime.",
-               no_change: "A similar amount of people are victims of crime.",
-               worsened: "More people are victims of crime." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
        }
@@ -586,9 +586,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More adults are getting the care they need.",
-               no_change: "The level of adults receiving the care they need is the same.",
-               worsened: "Fewer adults are getting the care they need." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Loneliness": {
@@ -603,9 +603,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "People are less lonely.",
-               no_change: "Loneliness is about the same.",
-               worsened: "People are more lonely." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Volunteering": {
@@ -620,9 +620,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "More adults are volunteering.",
-               no_change: "Volunteering remains constant.",
-               worsened: "Fewer adults are volunteering." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
        }
@@ -642,9 +642,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Homelessness is decreasing.",
-               no_change: "Homelessness is the same.",
-               worsened: "Homeless is increasing." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Housing costs as a proportion of household income": {
@@ -659,9 +659,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Fewer households are spending 30% or more of household income on housing costs",
-               no_change: "Many households are still spending 30% or more of household income on housing costs",
-               worsened: "More households are spending 30% or more of household income on housing costs" 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Housing stress": {
@@ -676,9 +676,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Housing stress is reducing.",
-               no_change: "Housing stress remains the same.",
-               worsened: "Housing stress is rising." 
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
        }
@@ -697,10 +697,10 @@ var domains_data = {
                EQ: "INDCOMRELEQ"
             },
             improvement: "increase",
-            telling : {
-               improved: "",
-               no_change: "",
-               worsened: ""
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Personal safety": {
@@ -715,9 +715,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "",
-               no_change: "",
-               worsened: ""
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Safe towns and city centres": {
@@ -731,10 +731,10 @@ var domains_data = {
                EQ: "INDSAFETOWNEQ"
             },
             improvement: "increase",
-            telling : {
-               improved: "",
-               no_change: "",
-               worsened: ""
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Shared community": {
@@ -749,9 +749,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "",
-               no_change: "",
-               worsened: ""
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Worry about crime": {
@@ -766,14 +766,14 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "",
-               no_change: "",
-               worsened: ""
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Trust in the media": {
             importance: "Integrity of the media is important in ensuring that people can access reliable information about matters of public interest that impact them. Trust in the media contributes to democratic wellbeing which can impact directly on personal wellbeing.",
-            base_year: "2019",
+            base_year: "2021",
             ci: 2,
             data: {
                NI: "",
@@ -783,9 +783,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "In 2021, 32% of people reported that they trusted the media.",
-               no_change: "In 2021, 32% of people reported that they trusted the media.",
-               worsened: "In 2021, 32% of people reported that they trusted the media."
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          },
          "Trust in the NI Assembly": {
@@ -800,9 +800,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "In 2021, 30% of people reported that they trusted the NI Assembly.",
-               no_change: "In 2021, 30% of people reported that they trusted the NI Assembly.",
-               worsened: "In 2021, 30% of people reported that they trusted the NI Assembly."
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
             }
          }
       }

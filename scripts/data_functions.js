@@ -982,10 +982,10 @@ async function createLineChart(d, e) {
   // The "how we measure this" is pulled out of the note object
   measure_text = note[0];
 
-  measure_string = "How do we measure this?[/b]"
+  measure_string = "How do we measure this?"
 
   if (measure_text.indexOf(measure_string) > -1) {
-   measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length);
+   measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
    measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
   } else {
    measure_text = "";
@@ -1053,9 +1053,9 @@ async function getEqualityGroups(d, e) {
          pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
 
          if (window.innerWidth < 1200) {
-            pop_up_chart.style.width = "100%";
+            pop_up_chart.style.width = window.innerWidth - 20 + "px";
          } else {
-            pop_up_chart.style.width = "1200px";
+            pop_up_chart.style.width = "1190px";
          }
 
          main_container.appendChild(pop_up_chart);
@@ -1089,7 +1089,6 @@ async function getEqualityGroups(d, e) {
 
          chart_row = document.createElement("div");
          chart_row.classList.add("row");
-         chart_row.style.marginLeft = "250px";
 
          y_axis = document.createElement("div");
          y_axis.textContent = document.getElementsByClassName("y-label")[0].textContent;
@@ -1103,6 +1102,8 @@ async function getEqualityGroups(d, e) {
          pop_up_container = document.createElement("div");
          pop_up_container.id = "pop-up-container";
          chart_row.appendChild(pop_up_container);
+
+         chart_row.style.marginLeft = (pop_up_chart.clientWidth - y_axis.clientWidth - pop_up_container.clientWidth) / 2 + "px";
 
          pop_canvas = document.createElement("canvas");
          pop_canvas.id = "pop-canvas";
@@ -1118,7 +1119,7 @@ async function getEqualityGroups(d, e) {
          if (eq_groups[i] == "Sex") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%221%22,%222%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Age") {
-            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22,%2245%22,%2236%22,%2238%22,%2246%22,%2247%22,%2248%22,%2249%22,%2250%22,%2251%22,%2252%22,%2253%22,%2254%22,%2255%22,%2256%22,%2257%22,%2258%22,%2269%22,%2270%22,%2271%22,%2272%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
+            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22,%2245%22,%2236%22,%2237%22,%2238%22,%2246%22,%2247%22,%2248%22,%2249%22,%2250%22,%2251%22,%2252%22,%2253%22,%2254%22,%2255%22,%2256%22,%2257%22,%2258%22,%2269%22,%2270%22,%2271%22,%2272%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Marital status") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%229%22,%2210%22,%2211%22,%2212%22,%2213%22,%2239%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Dependants") {
@@ -1203,12 +1204,19 @@ async function getEqualityGroups(d, e) {
             }
          }
 
+         if (e == "Reoffending rate") {
+            values = {
+               "Adult": Object.values(values["Adult"]),
+               "Youth": Object.values(values["Youth"]),
+            }
+         }
+
          var data = {
             labels: years,
             datasets: []
          };
 
-         colours = ["#142062", "#008675", "#FF6200", "#00A857", "#ff3131", "#69729B"];
+         colours = ["#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1"];
 
          for (let j = 0; j < Object.keys(values).length; j ++) {
             data.datasets.push({
@@ -1245,6 +1253,14 @@ async function getEqualityGroups(d, e) {
                      maxRotation: 0
                   }
                 }
+              },
+              plugins: {
+               legend: {
+                  title: {
+                     display: true,
+                     text: "Click legend item to hide/show series in chart"
+                  }
+               }
               }
             },
           };
@@ -1558,10 +1574,10 @@ async function drawMap() {
       // Obtain how do we measure this text from query
       var measure_text = note[0];
 
-      measure_string = "How do we measure this?[/b]"
+      measure_string = "How do we measure this?"
 
       if (measure_text.indexOf(measure_string) > -1) {
-         measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length);
+         measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
          measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
       } else {
          measure_text = "";

@@ -109,7 +109,7 @@ h3 {
 }
 
 #domain-info {
-    width: 730px;
+    width: 800px;
 }
 
 .blue-label {
@@ -314,14 +314,15 @@ button:focus {
 }
 
 #indicator-hexes {
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 #key {
-    width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
 }
 
 .key-hex {
@@ -332,7 +333,6 @@ button:focus {
     background-color: #FF6200;
     color: #ffffff44;
     font-size: 33px;
-    margin-left: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -935,7 +935,6 @@ footer a:hover {
   }
 
   #subpop-container {
-    /* max-height: 500px; */
     overflow: auto;
   }
 
@@ -950,11 +949,14 @@ footer a:hover {
     position: absolute;
     top: 0;
     border-radius: 25px;
+    box-shadow: 10px 10px #00000011;
   }
 
   #pop-up-container {
-    width: 66%;
+    width: 80%;
     height: 553px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #close-pop-up {
@@ -1018,4 +1020,8 @@ footer a:hover {
     width: 16px;
     border-radius: 100%;
     margin: auto;
+  }
+
+  .framework-column {
+    width: 50%;
   }
