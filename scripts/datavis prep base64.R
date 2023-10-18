@@ -49,6 +49,12 @@ suppressWarnings({ # Turn off warnings
     
   }
   
+  # Embed gif in navigation_functions.js
+  fixedNav <- gsub("img/page-loading.gif",
+                    paste0("data:image/gif;base64,", base64encode("../img/page-loading.gif")),
+                    fixedNav,
+                    fixed = TRUE)
+  
   # Embed gif in data_functions.js
   fixedData <- gsub("img/page-loading.gif",
                 paste0("data:image/gif;base64,", base64encode("../img/page-loading.gif")),
