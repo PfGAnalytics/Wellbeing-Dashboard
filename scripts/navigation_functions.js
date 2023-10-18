@@ -1202,6 +1202,13 @@ for (let i = 0; i < domains.length; i ++) {
 
 async function subpopTable() {
 
+    loading = document.createElement("img");
+
+    loading.src = src = "img/page-loading.gif";
+    loading.alt = "Northern Ireland Executive Loading Screen animation";
+
+    subpop_container.appendChild(loading);
+
     subpop_table = document.createElement("table");
     subpop_table.id = "subpop-table";
 
@@ -1223,8 +1230,6 @@ async function subpopTable() {
                                "<th>Racial Group</th>"
 
     subpop_table.appendChild(subpop_headers);
-
-    subpop_container.appendChild(subpop_table);
 
     for (let i = 0; i < all_indicators.length; i ++) {
 
@@ -1328,6 +1333,10 @@ async function subpopTable() {
         subpop_table.appendChild(subpop_row);
 
     }
+
+    loading.style.display = "none";
+    subpop_container.appendChild(subpop_table);
+    
 
 }
 
