@@ -979,6 +979,8 @@ function sizeForMobile() {
     // Size of the NISRA logo container
     nisra_logo_container.style.width = footer_container.clientWidth - 565 + "px";
 
+    subpop_container.style.maxHeight = window.innerHeight - footer_container.clientHeight - 100 + "px";
+
     // If screen is less than 1200px wide do following:
     if (window.innerWidth < 1200) {
 

@@ -934,6 +934,11 @@ footer a:hover {
     margin-bottom: 20px;
   }
 
+  #subpop-container {
+    /* max-height: 500px; */
+    overflow: auto;
+  }
+
   .overall-text {
     margin-left: 10px;
     margin-bottom: 0px;
@@ -988,6 +993,8 @@ footer a:hover {
     background-color: #008675;
     color: #ffffff;
     cursor: default;
+    position: sticky;
+    top: 0;
   }
 
   tr:hover {
