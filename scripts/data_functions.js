@@ -1290,8 +1290,6 @@ async function getEqualityGroups(d, e) {
 
             note_number = Number(note_text.slice(note_text.indexOf(".") - 2, note_text.indexOf(".")).trim()); // Find first number note under the heading
 
-            console.log(note_text)
-
             while(note_text.indexOf(" " + note_number + ".") > -1) {
                if (note_text.indexOf(" " + (note_number + 1) + ".") > - 1) {
                   notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length, note_text.indexOf(" " + (note_number + 1) + ".")));
@@ -1311,7 +1309,7 @@ async function getEqualityGroups(d, e) {
                notes[j] = j + 1 + ". " + notes[j];    // Number the notes starting at 1.
                if (notes[j].indexOf(["[url="]) > -1) {      // Add hyperlinks to any url's found
                   link = notes[j].slice(notes[j].indexOf("[url=") + "[url=".length);
-                  link = link.slice(0, link.indexOf("]"));
+                  link = link.slice(0, link.indexOf("]")).replaceAll(". ", ".");
                   notes[j] = notes[j].slice(0, notes[j].indexOf("[url=")) + "<a href = '" + link + "' target = '_blank'>" + link + "</a>";
                }
                note.innerHTML = note.innerHTML + "<p>" + notes[j] + "</p>"; // Add note to the "note" div
