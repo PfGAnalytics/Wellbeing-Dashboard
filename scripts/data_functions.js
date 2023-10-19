@@ -858,10 +858,18 @@ async function createLineChart(d, e) {
       if (further_note.indexOf("[b]") != -1) {
          further_note = further_note.slice(0, further_note.indexOf("[b]"))
       }
-      further_note = further_note.replaceAll("[url=", "<a href = '");                        // URLS are converted
-      further_note = further_note.replaceAll("[/url]", "' target = '_blank'>here</a>.");
+
+      // URLS are converted
+      link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
+      linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
+      url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+
+      further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+
       further_note = further_note.replaceAll("[i]", "<em>");                              // Italic text tags are converted
       further_note = further_note.replaceAll("[/i]", "</em>");
+      further_note = further_note.replaceAll("“", '"');
+      further_note = further_note.replaceAll("”", '"')
    }
 
    for (let i = 2; i < 10; i++) {
@@ -875,12 +883,6 @@ async function createLineChart(d, e) {
    further_info_div.classList.add("further-selected");
    
    further_info_div.innerHTML = further_note;
-
-   links = further_info_div.getElementsByTagName("a");
-
-   for (let i = 0; i < links.length; i++) {
-      links[i].href = links[i].href.slice(0, links[i].href.indexOf("]"));  // Hyperlinks are formatted
-   }
 
    document.getElementById("further-info").appendChild(further_info_div);
 
@@ -1535,8 +1537,14 @@ async function drawMap() {
          if (further_note.indexOf("[b]") != -1) {
             further_note = further_note.slice(0, further_note.indexOf("[b]"))
          }
-         further_note = further_note.replaceAll("[url=", "<a href = '");
-         further_note = further_note.replaceAll("[/url]", "' target = '_blank'>here</a>.");
+         
+         // URLS are converted
+         link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
+         linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
+         url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+
+         further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+
          further_note = further_note.replaceAll("[i]", "<em>");
          further_note = further_note.replaceAll("[/i]", "</em>");
       }
