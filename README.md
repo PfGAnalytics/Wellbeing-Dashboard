@@ -135,6 +135,10 @@ o. __Statement on performance__ This is output as one of the three values (_impr
 
 p. __Why is this indicator important?__ This is the value of the _importance_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
 
+q. __Links to maps__ These links are generated if AA or LGD data are listed in [`domains_data.js`](scripts/domains_data.js)
+
+r. __Pop-up charts for Equality Groups__ These links are generated depending on the category values of the _EQUALGROUPS_ variable on the NISRA Data Portal.
+
 #### Updating an indicator
 
 The diagram above, and its footnote, should be referred to when changing any piece of information about an indicator.
