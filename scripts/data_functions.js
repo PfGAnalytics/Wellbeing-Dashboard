@@ -1087,7 +1087,7 @@ async function getEqualityGroups(d, e) {
          } else if (eq_groups[i] == "Age") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22,%2245%22,%2236%22,%2237%22,%2238%22,%2246%22,%2247%22,%2248%22,%2249%22,%2250%22,%2251%22,%2252%22,%2253%22,%2254%22,%2255%22,%2256%22,%2257%22,%2258%22,%2259%22,%2260%22,%2261%22,%2262%22,%2269%22,%2270%22,%2271%22,%2272%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Marital status") {
-            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%229%22,%2210%22,%2211%22,%2212%22,%2213%22,%2239%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
+            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%229%22,%2210%22,%2211%22,%2212%22,%2213%22,%2239%22,%2241%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Dependants") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2217%22,%2218%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Disability") {
@@ -1106,6 +1106,8 @@ async function getEqualityGroups(d, e) {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2214%22,%2215%22,%2216%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Household Group") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2263%22,%2264%22,%2265%22,%2266%22,%2267%22,%2268%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
+         } else if (eq_groups[i] == "Tenure") {
+            chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2242%22,%2243%22,%2244%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          }
 
          var result = null;   // Retry plotting chart if data portal link doesn't work first time
@@ -1190,14 +1192,17 @@ async function getEqualityGroups(d, e) {
          if (eq_groups[i] == "Deprivation") {
             if (Object.keys(values).includes("Quintile 4/5")) {      // Deprivation tidy up. If 4/5 is present remove 4 and 5
                delete values["Quintile 4"];
-               delete values["Quintile 5 - Least deprived"]
+               delete values["Quintile 5 - Least deprived"];
             }
          }
 
          if (eq_groups[i] == "Marital status") {
             if (Object.keys(values).includes("Divorced/Separated")) {   // Marital status tidy up. If Divorced/Separated is present remove Divorced and Separated
                delete values["Separated"];
-               delete values["Divorced"]
+               delete values["Divorced"];
+            }
+            if (Object.keys(values).includes("Married/Civil partnership/Cohabiting")) {
+               delete values["Married/Civil partnership"];
             }
          }        
 
@@ -1272,7 +1277,7 @@ async function getEqualityGroups(d, e) {
 
          if (note_text.indexOf(heading_text) > -1) {
 
-            note_text = note_text.slice(note_text.indexOf(heading_text) + heading_text.length);
+            note_text = note_text.slice(note_text.indexOf(heading_text) + heading_text.length).replaceAll("[/b]", " ").replaceAll("[/url]", "[/url] ").replaceAll(".", ". ");
             if (note_text.indexOf("[b]") > -1) {
                note_text = note_text.slice(0, note_text.indexOf("[b]"));
             }
@@ -1283,18 +1288,18 @@ async function getEqualityGroups(d, e) {
 
             notes = [];
 
-            for (j = 0; j < 10; j ++) {            // Search for numbered points within note and separate out into individual notes
-               if (note_text.indexOf(j + ". ") > -1) {
-                  var new_note = note_text.slice(note_text.indexOf(j + ". ") + (j + ". ").length);
-                  new_note = new_note.slice(0, new_note.indexOf(j + 1 + ". ")).trim();
-                  if (new_note.charAt(new_note.length - 1) == "1") {
-                     new_note = new_note.slice(0, new_note.length - 1).trim();
-                  }
-                  notes.push(new_note);
-               }
-            }
+            note_number = Number(note_text.slice(note_text.indexOf(".") - 2, note_text.indexOf(".")).trim()); // Find first number note under the heading
 
-            notes = [...new Set(notes)];  // Make sure no notes are repeated
+            console.log(note_text)
+
+            while(note_text.indexOf(" " + note_number + ".") > -1) {
+               if (note_text.indexOf(" " + (note_number + 1) + ".") > - 1) {
+                  notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length, note_text.indexOf(" " + (note_number + 1) + ".")));
+               } else {
+                  notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length));
+               }
+               note_number = note_number + 1;
+            }
 
             if (notes.length == 1) {
                note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Note:</p>";
