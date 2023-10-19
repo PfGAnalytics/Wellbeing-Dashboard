@@ -49,19 +49,24 @@ var improving_indicator = {};
 var no_change_indicator = {};
 var worsening_indicator = {};
 
+// Function below will loop through all indicators and place them in one of the three objects above depending on their performance
+// When dom = null this will use read in all indicators for plotting on the overall screen
+// Otherwise it will only read in indicators for the selected domain
 async function indicatorPerformance (dom = null) {   
 
+   // Determine whether ro read in all domains or just one:
    if (dom != null) {
       var doms = [dom];
    } else {
       var doms = domains;
    }
 
+   // Loop through all domains in dom:
    for (let i = 0; i < doms.length; i ++) {
 
-      var indicators = Object.keys(domains_data[doms[i]].indicators);
+      var indicators = Object.keys(domains_data[doms[i]].indicators);   // List of all indicators in the domain
 
-      for (let j = 0; j < indicators.length; j ++) {
+      for (let j = 0; j < indicators.length; j ++) {  // Loop through all indicators
 
          var indicator = domains_data[doms[i]].indicators[indicators[j]];  // Select the information for the indicator from domains_data.js
 
@@ -89,7 +94,7 @@ async function indicatorPerformance (dom = null) {
          const fetched_data = await response.json();     // we tell it the data is in json format
          const {result} = fetched_data;                  // and extract the result object key
 
-         if (result == null) {
+         if (result == null) {   // Output message to console when indicator is not found / else continue with calculation
             console.log("Warning: No indicator information found for " + indicators[j] + ". Refresh to try again. Check matrix spelling for indicator in domains_data.js if problem persists.");
          } else {
 
@@ -133,96 +138,43 @@ async function indicatorPerformance (dom = null) {
 
             var decimal_places = Math.max(...decimals);
             
-            change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places;
+            change_from_baseline = Math.round(change_from_baseline * 10 ** decimal_places) / 10 ** decimal_places; // Change from baseline calculated
          
-            if (current_year == indicator.base_year) {
+            if (current_year == indicator.base_year) {   // Indicators where current year is base year classed "no change"
                no_change_indicator[indicators[j]] = {domain: doms[i]};
-               
             } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
-               improving_indicator[indicators[j]] = {domain: doms[i]};
-               
+               improving_indicator[indicators[j]] = {domain: doms[i]};  // "improving" indicators based on condition for improvement met
             } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
-               worsening_indicator[indicators[j]] = {domain: doms[i]};
-               
+               worsening_indicator[indicators[j]] = {domain: doms[i]};  // "worsening" indicators based on condition for improvement met
             } else {
-               no_change_indicator[indicators[j]] = {domain: doms[i]};
-               
-            };
-
-            
+               no_change_indicator[indicators[j]] = {domain: doms[i]};  // All others also classed as "no change"
+            };            
 
          }
 
-         if (i == doms.length - 1 && j == indicators.length - 1) {
-            improving_indicator = sortObject(improving_indicator);
-            no_change_indicator = sortObject(no_change_indicator);
-            worsening_indicator = sortObject(worsening_indicator);
-            plotOverallHexes("improving");
-            plotOverallHexes("no_change");
-            plotOverallHexes("worsening");
-            tot_indicators = Object.keys(no_change_indicator).length + Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length;
-            document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + tot_indicators + ")";
+         if (i == doms.length - 1 && j == indicators.length - 1 && dom == null) {   // On the last iteration of loop, do the following:
+            improving_indicator = sortObject(improving_indicator);   // alphabetise improving indicators
+            no_change_indicator = sortObject(no_change_indicator);   // alphabetise no change indicators
+            worsening_indicator = sortObject(worsening_indicator);   // alphabetise worsening indicators
+            plotOverallHexes("improving");                           // Plot hexagons on overall screen for improving
+            plotOverallHexes("no_change");                           // Plot hexagons on no change screen for improving
+            plotOverallHexes("worsening");                           // Plot hexagons on worsening screen for improving
+            tot_indicators = Object.keys(no_change_indicator).length + Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length;      // Calculate total number of indicators read in
+            document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + tot_indicators + ")";      // Output fractions for each label on overall screen
             document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + tot_indicators + ")";
             document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + tot_indicators + ")";
-            document.getElementById("loading-img").style.display = "none";
-            document.getElementById("overall-hexes").style.display = "block";
+            document.getElementById("loading-img").style.display = "none";    // Hide loading image
+            document.getElementById("overall-hexes").style.display = "block";    // Display grid
          }
 
       }
 
    }
 
-   var currentURL = window.location.href;
+   var currentURL = window.location.href; // Read the current page url
 
    if (dom != null) {
-      generateHexagons(dom);
-   }
-
-   if (currentURL.includes("?oindicator=")) {
-      currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);
-
-      lookUpIndicator = "";
-      for (let i = 0; i < all_indicators.length; i ++) {
-         if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
-               lookUpIndicator = all_indicators[i]
-         }
-      }
-      
-      overall_sorted = [Object.keys(improving_indicator), Object.keys(no_change_indicator), Object.keys(worsening_indicator)].flat();
-
-      current_index = overall_sorted.indexOf(lookUpIndicator);
-
-      // "Previous indicator" button
-      // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
-    if (current_index != 0) {
-        previous_btn_2 = document.createElement("button");     // Div for previous indicator button
-        previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
-        previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
-        previous_btn_2.name = "oindicator";
-        previous_btn_2.value = overall_sorted[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
-        previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + overall_sorted[current_index - 1] +'</strong>';
-        button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
-    }
-    
-    // "Next indicator" button   
-    // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
-    if (current_index != Object.keys(domains_data[lookUpDomain].indicators).length - 1) {
-        next_btn_2 = document.createElement("button");     // Div for next indicator button
-        next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
-        next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
-        next_btn_2.name = "oindicator";
-        next_btn_2.value = overall_sorted[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
-        next_btn_2.innerHTML = 'Next indicator: <strong>' + overall_sorted[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
-        button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
-    }
-
-    for (let i = 0; i < button_rows.length; i ++) {
-      button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
-    }
-
-    document.getElementById("loading-img-2").style.display = "none";
-    document.getElementById("indicator-scrn").style.display = "block"
-
+      generateHexagons(dom);     // Run generateHexagons page for domain grid
    }
 
 }
@@ -1003,93 +955,100 @@ async function createLineChart(d, e) {
 
 }
 
+// This function will read the categories within the EQUALGROUPS variable, then output the available groups in the grey box
+// Each group will then be linked to a pop-up that calls the data for that group from the data portal and plots bar chart
 async function getEqualityGroups(d, e) {
 
-   var matrix = domains_data[d].indicators[e].data.EQ;
+   var matrix = domains_data[d].indicators[e].data.EQ;   // The matrix for the EQ dataset
 
-   var api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en";
+   var api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en"; // The url to read from
 
    // Fetch data and store in object fetched_data
   const response = await fetch(api_url);
   const fetched_data = await response.json();
   const {dimension} = fetched_data;
 
-  var labels = Object.values(dimension.EQUALGROUPS.category.label);
+  var labels = Object.values(dimension.EQUALGROUPS.category.label);  // List of all category labels in EQUALGROUPS variable
 
-  var eq_groups = [];
+  var eq_groups = [];      // Empty array to be filled with groupings
 
-  for (let i = 0; i < labels.length; i ++) {
-      if (labels[i] != "Northern Ireland") {
+  for (let i = 0; i < labels.length; i ++) {    // Loop through all labels
+      if (labels[i] != "Northern Ireland") {    // Exclude Northern Ireland category
 
-         group = labels[i].slice(0, labels[i].indexOf("-")).trim();
+         group = labels[i].slice(0, labels[i].indexOf("-")).trim();     // Truncate group name at position of first hyphen (-)
 
          if (group.includes("Age")) {
-            group = "Age"
+            group = "Age"              // Rename any Age category to just "Age"
         }
 
          if (!eq_groups.includes(group)) {
-            eq_groups.push(group)
+            eq_groups.push(group)         // If grouping isn't already in eq_groups array, then add it to the array
          }
       }
   }
 
-  for (let i = 0; i < eq_groups.length; i ++) {
-      eq_link = document.createElement("div");
-      eq_link.classList.add("eq-link");
-      eq_link.textContent = "• " + eq_groups[i];
+  for (let i = 0; i < eq_groups.length; i ++) {       // Loop through the eq_groups array
 
-      eq_link.onclick = async function () {
+      eq_link = document.createElement("div");           // Create a div for the link
+      eq_link.classList.add("eq-link");                  // Give it a class eq-link
+      eq_link.textContent = "• " + eq_groups[i];         // Populate link with name of grouping
+
+      eq_link.onclick = async function () {           // Add function to execute when link clicked:
 
          if (document.getElementById("pop-up-chart")) {
-            main_container.removeChild(document.getElementById("pop-up-chart"));
+            main_container.removeChild(document.getElementById("pop-up-chart"));    // Remove any pop ups that may have been previously created
          }
 
-         indicator_scrn.style.filter = "opacity(40%)";
+         indicator_scrn.style.filter = "opacity(40%)";         // Set rest of page to 40% brightness
 
-         pop_up_chart = document.createElement("div");
-         pop_up_chart.id = "pop-up-chart";
-         pop_up_chart.style.backgroundColor = "#F2F2F2";
+         pop_up_chart = document.createElement("div");         // Create a div to hold the pop-up
+         pop_up_chart.id = "pop-up-chart";                     // Give it a class
+         pop_up_chart.style.backgroundColor = "#F2F2F2";       // Set its background colour
 
+         // This will position the pop-up to always be immediately below the Indicator title
          pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
 
+         // Set the width of the pop-up box depending on screen size/type
          if (window.innerWidth < 1200) {
             pop_up_chart.style.width = window.innerWidth - 20 + "px";
          } else {
             pop_up_chart.style.width = "1190px";
          }
 
+         // Add the pop-up box to the main page
          main_container.appendChild(pop_up_chart);
 
-         close_pop_up = document.createElement("div");
-         close_pop_up.id = "close-pop-up";
-         close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";
-         close_pop_up.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+         close_pop_up = document.createElement("div");      // Div for "X" close button in top corner of pop-up
+         close_pop_up.id = "close-pop-up";                  // Give it an id
+         close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";      // Position it 30 pixels from end of box
+         close_pop_up.innerHTML = '<i class="fa-solid fa-xmark"></i>';        // Place an X icon in box
 
-         close_pop_up.onclick = function () {
-            indicator_scrn.style.filter = "opacity(100%)";
-            main_container.removeChild(pop_up_chart);
+         close_pop_up.onclick = function () {      // When close button is clicked:
+            indicator_scrn.style.filter = "opacity(100%)";     // Set main page brightness back to full
+            main_container.removeChild(pop_up_chart);          // Remove the pop-up
          }
 
-         pop_up_chart.appendChild(close_pop_up);
+         pop_up_chart.appendChild(close_pop_up);   // Insert close button into document
 
-         pop_up_title = document.createElement("div");
-         pop_up_title.id = "pop-up-title";
-         pop_up_title.textContent = document.getElementsByClassName("chart-title")[0].textContent + " by " + eq_groups[i];
+         pop_up_title = document.createElement("div");      // Insert a div for chart title
+         pop_up_title.id = "pop-up-title";                  // Give it id
+         pop_up_title.textContent = document.getElementsByClassName("chart-title")[0].textContent + " by " + eq_groups[i];    // Take current chart title and add "by grouping" to end
 
-         pop_up_chart.appendChild(pop_up_title);
+         pop_up_chart.appendChild(pop_up_title);   // Insert chart title into pop-up-chart div
 
-         loading = document.createElement("img");
-         loading.src = "img/page-loading.gif";
-         loading.alt = "Northern Ireland Executive Loading Screen animation";
+         loading = document.createElement("img");     // create loading image element
+         loading.src = "img/page-loading.gif";        // image page
+         loading.alt = "Northern Ireland Executive Loading Screen animation";    // image alt text
 
-         pop_up_chart.appendChild(loading);
+         pop_up_chart.appendChild(loading);     // insert loading image into document
 
-         loading.style.marginLeft = (pop_up_chart.clientWidth - loading.clientWidth) / 2 + "px";
-         loading.style.marginTop = "100px";
+         loading.style.marginLeft = (pop_up_chart.clientWidth - loading.clientWidth) / 2 + "px";      // Position loading image in centre
+         loading.style.marginTop = "100px";     // Add 100px top margin
 
-         chart_row = document.createElement("div");
+         chart_row = document.createElement("div");      // Row div for y label and chart to sit side by side
          chart_row.classList.add("row");
 
+         // Create div for y axis label that reads the y axis label content from the line chart:
          y_axis = document.createElement("div");
          y_axis.textContent = document.getElementsByClassName("y-label")[0].textContent;
          y_axis.style.display = "none";
@@ -1099,23 +1058,28 @@ async function getEqualityGroups(d, e) {
 
          pop_up_chart.appendChild(chart_row);
 
+         // Container for line chart:
          pop_up_container = document.createElement("div");
          pop_up_container.id = "pop-up-container";
-         chart_row.appendChild(pop_up_container);
-
-         chart_row.style.marginLeft = (pop_up_chart.clientWidth - y_axis.clientWidth - pop_up_container.clientWidth) / 2 + "px";
+         pop_up_container.style.display = "none";
+         chart_row.appendChild(pop_up_container);        
 
          pop_canvas = document.createElement("canvas");
          pop_canvas.id = "pop-canvas";
          pop_up_container.appendChild(pop_canvas);
 
+         // Container for footnotes:
          note = document.createElement("div");
          note.style.marginLeft = "25px";
          note.style.marginRight = "25px";
          pop_up_chart.appendChild(note);
 
+         // Plot the bar chart:
+
+         // Start by obtaining x axis values - the years:
          var years = Object.values(dimension)[1].category.index; // Array of years in data
          
+         // Contruct api query based on which grouping is selected:
          if (eq_groups[i] == "Sex") {
             chart_data_url = "https://ppws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%221%22,%222%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D"
          } else if (eq_groups[i] == "Age") {
@@ -1147,16 +1111,22 @@ async function getEqualityGroups(d, e) {
             var {result} = fetched_data;                  // and extract the result object key
          }
 
+         // After succesful fetch from data portal the loading image is removed and chart is displayed
          loading.style.display = "none";
          y_axis.style.display = "flex";
+         pop_up_container.style.display = "block";
          pop_up_chart.style.backgroundColor = "#FFFFFF";
 
+         // Chart centred
+         chart_row.style.marginLeft = (pop_up_chart.clientWidth - y_axis.clientWidth - pop_up_container.clientWidth) / 2 + "px";
+
+         // Obtain category labels within each grouping and the values for each:
          groups = Object.values(result.dimension.EQUALGROUPS.category.label);
          
-         // group_labels = [];
-         values = {};
+         values = {};   // Empty object
          for (let j = 0; j < groups.length; j ++) {
 
+            // Take text after first hyphen as group name, except for Age where it is after first space
             if (eq_groups[i] == "Age") {
                group_label = groups[j].slice(groups[j].indexOf(" ")).trim();
                if (group_label.indexOf("-") == 0) {
@@ -1166,8 +1136,7 @@ async function getEqualityGroups(d, e) {
                group_label = groups[j].slice(groups[j].indexOf("-") + 1).trim();
             }            
 
-            // group_labels.push(group_label);
-
+            // For each group pull out the relevant values
             values[group_label] = [];
 
             for (let k = 0; k < result.value.length; k ++) {
@@ -1178,17 +1147,18 @@ async function getEqualityGroups(d, e) {
 
          }
 
-         if (eq_groups[i] == "Age") {
+         // Some age group tidy ups:
+         if (eq_groups[i] == "Age") {        
             values = sortObject(values);
-            if (Object.keys(values).includes("16-34")) {
+            if (Object.keys(values).includes("16-34")) {    // When 16-34 is present in data, remove 16-24 and 25-34
                delete values["16-24"];
                delete values["25-34"];
             }
-            if (Object.keys(values).includes("65+")) {
+            if (Object.keys(values).includes("65+")) {      // When 65+ is present, remove 65-74 and 75+
                delete values["65-74"];
                delete values["75+"];
             }
-            if (e == "Reoffending rate") {
+            if (e == "Reoffending rate") {               // For reoffending rate, show only Adult and Youth
                values = {
                   "Adult": Object.values(values["Adult"]),
                   "Youth": Object.values(values["Youth"]),
@@ -1197,27 +1167,29 @@ async function getEqualityGroups(d, e) {
          }
 
          if (eq_groups[i] == "Deprivation") {
-            if (Object.keys(values).includes("Quintile 4/5")) {
+            if (Object.keys(values).includes("Quintile 4/5")) {      // Deprivation tidy up. If 4/5 is present remove 4 and 5
                delete values["Quintile 4"];
                delete values["Quintile 5 - Least deprived"]
             }
          }
 
          if (eq_groups[i] == "Marital status") {
-            if (Object.keys(values).includes("Divorced/Separated")) {
+            if (Object.keys(values).includes("Divorced/Separated")) {   // Marital status tidy up. If Divorced/Separated is present remove Divorced and Separated
                delete values["Separated"];
                delete values["Divorced"]
             }
          }        
 
+         // Construct data object for chart.js bar chart
          var data = {
             labels: years,
             datasets: []
          };
 
+         // Colour palette for bar charts:
          colours = ["#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1"];
 
-         for (let j = 0; j < Object.keys(values).length; j ++) {
+         for (let j = 0; j < Object.keys(values).length; j ++) {     // Loop through values and create each data series
             data.datasets.push({
                label: Object.keys(values)[j],
                data: values[Object.keys(values)[j]],
@@ -1227,6 +1199,7 @@ async function getEqualityGroups(d, e) {
             })
          }
 
+         // Chart configuration for chart.js
          const config = {
             type: 'bar',
             data: data,
@@ -1264,13 +1237,13 @@ async function getEqualityGroups(d, e) {
             },
           };
 
-         new Chart(pop_canvas, config);
+         new Chart(pop_canvas, config);      // Plot chart
          
-         note_text = result.note[0].replaceAll("\r", "").replaceAll("\n", "").replaceAll("[b] ", "[b]");
+         note_text = result.note[0].replaceAll("\r", "").replaceAll("\n", "").replaceAll("[b] ", "[b]"); // Remove line break characters from note
          
-         heading_text = "[b]" + eq_groups[i];
+         heading_text = "[b]" + eq_groups[i];   // Find heading text by bold tag and group name
 
-         if (note_text.indexOf(heading_text) == -1) {
+         if (note_text.indexOf(heading_text) == -1) {       // If heading text can't be found, try capitalising first letter of second word and searching again
             heading_text = heading_text.slice(0, heading_text.indexOf(" ") + 1) +
                            heading_text.charAt(heading_text.indexOf(" ") + 1).toUpperCase() +
                            heading_text.slice(heading_text.indexOf(" ") + 2);
@@ -1283,13 +1256,13 @@ async function getEqualityGroups(d, e) {
                note_text = note_text.slice(0, note_text.indexOf("[b]"));
             }
 
-            if (note_text.indexOf("ual orientation") == 0) {
+            if (note_text.indexOf("ual orientation") == 0) {   // To differentiate between "Sex" and "Sexual orientation" headings
                note_text = ""
             }
 
             notes = [];
 
-            for (j = 1; j <= 20; j ++) {
+            for (j = 0; j < 10; j ++) {            // Search for numbered points within note and separate out into individual notes
                if (note_text.indexOf(j + ". ") > -1) {
                   var new_note = note_text.slice(note_text.indexOf(j + ". ") + (j + ". ").length);
                   new_note = new_note.slice(0, new_note.indexOf(j + 1 + ". ")).trim();
@@ -1300,7 +1273,7 @@ async function getEqualityGroups(d, e) {
                }
             }
 
-            notes = [...new Set(notes)];
+            notes = [...new Set(notes)];  // Make sure no notes are repeated
 
             if (notes.length == 1) {
                note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Note:</p>";
@@ -1308,20 +1281,20 @@ async function getEqualityGroups(d, e) {
                note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Notes:</p>";
             }
 
-            for (j = 0; j < notes.length; j ++) {
-               notes[j] = j + 1 + ". " + notes[j];
-               if (notes[j].indexOf(["[url="]) > -1) {
+            for (j = 0; j < notes.length; j ++) {  
+               notes[j] = j + 1 + ". " + notes[j];    // Number the notes starting at 1.
+               if (notes[j].indexOf(["[url="]) > -1) {      // Add hyperlinks to any url's found
                   link = notes[j].slice(notes[j].indexOf("[url=") + "[url=".length);
                   link = link.slice(0, link.indexOf("]"));
                   notes[j] = notes[j].slice(0, notes[j].indexOf("[url=")) + "<a href = '" + link + "' target = '_blank'>" + link + "</a>";
                }
-               note.innerHTML = note.innerHTML + "<p>" + notes[j] + "</p>";
+               note.innerHTML = note.innerHTML + "<p>" + notes[j] + "</p>"; // Add note to the "note" div
             }
          };           
   
      }
 
-     if (i % 2 == 0) {
+     if (i < eq_groups.length / 2) {  // Separate links into two columns within grey box
          document.getElementById("eq-col-1").appendChild(eq_link);
      } else {
          document.getElementById("eq-col-2").appendChild(eq_link);

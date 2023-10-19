@@ -184,13 +184,14 @@ function generateIndicatorPage(d, e) {
 
     }
 
+    // When EQ data is present genreate links to various bar charts:
     if (data.EQ != "") {
         see_eq = document.createElement("div");
         see_eq.innerHTML = "See indicator trends by:" + 
                             "<div class = 'row' style = 'align-items: start'><div id = 'eq-col-1'></div><div id = 'eq-col-2'></div></div>";
         see_eq.id = "see-eq";
         map_link.appendChild(see_eq);
-        getEqualityGroups(d, e)           
+        getEqualityGroups(d, e)           // See data_functions.js
     }
 
 }
@@ -1219,43 +1220,45 @@ for (let i = 0; i < domains.length; i ++) {
 
 }
 
+// Function to create sub population table on Notes page
 async function subpopTable() {
 
-    loading = document.createElement("div");
+    loading = document.createElement("div");        // Div to hold loading image in
 
-    loading.innerHTML = '<img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation"></img>';
+    loading.innerHTML = '<img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation"></img>';     // Image inserted
 
-    loading.style.display = "flex";
+    loading.style.display = "flex";     // Center the image within the div
     loading.style.alignItems = "center"; 
 
-    subpop_container.appendChild(loading);
+    subpop_container.appendChild(loading);      // Add to document
 
-    loading.style.height = window.innerHeight - 100 + "px";
+    loading.style.height = window.innerHeight - 100 + "px";     // Resize according to screen size
 
-    subpop_table = document.createElement("table");
-    subpop_table.id = "subpop-table";
+    subpop_table = document.createElement("table");     // Create a table element
+    subpop_table.id = "subpop-table";           // Give it an id
 
+    // Create row for table headers
     subpop_headers = document.createElement("tr");
+
+    // Array of all EQ group headings
+    headings = ["Deprivation", "Age", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group"];
+    
     subpop_headers.innerHTML = "<th style = 'text-align: left;'>Indicator</th>" + 
                                "<th>NI Level only</th>" +
-                               "<th>Parliamentary Constituency</th>" +
-                               "<th>Local Government District</th>" +
-                               "<th>Deprivation</th>" +
-                               "<th>Age</th>" +
-                               "<th>Gender</th>" +
-                               "<th>Urban/ Rural</th>" +
-                               "<th>Marital Status</th>" +
-                               "<th>Religion</th>" +
-                               "<th>Political Opinion</th>" +
-                               "<th>Disability</th>" +
-                               "<th>Dependants</th>" +
-                               "<th>Sexual Orientation</th>" +
-                               "<th>Racial Group</th>"
+                               "<th>Parliamentary Constituency</th>" + 
+                               "<th>Local Government District</th>"
 
-    subpop_table.appendChild(subpop_headers);
+    // Add EQ group headers in loop
+    for (let i = 0; i < headings.length; i ++) {
+        subpop_headers.innerHTML = subpop_headers.innerHTML + "<th>" + headings[i] + "</th>"
+    }
 
+    subpop_table.appendChild(subpop_headers);   // Add header row to table
+
+    // Loop through all indicators alphabetically
     for (let i = 0; i < all_indicators.length; i ++) {
 
+        // Obtain the domain name of the indicator
         for (let j = 0; j < domains.length; j ++) {
             if (Object.keys(domains_data[domains[j]].indicators).indexOf(all_indicators[i]) > -1) {
                 domain = domains[j];
@@ -1263,50 +1266,50 @@ async function subpopTable() {
             }
         }
 
-        subpop_row = document.createElement("tr");
+        subpop_row = document.createElement("tr");  // Create a new table row
 
-        indicator_name = document.createElement("td");
+        indicator_name = document.createElement("td");      // Create a new cell, insert indicator name and link to indicator page
         indicator_name.innerHTML = "<a href = '?indicator=" + all_indicators[i].replace(/[^a-z ]/gi, '').replaceAll(" ", "+").toLowerCase() + "'>" + all_indicators[i] + "</a>";
-        indicator_name.style.textAlign = "left";
-        subpop_row.appendChild(indicator_name);
+        indicator_name.style.textAlign = "left";        // Align text left
+        subpop_row.appendChild(indicator_name);     // Add cell to row
 
-        ni_level = document.createElement("td");
+        ni_level = document.createElement("td");        // If NI data is present add a dot for "NI level only"
         if (domains_data[domain].indicators[all_indicators[i]].data.NI != "") {
             ni_level.innerHTML = '<div class = "navy-dot"></div>';
         }
         subpop_row.appendChild(ni_level);
 
-        aa = document.createElement("td");
+        aa = document.createElement("td");  // If AA data is present add a dot for "Parliamentary Constituency"
         if (domains_data[domain].indicators[all_indicators[i]].data.AA != "") {
             aa.innerHTML = '<div class = "navy-dot"></div>';
         }
         subpop_row.appendChild(aa);
 
-        lgd = document.createElement("td");
+        lgd = document.createElement("td"); // If LGD data is present add a dot for "Local Government District"
         if (domains_data[domain].indicators[all_indicators[i]].data.LGD != "") {
             lgd.innerHTML = '<div class = "navy-dot"></div>';
         }
         subpop_row.appendChild(lgd);
 
-        if (domains_data[domain].indicators[all_indicators[i]].data.EQ == "") {
-            for (let j = 0; j < 11; j ++) {
-                td = document.createElement("td");
+        if (domains_data[domain].indicators[all_indicators[i]].data.EQ == "") {     // Check if EQ data is present
+            for (let j = 0; j < headings.length; j ++) {
+                td = document.createElement("td");          // If not create 11 blank cells
                 subpop_row.appendChild(td);
             }
-        } else {
+        } else {        // Else look up data portal and see which groups are present
             var api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "/JSON-stat/2.0/en";
-
-            // Fetch data and store in object fetched_data
-            try {
+            
+            try {   // Using "try" so rest of table generates if data portal request unsucessful
+                // Fetch data and store in object fetched_data
                 const response = await fetch(api_url);
                 const fetched_data = await response.json();
                 const {dimension} = fetched_data;
 
-                var labels = Object.values(dimension.EQUALGROUPS.category.label);
+                var labels = Object.values(dimension.EQUALGROUPS.category.label);   // Extract labels of EQUALGROUPS variable
 
                 var eq_groups = [];
     
-                for (let j = 0; j < labels.length; j ++) {
+                for (let j = 0; j < labels.length; j ++) {      // Use loop to extract unique groupings
                     if (labels[j] != "Northern Ireland") {
             
                     group = labels[j].slice(0, labels[j].indexOf("-")).trim();
@@ -1319,11 +1322,9 @@ async function subpopTable() {
                         eq_groups.push(group)
                     }
                     }
-                }
+                }                
 
-                headings = ["Deprivation", "Age", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group"];
-
-                for (let i = 0; i < headings.length; i ++) {
+                for (let i = 0; i < headings.length; i ++) {    // If data exists for a particular grouping add a navy dot to table cell
                     td = document.createElement("td");
                     if (eq_groups.includes(headings[i])) {
                         td.innerHTML = '<div class = "navy-dot"></div>';
@@ -1332,8 +1333,8 @@ async function subpopTable() {
                 }
 
              }
-             catch(err) {
-                for (let j = 0; j < 11; j ++) {
+             catch(err) {       // If error, plot 11 blank cells and continue
+                for (let j = 0; j < headings.length; j ++) {
                     td = document.createElement("td");
                     subpop_row.appendChild(td);
                 }
@@ -1342,27 +1343,28 @@ async function subpopTable() {
         }
 
         subpop_row.onmouseover = function () {
-            this.firstChild.style.fontWeight = "bold";
+            this.firstChild.style.fontWeight = "bold";  // Bold font on mouseover
         }
 
         subpop_row.onmouseout = function () {
-            this.firstChild.style.fontWeight = "normal";
+            this.firstChild.style.fontWeight = "normal";    // Normal font on mouse out
         }
 
         subpop_row.onclick = function () {
-            this.firstChild.firstChild.click();
+            this.firstChild.firstChild.click();     // Click anywhere on row to follow link to indicator page
         }
 
-        subpop_table.appendChild(subpop_row);
+        subpop_table.appendChild(subpop_row);   // Add row to table
 
     }
 
-    loading.style.display = "none";
+    loading.style.display = "none";     // After table is complete remove loading gif and display table
     subpop_container.appendChild(subpop_table);
     
 
 }
 
+// Map icons change colour when text beside them highlighted:
 function highlightIcon() {
     this.firstChild.style.filter = "brightness(0) saturate(100%) invert(36%) sepia(23%) saturate(2416%) hue-rotate(132deg) brightness(100%) contrast(101%)";
 }

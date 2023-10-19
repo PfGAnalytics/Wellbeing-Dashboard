@@ -784,7 +784,10 @@ footer a:hover {
     background-color: #e8e8e8;
     cursor: pointer;
     border: 0px;
-    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 25px;
 }
 
@@ -794,7 +797,6 @@ footer a:hover {
 
 #AA-link:hover, #LGD-link:hover, .eq-link:hover {
     color: #008675;
-    /* filter: brightness(0) saturate(100%) invert(36%) sepia(23%) saturate(2416%) hue-rotate(132deg) brightness(100%) contrast(101%); */
 }
 
 #assembly-logo, #council-logo {
