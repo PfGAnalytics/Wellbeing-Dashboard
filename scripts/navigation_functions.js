@@ -235,6 +235,7 @@ function generateHexagons (d) {
             hex_label.classList.add("positive");        // Add the class "negative" to the label text
         } else {    // Otherwise:
             hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
+            hex.classList.add("neutral");
         }
 
         hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
@@ -1382,4 +1383,74 @@ if(document.getElementById("AA-link")) {
 if (document.getElementById("LGD-link")) {
     LGD_link.onmouseover = highlightIcon;
     LGD_link.onmouseout = removeHighlight;
+}
+
+key_hexes = document.getElementsByClassName("key-hex");
+positive = document.getElementsByClassName("ind-hex positive");
+negative = document.getElementsByClassName("ind-hex negative");
+no_change = document.getElementsByClassName("ind-hex neutral")
+
+for (let i = 0; i < key_hexes.length; i ++) {
+    key_hexes[i].onmouseover = function() {
+
+        hex_class = key_hexes[i].classList[1];
+        
+        if (hex_class == "positive") {
+            for (let j = 0; j < negative.length; j ++) {
+                negative[j].parentElement.style.filter = "opacity(50%)";
+            }
+            for (let j = 0; j < no_change.length; j ++) {
+                no_change[j].parentElement.style.filter = "opacity(50%)";
+            }
+        } else if (hex_class == "negative") {
+            for (let j = 0; j < positive.length; j ++) {
+                positive[j].parentElement.style.filter = "opacity(50%)";
+            }
+            
+            for (let j = 0; j < no_change.length; j ++) {
+                no_change[j].parentElement.style.filter = "opacity(50%)";
+            }
+        } else {
+            for (let j = 0; j < positive.length; j ++) {
+                positive[j].parentElement.style.filter = "opacity(50%)";
+            }
+            
+            for (let j = 0; j < negative.length; j ++) {
+                negative[j].parentElement.style.filter = "opacity(50%)";
+            }
+        }
+
+    }
+
+    key_hexes[i].onmouseout = function() {
+
+        hex_class = key_hexes[i].classList[1];
+
+        if (hex_class == "positive") {
+            for (let j = 0; j < negative.length; j ++) {
+                negative[j].parentElement.removeAttribute("style");
+            }
+            
+            for (let j = 0; j < no_change.length; j ++) {
+                no_change[j].parentElement.removeAttribute("style");
+            }
+        } else if (hex_class == "negative") {
+            for (let j = 0; j < positive.length; j ++) {
+                positive[j].parentElement.removeAttribute("style");
+            }
+            
+            for (let j = 0; j < no_change.length; j ++) {
+                no_change[j].parentElement.removeAttribute("style");
+            }
+        } else {
+            for (let j = 0; j < positive.length; j ++) {
+                positive[j].parentElement.removeAttribute("style");
+            }
+            
+            for (let j = 0; j < negative.length; j ++) {
+                negative[j].parentElement.removeAttribute("style");
+            }
+        }
+    }
+
 }

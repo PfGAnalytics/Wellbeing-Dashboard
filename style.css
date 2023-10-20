@@ -108,10 +108,6 @@ h3 {
     justify-content: center;
 }
 
-#domain-info {
-    width: 800px;
-}
-
 .blue-label {
     background-color: #142062;
     color: #ffffff;
@@ -317,12 +313,8 @@ button:focus {
     margin-left: 50px;
 }
 
-#key {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
+.key-text {
+    font-size: 12pt;
 }
 
 .key-hex {
@@ -336,6 +328,8 @@ button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5px;
+    margin-right: 5px;
   }
 
 .key-hex.positive {
@@ -951,7 +945,7 @@ footer a:hover {
     position: absolute;
     top: 0;
     border-radius: 25px;
-    box-shadow: 10px 10px #00000011;
+    box-shadow: 10px 10px 8px 2px #00000011;
   }
 
   #pop-up-container {
