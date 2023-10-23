@@ -1,3 +1,5 @@
+## See for set up instructions https://code.visualstudio.com/docs/languages/r
+
 # Set CRAN repo
 local({
   r <- getOption("repos")
@@ -5,6 +7,9 @@ local({
   r["CRANextra"] <- "https://cran.rstudio.com/"
   options(repos = r)
 })
+
+# Set working directory
+setwd(sub("datavis prep base64.R", "", rstudioapi::getActiveDocumentContext()$path))
 
 # Load package manager
 if(!require(pacman)) install.packages("pacman")

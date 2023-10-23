@@ -1,7 +1,6 @@
 var cookieBanner = document.getElementById('cookie-banner');
 
 cookieBanner.classList.add("cookies-infobar");
-cookieBanner.style.display = "none";
 cookieBanner.innerHTML = '<noscript>' +
         '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KF6WGSG" height = "0" width = "0" style = "display:none; visibility:hidden;"></iframe>' +
         '</noscript>' +
@@ -32,8 +31,8 @@ function checkCookieExists() {
     // Split the cookie into name and value
     const [name, value] = cookie.split("=");
   
-    // If the cookie name matches cookie_consent, return true
-    if (name === 'cookie_consent') {
+    // If the cookie name matches cookie_answered, return true
+    if (name === 'cookie_answered') {
       return true;
     }
   }
@@ -60,20 +59,18 @@ function loadGoogleAnalytics() {
 }
 
 document.getElementById('accept-cookies').onclick = function() {
-  setCookie('cookie_consent', true, 365);
+  setCookie('cookie_answered', true, 365);
   cookieBanner.style.display = 'none';
   loadGoogleAnalytics();
 }
 
 document.getElementById('reject-cookies').onclick = function() {
-  setCookie('cookie_consent', true, 365);
+  setCookie('cookie_answered', true, 365);
   cookieBanner.style.display = 'none';
 }
 
 function showCookieBanner() {
   if(!checkCookieExists()) {
     cookieBanner.style.display = 'block';
-  } else {
-    cookieBanner.style.display = 'none';
   }
 };
