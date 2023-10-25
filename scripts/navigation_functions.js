@@ -1029,6 +1029,12 @@ function sizeForMobile() {
 
         map_form.insertBefore(document.createElement("br"), map_label_2);   // Insert a line break before second dropdown
         map_form.insertBefore(document.createElement("br"), map_label_3);   // Insert a line break before third dropdown
+
+        // Re-shape framework structure diagram on mobile:
+        column_1.style.width = "100%";
+        column_2.style.width = "100%";
+        column_1.style.paddingLeft = (window.innerWidth - 585) / 2 + "px";
+        column_2.style.paddingLeft = (window.innerWidth - 585) / 2 + "px";
         
     } else {    // When screen size is over 1200px wide:
 
@@ -1066,6 +1072,10 @@ function sizeForMobile() {
 
         button_left.removeAttribute("style");           // Remove any style attributes set above on "previous indicator/domain" button
         button_right.removeAttribute("style");           // Remove any style attributes set above on "next indicator/domain" button
+
+        // Remove framework structure reshape:
+        column_1.removeAttribute("style");
+        column_2.removeAttribute("style");
 
     }
     
@@ -1173,8 +1183,6 @@ framework_structure.appendChild(column_2);
 
 for (let i = 0; i < domains.length; i ++) {
 
-    
-
     framework_row = document.createElement("div");      // Create a row for each heaxagon and blue label to sit in
     framework_row.classList.add("row");                 // Give it class "row"
 
@@ -1211,13 +1219,15 @@ for (let i = 0; i < domains.length; i ++) {
         framework_row.style.marginTop = "-25px";        // Move all rows after first row up by 33px
     }
 
+    if (window.innerWidth < 1200) {
+        
+    }
+
     if (i < domains.length / 2) {
         column_1.appendChild(framework_row);      // Insert row into html document
     } else {
         column_2.appendChild(framework_row);
-    }
-
-    
+    }    
 
 }
 
