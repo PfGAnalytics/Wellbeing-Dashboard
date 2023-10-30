@@ -23,6 +23,21 @@
     - [Datavis hosting :computer:](#datavis-hosting-computer)
     - ['Live' check :sun\_with\_face:](#live-check-sun_with_face)
   - [:warning: Troubleshooting](#warning-troubleshooting)
+  - [Frequently Asked Questions](#frequently-asked-questions)
+    - [How do we add an indicator?](#how-do-we-add-an-indicator)
+    - [How do we add a domain?](#how-do-we-add-a-domain)
+    - [How do we add a new map?](#how-do-we-add-a-new-map)
+    - [How do we move indicators between domains?](#how-do-we-move-indicators-between-domains)
+    - [How do we change improving/worsening on charts?](#how-do-we-change-improvingworsening-on-charts)
+    - [How do we add a new page, e.g. notes?](#how-do-we-add-a-new-page-eg-notes)
+    - [How do we hide pages?](#how-do-we-hide-pages)
+    - [How do we change branding, logos, etc.?](#how-do-we-change-branding-logos-etc)
+    - [How do we change colours of chart, maps, boxes?](#how-do-we-change-colours-of-chart-maps-boxes)
+    - [How do we change chart styles?](#how-do-we-change-chart-styles)
+    - [How do we move hexagons from between the improving/worsening/no change sections on the Overall page?](#how-do-we-move-hexagons-from-between-the-improvingworseningno-change-sections-on-the-overall-page)
+    - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
+    - [The process of updating GitHub when we make changes](#the-process-of-updating-github-when-we-make-changes)
+    - [What's the process for publishing the dashboard?](#whats-the-process-for-publishing-the-dashboard)
   - [:question: Links](#question-links)
 
 ## :newspaper: Aim
@@ -190,10 +205,79 @@ When modifications have been made (new data or otherwise), carry out a systemati
 2. Perform checks on mobile devices as necessary to ensure functionality and accessibility
 
 ## :warning: Troubleshooting
-- No charts are appearing
+- Chart isn't appearing
   - This is likely an issue with the live fetch from Data Portal. Open your browsers Dev Tools and check the Console for warnings. Try refreshing the page. If the problem persists, try increasing the wait time in the _setTimeout()_ functions found in [`navigation_functions.js`](scripts/navigation_functions.js) script.
 - Source information, Further information or How we measure this not appearing on indicator page
   - Check the "notes" text for that indicator on the Data Portal. Heading should read "Source" "How do we measure this" or "Futher information" and be spelled correctly for _createLineChart()_ and _drawMap()_ functions to pick them up and display them.
+
+## Frequently Asked Questions
+
+### How do we add an indicator?
+### How do we add a domain?
+### How do we add a new map?
+### How do we move indicators between domains?
+### How do we change improving/worsening on charts?
+
+### How do we add a new page, e.g. notes?
+There are two changes that need to be made in the [`index.html`](index.html) script to add a page:
+
+ 1. Inside the `<div>` element with the id `top-container` there is a `<form>` element with the id `top-menu-items`:
+   
+    ```
+    <form id = "top-menu-items" class = "row" action = "">
+      <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
+      <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
+      <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
+      <button id = "help-btn" class = "top-menu-item" name = "tab" value = "help"><i class="fa-regular fa-address-book"></i></i> Notes</button>
+    </form>
+    ```
+
+    It is here we must first add a new `<button>` element. Suppose we want to name the page __"New"__, then we would define the button as follows:
+
+    `<button id = "new-btn" class = "top-menu-item" name = "tab" value = "new">New</button>`
+
+    The `id` and `value` properties must correspond to each other (ie `new-btn` and `new` respectively). The `class` should always be `top-menu-item` and the `name` should always be `tab`.
+
+    Button icons (those found in`<i>` tags) are sourced from [FontAwesome](https://fontawesome.com/icons). Those which are inside `<img>` tags have been sourced online and placed in this projects [`img`](img) directory.
+
+ 2. Inside the `<div>` element with the id `main-container` add a new `<div>` element as follows:
+   
+    ```
+    <div id = "new-scrn" class = "screen">
+       Page content goes in here
+    </div>
+    ```
+    Note that the `id` of this `div` must always correspond to the `id` and `value` entered when adding the `<button>` element in Step 1.
+
+    That's it. The [`navigation_functions.js`](scripts/navigation_functions.js) script will take care of the rest.  
+
+### How do we hide pages?
+Referring to the [question above](#how-do-we-add-a-new-page-eg-notes), there are 2 steps to hiding a page.
+
+ 1. Inside the `<form>` with the id `top-menu-items` highlight the corresponding button for that page and press <kbd>Ctrl</kbd> + <kbd>?</kbd>. This will transform that line of code to a text comment.
+
+ 2. For the corresponding `<div>` element with the class `screen`. Highlight the code and press <kbd>Ctrl</kbd> + <kbd>?</kbd>.
+
+### How do we change branding, logos, etc.?
+### How do we change colours of chart, maps, boxes?
+### How do we change chart styles?
+
+### How do we move hexagons from between the improving/worsening/no change sections on the Overall page?
+This is done automatically.
+
+The `indicatorPerformace()` function in the [`data_functions.js`](scripts/data_functions.js) script will categorise each indicator based on its performance.
+
+The `plotOverallHexes()` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script then plots the hexagons on the Overall based on the results of `indicatorPerformace()`.
+
+The `indicatorPerformance()` function obtains the data values for each indicator from the Data Portal. It then uses the properties `base_year`, `ci` and `improvement` for each indicator found in [`domains_data.js`](scripts/domains_data.js) to determine performance. There is more information on how each of these properties should be defined in the annotations in this script.
+
+### What parts of the script do we need to update if we move to the live data portal?
+
+
+### The process of updating GitHub when we make changes
+### What's the process for publishing the dashboard?
+
+
 
 ## :question: Links
 - [Chart.js documentation](https://www.chartjs.org/docs/latest/)

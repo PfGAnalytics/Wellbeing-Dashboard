@@ -23,7 +23,7 @@
 //    "Indicator 1": {
 //       importance: "A couple of sentences detailing the importance of this indicator",
 //       base_year: "The base year for measuring improvement on this indicator can be in YYYY, YYYY/YY or YYYY-YY format depending on how time series is defined for indicator",
-//       ci: "The confidence interval for this interval. Can be a number or number followed by letter c if improvement cumulates year on year",
+//       ci: "The change interval for this interval. Can be a number or number followed by letter c if improvement cumulates year on year",
 //       data: {
 //          NI: "NI data portal matrix", (or blank "" if not available)
 //          AA: "AA data portal matrix", (or blank "" if not available)

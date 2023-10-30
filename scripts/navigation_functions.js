@@ -1308,7 +1308,7 @@ async function subpopTable() {
                 subpop_row.appendChild(td);
             }
         } else {        // Else look up data portal and see which groups are present
-            var api_url = "https://ppws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "/JSON-stat/2.0/en";
+            var api_url = config.baseURL + "api.restful/PxStat.Data.Cube_API.ReadDataset/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "/JSON-stat/2.0/en";
             
             try {   // Using "try" so rest of table generates if data portal request unsucessful
                 // Fetch data and store in object fetched_data
