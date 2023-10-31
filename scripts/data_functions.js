@@ -583,7 +583,7 @@ async function createLineChart(d, e) {
     };
 
    // Chart configuration for charts with constant increasing/decreasing value:
-   const config = {
+   const chart_config = {
       type: 'line',
       data,
       options: {
@@ -680,7 +680,7 @@ async function createLineChart(d, e) {
 
    // Chart configuration for charts where improvement is year on year
    // Red box and green box annotations are removed and top 
-   const config_c = {
+   const chart_config_c = {
       type: 'line',
       data,
       options: {
@@ -798,9 +798,9 @@ async function createLineChart(d, e) {
 
    // Place chart in canvas
    if (!isNaN(indicator.ci)) {
-      new Chart(chart_canvas, config);
+      new Chart(chart_canvas, chart_config);
    } else {
-      new Chart(chart_canvas, config_c);
+      new Chart(chart_canvas, chart_config_c);
    }
 
    // Statement to output based on performance of indicator
@@ -1226,7 +1226,7 @@ async function getEqualityGroups(d, e) {
          }
 
          // Chart configuration for chart.js
-         const config = {
+         const chart_config = {
             type: 'bar',
             data: data,
             options: {
@@ -1263,7 +1263,7 @@ async function getEqualityGroups(d, e) {
             },
           };
 
-         new Chart(pop_canvas, config);      // Plot chart
+         new Chart(pop_canvas, chart_config);      // Plot chart
          
          note_text = result.note[0].replaceAll("\r", "").replaceAll("\n", "").replaceAll("[b] ", "[b]"); // Remove line break characters from note
          
