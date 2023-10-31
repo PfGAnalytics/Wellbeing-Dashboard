@@ -26,8 +26,8 @@
   - [Frequently Asked Questions](#frequently-asked-questions)
     - [How do we add an indicator?](#how-do-we-add-an-indicator)
     - [How do we add a domain?](#how-do-we-add-a-domain)
+    - [How do we move indicators between domains?c](#how-do-we-move-indicators-between-domainsc)
     - [How do we add a new map?](#how-do-we-add-a-new-map)
-    - [How do we move indicators between domains?](#how-do-we-move-indicators-between-domains)
     - [How do we change improving/worsening on charts?](#how-do-we-change-improvingworsening-on-charts)
     - [How do we add a new page, e.g. notes?](#how-do-we-add-a-new-page-eg-notes)
     - [How do we hide pages?](#how-do-we-hide-pages)
@@ -213,10 +213,48 @@ When modifications have been made (new data or otherwise), carry out a systemati
 ## Frequently Asked Questions
 
 ### How do we add an indicator?
+New indicators are added in the [domains_data.js](scripts/domains_data.js) script. A new indicator must be nested under its Domain. All the properties required for a new indicator are detailed in the annotations at the top of this script.
+
 ### How do we add a domain?
+New domains are added in the [domains_data.js](scripts/domains_data.js) script. A new domain must be nested at the highest level. All the properties required for a new domain are detailed in the annotations at the top of this script.
+
+### How do we move indicators between domains?c
+An indicator can be moved between domains by going to the [domains_data.js](scripts/domains_data.js) script and cutting and pasting the properties for that indicator so they are nested under the new domain.
+
 ### How do we add a new map?
-### How do we move indicators between domains?
+Maps are automatically generated for any indicator in the [domains_data.js](scripts/domains_data.js) script that has an `LGD` or `AA` dataset declared under its `data` property:
+
+```
+data: {
+    NI: "",
+    AA: "INDPREVDTHAA",
+    LGD: "INDPREVDTHLGD",
+    EQ: "INDPREVDTHEQ"
+}
+```
+
+To add a new map:
+
+ 1. Upload an LGD/AA dataset to the Data Portal
+ 2. Under the `data` property for the relevant indicator add the table id under the nested `LGD`/`AA` property
+
+To remove a map:
+
+  1. Set the `LGD`/`AA` property for the indicator to an empty text string `""`
+
 ### How do we change improving/worsening on charts?
+The properties `base_year`, `ci` and `improvement` for each indicator found in [`domains_data.js`](scripts/domains_data.js) are used to plot the improving/worsening ranges on the charts.
+
+ * `base_year`: This is the base year on which performance is measured against. It should match the format in which the year variable for the indicator is restored. eg("2019", "2019/20", "2019-2021") and always be placed inside quotes.
+  
+ * `ci`: This is the change interval. It is always given as a positive value. It can be entered one of two ways:
+   * If, for example, the improvement was measured as 2% better than the base year value then enter the number 2, with no quotes.
+   * If improvement was to be measured as 2% year-on-year then enter "2c" inside quotes.
+   In either of the above methods there is no need to enter any units (eg, %, people, kg)
+
+ * `improvement`: This is the change in value that we would see as an improvement for the indicator.
+   * If a value that is _higher than the year before_ would be seen as an improvement then enter "increasing".
+   * If a value that is _lower than the year before_ would be seen as an improvement then enter "decreasing". 
 
 ### How do we add a new page, e.g. notes?
 There are two changes that need to be made in the [`index.html`](index.html) script to add a page:
@@ -259,8 +297,13 @@ Referring to the [question above](#how-do-we-add-a-new-page-eg-notes), there are
  2. For the corresponding `<div>` element with the class `screen`. Highlight the code and press <kbd>Ctrl</kbd> + <kbd>?</kbd>.
 
 ### How do we change branding, logos, etc.?
+See [`index.html`](index.html)
+
 ### How do we change colours of chart, maps, boxes?
+See [`data_functions.js`](scripts/data_functions.js)
+
 ### How do we change chart styles?
+See [`data_functions.js`](scripts/data_functions.js)
 
 ### How do we move hexagons from between the improving/worsening/no change sections on the Overall page?
 This is done automatically.
