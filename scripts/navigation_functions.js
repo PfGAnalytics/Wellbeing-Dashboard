@@ -362,19 +362,19 @@ function writeDataInfo (d) {
     var data_info_text = "You can view and download data ";  // Start the sentence with this text
 
     if (d.NI != "") {    // If there is NI level data add a link to it to the sentence
-        data_info_text = data_info_text + 'at <a href = "https://ppdata.nisra.gov.uk/table/' + d.NI + '" target = "_blank">Northern Ireland level</a>, ';
+        data_info_text = data_info_text + 'at <a href = "' + config.tableURL + d.NI + '" target = "_blank">Northern Ireland level</a>, ';
     }
 
     if (d.LGD != "") {   // If there is LGD data add a link to it to the sentence
-        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + d.LGD + '" target = "_blank">Local Government District</a>, ';
+        data_info_text = data_info_text + 'by <a href = "' + config.tableURL + d.LGD + '" target = "_blank">Local Government District</a>, ';
     }
 
     if (d.AA != "") {    // If there is AA data add a link to it to the sentence
-        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + d.AA + '" target = "_blank">Assembly Area</a>, ';
+        data_info_text = data_info_text + 'by <a href = "' + config.tableURL + d.AA + '" target = "_blank">Assembly Area</a>, ';
     }
 
     if (d.EQ != "") {    // If there is EQ data add a link to it to the sentence
-        data_info_text = data_info_text + 'by <a href = "https://ppdata.nisra.gov.uk/table/' + d.EQ + '" target = "_blank">Equality Groups</a>, ';
+        data_info_text = data_info_text + 'by <a href = "' + config.tableURL + d.EQ + '" target = "_blank">Equality Groups</a>, ';
     }
 
     data_info_text = data_info_text + ' on the NISRA Data Portal.'        // Close the sentence with this 

@@ -36,7 +36,7 @@
     - [How do we change chart styles?](#how-do-we-change-chart-styles)
     - [How do we move hexagons from between the improving/worsening/no change sections on the Overall page?](#how-do-we-move-hexagons-from-between-the-improvingworseningno-change-sections-on-the-overall-page)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
-    - [The process of updating GitHub when we make changes](#the-process-of-updating-github-when-we-make-changes)
+    - [The process of updating GitHub when we make changes?](#the-process-of-updating-github-when-we-make-changes)
     - [What's the process for publishing the dashboard?](#whats-the-process-for-publishing-the-dashboard)
   - [:question: Links](#question-links)
 
@@ -272,11 +272,15 @@ The `plotOverallHexes()` function in the [`navigation_functions.js`](scripts/nav
 The `indicatorPerformance()` function obtains the data values for each indicator from the Data Portal. It then uses the properties `base_year`, `ci` and `improvement` for each indicator found in [`domains_data.js`](scripts/domains_data.js) to determine performance. There is more information on how each of these properties should be defined in the annotations in this script.
 
 ### What parts of the script do we need to update if we move to the live data portal?
+Updating the `baseURL` value in the [`config.js`](scripts/config.js) script to read from the live data portal will point all data portal queries to the new location.
 
+Updating the `tableURL` value in this script will ensure that all links in the "More data" section are updated.
 
-### The process of updating GitHub when we make changes
+### The process of updating GitHub when we make changes?
+See [Process for updating code](#process-for-updating-code).
+
 ### What's the process for publishing the dashboard?
-
+See [Datavis hosting :computer:](#datavis-hosting-computer).
 
 
 ## :question: Links
