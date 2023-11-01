@@ -297,13 +297,15 @@ Referring to the [question above](#how-do-we-add-a-new-page-eg-notes), there are
  2. For the corresponding `<div>` element with the class `screen`. Highlight the code and press <kbd>Ctrl</kbd> + <kbd>?</kbd>.
 
 ### How do we change branding, logos, etc.?
-See [`index.html`](index.html)
+This can all be changed in the main [`index.html`](index.html) script. The logos are sourced from the project's [img](img) folder. The main titles, logos etc are located in the `top-container` div and the footer is in the `<footer>` element.
 
 ### How do we change colours of chart, maps, boxes?
-See [`data_functions.js`](scripts/data_functions.js)
+ * For chart colours, see the `chart_config` definition inside the `createLineChart()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [Chart.js documentation](https://www.chartjs.org/docs/latest/) on ways to make changes.
+ * For map colours, see the `drawMap()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [leaflet.js documentation](https://leafletjs.com/reference.html) on how to customise maps.
+ * For boxes, see the [`style.css`] stylesheet. Find the corresponding id or class of the page element you wish to change and change the `background-color` property.
 
 ### How do we change chart styles?
-See [`data_functions.js`](scripts/data_functions.js)
+See the `chart_config` definition inside the `createLineChart()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [Chart.js documentation](https://www.chartjs.org/docs/latest/) on ways to make changes.
 
 ### How do we move hexagons from between the improving/worsening/no change sections on the Overall page?
 This is done automatically.
@@ -329,6 +331,7 @@ See [Datavis hosting :computer:](#datavis-hosting-computer).
 ## :question: Links
 - [Chart.js documentation](https://www.chartjs.org/docs/latest/)
 - [Chart.js YouTube tutorials](https://www.youtube.com/c/ChartJS-tutorials)
+- [leaflet.js documentation](https://leafletjs.com/reference.html)
 - [CSS / styling guide on W3schools](https://www.w3schools.com/Css/)
 - [HTML guide on W3schools](https://www.w3schools.com/html/default.asp)
 - [Javascript guide on W3schools](https://www.w3schools.com/js/default.asp)
