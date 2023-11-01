@@ -52,9 +52,10 @@ Documentation to outline the structure and processes needed to create or modify 
 | `index.html` | The dashboard main page |
 | `style.css` | Pre-defined styling for the dashboards - colours, fonts, sizing, spacing etc. |
 | `domains_data.js` | Additional indicator information |
-| `data_functions.js` | JavaScript functionality used for data throughout dashboard |
+| `data_functions.js` | JavaScript functionality used for reading data from the Data Portal |
 | `navigation_functions.js` | JavaScript functionality used for navigation throughout dashboard |
 | `cookies_script.js` | JavaScript functionality for cookies |
+| `config.js` | Setup script used to declare which data portal (pre-production or public) to read from |
 | `ni_map.js` | JavaScript used to display NI LGD and Assembly Area maps |
 | `maps` | Folder containing original shape files for maps |
 | `datavis prep base64.R` | R script used to prepare the files for upload to the DataVis server |
@@ -64,7 +65,7 @@ Documentation to outline the structure and processes needed to create or modify 
 
 Data for the dashboard is directly linked to data available for each indicator stored in the 'Programme for Government' folder on the NISRA Data Portal. The relevant datasets on NISRA Data Portal are linked to the dashboard using an API query. The dashboard will automatically update as data is updated on the NISRA Data Portal provided it is uploaded using the same naming conventions.
 
-The `domains_data.js` script is an additional 'input' which contains additional domain/indiactor information. 
+The [`domains_data.js`](scripts/domains_data.js) script is an additional 'input' which contains additional domain/indiactor information. 
 
 ### Code structure
 
