@@ -80,6 +80,7 @@ var back_button = document.getElementById("back-button");
 var pop_up_chart = document.getElementById("pop-up-chart");
 var subpop = document.getElementById("subpop");
 var subpop_container = document.getElementById("subpop-container");
+var title = document.getElementsByTagName("title")[0];
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -465,9 +466,11 @@ if (currentURL.includes("tab=")) {
             indicatorPerformance();
         } else {
             loading_img.style.display = "none";
-        }
+        }        
 
     }
+
+    title.textContent += " -" + document.getElementsByClassName("selected-item")[0].innerText;
 
     if (currentTab == "help") {
         subpopTable();
@@ -504,6 +507,8 @@ if (currentURL.includes("?domain=")) {
 
     clicked_hex.innerHTML = domain_name.replace(" ", " <br>");    // Update text inside "clicked-hex"
     domain_name_text.textContent = domain_name;     // Update "domain-name-text" inside intro paragraph
+
+    title.textContent += " - " + domain_name;
 
     clicked_desc.innerHTML = domains_data[domain_name].description; // Update description of domain
 
@@ -575,6 +580,8 @@ if (currentURL.includes("?indicator=")) {
             lookUpIndicator = all_indicators[i]
         }
     }
+
+    title.textContent += " - " + lookUpIndicator;
 
     lookUpDomain = "";
     for (let i = 0; i < domains.length; i ++) {
@@ -650,6 +657,8 @@ if (currentURL.includes("?oindicator=")) {
         }
     }
 
+    title.textContent += " - " + lookUpIndicator;
+
     lookUpDomain = "";
     for (let i = 0; i < domains.length; i ++) {
         
@@ -724,6 +733,12 @@ if (currentURL.includes("map=")) {
             location.reload();
         }
     }, 1)
+
+    if (currentMap.slice(-3) == "LGD") {
+        title.textContent += " - " + currentIndicator + " by Local Government District"
+    } else if (currentMap.slice(-2) == "AA") {
+        title.textContent += " - " + currentIndicator + " by Assembly Area"
+    }
 
 }
 
