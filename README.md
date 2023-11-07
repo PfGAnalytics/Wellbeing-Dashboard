@@ -302,6 +302,7 @@ This can all be changed in the main [`index.html`](index.html) script. The logos
 
 ### How do we change colours of chart, maps, boxes?
  * For chart colours, see the `chart_config` definition inside the `createLineChart()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [Chart.js documentation](https://www.chartjs.org/docs/latest/) on ways to make changes.
+ * For eqaulity group bar charts, see the `colours` definition inside the `getEqualityGroups()` function in the [`data_functions.js`](scripts/data_functions.js) script.
  * For map colours, see the `drawMap()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [leaflet.js documentation](https://leafletjs.com/reference.html) on how to customise maps.
  * For boxes, see the [`style.css`](style.css) stylesheet. Find the corresponding id or class of the page element you wish to change and change the `background-color` property.
 
