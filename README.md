@@ -26,7 +26,7 @@
   - [Frequently Asked Questions](#frequently-asked-questions)
     - [How do we add an indicator?](#how-do-we-add-an-indicator)
     - [How do we add a domain?](#how-do-we-add-a-domain)
-    - [How do we move indicators between domains?c](#how-do-we-move-indicators-between-domainsc)
+    - [How do we move indicators between domains?](#how-do-we-move-indicators-between-domains)
     - [How do we add a new map?](#how-do-we-add-a-new-map)
     - [How do we change improving/worsening on charts?](#how-do-we-change-improvingworsening-on-charts)
     - [How do we add a new page, e.g. notes?](#how-do-we-add-a-new-page-eg-notes)
@@ -219,7 +219,7 @@ New indicators are added in the [domains_data.js](scripts/domains_data.js) scrip
 ### How do we add a domain?
 New domains are added in the [domains_data.js](scripts/domains_data.js) script. A new domain must be nested at the highest level. All the properties required for a new domain are detailed in the annotations at the top of this script.
 
-### How do we move indicators between domains?c
+### How do we move indicators between domains?
 An indicator can be moved between domains by going to the [domains_data.js](scripts/domains_data.js) script and cutting and pasting the properties for that indicator so they are nested under the new domain.
 
 ### How do we add a new map?
