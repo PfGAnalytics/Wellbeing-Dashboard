@@ -53,7 +53,14 @@ function showCookieBanner() {
     localStorage.removeItem("cookie_date");
   }
 
-  if(!localStorage.cookie_answered) {
+  if (!localStorage.cookie_answered) {
     cookieBanner.style.display = 'block';
   }
 };
+
+window.setInterval(function() {
+  if (document.cookie == "") {
+    localStorage.removeItem("cookie_answered");
+    localStorage.removeItem("cookie_date");
+  }
+} , 100)
