@@ -11,35 +11,6 @@ cookieBanner.innerHTML = '<noscript>' +
         '<button id = "reject-cookies" class = "cookies-infobar_btn_reject">Reject cookies</button>' +
         '</div>' +
         '</div>';
-
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-  }
-  
-function checkCookieExists() {
-  // Get all cookies
-  const cookies = document.cookie.split(";");
-  
-  // Loop through all cookies
-  for (const cookie of cookies) {
-    // Split the cookie into name and value
-    const [name, value] = cookie.split("=");
-  
-    // If the cookie name matches cookie_answered, return true
-    if (name === 'cookie_answered') {
-      return true;
-    }
-  }
-  
-  // If the cookie doesn't exist, return false
-  return false;
-}
   
 function loadGoogleAnalytics() {
 
@@ -58,19 +29,31 @@ function loadGoogleAnalytics() {
 
 }
 
+today = new Date();
+
 document.getElementById('accept-cookies').onclick = function() {
-  setCookie('cookie_answered', true, 365);
+  localStorage.setItem('cookie_answered', true);
+  localStorage.setItem('cookie_date', today);
   cookieBanner.style.display = 'none';
   loadGoogleAnalytics();
 }
 
 document.getElementById('reject-cookies').onclick = function() {
-  setCookie('cookie_answered', true, 365);
+  localStorage.setItem('cookie_answered', true);
+  localStorage.setItem('cookie_date', today);
   cookieBanner.style.display = 'none';
 }
 
 function showCookieBanner() {
-  if(!checkCookieExists()) {
+
+  diff = (today - new Date(localStorage.cookie_date)) / 1000 / 60 / 60 / 24;
+
+  if (diff > 365) {
+    localStorage.removeItem("cookie_answered");
+    localStorage.removeItem("cookie_date");
+  }
+
+  if(!localStorage.cookie_answered) {
     cookieBanner.style.display = 'block';
   }
 };
