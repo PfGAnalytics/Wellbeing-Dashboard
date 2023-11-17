@@ -994,6 +994,7 @@ async function getEqualityGroups(d, e) {
       eq_link = document.createElement("div");           // Create a div for the link
       eq_link.classList.add("eq-link");                  // Give it a class eq-link
       eq_link.textContent = "• " + eq_groups[i];         // Populate link with name of grouping
+      eq_link.tabIndex = "0";
 
       eq_link.onclick = async function () {           // Add function to execute when link clicked:
 
@@ -1024,6 +1025,7 @@ async function getEqualityGroups(d, e) {
          close_pop_up.id = "close-pop-up";                  // Give it an id
          close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";      // Position it 30 pixels from end of box
          close_pop_up.innerHTML = '<i class="fa-solid fa-xmark"></i>';        // Place an X icon in box
+         close_pop_up.tabIndex = "0";
 
          close_pop_up.onclick = function () {      // When close button is clicked:
             indicator_scrn.style.filter = "opacity(100%)";     // Set main page brightness back to full

@@ -96,7 +96,7 @@ h3 {
 }
 
 #domains-grid-container {
-    width: 800px;
+    width: 804px;
     margin-left: 25px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -179,9 +179,13 @@ h3 {
     color: #ffffff;
     position: relative;
     cursor: pointer;
-    padding: 0px;
-    border: 0px;
+    
   }
+
+.hex-container {
+    border: 0px;
+    padding: 0px;
+}
 
   .hex .hex-inner {
     position: absolute;
@@ -243,16 +247,11 @@ h3 {
    justify-content: center;
    align-items: center;
    text-align: center;
-   text-align: center;
+   text-align: center;              
    cursor: pointer;
    border: 0px;
    padding: 0px;
    background-color: #ffffff00;
-}
-
-button:focus {
-    outline: none;
-    border: none
 }
 
 .ind-hex-container:hover {
@@ -682,6 +681,10 @@ footer a:hover {
    cursor: pointer 
 }
 
+#further-expander:focus-visible {
+    outline: 2px solid #000000;
+}
+
 .further-info-text, #further-info-map {
     max-height: 0px;
     -webkit-transition: max-height 1s; 
@@ -1023,3 +1026,13 @@ footer a:hover {
   .framework-column {
     width: 50%;
   }
+
+button:focus {
+    outline: none;
+    border: none;
+}
+
+button:focus-visible {
+    border: 2px solid #000000;  
+    outline: 2px solid #ffffff;         
+}

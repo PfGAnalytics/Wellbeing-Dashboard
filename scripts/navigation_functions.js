@@ -104,17 +104,20 @@ for (let i = 0; i < domains.length; i++) {
         domains_grid_container.appendChild(hex_row);    // Place the div in the div "domains-grid-container"
     }
 
-    var hex = document.createElement("button");            // Create the first div which will be the blue hexagon that acts as a border
+    var hex_container = document.createElement("button"); 
+    var hex = document.createElement("div");            // Create the first div which will be the blue hexagon that acts as a border
     var hex_inner = document.createElement("div");      // Create the second div which is the green heaxagon
 
+    hex_container.classList.add("hex-container");
     hex.classList.add("hex");                           // Give outer hexagon class "hex"
-    hex.name = "domain";
-    hex.value = domains[i].toLowerCase();
+    hex_container.name = "domain";
+    hex_container.value = domains[i].toLowerCase();
 
     hex_inner.classList.add("hex-inner");               // Give inner hexagon class "hex-inner"
     hex_inner.innerHTML = domains[i].replace(" ", " <br>");                 // Label the inner div with the name of the domain
     hex.appendChild(hex_inner);                         // Place the inner div in the outer one
-    hex_row.appendChild(hex);                           // Place the outer hexagon div in the hexagon row
+    hex_container.appendChild(hex)
+    hex_row.appendChild(hex_container);                           // Place the outer hexagon div in the hexagon row
 
 }
 
@@ -855,6 +858,15 @@ document.addEventListener("click", function (e) {
     closeAllLists(e.target);
 });
 }
+
+function handleEnter(e) {
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+      document.activeElement.click();
+    }
+}           
+
+window.onkeydown = handleEnter;
 
 // Run above function
 autocomplete(search_text, all_indicators);
