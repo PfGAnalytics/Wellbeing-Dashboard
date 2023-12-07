@@ -861,10 +861,15 @@ async function createLineChart(d, e) {
 
       // URLS are converted
       link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
-      linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
-      url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
 
-      further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+      if (link != "") {
+
+         linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
+         url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+
+         further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+
+      }
 
       further_note = further_note.replaceAll("[i]", "<em>");                              // Italic text tags are converted
       further_note = further_note.replaceAll("[/i]", "</em>");
@@ -1564,10 +1569,13 @@ async function drawMap() {
          
          // URLS are converted
          link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
-         linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
-         url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
 
-         further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+         if (link != "") {
+            linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
+            url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+
+            further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+         }
 
          further_note = further_note.replaceAll("[i]", "<em>");
          further_note = further_note.replaceAll("[/i]", "</em>");

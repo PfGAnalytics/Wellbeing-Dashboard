@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
     <meta charset="UTF-8" />
     <title>Wellbeing Framework</title>
@@ -47,9 +47,9 @@
                 <form id = "search-bar" autocomplete = "off">
                     <div id = "search-box">
                         <div class="autocomplete" style="width: 400px;">
-                        <input id="search-text" type="text" name = "indicator" placeholder="Search by indicator name">
+                        <input id="search-text" type="text" name = "indicator" placeholder="Search by indicator name" aria-label = "enter-search-text">
                         </div>
-                        <button type = "button" id = "search-btn" class = "btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button type = "button" id = "search-btn" class = "btn" aria-label = "Search"><i class="fa-solid fa-magnifying-glass" aria-label = "search-button"></i></button>
                     </div>
                 </form>
             </div>
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div id = "domains-footer">
+                <div id = "domains-footer" class = "intro">
                     <p>For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link" tabindex =   "0">Notes</span>.</p>
                     <p>The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
                 </div>

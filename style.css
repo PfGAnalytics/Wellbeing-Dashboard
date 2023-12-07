@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #008675;
+    background-color: #008675 !important;
     width: 100%
 }
 
@@ -187,24 +187,29 @@ h3 {
     padding: 0px;
 }
 
-  .hex .hex-inner {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    background-color: #008675;
-    width: 190px;
-    height: 190px;
-    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+.hex .hex-inner {
+position: absolute;
+top: 5px;
+left: 5px;
+background-color: #008675;
+width: 190px;
+height: 190px;
+-webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+font-size: 20pt;
+line-height: 1.25em;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+#clicked-hex h2 {
+    color: #ffffff;
     font-size: 20pt;
-    line-height: 1.25em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+}
 
 #domain-intro {
     margin-bottom: 15px;
@@ -1035,4 +1040,14 @@ button:focus {
 button:focus-visible {
     border: 2px solid #000000;  
     outline: 2px solid #ffffff;         
+}
+
+#search-label {
+    color: #ffffff;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+tr {
+    height: 24px;
 }

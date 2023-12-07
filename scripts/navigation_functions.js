@@ -508,7 +508,7 @@ if (currentURL.includes("?domain=")) {
 
     var domain_name = lookUpDomain;    // Obtain domain name from hexagon text
 
-    clicked_hex.innerHTML = domain_name.replace(" ", " <br>");    // Update text inside "clicked-hex"
+    clicked_hex.innerHTML = "<h2>" + domain_name.replace(" ", " <br>") + "</h2>";    // Update text inside "clicked-hex"
     domain_name_text.textContent = domain_name;     // Update "domain-name-text" inside intro paragraph
 
     title.textContent += " - " + domain_name;
@@ -890,6 +890,14 @@ mainContainerHeight = function() {
     main_container.style.minHeight = ideal_height + "px";
 }
 
+removeAriaFromIcons = function() {
+    icons = document.getElementsByTagName("i");
+
+    for (let i = 0; i < icons.length; i ++) {
+        icons[i].removeAttribute("aria-hidden");
+    }
+}
+
 // Execute the following functions when window loads for first time:
 window.onload = function() {
     showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
@@ -898,6 +906,7 @@ window.onload = function() {
     if (maps_scrn.style.display == "block") {
         drawMap();
     }
+    removeAriaFromIcons();
 };
 
 // Execute the following functions anytime the window is resized:
@@ -1491,3 +1500,4 @@ for (let i = 0; i < key_hexes.length; i ++) {
     }
 
 }
+

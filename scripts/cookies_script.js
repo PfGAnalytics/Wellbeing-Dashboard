@@ -6,7 +6,7 @@ cookieBanner.innerHTML = '<noscript>' +
         '</noscript>' +
         '<div class = "container">' +
         '<p><strong>Cookies on the PfG Wellbeing Framework webpage</strong></p>' +
-        '<p>This prototype web page places small amounts of information known as cookies on your device. <a href = "https://www.nisra.gov.uk/cookies" class = "cookiesbarlink" target = "_blank" rel = "noopener noreferrer"><u>Find out more about cookies</u></a>.</p>' +
+        '<p>This prototype web page places small amounts of information known as cookies on your device. <a href = "https://www.nisra.gov.uk/cookies" class = "cookiesbarlink" target = "_blank" rel = "noopener noreferrer">Find out more about cookies</a>.</p>' +
         '<button id = "accept-cookies" class = "cookies-infobar_btn">Accept cookies</button>' +
         '<button id = "reject-cookies" class = "cookies-infobar_btn_reject">Reject cookies</button>' +
         '</div>' +
