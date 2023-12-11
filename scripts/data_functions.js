@@ -946,9 +946,15 @@ async function createLineChart(d, e) {
   if (measure_text.indexOf(measure_string) > -1) {
    measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
    measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
-  } else {
-   measure_text = "";
-  }
+   } else {
+      measure_string = "How is this measured?"
+      if (measure_text.indexOf(measure_string) > -1) {
+         measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
+         measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
+      } else {
+         measure_text = "";
+      }
+   }  
 
   // Div element created and placed in html document:
   measure_note = document.createElement("div");
@@ -1594,7 +1600,13 @@ async function drawMap() {
          measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
          measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
       } else {
-         measure_text = "";
+         measure_string = "How is this measured?"
+         if (measure_text.indexOf(measure_string) > -1) {
+            measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
+            measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
+         } else {
+            measure_text = "";
+         }
       }      
 
       // Write content to info boxes

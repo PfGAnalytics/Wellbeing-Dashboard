@@ -2,6 +2,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14pt;
     background-color: #F2F2F2;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
 }
 
 #top-container {
@@ -460,8 +462,12 @@ iframe {
   font-size: 1.2em;
 }
 
-a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
+a.cookies-infobar_btn, a.cookies-infobar_btn_reject {
 	color: #fff !important;
+}
+
+a.cookiesbarlink {
+    color: #2990FF;
 }
 
 .cookies-infobar_btn_reject {
@@ -666,7 +672,7 @@ footer a:hover {
 
 #prototype {
     color: #ffffff;
-    background-color: #142062;
+    background-color: #142062 !important;
     display: flex;
     align-items: center;
     width: 100%;
@@ -687,7 +693,11 @@ footer a:hover {
 }
 
 #further-expander:focus-visible {
-    outline: 2px solid #000000;
+    outline: 2px solid #ff0000;
+}
+
+#further-expander-map:focus-visible {
+    outline: 2px solid #ff0000;
 }
 
 .further-info-text, #further-info-map {
@@ -713,6 +723,30 @@ footer a:hover {
 .user-guide-link {
     color: #007bff;
     cursor: pointer;
+}
+
+.user-guide-link:focus-visible {
+    outline: 2px solid #ff0000;
+}
+
+.eq-link:focus-visible {
+    outline: 2px solid #ff0000;
+}
+
+a:focus-visible {
+    outline: 2px solid #ff0000;
+}
+
+.btn:focus-visible {
+    outline: 2px solid #ff0000;
+}
+
+select:focus-visible {
+    outline: 2px solid #ff0000;
+}
+
+input:focus-visible {
+    outline: 2px solid #ff0000;
 }
 
 .user-guide-link:hover {
@@ -1037,9 +1071,9 @@ button:focus {
     border: none;
 }
 
-button:focus-visible {
-    border: 2px solid #000000;  
-    outline: 2px solid #ffffff;         
+button:focus-visible { 
+    outline: 2px solid #ff0000;
+    z-index: 1;        
 }
 
 #search-label {

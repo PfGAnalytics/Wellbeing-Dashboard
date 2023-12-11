@@ -29,16 +29,16 @@
 
 <body>    
 
-    <div id = "cookie-banner"></div>
+    <div id = "cookie-banner" role = "cookies-information"></div>
 
     <div id = "prototype">This prototype application will be enhanced as further wellbeing indicator data is released.</div>
     
-    <div id = "top-container">
+    <div id = "top-container" role ="banner">
         <div id = "top-menu" class = "row">
             <img id = "top-menu-exec-logo" src = "img/Northern_Ireland_Executive_logo.svg" alt = "Northern Ireland Executive logo">
             <div id = "dashboard-title"><h1>Wellbeing Framework</h1></div>
-            <div>
-                <form id = "top-menu-items" class = "row" action = "">
+            <div role = "navigation">
+                <form id = "top-menu-items" class = "row">
                     <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
                     <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
                     <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
@@ -70,7 +70,7 @@
 
     <div id = "content-centre">
 
-        <div id = "main-container">
+        <div id = "main-container" role = "main-content">
 
             <div id = "domains-scrn" class = "screen">
                 <h2 id = "domains-title" style="width: 100%; text-align: center;"></h2>
@@ -302,7 +302,7 @@
     </div> 
 
     <footer>
-        <div id="footer-container">
+        <div id="footer-container" role = "footer">
         <div class="row">
           <div style="height: 170px; width: 350px; margin: 10px;">
             <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Links</h3>
