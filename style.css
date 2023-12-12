@@ -729,6 +729,10 @@ footer a:hover {
     outline: 2px solid #ff0000;
 }
 
+#close-pop-up:focus-visible {
+    outline: 2px solid #ff0000;
+}
+
 .eq-link:focus-visible {
     outline: 2px solid #ff0000;
 }
@@ -742,6 +746,10 @@ a:focus-visible {
 }
 
 select:focus-visible {
+    outline: 2px solid #ff0000;
+}
+
+canvas:focus-visible {
     outline: 2px solid #ff0000;
 }
 

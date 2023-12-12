@@ -782,6 +782,7 @@ async function createLineChart(d, e) {
 
    // Create a new canvas object to place chart in
    chart_canvas = document.createElement("canvas");
+   chart_canvas.tabIndex = 0;
    chart_canvas.id = id + "-canvas";
    canvas_div.appendChild(chart_canvas);
 
@@ -1080,6 +1081,7 @@ async function getEqualityGroups(d, e) {
          chart_row.appendChild(pop_up_container);        
 
          pop_canvas = document.createElement("canvas");
+         pop_canvas.tabIndex = 0;
          pop_canvas.id = "pop-canvas";
          pop_up_container.appendChild(pop_canvas);
 
