@@ -81,6 +81,8 @@ var pop_up_chart = document.getElementById("pop-up-chart");
 var subpop = document.getElementById("subpop");
 var subpop_container = document.getElementById("subpop-container");
 var title = document.getElementsByTagName("title")[0];
+var grey_box = document.getElementsByClassName("grey-box")
+var skip_link = document.getElementById("skip-link")
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -435,6 +437,10 @@ if (!currentURL.includes("?")) {
 if (currentURL.includes("tab=")) {
 
     currentTab = currentURL.slice(currentURL.indexOf("tab=") + "tab=".length);
+
+    if (currentTab.includes("#")) {
+        currentTab = currentTab.slice(0, currentTab.indexOf("#"))
+    }
     
     if (currentTab.indexOf("&") > - 1) {
         currentTab = currentTab.slice(0, currentTab.indexOf("&"))
@@ -485,6 +491,11 @@ if (currentURL.includes("tab=")) {
 if (currentURL.includes("?domain=")) {
 
     currentDomain = currentURL.slice(currentURL.indexOf("?domain=") + "?domain=".length);
+
+    if (currentDomain.includes("#")) {
+        currentDomain = currentDomain.slice(0, currentDomain.indexOf("#"))
+    }
+
     var lookUpDomain = "";
 
     for (let i = 0; i < domains.length; i ++) {
@@ -577,6 +588,10 @@ if (currentURL.includes("?indicator=")) {
 
     currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
 
+    if (currentIndicator.includes("#")) {
+        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("#"))
+    }
+
     lookUpIndicator = "";
     for (let i = 0; i < all_indicators.length; i ++) {
         if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
@@ -648,6 +663,10 @@ if (currentURL.includes("?oindicator=")) {
 
     currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);
 
+    if (currentIndicator.includes("#")) {
+        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("#"))
+    }
+
     domains_btn.classList.remove("selected-item");
     domains_btn.firstChild.classList.remove("selected-icon");
     overall_btn.classList.add("selected-item");
@@ -698,6 +717,10 @@ if (currentURL.includes("map=")) {
     maps_btn.firstChild.classList.add("selected-icon");
 
     currentMap = currentURL.slice(currentURL.indexOf("map=") + "map=".length);
+
+    if (currentMap.includes("#")) {
+        currentMap = currentMap.slice(0, currentMap.indexOf("#"))
+    }
 
     domains_scrn.style.display = "none";
     maps_scrn.style.display = "block";
@@ -863,6 +886,10 @@ function handleEnter(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
       document.activeElement.click();
+    }
+
+    if (keycode == '9') {
+        skip_link.style.display = "block"
     }
 }           
 
@@ -1030,11 +1057,20 @@ function sizeForMobile() {
         click_to_see.style.width = "400px";                      // Click to see div is now full width
         click_to_see.style.marginLeft = ((main_container.clientWidth - 400) / 2) + "px";
         domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";   // Re-position domains grid in middle of screen
+
+        if ((window.innerWidth - 800) / 2 < 0) {
+            domains_grid_container.style.marginLeft = "0px";
+        } else {
+            domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";
+        }
+
+
         map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";        // Re-position map in middle of screen
         top_menu_items_div.style.marginBottom = "20px";                                 // Extra space underneath top menu items
         top_menu_items_div.style.marginTop= "10px";                                     // Extra space above top menu items
         top_menu_items_div.style.width = "100%";                                        // Move top menu onto its own row by setting it to full width
-        dashboard_title.style.width = (top_container.clientWidth - 300) + "px";         // Space for title to 300px less than window width
+        // dashboard_title.style.width = (top_container.clientWidth - 300) + "px";         // Space for title to 300px less than window width
+        grey_box[0].style.width = "860px";
 
         button_left.style.width = "100%";                       // "Previous indicator/domain" button to its own row by making it full width
         button_left.style.justifyContent = "center";            // Centre the button
@@ -1081,7 +1117,8 @@ function sizeForMobile() {
         domains_grid_container.style.marginLeft = "50px";   // Reset domains grid left margin to 50px
         map_container.removeAttribute("style");             // Remove any style attributes set above for map container
         top_menu_items_div.removeAttribute("style");        // Remove any style attributes set above for top menu items div
-        dashboard_title.removeAttribute("style");           // Remove any style attributes set above dashboard title
+        // dashboard_title.removeAttribute("style");           // Remove any style attributes set above dashboard title
+        grey_box[0].style.width = "1150px";
 
         for (let i = 0; i < top_menu_items.length; i++) {
             top_menu_items[i].removeAttribute("style");     // Remove any style attributes set above for top menu items
@@ -1500,4 +1537,5 @@ for (let i = 0; i < key_hexes.length; i ++) {
     }
 
 }
+
 

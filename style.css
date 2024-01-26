@@ -6,6 +6,17 @@ body {
     print-color-adjust:exact !important;
 }
 
+#skip-link {
+    background-color: #fd0;
+    padding-left: 15px;
+    display: none;
+}
+
+#skip-link a {
+    color: #000000;
+    text-decoration: underline;
+}
+
 #top-container {
     display: flex;
     justify-content: center;
@@ -145,10 +156,11 @@ h3 {
 }
 
 .grey-box {
-    width: 100%;
+    width: 1150px;
     background-color: #e8e8e8;
     padding: 10px;
     border-radius: 25px;
+    margin-left: 10px;
 }
 
 .red-box {
@@ -369,6 +381,7 @@ padding-right: 10px;
     margin-right: 15px;
     height: 86px;
     font-size: 14pt;
+    font-weight: bold;
     display: flex;
     align-items: center;
     padding: 15px 15px 15px 15px;
@@ -1093,3 +1106,4 @@ button:focus-visible {
 tr {
     height: 24px;
 }
+
