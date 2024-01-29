@@ -232,16 +232,19 @@ function generateHexagons (d) {
         var data = domains_data[d].indicators[indicators[i]].data; // The data object within this indicator
 
         if (Object.keys(worsening_indicator).includes(indicators[i])) {   // If the word "worsened" appears in the baseline statement:
-            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
             hex.classList.add("negative");      // Add the class "negative" to the hexagon
             hex_label.classList.add("negative");    // Add the class "negative" to the label text
+            hex_label.innerHTML = indicators[i] + '<br><i class="fa-solid fa-arrow-trend-down"></i>' ;      // Place the indicator name in the label
         } else if (Object.keys(improving_indicator).includes(indicators[i])) {    // If the word "improved" appears in the baseline statement:
-            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
             hex.classList.add("positive");              // Add the class "positive" to the hexagon
             hex_label.classList.add("positive");        // Add the class "negative" to the label text
+            hex_label.innerHTML = indicators[i] + '<br><i class="fa-solid fa-arrow-trend-up"></i>';      // Place the indicator name in the label
         } else {    // Otherwise:
-            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
             hex.classList.add("neutral");
+            hex_label.innerHTML = indicators[i] + '<br><i class="fa-solid fa-arrow-right-long">';      // Place the indicator name in the label
         }
 
         hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
@@ -250,7 +253,7 @@ function generateHexagons (d) {
         hex.classList.add("ind-hex");               // Add class "ind-hex" to the hexagon
         hex_label.classList.add("ind-hex-label");   // Add class "ind-hex-label" to the label
 
-        hex_label.textContent = indicators[i];      // Place the indicator name in the label
+       
         hex_container.appendChild(hex);             // Place the hexagon in the hexagon container
         hex_container.appendChild(hex_label);       // Place the label in the hexagon container
                 

@@ -341,8 +341,8 @@ padding-right: 10px;
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     background-color: #FF6200;
-    color: #ffffff44;
-    font-size: 33px;
+    color: #ffffff;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -357,7 +357,6 @@ padding-right: 10px;
 .key-hex.negative {
     background-color: #ff3131;
 }
-
 
 .row {
     margin-left: 0px;
