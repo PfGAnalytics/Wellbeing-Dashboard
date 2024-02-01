@@ -81,6 +81,8 @@ var pop_up_chart = document.getElementById("pop-up-chart");
 var subpop = document.getElementById("subpop");
 var subpop_container = document.getElementById("subpop-container");
 var title = document.getElementsByTagName("title")[0];
+var grey_box = document.getElementsByClassName("grey-box")
+var skip_link = document.getElementById("skip-link")
 
 // Count the number of domains in domains_data.js and update text on Domains screen
 domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
@@ -230,16 +232,19 @@ function generateHexagons (d) {
         var data = domains_data[d].indicators[indicators[i]].data; // The data object within this indicator
 
         if (Object.keys(worsening_indicator).includes(indicators[i])) {   // If the word "worsened" appears in the baseline statement:
-            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
             hex.classList.add("negative");      // Add the class "negative" to the hexagon
             hex_label.classList.add("negative");    // Add the class "negative" to the label text
+            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-down-long"></i>' ;      // Place the indicator name in the label
         } else if (Object.keys(improving_indicator).includes(indicators[i])) {    // If the word "improved" appears in the baseline statement:
-            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
             hex.classList.add("positive");              // Add the class "positive" to the hexagon
             hex_label.classList.add("positive");        // Add the class "negative" to the label text
+            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-up-long"></i>';      // Place the indicator name in the label
         } else {    // Otherwise:
-            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
             hex.classList.add("neutral");
+            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long">';      // Place the indicator name in the label
         }
 
         hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
@@ -248,7 +253,7 @@ function generateHexagons (d) {
         hex.classList.add("ind-hex");               // Add class "ind-hex" to the hexagon
         hex_label.classList.add("ind-hex-label");   // Add class "ind-hex-label" to the label
 
-        hex_label.textContent = indicators[i];      // Place the indicator name in the label
+       
         hex_container.appendChild(hex);             // Place the hexagon in the hexagon container
         hex_container.appendChild(hex_label);       // Place the label in the hexagon container
                 
@@ -338,20 +343,23 @@ function plotOverallHexes (change_type) {
         hex.classList.add("ind-hex");                           // Give hexagon the class "ind-hex"
         hex_label.classList.add("ind-hex-label");               // Give hexagon label the class "ind-hex-label"
 
-        hex_label.textContent = Object.keys(eval(change_type + "_indicator"))[i];   // Hexagon label text is outputted
+        
         hex_container.appendChild(hex);                                             // Hexagon is placed inside the hexagon container
         hex_container.appendChild(hex_label);                                       // Hexagon label is placed inside the hexagon container
 
         if (change_type == "improving") {   // For improving indicators:
-            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';      // Up arrow is placed in hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';      // Up arrow is placed in hexagon
             hex.classList.add("positive");                              // Hexagon is given class "positive"
-            hex_label.classList.add("positive");                        // Hexagon label is given class "positive" 
+            hex_label.classList.add("positive");                        // Hexagon label is given class "positive"
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-up-long"></i>';   // Hexagon label text is outputted
         } else if (change_type == "no_change") { // For no_change indicators:
-            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Right arrow is placed in hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Right arrow is placed in hexagon
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long"></i>';   // Hexagon label text is outputted
         } else if (change_type == "worsening") {    // For worsening indicators:
-            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Down arrow is placed in hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Down arrow is placed in hexagon
             hex.classList.add("negative");                              // Hexagon is given class "negative"
             hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-down-long"></i>';   // Hexagon label text is outputted
         }
 
         hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row
@@ -435,6 +443,10 @@ if (!currentURL.includes("?")) {
 if (currentURL.includes("tab=")) {
 
     currentTab = currentURL.slice(currentURL.indexOf("tab=") + "tab=".length);
+
+    if (currentTab.includes("#")) {
+        currentTab = currentTab.slice(0, currentTab.indexOf("#"))
+    }
     
     if (currentTab.indexOf("&") > - 1) {
         currentTab = currentTab.slice(0, currentTab.indexOf("&"))
@@ -485,6 +497,11 @@ if (currentURL.includes("tab=")) {
 if (currentURL.includes("?domain=")) {
 
     currentDomain = currentURL.slice(currentURL.indexOf("?domain=") + "?domain=".length);
+
+    if (currentDomain.includes("#")) {
+        currentDomain = currentDomain.slice(0, currentDomain.indexOf("#"))
+    }
+
     var lookUpDomain = "";
 
     for (let i = 0; i < domains.length; i ++) {
@@ -577,6 +594,10 @@ if (currentURL.includes("?indicator=")) {
 
     currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
 
+    if (currentIndicator.includes("#")) {
+        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("#"))
+    }
+
     lookUpIndicator = "";
     for (let i = 0; i < all_indicators.length; i ++) {
         if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
@@ -648,6 +669,10 @@ if (currentURL.includes("?oindicator=")) {
 
     currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);
 
+    if (currentIndicator.includes("#")) {
+        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("#"))
+    }
+
     domains_btn.classList.remove("selected-item");
     domains_btn.firstChild.classList.remove("selected-icon");
     overall_btn.classList.add("selected-item");
@@ -698,6 +723,10 @@ if (currentURL.includes("map=")) {
     maps_btn.firstChild.classList.add("selected-icon");
 
     currentMap = currentURL.slice(currentURL.indexOf("map=") + "map=".length);
+
+    if (currentMap.includes("#")) {
+        currentMap = currentMap.slice(0, currentMap.indexOf("#"))
+    }
 
     domains_scrn.style.display = "none";
     maps_scrn.style.display = "block";
@@ -863,6 +892,10 @@ function handleEnter(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
       document.activeElement.click();
+    }
+
+    if (keycode == '9') {
+        skip_link.style.display = "block"
     }
 }           
 
@@ -1030,11 +1063,20 @@ function sizeForMobile() {
         click_to_see.style.width = "400px";                      // Click to see div is now full width
         click_to_see.style.marginLeft = ((main_container.clientWidth - 400) / 2) + "px";
         domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";   // Re-position domains grid in middle of screen
+
+        if ((window.innerWidth - 800) / 2 < 0) {
+            domains_grid_container.style.marginLeft = "0px";
+        } else {
+            domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";
+        }
+
+
         map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";        // Re-position map in middle of screen
         top_menu_items_div.style.marginBottom = "20px";                                 // Extra space underneath top menu items
         top_menu_items_div.style.marginTop= "10px";                                     // Extra space above top menu items
         top_menu_items_div.style.width = "100%";                                        // Move top menu onto its own row by setting it to full width
-        dashboard_title.style.width = (top_container.clientWidth - 300) + "px";         // Space for title to 300px less than window width
+        // dashboard_title.style.width = (top_container.clientWidth - 300) + "px";         // Space for title to 300px less than window width
+        grey_box[0].style.width = "860px";
 
         button_left.style.width = "100%";                       // "Previous indicator/domain" button to its own row by making it full width
         button_left.style.justifyContent = "center";            // Centre the button
@@ -1081,7 +1123,8 @@ function sizeForMobile() {
         domains_grid_container.style.marginLeft = "50px";   // Reset domains grid left margin to 50px
         map_container.removeAttribute("style");             // Remove any style attributes set above for map container
         top_menu_items_div.removeAttribute("style");        // Remove any style attributes set above for top menu items div
-        dashboard_title.removeAttribute("style");           // Remove any style attributes set above dashboard title
+        // dashboard_title.removeAttribute("style");           // Remove any style attributes set above dashboard title
+        grey_box[0].style.width = "1150px";
 
         for (let i = 0; i < top_menu_items.length; i++) {
             top_menu_items[i].removeAttribute("style");     // Remove any style attributes set above for top menu items
@@ -1500,4 +1543,5 @@ for (let i = 0; i < key_hexes.length; i ++) {
     }
 
 }
+
 

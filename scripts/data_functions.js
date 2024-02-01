@@ -878,8 +878,11 @@ async function createLineChart(d, e) {
       further_note = further_note.replaceAll("”", '"')
    }
 
+   // Wrap further info as a html list (Accessibility change)
+   further_note = "<ol><li>" + further_note.replace("1.", "") + "</li></ol>"
+
    for (let i = 2; i < 10; i++) {
-      further_note = further_note.replaceAll("\n" + i + ".", "<br><br>" + i + ".")  // Line breaks are inserted between individidual points within "Further Information"
+      further_note = further_note.replaceAll("\n" + i + ".", "</li><li>")  // Line breaks are inserted between individidual points within "Further Information"
    }
 
    // Div element created for "Further information" and placed in html document:
@@ -1588,9 +1591,11 @@ async function drawMap() {
          further_note = further_note.replaceAll("[i]", "<em>");
          further_note = further_note.replaceAll("[/i]", "</em>");
       }
+      
+      further_note = "<ol><li>" + further_note.replace("1.", "") + "</li></ol>"
 
       for (let i = 2; i < 10; i++) {
-         further_note = further_note.replaceAll("\n" + i + ".", "<br><br>" + i + ".")
+         further_note = further_note.replaceAll("\n" + i + ".", "</li><li>")  // Line breaks are inserted between individidual points within "Further Information"
       }
 
       // Obtain how do we measure this text from query

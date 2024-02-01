@@ -408,7 +408,7 @@ var domains_data = {
          }
        }
     },
-    "Better Economy": {
+    "Stronger Economy": {
        description: "Our economy is globally competitive, regionally balanced and carbon-neutral",
        indicators: {
          "Economic inactivity": {
