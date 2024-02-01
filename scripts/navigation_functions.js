@@ -235,16 +235,16 @@ function generateHexagons (d) {
             // hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
             hex.classList.add("negative");      // Add the class "negative" to the hexagon
             hex_label.classList.add("negative");    // Add the class "negative" to the label text
-            hex_label.innerHTML = indicators[i] + '<br><i class="fa-solid fa-arrow-trend-down"></i>' ;      // Place the indicator name in the label
+            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-down-long"></i>' ;      // Place the indicator name in the label
         } else if (Object.keys(improving_indicator).includes(indicators[i])) {    // If the word "improved" appears in the baseline statement:
             // hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
             hex.classList.add("positive");              // Add the class "positive" to the hexagon
             hex_label.classList.add("positive");        // Add the class "negative" to the label text
-            hex_label.innerHTML = indicators[i] + '<br><i class="fa-solid fa-arrow-trend-up"></i>';      // Place the indicator name in the label
+            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-up-long"></i>';      // Place the indicator name in the label
         } else {    // Otherwise:
             // hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
             hex.classList.add("neutral");
-            hex_label.innerHTML = indicators[i] + '<br><i class="fa-solid fa-arrow-right-long">';      // Place the indicator name in the label
+            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long">';      // Place the indicator name in the label
         }
 
         hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
@@ -343,20 +343,23 @@ function plotOverallHexes (change_type) {
         hex.classList.add("ind-hex");                           // Give hexagon the class "ind-hex"
         hex_label.classList.add("ind-hex-label");               // Give hexagon label the class "ind-hex-label"
 
-        hex_label.textContent = Object.keys(eval(change_type + "_indicator"))[i];   // Hexagon label text is outputted
+        
         hex_container.appendChild(hex);                                             // Hexagon is placed inside the hexagon container
         hex_container.appendChild(hex_label);                                       // Hexagon label is placed inside the hexagon container
 
         if (change_type == "improving") {   // For improving indicators:
-            hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';      // Up arrow is placed in hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';      // Up arrow is placed in hexagon
             hex.classList.add("positive");                              // Hexagon is given class "positive"
-            hex_label.classList.add("positive");                        // Hexagon label is given class "positive" 
+            hex_label.classList.add("positive");                        // Hexagon label is given class "positive"
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-up-long"></i>';   // Hexagon label text is outputted
         } else if (change_type == "no_change") { // For no_change indicators:
-            hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Right arrow is placed in hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Right arrow is placed in hexagon
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long"></i>';   // Hexagon label text is outputted
         } else if (change_type == "worsening") {    // For worsening indicators:
-            hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Down arrow is placed in hexagon
+            // hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Down arrow is placed in hexagon
             hex.classList.add("negative");                              // Hexagon is given class "negative"
             hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-down-long"></i>';   // Hexagon label text is outputted
         }
 
         hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row
