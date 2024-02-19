@@ -21,7 +21,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #008675 !important;
+    background-color: #142062 !important;
     width: 100%
 }
 
@@ -67,7 +67,7 @@ h1 {
     cursor: pointer;
     border-radius: 25px;
     border-width: 0px;
-    background-color: #008675;
+    background-color: #142062;
 }
 
 .top-menu-item:hover {
@@ -551,7 +551,7 @@ a.cookiesbarlink {
 
 footer {
     color: #ffffff;
-    background-color: #008675;
+    background-color: #142062;
     display: flex;
     justify-content: center;
     margin-top: 25px;
@@ -686,7 +686,7 @@ footer a:hover {
 
 #prototype {
     color: #ffffff;
-    background-color: #142062 !important;
+    background-color: #008675 !important;
     display: flex;
     align-items: center;
     width: 100%;
@@ -974,7 +974,7 @@ input:focus-visible {
   #search-bar {
     display: flex;
     justify-content: center;
-    background-color: #008675;
+    background-color: #142062;
     margin-top: 10px;
     padding-bottom: 5px;
     margin-bottom: 5px;

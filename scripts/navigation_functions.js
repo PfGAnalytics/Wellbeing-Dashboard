@@ -84,8 +84,7 @@ var title = document.getElementsByTagName("title")[0];
 var grey_box = document.getElementsByClassName("grey-box")
 var skip_link = document.getElementById("skip-link")
 
-// Count the number of domains in domains_data.js and update text on Domains screen
-domains_title.textContent = number_to_word(domains.length) + " Wellbeing Domains";
+
 
 for (let i = 0; i< domain_count.length; i ++) {
     domain_count[i].textContent = number_to_word(domains.length).toLowerCase();
