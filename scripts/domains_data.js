@@ -102,6 +102,23 @@ var domains_data = {
                worsened: "This commentary is a placeholder."
             }
          },
+         "Coastal water condition": {
+            importance: "Water is an essential natural resource and plays a vital role in maintaining biodiversity, our health and social welfare and our economic development. Our rivers, lakes, estuaries, seas and groundwater provide water to sustain many of our core social and economic activities, and also provide drinking water for our population. The majority of Northern Ireland’s 650 km of coastline is protected for its special interest and a number of our coastal species and habitats are recognised as internationally important. ",
+            base_year: "2019",
+            ci: 1,
+            data: {
+               NI: "INDCOASTQNI", 
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "decrease",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
+            }
+         },
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
             base_year: "2019",
