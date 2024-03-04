@@ -970,6 +970,19 @@ async function createLineChart(d, e) {
 
   document.getElementById("measure-info").appendChild(measure_note);
 
+  // Covid text extract
+  covid_text = note[0];
+
+  covid_string = "Impact of Covid-19";
+
+
+  if (covid_text.indexOf(covid_string) > -1) {
+   covid_text = covid_text.slice(covid_text.indexOf(covid_string) + covid_string.length).replace("[/b]", "");
+   covid_text = covid_text.slice(0, covid_text.indexOf(["[b"])).trim();
+
+   document.getElementById("covid-info").textContent = covid_text;
+  }
+
 }
 
 // This function will read the categories within the EQUALGROUPS variable, then output the available groups in the grey box
@@ -1692,6 +1705,21 @@ async function drawMap() {
       source_link = source_link.slice(0, source_link.indexOf("]"));
 
       source_info_map.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
+
+      // Covid text extract
+      covid_text = note[0];
+
+      covid_string = "Impact of Covid-19";
+
+      if (covid_text.indexOf(covid_string) > -1) {
+         covid_text = covid_text.slice(covid_text.indexOf(covid_string) + covid_string.length).replace("[/b]", "");
+         covid_text = covid_text.slice(0, covid_text.indexOf(["[b"])).trim();
+
+         document.getElementById("covid-info-map").textContent = covid_text;
+      }
+
+      
+
    }
 
    mapForYear();
