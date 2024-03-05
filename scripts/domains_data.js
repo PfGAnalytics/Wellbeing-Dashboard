@@ -85,6 +85,24 @@ var domains_data = {
     "Cleaner Environment": {
        description: "We live and work sustainably - protecting, improving and enjoying the environment",
        indicators: {
+         "Active travel - public transport": {
+            importance: "This indicator will principally inform progress towards ‘We live and work sustainably – protecting the environment’ and ‘Our economy is globally competitive, regionally balanced and carbon-neutral’. It is also important to inform modal shift in how people travel in Northern Ireland and is to be monitored as part of the Transport sector of the NI Climate Action Plan.",
+            base_year: "2017",
+            ci: 1.1,
+            data: {
+               NI: "INDATPUBNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "increase",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
+            }
+         },
+         
          "Air pollution": {
             importance: "The air that we breathe is vital to our health and wellbeing. Good air quality is essential for human health, the climate, habitats and the built environment. Pollutants from human activity are present in our atmosphere which may adversely impact upon our health and natural environment. Nitrogen dioxide is part of a group of gaseous air pollutants produced as a result of road traffic and other fossil fuel combustion processes. It can irritate the lungs and lower resistance to respiratory infections such as influenza.",
             base_year: "2019",
@@ -265,6 +283,23 @@ var domains_data = {
     "Healthier Lives": {
        description: "We all enjoy long, healthy active lives",
        indicators: {
+         "Active travel - walking and cycling": {
+            importance: "This indicator will principally inform progress towards ‘We live and work sustainably – protecting the environment’ and ‘Our economy is globally competitive, regionally balanced and carbon-neutral’. It is also important to inform modal shift in how people travel in Northern Ireland and is to be monitored as part of the Transport sector of the NI Climate Action Plan.",
+            base_year: "2017",
+            ci: 2.4,
+            data: {
+               NI: "INDATWALKNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "increase",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder."
+            }
+         },
          "Healthy life expectancy (females)": {
             importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
             base_year: "2017-19",

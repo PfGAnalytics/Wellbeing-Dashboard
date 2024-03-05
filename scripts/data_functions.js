@@ -264,6 +264,8 @@ async function createLineChart(d, e) {
       y_axis_label = "Deaths per 100,000 population"
    } else if (indicator.data.NI == "INDSFGANI") {
       y_axis_label = "Percentage points"
+   } else if (indicator.data.EQ == "INDSLATTGAPEQ") {
+      y_axis_label = "Percentage points"
    }  else if (indicator.data.NI == "INDHOMELNNI") {
       y_axis_label = "Number of households"
    } else if (indicator.data.EQ == "INDHOUSTRSEQ") {
@@ -276,7 +278,7 @@ async function createLineChart(d, e) {
       y_axis_label = "Annual mean nitrogen dioxide concentration (μg/m³)"
    } else if (indicator.data.NI == "INDNICEINI") {
       y_axis_label = "Index (base 2013-100)"
-   } else if (y_axis_label == "ppts" || y_axis_label == "Percentage") {
+   } else if (y_axis_label == "Percentage") {
       y_axis_label = "%"
    }
 
