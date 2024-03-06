@@ -815,13 +815,13 @@ async function createLineChart(d, e) {
       base_statement = "The data for " + indicator.base_year + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
       document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
    } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
-      base_statement = "Things have improved since the baseline in " + indicator.base_year + ". " + indicator.telling.improved;
+      base_statement = "Things have improved since the comparison year in " + indicator.base_year + ". " + indicator.telling.improved;
       document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
    } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
-      base_statement = "Things have worsened since the baseline in " + indicator.base_year + ". " + indicator.telling.worsened;
+      base_statement = "Things have worsened since the comparison year in " + indicator.base_year + ". " + indicator.telling.worsened;
       document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
    } else {
-      base_statement = "There has been no significant change since the baseline in " + indicator.base_year + ". " + indicator.telling.no_change;
+      base_statement = "There has been no significant change since the comparison year in " + indicator.base_year + ". " + indicator.telling.no_change;
       document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
    };
    
