@@ -115,7 +115,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder."
             }
@@ -130,16 +130,16 @@ var domains_data = {
                LGD: "",
                EQ: ""
             },
-            improvement: "decrease",
+            improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2022. Excessive nutrient (dissolved inorganic nitrogen) was the most frequent failing element and was reported in 10 of the 12 water bodies that failed to achieve good condition.",
                worsened: "This commentary is a placeholder."
             }
          },
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
-            base_year: "2019",
+            base_year: "2017",
             ci: "1c",
             data: {
                NI: "INDGREENHGNI",
@@ -184,7 +184,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.7 per cent in 2019/20.",
                worsened: "This commentary is a placeholder."
             }
          },
@@ -202,7 +202,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have increased from 0.63 mg/l in 2019 to 0.073 mg/l in 2022."
             }
          }
        }
@@ -229,7 +229,7 @@ var domains_data = {
          },
          "Income deprivation": {
             importance: "Absolute poverty is a measure of whether the lowest income households are seeing their incomes rise in real terms over time. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
-            base_year: "2021/22",
+            base_year: "2017/18",
             ci: 4,
             data: {
                NI: "",
@@ -246,7 +246,7 @@ var domains_data = {
          },
          "Income inequality": {
             importance: "Relative poverty is a measure of whether the lowest income households are seeing their incomes keep pace with the population as a whole. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
-            base_year: "2021/22",
+            base_year: "2017/18",
             ci: 4,
             data: {
                NI: "",
@@ -752,7 +752,7 @@ var domains_data = {
          },
          "Housing costs as a proportion of household income": {
             importance: "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2019/20",
+            base_year: "2017/18",
             ci: 3,
             data: {
                NI: "",
