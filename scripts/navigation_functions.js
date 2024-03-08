@@ -1334,7 +1334,7 @@ async function subpopTable() {
     
     subpop_headers.innerHTML = "<th style = 'text-align: left;'>Indicator</th>" + 
                                "<th>NI Level only</th>" +
-                               "<th>Parliamentary Constituency</th>" + 
+                               "<th>Assembly Area</th>" + 
                                "<th>Local Government District</th>"
 
     // Add EQ group headers in loop
@@ -1368,7 +1368,7 @@ async function subpopTable() {
         }
         subpop_row.appendChild(ni_level);
 
-        aa = document.createElement("td");  // If AA data is present add a dot for "Parliamentary Constituency"
+        aa = document.createElement("td");  // If AA data is present add a dot for "Assembly Area"
         if (domains_data[domain].indicators[all_indicators[i]].data.AA != "") {
             aa.innerHTML = '<div class = "navy-dot"></div>';
         }
