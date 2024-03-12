@@ -48,7 +48,7 @@ var domains_data = {
        indicators: {
          "Children's social care": {
             importance: 'The indicator gives an important insight into the overarching "We will give our children and young people the best start in life" outcome.  It illustrates that services provided to looked after children/care leavers are, for example, closing the education attainment gap between care-experienced children and other young people and that they have the same opportunities for training and employment as their peers.   It is also to be used as a key indicator for monitoring success in the "A life Deserved Strategy".',
-            base_year: "2019/20",
+            base_year: "2018/19",
             ci: "1c",
             data: {
                NI: "",
@@ -58,7 +58,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "Although the proportion of young care leavers aged 19 in education, training or employment is lower than the last three years, it is higher than five years ago.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder."
             }
@@ -212,7 +212,7 @@ var domains_data = {
        indicators: {
          "Cultural identity": {
             importance: "Building and promoting respect for cultural identity helps support tackling sectarianism and therefore provides a foundation for good relations.",
-            base_year: "2020",
+            base_year: "2017",
             ci: 2.7,
             data: {
                NI: "",
@@ -224,7 +224,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This means that fewer adults in 2021 feel their cultural identity is respected by society than in 2017."
             }
          },
          "Income deprivation": {
@@ -263,8 +263,8 @@ var domains_data = {
          },
          "Respect": {
             importance: "Building and promoting respect helps support the development of an inclusive society and therefore provides a foundation for good relations.",
-            base_year: "2020",
-            ci: 2.2,
+            base_year: "2017",
+            ci: 2.7,
             data: {
                NI: "",
                AA: "",
@@ -275,7 +275,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This means that adults living in Northern Ireland in 2021 feel less respected on multiple measures than they did in 2017."
             }
          }
       }
@@ -302,7 +302,7 @@ var domains_data = {
          },
          "Healthy life expectancy (females)": {
             importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
-            base_year: "2017-19",
+            base_year: "2016-18",
             ci: 1.5,
             data: {
                NI: "",
@@ -312,14 +312,14 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "HLE increased by 1.9 years from 60.8 years in 2016/18 to 62.7 years in 2020-22. The change was statistically significant.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder."
             }
          },
          "Healthy life expectancy (males)": {
             importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
-            base_year: "2017-19",
+            base_year: "2016-18",
             ci: 1.5,
             data: {
                NI: "",
@@ -336,8 +336,8 @@ var domains_data = {
          },
          "Mental health": {
             importance: "GHQ-12 is a measure of current mental health among the population. Poor mental health while not only affecting social circumstances such as employment, family relationships and community participation can also be a key factor in determining physical wellbeing as well.",
-            base_year: "2019/20",
-            ci: 2,
+            base_year: "2018/19",
+            ci: 1.3,
             data: {
                NI: "",
                AA: "",
@@ -348,13 +348,13 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "The proportion of males with a high GHQ12 score is unchanged from 2018/19, however the proportion of females with a high GHQ12 score has risen from 2018/19."
             }
          },
          "Preventable deaths": {
             importance: "Preventable deaths relate to causes of deaths that could potentially be avoided by the public health interventions in the broadest sense.",
-            base_year: "2015-19",
-            ci: 5,
+            base_year: "2013-17",
+            ci: 4.8,
             data: {
                NI: "",
                AA: "INDPREVDTHAA",
@@ -365,7 +365,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "The preventable mortality rate increased by 11 deaths per 100,000 population from 169 deaths per 100,000 population in 2013-17 to 180 deaths per 100,000 population in 2017-21. The change was statistically significant."
             }
          },
          "Sports and physical activity": {
@@ -409,7 +409,7 @@ var domains_data = {
          },
          "Life satisfaction": {
             importance: "Life satisfaction is a key aspect of personal wellbeing and is strongly linked to health, employment and relationships.",
-            base_year: "2019/20",
+            base_year: "2021/22",
             ci: 0.1,
             data: {
                NI: "",
@@ -421,7 +421,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, and also between people with a disability compared to those without a disability."
             }
          },
          "School leavers' attainment gap": {
@@ -443,7 +443,7 @@ var domains_data = {
          },
          "Self-efficacy": {
             importance: "Self-efficacy is the degree to which people feel they can influence the events that affect their lives. Higher self-efficacy contributes to an accountable society where people feel more able to effect change within their own lives, which can lead to reduced pressures on public services.",
-            base_year: "2019/20",
+            base_year: "2021/22",
             ci: 2,
             data: {
                NI: "",
@@ -454,7 +454,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without and also between people with a white ethnicity compared with any other ethnicity.",
                worsened: "This commentary is a placeholder."
             }
          }
@@ -465,8 +465,8 @@ var domains_data = {
        indicators: {
          "Economic inactivity": {
             importance: "This indicator shows the percentage of people who are not engaged in the labour market. It is important as a high economic inactivity rate can restrict labour supply which may in turn affect economic growth.",
-            base_year: "2020",
-            ci: 1.6,
+            base_year: "2018",
+            ci: 1.5,
             data: {
                NI: "",
                AA: "INDECONINACTAA",
@@ -476,14 +476,14 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "The proportion of people who are economically inactive for any reason apart from being a student has remained unchanged from 2018.",
                worsened: "This commentary is a placeholder."
             }
          },
          "Employment rate": {
             importance: "The employment rate is important as a key labour market indicator. Those who are employed have money to spend which can contribute towards economic growth.",
-            base_year: "2020",
-            ci: 1.8,
+            base_year: "2018",
+            ci: 1.7,
             data: {
                NI: "",
                AA: "INDEMPRATEAA",
@@ -492,7 +492,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "The proportion of people aged 16 to 64 in employment has statistically increased from 2018.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder."
             }
@@ -533,7 +533,7 @@ var domains_data = {
          },
          "International reputation": {
             importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation will affect people’s willingness to live, study, visit, do business with and invest in NI and this has a significant impact on our economy.",
-            base_year: "2020",
+            base_year: "2019",
             ci: 1,
             data: {
                NI: "INDINTREPNI",
@@ -543,7 +543,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "Northern Ireland achieved a higher score on the Nation Brands Index, indicating an improved reputation internationally.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder."
             }
@@ -567,8 +567,8 @@ var domains_data = {
          },
          "Skills": {
             importance: "The proportion of the workforce with low or no qualifications (level 2 or below) has been a persistent problem in Northern Ireland. Whilst substantial progress was made, continued improvement will be required to keep pace with other comparable small advanced economies.",
-            base_year: "2020",
-            ci: 1.7,
+            base_year: "2018",
+            ci: 1.6,
             data: {
                NI: "",
                AA: "",
@@ -578,7 +578,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "There has been no significant changes to the proportion of people qualified to Level 2 and above.",
                worsened: "This commentary is a placeholder."
             }
          }
@@ -679,7 +679,7 @@ var domains_data = {
        indicators: {
          "Adult social care": {
             importance: "The HSC has a duty to provide social services to meet the health and social well-being needs of older people and adults with disabilities and health conditions, including people with learning disabilities and mental health conditions.  The established direction is the provision of services to individuals which promote independence in order that adults with care and support needs can live in their own home and outside of institutional settings. This indicator measures the delivery of the DoH’s policy objective to provide services which support adults with care needs to live independently in their own homes and which delay or avoid the need for provision of institutional care. It measures the number of people being provided with care at home comparative to the overall number of people identified as having a social care need and whose needs are not being met through provision of social care services in their own home. This indicator is important for monitoring the effectiveness of social care services in meeting the needs of the population, and for identifying areas where additional support may be required to meet the needs of those who are not currently receiving services, all of which can inform policy and resource allocation decisions.",
-            base_year: "2020",
+            base_year: "2019",
             ci: 1,
             data: {
                NI: "INDADSCNI",
@@ -690,14 +690,14 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "The proportion of adults receiving social care services at home, or self directed support, has remained fairly constant throughout this time period.",
                worsened: "This commentary is a placeholder."
             }
          },
          "Loneliness": {
             importance: "Everyone is likely to experience feelings of loneliness at some point during their lifetime, however, frequent feelings of loneliness can have a serious negative impact, not only on a person’s mental health and wellbeing, but also on their physical health, as frequent loneliness is associated with early death.",
-            base_year: "2019/20",
-            ci: 1.96,
+            base_year: "2021/22",
+            ci: 2,
             data: {
                NI: "",
                AA: "INDLONEAA",
@@ -707,7 +707,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels in 2022/23. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, and also between people with a white ethnicity compared with any other ethnicity.",
                worsened: "This commentary is a placeholder."
             }
          },
