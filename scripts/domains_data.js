@@ -150,7 +150,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "In 2021 a 'bounce back' was experienced in GHG emissions after the drop off in admissions associated with COVID restrictions.",
                worsened: "This commentary is a placeholder."
             }
          },
@@ -499,8 +499,8 @@ var domains_data = {
          },
          "External sales rate": {
             importance: 'Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a "Trade and Investment Strategy for a 10x economy" in which they note "Trade can support the ambitions of our \'10X Economy\' across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become."',
-            base_year: "2019",
-            ci: 0.7,
+            base_year: "2018",
+            ci: 0.6,
             data: {
                NI: "INDEXSALENI",
                AA: "",
@@ -510,7 +510,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "There has been no statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",
                worsened: "This commentary is a placeholder."
             }
          },
@@ -550,7 +550,7 @@ var domains_data = {
          },
          "Northern Ireland Composite Economic Index": {
             importance: "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
-            base_year: "2019",
+            base_year: "2017",
             ci: 1,
             data: {
                NI: "INDNICEINI",
@@ -560,7 +560,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially following a decline in 2020, and the latest data in 2022 is at a series high. ",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder."
             }
@@ -589,8 +589,8 @@ var domains_data = {
        indicators: {
          "Crime prevalence rate": {
             importance: "The crime prevalence rate gives the proportion of households/adults who have been a victim of a crime covered by the survey. It will capture incidents experienced by people living in private households, irrespective of whether or not these crimes were reported to, or recorded by, the police.",
-            base_year: "2019/20",
-            ci: 1,
+            base_year: "2017/18",
+            ci: 1.9,
             data: {
                NI: "",
                AA: "INDCRIMEAA",
@@ -599,7 +599,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "The proportion who have been a victim of a crime measured through the survey has fallen.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder."
             }
