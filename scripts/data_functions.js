@@ -564,38 +564,6 @@ async function createLineChart(d, e) {
 
    var decimal_places = Math.max(...decimals);
 
-   // This puts extra text in the tooltip to display "Improving value" and "Worsening value" on years after the base year
-   // const footer = (tooltipItems) => {
-
-   //    tooltipItems.forEach(function(tooltipItem) {
-   //       if (tooltipItem.parsed.x >= base_position) {
-   //          if (!isNaN(indicator.ci)) {   // For indicators with constant value improvements:
-   //             if (indicator.improvement == "increase") {   // For increasing indicators in this category:
-   //                text = ["Improving value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-   //                        "Worsening value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
-   //             } else {       // For decreasing indicators in this category:
-   //                text = ["Worsening value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-   //                        "Improving value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
-   //             }
-   //          } else {    // For indicators with year-on-year improvements:
-   //             if (tooltipItem.parsed.x == base_position) {    // Blank out the value in the base year itself
-   //                text = ""
-   //             } else if (indicator.improvement == "increase") {   // For increasing indicators in this category:
-   //                text = ["Improving value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-   //                      "Worsening value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
-   //             } else {       // For decreasing indicators in this category:
-   //                text = ["Worsening value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-   //                        "Improving value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
-   //             }
-   //          }
-   //       } else {    // Don't add extra tooltip text for years all before base year:
-   //          text = ""
-   //       }
-   //    });
-
-   //    return text
-   //  };
-
    // Chart configuration for charts with constant increasing/decreasing value:
    const chart_config = {
       type: 'line',
@@ -654,13 +622,7 @@ async function createLineChart(d, e) {
                },
                legend: {
                   display: false       // Legend turned off
-               },
-               tooltip: {
-                  callbacks: {
-                     // footer: footer       // Add footer to tooltip (defined above)
-                  }
                }
-
          },
          scales: {
             x: {
@@ -731,11 +693,6 @@ async function createLineChart(d, e) {
                },
                legend: {
                   display: false
-               },
-               tooltip: {
-                  callbacks: {
-                     // footer: footer,
-                  },
                }
          },
          scales: {
@@ -779,11 +736,6 @@ async function createLineChart(d, e) {
          plugins: {
                legend: {
                   display: false       // Legend turned off
-               },
-               tooltip: {
-                  callbacks: {
-                     // footer: footer       // Add footer to tooltip (defined above)
-                  }
                }
 
          },
@@ -1299,11 +1251,21 @@ async function getEqualityGroups(d, e) {
             }
          }        
 
+         let years_with_data = [];
+
+         for (let i = 0; i < values[Object.keys(values)[0]].length; i ++) {
+            if (values[Object.keys(values)[0]][i] != null) {
+               years_with_data.push(i)
+            }
+         }
+
+         let first_year = Math.min(...years_with_data);
+
          // Construct data object for chart.js bar chart
          var data = {
-            labels: years,
+            labels: years.slice(first_year),
             datasets: []
-         };
+         };         
 
          // Colour palette for bar charts:
          colours = ["#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1"];
@@ -1311,7 +1273,7 @@ async function getEqualityGroups(d, e) {
          for (let j = 0; j < Object.keys(values).length; j ++) {     // Loop through values and create each data series
             data.datasets.push({
                label: Object.keys(values)[j],
-               data: values[Object.keys(values)[j]],
+               data: values[Object.keys(values)[j]].slice(first_year),
                backgroundColor: [
                   colours[j % colours.length]
                ]

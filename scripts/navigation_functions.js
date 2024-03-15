@@ -1480,6 +1480,7 @@ key_hexes = document.getElementsByClassName("key-hex");
 positive = document.getElementsByClassName("ind-hex positive");
 negative = document.getElementsByClassName("ind-hex negative");
 no_change = document.getElementsByClassName("ind-hex neutral")
+insufficient = document.getElementsByClassName("ind-hex insufficient")
 
 for (let i = 0; i < key_hexes.length; i ++) {
     key_hexes[i].onmouseover = function() {
@@ -1493,21 +1494,38 @@ for (let i = 0; i < key_hexes.length; i ++) {
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.style.filter = "opacity(50%)";
             }
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.style.filter = "opacity(50%)";
+            }
         } else if (hex_class == "negative") {
             for (let j = 0; j < positive.length; j ++) {
                 positive[j].parentElement.style.filter = "opacity(50%)";
             }
-            
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.style.filter = "opacity(50%)";
             }
-        } else {
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.style.filter = "opacity(50%)";
+            }
+        } else if (hex_class == "insufficient") {
             for (let j = 0; j < positive.length; j ++) {
                 positive[j].parentElement.style.filter = "opacity(50%)";
             }
-            
             for (let j = 0; j < negative.length; j ++) {
                 negative[j].parentElement.style.filter = "opacity(50%)";
+            }
+            for (let j = 0; j < no_change.length; j ++) {
+                no_change[j].parentElement.style.filter = "opacity(50%)";
+            }
+        } else  {
+            for (let j = 0; j < positive.length; j ++) {
+                positive[j].parentElement.style.filter = "opacity(50%)";
+            }
+            for (let j = 0; j < negative.length; j ++) {
+                negative[j].parentElement.style.filter = "opacity(50%)";
+            }
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.style.filter = "opacity(50%)";
             }
         }
 
@@ -1525,11 +1543,31 @@ for (let i = 0; i < key_hexes.length; i ++) {
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.removeAttribute("style");
             }
+
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.removeAttribute("style");
+            }
         } else if (hex_class == "negative") {
             for (let j = 0; j < positive.length; j ++) {
                 positive[j].parentElement.removeAttribute("style");
             }
             
+            for (let j = 0; j < no_change.length; j ++) {
+                no_change[j].parentElement.removeAttribute("style");
+            }
+
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.removeAttribute("style");
+            }
+        } else if (hex_class == "insufficient") {
+            for (let j = 0; j < positive.length; j ++) {
+                positive[j].parentElement.removeAttribute("style");
+            }
+            
+            for (let j = 0; j < negative.length; j ++) {
+                negative[j].parentElement.removeAttribute("style");
+            }
+
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.removeAttribute("style");
             }
@@ -1540,6 +1578,10 @@ for (let i = 0; i < key_hexes.length; i ++) {
             
             for (let j = 0; j < negative.length; j ++) {
                 negative[j].parentElement.removeAttribute("style");
+            }
+
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.removeAttribute("style");
             }
         }
     }
