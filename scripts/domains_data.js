@@ -426,7 +426,7 @@ var domains_data = {
          },
          "School leavers' attainment gap": {
             importance: "Ensuring children have the best start in life includes empowering young people to achieve their potential and make informed and effective decisions throughout their lives. It supports our young people to develop as individuals and as contributors to society, the economy, and the environment. Educational attainment provides a measure of their life chances and readiness for future health and wellbeing, and the gap in attainment provides a measure of educational disadvantage.",
-            base_year: "2019/20",
+            base_year: null,
             ci: 4,
             data: {
                NI: "",
@@ -438,7 +438,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: "This is due to how data was collected during Covid-19."
             }
          },
          "Self-efficacy": {

@@ -160,6 +160,15 @@
                         </div>
                         <form id = "worsening-hexes" class = "overall-container"></form>
                     </div>
+                    <div class = "separator"></div>
+                    <div class = "row">
+                        <div class = "label-container">
+                            <div id = "insufficient-label" class = "overall-label">
+                                <p id = "p-insufficient" class = "overall-text"></p>
+                            </div>
+                        </div>
+                        <form id = "insufficient-hexes" class = "overall-container"></form>
+                    </div>
                     <p style = "font-size: 12pt;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">Notes</span>.</p>
                 <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
                 </div>
@@ -178,14 +187,10 @@
                     <div class = "blue-label">How do we measure this?</div>
                     <div id = "measure-info"></div>
                 </div>
-                <div class = "row" style = "align-items: start;">
+                <div class = "row" style = "align-items: start; margin-bottom: 40px;">
                     <div id = "line-chart-container" alt = "A summary of this chart's findings can be found in the 'What is this indicator telling us?' box"></div>
                     <div id = "chart-boxes" class = "box-container">
-                        <form id = "map-link"></form>
-                        <div class= "covid-box" style = "margin-left: 15px">
-                            <strong>Impact of Covid-19</strong><br>
-                            <div id = "covid-info"></div>
-                        </div>                        
+                        <form id = "map-link"></form>                      
                     </div>
                 </div>
                 <div class = "row" style = "margin-top: 20px;">
@@ -205,6 +210,8 @@
                         <strong>Further information</strong> <i style = "color: #142062" class="fa-solid fa-plus"></i> <span style = "font-size: 10pt; color: #142062">Click to expand</span>
                     </div>
                     <div id = "further-info"></div>
+                    <strong>Impact of Covid-19</strong><br>
+                    <div id = "covid-info"></div>
                 </div>
             </div>
 

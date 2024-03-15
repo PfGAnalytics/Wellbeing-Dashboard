@@ -295,6 +295,10 @@ padding-right: 10px;
     background-color: #db0000;
 }
 
+.ind-hex.insufficient {
+    background-color: #757575;
+}
+
 .ind-hex-label {
     position: absolute;
     color: #ffffff;
@@ -360,6 +364,10 @@ padding-right: 10px;
     background-color: #db0000;
 }
 
+.key-hex.insufficient {
+    background-color: #757575;
+}
+
 .row {
     margin-left: 0px;
     margin-right: 0px;
@@ -401,6 +409,10 @@ padding-right: 10px;
 
 #no-change-label {
     background-color: #FF6200
+}
+
+#insufficient-label {
+    background-color: #757575
 }
 
 #worsening-label {

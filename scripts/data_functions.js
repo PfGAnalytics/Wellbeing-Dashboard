@@ -48,6 +48,7 @@ var num_indicators = all_indicators.length;
 var improving_indicator = {};
 var no_change_indicator = {};
 var worsening_indicator = {};
+var insufficient_indicator = {};
 
 // Function below will loop through all indicators and place them in one of the three objects above depending on their performance
 // When dom = null this will use read in all indicators for plotting on the overall screen
@@ -142,6 +143,8 @@ async function indicatorPerformance (dom = null) {
          
             if (current_year == indicator.base_year) {   // Indicators where current year is base year classed "no change"
                no_change_indicator[indicators[j]] = {domain: doms[i]};
+            } else if (indicator.base_year == null) {
+               insufficient_indicator[indicators[j]] = {domains:doms[i]}
             } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
                improving_indicator[indicators[j]] = {domain: doms[i]};  // "improving" indicators based on condition for improvement met
             } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
@@ -156,13 +159,16 @@ async function indicatorPerformance (dom = null) {
             improving_indicator = sortObject(improving_indicator);   // alphabetise improving indicators
             no_change_indicator = sortObject(no_change_indicator);   // alphabetise no change indicators
             worsening_indicator = sortObject(worsening_indicator);   // alphabetise worsening indicators
+            insufficient_indicator = sortObject(insufficient_indicator);   // alphabetise insufficient indicators
             plotOverallHexes("improving");                           // Plot hexagons on overall screen for improving
             plotOverallHexes("no_change");                           // Plot hexagons on no change screen for improving
             plotOverallHexes("worsening");                           // Plot hexagons on worsening screen for improving
-            tot_indicators = Object.keys(no_change_indicator).length + Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length;      // Calculate total number of indicators read in
+            plotOverallHexes("insufficient")
+            tot_indicators = Object.keys(no_change_indicator).length + Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length + Object.keys(insufficient_indicator).length;      // Calculate total number of indicators read in
             document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + tot_indicators + ")";      // Output fractions for each label on overall screen
             document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + tot_indicators + ")";
             document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + tot_indicators + ")";
+            document.getElementById("p-insufficient").textContent = "Insufficient Data (" + Object.keys(insufficient_indicator).length + "/" + tot_indicators + ")";
             document.getElementById("loading-img").style.display = "none";    // Hide loading image
             document.getElementById("overall-hexes").style.display = "block";    // Display grid
          }
@@ -284,7 +290,13 @@ async function createLineChart(d, e) {
 
    // The following calculations set the ideal heights for the y axis as well as the green and red boxes
    var max_data = Math.max(...data_series);
-   var max_value = Math.max(base_value * 2, max_data);
+
+   if (indicator.base_year == null) {
+      var max_value = max_data + 5;
+   } else {
+      var max_value = Math.max(base_value * 2, max_data);
+   }
+   
 
    if (max_value < 0.2) {
       max_value = Math.ceil(max_value / 0.02) * 0.02;
@@ -553,36 +565,36 @@ async function createLineChart(d, e) {
    var decimal_places = Math.max(...decimals);
 
    // This puts extra text in the tooltip to display "Improving value" and "Worsening value" on years after the base year
-   const footer = (tooltipItems) => {
+   // const footer = (tooltipItems) => {
 
-      tooltipItems.forEach(function(tooltipItem) {
-         if (tooltipItem.parsed.x >= base_position) {
-            if (!isNaN(indicator.ci)) {   // For indicators with constant value improvements:
-               if (indicator.improvement == "increase") {   // For increasing indicators in this category:
-                  text = ["Improving value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-                          "Worsening value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
-               } else {       // For decreasing indicators in this category:
-                  text = ["Worsening value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-                          "Improving value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
-               }
-            } else {    // For indicators with year-on-year improvements:
-               if (tooltipItem.parsed.x == base_position) {    // Blank out the value in the base year itself
-                  text = ""
-               } else if (indicator.improvement == "increase") {   // For increasing indicators in this category:
-                  text = ["Improving value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-                        "Worsening value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
-               } else {       // For decreasing indicators in this category:
-                  text = ["Worsening value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
-                          "Improving value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
-               }
-            }
-         } else {    // Don't add extra tooltip text for years all before base year:
-            text = ""
-         }
-      });
+   //    tooltipItems.forEach(function(tooltipItem) {
+   //       if (tooltipItem.parsed.x >= base_position) {
+   //          if (!isNaN(indicator.ci)) {   // For indicators with constant value improvements:
+   //             if (indicator.improvement == "increase") {   // For increasing indicators in this category:
+   //                text = ["Improving value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+   //                        "Worsening value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
+   //             } else {       // For decreasing indicators in this category:
+   //                text = ["Worsening value: > " + (Math.round((base_value + indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+   //                        "Improving value: < " + (Math.round((base_value - indicator.ci) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")];
+   //             }
+   //          } else {    // For indicators with year-on-year improvements:
+   //             if (tooltipItem.parsed.x == base_position) {    // Blank out the value in the base year itself
+   //                text = ""
+   //             } else if (indicator.improvement == "increase") {   // For increasing indicators in this category:
+   //                text = ["Improving value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+   //                      "Worsening value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
+   //             } else {       // For decreasing indicators in this category:
+   //                text = ["Worsening value: > " + (Math.round((base_value + indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB"),
+   //                        "Improving value: < " + (Math.round((base_value - indicator.ci.slice(0, -1) * (tooltipItem.parsed.x - base_position)) * 10 ** decimal_places) / 10 ** decimal_places).toLocaleString("en-GB")]
+   //             }
+   //          }
+   //       } else {    // Don't add extra tooltip text for years all before base year:
+   //          text = ""
+   //       }
+   //    });
 
-      return text
-    };
+   //    return text
+   //  };
 
    // Chart configuration for charts with constant increasing/decreasing value:
    const chart_config = {
@@ -645,7 +657,7 @@ async function createLineChart(d, e) {
                },
                tooltip: {
                   callbacks: {
-                     footer: footer       // Add footer to tooltip (defined above)
+                     // footer: footer       // Add footer to tooltip (defined above)
                   }
                }
 
@@ -722,7 +734,7 @@ async function createLineChart(d, e) {
                },
                tooltip: {
                   callbacks: {
-                     footer: footer,
+                     // footer: footer,
                   },
                }
          },
@@ -755,6 +767,54 @@ async function createLineChart(d, e) {
          },
          plugins: [cumulative_top,
                   cumulative_bottom]
+   };
+
+   // Chart configuration for charts where there is no base year to compare against
+   const chart_config_n = {
+      type: 'line',
+      data,
+      options: {
+         responsive: true,                   //  Allow resizing of canvas
+         maintainAspectRatio: false,         // Any aspect ratio
+         plugins: {
+               legend: {
+                  display: false       // Legend turned off
+               },
+               tooltip: {
+                  callbacks: {
+                     // footer: footer       // Add footer to tooltip (defined above)
+                  }
+               }
+
+         },
+         scales: {
+            x: {
+               grid: {
+                  lineWidth: 0,     // Remove vertical grid lines
+                  drawTicks: true,     // Add ticklines
+                  tickWidth: 1         // tickline width
+               },
+               ticks: {
+                  minRotation: 0,      // Stop rotating labels (for accessibility)
+                  maxRotation: 0
+               }
+            },
+            y: {
+               beginAtZero: true,      // Set axis to begin at zero
+               min: min_value,         // Use calculated min and max
+               max: max_value,
+               ticks: {
+                  minRotation: 0,      // Stop rotating labels (for accessibility)
+                  maxRotation: 0
+               }
+            }
+         },
+         interaction: {
+            intersect: false,   // Allow mouse interaction when mouse near points 
+            mode: "index"
+         }
+      },
+      plugins: []
    };
 
    // Create a div to place all chart content in
@@ -800,7 +860,9 @@ async function createLineChart(d, e) {
    document.getElementById("line-chart-container").appendChild(chart_div);
 
    // Place chart in canvas
-   if (!isNaN(indicator.ci)) {
+   if (indicator.base_year == null) {
+      new Chart(chart_canvas, chart_config_n);
+   } else if (!isNaN(indicator.ci)) {
       new Chart(chart_canvas, chart_config);
    } else {
       new Chart(chart_canvas, chart_config_c);
@@ -813,16 +875,14 @@ async function createLineChart(d, e) {
   
    if (current_year == indicator.base_year) {
       base_statement = "The data for " + indicator.base_year + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
-      document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
+   } else if (indicator.base_year == null) {
+      base_statement = "There is insufficident data available to determine whether this indicator is improving or worsening." + indicator.telling.insufficient
    } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
       base_statement = "Things have improved since the comparison year in " + indicator.base_year + ". " + indicator.telling.improved;
-      document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + num_indicators + ")";
    } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
       base_statement = "Things have worsened since the comparison year in " + indicator.base_year + ". " + indicator.telling.worsened;
-      document.getElementById("p-worsening").textContent = "Worsening (" + Object.keys(worsening_indicator).length + "/" + num_indicators + ")";
    } else {
       base_statement = "There has been no significant change since the comparison year in " + indicator.base_year + ". " + indicator.telling.no_change;
-      document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + num_indicators + ")";
    };
    
    // Create statement div
