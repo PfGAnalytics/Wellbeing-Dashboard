@@ -163,7 +163,7 @@ async function indicatorPerformance (dom = null) {
             plotOverallHexes("improving");                           // Plot hexagons on overall screen for improving
             plotOverallHexes("no_change");                           // Plot hexagons on no change screen for improving
             plotOverallHexes("worsening");                           // Plot hexagons on worsening screen for improving
-            plotOverallHexes("insufficient")
+            plotOverallHexes("insufficient");
             tot_indicators = Object.keys(no_change_indicator).length + Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length + Object.keys(insufficient_indicator).length;      // Calculate total number of indicators read in
             document.getElementById("p-no-change").textContent = "No change (" + Object.keys(no_change_indicator).length + "/" + tot_indicators + ")";      // Output fractions for each label on overall screen
             document.getElementById("p-improving").textContent = "Improving (" + Object.keys(improving_indicator).length + "/" + tot_indicators + ")";
@@ -171,6 +171,9 @@ async function indicatorPerformance (dom = null) {
             document.getElementById("p-insufficient").textContent = "Insufficient Data (" + Object.keys(insufficient_indicator).length + "/" + tot_indicators + ")";
             document.getElementById("loading-img").style.display = "none";    // Hide loading image
             document.getElementById("overall-hexes").style.display = "block";    // Display grid
+
+            plotExpandedDomains();
+
          }
 
       }

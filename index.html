@@ -81,10 +81,14 @@
                     <p>To measure this, we have developed a set of indicators composed of official statistics. By looking at the evidence provided by these indicators, we can gain valuable insights into Northern Ireland's wellbeing, the areas where we are making progress, and the areas where progress still needs to be made.</p>
                     <p>Analysing these indicators across different parts of our society can help us uncover any inequalities and focus on areas that need attention. Policy makers, service providers and researchers can use this information to tackle issues, inform their own research and guide decisions. With this clearer understanding, we can create positive changes that benefit everyone.</p>
                 </div>
+                <div id = "domain-toggle" class = "row" style = "justify-content: center;">
+                    <div id = "browse-domains" class = "domain-toggle-btn domain-toggle-selected">Browse Domains</div>
+                    <div id = "expand-all" class = "domain-toggle-btn">Expand all Domains</div>
+                </div>
                 <div id = "indicator-intro" class = "intro">
                     <p>This overview shows how well Northern Ireland is doing across the indicators that fall under the <span id = "domain-name"></span> domain. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts in the Northern Ireland Government. Decisions on performance are made independently of Ministers.</p>
                 </div>
-                <div class = "row">
+                <div id = "browse-grid" class = "row">
                     <div id = "click-to-see" class = "blue-label"><p style = "margin-bottom: 0px"><i class="fa-solid fa-arrow-pointer"></i> Click on a domain to see the indicators</p></div>
                     <form id = "domains-grid-container" style= "display: block;"></form>
                     <div id = "domain-info-container" style = "display: none;">
@@ -114,6 +118,11 @@
                         </div>
                     </div>
                 </div>
+                <form id = "expanded-domains" style = "display: none">
+                    <div id = "loading-img-4">
+                        <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
+                    </div>
+                </form>
                 <div id = "domains-footer" class = "intro">
                     <p>For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link" tabindex =   "0">Notes</span>.</p>
                     <p>The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 

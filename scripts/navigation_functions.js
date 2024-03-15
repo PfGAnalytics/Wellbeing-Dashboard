@@ -81,8 +81,13 @@ var pop_up_chart = document.getElementById("pop-up-chart");
 var subpop = document.getElementById("subpop");
 var subpop_container = document.getElementById("subpop-container");
 var title = document.getElementsByTagName("title")[0];
-var grey_box = document.getElementsByClassName("grey-box")
-var skip_link = document.getElementById("skip-link")
+var grey_box = document.getElementsByClassName("grey-box");
+var skip_link = document.getElementById("skip-link");
+var browse_domains = document.getElementById("browse-domains");
+var expand_all = document.getElementById("expand-all");
+var domain_toggle = document.getElementById("domain-toggle");
+var browse_grid = document.getElementById("browse-grid");
+var expanded_domains = document.getElementById("expanded-domains");
 
 
 
@@ -438,7 +443,8 @@ var currentURL = window.location.href;
 
 if (!currentURL.includes("?")) {
     loading_img.style.display = "none";
-    domains_scrn.style.display = "block"
+    domains_scrn.style.display = "block";
+    indicatorPerformance();
 }
 
 if (currentURL.includes("tab=")) {
@@ -478,7 +484,7 @@ if (currentURL.includes("tab=")) {
                 }
             }, 1)
 
-        } else if (currentTab == "overall") {
+        } else if (currentTab == "overall" | currentTab == "domains") {
             indicatorPerformance();
         } else {
             loading_img.style.display = "none";
@@ -521,6 +527,7 @@ if (currentURL.includes("?domain=")) {
     domain_info_container.style.display = "flex";     // Show the "domain-info" div
     domains_grid_container.style.display = "none";  // Hide the domains grid
     click_to_see.style.display = "none";        // Hide the "click-to-see" div
+    domain_toggle.style.display = "none";
     domains_intro.style.display = "none";       // Hide the "domains-intro" div
     indicator_intro.style.display = "block";    // Show the "indicator-intro" div
 
@@ -1588,4 +1595,129 @@ for (let i = 0; i < key_hexes.length; i ++) {
 
 }
 
+browse_domains.onclick = function() {
 
+    browse_domains.classList.add("domain-toggle-selected");
+    expand_all.classList.remove("domain-toggle-selected");
+
+    browse_grid.style.display = "flex";
+    expanded_domains.style.display = "none";
+
+}
+
+expand_all.onclick = function() {
+
+    browse_domains.classList.remove("domain-toggle-selected");
+    expand_all.classList.add("domain-toggle-selected");
+
+    browse_grid.style.display = "none";
+    expanded_domains.style.display = "block";
+
+}
+
+plotExpandedDomains = function() {
+
+    while (expanded_domains.firstChild) {
+        expanded_domains.removeChild(expanded_domains.firstChild);
+    }
+
+    // <div id = "key">
+    //     <div style = "margin-left: 8px;">Key:</div>
+    //     <div class = "row key-text"><div class = "key-hex positive"><i class = "fa-solid fa-arrow-up-long"></i></div>Improving</div>
+    //     <div class = "row key-text"><div class = "key-hex neutral"><i class = "fa-solid fa-arrow-right-long"></i></div>No Change</div>
+    //     <div class = "row key-text"><div class = "key-hex negative"><i class = "fa-solid fa-arrow-down-long"></i></div>Worsening</div>
+    //     <div class = "row key-text"><div class = "key-hex insufficient"></div>Insufficient Data</div>
+    // </div>
+
+    key = document.createElement("div");
+    key.classList.add("row");
+    key.style.justifyContent = "center";
+    key.style.marginTop = "10px";
+
+    key.innerHTML =  '<div style = "margin-right: 8px;">Key:</div>' +
+        '<div class = "row key-text"><div class = "key-hex positive"><i class = "fa-solid fa-arrow-up-long"></i></div>Improving</div>' +
+        '<div class = "row key-text"><div class = "key-hex neutral" style = "margin-left: 8px;"><i class = "fa-solid fa-arrow-right-long"></i></div>No Change</div>' +
+        '<div class = "row key-text"><div class = "key-hex negative" style = "margin-left: 8px;"><i class = "fa-solid fa-arrow-down-long"></i></div>Worsening</div>' +
+        '<div class = "row key-text"><div class = "key-hex insufficient" style = "margin-left: 8px;"></div>Insufficient Data</div>'
+
+    expanded_domains.appendChild(key);
+
+    for (let i = 0; i < domains.length; i ++) {
+        
+        hex_inner = document.createElement("div");
+        hex_inner.classList.add("hex-inner");
+        hex_inner.innerHTML = domains[i];
+        hex_inner.style.width = "140px";
+        hex_inner.style.height = "140px";
+        hex_inner.style.fontSize = "16pt";
+
+        hex = document.createElement("div");
+        hex.classList.add("hex");
+        hex.classList.add("shake-hex");
+        hex.appendChild(hex_inner);
+        hex.style.width = "150px";
+        hex.style.height = "150px";
+
+        hex_container = document.createElement("button");
+        hex_container.classList.add("hex-container");
+        hex_container.name = "domain";
+        hex_container.value = domains[i].replace(/[^a-z ]/gi, '').toLowerCase();
+        hex_container.appendChild(hex);
+
+        row = document.createElement("div");
+        row.classList.add("row");
+        row.appendChild(hex_container);
+        row.style.marginTop = "15px";
+        row.style.marginBottom = "15px";
+
+        inds = Object.keys(domains_data[domains[i]].indicators);
+        
+        for (let j = 0; j < inds.length; j ++) {
+
+            ind_hex = document.createElement("div");
+            ind_hex.classList.add("ind-hex");
+            ind_hex.style.height = "150px";
+            ind_hex.style.width = "150px";
+
+            ind_hex_label = document.createElement("div");
+            ind_hex_label.classList.add("ind-hex-label");
+            ind_hex_label.style.fontWeight = "normal";
+            ind_hex_label.style.paddingLeft = "8%";
+            ind_hex_label.style.paddingRight = "8%";
+
+            if (Object.keys(improving_indicator).includes(inds[j])) {
+                ind_hex.classList.add("positive");
+                ind_hex_label.classList.add("positive");
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>';
+            } else if (Object.keys(worsening_indicator).includes(inds[j])) {
+                ind_hex.classList.add("negative") 
+                ind_hex_label.classList.add("negative");
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>';
+            } else if (Object.keys(insufficient_indicator).includes(inds[j])) {
+                ind_hex.classList.add("insufficient");
+                ind_hex_label.classList.add("insufficient");
+                ind_hex_label.innerHTML = inds[j];
+            } else {
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+            }
+
+            ind_hex_container = document.createElement("button");
+            ind_hex_container.classList.add("shake-hex");            
+            ind_hex_container.classList.add("ind-hex-container");
+            ind_hex_container.name = "indicator";
+            ind_hex_container.value = inds[j].replace(/[^a-z ]/gi, '').toLowerCase();
+            ind_hex_container.style.height = "150px";
+            ind_hex_container.style.width = "150px";
+            ind_hex_container.appendChild(ind_hex);
+            ind_hex_container.appendChild(ind_hex_label);
+
+            row.appendChild(ind_hex_container);
+
+
+        }
+
+        expanded_domains.appendChild(row);
+
+    }
+
+}
