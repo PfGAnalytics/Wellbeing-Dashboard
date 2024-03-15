@@ -424,7 +424,7 @@ var domains_data = {
                worsened: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, and also between people with a disability compared to those without a disability."
             }
          },
-         "School leavers' attainment gap": {
+         "School leavers attainment gap": {
             importance: "Ensuring children have the best start in life includes empowering young people to achieve their potential and make informed and effective decisions throughout their lives. It supports our young people to develop as individuals and as contributors to society, the economy, and the environment. Educational attainment provides a measure of their life chances and readiness for future health and wellbeing, and the gap in attainment provides a measure of educational disadvantage.",
             base_year: "2019/20",
             ci: 4,
