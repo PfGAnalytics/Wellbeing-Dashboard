@@ -295,6 +295,10 @@ padding-right: 10px;
     background-color: #db0000;
 }
 
+.ind-hex.insufficient {
+    background-color: #757575;
+}
+
 .ind-hex-label {
     position: absolute;
     color: #ffffff;
@@ -360,6 +364,10 @@ padding-right: 10px;
     background-color: #db0000;
 }
 
+.key-hex.insufficient {
+    background-color: #757575;
+}
+
 .row {
     margin-left: 0px;
     margin-right: 0px;
@@ -403,6 +411,10 @@ padding-right: 10px;
     background-color: #FF6200
 }
 
+#insufficient-label {
+    background-color: #757575
+}
+
 #worsening-label {
     background-color: #db0000;
 }
@@ -412,7 +424,7 @@ padding-right: 10px;
     margin-top: 20px
 }
 
-#loading-img, #loading-img-2, #loading-img-3 {
+#loading-img, #loading-img-2, #loading-img-3, #loading-img-4 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1107,4 +1119,20 @@ button:focus-visible {
 tr {
     height: 24px;
 }
+
+.domain-toggle-btn {
+    margin: 5px;
+    background-color: #bbb;
+    padding: 7px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.domain-toggle-selected {
+    background-color: #142062;
+    color: #fff;
+    cursor: default;
+}
+
+
 
