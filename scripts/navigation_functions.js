@@ -958,6 +958,7 @@ window.onresize = function() {
     plotOverallHexes("no_change");  // Re-plot no change hexagons Overall screen (see above)
     plotOverallHexes("worsening");  // Re-plot worsening hexagons Overall screen (see above)
     plotOverallHexes("insufficient");
+    plotExpandedDomains();
 }
 
 
@@ -1638,17 +1639,12 @@ plotExpandedDomains = function() {
         
         hex_inner = document.createElement("div");
         hex_inner.classList.add("hex-inner");
-        hex_inner.innerHTML = domains[i];
-        hex_inner.style.width = "140px";
-        hex_inner.style.height = "140px";
-        hex_inner.style.fontSize = "16pt";
+        hex_inner.innerHTML = domains[i].replaceAll(" ", "<br>");
 
         hex = document.createElement("div");
         hex.classList.add("hex");
         hex.classList.add("shake-hex");
         hex.appendChild(hex_inner);
-        hex.style.width = "150px";
-        hex.style.height = "150px";
 
         hex_container = document.createElement("button");
         hex_container.classList.add("hex-container");
@@ -1659,10 +1655,43 @@ plotExpandedDomains = function() {
         row = document.createElement("div");
         row.classList.add("row");
         row.appendChild(hex_container);
-        row.style.marginTop = "15px";
-        row.style.marginBottom = "15px";
+
+        if (i % 2 == 1) {
+            row.style.marginLeft = "100px";
+            ind_space = main_container.clientWidth - 300;
+        } else {
+            ind_space = main_container.clientWidth - 200;
+        }
+
+        ind_per_row = Math.floor(ind_space / 150) - 1;
 
         inds = Object.keys(domains_data[domains[i]].indicators);
+
+        rows_required = Math.ceil(inds.length / ind_per_row);
+
+        ind_rows = document.createElement("div");
+        ind_rows.classList.add("col");
+
+        for (let j = 0; j < rows_required; j ++) {
+            ind_row = document.createElement("div");
+            ind_row.classList.add("row");
+            ind_row.id = "dom-" + i + "-row-" + (j + 1);
+
+            if (j % 2 == 1) {
+                ind_row.style.marginLeft = "75px";
+            }
+
+            if (j > 0) {
+                ind_row.style.marginTop = "-30px";
+            }
+
+            ind_rows.appendChild(ind_row);
+        }
+
+        row.appendChild(ind_rows);
+
+        expanded_domains.appendChild(row);
+       
         
         for (let j = 0; j < inds.length; j ++) {
 
@@ -1703,12 +1732,12 @@ plotExpandedDomains = function() {
             ind_hex_container.appendChild(ind_hex);
             ind_hex_container.appendChild(ind_hex_label);
 
-            row.appendChild(ind_hex_container);
-
+            row_num = Math.ceil((j + 1) / ind_per_row);
+            
+            document.getElementById("dom-" + i + "-row-" + row_num).appendChild(ind_hex_container);
 
         }
 
-        expanded_domains.appendChild(row);
 
     }
 
