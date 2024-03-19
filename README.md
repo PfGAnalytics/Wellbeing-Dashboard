@@ -145,9 +145,9 @@ l. __Last updated date__  This is obtained from the _updated_ object in the resu
 
 m. __Things have improved/not changed/worsened__ This part of the sentence is outputted based on the results of the NISRA Data Portal Query.
 
-n. __Baseline year__ This is obtained from the _base_year_ value for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
+n. __Baseline year__ This is obtained from the _base_year_ value for the particular indicator found in [`domains_data.js`](scripts/domains_data.js). When there is insufficient data available to determine real change set _base_year_ should be set to `null`.
 
-o. __Statement on performance__ This is output as one of the three values (_improved_, _no_change_ or _worsened_) found under the _telling_ object for the particular indicator in [`domains_data.js`](scripts/domains_data.js) 
+o. __Statement on performance__ This is output as one of the four values (_improved_, _no_change_, _worsened_ or _insufficient_) found under the _telling_ object for the particular indicator in [`domains_data.js`](scripts/domains_data.js) 
 
 p. __Why is this indicator important?__ This is the value of the _importance_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
 
