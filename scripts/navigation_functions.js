@@ -1396,7 +1396,7 @@ async function subpopTable() {
                 subpop_row.appendChild(td);
             }
         } else {        // Else look up data portal and see which groups are present
-            var api_url = config.baseURL + "api.restful/PxStat.Data.Cube_API.ReadDataset/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "/JSON-stat/2.0/en";
+            var api_url = config.baseURL + "api.restful/PxStat.Data.Cube_API.ReadDataset/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "/JSON-stat/2.0/en?apiKey=" + config.apiKey;
             
             try {   // Using "try" so rest of table generates if data portal request unsucessful
                 // Fetch data and store in object fetched_data
@@ -1621,14 +1621,6 @@ plotExpandedDomains = function() {
         expanded_domains.removeChild(expanded_domains.firstChild);
     }
 
-    // <div id = "key">
-    //     <div style = "margin-left: 8px;">Key:</div>
-    //     <div class = "row key-text"><div class = "key-hex positive"><i class = "fa-solid fa-arrow-up-long"></i></div>Improving</div>
-    //     <div class = "row key-text"><div class = "key-hex neutral"><i class = "fa-solid fa-arrow-right-long"></i></div>No Change</div>
-    //     <div class = "row key-text"><div class = "key-hex negative"><i class = "fa-solid fa-arrow-down-long"></i></div>Worsening</div>
-    //     <div class = "row key-text"><div class = "key-hex insufficient"></div>Insufficient Data</div>
-    // </div>
-
     key = document.createElement("div");
     key.classList.add("row");
     key.style.justifyContent = "center";
@@ -1697,7 +1689,7 @@ plotExpandedDomains = function() {
                 ind_hex.classList.add("insufficient");
                 ind_hex_label.classList.add("insufficient");
                 ind_hex_label.innerHTML = inds[j];
-            } else {
+            } else if (Object.keys(no_change_indicator).includes(inds[j])) {
                 ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
             }
 
