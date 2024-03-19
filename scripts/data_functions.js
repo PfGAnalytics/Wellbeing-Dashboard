@@ -1338,6 +1338,15 @@ async function getEqualityGroups(d, e) {
                            heading_text.slice(heading_text.indexOf(" ") + 2);
          }
 
+         if (note_text.indexOf(heading_text) == -1) {       // If heading text still can't be found, try switching first letter of second word to lower case and searching again
+            heading_text = heading_text.slice(0, heading_text.indexOf(" ") + 1) +
+                           heading_text.charAt(heading_text.indexOf(" ") + 1).toLowerCase() +
+                           heading_text.slice(heading_text.indexOf(" ") + 2);
+         }
+
+         note_text = note_text.replaceAll("[i]", " <i>");
+         note_text = note_text.replaceAll("[/i]", "</i>");
+
          if (note_text.indexOf(heading_text) > -1) {
 
             note_text = note_text.slice(note_text.indexOf(heading_text) + heading_text.length).replaceAll("[/b]", " ").replaceAll("[/url]", "[/url] ").replaceAll(".", ". ");
