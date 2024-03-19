@@ -1134,5 +1134,7 @@ tr {
     cursor: default;
 }
 
-
+.domain-toggle-btn:focus-visible {
+    outline: 2px solid #ff0000;
+}
 
