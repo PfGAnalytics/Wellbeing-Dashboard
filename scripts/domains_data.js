@@ -22,7 +22,8 @@
 // indicators: {
 //    "Indicator 1": {
 //       importance: "A couple of sentences detailing the importance of this indicator",
-//       base_year: "The base year for measuring improvement on this indicator can be in YYYY, YYYY/YY or YYYY-YY format depending on how time series is defined for indicator",
+//       base_year: "The base year for measuring improvement on this indicator can be in YYYY, YYYY/YY or YYYY-YY format depending on how time series is defined for indicator"
+//                   "Set base year to null if there is insufficient data in order to measure improving/worsening"
 //       ci: "The change interval for this interval. Can be a number or number followed by letter c if improvement cumulates year on year",
 //       data: {
 //          NI: "NI data portal matrix", (or blank "" if not available)
@@ -34,7 +35,8 @@
 //       telling: {
 //          improved: "Sentence to output when indicator performance is improving",
 //          no_change: "Sentence to output when indicator performance is not changing",
-//          worsened: "Sentence to output when indicator performance is worsening"
+//          worsened: "Sentence to output when indicator performance is worsening",
+//          insufficient: "Sentence to output when indicator performance cannot be measured due to insufficient data"
 //       }
 //    },
 //    "Indicator 2": {
@@ -60,7 +62,8 @@ var domains_data = {
             telling: {
                improved: "Although the proportion of young care leavers aged 19 in education, training or employment is lower than the last three years, it is higher than five years ago.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Small for gestational age": {
@@ -77,7 +80,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
       }
@@ -87,7 +91,7 @@ var domains_data = {
        indicators: {
          "Active travel - public transport": {
             importance: "This indicator will principally inform progress towards ‘We live and work sustainably – protecting the environment’ and ‘Our economy is globally competitive, regionally balanced and carbon-neutral’. It is also important to inform modal shift in how people travel in Northern Ireland and is to be monitored as part of the Transport sector of the NI Climate Action Plan.",
-            base_year: "2017",
+            base_year: null,
             ci: 1.1,
             data: {
                NI: "INDATPUBNI",
@@ -99,10 +103,10 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
-         
          "Air pollution": {
             importance: "The air that we breathe is vital to our health and wellbeing. Good air quality is essential for human health, the climate, habitats and the built environment. Pollutants from human activity are present in our atmosphere which may adversely impact upon our health and natural environment. Nitrogen dioxide is part of a group of gaseous air pollutants produced as a result of road traffic and other fossil fuel combustion processes. It can irritate the lungs and lower resistance to respiratory infections such as influenza.",
             base_year: "2019",
@@ -117,7 +121,8 @@ var domains_data = {
             telling: {
                improved: "NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Coastal water condition": {
@@ -134,7 +139,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2022. Excessive nutrient (dissolved inorganic nitrogen) was the most frequent failing element and was reported in 10 of the 12 water bodies that failed to achieve good condition.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Greenhouse gas emissions": {
@@ -150,8 +156,14 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
+<<<<<<< HEAD
                no_change: "In 2021 a 'bounce back' was experienced in GHG emissions after the drop off in admissions associated with COVID restrictions.",
                worsened: "This commentary is a placeholder."
+=======
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+>>>>>>> 6493c28f474920e2c429ddb7a889177ba04d4afd
             }
          },
          "Low carbon and renewable energy employment": {
@@ -168,7 +180,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Recycled waste": {
@@ -185,7 +198,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.7 per cent in 2019/20.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "River water quality": {
@@ -202,7 +216,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have increased from 0.63 mg/l in 2019 to 0.073 mg/l in 2022."
+               worsened: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have increased from 0.63 mg/l in 2019 to 0.073 mg/l in 2022.",
+               insufficient: ""
             }
          }
        }
@@ -224,7 +239,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This means that fewer adults in 2021 feel their cultural identity is respected by society than in 2017."
+               worsened: "This means that fewer adults in 2021 feel their cultural identity is respected by society than in 2017.",
+               insufficient: ""
             }
          },
          "Income deprivation": {
@@ -241,7 +257,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Income inequality": {
@@ -258,7 +275,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Respect": {
@@ -275,7 +293,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This means that adults living in Northern Ireland in 2021 feel less respected on multiple measures than they did in 2017."
+               worsened: "This means that adults living in Northern Ireland in 2021 feel less respected on multiple measures than they did in 2017.",
+               insufficient: ""
             }
          }
       }
@@ -285,7 +304,7 @@ var domains_data = {
        indicators: {
          "Active travel - walking and cycling": {
             importance: "This indicator will principally inform progress towards ‘We live and work sustainably – protecting the environment’ and ‘Our economy is globally competitive, regionally balanced and carbon-neutral’. It is also important to inform modal shift in how people travel in Northern Ireland and is to be monitored as part of the Transport sector of the NI Climate Action Plan.",
-            base_year: "2017",
+            base_year: null,
             ci: 2.4,
             data: {
                NI: "INDATWALKNI",
@@ -297,7 +316,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Healthy life expectancy (females)": {
@@ -314,7 +334,8 @@ var domains_data = {
             telling: {
                improved: "HLE increased by 1.9 years from 60.8 years in 2016/18 to 62.7 years in 2020-22. The change was statistically significant.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Healthy life expectancy (males)": {
@@ -331,7 +352,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Mental health": {
@@ -348,7 +370,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The proportion of males with a high GHQ12 score is unchanged from 2018/19, however the proportion of females with a high GHQ12 score has risen from 2018/19."
+               worsened: "The proportion of males with a high GHQ12 score is unchanged from 2018/19, however the proportion of females with a high GHQ12 score has risen from 2018/19.",
+               insufficient: ""
             }
          },
          "Preventable deaths": {
@@ -365,7 +388,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The preventable mortality rate increased by 11 deaths per 100,000 population from 169 deaths per 100,000 population in 2013-17 to 180 deaths per 100,000 population in 2017-21. The change was statistically significant."
+               worsened: "The preventable mortality rate increased by 11 deaths per 100,000 population from 169 deaths per 100,000 population in 2013-17 to 180 deaths per 100,000 population in 2017-21. The change was statistically significant.",
+               insufficient: ""
             }
          },
          "Sports and physical activity": {
@@ -382,7 +406,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          }
        }
@@ -404,7 +429,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Life satisfaction": {
@@ -421,12 +447,13 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, and also between people with a disability compared to those without a disability."
+               worsened: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, and also between people with a disability compared to those without a disability.",
+               insufficient: ""
             }
          },
-         "School leavers' attainment gap": {
+         "School leavers attainment gap": {
             importance: "Ensuring children have the best start in life includes empowering young people to achieve their potential and make informed and effective decisions throughout their lives. It supports our young people to develop as individuals and as contributors to society, the economy, and the environment. Educational attainment provides a measure of their life chances and readiness for future health and wellbeing, and the gap in attainment provides a measure of educational disadvantage.",
-            base_year: "2019/20",
+            base_year: null,
             ci: 4,
             data: {
                NI: "",
@@ -438,7 +465,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: "This is due to how data was collected during Covid-19."
             }
          },
          "Self-efficacy": {
@@ -455,7 +483,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without and also between people with a white ethnicity compared with any other ethnicity.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          }
        }
@@ -477,7 +506,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "The proportion of people who are economically inactive for any reason apart from being a student has remained unchanged from 2018.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Employment rate": {
@@ -494,7 +524,8 @@ var domains_data = {
             telling: {
                improved: "The proportion of people aged 16 to 64 in employment has statistically increased from 2018.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "External sales rate": {
@@ -510,8 +541,14 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
+<<<<<<< HEAD
                no_change: "There has been no statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",
                worsened: "This commentary is a placeholder."
+=======
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+>>>>>>> 6493c28f474920e2c429ddb7a889177ba04d4afd
             }
          },
          "Local graduates in narrow STEM subjects": {
@@ -528,7 +565,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "International reputation": {
@@ -545,7 +583,8 @@ var domains_data = {
             telling: {
                improved: "Northern Ireland achieved a higher score on the Nation Brands Index, indicating an improved reputation internationally.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Northern Ireland Composite Economic Index": {
@@ -562,7 +601,8 @@ var domains_data = {
             telling: {
                improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially following a decline in 2020, and the latest data in 2022 is at a series high. ",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Skills": {
@@ -579,7 +619,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "There has been no significant changes to the proportion of people qualified to Level 2 and above.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          }
        }
@@ -601,7 +642,8 @@ var domains_data = {
             telling: {
                improved: "The proportion who have been a victim of a crime measured through the survey has fallen.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Reoffending rate": {
@@ -618,7 +660,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Personal safety": {
@@ -635,7 +678,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Safe towns and city centres": {
@@ -652,7 +696,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Worry about crime": {
@@ -669,7 +714,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          }
        }
@@ -691,7 +737,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "The proportion of adults receiving social care services at home, or self directed support, has remained fairly constant throughout this time period.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Loneliness": {
@@ -708,7 +755,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels in 2022/23. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, and also between people with a white ethnicity compared with any other ethnicity.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Volunteering": {
@@ -725,7 +773,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          }
        }
@@ -747,7 +796,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Housing costs as a proportion of household income": {
@@ -764,7 +814,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Housing stress": {
@@ -781,7 +832,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          }
        }
@@ -803,7 +855,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Shared community": {
@@ -820,7 +873,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Trust in the media": {
@@ -837,7 +891,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          },
          "Trust in the NI Assembly": {
@@ -854,7 +909,8 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder."
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
             }
          }
       }

@@ -81,8 +81,13 @@ var pop_up_chart = document.getElementById("pop-up-chart");
 var subpop = document.getElementById("subpop");
 var subpop_container = document.getElementById("subpop-container");
 var title = document.getElementsByTagName("title")[0];
-var grey_box = document.getElementsByClassName("grey-box")
-var skip_link = document.getElementById("skip-link")
+var grey_box = document.getElementsByClassName("grey-box");
+var skip_link = document.getElementById("skip-link");
+var browse_domains = document.getElementById("browse-domains");
+var expand_all = document.getElementById("expand-all");
+var domain_toggle = document.getElementById("domain-toggle");
+var browse_grid = document.getElementById("browse-grid");
+var expanded_domains = document.getElementById("expanded-domains");
 
 
 
@@ -231,17 +236,18 @@ function generateHexagons (d) {
         var data = domains_data[d].indicators[indicators[i]].data; // The data object within this indicator
 
         if (Object.keys(worsening_indicator).includes(indicators[i])) {   // If the word "worsened" appears in the baseline statement:
-            // hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Place a down arrow in the hexagon
             hex.classList.add("negative");      // Add the class "negative" to the hexagon
             hex_label.classList.add("negative");    // Add the class "negative" to the label text
             hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-down-long"></i>' ;      // Place the indicator name in the label
         } else if (Object.keys(improving_indicator).includes(indicators[i])) {    // If the word "improved" appears in the baseline statement:
-            // hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';  // Place an up arrow in the hexagon
             hex.classList.add("positive");              // Add the class "positive" to the hexagon
             hex_label.classList.add("positive");        // Add the class "negative" to the label text
             hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-up-long"></i>';      // Place the indicator name in the label
+        } else if (Object.keys(insufficient_indicator).includes(indicators[i])) {
+            hex.classList.add("insufficient");
+            hex_label.classList.add("insufficient");
+            hex_label.innerHTML = indicators[i];
         } else {    // Otherwise:
-            // hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Place a sideways arrow in the hexagon
             hex.classList.add("neutral");
             hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long">';      // Place the indicator name in the label
         }
@@ -347,18 +353,19 @@ function plotOverallHexes (change_type) {
         hex_container.appendChild(hex_label);                                       // Hexagon label is placed inside the hexagon container
 
         if (change_type == "improving") {   // For improving indicators:
-            // hex.innerHTML = '<i class="fa-solid fa-up-long"></i>';      // Up arrow is placed in hexagon
             hex.classList.add("positive");                              // Hexagon is given class "positive"
             hex_label.classList.add("positive");                        // Hexagon label is given class "positive"
             hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-up-long"></i>';   // Hexagon label text is outputted
         } else if (change_type == "no_change") { // For no_change indicators:
-            // hex.innerHTML = '<i class="fa-solid fa-right-long"></i>';   // Right arrow is placed in hexagon
             hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long"></i>';   // Hexagon label text is outputted
         } else if (change_type == "worsening") {    // For worsening indicators:
-            // hex.innerHTML = '<i class="fa-solid fa-down-long"></i>';    // Down arrow is placed in hexagon
             hex.classList.add("negative");                              // Hexagon is given class "negative"
             hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
             hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-down-long"></i>';   // Hexagon label text is outputted
+        } else if (change_type == "insufficient") {
+            hex.classList.add("insufficient");                              // Hexagon is given class "negative"
+            hex_label.classList.add("insufficient");
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i]
         }
 
         hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row
@@ -436,7 +443,8 @@ var currentURL = window.location.href;
 
 if (!currentURL.includes("?")) {
     loading_img.style.display = "none";
-    domains_scrn.style.display = "block"
+    domains_scrn.style.display = "block";
+    indicatorPerformance();
 }
 
 if (currentURL.includes("tab=")) {
@@ -476,7 +484,7 @@ if (currentURL.includes("tab=")) {
                 }
             }, 1)
 
-        } else if (currentTab == "overall") {
+        } else if (currentTab == "overall" | currentTab == "domains") {
             indicatorPerformance();
         } else {
             loading_img.style.display = "none";
@@ -519,6 +527,7 @@ if (currentURL.includes("?domain=")) {
     domain_info_container.style.display = "flex";     // Show the "domain-info" div
     domains_grid_container.style.display = "none";  // Hide the domains grid
     click_to_see.style.display = "none";        // Hide the "click-to-see" div
+    domain_toggle.style.display = "none";
     domains_intro.style.display = "none";       // Hide the "domains-intro" div
     indicator_intro.style.display = "block";    // Show the "indicator-intro" div
 
@@ -948,6 +957,8 @@ window.onresize = function() {
     plotOverallHexes("improving");  // Re-plot improving hexagons on Overall screen (see above)
     plotOverallHexes("no_change");  // Re-plot no change hexagons Overall screen (see above)
     plotOverallHexes("worsening");  // Re-plot worsening hexagons Overall screen (see above)
+    plotOverallHexes("insufficient");
+    plotExpandedDomains();
 }
 
 
@@ -1386,7 +1397,7 @@ async function subpopTable() {
                 subpop_row.appendChild(td);
             }
         } else {        // Else look up data portal and see which groups are present
-            var api_url = config.baseURL + "api.restful/PxStat.Data.Cube_API.ReadDataset/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "/JSON-stat/2.0/en";
+            var api_url = config.baseURL + "api.restful/PxStat.Data.Cube_API.ReadDataset/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "/JSON-stat/2.0/en?apiKey=" + config.apiKey;
             
             try {   // Using "try" so rest of table generates if data portal request unsucessful
                 // Fetch data and store in object fetched_data
@@ -1477,6 +1488,7 @@ key_hexes = document.getElementsByClassName("key-hex");
 positive = document.getElementsByClassName("ind-hex positive");
 negative = document.getElementsByClassName("ind-hex negative");
 no_change = document.getElementsByClassName("ind-hex neutral")
+insufficient = document.getElementsByClassName("ind-hex insufficient")
 
 for (let i = 0; i < key_hexes.length; i ++) {
     key_hexes[i].onmouseover = function() {
@@ -1490,21 +1502,38 @@ for (let i = 0; i < key_hexes.length; i ++) {
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.style.filter = "opacity(50%)";
             }
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.style.filter = "opacity(50%)";
+            }
         } else if (hex_class == "negative") {
             for (let j = 0; j < positive.length; j ++) {
                 positive[j].parentElement.style.filter = "opacity(50%)";
             }
-            
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.style.filter = "opacity(50%)";
             }
-        } else {
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.style.filter = "opacity(50%)";
+            }
+        } else if (hex_class == "insufficient") {
             for (let j = 0; j < positive.length; j ++) {
                 positive[j].parentElement.style.filter = "opacity(50%)";
             }
-            
             for (let j = 0; j < negative.length; j ++) {
                 negative[j].parentElement.style.filter = "opacity(50%)";
+            }
+            for (let j = 0; j < no_change.length; j ++) {
+                no_change[j].parentElement.style.filter = "opacity(50%)";
+            }
+        } else  {
+            for (let j = 0; j < positive.length; j ++) {
+                positive[j].parentElement.style.filter = "opacity(50%)";
+            }
+            for (let j = 0; j < negative.length; j ++) {
+                negative[j].parentElement.style.filter = "opacity(50%)";
+            }
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.style.filter = "opacity(50%)";
             }
         }
 
@@ -1522,11 +1551,31 @@ for (let i = 0; i < key_hexes.length; i ++) {
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.removeAttribute("style");
             }
+
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.removeAttribute("style");
+            }
         } else if (hex_class == "negative") {
             for (let j = 0; j < positive.length; j ++) {
                 positive[j].parentElement.removeAttribute("style");
             }
             
+            for (let j = 0; j < no_change.length; j ++) {
+                no_change[j].parentElement.removeAttribute("style");
+            }
+
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.removeAttribute("style");
+            }
+        } else if (hex_class == "insufficient") {
+            for (let j = 0; j < positive.length; j ++) {
+                positive[j].parentElement.removeAttribute("style");
+            }
+            
+            for (let j = 0; j < negative.length; j ++) {
+                negative[j].parentElement.removeAttribute("style");
+            }
+
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.removeAttribute("style");
             }
@@ -1538,9 +1587,158 @@ for (let i = 0; i < key_hexes.length; i ++) {
             for (let j = 0; j < negative.length; j ++) {
                 negative[j].parentElement.removeAttribute("style");
             }
+
+            for (let j = 0; j < no_change.length; j ++) {
+                insufficient[j].parentElement.removeAttribute("style");
+            }
         }
     }
 
 }
 
+browse_domains.onclick = function() {
 
+    browse_domains.classList.add("domain-toggle-selected");
+    expand_all.classList.remove("domain-toggle-selected");
+
+    browse_grid.style.display = "flex";
+    expanded_domains.style.display = "none";
+
+}
+
+expand_all.onclick = function() {
+
+    browse_domains.classList.remove("domain-toggle-selected");
+    expand_all.classList.add("domain-toggle-selected");
+
+    browse_grid.style.display = "none";
+    expanded_domains.style.display = "block";
+
+}
+
+plotExpandedDomains = function() {
+
+    while (expanded_domains.firstChild) {
+        expanded_domains.removeChild(expanded_domains.firstChild);
+    }
+
+    key = document.createElement("div");
+    key.classList.add("row");
+    key.style.justifyContent = "center";
+    key.style.marginTop = "10px";
+
+    key.innerHTML =  '<div style = "margin-right: 8px;">Key:</div>' +
+        '<div class = "row key-text"><div class = "key-hex positive"><i class = "fa-solid fa-arrow-up-long"></i></div>Improving</div>' +
+        '<div class = "row key-text"><div class = "key-hex neutral" style = "margin-left: 8px;"><i class = "fa-solid fa-arrow-right-long"></i></div>No Change</div>' +
+        '<div class = "row key-text"><div class = "key-hex negative" style = "margin-left: 8px;"><i class = "fa-solid fa-arrow-down-long"></i></div>Worsening</div>' +
+        '<div class = "row key-text"><div class = "key-hex insufficient" style = "margin-left: 8px;"></div>Insufficient Data</div>'
+
+    expanded_domains.appendChild(key);
+
+    for (let i = 0; i < domains.length; i ++) {
+        
+        hex_inner = document.createElement("div");
+        hex_inner.classList.add("hex-inner");
+        hex_inner.innerHTML = domains[i].replaceAll(" ", "<br>");
+
+        hex = document.createElement("div");
+        hex.classList.add("hex");
+        hex.classList.add("shake-hex");
+        hex.appendChild(hex_inner);
+
+        hex_container = document.createElement("button");
+        hex_container.classList.add("hex-container");
+        hex_container.name = "domain";
+        hex_container.value = domains[i].replace(/[^a-z ]/gi, '').toLowerCase();
+        hex_container.appendChild(hex);
+
+        row = document.createElement("div");
+        row.classList.add("row");
+        row.appendChild(hex_container);
+
+        if (i % 2 == 1) {
+            row.style.marginLeft = "100px";
+            ind_space = main_container.clientWidth - 300;
+        } else {
+            ind_space = main_container.clientWidth - 200;
+        }
+
+        ind_per_row = Math.floor(ind_space / 150) - 1;
+
+        inds = Object.keys(domains_data[domains[i]].indicators);
+
+        rows_required = Math.ceil(inds.length / ind_per_row);
+
+        ind_rows = document.createElement("div");
+        ind_rows.classList.add("col");
+
+        for (let j = 0; j < rows_required; j ++) {
+            ind_row = document.createElement("div");
+            ind_row.classList.add("row");
+            ind_row.id = "dom-" + i + "-row-" + (j + 1);
+
+            if (j % 2 == 1) {
+                ind_row.style.marginLeft = "75px";
+            }
+
+            if (j > 0) {
+                ind_row.style.marginTop = "-30px";
+            }
+
+            ind_rows.appendChild(ind_row);
+        }
+
+        row.appendChild(ind_rows);
+
+        expanded_domains.appendChild(row);
+       
+        
+        for (let j = 0; j < inds.length; j ++) {
+
+            ind_hex = document.createElement("div");
+            ind_hex.classList.add("ind-hex");
+            ind_hex.style.height = "150px";
+            ind_hex.style.width = "150px";
+
+            ind_hex_label = document.createElement("div");
+            ind_hex_label.classList.add("ind-hex-label");
+            ind_hex_label.style.fontWeight = "normal";
+            ind_hex_label.style.paddingLeft = "8%";
+            ind_hex_label.style.paddingRight = "8%";
+
+            if (Object.keys(improving_indicator).includes(inds[j])) {
+                ind_hex.classList.add("positive");
+                ind_hex_label.classList.add("positive");
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>';
+            } else if (Object.keys(worsening_indicator).includes(inds[j])) {
+                ind_hex.classList.add("negative") 
+                ind_hex_label.classList.add("negative");
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>';
+            } else if (Object.keys(insufficient_indicator).includes(inds[j])) {
+                ind_hex.classList.add("insufficient");
+                ind_hex_label.classList.add("insufficient");
+                ind_hex_label.innerHTML = inds[j];
+            } else if (Object.keys(no_change_indicator).includes(inds[j])) {
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+            }
+
+            ind_hex_container = document.createElement("button");
+            ind_hex_container.classList.add("shake-hex");            
+            ind_hex_container.classList.add("ind-hex-container");
+            ind_hex_container.name = "indicator";
+            ind_hex_container.value = inds[j].replace(/[^a-z ]/gi, '').toLowerCase();
+            ind_hex_container.style.height = "150px";
+            ind_hex_container.style.width = "150px";
+            ind_hex_container.appendChild(ind_hex);
+            ind_hex_container.appendChild(ind_hex_label);
+
+            row_num = Math.ceil((j + 1) / ind_per_row);
+            
+            document.getElementById("dom-" + i + "-row-" + row_num).appendChild(ind_hex_container);
+
+        }
+
+
+    }
+
+}
