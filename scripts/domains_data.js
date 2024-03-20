@@ -156,14 +156,10 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-<<<<<<< HEAD
                no_change: "In 2021 a 'bounce back' was experienced in GHG emissions after the drop off in admissions associated with COVID restrictions.",
-               worsened: "This commentary is a placeholder."
-=======
-               no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
->>>>>>> 6493c28f474920e2c429ddb7a889177ba04d4afd
+
             }
          },
          "Low carbon and renewable energy employment": {
@@ -541,14 +537,9 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-<<<<<<< HEAD
-               no_change: "There has been no statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",
-               worsened: "This commentary is a placeholder."
-=======
-               no_change: "This commentary is a placeholder.",
+               no_change: "There has been no statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",               
                worsened: "This commentary is a placeholder.",
                insufficient: ""
->>>>>>> 6493c28f474920e2c429ddb7a889177ba04d4afd
             }
          },
          "Local graduates in narrow STEM subjects": {
