@@ -216,7 +216,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have increased from 0.63 mg/l in 2019 to 0.073 mg/l in 2022.",
+               worsened: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have increased from 0.063 mg/l in 2019 to 0.073 mg/l in 2022.",
                insufficient: ""
             }
          }
