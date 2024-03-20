@@ -130,11 +130,11 @@ for (let i = 0; i < domains.length; i++) {
 // Loop through each row that has been created and indent
 for (let i = 0; i < hex_rows.length; i++) {
     if (i % 2 == 0) {
-        hex_rows[i].style.marginLeft = "100px"; // Every odd numbered row will be indented by the width of half a hexagon
+        hex_rows[i].style.marginLeft = "92px"; // Every odd numbered row will be indented by the width of half a hexagon
     }
 
     if (i > 0) {
-        hex_rows[i].style.marginTop = "-33px";  // Every row after the first row will be moved up so hexagons appear closer together
+        hex_rows[i].style.marginTop = "-46px";  // Every row after the first row will be moved up so hexagons appear closer together
     }
 }
 
@@ -276,11 +276,11 @@ function generateHexagons (d) {
 
     for (let i = 0; i < ind_hex_rows.length; i++) { // Loop through the rows
         if (i % 2 == 1) {   
-            ind_hex_rows[i].style.marginLeft = "90px";      // Even numbered rows will be indented half the width of one hexagon
+            ind_hex_rows[i].style.marginLeft = "83px";      // Even numbered rows will be indented half the width of one hexagon
         }
     
         if (i > 0) {
-            ind_hex_rows[i].style.marginTop = "-30px";      // All rows after first row will be moved up by 30px
+            ind_hex_rows[i].style.marginTop = "-43px";      // All rows after first row will be moved up by 30px
         }
     }
 
@@ -301,7 +301,7 @@ function plotOverallHexes (change_type) {
     gridWidth = overall_scrn.clientWidth - 195;
 
     // Set "h" to the number of hexagons that will fit on screen
-    h = Math.floor(gridWidth / 180);
+    h = Math.floor((gridWidth - 14) / 166);
 
     // The change type "no_change" has the class "no-change"
     className = change_type.replace("_", "-");
@@ -323,13 +323,13 @@ function plotOverallHexes (change_type) {
         }            
 
         if (i % (2 * h - 1) == h) {
-            hex_row.style.marginLeft = "105px"; // Even numbered rows are indented by 105px
+            hex_row.style.marginLeft = "98px"; // Even numbered rows are indented by 105px
         } else if (i % (2 * h - 1) == 0) {
             hex_row.style.marginLeft = "15px";  // And odd numbered ones by 15px
         }
 
         if (i >= h) {
-            hex_row.style.marginTop = "-30px";  // All rows after first row are moved up by 30px
+            hex_row.style.marginTop = "-43px";  // All rows after first row are moved up by 30px
         }
 
         if (h < 2) {
@@ -1628,10 +1628,10 @@ plotExpandedDomains = function() {
     key.style.marginTop = "10px";
 
     key.innerHTML =  '<div style = "margin-right: 8px;">Key:</div>' +
-        '<div class = "row key-text"><div class = "key-hex positive"><i class = "fa-solid fa-arrow-up-long"></i></div>Improving</div>' +
-        '<div class = "row key-text"><div class = "key-hex neutral" style = "margin-left: 8px;"><i class = "fa-solid fa-arrow-right-long"></i></div>No Change</div>' +
-        '<div class = "row key-text"><div class = "key-hex negative" style = "margin-left: 8px;"><i class = "fa-solid fa-arrow-down-long"></i></div>Worsening</div>' +
-        '<div class = "row key-text"><div class = "key-hex insufficient" style = "margin-left: 8px;"></div>Insufficient Data</div>'
+    '<div class = "row key-text"><div class = "key-hex positive"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long"></i></div></div>Improving</div>' +
+    '<div class = "row key-text"><div class = "key-hex neutral"><div class = "key-hex-label"><i class = "fa-solid fa-arrow-right-long"></i></div></div>No Change</div>' +
+    '<div class = "row key-text"><div class = "key-hex negative"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long"></i></div></div>Worsening</div>' +
+    '<div class = "row key-text"><div class = "key-hex insufficient"><div class = "key-hex-label insufficient"></div></div>Insufficient Data</div>'
 
     expanded_domains.appendChild(key);
 
@@ -1654,16 +1654,17 @@ plotExpandedDomains = function() {
 
         row = document.createElement("div");
         row.classList.add("row");
+        row.style.marginTop = "20px";
         row.appendChild(hex_container);
 
-        if (i % 2 == 1) {
+        if (i % 2 == 0) {
             row.style.marginLeft = "100px";
             ind_space = main_container.clientWidth - 300;
         } else {
             ind_space = main_container.clientWidth - 200;
         }
 
-        ind_per_row = Math.floor(ind_space / 150) - 1;
+        ind_per_row = Math.floor((ind_space - 14) / 166);
 
         inds = Object.keys(domains_data[domains[i]].indicators);
 
@@ -1678,11 +1679,11 @@ plotExpandedDomains = function() {
             ind_row.id = "dom-" + i + "-row-" + (j + 1);
 
             if (j % 2 == 1) {
-                ind_row.style.marginLeft = "75px";
+                ind_row.style.marginLeft = "83px";
             }
 
             if (j > 0) {
-                ind_row.style.marginTop = "-30px";
+                ind_row.style.marginTop = "-42px";
             }
 
             ind_rows.appendChild(ind_row);
@@ -1697,14 +1698,10 @@ plotExpandedDomains = function() {
 
             ind_hex = document.createElement("div");
             ind_hex.classList.add("ind-hex");
-            ind_hex.style.height = "150px";
-            ind_hex.style.width = "150px";
 
             ind_hex_label = document.createElement("div");
             ind_hex_label.classList.add("ind-hex-label");
-            ind_hex_label.style.fontWeight = "normal";
-            ind_hex_label.style.paddingLeft = "8%";
-            ind_hex_label.style.paddingRight = "8%";
+
 
             if (Object.keys(improving_indicator).includes(inds[j])) {
                 ind_hex.classList.add("positive");
@@ -1727,8 +1724,6 @@ plotExpandedDomains = function() {
             ind_hex_container.classList.add("ind-hex-container");
             ind_hex_container.name = "indicator";
             ind_hex_container.value = inds[j].replace(/[^a-z ]/gi, '').toLowerCase();
-            ind_hex_container.style.height = "150px";
-            ind_hex_container.style.width = "150px";
             ind_hex_container.appendChild(ind_hex);
             ind_hex_container.appendChild(ind_hex_label);
 
