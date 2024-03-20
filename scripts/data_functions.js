@@ -1179,6 +1179,11 @@ async function getEqualityGroups(d, e) {
          // Obtain category labels within each grouping and the values for each:
          groups = Object.values(result.dimension.EQUALGROUPS.category.label);
          
+         // Categories out of order on data portal for these two indicators
+         if (["Respect", "Cultural identity"].includes(e)) {
+            groups.sort();
+         }
+
          values = {};   // Empty object
          for (let j = 0; j < groups.length; j ++) {
 
@@ -1202,9 +1207,6 @@ async function getEqualityGroups(d, e) {
             }
 
          }
-
-
-
 
          // Some age group tidy ups:
          if (eq_groups[i] == "Age") {        
