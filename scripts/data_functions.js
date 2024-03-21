@@ -1364,14 +1364,16 @@ async function getEqualityGroups(d, e) {
 
             note_number = Number(note_text.slice(note_text.indexOf(".") - 2, note_text.indexOf(".")).trim()); // Find first number note under the heading
 
-            while(note_text.indexOf(note_number + ".") > -1) {
+            while(note_text.indexOf(" " + note_number + ".") > -1) {
                if (note_text.indexOf((note_number + 1) + ".") > - 1) {
-                  notes.push(note_text.slice(note_text.indexOf(note_number + ".") + (note_number + ".").length, note_text.indexOf((note_number + 1) + ".")));
+                  notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length, note_text.indexOf((note_number + 1) + ".")));
                } else {
-                  notes.push(note_text.slice(note_text.indexOf(note_number + ".") + (note_number + ".").length));
+                  notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length));
                }
                note_number = note_number + 1;
             }
+
+            notes = notes.filter(function (n) {return n != ""})
 
             if (notes.length == 1) {
                note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Note:</p>";
