@@ -320,7 +320,7 @@ padding-right: 10px;
 }
 
 .ind-hex-label.positive {
-    background-color: #00D16C;
+    background-color: #a1daa1;
 }
 
 .ind-hex-label.insufficient {
@@ -343,7 +343,7 @@ padding-right: 10px;
 }
 
 .key-hex-label.positive {
-    background-color: #00D16C;
+    background-color: #a1daa1;
     padding-left: 13px;
 }
 

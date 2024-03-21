@@ -1261,15 +1261,16 @@ async function getEqualityGroups(d, e) {
             }
          }        
 
-         let years_with_data = [];
+         // Determine first year that has data in it for particular sub-population
+         let first_year = [];
+         let year = 0;
 
-         for (let i = 0; i < values[Object.keys(values)[0]].length; i ++) {
-            if (values[Object.keys(values)[0]][i] != null) {
-               years_with_data.push(i)
+         while (first_year.length == 0) {
+            if (values[Object.keys(values)[0]][year] != null) {
+               first_year.push(year)
             }
+            year = year + 1
          }
-
-         let first_year = Math.min(...years_with_data);
 
          // Construct data object for chart.js bar chart
          var data = {
