@@ -199,6 +199,7 @@ h3 {
 .hex-container {
     border: 0px;
     padding: 0px;
+    margin-right: -16px;
 }
 
 .hex .hex-inner {
@@ -271,6 +272,7 @@ padding-right: 10px;
    border: 0px;
    padding: 0px;
    background-color: #ffffff00;
+   margin-right: -14px;
 }
 
 .ind-hex-container:hover {
@@ -283,8 +285,6 @@ padding-right: 10px;
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     background-color: #FF6200;
-    color: #ffffff44;
-    font-size: 120px;
   }
 
 .ind-hex.positive {
@@ -301,32 +301,60 @@ padding-right: 10px;
 
 .ind-hex-label {
     position: absolute;
-    color: #ffffff;
     font-size: 14pt;
     line-height: 1em;
+    height: 170px;
+    width: 170px;
+    background-color: #FF9A5C;
+    text-align: center;
+    vertical-align: middle;
     padding-left: 5%;
     padding-right: 5%;
-    padding-top: 10px;
-    font-weight: bold;
-    /* text-shadow: -2px -2px 0 #FF6200,  
-                2px -2px 0 #FF6200,
-                -2px 2px 0 #FF6200,
-                2px 2px 0 #FF6200; */
-}
-
-/* .ind-hex-label.positive {
-    text-shadow: -2px -2px 0 #00A857,  
-                2px -2px 0 #00A857,
-                -2px 2px 0 #00A857,
-                2px 2px 0 #00A857;
+    padding-top: 50px;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
 }
 
 .ind-hex-label.negative {
-    text-shadow: -2px -2px 0 #db0000,  
-                2px -2px 0 #db0000,
-                -2px 2px 0 #db0000,
-                2px 2px 0 #db0000;
-} */
+    background-color: #FF7A7A;
+}
+
+.ind-hex-label.positive {
+    background-color: #a1daa1;
+}
+
+.ind-hex-label.insufficient {
+    background-color: #B0B0B0;
+}
+
+.ind-hex-label i {
+    font-size: 18pt;
+}
+
+.key-hex-label {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #FF9A5C;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.key-hex-label.positive {
+    background-color: #a1daa1;
+    padding-left: 13px;
+}
+
+.key-hex-label.negative {
+    background-color: #FF7A7A;
+    padding-left: 13px;
+}
+
+.key-hex-label.insufficient {
+    background-color: #B0B0B0;
+}
 
 #indicator-title {
     margin-left: 20px;
@@ -347,7 +375,6 @@ padding-right: 10px;
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     background-color: #FF6200;
-    color: #ffffff;
     font-size: 20px;
     display: flex;
     justify-content: center;

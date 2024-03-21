@@ -1261,15 +1261,16 @@ async function getEqualityGroups(d, e) {
             }
          }        
 
-         let years_with_data = [];
+         // Determine first year that has data in it for particular sub-population
+         let first_year = [];
+         let year = 0;
 
-         for (let i = 0; i < values[Object.keys(values)[0]].length; i ++) {
-            if (values[Object.keys(values)[0]][i] != null) {
-               years_with_data.push(i)
+         while (first_year.length == 0) {
+            if (values[Object.keys(values)[0]][year] != null) {
+               first_year.push(year)
             }
+            year = year + 1
          }
-
-         let first_year = Math.min(...years_with_data);
 
          // Construct data object for chart.js bar chart
          var data = {
@@ -1364,14 +1365,16 @@ async function getEqualityGroups(d, e) {
 
             note_number = Number(note_text.slice(note_text.indexOf(".") - 2, note_text.indexOf(".")).trim()); // Find first number note under the heading
 
-            while(note_text.indexOf(note_number + ".") > -1) {
+            while(note_text.indexOf(" " + note_number + ".") > -1) {
                if (note_text.indexOf((note_number + 1) + ".") > - 1) {
-                  notes.push(note_text.slice(note_text.indexOf(note_number + ".") + (note_number + ".").length, note_text.indexOf((note_number + 1) + ".")));
+                  notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length, note_text.indexOf((note_number + 1) + ".")));
                } else {
-                  notes.push(note_text.slice(note_text.indexOf(note_number + ".") + (note_number + ".").length));
+                  notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length));
                }
                note_number = note_number + 1;
             }
+
+            notes = notes.filter(function (n) {return n != ""})
 
             if (notes.length == 1) {
                note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Note:</p>";
