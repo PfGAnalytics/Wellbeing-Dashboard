@@ -531,7 +531,7 @@ var domains_data = {
             data: {
                NI: "INDEXSALENI",
                AA: "",
-               LGD: "",
+               LGD: "INDEXSALELGD",
                EQ: ""
             },
             improvement: "increase",
