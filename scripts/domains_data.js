@@ -401,7 +401,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2022/23, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19 .In both 2022/23 and 2021/22  gaps can be seen in participation in sports physical activity between the people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for people living in urban and rural areas.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -423,7 +423,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2022/23, it is important to note that engaging in arts/cultural activities in 2021/22 would have been impacted by closures due to COVID-19. In both 2022/23 and 2021/22 gaps can be seen between males and females, people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for most and least deprived areas and urban and rural areas.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -762,7 +762,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2022/23, it is important to note that volunteering in 2021/22 would have been impacted by closures due to COVID-19.                                                                                                                                                                                                                             In both 2022/23 and 2021/22 gaps can be seen in participation in volunteering between the protestant and catholic communities, people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for most and least deprived areas and urban and rural areas.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
