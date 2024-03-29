@@ -675,7 +675,7 @@ var domains_data = {
          },
          "Reoffending rate": {
             importance: "Within the broad category of people who have offended, there are particular groups who have additional needs and require further support in order to address this behaviour. A reduction in reoffending links with helping these individuals to confront and resolve the factors that lead to offending.",
-            base_year: "2017/18",
+            base_year: "2016/17",
             ci: "0.5c",
             data: {
                NI: "",
@@ -686,7 +686,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "However, despite the overall proportion of individuals who reoffend remaining unchanged, annual cohorts have been consistently declining. This is positive news for the Department and wider Justice organisations who are working to address reoffending in NI.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
