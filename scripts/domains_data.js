@@ -815,7 +815,7 @@ var domains_data = {
             ci: 0,
             data: {
                NI: "INDHOMELNNI",
-               AA: "INDHOMELNAA",
+               AA: "",
                LGD: "INDHOMELNLGD",
                EQ: "INDHOMELNEQ"
             },
