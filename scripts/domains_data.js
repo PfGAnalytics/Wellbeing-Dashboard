@@ -143,6 +143,24 @@ var domains_data = {
                insufficient: ""
             }
          },
+         "Condition of protected sites": {
+            importance: "Our natural environment is our life support system and our greatest asset. For its size, Northern Ireland is amongst the most geologically diverse areas in the world and this shapes its varied and beautiful landscapes and rich nature, wildlife and habitats. Our natural environment contributes to our prosperity and well-being. The state of our biodiversity reflects the state of our air, water and land environments. ",
+            base_year: "2019/20",
+            ci: 0,
+            data: {
+               NI: "INDCONDSTENI", 
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "increase",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
             base_year: "2017",
@@ -180,6 +198,24 @@ var domains_data = {
                insufficient: ""
             }
          },
+            "Outdoor recreation": {
+               importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
+               base_year: null,
+               ci: 0,
+               data: {
+                  NI: "INDOUTRECNI", 
+                  AA: "",
+                  LGD: "",
+                  EQ: ""
+               },
+               improvement: "increase",
+               telling: {
+                  improved: "This commentary is a placeholder.",
+                  no_change: "This commentary is a placeholder",
+                  worsened: "This commentary is a placeholder.",
+                  insufficient: ""
+               }
+            },
          "Recycled waste": {
             importance: "The Earth has limited resources which need to be utilised in a sustainable manner while minimising impacts on the environment. A low carbon, resource efficient society in which resources are valued and reused, putting them back into the economy while preventing waste is desired. Waste is produced by households, by industrial processes, by the construction and demolition industry, through commercial activities and agricultural practices and by public services and utilities. Waste can affect the environment through its visual impact or by emissions to the air, groundwater and surface water as well as the contamination of land. Increasing the amount of waste reused, recycled or composted will reduce the total going to landfill and contribute to better resource use.",
             base_year: "2019/20",
