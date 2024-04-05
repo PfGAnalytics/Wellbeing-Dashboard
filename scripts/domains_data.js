@@ -180,24 +180,24 @@ var domains_data = {
 
             }
          },
-         "Low carbon and renewable energy employment": {
-            importance: "This indicator reports the number of full-time equivalent employees in the low carbon and renewable energy economy to enable change over time to be monitored in line with the aims of the Energy Strategy - Path to Net Zero Energy.",
-            base_year: "2019",
-            ci: 2000,
-            data: {
-               NI: "INDLCREENI",
-               AA: "",
-               LGD: "",
-               EQ: ""
-            },
-            improvement: "increase",
-            telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
-               insufficient: ""
-            }
-         },
+         // "Low carbon and renewable energy employment": {
+         //    importance: "This indicator reports the number of full-time equivalent employees in the low carbon and renewable energy economy to enable change over time to be monitored in line with the aims of the Energy Strategy - Path to Net Zero Energy.",
+         //    base_year: "2019",
+         //    ci: 2000,
+         //    data: {
+         //       NI: "INDLCREENI",
+         //       AA: "",
+         //       LGD: "",
+         //       EQ: ""
+         //    },
+         //    improvement: "increase",
+         //    telling: {
+         //       improved: "This commentary is a placeholder.",
+         //       no_change: "This commentary is a placeholder.",
+         //       worsened: "This commentary is a placeholder.",
+         //       insufficient: ""
+         //    }
+         // },
             "Outdoor recreation": {
                importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
                base_year: null,
@@ -578,24 +578,24 @@ var domains_data = {
                insufficient: ""
             }
          },
-         "Local graduates in narrow STEM subjects": {
-            importance: "We need to drive increased participation in Narrow STEM subjects, which have particular economic relevance in Northern Ireland and include some of the best opportunities for individuals to develop rewarding careers in the coming decades. As low participation of women in this area is a particular concern, increasing involvement of females in Narrow STEM study and careers is a strategic priority for our economy and society.",
-            base_year: "2021/22",
-            ci: 1,
-            data: {
-               NI: "",
-               AA: "INDGRADSAA",
-               LGD: "INDGRADSLGD",
-               EQ: "INDGRADSEQ"
-            },
-            improvement: "increase",
-            telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
-               insufficient: ""
-            }
-         },
+         // "Local graduates in narrow STEM subjects": {
+         //    importance: "We need to drive increased participation in Narrow STEM subjects, which have particular economic relevance in Northern Ireland and include some of the best opportunities for individuals to develop rewarding careers in the coming decades. As low participation of women in this area is a particular concern, increasing involvement of females in Narrow STEM study and careers is a strategic priority for our economy and society.",
+         //    base_year: "2021/22",
+         //    ci: 1,
+         //    data: {
+         //       NI: "",
+         //       AA: "INDGRADSAA",
+         //       LGD: "INDGRADSLGD",
+         //       EQ: "INDGRADSEQ"
+         //    },
+         //    improvement: "increase",
+         //    telling: {
+         //       improved: "This commentary is a placeholder.",
+         //       no_change: "This commentary is a placeholder.",
+         //       worsened: "This commentary is a placeholder.",
+         //       insufficient: ""
+         //    }
+         // },
          "International reputation": {
             importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation will affect people’s willingness to live, study, visit, do business with and invest in NI and this has a significant impact on our economy.",
             base_year: "2019",
