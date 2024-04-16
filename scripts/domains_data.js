@@ -277,7 +277,7 @@ var domains_data = {
          },
          "Income deprivation": {
             importance: "Absolute poverty is a measure of whether the lowest income households are seeing their incomes rise in real terms over time. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
-            base_year: "2017/18",
+            base_year: "2018/19",
             ci: 4,
             data: {
                NI: "",
@@ -288,14 +288,14 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "Over the last ten years, the proportion of individuals in absolute poverty (BHC) generally decreased slowly from a high of 21% in 2013/14 to a low of 12% in 2020/21 before increasing slightly to the current position of 14% in 2022/23.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Income inequality": {
             importance: "Relative poverty is a measure of whether the lowest income households are seeing their incomes keep pace with the population as a whole. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
-            base_year: "2017/18",
+            base_year: "2018/19",
             ci: 4,
             data: {
                NI: "",
@@ -306,7 +306,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "Over the last ten years, the proportion of individuals in relative poverty (BHC) has fluctuated between a high of 22% in 2014/15 and lows of 16% in 2017/18 and 2021/22.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -840,7 +840,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 13% in 2011/12 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
