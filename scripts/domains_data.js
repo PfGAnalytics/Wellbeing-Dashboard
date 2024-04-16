@@ -382,7 +382,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "HLE increased by 1.5 years from 59.7 years in 2016-18 to 61.2 years in 2020-22. Although the change was not statistically significant, the overlap in confidence intervals was relativley small and there was a clear and consistent upward trend over the five-year period. Despite an initial drop in male HLE between 2016-18 and 2017-19, HLE increased notably in each of the following years resulting in an overall increase of 1.5 years.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -498,7 +498,7 @@ var domains_data = {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
-               insufficient: "This is due to how data was collected during Covid-19."
+               insufficient: "This is due to changes in how academic grades were awarded in response to Covid-19."
             }
          },
          "Self-efficacy": {

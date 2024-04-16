@@ -837,7 +837,7 @@ async function createLineChart(d, e) {
    } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {
       base_statement = "Things have worsened since the comparison year in " + indicator.base_year + ". " + indicator.telling.worsened;
    } else {
-      base_statement = "There has been no significant change since the comparison year in " + indicator.base_year + ". " + indicator.telling.no_change;
+      base_statement = "There has been no real change since the comparison year in " + indicator.base_year + ". " + indicator.telling.no_change;
    };
    
    // Create statement div
