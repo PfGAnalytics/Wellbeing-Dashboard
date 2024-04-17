@@ -88,6 +88,8 @@ var expand_all = document.getElementById("expand-all");
 var domain_toggle = document.getElementById("domain-toggle");
 var browse_grid = document.getElementById("browse-grid");
 var expanded_domains = document.getElementById("expanded-domains");
+var by_mission = document.getElementById("by-mission");
+var by_mission_grid = document.getElementById("by-mission-grid");
 
 
 
@@ -1600,9 +1602,11 @@ browse_domains.onclick = function() {
 
     browse_domains.classList.add("domain-toggle-selected");
     expand_all.classList.remove("domain-toggle-selected");
+    by_mission.classList.remove("domain-toggle-selected");
 
     browse_grid.style.display = "flex";
     expanded_domains.style.display = "none";
+    by_mission_grid.style.display = "none";
 
 }
 
@@ -1610,9 +1614,23 @@ expand_all.onclick = function() {
 
     browse_domains.classList.remove("domain-toggle-selected");
     expand_all.classList.add("domain-toggle-selected");
+    by_mission.classList.remove("domain-toggle-selected");
 
     browse_grid.style.display = "none";
     expanded_domains.style.display = "block";
+    by_mission_grid.style.display = "none";
+
+}
+
+by_mission.onclick = function() {
+
+    browse_domains.classList.remove("domain-toggle-selected");
+    expand_all.classList.remove("domain-toggle-selected");
+    by_mission.classList.add("domain-toggle-selected");
+
+    browse_grid.style.display = "none";
+    expanded_domains.style.display = "none";
+    by_mission_grid.style.display = "block"
 
 }
 
@@ -1733,6 +1751,119 @@ plotExpandedDomains = function() {
 
         }
 
+
+    }
+
+    // To produce by mission
+    while (by_mission_grid.firstChild) {
+        by_mission_grid.removeChild(by_mission_grid.firstChild);
+    }
+
+    var missions = ["People", "Planet", "Prosperity", "Peace"];
+
+    for (let i = 0; i < missions.length; i ++) {
+
+        hex_inner = document.createElement("div");
+        hex_inner.classList.add("mission-hex-inner");
+        hex_inner.innerHTML = missions[i];
+
+        hex = document.createElement("div");
+        hex.classList.add("mission-hex");
+        hex.classList.add("shake-hex");
+        hex.appendChild(hex_inner);
+
+        row = document.createElement("div");
+        row.classList.add("row");
+        row.style.marginTop = "20px";
+        row.appendChild(hex);
+
+        by_mission_grid.appendChild(row);
+
+        if (i % 2 == 1) {
+            row.style.marginLeft = "100px";
+            ind_space = main_container.clientWidth - 300;
+        } else {
+            ind_space = main_container.clientWidth - 200;
+        }
+
+        ind_per_row = Math.floor((ind_space - 14) / 166);
+
+        inds = [];
+
+        for (let j = 0; j < domains.length; j ++) {
+
+            if (domains_data[domains[j]].mission == missions[i]) {
+                inds.push(Object.keys(domains_data[domains[j]].indicators))
+            }
+
+        }
+
+        inds = inds.flat();
+
+        rows_required = Math.ceil(inds.length / ind_per_row);
+
+        ind_rows = document.createElement("div");
+        ind_rows.classList.add("col");
+
+        for (let j = 0; j < rows_required; j ++) {
+            ind_row = document.createElement("div");
+            ind_row.classList.add("row");
+            ind_row.id = "mission-" + i + "-row-" + (j + 1);
+
+            if (j % 2 == 1) {
+                ind_row.style.marginLeft = "83px";
+            }
+
+            if (j > 0) {
+                ind_row.style.marginTop = "-42px";
+            }
+
+            ind_rows.appendChild(ind_row);
+        }
+
+        row.appendChild(ind_rows);
+
+        by_mission_grid.appendChild(row);
+
+        for (let j = 0; j < inds.length; j ++) {
+
+            ind_hex = document.createElement("div");
+            ind_hex.classList.add("ind-hex");
+
+            ind_hex_label = document.createElement("div");
+            ind_hex_label.classList.add("ind-hex-label");
+
+
+            if (Object.keys(improving_indicator).includes(inds[j])) {
+                ind_hex.classList.add("positive");
+                ind_hex_label.classList.add("positive");
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>';
+            } else if (Object.keys(worsening_indicator).includes(inds[j])) {
+                ind_hex.classList.add("negative") 
+                ind_hex_label.classList.add("negative");
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>';
+            } else if (Object.keys(insufficient_indicator).includes(inds[j])) {
+                ind_hex.classList.add("insufficient");
+                ind_hex_label.classList.add("insufficient");
+                ind_hex_label.innerHTML = inds[j];
+            } else if (Object.keys(no_change_indicator).includes(inds[j])) {
+                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+            }
+
+            ind_hex_container = document.createElement("button");
+            ind_hex_container.classList.add("shake-hex");            
+            ind_hex_container.classList.add("ind-hex-container");
+            ind_hex_container.name = "indicator";
+            ind_hex_container.value = inds[j].replace(/[^a-z ]/gi, '').toLowerCase();
+            ind_hex_container.appendChild(ind_hex);
+            ind_hex_container.appendChild(ind_hex_label);
+
+            row_num = Math.ceil((j + 1) / ind_per_row);
+            
+            document.getElementById("mission-" + i + "-row-" + row_num).appendChild(ind_hex_container);
+
+        }
+        
 
     }
 
