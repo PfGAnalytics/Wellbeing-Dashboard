@@ -16,7 +16,7 @@ library(pacman)
 p_load("rstudioapi", "magrittr", "base64enc", "httpuv")
 
 # Set working directory
-setwd(sub("datavis prep base64.R", "", rstudioapi::getActiveDocumentContext()$path))
+# setwd(sub("datavis prep base64.R", "", rstudioapi::getActiveDocumentContext()$path))
 
 # Folder to store uploads in
 uploadDir <- "../dashboard-to-upload/"
