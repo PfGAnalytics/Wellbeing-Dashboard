@@ -5,12 +5,14 @@
 // domains_data = {
 //    "Domain 1": {
 //       description: "A description of Domain 1",
+//       mission: "People", "Planet", "Prosperity" or "Peace",
 //       indicators: {
 //          ...
 //       }
 //    },
 //    "Domain 2": {
 //       description: "A description of Domain 2",
+//       mission: "People", "Planet", "Prosperity" or "Peace",
 //       indicators: {
 //          ...
 //       }
@@ -47,6 +49,7 @@
 var domains_data = {
     "Happier Children": {
        description: "Our children and young people have the best start in life",
+       mission: "People",
        indicators: {
          "Children's social care": {
             importance: 'The indicator gives an important insight into the overarching "We will give our children and young people the best start in life" outcome.  It illustrates that services provided to looked after children/care leavers are, for example, closing the education attainment gap between care-experienced children and other young people and that they have the same opportunities for training and employment as their peers.   It is also to be used as a key indicator for monitoring success in the "A life Deserved Strategy".',
@@ -88,6 +91,7 @@ var domains_data = {
     },
     "Cleaner Environment": {
        description: "We live and work sustainably - protecting, improving and enjoying the environment",
+       mission: "Planet",
        indicators: {
          "Active travel - public transport": {
             importance: "This indicator will principally inform progress towards ‘We live and work sustainably – protecting the environment’ and ‘Our economy is globally competitive, regionally balanced and carbon-neutral’. It is also important to inform modal shift in how people travel in Northern Ireland and is to be monitored as part of the Transport sector of the NI Climate Action Plan.",
@@ -256,6 +260,7 @@ var domains_data = {
     },
     "Equal Society": {
        description: "We have an equal and inclusive society where everyone is valued and treated with respect",
+       mission: "People",
        indicators: {
          "Cultural identity": {
             importance: "Building and promoting respect for cultural identity helps support tackling sectarianism and therefore provides a foundation for good relations.",
@@ -333,6 +338,7 @@ var domains_data = {
     },
     "Healthier Lives": {
        description: "We all enjoy long, healthy active lives",
+       mission: "People",
        indicators: {
          "Active travel - walking and cycling": {
             importance: "This indicator will principally inform progress towards ‘We live and work sustainably – protecting the environment’ and ‘Our economy is globally competitive, regionally balanced and carbon-neutral’. It is also important to inform modal shift in how people travel in Northern Ireland and is to be monitored as part of the Transport sector of the NI Climate Action Plan.",
@@ -446,6 +452,7 @@ var domains_data = {
     },
     "Brighter Futures": {
        description: "Everyone can reach their potential",
+       mission: "People",
        indicators: {
          "Arts and cultural activities": {
             importance: "This indicator provides the proportion of adults in Northern Ireland who engage with art and cultural activities.  There is a correlation between engagement in cultural activities and higher levels of personal wellbeing.",
@@ -523,6 +530,7 @@ var domains_data = {
     },
     "Stronger Economy": {
        description: "Our economy is globally competitive, regionally balanced and carbon-neutral",
+       mission: "Prosperity",
        indicators: {
          "Economic inactivity": {
             importance: "This indicator shows the percentage of people who are not engaged in the labour market. It is important as a high economic inactivity rate can restrict labour supply which may in turn affect economic growth.",
@@ -654,6 +662,7 @@ var domains_data = {
     },
     "Safer Communities": {
        description: "Everyone feels safe, we all protect the law and each other",
+       mission: "People",
        indicators: {
          "Crime prevalence rate": {
             importance: "The crime prevalence rate gives the proportion of households/adults who have been a victim of a crime covered by the survey. It will capture incidents experienced by people living in private households, irrespective of whether or not these crimes were reported to, or recorded by, the police.",
@@ -749,6 +758,7 @@ var domains_data = {
     },
     "Caring Society": {
        description: "We have a caring society that supports people throughout their lives",
+       mission: "People",
        indicators: {
          "Adult social care": {
             importance: "The HSC has a duty to provide social services to meet the health and social well-being needs of older people and adults with disabilities and health conditions, including people with learning disabilities and mental health conditions.  The established direction is the provision of services to individuals which promote independence in order that adults with care and support needs can live in their own home and outside of institutional settings. This indicator measures the delivery of the DoH’s policy objective to provide services which support adults with care needs to live independently in their own homes and which delay or avoid the need for provision of institutional care. It measures the number of people being provided with care at home comparative to the overall number of people identified as having a social care need and whose needs are not being met through provision of social care services in their own home. This indicator is important for monitoring the effectiveness of social care services in meeting the needs of the population, and for identifying areas where additional support may be required to meet the needs of those who are not currently receiving services, all of which can inform policy and resource allocation decisions.",
@@ -808,6 +818,7 @@ var domains_data = {
     },
     "Better Homes": {
        description: "Everyone has access to good quality, affordable and sustainable homes that are appropriate for their needs",
+       mission: "People",
        indicators: {
          "Homelessness": {
             importance: "Indicator provides information on the number of households who have presented and been accepted as homeless by the NI Housing Executive. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
@@ -867,6 +878,7 @@ var domains_data = {
     },
     "Living Peacefully": {
       description: "We have a lasting peace, ensuring a stable and harmonious society for all",
+      mission: "Peace",
       indicators: {
          "Community relations": {
             importance: "It is important that relations between Protestants and Catholics improve",
