@@ -339,6 +339,10 @@ async function createLineChart(d, e) {
    if (matrix == "INDNICEINI") {
       min_value = 85;
       max_value = 115;
+   } 
+   if (matrix == "INDRESDEVNI") {
+      min_value = 0;
+      max_value = 2000;
    } else {
       min_value = 0
    }

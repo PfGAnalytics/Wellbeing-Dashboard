@@ -622,6 +622,24 @@ var domains_data = {
                insufficient: ""
             }
          },
+         "Labour productivity": {
+            importance: "Productivity is a key determinant of living standards and economic competitiveness over the long term. The ability to produce the same output with less input or more output with the same input outlay is also relevant to the transition towards a more sustainable economy.",
+            base_year: null,
+            ci: 1,
+            data: {
+               NI: "INDLABPRDTNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "increase",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Northern Ireland Composite Economic Index": {
             importance: "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
             base_year: "2017",
@@ -635,6 +653,24 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially following a decline in 2020, and the latest data in 2022 is at a series high. ",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
+         "Research and development": {
+            importance: "Research and development (R&D) is an essential component of a strong and sustainable economy, investment in R&D helps drive increased innovation, leads to increased productivity and higher levels of economic growth.",
+            base_year: "2018",
+            ci: 1,
+            data: {
+               NI: "INDRESDEVNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "increase",
+            telling: {
+               improved: "There has been a 10.3% increase in real terms between 2018 and 2022.  There has been a real terms decrease of 5.5% in GERD between 2021 and 2022.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
