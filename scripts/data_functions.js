@@ -835,7 +835,7 @@ async function createLineChart(d, e) {
    if (current_year == indicator.base_year) {
       base_statement = "The data for " + indicator.base_year + " will be treated as the base year value for measuring improvement on this indicator. Future performance will be measured against this value."
    } else if (indicator.base_year == null) {
-      base_statement = "There is insufficident data available to determine whether this indicator is improving or worsening." + indicator.telling.insufficient
+      base_statement = "There is insufficient data available to determine whether this indicator is improving or worsening." + indicator.telling.insufficient
    } else if ((change_from_baseline >= current_ci & indicator.improvement == "increase") || (change_from_baseline <= (current_ci * -1) & indicator.improvement == "decrease")) {
       base_statement = "Things have improved since the comparison year in " + indicator.base_year + ". " + indicator.telling.improved;
    } else if ((change_from_baseline <= (current_ci * -1) & indicator.improvement == "increase") || (change_from_baseline >= current_ci & indicator.improvement == "decrease")) {

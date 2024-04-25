@@ -71,7 +71,7 @@ var domains_data = {
          },
          "Small for gestational age": {
             importance: "Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
-            base_year: "2019",
+            base_year: null,
             ci: 1,
             data: {
                NI: "INDSFGANI",
@@ -84,7 +84,7 @@ var domains_data = {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
-               insufficient: ""
+               insufficient: "With only four reporting years available, it is not yet possible to provide an indication on what this indicator is telling us."
             }
          },
       }
@@ -414,7 +414,7 @@ var domains_data = {
          },
          "Preventable deaths": {
             importance: "Preventable deaths relate to causes of deaths that could potentially be avoided by the public health interventions in the broadest sense.",
-            base_year: "2013-17",
+            base_year: "2014-18",
             ci: 4.8,
             data: {
                NI: "",
@@ -426,7 +426,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The preventable mortality rate increased by 11 deaths per 100,000 population from 169 deaths per 100,000 population in 2013-17 to 180 deaths per 100,000 population in 2017-21. The change was statistically significant.",
+               worsened: "The preventable mortality rate increased by 11 deaths per 100,000 population from 168 deaths per 100,000 population in 2014-18 to 179 deaths per 100,000 population in 2018-22. The change was statistically significant.",
                insufficient: ""
             }
          },
@@ -670,7 +670,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "There has been a 10.3% increase in real terms between 2018 and 2022.  There has been a real terms decrease of 5.5% in GERD between 2021 and 2022.",
+               improved: "There has been a 10.3% increase in real terms between 2018 and 2022.  There has been a real terms decrease of 5.5% in GERD between 2021 and 2022. An improving trend is defined as anything more than a 0.1% increase on the 2018 GERD value; a worsening trend is defined as anything more than a 0.1% decrease on the 2018 GERD value.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -935,9 +935,9 @@ var domains_data = {
             }
          },
          "Shared community": {
-            importance: "It is important that more people are welcoming of mixed communities",
-            base_year: "2020",
-            ci: 2,
+            importance: "Preference for mixed religion neighbourhoods is an important indicator of attitudes towards other communities, as well as an indicator of preference for a shared community, which in turn is an important aspect of social wellbeing in Northern Ireland.",
+            base_year: "2018",
+            ci: 2.4,
             data: {
                NI: "",
                AA: "",
@@ -947,7 +947,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "This means that roughly the same proportion of people aged 18+ would prefer a mixed religion neighbourhood as in 2018.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
