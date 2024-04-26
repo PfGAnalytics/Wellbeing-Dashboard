@@ -1184,7 +1184,7 @@ async function getEqualityGroups(d, e) {
          groups = Object.values(result.dimension.EQUALGROUPS.category.label);
          
          // Categories out of order on data portal for these two indicators
-         if (["Respect", "Cultural identity"].includes(e) & eq_groups[i] == "Age") {
+         if (["Respect", "Cultural identity", "Shared community", "Community relations", "Safe towns and city centres"].includes(e) & eq_groups[i] == "Age") {
             groups.sort();
          }
 

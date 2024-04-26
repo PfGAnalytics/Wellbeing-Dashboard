@@ -264,7 +264,7 @@ var domains_data = {
        indicators: {
          "Cultural identity": {
             importance: "Building and promoting respect for cultural identity helps support tackling sectarianism and therefore provides a foundation for good relations.",
-            base_year: "2017",
+            base_year: "2018",
             ci: 2.7,
             data: {
                NI: "",
@@ -276,7 +276,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This means that fewer adults in 2021 feel their cultural identity is respected by society than in 2017.",
+               worsened: "This means that a smaller proportion of adults in 2022 feel their cultural identity is respected by society than in 2018.",
                insufficient: ""
             }
          },
@@ -755,9 +755,9 @@ var domains_data = {
             }
          },
          "Safe towns and city centres": {
-            importance: "It is important that towns and city centres are safe for everyone.",
-            base_year: "2020",
-            ci: 2,
+            importance: "Town centres must be seen as places where people can feel safe in moving around, and where life choices are not inhibited by fears around safety. This is a key aspect of social and physical wellbeing for people living in or visiting towns and cities.",
+            base_year: "2018",
+            ci: 2.7,
             data: {
                NI: "",
                AA: "",
@@ -767,8 +767,8 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder",
+               worsened: "This means that a smaller proportion of people aged 18+ see towns and city centres as safe and welcoming places for people of all walks of life than did in 2018.",
                insufficient: ""
             }
          },
@@ -917,9 +917,9 @@ var domains_data = {
       mission: "Peace",
       indicators: {
          "Community relations": {
-            importance: "It is important that relations between Protestants and Catholics improve",
-            base_year: "2020",
-            ci: 2,
+            importance: "Perceptions of relations between Protestants and Catholics are an important part of public life in Northern Ireland and affect citizens' perceptions of peace and stability, which in turn affects mental wellbeing.",
+            base_year: "2018",
+            ci: 2.8,
             data: {
                NI: "",
                AA: "",
@@ -930,7 +930,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               worsened: "This means that a smaller proportion of people aged 18+ think that relations between Protestants and Catholics are better now than they were five years ago than thought this in 2018.",
                insufficient: ""
             }
          },
