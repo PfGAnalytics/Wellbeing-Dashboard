@@ -159,7 +159,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "In 2022/23 54.9 per cent of features within protected sites were in favourable condition which is higher than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
                no_change: "This commentary is a placeholder",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -186,7 +186,7 @@ var domains_data = {
          },
          "Renewable electricity": {
              importance: "The decarbonisation of electricity generation contributes to the reduction of greenhouse gas emissions, to enhancing energy security of supply and affordability in addition to the wider contribution to the economy of the associated developments.",
-             base_year: "2019",
+             base_year: null,
              ci: 0,
              data: {
                 NI: "INDRENEWNI",
@@ -912,7 +912,7 @@ var domains_data = {
          },
          "Housing stress": {
             importance: "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2019/20",
+            base_year: "2018/19",
             ci: 0,
             data: {
                NI: "",
@@ -924,7 +924,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               worsened: "The number of households in housing stress has steadily increased in the last 5 years.",
                insufficient: ""
             }
          }
@@ -991,7 +991,7 @@ var domains_data = {
          "Trust in the NI Assembly": {
             importance: "Trust in elected representatives is central to a functioning, democratic society.  Lack of trust in elected representatives can discourage people from democratic participation and people can feel as though they do not have a voice in decisions that affect them.  This in turn can influence wellbeing.",
             base_year: "2019",
-            ci: 2,
+            ci: 1,
             data: {
                NI: "",
                AA: "",
@@ -1001,7 +1001,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "However, the level of trust in the NI Assembly was higher in 2020 and 2021, compared to 2019 and 2022.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
