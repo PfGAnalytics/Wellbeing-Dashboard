@@ -184,24 +184,24 @@ var domains_data = {
 
             }
          },
-         // "Low carbon and renewable energy employment": {
-         //    importance: "This indicator reports the number of full-time equivalent employees in the low carbon and renewable energy economy to enable change over time to be monitored in line with the aims of the Energy Strategy - Path to Net Zero Energy.",
-         //    base_year: "2019",
-         //    ci: 2000,
-         //    data: {
-         //       NI: "INDLCREENI",
-         //       AA: "",
-         //       LGD: "",
-         //       EQ: ""
-         //    },
-         //    improvement: "increase",
-         //    telling: {
-         //       improved: "This commentary is a placeholder.",
-         //       no_change: "This commentary is a placeholder.",
-         //       worsened: "This commentary is a placeholder.",
-         //       insufficient: ""
-         //    }
-         // },
+         "Renewable electricity": {
+             importance: "The decarbonisation of electricity generation contributes to the reduction of greenhouse gas emissions, to enhancing energy security of supply and affordability in addition to the wider contribution to the economy of the associated developments.",
+             base_year: "2019",
+             ci: 0,
+             data: {
+                NI: "INDRENEWNI",
+                AA: "",
+                LGD: "",
+                EQ: ""
+             },
+             improvement: "increase",
+             telling: {
+                improved: "This commentary is a placeholder.",
+                no_change: "This commentary is a placeholder.",
+                worsened: "This commentary is a placeholder.",
+                insufficient: ""
+             }
+          },
             "Outdoor recreation": {
                importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
                base_year: null,
@@ -856,19 +856,37 @@ var domains_data = {
        description: "Everyone has access to good quality, affordable and sustainable homes that are appropriate for their needs",
        mission: "People",
        indicators: {
+         "Availability of suitable housing": {
+            importance: "This indicator provides the proportion of households who are satisfied with their house or flat.  Access to good quality, sustainable and affordable housing that is appropriate for the household' s needs, enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
+            base_year: "2021/22",
+            ci: 2,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "INDSUITHOUSLGD",
+               EQ: "INDSUITHOUSEQ"
+            },
+            improvement: "decrease",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Homelessness": {
             importance: "Indicator provides information on the number of households who have presented and been accepted as homeless by the NI Housing Executive. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2019/20",
+            base_year: "2018/19",
             ci: 0,
             data: {
-               NI: "INDHOMELNNI",
+               NI: "",
                AA: "",
                LGD: "INDHOMELNLGD",
                EQ: "INDHOMELNEQ"
             },
             improvement: "decrease",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "Since 2018/19 the number of Households that have been accepted as homelessness has fallen. There was a reduction in the number of acceptances in the period of time immediately after the COVID-19 pandemic with 2020/21 representing the lowest number of acceptances over recent years. In 2021/22 and 2022/23 the number of acceptances has increased, albeit not to pre-pandemic levels. It should be noted that a significant impact of the pandemic in respect of demand for homelessness services has been an increase in demand for temporary accommodation. All of those who are accepted as statutorily homeless have a statutory duty to temporary accommodation and there has been an increase from 3,354 placements in 2018/19 to 10,253 in 2022/23.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -954,7 +972,7 @@ var domains_data = {
          },
          "Trust in the media": {
             importance: "Integrity of the media is important in ensuring that people can access reliable information about matters of public interest that impact them. Trust in the media contributes to democratic wellbeing which can impact directly on personal wellbeing.",
-            base_year: "2021",
+            base_year: "2019",
             ci: 2,
             data: {
                NI: "",
