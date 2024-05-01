@@ -756,10 +756,11 @@ footer a:hover {
     color: #ffffff;
     background-color: #008675 !important;
     display: flex;
+    font-size: 14pt;
     align-items: center;
     width: 100%;
     justify-content: center;
-    padding: 5px;
+    padding: 10px;
     font-weight: bold;
 }
 
