@@ -94,7 +94,7 @@ var domains_data = {
        mission: "Planet",
        indicators: {
          "Active travel - public transport": {
-            importance: "This indicator will principally inform progress towards ‘We live and work sustainably – protecting the environment’ and ‘Our economy is globally competitive, regionally balanced and carbon-neutral’. It is also important to inform modal shift in how people travel in Northern Ireland and is to be monitored as part of the Transport sector of the NI Climate Action Plan.",
+            importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
             base_year: null,
             ci: 1.1,
             data: {
@@ -108,7 +108,7 @@ var domains_data = {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
-               insufficient: ""
+               insufficient: "There were a number of significant changes to the survey methodology from 2020, due to the COVID-19 pandemic.  In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 and 2021 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The comparison year for this indicator has been set to 2022."
             }
          },
          "Air pollution": {
@@ -341,7 +341,7 @@ var domains_data = {
        mission: "People",
        indicators: {
          "Active travel - walking and cycling": {
-            importance: "This indicator will principally inform progress towards ‘We live and work sustainably – protecting the environment’ and ‘Our economy is globally competitive, regionally balanced and carbon-neutral’. It is also important to inform modal shift in how people travel in Northern Ireland and is to be monitored as part of the Transport sector of the NI Climate Action Plan.",
+            importance: "Encouraging more active and sustainable ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
             base_year: null,
             ci: 2.4,
             data: {
@@ -355,7 +355,7 @@ var domains_data = {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
-               insufficient: ""
+               insufficient: "There were a number of significant changes to the survey methodology from 2020, due to the COVID-19 pandemic.  In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 and 2021 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The comparison year for this indicator has been set to 2022."
             }
          },
          "Healthy life expectancy (females)": {
@@ -408,7 +408,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The proportion of males with a high GHQ12 score is unchanged from 2018/19, however the proportion of females with a high GHQ12 score has risen from 2018/19.",
+               worsened: "The proportion of males with a high GHQ12 score is unchanged from 2018/19, however the proportion of females with a high GHQ12 score has risen from 2018/19.  Considering the longer term trend, the proportion scoring highly is at a similar level to 2010/11. There was a significant increase during the pandemic however the latest findings suggest an overall return to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas.",
                insufficient: ""
             }
          },
