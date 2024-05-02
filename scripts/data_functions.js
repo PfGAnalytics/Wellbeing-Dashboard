@@ -1500,6 +1500,13 @@ async function drawMap() {
    }
 
    data_by_year = {}
+
+   // Fix in Self-efficacy by LGD map. Blank value for Fermanagh and Omagh in 2020/21 was uploaded to portal with "*" character instead of a blank.
+   for (let i = 0; i < data_series.length; i ++) {
+      if (data_series[i] == "*") {
+         data_series[i] = null;
+      }
+   }
    
    for (let i = 0; i < years.length; i ++) {
 
