@@ -453,6 +453,38 @@ async function createLineChart(d, e) {
          pointBackgroundColor: "#000000"
       })
 
+   } else if (["INDATPUBNI", "INDATWALKNI"].includes(matrix)) {
+
+      // First plot the line as far as 2019
+      var data = {
+         labels: years,
+         datasets: [{
+            label: 'Northern Ireland',
+            data: data_series.slice(0, years.indexOf("2019") + 1),
+            borderColor: "#000000",
+            fill: false,
+            pointBackgroundColor: "#000000"
+         }]
+      }
+
+      var remaining_data = [];
+
+      for (let i = 0; i < data_series.length; i ++) {
+         if (i <= years.indexOf("2019")) {
+            remaining_data.push(null)
+         } else {
+            remaining_data.push(data_series[i])
+         }
+      }
+
+      data.datasets.push({
+         label: "Northern Ireland",
+         data: remaining_data,
+         borderColor: "#000000",
+         fill: false,
+         pointBackgroundColor: "#000000"
+      })
+
    } else {
       // Properties of the data series to be plotted for all other indicators
       var data = {
