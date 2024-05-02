@@ -1346,7 +1346,7 @@ async function subpopTable() {
     headings = ["Deprivation", "Age", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group"];
     
     subpop_headers.innerHTML = "<th style = 'text-align: left;'>Indicator</th>" + 
-                               "<th>NI Level only</th>" +
+                               "<th>NI Level</th>" +
                                "<th>Assembly Area</th>" + 
                                "<th>Local Government District</th>"
 
@@ -1375,10 +1375,9 @@ async function subpopTable() {
         indicator_name.style.textAlign = "left";        // Align text left
         subpop_row.appendChild(indicator_name);     // Add cell to row
 
-        ni_level = document.createElement("td");        // If NI data is present add a dot for "NI level only"
-        if (domains_data[domain].indicators[all_indicators[i]].data.NI != "") {
-            ni_level.innerHTML = '<div class = "navy-dot"></div>';
-        }
+        ni_level = document.createElement("td");        // Add a dot for "NI level"
+        ni_level.innerHTML = '<div class = "navy-dot"></div>';
+        
         subpop_row.appendChild(ni_level);
 
         aa = document.createElement("td");  // If AA data is present add a dot for "Assembly Area"
