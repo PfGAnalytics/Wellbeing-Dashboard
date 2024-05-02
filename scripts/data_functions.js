@@ -8,6 +8,25 @@
    });
  }
 
+ // Define a function named count that takes two parameters: main_str (the main string) and sub_str (the substring to count)
+function count(main_str, sub_str) {
+    // Convert main_str and sub_str to strings if they are not already
+    main_str += '';
+    sub_str += '';
+
+    // If sub_str is an empty string or undefined, return the length of main_str plus 1
+    if (sub_str.length <= 0) 
+    {
+        return main_str.length + 1;
+    }
+
+    // Escape special characters in sub_str for use in regular expression
+    subStr = sub_str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+    // Count the occurrences of sub_str in main_str using a regular expression and return the count
+    return (main_str.match(new RegExp(subStr, 'gi')) || []).length;
+}
+
 // A function to sort items alphabetically inside an object based on the object key
 function sortObject(o) {
    var sorted = {},
@@ -958,42 +977,78 @@ async function createLineChart(d, e) {
   // The paragraph containing the source information is isolated:
   source_info = source_info.slice(source_info.indexOf("Source") + "Source".length);
   source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
+  source_info = source_info.slice(0, source_info.indexOf("[b]"));
 
-  if (source_info.indexOf("[b]") > -1) {
-   source_info = source_info.slice(0, source_info.indexOf("[b]")).trim();
-  }  
-
-  if (source_info.indexOf("[url=") > 2) {
-   source_name = source_info.slice(0, source_info.indexOf("[url=")).trim();
-  } else {
-   source_name = source_info.slice(source_info.indexOf("]") + 1);
-   source_name = source_name.slice(0, source_name.indexOf("[/url]"));
-  }
-
-  if (source_name.includes("The data come from the")) {
-   source_name = source_info.slice(source_info.indexOf("]") + 1);
-   source_name = source_name.slice(0, source_name.indexOf(".")).trim();
-  }
-
-  if (source_name.includes("http")) {
-   source_name = source_name.slice(0, source_name.indexOf("http")).trim();
-  }
-
-  // URL formatted
-  if (source_info.indexOf("[url=") > -1) {
-   source_link = source_info.slice(source_info.indexOf("[url=") + "[url=".length);
-   source_link = source_link.slice(0, source_link.indexOf("]"));
-  } else {
-   source_link = source_info.slice(source_info.indexOf("http"))
-  }
+  num_links = count(source_info, "[url=");
 
   // Div element created and placed in html document:
   source_info_div = document.createElement("div");
   source_info_div.id = matrix + "-source-info";
   source_info_div.classList.add("source-info-text");
-  source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
 
-  document.getElementById("source-info").appendChild(source_info_div);
+  if (num_links == 1) {
+
+   if (source_info.indexOf("[b]") > -1) {
+      source_info = source_info.slice(0, source_info.indexOf("[b]")).trim();
+   }  
+
+   if (source_info.indexOf("[url=") > 2) {
+      source_name = source_info.slice(0, source_info.indexOf("[url=")).trim();
+   } else {
+      source_name = source_info.slice(source_info.indexOf("]") + 1);
+      source_name = source_name.slice(0, source_name.indexOf("[/url]"));
+   }
+
+   if (source_name.includes("The data come from the")) {
+      source_name = source_info.slice(source_info.indexOf("]") + 1);
+      source_name = source_name.slice(0, source_name.indexOf(".")).trim();
+   }
+
+   if (source_name.includes("http")) {
+      source_name = source_name.slice(0, source_name.indexOf("http")).trim();
+   }
+
+   // URL formatted
+   if (source_info.indexOf("[url=") > -1) {
+      source_link = source_info.slice(source_info.indexOf("[url=") + "[url=".length);
+      source_link = source_link.slice(0, source_link.indexOf("]"));
+   } else {
+      source_link = source_info.slice(source_info.indexOf("http"))
+   }
+   
+   source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
+
+} else {
+
+   source_names = [];
+   source_links = [];
+   names_long = source_info;
+   links_long = source_info;
+   source_info_div.innerHTML = "This indicator is collected from "
+
+   for (let i = 0; i < num_links; i ++) {
+
+      source_names.push(names_long.slice(0, names_long.indexOf("[url=")).replaceAll("\r\n", ""));
+      names_long = names_long.slice(names_long.indexOf("[/url]") + "[/url]".length);
+
+      source_links.push(links_long.slice(links_long.indexOf("[url=") + "[url=".length, links_long.indexOf("]")));
+      links_long = links_long.slice(links_long.indexOf("[/url]") + "[/url]".length);
+
+      if (i != 0 & i != num_links - 1) {
+         source_info_div.innerHTML += ", ";
+      } else if (i == num_links - 1) {
+         source_info_div.innerHTML += " and ";
+      }
+
+      source_info_div.innerHTML += "<a href='" + source_links[i] + "' target='_blank'>" + source_names[i] + "</a>";
+
+   }
+
+   source_info_div.innerHTML += ".";
+
+}
+
+document.getElementById("source-info").appendChild(source_info_div);
 
   // The "how we measure this" is pulled out of the note object
   measure_text = note[0];
