@@ -184,42 +184,24 @@ var domains_data = {
 
             }
          },
-         "Renewable electricity": {
-             importance: "The decarbonisation of electricity generation contributes to the reduction of greenhouse gas emissions, to enhancing energy security of supply and affordability in addition to the wider contribution to the economy of the associated developments.",
-             base_year: null,
-             ci: 0,
-             data: {
-                NI: "INDRENEWNI",
-                AA: "",
-                LGD: "",
-                EQ: ""
-             },
-             improvement: "increase",
-             telling: {
-                improved: "This commentary is a placeholder.",
-                no_change: "This commentary is a placeholder.",
-                worsened: "This commentary is a placeholder.",
-                insufficient: ""
-             }
-          },
-            "Outdoor recreation": {
-               importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
-               base_year: null,
-               ci: 0,
-               data: {
-                  NI: "INDOUTRECNI", 
-                  AA: "",
-                  LGD: "",
-                  EQ: ""
-               },
-               improvement: "increase",
-               telling: {
-                  improved: "This commentary is a placeholder.",
-                  no_change: "This commentary is a placeholder",
-                  worsened: "This commentary is a placeholder.",
-                  insufficient: ""
-               }
+         "Outdoor recreation": {
+            importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
+            base_year: null,
+            ci: 0,
+            data: {
+               NI: "INDOUTRECNI", 
+               AA: "",
+               LGD: "",
+               EQ: ""
             },
+            improvement: "increase",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Recycled waste": {
             importance: "The Earth has limited resources which need to be utilised in a sustainable manner while minimising impacts on the environment. A low carbon, resource efficient society in which resources are valued and reused, putting them back into the economy while preventing waste is desired. Waste is produced by households, by industrial processes, by the construction and demolition industry, through commercial activities and agricultural practices and by public services and utilities. Waste can affect the environment through its visual impact or by emissions to the air, groundwater and surface water as well as the contamination of land. Increasing the amount of waste reused, recycled or composted will reduce the total going to landfill and contribute to better resource use.",
             base_year: "2019/20",
@@ -234,6 +216,24 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.7 per cent in 2019/20.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
+         "Renewable electricity": {
+            importance: "The decarbonisation of electricity generation contributes to the reduction of greenhouse gas emissions, to enhancing energy security of supply and affordability in addition to the wider contribution to the economy of the associated developments.",
+            base_year: "2019",
+            ci: 0,
+            data: {
+               NI: "INDRENEWNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "increase",
+            telling: {
+               improved: "The growth in the proportion of electricity consumption that is renewably generated from 17.3% in 2013 to 49.2% in 2020 has not been sustained in recent years and has averaged 46.8% between 2020 and 2023.",
+               no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
