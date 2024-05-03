@@ -101,7 +101,7 @@ var domains_data = {
                NI: "INDATPUBNI",
                AA: "",
                LGD: "",
-               EQ: ""
+               EQ: "INDATPUBEQ"
             },
             improvement: "increase",
             telling: {
