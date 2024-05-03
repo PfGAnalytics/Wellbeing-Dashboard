@@ -52,7 +52,7 @@ var domains_data = {
        mission: "People",
        indicators: {
          "Children's social care": {
-            importance: 'The indicator gives an important insight into the overarching "We will give our children and young people the best start in life" outcome.  It illustrates that services provided to looked after children/care leavers are, for example, closing the education attainment gap between care-experienced children and other young people and that they have the same opportunities for training and employment as their peers.   It is also to be used as a key indicator for monitoring success in the "A life Deserved Strategy".',
+            importance: 'The indicator gives an important insight into the overarching "Happier Children" domain.  It illustrates that services provided to looked after children/care leavers are, for example, closing the education attainment gap between care-experienced children and other young people and that they have the same opportunities for training and employment as their peers.   It is also to be used as a key indicator for monitoring success in the "A life Deserved Strategy".',
             base_year: "2018/19",
             ci: "1c",
             data: {
@@ -98,7 +98,7 @@ var domains_data = {
             base_year: null,
             ci: 1.1,
             data: {
-               NI: "INDATPUBNI",
+               NI: "",
                AA: "",
                LGD: "",
                EQ: "INDATPUBEQ"
@@ -345,10 +345,10 @@ var domains_data = {
             base_year: null,
             ci: 2.4,
             data: {
-               NI: "INDATWALKNI",
+               NI: "",
                AA: "",
                LGD: "",
-               EQ: ""
+               EQ: "INDATWALKEQ"
             },
             improvement: "increase",
             telling: {

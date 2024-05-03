@@ -472,7 +472,7 @@ async function createLineChart(d, e) {
          pointBackgroundColor: "#000000"
       })
 
-   } else if (["INDATPUBNI", "INDATWALKNI"].includes(matrix)) {
+   } else if (["INDATPUBEQ", "INDATWALKEQ"].includes(matrix)) {
 
       // First plot the line as far as 2019
       var data = {
@@ -1271,7 +1271,7 @@ async function getEqualityGroups(d, e) {
          groups = Object.values(result.dimension.EQUALGROUPS.category.label);
          
          // Categories out of order on data portal for these two indicators
-         if (["Respect", "Cultural identity", "Shared community", "Community relations", "Safe towns and city centres"].includes(e) & eq_groups[i] == "Age") {
+         if (["Respect", "Cultural identity", "Shared community", "Community relations", "Safe towns and city centres", "Active travel - public transport", "Active travel - walking and cycling"].includes(e) & eq_groups[i] == "Age") {
             groups.sort();
          }
 
