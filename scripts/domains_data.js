@@ -621,7 +621,7 @@ var domains_data = {
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
-         // },
+         },
          // "Labour productivity": {
          //    importance: "Productivity is a key determinant of living standards and economic competitiveness over the long term. The ability to produce the same output with less input or more output with the same input outlay is also relevant to the transition towards a more sustainable economy.",
          //    base_year: null,
@@ -772,26 +772,26 @@ var domains_data = {
                insufficient: ""
             }
          },
-   //       "Worry about crime": {
-   //          importance: "It is important that people worry less about crime.",
-   //          base_year: "2019/20",
-   //          ci: 2,
-   //          data: {
-   //             NI: "INDWORRYACNI",
-   //             AA: "",
-   //             LGD: "",
-   //             EQ: ""
-   //          },
-   //          improvement: "decrease",
-   //          telling: {
-   //             improved: "This commentary is a placeholder.",
-   //             no_change: "This commentary is a placeholder.",
-   //             worsened: "This commentary is a placeholder.",
-   //             insufficient: ""
-   //          }
-   //       }
-   //     }
-   //  },
+         // "Worry about crime": {
+         //    importance: "It is important that people worry less about crime.",
+         //    base_year: "2019/20",
+         //    ci: 2,
+         //    data: {
+         //       NI: "INDWORRYACNI",
+         //       AA: "",
+         //       LGD: "",
+         //       EQ: ""
+         //    },
+         //    improvement: "decrease",
+         //    telling: {
+         //       improved: "This commentary is a placeholder.",
+         //       no_change: "This commentary is a placeholder.",
+         //       worsened: "This commentary is a placeholder.",
+         //       insufficient: ""
+         //    }
+         // }
+       }
+    },
     "Caring Society": {
        description: "We have a caring society that supports people throughout their lives",
        mission: "People",
