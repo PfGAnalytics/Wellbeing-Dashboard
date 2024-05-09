@@ -621,25 +621,25 @@ var domains_data = {
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
-         },
-         "Labour productivity": {
-            importance: "Productivity is a key determinant of living standards and economic competitiveness over the long term. The ability to produce the same output with less input or more output with the same input outlay is also relevant to the transition towards a more sustainable economy.",
-            base_year: null,
-            ci: 1,
-            data: {
-               NI: "INDLABPRDTNI",
-               AA: "",
-               LGD: "",
-               EQ: ""
-            },
-            improvement: "increase",
-            telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
-               insufficient: ""
-            }
-         },
+         // },
+         // "Labour productivity": {
+         //    importance: "Productivity is a key determinant of living standards and economic competitiveness over the long term. The ability to produce the same output with less input or more output with the same input outlay is also relevant to the transition towards a more sustainable economy.",
+         //    base_year: null,
+         //    ci: 1,
+         //    data: {
+         //       NI: "INDLABPRDTNI",
+         //       AA: "",
+         //       LGD: "",
+         //       EQ: ""
+         //    },
+         //    improvement: "increase",
+         //    telling: {
+         //       improved: "This commentary is a placeholder.",
+         //       no_change: "This commentary is a placeholder.",
+         //       worsened: "This commentary is a placeholder.",
+         //       insufficient: ""
+         //    }
+         // },
          "Northern Ireland Composite Economic Index": {
             importance: "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
             base_year: "2017",
@@ -736,24 +736,24 @@ var domains_data = {
          //       insufficient: ""
          //    }
          // },
-         "Personal safety": {
-            importance: "It is important that everyone feels safe",
-            base_year: "2019/20",
-            ci: 2,
-            data: {
-               NI: "INDPERSSAFENI",
-               AA: "",
-               LGD: "",
-               EQ: ""
-            },
-            improvement: "decrease",
-            telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
-               insufficient: ""
-            }
-         },
+         // "Personal safety": {
+         //    importance: "It is important that everyone feels safe",
+         //    base_year: "2019/20",
+         //    ci: 2,
+         //    data: {
+         //       NI: "INDPERSSAFENI",
+         //       AA: "",
+         //       LGD: "",
+         //       EQ: ""
+         //    },
+         //    improvement: "decrease",
+         //    telling: {
+         //       improved: "This commentary is a placeholder.",
+         //       no_change: "This commentary is a placeholder.",
+         //       worsened: "This commentary is a placeholder.",
+         //       insufficient: ""
+         //    }
+         // },
          "Safe towns and city centres": {
             importance: "Town centres must be seen as places where people can feel safe in moving around, and where life choices are not inhibited by fears around safety. This is a key aspect of social and physical wellbeing for people living in or visiting towns and cities.",
             base_year: "2018",
@@ -772,26 +772,26 @@ var domains_data = {
                insufficient: ""
             }
          },
-         "Worry about crime": {
-            importance: "It is important that people worry less about crime.",
-            base_year: "2019/20",
-            ci: 2,
-            data: {
-               NI: "INDWORRYACNI",
-               AA: "",
-               LGD: "",
-               EQ: ""
-            },
-            improvement: "decrease",
-            telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
-               insufficient: ""
-            }
-         }
-       }
-    },
+   //       "Worry about crime": {
+   //          importance: "It is important that people worry less about crime.",
+   //          base_year: "2019/20",
+   //          ci: 2,
+   //          data: {
+   //             NI: "INDWORRYACNI",
+   //             AA: "",
+   //             LGD: "",
+   //             EQ: ""
+   //          },
+   //          improvement: "decrease",
+   //          telling: {
+   //             improved: "This commentary is a placeholder.",
+   //             no_change: "This commentary is a placeholder.",
+   //             worsened: "This commentary is a placeholder.",
+   //             insufficient: ""
+   //          }
+   //       }
+   //     }
+   //  },
     "Caring Society": {
        description: "We have a caring society that supports people throughout their lives",
        mission: "People",
