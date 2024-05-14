@@ -52,7 +52,7 @@ var domains_data = {
        mission: "People",
        indicators: {
          "Children's social care": {
-            importance: 'The indicator gives an important insight into the overarching "Happier Children" domain.  It illustrates that services provided to looked after children/care leavers are, for example, closing the education attainment gap between care-experienced children and other young people and that they have the same opportunities for training and employment as their peers.   It is also to be used as a key indicator for monitoring success in the "A life Deserved Strategy".',
+            importance: "Care-experienced children and young people generally have poorer outcomes than their non care-experienced peers. We want to close this gap, and ensure that care-experienced children and young people have the same opportunities in education, training and employment as their peers.",
             base_year: "2018/19",
             ci: "1c",
             data: {
