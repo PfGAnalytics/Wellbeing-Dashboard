@@ -1195,3 +1195,26 @@ tr {
     outline: 2px solid #ff0000;
 }
 
+#warning-div {
+    display: flex;
+    height: 500px;
+    align-items: center;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+#warning-div table tr td {
+    font-size: 16pt;
+    text-align: left;
+    border: 0px;
+    vertical-align: top;
+}
+
+#warning-div table {
+    border: 0px;
+}
+
+#warning-div table tr:hover {
+    background-color: #F2F2F2;
+    cursor: default;
+}

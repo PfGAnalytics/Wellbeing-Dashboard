@@ -200,35 +200,37 @@
                     <div id = "domain-title" class = "blue-label"></div>
                     <h2 id = "indicator-title"></h2>
                 </div>
-                <div class = "row" style = "margin-top: 15px;">
-                    <div class = "blue-label">How do we measure this?</div>
-                    <div id = "measure-info"></div>
-                </div>
-                <div class = "row" style = "align-items: start; margin-bottom: 40px;">
-                    <div id = "line-chart-container" alt = "A summary of this chart's findings can be found in the 'What is this indicator telling us?' box"></div>
-                    <div id = "chart-boxes" class = "box-container">
-                        <form id = "map-link"></form>                      
+                <div id = "indicator-content">
+                    <div class = "row" style = "margin-top: 15px;">
+                        <div class = "blue-label">How do we measure this?</div>
+                        <div id = "measure-info"></div>
                     </div>
-                </div>
-                <div class = "row" style = "margin-top: 20px;">
-                    <div class = "blue-label" style = "min-width: 280px;">What is this indicator telling us?</div>
-                    <div id = "change-info"></div>
-                </div>
-                <div class = "row" style = "margin-top: 20px;">
-                    <div class = "blue-label"  style = "min-width: 280px;">Why is this indicator important?</div>
-                    <div id = "ind-important" class = "white-box"></div>
-                </div>
-                <div class = "grey-box">
-                    <strong>Source:</strong>
-                    <div id = "source-info"></div>
-                    <strong>More data:</strong>
-                    <p id = "data-info"></p>
-                    <div id = "further-expander" tabindex="0">
-                        <strong>Further information</strong> <i style = "color: #142062" class="fa-solid fa-plus"></i> <span style = "font-size: 10pt; color: #142062">Click to expand</span>
+                    <div class = "row" style = "align-items: start; margin-bottom: 40px;">
+                        <div id = "line-chart-container" alt = "A summary of this chart's findings can be found in the 'What is this indicator telling us?' box"></div>
+                        <div id = "chart-boxes" class = "box-container">
+                            <form id = "map-link"></form>                      
+                        </div>
                     </div>
-                    <div id = "further-info"></div>
-                    <strong>Impact of Covid-19</strong><br>
-                    <div id = "covid-info"></div>
+                    <div class = "row" style = "margin-top: 20px;">
+                        <div class = "blue-label" style = "min-width: 280px;">What is this indicator telling us?</div>
+                        <div id = "change-info"></div>
+                    </div>
+                    <div class = "row" style = "margin-top: 20px;">
+                        <div class = "blue-label"  style = "min-width: 280px;">Why is this indicator important?</div>
+                        <div id = "ind-important" class = "white-box"></div>
+                    </div>
+                    <div class = "grey-box">
+                        <strong>Source:</strong>
+                        <div id = "source-info"></div>
+                        <strong>More data:</strong>
+                        <p id = "data-info"></p>
+                        <div id = "further-expander" tabindex="0">
+                            <strong>Further information</strong> <i style = "color: #142062" class="fa-solid fa-plus"></i> <span style = "font-size: 10pt; color: #142062">Click to expand</span>
+                        </div>
+                        <div id = "further-info"></div>
+                        <strong>Impact of Covid-19</strong><br>
+                        <div id = "covid-info"></div>
+                    </div>
                 </div>
             </div>
 
@@ -242,46 +244,48 @@
                     <label for="map-select-3" id = "map-label-3">Geography:</label>
                     <select name = "map" id = "map-select-3"></select>
                 </form>
-                <form>
-                    <div class = "row">
-                        <label for = "map-select-4" id = "map-label-4">Select year:</label>
-                        <div style = "margin-left: 10px">
-                            <div id = "date-display"></div>
-                            <input id ="map-select-4" type="range" class="slider" id="myRange">
+                <div id = "map-content">
+                    <form>
+                        <div class = "row">
+                            <label for = "map-select-4" id = "map-label-4">Select year:</label>
+                            <div style = "margin-left: 10px">
+                                <div id = "date-display"></div>
+                                <input id ="map-select-4" type="range" class="slider" id="myRange">
+                            </div>
+                        </div>
+                    </form>
+                    <div id = "map-title"></div>
+                    <div class = "row" style = "align-items: start;">
+                        <div id = "map-load"><img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation"></div>
+                        <div id = "map-container"></div>
+                        <div id = "map-boxes" class = "box-container">
+                            <form style = "margin-top: 15px; display: flex; justify-content: center;">
+                                <button id = "chart-link" name = "indicator">
+                                    <i class = "fas fa-chart-line"></i> See trend data for this indicator<br>at Northern Ireland level
+                                </button>
+                            </form>
                         </div>
                     </div>
-                </form>
-                <div id = "map-title"></div>
-                <div class = "row" style = "align-items: start;">
-                    <div id = "map-load"><img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation"></div>
-                    <div id = "map-container"></div>
-                    <div id = "map-boxes" class = "box-container">
-                        <form style = "margin-top: 15px; display: flex; justify-content: center;">
-                            <button id = "chart-link" name = "indicator">
-                                <i class = "fas fa-chart-line"></i> See trend data for this indicator<br>at Northern Ireland level
-                            </button>
-                        </form>
+                    <div class = "row" style = "margin-top: 20px;">
+                        <div class = "blue-label" style = "min-width: 280px;">How do we measure this?</div>
+                        <div id = "measure-info-map" class = "white-box"></div>
                     </div>
-                </div>
-                <div class = "row" style = "margin-top: 20px;">
-                    <div class = "blue-label" style = "min-width: 280px;">How do we measure this?</div>
-                    <div id = "measure-info-map" class = "white-box"></div>
-                </div>
-                <div class = "row" style = "margin-top: 20px;">
-                    <div class = "blue-label" style = "min-width: 280px;">Why is this indicator important?</div>
-                    <div id = "ind-important-map" class = "white-box"></div>
-                </div>
-                <div class = "grey-box">
-                    <strong>Source:</strong>
-                    <p id = "source-info-map"></p>
-                    <strong>More data:</strong>
-                    <p id = "data-info-map"></p>
-                    <div id = "further-expander-map" tabindex="0">
-                        <strong>Further information</strong> <i style = "color: #142062" class="fa-solid fa-plus"></i> <span style = "font-size: 10pt; color: #142062">Click to expand</span>
+                    <div class = "row" style = "margin-top: 20px;">
+                        <div class = "blue-label" style = "min-width: 280px;">Why is this indicator important?</div>
+                        <div id = "ind-important-map" class = "white-box"></div>
                     </div>
-                    <div id = "further-info-map"></div>
-                    <strong>Impact of Covid-19</strong><br>
-                    <div id = "covid-info-map"></div>
+                    <div class = "grey-box">
+                        <strong>Source:</strong>
+                        <p id = "source-info-map"></p>
+                        <strong>More data:</strong>
+                        <p id = "data-info-map"></p>
+                        <div id = "further-expander-map" tabindex="0">
+                            <strong>Further information</strong> <i style = "color: #142062" class="fa-solid fa-plus"></i> <span style = "font-size: 10pt; color: #142062">Click to expand</span>
+                        </div>
+                        <div id = "further-info-map"></div>
+                        <strong>Impact of Covid-19</strong><br>
+                        <div id = "covid-info-map"></div>
+                    </div>
                 </div>
             </div>
 

@@ -249,9 +249,11 @@ function generateHexagons (d) {
             hex.classList.add("insufficient");
             hex_label.classList.add("insufficient");
             hex_label.innerHTML = indicators[i];
-        } else {    // Otherwise:
+        } else if (Object.keys(no_change_indicator).includes(indicators[i])) {    // Otherwise:
             hex.classList.add("neutral");
             hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long">';      // Place the indicator name in the label
+        } else {
+            hex_container.style.display = "none";
         }
 
         hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
@@ -943,13 +945,7 @@ removeAriaFromIcons = function() {
 
 // Execute the following functions when window loads for first time:
 window.onload = function() {
-    showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
-    sizeForMobile();            // Resize and re-position page elements (see below)
-    mainContainerHeight();      // See above
-    if (maps_scrn.style.display == "block") {
-        drawMap();
-    }
-    removeAriaFromIcons();
+    dataPortalLive();    
 };
 
 // Execute the following functions anytime the window is resized:
@@ -962,8 +958,6 @@ window.onresize = function() {
     plotOverallHexes("insufficient");
     plotExpandedDomains();
 }
-
-
 
 // This function updates the second dropdown menu on the maps screen based on what has been selected by the user in the first dropdown menu
 function updateMapSelect2() {
@@ -1155,7 +1149,6 @@ function sizeForMobile() {
         }
 
         domains_footer.style.fontSize = "12pt";
-        
 
         while (breaks[0]) {
             map_form.removeChild(breaks[0]);            // Remove any line breaks between dropdown menus
@@ -1719,6 +1712,7 @@ plotExpandedDomains = function() {
             ind_hex_label = document.createElement("div");
             ind_hex_label.classList.add("ind-hex-label");
 
+            ind_hex_container = document.createElement("button");
 
             if (Object.keys(improving_indicator).includes(inds[j])) {
                 ind_hex.classList.add("positive");
@@ -1734,9 +1728,11 @@ plotExpandedDomains = function() {
                 ind_hex_label.innerHTML = inds[j];
             } else if (Object.keys(no_change_indicator).includes(inds[j])) {
                 ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+            } else {
+                ind_hex_container.style.display = "none";
             }
 
-            ind_hex_container = document.createElement("button");
+            
             ind_hex_container.classList.add("shake-hex");            
             ind_hex_container.classList.add("ind-hex-container");
             ind_hex_container.name = "indicator";
@@ -1832,6 +1828,7 @@ plotExpandedDomains = function() {
             ind_hex_label = document.createElement("div");
             ind_hex_label.classList.add("ind-hex-label");
 
+            ind_hex_container = document.createElement("button");
 
             if (Object.keys(improving_indicator).includes(inds[j])) {
                 ind_hex.classList.add("positive");
@@ -1847,9 +1844,11 @@ plotExpandedDomains = function() {
                 ind_hex_label.innerHTML = inds[j];
             } else if (Object.keys(no_change_indicator).includes(inds[j])) {
                 ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+            } else {
+                ind_hex_container.style.display = "none";
             }
 
-            ind_hex_container = document.createElement("button");
+            
             ind_hex_container.classList.add("shake-hex");            
             ind_hex_container.classList.add("ind-hex-container");
             ind_hex_container.name = "indicator";
