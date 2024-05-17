@@ -1149,7 +1149,6 @@ function sizeForMobile() {
         }
 
         domains_footer.style.fontSize = "12pt";
-        
 
         while (breaks[0]) {
             map_form.removeChild(breaks[0]);            // Remove any line breaks between dropdown menus

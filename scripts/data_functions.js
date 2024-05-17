@@ -1540,7 +1540,7 @@ async function drawMap() {
   const fetched_data = await response.json();
   const {result} = fetched_data;
 
-   if (result == null) {
+   if (await result == null) {
       document.getElementById("map-content").style.display = "none";
 
       warning_div = document.createElement("div");
@@ -1548,23 +1548,27 @@ async function drawMap() {
       warning_div.innerHTML = "<table><tr><td><i class='fa-solid fa-triangle-exclamation' style = 'margin-right: 5px;'></i></td><td>Information for the <b>" + map_select_2.value + "</b> indicator is currently not available on the NISRA Data Portal. Please try again later.</td></tr></table>" ;
 
       document.getElementById("maps-scrn").appendChild(warning_div);
+
    } else {
 
-   let value = result.value;
-   let dimension = result.dimension;
-   let updated = result.updated;
-   let note = result.note;
+      document.getElementById("map-content").style.display = "block";
+      if (document.getElementById("warning-div")) {
+         document.getElementById("warning-div").style.display = "none";
+      }
 
-   
+      let value = result.value;
+      let dimension = result.dimension;
+      let updated = result.updated;
+      let note = result.note;      
 
-   var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label; // The unit of measurement according to the metadata
+      var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label; // The unit of measurement according to the metadata
 
-   var years = Object.values(dimension)[1].category.index; // All years present in the data
+      var years = Object.values(dimension)[1].category.index; // All years present in the data
 
-   var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
+      var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
 
-   var num_groups = groups.length;     // The number of groups
-   var NI_position = groups.indexOf("N92000002"); // Position of NI in list of groups
+      var num_groups = groups.length;     // The number of groups
+      var NI_position = groups.indexOf("N92000002"); // Position of NI in list of groups
 
       if (NI_position > -1) {
          data_series = [];
