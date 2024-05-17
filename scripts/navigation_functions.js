@@ -945,13 +945,7 @@ removeAriaFromIcons = function() {
 
 // Execute the following functions when window loads for first time:
 window.onload = function() {
-    showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
-    sizeForMobile();            // Resize and re-position page elements (see below)
-    mainContainerHeight();      // See above
-    if (maps_scrn.style.display == "block") {
-        drawMap();
-    }
-    removeAriaFromIcons();
+    dataPortalLive();    
 };
 
 // Execute the following functions anytime the window is resized:
@@ -964,8 +958,6 @@ window.onresize = function() {
     plotOverallHexes("insufficient");
     plotExpandedDomains();
 }
-
-
 
 // This function updates the second dropdown menu on the maps screen based on what has been selected by the user in the first dropdown menu
 function updateMapSelect2() {

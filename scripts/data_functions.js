@@ -1956,3 +1956,40 @@ function number_to_word(n) {
    result = translate(n) 
   return result.trim()
 }
+
+// Define function to test if data portal is operational
+async function dataPortalLive () {
+
+   let currentDate = new Date().toISOString().split('T')[0];    
+
+   api_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
+
+   // Fetch data and store in object fetched_data
+   const response = await fetch(api_url);
+   const fetched_data = await response.json();
+   const {result} = fetched_data;
+
+   if (result == null) {
+      
+      screens = document.getElementsByClassName("screen");
+
+      for (let i = 0; i < screens.length; i ++) {
+         screens[i].style.display = "none";
+      }
+
+      warning_div = document.createElement("div");
+      warning_div.id = "warning-div";
+      warning_div.innerHTML = "<table><tr><td><i class='fa-solid fa-triangle-exclamation' style = 'margin-right: 5px;'></i></td><td>The NISRA Data Portal is currently offline for maintenace. Please try again later.</td></tr></table>";
+
+      document.getElementById("main-container").appendChild(warning_div);
+   }
+
+   showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
+   sizeForMobile();            // Resize and re-position page elements
+   mainContainerHeight();      // See above
+   if (maps_scrn.style.display == "block") {
+      drawMap();
+   }
+   removeAriaFromIcons();
+
+}
