@@ -249,9 +249,11 @@ function generateHexagons (d) {
             hex.classList.add("insufficient");
             hex_label.classList.add("insufficient");
             hex_label.innerHTML = indicators[i];
-        } else {    // Otherwise:
+        } else if (Object.keys(no_change_indicator).includes(indicators[i])) {    // Otherwise:
             hex.classList.add("neutral");
             hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long">';      // Place the indicator name in the label
+        } else {
+            hex_container.style.display = "none";
         }
 
         hex_container.classList.add("ind-hex-container");   // Add class "ind-hex-container" to the hexagon container
@@ -1719,6 +1721,7 @@ plotExpandedDomains = function() {
             ind_hex_label = document.createElement("div");
             ind_hex_label.classList.add("ind-hex-label");
 
+            ind_hex_container = document.createElement("button");
 
             if (Object.keys(improving_indicator).includes(inds[j])) {
                 ind_hex.classList.add("positive");
@@ -1734,9 +1737,11 @@ plotExpandedDomains = function() {
                 ind_hex_label.innerHTML = inds[j];
             } else if (Object.keys(no_change_indicator).includes(inds[j])) {
                 ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+            } else {
+                ind_hex_container.style.display = "none";
             }
 
-            ind_hex_container = document.createElement("button");
+            
             ind_hex_container.classList.add("shake-hex");            
             ind_hex_container.classList.add("ind-hex-container");
             ind_hex_container.name = "indicator";
@@ -1832,6 +1837,7 @@ plotExpandedDomains = function() {
             ind_hex_label = document.createElement("div");
             ind_hex_label.classList.add("ind-hex-label");
 
+            ind_hex_container = document.createElement("button");
 
             if (Object.keys(improving_indicator).includes(inds[j])) {
                 ind_hex.classList.add("positive");
@@ -1847,9 +1853,11 @@ plotExpandedDomains = function() {
                 ind_hex_label.innerHTML = inds[j];
             } else if (Object.keys(no_change_indicator).includes(inds[j])) {
                 ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+            } else {
+                ind_hex_container.style.display = "none";
             }
 
-            ind_hex_container = document.createElement("button");
+            
             ind_hex_container.classList.add("shake-hex");            
             ind_hex_container.classList.add("ind-hex-container");
             ind_hex_container.name = "indicator";

@@ -116,6 +116,7 @@ async function indicatorPerformance (dom = null) {
 
          if (result == null) {   // Output message to console when indicator is not found / else continue with calculation
             console.log("Warning: No indicator information found for " + indicators[j] + ". Refresh to try again. Check matrix spelling for indicator in domains_data.js if problem persists.");
+
          } else {
 
             const {dimension, value} = result;  // from result we then extract the object keys we need
@@ -241,7 +242,14 @@ async function createLineChart(d, e) {
 
     if (result == null) {
       console.log("Warning: No indicator information found for " + e + ". Refresh to try again. Check matrix spelling for indicator in domains_data.js if problem persists.");
-      num_indicators = num_indicators - 1;
+      document.getElementById("indicator-content").style.display = "none";
+      
+      warning_div = document.createElement("div");
+      warning_div.id = "warning-div";
+      warning_div.innerHTML = "<table><tr><td><i class='fa-solid fa-triangle-exclamation' style = 'margin-right: 5px;'></i></td><td>Information for the <b>" + e + "</b> indicator is currently not available on the NISRA Data Portal. Please try again later.</td></tr></table>" ;
+
+      document.getElementById("indicator-scrn").appendChild(warning_div);
+
       return;  // If one indicator is not working it will still attempt to render rest of them rather than crashing entire loop
     }
 
@@ -1524,366 +1532,386 @@ async function drawMap() {
    var matrix = map_select_3.value;
 
    // URL to query (pre-production)
-   api_url = config.baseURL + "api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en?apiKey=" + config.apiKey;
+   // api_url = config.baseURL + "api.restful/PxStat.Data.Cube_API.ReadDataset/" + matrix + "/JSON-stat/2.0/en?apiKey=" + config.apiKey;
+   api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
 
   // Fetch data and store in object fetched_data
   const response = await fetch(api_url);
   const fetched_data = await response.json();
-  const {value, dimension, updated, note} = fetched_data;
+  const {result} = fetched_data;
 
-  var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label; // The unit of measurement according to the metadata
+   if (result == null) {
+      document.getElementById("map-content").style.display = "none";
 
-  var years = Object.values(dimension)[1].category.index; // All years present in the data
+      warning_div = document.createElement("div");
+      warning_div.id = "warning-div";
+      warning_div.innerHTML = "<table><tr><td><i class='fa-solid fa-triangle-exclamation' style = 'margin-right: 5px;'></i></td><td>Information for the <b>" + map_select_2.value + "</b> indicator is currently not available on the NISRA Data Portal. Please try again later.</td></tr></table>" ;
 
-  var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
-
-  var num_groups = groups.length;     // The number of groups
-  var NI_position = groups.indexOf("N92000002"); // Position of NI in list of groups
-
-   if (NI_position > -1) {
-      data_series = [];
-      for (let i = 0; i < value.length; i ++) {
-         if (i % num_groups != NI_position) {
-            data_series.push(value[i])
-         }
-      }
-
-      num_groups = num_groups - 1;
-
+      document.getElementById("maps-scrn").appendChild(warning_div);
    } else {
-      data_series = value
-   }
 
-   data_by_year = {}
+   let value = result.value;
+   let dimension = result.dimension;
+   let updated = result.updated;
+   let note = result.note;
 
-   // Fix in Self-efficacy by LGD map. Blank value for Fermanagh and Omagh in 2020/21 was uploaded to portal with "*" character instead of a blank.
-   for (let i = 0; i < data_series.length; i ++) {
-      if (data_series[i] == "*") {
-         data_series[i] = null;
-      }
-   }
    
-   for (let i = 0; i < years.length; i ++) {
 
-      data_for_year = data_series.slice(num_groups * i, num_groups * (i + 1));
+   var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label; // The unit of measurement according to the metadata
 
-      keep_year = false;
-      for (let j = 0; j < data_for_year.length; j ++) {
-         if (data_for_year[j] != null && data_for_year[j] != "N/A") {
-            keep_year = true;
-            break;
+   var years = Object.values(dimension)[1].category.index; // All years present in the data
+
+   var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
+
+   var num_groups = groups.length;     // The number of groups
+   var NI_position = groups.indexOf("N92000002"); // Position of NI in list of groups
+
+      if (NI_position > -1) {
+         data_series = [];
+         for (let i = 0; i < value.length; i ++) {
+            if (i % num_groups != NI_position) {
+               data_series.push(value[i])
+            }
          }
-      }
 
-      if (keep_year == true) {
-         data_by_year[years[i]] = data_for_year;
-      }
-      
-   }
-   
-   years = Object.keys(data_by_year);
+         num_groups = num_groups - 1;
 
-   all_values = [];
-   for (let i = 0; i < data_series.length; i ++) {
-      if (data_series[i] != null && data_series[i] != "N/A") {
-         all_values.push(data_series[i])
-      }
-   }
-
-   map_select_4 = document.getElementById("map-select-4");
-   date_display = document.getElementById("date-display");
-
-   map_select_4.min = "0";
-   map_select_4.max = years.length - 1;
-   map_select_4.value = years.length - 1;
-
-   // Create a div for map to sit in
-   map_div = document.createElement("div");
-   map_div.id = matrix + "-map";
-   map_div.classList.add("map");
-   map_container.appendChild(map_div);
-
-   // Create a map
-   var map = L.map(matrix + "-map",
-   {zoomControl: false, // Turn off zoom controls
-      dragging: false,
-      touchZoom: false,
-      doubleClickZoom: false,
-      scrollWheelZoom: false,
-      boxZoom: false,
-      keyboard: false,
-      attributionControl: false,
-      tap: false}).setView([54.65, -6.8], 8); // Set initial co-ordinates and zoom
-
-   L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-   }).addTo(map); // Add a background map   
-
-   function mapForYear () {
-
-      selected_year = years[Number(map_select_4.value)];
-
-      date_display.textContent = selected_year;
-
-      selected_data = data_by_year[selected_year];
-
-      var range_min = Math.floor(Math.min(...all_values));
-      var range_max = Math.ceil(Math.max(...all_values));
-      
-      var range = range_max - range_min; // Calculate the range of values
-
-      // Create an array colours, where each value is between 0 and 1 depending on where it falls in the range of values
-      colours = [];
-      for (let i = 0; i < selected_data.length; i++) {
-         colours.push((selected_data[i] - range_min) / range);
-      }
-
-      if (map_select_2.value == "") {
-       location.reload();
-       return;
-      }
-
-      // Colour palettes for increasing/decreasing indicators
-      if (domains_data[map_select_1.value].indicators[map_select_2.value].improvement == "increase") {
-         var palette = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
       } else {
-         var palette = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
+         data_series = value
       }
 
-      // When called chooses a colour from above palette based on value of colours array
-      function getColor(d) {
+      data_by_year = {}
 
-         if (d < 0) {
-            return "#d3d3d3";
-         } else {
-            return palette[Math.round(d*4)];
-         }
-      }
-
-      // Variable name to use if geo data is LGD or AA
-      if (matrix.slice(-3) == "LGD") {
-         area_var = "LGDNAME"
-      } else {
-         area_var = "PC_NAME"
-      }
-
-      // Function to add tool tip to each layer
-      function enhanceLayer(f, l){
-
-         if (f.properties){
-               
-               if (selected_data[f.properties['OBJECTID'] - 1] != null) {
-                  l.bindTooltip(f.properties[area_var] + " (" + selected_year + "): <b>" + selected_data[f.properties['OBJECTID'] - 1].toLocaleString("en-GB") + "</b> (" + unit + ")");
-               } else {
-                  l.bindTooltip(f.properties[area_var] + " (" + selected_year + "): <b>Not available</b>");
-               }
-
-               // http://leafletjs.com/reference.html#path-options
-               l.setStyle({
-                  fillColor: getColor(colours[f.properties['OBJECTID'] - 1]),
-                  fillOpacity: 0.75,
-                  stroke: true,
-                  color: "#555555",
-                  opacity: 0.75,
-                  weight: 1
-               });
-
-               l.on("mouseover", function (e) {
-                  l.setStyle({
-                     weight: 2,
-                     opacity: 1
-                  })
-               })
-
-               l.on("mouseout", function (e) {
-                  l.setStyle({
-                     weight: 1,
-                     opacity: 0.75
-                  })
-               })
+      // Fix in Self-efficacy by LGD map. Blank value for Fermanagh and Omagh in 2020/21 was uploaded to portal with "*" character instead of a blank.
+      for (let i = 0; i < data_series.length; i ++) {
+         if (data_series[i] == "*") {
+            data_series[i] = null;
          }
       }
       
-      if (typeof shapes !== "undefined") {
-         shapes.clearLayers();
-      }
-      
-      // geojson data atted to map and enhanceLayer function applied to each feature    
-      if (matrix.slice(-3) == "LGD") {
-            shapes = L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
-      } else {
-            shapes = L.geoJSON(AA_map, {onEachFeature:enhanceLayer}).addTo(map);
-      }      
+      for (let i = 0; i < years.length; i ++) {
 
-      // Further info and how do we measure this divs:
-      var measure_info_map = document.getElementById("measure-info-map");
-      var further_info_map = document.getElementById("further-info-map");
+         data_for_year = data_series.slice(num_groups * i, num_groups * (i + 1));
 
-      // Obtain further info text from query
-      var further_note = note[0];
+         keep_year = false;
+         for (let j = 0; j < data_for_year.length; j ++) {
+            if (data_for_year[j] != null && data_for_year[j] != "N/A") {
+               keep_year = true;
+               break;
+            }
+         }
 
-      if (further_note.indexOf("Further information") != -1) {
-         var further_string = "Further information";
-      } else if (further_note.indexOf("Further Information") != -1) {
-         var further_string = "Further Information";
-      } else if (further_note.indexOf("Notes:") != -1) {
-         var further_string = "Notes:";
-      } else {
-         further_note = "Not available";
-      }
-
-      if (further_note != "Not available") {
-         further_note = further_note.slice(further_note.indexOf(further_string) + further_string.length);
-         further_note = further_note.slice(further_note.indexOf("[/b]") + 4);
-         if (further_note.indexOf("[b]") != -1) {
-            further_note = further_note.slice(0, further_note.indexOf("[b]"))
+         if (keep_year == true) {
+            data_by_year[years[i]] = data_for_year;
          }
          
-         // URLS are converted
-         link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
-
-         if (link != "") {
-            linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
-            url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
-
-            further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
-         }
-
-         further_note = further_note.replaceAll("[i]", "<em>");
-         further_note = further_note.replaceAll("[/i]", "</em>");
       }
       
-      further_note = "<ol><li>" + further_note.replace("1.", "") + "</li></ol>"
+      years = Object.keys(data_by_year);
 
-      for (let i = 2; i < 10; i++) {
-         further_note = further_note.replaceAll("\n" + i + ".", "</li><li>")  // Line breaks are inserted between individidual points within "Further Information"
+      all_values = [];
+      for (let i = 0; i < data_series.length; i ++) {
+         if (data_series[i] != null && data_series[i] != "N/A") {
+            all_values.push(data_series[i])
+         }
       }
 
-      // Obtain how do we measure this text from query
-      var measure_text = note[0];
+      map_select_4 = document.getElementById("map-select-4");
+      date_display = document.getElementById("date-display");
 
-      measure_string = "How do we measure this?"
+      map_select_4.min = "0";
+      map_select_4.max = years.length - 1;
+      map_select_4.value = years.length - 1;
 
-      if (measure_text.indexOf(measure_string) > -1) {
-         measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
-         measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
-      } else {
-         measure_string = "How is this measured?"
+      // Create a div for map to sit in
+      map_div = document.createElement("div");
+      map_div.id = matrix + "-map";
+      map_div.classList.add("map");
+      map_container.appendChild(map_div);
+
+      // Create a map
+      var map = L.map(matrix + "-map",
+      {zoomControl: false, // Turn off zoom controls
+         dragging: false,
+         touchZoom: false,
+         doubleClickZoom: false,
+         scrollWheelZoom: false,
+         boxZoom: false,
+         keyboard: false,
+         attributionControl: false,
+         tap: false}).setView([54.65, -6.8], 8); // Set initial co-ordinates and zoom
+
+      L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+         maxZoom: 19,
+         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map); // Add a background map   
+
+      function mapForYear () {
+
+         selected_year = years[Number(map_select_4.value)];
+
+         date_display.textContent = selected_year;
+
+         selected_data = data_by_year[selected_year];
+
+         var range_min = Math.floor(Math.min(...all_values));
+         var range_max = Math.ceil(Math.max(...all_values));
+         
+         var range = range_max - range_min; // Calculate the range of values
+
+         // Create an array colours, where each value is between 0 and 1 depending on where it falls in the range of values
+         colours = [];
+         for (let i = 0; i < selected_data.length; i++) {
+            colours.push((selected_data[i] - range_min) / range);
+         }
+
+         if (map_select_2.value == "") {
+         location.reload();
+         return;
+         }
+
+         // Colour palettes for increasing/decreasing indicators
+         if (domains_data[map_select_1.value].indicators[map_select_2.value].improvement == "increase") {
+            var palette = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
+         } else {
+            var palette = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
+         }
+
+         // When called chooses a colour from above palette based on value of colours array
+         function getColor(d) {
+
+            if (d < 0) {
+               return "#d3d3d3";
+            } else {
+               return palette[Math.round(d*4)];
+            }
+         }
+
+         // Variable name to use if geo data is LGD or AA
+         if (matrix.slice(-3) == "LGD") {
+            area_var = "LGDNAME"
+         } else {
+            area_var = "PC_NAME"
+         }
+
+         // Function to add tool tip to each layer
+         function enhanceLayer(f, l){
+
+            if (f.properties){
+                  
+                  if (selected_data[f.properties['OBJECTID'] - 1] != null) {
+                     l.bindTooltip(f.properties[area_var] + " (" + selected_year + "): <b>" + selected_data[f.properties['OBJECTID'] - 1].toLocaleString("en-GB") + "</b> (" + unit + ")");
+                  } else {
+                     l.bindTooltip(f.properties[area_var] + " (" + selected_year + "): <b>Not available</b>");
+                  }
+
+                  // http://leafletjs.com/reference.html#path-options
+                  l.setStyle({
+                     fillColor: getColor(colours[f.properties['OBJECTID'] - 1]),
+                     fillOpacity: 0.75,
+                     stroke: true,
+                     color: "#555555",
+                     opacity: 0.75,
+                     weight: 1
+                  });
+
+                  l.on("mouseover", function (e) {
+                     l.setStyle({
+                        weight: 2,
+                        opacity: 1
+                     })
+                  })
+
+                  l.on("mouseout", function (e) {
+                     l.setStyle({
+                        weight: 1,
+                        opacity: 0.75
+                     })
+                  })
+            }
+         }
+         
+         if (typeof shapes !== "undefined") {
+            shapes.clearLayers();
+         }
+         
+         // geojson data atted to map and enhanceLayer function applied to each feature    
+         if (matrix.slice(-3) == "LGD") {
+               shapes = L.geoJSON(LGD_map, {onEachFeature:enhanceLayer}).addTo(map);
+         } else {
+               shapes = L.geoJSON(AA_map, {onEachFeature:enhanceLayer}).addTo(map);
+         }      
+
+         // Further info and how do we measure this divs:
+         var measure_info_map = document.getElementById("measure-info-map");
+         var further_info_map = document.getElementById("further-info-map");
+
+         // Obtain further info text from query
+         var further_note = note[0];
+
+         if (further_note.indexOf("Further information") != -1) {
+            var further_string = "Further information";
+         } else if (further_note.indexOf("Further Information") != -1) {
+            var further_string = "Further Information";
+         } else if (further_note.indexOf("Notes:") != -1) {
+            var further_string = "Notes:";
+         } else {
+            further_note = "Not available";
+         }
+
+         if (further_note != "Not available") {
+            further_note = further_note.slice(further_note.indexOf(further_string) + further_string.length);
+            further_note = further_note.slice(further_note.indexOf("[/b]") + 4);
+            if (further_note.indexOf("[b]") != -1) {
+               further_note = further_note.slice(0, further_note.indexOf("[b]"))
+            }
+            
+            // URLS are converted
+            link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
+
+            if (link != "") {
+               linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
+               url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+
+               further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+            }
+
+            further_note = further_note.replaceAll("[i]", "<em>");
+            further_note = further_note.replaceAll("[/i]", "</em>");
+         }
+         
+         further_note = "<ol><li>" + further_note.replace("1.", "") + "</li></ol>"
+
+         for (let i = 2; i < 10; i++) {
+            further_note = further_note.replaceAll("\n" + i + ".", "</li><li>")  // Line breaks are inserted between individidual points within "Further Information"
+         }
+
+         // Obtain how do we measure this text from query
+         var measure_text = note[0];
+
+         measure_string = "How do we measure this?"
+
          if (measure_text.indexOf(measure_string) > -1) {
             measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
             measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
          } else {
-            measure_text = "";
-         }
-      }      
-
-      // Write content to info boxes
-      measure_info_map.innerHTML = measure_text;
-      further_info_map.innerHTML = further_note;
-
-      if (further_note == "Not available") {
-         further_expander_map.style.display = "none";
-     } else {
-         further_expander_map.removeAttribute("style");
-     }
-
-      // Legend divs added to map
-      if (!document.getElementById(matrix + "-legend")) {
-         legend_div = document.createElement("div");
-         legend_div.id = matrix + "-legend";
-         legend_div.classList.add("map-legend");
-         legend_row_1 = document.createElement("div");
-         legend_row_1.classList.add("row");
-
-         min_value = document.createElement("div");
-         min_value.classList.add("legend-min");
-         legend_row_1.appendChild(min_value);
-
-         max_value = document.createElement("div");
-
-         max_value.classList.add("legend-max");
-         legend_row_1.appendChild(max_value);
-
-         legend_div.appendChild(legend_row_1);
-
-         legend_row_2 = document.createElement("div");
-         legend_row_2.classList.add("row");
-
-         for (let i = 0; i < palette.length; i++) {
-            colour_block = document.createElement("div");
-            colour_block.style.backgroundColor = palette[i];
-            colour_block.classList.add("colour-block");
-            legend_row_2.appendChild(colour_block);
-            if (i == 0) {
-               colour_block.style.marginLeft = "7.5px"
+            measure_string = "How is this measured?"
+            if (measure_text.indexOf(measure_string) > -1) {
+               measure_text = measure_text.slice(measure_text.indexOf(measure_string) + measure_string.length).replace("[/b]", "");
+               measure_text = measure_text.slice(0, measure_text.indexOf("[b]")).trim();
+            } else {
+               measure_text = "";
             }
+         }      
+
+         // Write content to info boxes
+         measure_info_map.innerHTML = measure_text;
+         further_info_map.innerHTML = further_note;
+
+         if (further_note == "Not available") {
+            further_expander_map.style.display = "none";
+      } else {
+            further_expander_map.removeAttribute("style");
+      }
+
+         // Legend divs added to map
+         if (!document.getElementById(matrix + "-legend")) {
+            legend_div = document.createElement("div");
+            legend_div.id = matrix + "-legend";
+            legend_div.classList.add("map-legend");
+            legend_row_1 = document.createElement("div");
+            legend_row_1.classList.add("row");
+
+            min_value = document.createElement("div");
+            min_value.classList.add("legend-min");
+            legend_row_1.appendChild(min_value);
+
+            max_value = document.createElement("div");
+
+            max_value.classList.add("legend-max");
+            legend_row_1.appendChild(max_value);
+
+            legend_div.appendChild(legend_row_1);
+
+            legend_row_2 = document.createElement("div");
+            legend_row_2.classList.add("row");
+
+            for (let i = 0; i < palette.length; i++) {
+               colour_block = document.createElement("div");
+               colour_block.style.backgroundColor = palette[i];
+               colour_block.classList.add("colour-block");
+               legend_row_2.appendChild(colour_block);
+               if (i == 0) {
+                  colour_block.style.marginLeft = "7.5px"
+               }
+            }
+
+            legend_div.appendChild(legend_row_2);
+
+            map_container.appendChild(legend_div);
+
+         }        
+
+         min_value.innerHTML = range_min.toLocaleString("en-GB");       
+         max_value.innerHTML = range_max.toLocaleString("en-GB");      
+
+         chart_title = Object.values(dimension.STATISTIC.category.label)[0];
+
+         
+         map_title.innerHTML = chart_title + " (" + selected_year + ")";
+
+         var source_info_map = document.getElementById("source-info-map");
+
+         // Source info pulled from data portal:
+         source_info = note[0];
+
+         source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
+         source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
+         source_info = source_info.slice(0, source_info.indexOf("[b]"));  
+
+         if (source_info.indexOf("[url=") > 2) {
+            source_name = source_info.slice(0, source_info.indexOf("[url=")).trim();
+         } else {
+            source_name = source_info.slice(source_info.indexOf("]") + 1);
+            source_name = source_name.slice(0, source_name.indexOf("[/url]"));
          }
 
-         legend_div.appendChild(legend_row_2);
+         source_link = source_info.slice(source_info.indexOf("[url=") + 5);
+         source_link = source_link.slice(0, source_link.indexOf("]"));
 
-         map_container.appendChild(legend_div);
+         source_info_map.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
 
-      }        
+         // Covid text extract
+         covid_text = note[0];
 
-      min_value.innerHTML = range_min.toLocaleString("en-GB");       
-      max_value.innerHTML = range_max.toLocaleString("en-GB");      
+         covid_string = "Impact of Covid-19";
 
-      chart_title = Object.values(dimension.STATISTIC.category.label)[0];
+         if (covid_text.indexOf(covid_string) > -1) {
+            covid_text = covid_text.slice(covid_text.indexOf(covid_string) + covid_string.length).replace("[/b]", "");
+            covid_text = covid_text.slice(0, covid_text.indexOf(["[b"])).trim();
 
-      
-      map_title.innerHTML = chart_title + " (" + selected_year + ")";
+            document.getElementById("covid-info-map").textContent = covid_text;
+         }
 
-      var source_info_map = document.getElementById("source-info-map");
+         
 
-      // Source info pulled from data portal:
-      source_info = note[0];
-
-      source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
-      source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
-      source_info = source_info.slice(0, source_info.indexOf("[b]"));  
-
-      if (source_info.indexOf("[url=") > 2) {
-         source_name = source_info.slice(0, source_info.indexOf("[url=")).trim();
-      } else {
-         source_name = source_info.slice(source_info.indexOf("]") + 1);
-         source_name = source_name.slice(0, source_name.indexOf("[/url]"));
       }
 
-      source_link = source_info.slice(source_info.indexOf("[url=") + 5);
-      source_link = source_link.slice(0, source_link.indexOf("]"));
-
-      source_info_map.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
-
-      // Covid text extract
-      covid_text = note[0];
-
-      covid_string = "Impact of Covid-19";
-
-      if (covid_text.indexOf(covid_string) > -1) {
-         covid_text = covid_text.slice(covid_text.indexOf(covid_string) + covid_string.length).replace("[/b]", "");
-         covid_text = covid_text.slice(0, covid_text.indexOf(["[b"])).trim();
-
-         document.getElementById("covid-info-map").textContent = covid_text;
-      }
-
-      
-
-   }
-
-   mapForYear();
-
-   map_select_4.oninput = function () {
       mapForYear();
+
+      map_select_4.oninput = function () {
+         mapForYear();
+      }
+
+      // Footnote on when data was last updated
+      var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
+
+      update_div = document.createElement("div");
+      update_div.classList.add("map-date");
+      update_div.innerHTML = updated_note;
+      map_container.appendChild(update_div);
+
    }
-
-   // Footnote on when data was last updated
-   var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
-
-   update_div = document.createElement("div");
-   update_div.classList.add("map-date");
-   update_div.innerHTML = updated_note;
-   map_container.appendChild(update_div);
 
   // Hide loading gif after map is generated
   map_load.style.display = "none";
