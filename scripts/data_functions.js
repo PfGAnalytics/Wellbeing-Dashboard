@@ -1968,9 +1968,16 @@ async function dataPortalLive () {
    api_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
 
    // Fetch data and store in object fetched_data
-   const response = await fetch(api_url);
-   const fetched_data = await response.json();
-   const {result} = fetched_data;
+
+   let result = null;
+
+   try {
+      const response = await fetch(api_url);
+      const fetched_data = await response.json();
+      result = fetched_data;
+   } catch (error) {
+      result = null;
+   }
 
    if (result == null) {
       
