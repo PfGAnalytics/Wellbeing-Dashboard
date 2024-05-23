@@ -318,7 +318,7 @@ var domains_data = {
          },
          "Respect": {
             importance: "Building and promoting respect helps support the development of an inclusive society and therefore provides a foundation for good relations.",
-            base_year: "2017",
+            base_year: "2019",
             ci: 2.7,
             data: {
                NI: "",
@@ -330,7 +330,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This means that adults living in Northern Ireland in 2021 feel less respected on multiple measures than they did in 2017.",
+               worsened: "This means that adults living in Northern Ireland in 2023 feel less respected on multiple measures than they did in 2019.",
                insufficient: ""
             }
          }
