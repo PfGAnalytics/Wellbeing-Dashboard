@@ -702,8 +702,8 @@ var domains_data = {
        indicators: {
          "Crime prevalence rate": {
             importance: "The crime prevalence rate gives the proportion of households/adults who have been a victim of a crime covered by the survey. It will capture incidents experienced by people living in private households, irrespective of whether or not these crimes were reported to, or recorded by, the police.",
-            base_year: "2017/18",
-            ci: 1.9,
+            base_year: "2021/22",
+            ci: 1.1,
             data: {
                NI: "",
                AA: "INDCRIMEAA",
@@ -712,9 +712,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The proportion who have been a victim of a crime measured through the survey has fallen.",
+               improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               worsened: "Latest findings show the proportion of respondents who had been a victim of any NISCS crime in 2022/23 was 5.1%, a statistically significant increase from 3.8% in 2021/22.",
                insufficient: ""
             }
          },
@@ -736,24 +736,24 @@ var domains_data = {
          //       insufficient: ""
          //    }
          // },
-         // "Personal safety": {
-         //    importance: "It is important that everyone feels safe",
-         //    base_year: "2019/20",
-         //    ci: 2,
-         //    data: {
-         //       NI: "INDPERSSAFENI",
-         //       AA: "",
-         //       LGD: "",
-         //       EQ: ""
-         //    },
-         //    improvement: "decrease",
-         //    telling: {
-         //       improved: "This commentary is a placeholder.",
-         //       no_change: "This commentary is a placeholder.",
-         //       worsened: "This commentary is a placeholder.",
-         //       insufficient: ""
-         //    }
-         // },
+         "Personal safety": {
+             importance: "This gives an indication of how safe people feel in their area as it shows the proportion of people who feel very unsafe walking alone in the area in which they live after dark.",
+            base_year: "2021/22",
+           ci: 1.3,
+            data: {
+               NI: "INDPERSSAFENI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+           improvement: "decrease",
+           telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "Latest findings show the proportion, 7%, who felt very unsafe walking alone in their area after dark was similar to the 2021/22 figure of 6%.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+           }
+               },
          "Safe towns and city centres": {
             importance: "Town centres must be seen as places where people can feel safe in moving around, and where life choices are not inhibited by fears around safety. This is a key aspect of social and physical wellbeing for people living in or visiting towns and cities.",
             base_year: "2018",
@@ -772,24 +772,24 @@ var domains_data = {
                insufficient: ""
             }
          },
-         // "Worry about crime": {
-         //    importance: "It is important that people worry less about crime.",
-         //    base_year: "2019/20",
-         //    ci: 2,
-         //    data: {
-         //       NI: "INDWORRYACNI",
-         //       AA: "",
-         //       LGD: "",
-         //       EQ: ""
-         //    },
-         //    improvement: "decrease",
-         //    telling: {
-         //       improved: "This commentary is a placeholder.",
-         //       no_change: "This commentary is a placeholder.",
-         //       worsened: "This commentary is a placeholder.",
-         //       insufficient: ""
-         //    }
-         // }
+         "Worry about crime": {
+            importance: "It gives an indication of the proportion of people who are very worried about being a victim of crime which may potentially impact wellbeing.",
+            base_year: "2021/22",
+             ci: 1.2,
+             data: {
+                NI: "INDWORRYACNI",
+                AA: "",
+                LGD: "",
+               EQ: ""
+            },
+           improvement: "decrease",
+           telling: {
+              improved: "This commentary is a placeholder.",
+                no_change: "Latest findings show the apparent decrease from 5% (year of comparison) to 4% (latest findings) is not statistically significant.",
+                worsened: "This commentary is a placeholder.",
+                insufficient: ""
+             }
+          }
        }
     },
     "Caring Society": {
@@ -869,14 +869,14 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "The proportion of households who report being very satisfied or fairly satisified with their house or flat has remained consistent during this time.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Homelessness": {
-            importance: "Indicator provides information on the number of households who have presented and been accepted as homeless by the NI Housing Executive. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2018/19",
+            importance: "This indicator provides information on the number of households who have presented and been accepted as homeless by the NI Housing Executive. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
+            base_year: "2017/18",
             ci: 0,
             data: {
                NI: "",
@@ -973,7 +973,7 @@ var domains_data = {
          "Trust in the media": {
             importance: "Integrity of the media is important in ensuring that people can access reliable information about matters of public interest that impact them. Trust in the media contributes to democratic wellbeing which can impact directly on personal wellbeing.",
             base_year: "2019",
-            ci: 2,
+            ci: 1,
             data: {
                NI: "",
                AA: "",
