@@ -1989,7 +1989,7 @@ async function dataPortalLive () {
 
       warning_div = document.createElement("div");
       warning_div.id = "warning-div";
-      warning_div.innerHTML = "<table><tr><td><i class='fa-solid fa-triangle-exclamation' style = 'margin-right: 5px;'></i></td><td>The NISRA Data Portal is currently offline for maintenace. Please try again later.</td></tr></table>";
+      warning_div.innerHTML = "<table><tr><td><i class='fa-solid fa-triangle-exclamation' style = 'margin-right: 5px;'></i></td><td>The NISRA Data Portal is currently offline for maintenance. Please try again later.</td></tr></table>";
 
       document.getElementById("main-container").appendChild(warning_div);
    }
