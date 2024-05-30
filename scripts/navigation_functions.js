@@ -1754,6 +1754,15 @@ plotExpandedDomains = function() {
         by_mission_grid.removeChild(by_mission_grid.firstChild);
     }
 
+    key2 = document.createElement("div");
+    key2.classList.add("row");
+    key2.style.justifyContent = "center";
+    key2.style.marginTop = "10px";
+
+    key2.innerHTML = key.innerHTML;
+
+    by_mission_grid.appendChild(key2);
+
     var missions = ["People", "Planet", "Prosperity", "Peace"];
 
     for (let i = 0; i < missions.length; i ++) {
