@@ -866,7 +866,7 @@ var domains_data = {
                LGD: "INDSUITHOUSLGD",
                EQ: "INDSUITHOUSEQ"
             },
-            improvement: "decrease",
+            improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "The proportion of households who report being very satisfied or fairly satisified with their house or flat has remained consistent during this time.",
