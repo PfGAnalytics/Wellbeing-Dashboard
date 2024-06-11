@@ -505,7 +505,7 @@ var domains_data = {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
-               insufficient: "This is due to changes in how academic grades were awarded in response to Covid-19."
+               insufficient: " As a result of changes to the processes for awarding qualifications, in response to the pandemic, it is not possible to accurately assess change in the underlying performance."
             }
          },
          "Self-efficacy": {
