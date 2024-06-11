@@ -293,7 +293,7 @@ async function createLineChart(d, e) {
    if (indicator.data.NI == "INDINTREPNI") {
       y_axis_label = "NBI score (out of 100)";
    } else if (indicator.data.EQ == "INDLIFESATEQ") {
-      y_axis_label = "Average (mean) Life Satisfaction score"
+      y_axis_label = "Average (mean) life satisfaction score"
    } else if (indicator.data.NI == "INDLCREENI") {
       y_axis_label = "FTE employment"
    } else if (indicator.data.EQ == "INDPREVDTHEQ") {
