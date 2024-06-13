@@ -1867,7 +1867,7 @@ async function drawMap() {
          var source_info_map = document.getElementById("source-info-map");
 
          // Source info pulled from data portal:
-         source_info = note[0];
+         source_info = note[0].replaceAll("\r", "").replaceAll("\n", "");
 
          source_info = source_info.slice(source_info.indexOf("[b]Source") + "[b]Source".length);
          source_info = source_info.slice(source_info.indexOf("[/b]") + "[/b]".length);
@@ -1882,6 +1882,8 @@ async function drawMap() {
 
          source_link = source_info.slice(source_info.indexOf("[url=") + 5);
          source_link = source_link.slice(0, source_link.indexOf("]"));
+
+         
 
          source_info_map.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
 
