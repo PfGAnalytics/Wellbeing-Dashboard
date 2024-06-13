@@ -1430,7 +1430,9 @@ async function getEqualityGroups(d, e) {
 
          new Chart(pop_canvas, chart_config);      // Plot chart
          
-         note_text = result.note[0].replaceAll("\r", "").replaceAll("\n", "").replaceAll("[b] ", "[b]"); // Remove line break characters from note
+         note_text = result.note[0].replaceAll("[b] ", "[b]").replaceAll("\n", ""); 
+
+         
          
          heading_text = "[b]" + eq_groups[i];   // Find heading text by bold tag and group name
 
@@ -1451,7 +1453,8 @@ async function getEqualityGroups(d, e) {
 
          if (note_text.indexOf(heading_text) > -1) {
 
-            note_text = note_text.slice(note_text.indexOf(heading_text) + heading_text.length).replaceAll("[/b]", " ").replaceAll("[/url]", "[/url] ").replaceAll(".", ". ");
+            note_text = note_text.slice(note_text.indexOf(heading_text) + heading_text.length).replaceAll("[/b]", " ").replaceAll("[/url]", "[/url] ") //.replaceAll(".", ". ");
+            
             if (note_text.indexOf("[b]") > -1) {
                note_text = note_text.slice(0, note_text.indexOf("[b]"));
             }
@@ -1460,20 +1463,18 @@ async function getEqualityGroups(d, e) {
                note_text = ""
             }
 
-            notes = [];
+            notes = note_text.split("\r")
 
-            note_number = Number(note_text.slice(note_text.indexOf(".") - 2, note_text.indexOf(".")).trim()); // Find first number note under the heading
-
-            while(note_text.indexOf(" " + note_number + ".") > -1) {
-               if (note_text.indexOf((note_number + 1) + ".") > - 1) {
-                  notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length, note_text.indexOf((note_number + 1) + ".")));
+            for (let i = notes.length - 1; i >= 0; i --) {
+               if (notes[i].charAt(0) <= "9" && notes[i].charAt(0) >= "0") {
+                  notes[i] = notes[i].substring(notes[i].indexOf(".") + 2);
                } else {
-                  notes.push(note_text.slice(note_text.indexOf(" " + note_number + ".") + (" " + note_number + ".").length));
+                  notes[i -1] += notes[i];
+                  notes[i] = "";
                }
-               note_number = note_number + 1;
             }
-
-            notes = notes.filter(function (n) {return n != ""})
+            
+            notes = notes.filter(function (n) {return n != "" & n != " "})
 
             if (notes.length == 1) {
                note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Note:</p>";
