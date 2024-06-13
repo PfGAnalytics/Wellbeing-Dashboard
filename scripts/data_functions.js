@@ -908,7 +908,7 @@ async function createLineChart(d, e) {
    base_statement_div.id = matrix + "-base-statement";
    base_statement_div.classList.add("white-box");
    base_statement_div.classList.add("base-statement");
-   base_statement_div.innerHTML = base_statement;
+   base_statement_div.innerHTML = "<div>" + base_statement + "</div>";
 
    document.getElementById("change-info").appendChild(base_statement_div);
 
