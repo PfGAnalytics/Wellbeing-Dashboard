@@ -660,7 +660,10 @@ async function createLineChart(d, e) {
                            weight: "bold",
                            style: "italic"
                         },
-                        position: "end"
+                        position: {
+                           x: "end",
+                           y: "center"
+                        }
                      },
                      green_box: {                             // Green box plotted with co-ordinates
                         type: "box",
@@ -682,7 +685,10 @@ async function createLineChart(d, e) {
                            weight: "bold",
                            style: "italic"
                         },
-                        position: "end"
+                        position: {
+                           x: "end",
+                           y: "center"
+                        }
                      }
                   }
                },
@@ -1133,6 +1139,10 @@ async function getEqualityGroups(d, e) {
       }
   }
 
+  if (e == "Skills") {
+   eq_groups.push("Skills Level");
+  }
+
   for (let i = 0; i < eq_groups.length; i ++) {       // Loop through the eq_groups array
 
       eq_link = document.createElement("div");           // Create a div for the link
@@ -1257,6 +1267,8 @@ async function getEqualityGroups(d, e) {
             chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2242%22,%2243%22,%2244%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
          } else if (eq_groups[i] == "Special Educational Needs") {
             chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2273%22,%2274%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22INDSLATTGAPEQ%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+         } else if (eq_groups[i] == "Skills Level") {
+            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22INDSKILLSLEV%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
          }
 
          var result = null;   // Retry plotting chart if data portal link doesn't work first time
@@ -1276,7 +1288,11 @@ async function getEqualityGroups(d, e) {
          chart_row.style.marginLeft = (pop_up_chart.clientWidth - y_axis.clientWidth - pop_up_container.clientWidth) / 2 + "px";
 
          // Obtain category labels within each grouping and the values for each:
-         groups = Object.values(result.dimension.EQUALGROUPS.category.label);
+         if (result.dimension.hasOwnProperty("EQUALGROUPS")) {
+            groups = Object.values(result.dimension.EQUALGROUPS.category.label);
+         } else {
+            groups = Object.values(result.dimension.STATISTIC.category.label)
+         }
          
          // Categories out of order on data portal for these two indicators
          if (["Respect", "Cultural identity", "Shared community", "Community relations", "Safe towns and city centres", "Active travel - public transport", "Active travel - walking and cycling"].includes(e) & eq_groups[i] == "Age") {
