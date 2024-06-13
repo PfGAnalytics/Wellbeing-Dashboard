@@ -925,7 +925,7 @@ async function createLineChart(d, e) {
    }
 
    // Create further info div
-   var further_note = note[0];
+   var further_note = note[0].replaceAll("\n", "");
 
    // Looks for a heading within the note object key that might donate a "Further Information" paragraph:
    if (further_note.indexOf("Further information") != -1) {
@@ -947,16 +947,17 @@ async function createLineChart(d, e) {
       }
 
       // URLS are converted
-      link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
 
-      if (link != "") {
+      while(further_note.indexOf("[url") > -1) {
+
+         link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
 
          linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
          url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
 
          further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
 
-      }
+      }      
 
       further_note = further_note.replaceAll("[i]", "<em>");                              // Italic text tags are converted
       further_note = further_note.replaceAll("[/i]", "</em>");
@@ -964,20 +965,31 @@ async function createLineChart(d, e) {
       further_note = further_note.replaceAll("”", '"')
    }
 
-   // Wrap further info as a html list (Accessibility change)
-   further_note = "<ol><li>" + further_note.replace("1.", "") + "</li></ol>"
+   notes = further_note.split("\r");
 
-   for (let i = 2; i < 10; i++) {
-      further_note = further_note.replaceAll("\n" + i + ".", "</li><li>")  // Line breaks are inserted between individidual points within "Further Information"
+   for (let i = notes.length - 1; i >= 0; i --) {
+      if (notes[i].charAt(0) <= "9" && notes[i].charAt(0) >= "0") {
+         notes[i] = notes[i].substring(notes[i].indexOf(".") + 2);
+      } else {
+         notes[i - 1] += notes[i];
+         notes[i] = "";
+      }
    }
+   
+   notes = notes.filter(function (n) {return n != "" & n != " "})
 
    // Div element created for "Further information" and placed in html document:
    further_info_div = document.createElement("div");
+   further_info_list = document.createElement("ol");
    further_info_div.id = matrix + "-further-info";
    further_info_div.classList.add("further-info-text");
    further_info_div.classList.add("further-selected");
+
+   for (let i = 0; i < notes.length; i++) {
+      further_info_list.innerHTML += "<li>" + notes[i] + "</li>"
+   }
    
-   further_info_div.innerHTML = further_note;
+   further_info_div.appendChild(further_info_list);
 
    document.getElementById("further-info").appendChild(further_info_div);
 
@@ -1769,7 +1781,7 @@ async function drawMap() {
          var further_info_map = document.getElementById("further-info-map");
 
          // Obtain further info text from query
-         var further_note = note[0];
+         var further_note = note[0].replaceAll("\n", "");
 
          if (further_note.indexOf("Further information") != -1) {
             var further_string = "Further information";
@@ -1789,24 +1801,33 @@ async function drawMap() {
             }
             
             // URLS are converted
-            link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
+            while(further_note.indexOf("[url") > -1) {
 
-            if (link != "") {
+               link = further_note.slice(further_note.indexOf("[url"), further_note.indexOf("[/url]") + "[/url]".length);
+      
                linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
                url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
-
+      
                further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
-            }
+      
+            } 
 
             further_note = further_note.replaceAll("[i]", "<em>");
             further_note = further_note.replaceAll("[/i]", "</em>");
          }
          
-         further_note = "<ol><li>" + further_note.replace("1.", "") + "</li></ol>"
+         notes = further_note.split("\r");
 
-         for (let i = 2; i < 10; i++) {
-            further_note = further_note.replaceAll("\n" + i + ".", "</li><li>")  // Line breaks are inserted between individidual points within "Further Information"
+         for (let i = notes.length - 1; i >= 0; i --) {
+            if (notes[i].charAt(0) <= "9" && notes[i].charAt(0) >= "0") {
+               notes[i] = notes[i].substring(notes[i].indexOf(".") + 2);
+            } else {
+               notes[i - 1] += notes[i];
+               notes[i] = "";
+            }
          }
+         
+         notes = notes.filter(function (n) {return n != "" & n != " "})
 
          // Obtain how do we measure this text from query
          var measure_text = note[0];
@@ -1828,7 +1849,14 @@ async function drawMap() {
 
          // Write content to info boxes
          measure_info_map.innerHTML = measure_text;
-         further_info_map.innerHTML = further_note;
+
+         further_list = document.createElement("ol");
+
+         for (let i = 0; i < notes.length; i ++) {
+            further_list.innerHTML += "<li>" + notes[i] + "</li>"
+         }
+
+         further_info_map.appendChild(further_list);
 
          if (further_note == "Not available") {
             further_expander_map.style.display = "none";
