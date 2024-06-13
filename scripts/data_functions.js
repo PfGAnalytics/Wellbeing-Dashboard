@@ -1312,25 +1312,36 @@ async function getEqualityGroups(d, e) {
          }
 
          values = {};   // Empty object
-         for (let j = 0; j < groups.length; j ++) {
 
-            // Take text after first hyphen as group name, except for Age where it is after first space
-            if (eq_groups[i] == "Age") {
-               group_label = groups[j].slice(groups[j].indexOf(" ")).trim();
-               if (group_label.indexOf("-") == 0) {
-                  group_label = group_label.slice(1).trim();
+         if (eq_groups[i] == "Skills Level") {
+            
+            for (let j = 0; j < groups.length; j ++) {
+               values[groups[j]] = result.value.slice(j * result.value.length / groups.length, (j + 1) * result.value.length / groups.length)
+            }
+
+         } else {
+
+            for (let j = 0; j < groups.length; j ++) {
+
+               // Take text after first hyphen as group name, except for Age where it is after first space
+               if (eq_groups[i] == "Age") {
+                  group_label = groups[j].slice(groups[j].indexOf(" ")).trim();
+                  if (group_label.indexOf("-") == 0) {
+                     group_label = group_label.slice(1).trim();
+                  }
+               } else {
+                  group_label = groups[j].slice(groups[j].indexOf("-") + 1).trim();
+               }            
+
+               // For each group pull out the relevant values
+               values[group_label] = [];
+
+               for (let k = 0; k < result.value.length; k ++) {
+                  if (k % groups.length == j) {
+                     values[group_label].push(result.value[k])
+                  }
                }
-            } else {
-               group_label = groups[j].slice(groups[j].indexOf("-") + 1).trim();
-            }            
 
-            // For each group pull out the relevant values
-            values[group_label] = [];
-
-            for (let k = 0; k < result.value.length; k ++) {
-               if (k % groups.length == j) {
-                  values[group_label].push(result.value[k])
-               }
             }
 
          }
