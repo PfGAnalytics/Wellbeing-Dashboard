@@ -1446,11 +1446,13 @@ async function getEqualityGroups(d, e) {
 
          new Chart(pop_canvas, chart_config);      // Plot chart
          
-         note_text = result.note[0].replaceAll("[b] ", "[b]").replaceAll("\n", ""); 
-
+         note_text = result.note[0].replaceAll("[b] ", "[b]").replaceAll("\n", "");         
          
-         
-         heading_text = "[b]" + eq_groups[i];   // Find heading text by bold tag and group name
+         if (eq_groups[i] == "Skills Level") {
+            heading_text = "[b]Further Information"
+         } else {
+            heading_text = "[b]" + eq_groups[i];   // Find heading text by bold tag and group name
+         }
 
          if (note_text.indexOf(heading_text) == -1) {       // If heading text can't be found, try capitalising first letter of second word and searching again
             heading_text = heading_text.slice(0, heading_text.indexOf(" ") + 1) +
