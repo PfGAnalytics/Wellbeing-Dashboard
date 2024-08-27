@@ -168,7 +168,7 @@ var domains_data = {
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
             base_year: "2017",
-            ci: "1c",
+            ci: "0.275c",
             data: {
                NI: "INDGREENHGNI",
                AA: "",
