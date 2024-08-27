@@ -90,7 +90,7 @@ var browse_grid = document.getElementById("browse-grid");
 var expanded_domains = document.getElementById("expanded-domains");
 var by_mission = document.getElementById("by-mission");
 var by_mission_grid = document.getElementById("by-mission-grid");
-
+var back_to_start = document.getElementById("back-to-start");
 
 
 for (let i = 0; i< domain_count.length; i ++) {
@@ -1879,3 +1879,25 @@ plotExpandedDomains = function() {
     }
 
 }
+
+// Scroll to top ribbon
+let buttonVisibleOnPX = 200;
+back_to_start.classList.add("hidden");
+
+const goStart = () => {
+    document.body.scrollIntoView();
+}
+
+const scrollElement = () => {
+    return document.documentElement || document.body;
+}
+
+const handleOnScroll = () => {
+    if (scrollElement().scrollTop > buttonVisibleOnPX) {
+        back_to_start.classList.remove("hidden");
+    } else {
+        back_to_start.classList.add("hidden");
+    }
+}
+
+window.onscroll = handleOnScroll;
