@@ -1222,16 +1222,14 @@ tr {
 
 #back-to-start {
     opacity: 1;
-    transition: opacity 0.9s, visibility 0.5s;
+    transition: opacity 0.5s, visibility 0.5s;
     position: fixed;
     z-index: 99;
     right: 0px;
     user-select: none;
     bottom: 0px;
     color: #ffffff;
-    background:#142062 url("http://nisra.gov.uk/sites/all/themes/corporatelite/images/data-uri/cd-top-arrow.svg") no-repeat 10px 50%;
-    background-position:calc(50% + 4.5rem);
-	background-size:17px auto;
+    background-color: #142062;
     width: 100%;
     text-align: center;
     padding-top: 5px;
