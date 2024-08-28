@@ -969,7 +969,7 @@ async function createLineChart(d, e) {
 
    for (let i = notes.length - 1; i >= 0; i --) {
       if (notes[i].charAt(0) <= "9" && notes[i].charAt(0) >= "0") {
-         notes[i] = notes[i].substring(notes[i].indexOf(".") + 2);
+         notes[i] = notes[i].substring(notes[i].indexOf(".") + 1).trim();
       } else {
          notes[i - 1] += notes[i];
          notes[i] = "";
@@ -1508,7 +1508,7 @@ async function getEqualityGroups(d, e) {
 
             for (let i = notes.length - 1; i >= 0; i --) {
                if (notes[i].charAt(0) <= "9" && notes[i].charAt(0) >= "0") {
-                  notes[i] = notes[i].substring(notes[i].indexOf(".") + 2);
+                  notes[i] = notes[i].substring(notes[i].indexOf(".") + 1).trim();
                } else {
                   notes[i -1] += notes[i];
                   notes[i] = "";
@@ -1831,7 +1831,7 @@ async function drawMap() {
 
          for (let i = notes.length - 1; i >= 0; i --) {
             if (notes[i].charAt(0) <= "9" && notes[i].charAt(0) >= "0") {
-               notes[i] = notes[i].substring(notes[i].indexOf(".") + 2);
+               notes[i] = notes[i].substring(notes[i].indexOf(".") + 1).trim();
             } else {
                notes[i - 1] += notes[i];
                notes[i] = "";

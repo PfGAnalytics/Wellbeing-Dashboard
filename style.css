@@ -623,6 +623,7 @@ footer {
     display: flex;
     justify-content: center;
     margin-top: 25px;
+    padding-bottom: 28px;
 }
 
 #footer-container {
@@ -1217,4 +1218,34 @@ tr {
 #warning-div table tr:hover {
     background-color: #F2F2F2;
     cursor: default;
+}
+
+#back-to-start {
+    opacity: 1;
+    transition: opacity 0.5s, visibility 0.5s;
+    position: fixed;
+    z-index: 99;
+    right: 0px;
+    user-select: none;
+    bottom: 0px;
+    color: #ffffff;
+    background:rgba(50,107,175,0.8) url("http://nisra.gov.uk/sites/all/themes/corporatelite/images/data-uri/cd-top-arrow.svg") no-repeat 10px 50%;
+    background-position:calc(50% + 4.5rem);
+	background-size:17px auto;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: auto;
+}
+
+#back-to-start a {
+    color:#ffffff
+}
+
+#back-to-start.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
