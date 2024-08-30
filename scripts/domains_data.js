@@ -701,6 +701,24 @@ var domains_data = {
        description: "Everyone feels safe, we all protect the law and each other",
        mission: "People",
        indicators: {
+        // "Case processing time": {
+        //    importance: "The efficiency of the criminal justice system is important for victims and witnesses, and their families and communities, in terms of building confidence. Early resolution of cases can also help offenders understand the implications of their actions.",
+        //    base_year: null,
+        //    ci: 0,
+        //    data: {
+        //       NI: "",
+        //       AA: "",
+        //       LGD: "",
+        //       EQ: "INDCASEPREQ"
+        //    },
+        //    improvement: "decrease",
+        //    telling: {
+        //       improved: "This commentary is a placeholder.",
+        //       no_change: "This commentary is a placeholder.",
+        //       worsened: "This commentary is a placeholder.",
+        //       insufficient: ""
+        //    }
+        // },
          "Crime prevalence rate": {
             importance: "The crime prevalence rate gives the proportion of households/adults who have been a victim of a crime covered by the survey. It will capture incidents experienced by people living in private households, irrespective of whether or not these crimes were reported to, or recorded by, the police.",
             base_year: "2021/22",
@@ -732,7 +750,7 @@ var domains_data = {
          //    improvement: "decrease",
          //    telling: {
          //       improved: "This commentary is a placeholder.",
-         //       no_change: "However, despite the overall proportion of individuals who reoffend remaining unchanged, annual cohorts have been consistently declining. This is positive news for the Department and wider Justice organisations who are working to address reoffending in Northern Ireland.",
+         //       no_change: "This commentary is a placeholder.",
          //       worsened: "This commentary is a placeholder.",
          //       insufficient: ""
          //    }
