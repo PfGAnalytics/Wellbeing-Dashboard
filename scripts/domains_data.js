@@ -93,7 +93,7 @@ var domains_data = {
        description: "We live and work sustainably - protecting, improving and enjoying the environment",
        mission: "Planet",
        indicators: {
-         "Active travel - public transport": {
+         "Sustainable travel - public transport": {
             importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
             base_year: null,
             ci: 1.1,
