@@ -93,24 +93,7 @@ var domains_data = {
        description: "We live and work sustainably - protecting, improving and enjoying the environment",
        mission: "Planet",
        indicators: {
-         "Sustainable travel - public transport": {
-            importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
-            base_year: null,
-            ci: 1.1,
-            data: {
-               NI: "",
-               AA: "",
-               LGD: "",
-               EQ: "INDATPUBEQ"
-            },
-            improvement: "increase",
-            telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
-               insufficient: "There were a number of significant changes to the survey methodology from 2020, due to the COVID-19 pandemic.  In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 and 2021 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The comparison year for this indicator has been set to 2022."
-            }
-         },
+        
          "Air pollution": {
             importance: "The air that we breathe is vital to our health and wellbeing. Good air quality is essential for human health, the climate, habitats and the built environment. Pollutants from human activity are present in our atmosphere which may adversely impact upon our health and natural environment. Nitrogen dioxide is part of a group of gaseous air pollutants produced as a result of road traffic and other fossil fuel combustion processes. It can irritate the lungs and lower resistance to respiratory infections such as influenza.",
             base_year: "2019",
@@ -255,7 +238,25 @@ var domains_data = {
                worsened: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have increased from 0.063 mg/l in 2019 to 0.073 mg/l in 2022.",
                insufficient: ""
             }
-         }
+         },
+         "Sustainable travel - public transport": {
+            importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
+            base_year: null,
+            ci: 1.1,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "",
+               EQ: "INDATPUBEQ"
+            },
+            improvement: "increase",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: "There were a number of significant changes to the survey methodology from 2020, due to the COVID-19 pandemic.  In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 and 2021 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The comparison year for this indicator has been set to 2022."
+            }
+         },
        }
     },
     "Equal Society": {
