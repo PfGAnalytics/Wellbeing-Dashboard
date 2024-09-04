@@ -1002,7 +1002,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -1011,7 +1011,7 @@ var domains_data = {
          "Trust in the NI Assembly": {
             importance: "Trust in elected representatives is central to a functioning, democratic society.  Lack of trust in elected representatives can discourage people from democratic participation and people can feel as though they do not have a voice in decisions that affect them.  This in turn can influence wellbeing.",
             base_year: "2019",
-            ci: 1,
+            ci: 1.5,
             data: {
                NI: "",
                AA: "",
