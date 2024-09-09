@@ -1066,7 +1066,7 @@ function sizeForMobile() {
     // If screen is less than 1200px wide do following:
     if (window.innerWidth < 1200) {
 
-        main_container.style.width = window.innerWidth + "px";  // Update the main container width to match that of the screen
+        main_container.style.width = "100%";  // Update the main container width to match that of the screen
         line_chart_container.style.width = (window.innerWidth - 40) + "px";     // have the line chart take up the full width (less 40px)
         line_chart_container.style.marginLeft = "20px";         // 20px margin to left of chart
         line_chart_container.style.marginRight = "20px";        // 20px margin to right of chart
