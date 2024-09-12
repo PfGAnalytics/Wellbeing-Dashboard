@@ -1867,6 +1867,11 @@ async function drawMap() {
             further_list.innerHTML += "<li>" + notes[i] + "</li>"
          }
 
+         // Date slider causing further info to duplicate. Remove any content in div before outputting list.
+         if (further_info_map.firstChild) {
+            further_info_map.removeChild(further_info_map.firstChild);
+         }
+
          further_info_map.appendChild(further_list);
 
          if (further_note == "Not available") {
