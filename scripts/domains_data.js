@@ -643,7 +643,7 @@ var domains_data = {
          // },
          "Northern Ireland Composite Economic Index": {
             importance: "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
-            base_year: "2017",
+            base_year: "2018",
             ci: 1,
             data: {
                NI: "INDNICEINI",
@@ -653,7 +653,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially following a decline in 2020, and the latest data in 2022 is at a series high. ",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially following a decline in 2020, and the latest data in 2023 is at a series high. ",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
