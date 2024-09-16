@@ -125,7 +125,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2022. Excessive nutrient (dissolved inorganic nitrogen) was the most frequent failing element and was reported in 10 of the 12 water bodies that failed to achieve good condition.",
+               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2023. Excessive nutrient (dissolved inorganic nitrogen) was the most frequent failing element and was reported in 10 of the 12 water bodies that failed to achieve good condition.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -142,7 +142,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "In 2022/23 54.9 per cent of features within protected sites were in favourable condition which is higher than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
+               improved: "In 2023/24 55.1 per cent of features within protected sites were in favourable condition which is higher than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
                no_change: "This commentary is a placeholder",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -234,8 +234,8 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have increased from 0.063 mg/l in 2019 to 0.073 mg/l in 2022.",
+               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained almost the same with 0.63 mg/l reported in 2019 compared with 0.062 mg/l reported in 2023. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
+               worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
