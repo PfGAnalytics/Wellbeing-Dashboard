@@ -150,7 +150,7 @@ var domains_data = {
          },
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
-            base_year: "2017",
+            base_year: "2018",
             ci: "0.275c",
             data: {
                NI: "INDGREENHGNI",
@@ -160,8 +160,8 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "In 2021 a 'bounce back' was experienced in GHG emissions after the drop off in admissions associated with COVID restrictions.",
+               improved: "In 2022, the downward trend, in GHG emissions, resumed after a 'bounce back' was experienced in 2021 as COVID restrictions were eased.",
+               no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
 
@@ -169,18 +169,18 @@ var domains_data = {
          },
          "Outdoor recreation": {
             importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
-            base_year: null,
+            base_year: "2023",
             ci: 0,
             data: {
-               NI: "INDOUTRECNI", 
-               AA: "",
-               LGD: "",
-               EQ: ""
+               NI: "", 
+               AA: "INDOUTRECAA",
+               LGD: "INDOUTRECLGD",
+               EQ: "INDOUTRECEQ"
             },
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder",
+               no_change: "The indicator shows that the percentage of households with accessible natural space within 400 metres has not changed since the comparision year 2023. 47.3 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2024.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
