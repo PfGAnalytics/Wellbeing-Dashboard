@@ -170,7 +170,7 @@ var domains_data = {
          "Outdoor recreation": {
             importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
             base_year: "2023",
-            ci: 0,
+            ci: 0.1,
             data: {
                NI: "", 
                AA: "INDOUTRECAA",
