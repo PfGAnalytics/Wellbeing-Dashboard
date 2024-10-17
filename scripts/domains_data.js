@@ -896,7 +896,7 @@ var domains_data = {
          },
          "Homelessness": {
             importance: "This indicator provides information on the number of households who have presented and been accepted as homeless by the NI Housing Executive. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2017/18",
+            base_year: "2018/19",
             ci: 0,
             data: {
                NI: "",
