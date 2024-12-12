@@ -1080,14 +1080,15 @@ function sizeForMobile() {
             domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";
         }
 
-
         map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";        // Re-position map in middle of screen
         top_menu_items_div.style.marginBottom = "20px";                                 // Extra space underneath top menu items
         top_menu_items_div.style.marginTop= "10px";                                     // Extra space above top menu items
         top_menu_items_div.style.width = "100%";                                        // Move top menu onto its own row by setting it to full width
         // dashboard_title.style.width = (top_container.clientWidth - 300) + "px";         // Space for title to 300px less than window width
-        grey_box[0].style.width = "860px";
-
+        for (let i = 0; i < grey_box.length; i++) {
+            grey_box[i].style.width = "860px";
+        }
+        
         button_left.style.width = "100%";                       // "Previous indicator/domain" button to its own row by making it full width
         button_left.style.justifyContent = "center";            // Centre the button
         button_right.style.width = "100%";                      // "Next indicator/domain" button to its own row by making it full width
