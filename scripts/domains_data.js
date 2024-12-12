@@ -607,7 +607,7 @@ var domains_data = {
          // },
          "International reputation": {
             importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation will affect people’s willingness to live, study, visit, do business with and invest in NI and this has a significant impact on our economy.",
-            base_year: "2019",
+            base_year: "2020",
             ci: 1,
             data: {
                NI: "INDINTREPNI",
