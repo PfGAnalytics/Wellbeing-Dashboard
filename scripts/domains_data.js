@@ -361,7 +361,7 @@ var domains_data = {
          },
          "Healthy life expectancy (females)": {
             importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
-            base_year: "2016-18",
+            base_year: "2017-19",
             ci: 1.5,
             data: {
                NI: "",
@@ -371,16 +371,16 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "HLE increased by 1.9 years from 60.8 years in 2016/18 to 62.7 years in 2020-22. The change was statistically significant.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               improved: "",
+               no_change: "There was no significant change in female healthy life expectancy between 2017-19 (61.0 years) and 2021-23 (61.4 years).",
+               worsened: "",
                insufficient: ""
             }
          },
          "Healthy life expectancy (males)": {
             importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
-            base_year: "2016-18",
-            ci: 1.5,
+            base_year: "2017-19",
+            ci: 1.6,
             data: {
                NI: "",
                AA: "",
@@ -389,9 +389,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "HLE increased by 1.5 years from 59.7 years in 2016-18 to 61.2 years in 2020-22. Although the change was not statistically significant, the overlap in confidence intervals was relativley small and there was a clear and consistent upward trend over the five-year period. Despite an initial drop in male HLE between 2016-18 and 2017-19, HLE increased notably in each of the following years resulting in an overall increase of 1.5 years.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               improved: "",
+               no_change: "There was no significant change in male healthy life expectancy between 2017-19 (59.2 years) and 2021-23 (60.3 years).",
+               worsened: "",
                insufficient: ""
             }
          },
