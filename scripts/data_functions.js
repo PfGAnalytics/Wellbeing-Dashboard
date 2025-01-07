@@ -1114,7 +1114,18 @@ document.getElementById("source-info").appendChild(source_info_div);
    covid_text = covid_text.slice(covid_text.indexOf(covid_string) + covid_string.length).replace("[/b]", "");
    covid_text = covid_text.slice(0, covid_text.indexOf(["[b"])).trim();
 
-   document.getElementById("covid-info").textContent = covid_text;
+   while(covid_text.indexOf("[url") > -1) {
+
+      link = covid_text.slice(covid_text.indexOf("[url"), covid_text.indexOf("[/url]") + "[/url]".length);
+
+      linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
+      url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+
+      covid_text = covid_text.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+
+   } 
+
+   document.getElementById("covid-info").innerHTML = covid_text;
   }
 
 }
@@ -1958,7 +1969,18 @@ async function drawMap() {
             covid_text = covid_text.slice(covid_text.indexOf(covid_string) + covid_string.length).replace("[/b]", "");
             covid_text = covid_text.slice(0, covid_text.indexOf(["[b"])).trim();
 
-            document.getElementById("covid-info-map").textContent = covid_text;
+            while(covid_text.indexOf("[url") > -1) {
+
+               link = covid_text.slice(covid_text.indexOf("[url"), covid_text.indexOf("[/url]") + "[/url]".length);
+         
+               linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
+               url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+         
+               covid_text = covid_text.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
+         
+            } 
+
+            document.getElementById("covid-info-map").innerHTML = covid_text;
          }
 
          
