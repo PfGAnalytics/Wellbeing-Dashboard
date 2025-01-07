@@ -47,7 +47,7 @@
 // }
 
 var domains_data = {
-    "Happier Children": {
+    "Thriving Children": {
        description: "Our children and young people have the best start in life",
        mission: "People",
        indicators: {
