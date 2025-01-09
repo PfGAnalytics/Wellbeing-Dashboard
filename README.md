@@ -94,8 +94,6 @@ If you are using Git for the first time follow these configuration steps before 
 3. Open a new Terminal, either by clicking `Terminal` in the top menu and choosing `New Terminal` or pressing <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>'</kbd>
 4. In the Terminal pane enter each line of code, pressing <kbd>Enter</kbd> __after each line__:
     -  `git config --global http.sslVerify false`
-    - `git config --global http.proxy http://cloud-lb.nigov.net:8080`
-    - `git config --global https.proxy https://cloud-lb.nigov.net:8080`
     - `git config --global user.name "YourUserName"`
     - `git config --global user.email first.last@nisra.gov.uk`
 
