@@ -702,24 +702,6 @@ var domains_data = {
        description: "Everyone feels safe, we all protect the law and each other",
        mission: "People",
        indicators: {
-        // "Case processing time": {
-        //    importance: "The efficiency of the criminal justice system is important for victims and witnesses, and their families and communities, in terms of building confidence. Early resolution of cases can also help offenders understand the implications of their actions.",
-        //    base_year: null,
-        //    ci: 0,
-        //    data: {
-        //       NI: "",
-        //       AA: "",
-        //       LGD: "",
-        //       EQ: "INDCASEPREQ"
-        //    },
-        //    improvement: "decrease",
-        //    telling: {
-        //       improved: "This commentary is a placeholder.",
-        //       no_change: "This commentary is a placeholder.",
-        //       worsened: "This commentary is a placeholder.",
-        //       insufficient: ""
-        //    }
-        // },
          "Crime prevalence rate": {
             importance: "The crime prevalence rate gives the proportion of households/adults who have been a victim of a crime covered by the survey. It will capture incidents experienced by people living in private households, irrespective of whether or not these crimes were reported to, or recorded by, the police.",
             base_year: "2021/22",
@@ -773,7 +755,25 @@ var domains_data = {
                worsened: "This commentary is a placeholder.",
                insufficient: ""
            }
-               },
+         },
+         "Processing times for criminal cases": {
+            importance: "Improving the efficiency and effectiveness of the Criminal Justice System has been a longstanding priority for the Department of Justice and criminal justice partner organisations. The speed of the system matters to victims, witnesses and defendants, and their families and communities. Speeding up delivery of justice reduces trauma for victims and defendants, encourages public confidence in the legal system and helps prevent erosion of the accused’s presumption of innocence. Timeliness also improves general public confidence in the wider justice system, and helps demonstrate legitimacy and respect for the rule of law. Tackling delay however is complex and challenging and reforms take time to embed and for their impact to be seen. The Criminal Justice Board has therefore prioritised a programme of work targeted at reducing avoidable delay with the system.  This work is built around five key workstreams and will take forward existing work on committal reform, existing and emerging work in the digital arena and explore other areas for efficiencies such as early engagement, court remits and out of court disposals.",
+            base_year: null,
+            ci: 0,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "",
+               EQ: "INDPRCASEEQ"
+            },
+            improvement: "decrease",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Safe towns and city centres": {
             importance: "Town centres must be seen as places where people can feel safe in moving around, and where life choices are not inhibited by fears around safety. This is a key aspect of social and physical wellbeing for people living in or visiting towns and cities.",
             base_year: "2018",
