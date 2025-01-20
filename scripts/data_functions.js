@@ -1260,44 +1260,79 @@ async function getEqualityGroups(d, e) {
 
          // Start by obtaining x axis values - the years:
          var years = Object.values(dimension)[1].category.index; // Array of years in data
-         
-         // Contruct api query based on which grouping is selected:
-         if (eq_groups[i] == "Sex") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%221%22,%222%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Age") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%223%22,%224%22,%225%22,%226%22,%227%22,%228%22,%2236%22,%2237%22,%2238%22,%2245%22,%2246%22,%2247%22,%2248%22,%2249%22,%2250%22,%2251%22,%2252%22,%2253%22,%2254%22,%2255%22,%2256%22,%2257%22,%2258%22,%2259%22,%2260%22,%2261%22,%2262%22,%2269%22,%2270%22,%2271%22,%2272%22,%2276%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Marital status") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%229%22,%2210%22,%2211%22,%2212%22,%2213%22,%2239%22,%2241%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Dependants") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2217%22,%2218%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Disability") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2219%22,%2220%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Ethnic group") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2221%22,%2222%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Sexual orientation") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2223%22,%2224%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Deprivation") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2225%22,%2226%22,%2227%22,%2228%22,%2229%22,%2240%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Urban Rural") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2230%22,%2231%22,%2232%22,%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Political opinion") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2233%22,%2234%22,%2235%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Religion") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2214%22,%2215%22,%2216%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Household Group") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2263%22,%2264%22,%2265%22,%2266%22,%2267%22,%2268%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Tenure") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2242%22,%2243%22,%2275%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Special Educational Needs") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2273%22,%2274%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22INDSLATTGAPEQ%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Skills Level") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22INDSKILLSLEV%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Offence category") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2281%22,%2282%22,%2283%22,%2284%22,%2285%22,%2286%22,%2287%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-         } else if (eq_groups[i] == "Court type") {
-            chart_data_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%2288%22,%2289%22,%2290%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+
+         // Function to transform query select statement into valid URL string
+         function transformQuery (query) {
+
+            let chars = {
+               ' ': '',
+               '"': '%22',
+               '{': '%7B',
+               '}': '%7D',
+               '[': '%5B',
+               ']': '%5D',
+               '\n': '',
+               '\t': ''
+            };
+            
+            for (let j = 0; j < Object.keys(chars).length; j ++) {
+               query = query.replaceAll(Object.keys(chars)[j], Object.values(chars)[j])
+            }
+
+            return(query);
+         }
+
+         // Function that takes shorter input for EQUALGROUPS selection
+         // Input to funciton in format queryURL('["x","y"]') to cover numeric indexes of all groups that should be included in query
+         function queryURL (query) {
+            return(
+               config.baseURL +
+               transformQuery('api.jsonrpc?data={"jsonrpc":"2.0","method":"PxStat.Data.Cube_API.ReadDataset","params":{"class":"query","id":["EQUALGROUPS"],"dimension":{"EQUALGROUPS":{"category":{"index":') + 
+               transformQuery(query) +
+               transformQuery('}}},"extension":{"pivot":null,"codes":false,"language":{"code":"en"},"format":{"type":"JSON-stat","version":"2.0"},"matrix":"') +
+               matrix +
+               transformQuery('"},"version":"2.0"}}') + 
+               '&apiKey=' + 
+               config.apiKey)
          }
          
+         
+         // Contruct api query based on which grouping is selected:
+         if (eq_groups[i] == "Sex") {            
+            chart_data_url = queryURL('["1","2"]')
+         } else if (eq_groups[i] == "Age") {
+            chart_data_url = queryURL('["76","59","45","46","47","48","49","3","38","50","52","37","60","53","54","4","61","55","69","5","56","70","57","6","71","62","58","7","72","36","8","51"]')
+         } else if (eq_groups[i] == "Marital status") {
+            chart_data_url = queryURL('["9","10","11","12","13","39","41"]')
+         } else if (eq_groups[i] == "Dependants") {
+            chart_data_url = queryURL('["17","18"]');
+         } else if (eq_groups[i] == "Disability") {
+            chart_data_url = queryURL('["19","20"]')
+         } else if (eq_groups[i] == "Ethnic group") {
+            chart_data_url = queryURL('["21","22"]')
+         } else if (eq_groups[i] == "Sexual orientation") {
+            chart_data_url = queryURL('["23","24"]')
+         } else if (eq_groups[i] == "Deprivation") {
+            chart_data_url = queryURL('["25","26","27","28","29","40"]')
+         } else if (eq_groups[i] == "Urban Rural") {
+            chart_data_url = queryURL('["30","31","32"]')
+         } else if (eq_groups[i] == "Political opinion") {
+            chart_data_url = queryURL('["33","34","35"]')
+         } else if (eq_groups[i] == "Religion") {
+            chart_data_url = queryURL('["14","15","16"]')
+         } else if (eq_groups[i] == "Household Group") {
+            chart_data_url = queryURL('["63","64","65","66","67","68"]')
+         } else if (eq_groups[i] == "Tenure") {
+            chart_data_url = queryURL('["42","43","75"]')
+         } else if (eq_groups[i] == "Special Educational Needs") {
+            chart_data_url = queryURL('["73", "74"]')
+         } else if (eq_groups[i] == "Skills Level") {
+            chart_data_url = transformQuery(config.baseURL + 'api.jsonrpc?data={"jsonrpc":"2.0","method":"PxStat.Data.Cube_API.ReadDataset","params":{"class":"query","id":[],"dimension":{},"extension":{"pivot":null,"codes":false,"language":{"code":"en"},"format":{"type":"JSON-stat","version":"2.0"},"matrix":"' + matrix.replace("EQ", "LEV") + '"},"version":"2.0"}}&apiKey=' + config.apiKey);
+         } else if (eq_groups[i] == "Offence category") {
+            chart_data_url = queryURL('["81","82","83","84","85","86","87"]')
+         } else if (eq_groups[i] == "Court type") {
+            chart_data_url = queryURL('["88","89","90"]')
+         }   
 
          var result = null;   // Retry plotting chart if data portal link doesn't work first time
          while (result == null) {
@@ -1317,15 +1352,19 @@ async function getEqualityGroups(d, e) {
 
          // Obtain category labels within each grouping and the values for each:
          if (result.dimension.hasOwnProperty("EQUALGROUPS")) {
-            groups = Object.values(result.dimension.EQUALGROUPS.category.label);
+            indexes = Object.values(result.dimension.EQUALGROUPS.category.index);
+            groups = [];
+            for (let j = 0; j < indexes.length; j ++) {
+               groups.push(result.dimension.EQUALGROUPS.category.label[indexes[j]])
+            }
          } else {
             groups = Object.values(result.dimension.STATISTIC.category.label)
          }
-         
+
          // Categories out of order on data portal for these two indicators
-         if (["Respect", "Cultural identity", "Shared community", "Community relations", "Safe towns and city centres", "Sustainable travel - public transport", "Active travel - walking and cycling", "Trust in the media", "Trust in the NI Assembly", "Housing stress"].includes(e) & eq_groups[i] == "Age") {
-            groups.sort();
-         }
+         // if (["Respect", "Cultural identity", "Shared community", "Community relations", "Safe towns and city centres", "Sustainable travel - public transport", "Active travel - walking and cycling", "Trust in the media", "Trust in the NI Assembly"].includes(e) & eq_groups[i] == "Age") {
+         //    groups.sort();
+         // }
 
          values = {};   // Empty object
 
@@ -1413,7 +1452,9 @@ async function getEqualityGroups(d, e) {
             if (Object.keys(values).includes("Married/Civil partnership/Cohabiting")) {
                delete values["Married/Civil partnership"];
             }
-         }        
+         }     
+         
+         console.log(values)
 
          // Determine first year that has data in it for particular sub-population
          let first_year = [];
