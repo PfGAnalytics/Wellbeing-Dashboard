@@ -1365,6 +1365,8 @@ async function getEqualityGroups(d, e) {
          // if (["Respect", "Cultural identity", "Shared community", "Community relations", "Safe towns and city centres", "Sustainable travel - public transport", "Active travel - walking and cycling", "Trust in the media", "Trust in the NI Assembly"].includes(e) & eq_groups[i] == "Age") {
          //    groups.sort();
          // }
+         
+         
 
          values = {};   // Empty object
 
