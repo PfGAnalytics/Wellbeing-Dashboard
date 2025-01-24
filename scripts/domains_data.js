@@ -896,7 +896,7 @@ var domains_data = {
          },
          "Homelessness": {
             importance: "This indicator provides information on the number of households who have presented and been accepted as homeless by the NI Housing Executive. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2018/19",
+            base_year: "2021/22",
             ci: 0,
             data: {
                NI: "",
@@ -906,9 +906,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "Since 2018/19 the number of Households that have been accepted as homelessness has fallen. There was a reduction in the number of acceptances in the period of time immediately after the COVID-19 pandemic with 2020/21 representing the lowest number of acceptances over recent years. In 2021/22 and 2022/23 the number of acceptances has increased, albeit not to pre-pandemic levels. It should be noted that a significant impact of the pandemic in respect of demand for homelessness services has been an increase in demand for temporary accommodation. All of those who are accepted as statutorily homeless have a statutory duty to temporary accommodation and there has been an increase from 3,024 placements in 2017/18 to 10,253 in 2022/23.",
+               improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               worsened: "Since 2021/22 the number of Households that have been accepted as homelessness has risen. All of those who are accepted as statutorily homeless have a statutory duty to temporary accommodation and there has also been a slight increase from 9,265 placements in 2021/22 to 10,253 in 2022/23. The number of households accepted as homeless is an annual total for each given year whereas the number of households placed in Temporary Accommodation is a cumulative figure that will include households that were accepted as homeless in previous years.  Not all households accepted as homeless will be allocated a home within the same year.",
                insufficient: ""
             }
          },
