@@ -432,7 +432,7 @@ var domains_data = {
             }
          },
          "Sports and physical activity": {
-            importance: "This indicator provides the proportion of adults in Northern Ireland who engage in sport and physical activity within the last 4 weeks.  There is a correlation between engagement in sport and physical activities and higher levels of personal wellbeing.",
+            importance: "This indicator provides the proportion of adults in Northern Ireland who engage in sport and physical activity within the last 4 weeks.  There is a correlation between engagement in sport and physical activity and higher levels of personal wellbeing.",
             base_year: "2021/22",
             ci: 2,
             data: {
@@ -444,7 +444,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2023/24, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19. For 2023/24, 2022/23 and 2021/22 gaps can be seen in participation in sports physical activity between the people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for people living in urban and rural areas.",
+               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2023/24, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19. For 2023/24, 2022/23 and 2021/22 gaps can be seen in participation in sport and physical activity between the people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for people living in urban and rural areas.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
