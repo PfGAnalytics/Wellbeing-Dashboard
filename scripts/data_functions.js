@@ -1303,7 +1303,7 @@ async function getEqualityGroups(d, e) {
          } else if (eq_groups[i] == "Age") {
             chart_data_url = queryURL('["76","59","45","46","47","48","49","3","38","50","52","37","60","53","54","4","61","55","69","5","56","70","57","6","71","62","58","7","72","36","8","51"]')
          } else if (eq_groups[i] == "Marital status") {
-            chart_data_url = queryURL('["9","10","11","12","13","39","41"]')
+            chart_data_url = queryURL('["9","10","41","11","12","13","39"]')
          } else if (eq_groups[i] == "Dependants") {
             chart_data_url = queryURL('["17","18"]');
          } else if (eq_groups[i] == "Disability") {
@@ -1323,7 +1323,7 @@ async function getEqualityGroups(d, e) {
          } else if (eq_groups[i] == "Household Group") {
             chart_data_url = queryURL('["63","64","65","66","67","68","93","94","95","96","97","98"]')
          } else if (eq_groups[i] == "Tenure") {
-            chart_data_url = queryURL('["42","43","75"]')
+            chart_data_url = queryURL('["42","43","44","75"]')
          } else if (eq_groups[i] == "Special Educational Needs") {
             chart_data_url = queryURL('["73", "74"]')
          } else if (eq_groups[i] == "Skills Level") {
