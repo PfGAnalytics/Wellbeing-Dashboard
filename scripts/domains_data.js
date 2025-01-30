@@ -69,6 +69,42 @@ var domains_data = {
                insufficient: ""
             }
          },
+         "Life satisfaction among young people": {
+            importance: "Life satisfaction is a key aspect of personal wellbeing and is strongly linked to health, employment and relationships.",
+            base_year: "2016",
+            ci: 0.1,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "INDLIFESATYPGD",
+               EQ: "INDLIFESATYPEQ"
+            },
+            improvement: "increase",
+            telling: {
+               improved: "",
+               no_change: "",
+               worsened: "As the survey only runs every three years, with the first year being 2016, the comparison year has been set to 2016 to observe differences across the surveys.  There are consistent gaps between males and females, pupils entitled to Free School Meals and those not entitled to Free School Meals, pupils living in urban areas compared to those living in rural areas, pupils with a disability compared to those without a disability, and Year 9 pupils compared to Year 12 pupils.",
+               insufficient: ""
+            }
+         },
+         "Self-efficacy among young people": {
+            importance: "Self-efficacy is the degree to which people feel they can influence the events that affect their lives. Higher self-efficacy contributes to an accountable society where people feel more able to effect change within their own lives, which can lead to reduced pressures on public services.",
+            base_year: "2016",
+            ci: 2.6,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "INDSEYPLGD",
+               EQ: "INDSEYPEQ"
+            },
+            improvement: "decrease",
+            telling: {
+               improved: "",
+               no_change: "",
+               worsened: "As the survey only runs every three years, with the first year being 2016, the comparison year has been set to 2016 to observe differences across the surveys. There are consistent gaps between males and females, the most and least deprived areas, and pupils with a disability compared to those without a disability.",
+               insufficient: ""
+            }
+         },
          "Small for gestational age": {
             importance: "Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
             base_year: null,

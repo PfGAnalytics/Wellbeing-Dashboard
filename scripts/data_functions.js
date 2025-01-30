@@ -1332,7 +1332,11 @@ async function getEqualityGroups(d, e) {
             chart_data_url = queryURL('["81","82","83","84","85","86","87"]')
          } else if (eq_groups[i] == "Court type") {
             chart_data_url = queryURL('["88","89","90"]')
-         }   
+         }   else if (eq_groups[i] == "Year group") {
+            chart_data_url = queryURL('["77","78","79","80"]')
+         }   else if (eq_groups[i] == "Free School Meals") {
+            chart_data_url = queryURL('["91","92"]')
+         }
 
          var result = null;   // Retry plotting chart if data portal link doesn't work first time
          while (result == null) {
