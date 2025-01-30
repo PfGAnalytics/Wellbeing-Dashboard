@@ -1321,7 +1321,7 @@ async function getEqualityGroups(d, e) {
          } else if (eq_groups[i] == "Religion") {
             chart_data_url = queryURL('["14","15","16"]')
          } else if (eq_groups[i] == "Household Group") {
-            chart_data_url = queryURL('["63","64","65","66","67","68"]')
+            chart_data_url = queryURL('["63","64","65","66","67","68","93","94","95","96","97","98"]')
          } else if (eq_groups[i] == "Tenure") {
             chart_data_url = queryURL('["42","43","75"]')
          } else if (eq_groups[i] == "Special Educational Needs") {
