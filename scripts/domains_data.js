@@ -467,7 +467,7 @@ var domains_data = {
                insufficient: ""
             }
          },
-         "Sports and physical activity": {
+         "Sport and physical activity": {
             importance: "This indicator provides the proportion of adults in Northern Ireland who engage in sport and physical activity within the last 4 weeks.  There is a correlation between engagement in sport and physical activity and higher levels of personal wellbeing.",
             base_year: "2021/22",
             ci: 2,
