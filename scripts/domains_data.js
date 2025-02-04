@@ -301,7 +301,7 @@ var domains_data = {
        indicators: {
          "Cultural identity": {
             importance: "Building and promoting respect for cultural identity helps support tackling sectarianism and therefore provides a foundation for good relations.",
-            base_year: "2018",
+            base_year: "2019",
             ci: 2.7,
             data: {
                NI: "",
@@ -313,7 +313,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This means that a smaller proportion of adults in 2022 feel their cultural identity is respected by society than in 2018.",
+               worsened: "This means that fewer adults in 2023 feel their cultural identity is respected by society than in 2019.",
                insufficient: ""
             }
          },
@@ -812,7 +812,7 @@ var domains_data = {
          },
          "Safe towns and city centres": {
             importance: "Town centres must be seen as places where people can feel safe in moving around, and where life choices are not inhibited by fears around safety. This is a key aspect of social and physical wellbeing for people living in or visiting towns and cities.",
-            base_year: "2018",
+            base_year: "2019",
             ci: 2.7,
             data: {
                NI: "",
@@ -824,7 +824,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder",
-               worsened: "This means that a smaller proportion of people aged 18+ see towns and city centres as safe and welcoming places for people of all walks of life than did in 2018.",
+               worsened: "This means that fewer people aged 18+ see towns and city centres as safe and welcoming places for people of all walks of life than did in 2019.",
                insufficient: ""
             }
          },
@@ -992,7 +992,7 @@ var domains_data = {
       indicators: {
          "Community relations": {
             importance: "Perceptions of relations between Protestants and Catholics are an important part of public life in Northern Ireland and affect citizens' perceptions of peace and stability, which in turn affects mental wellbeing.",
-            base_year: "2018",
+            base_year: "2019",
             ci: 2.8,
             data: {
                NI: "",
@@ -1003,14 +1003,14 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This means that a smaller proportion of people aged 18+ think that relations between Protestants and Catholics are better now than they were five years ago than thought this in 2018.",
+               no_change: "This means that in 2023 approximately the same proportion of people aged 18+ think that relations between Protestants and Catholics are better now than they were five years ago as did in 2019.",
+               worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Shared community": {
             importance: "Preference for mixed religion neighbourhoods is an important indicator of attitudes towards other communities, as well as an indicator of preference for a shared community, which in turn is an important aspect of social wellbeing in Northern Ireland.",
-            base_year: "2018",
+            base_year: "2019",
             ci: 2.4,
             data: {
                NI: "",
@@ -1021,8 +1021,8 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This means that roughly the same proportion of people aged 18+ would prefer a mixed religion neighbourhood as in 2018.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This means that fewer people aged 18+ would prefer a mixed religion neighbourhood than did in 2019.",
                insufficient: ""
             }
          },
