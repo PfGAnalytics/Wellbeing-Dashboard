@@ -32,6 +32,9 @@ dir.create(uploadDir)
 # List all svg files in img folder
 SVGs <- list.files("../img", pattern = "*.svg")
 
+# List all png files in img folder
+PNGs <- list.files("../img", pattern = "*.png")
+
 suppressWarnings({ # Turn off warnings
   
   # Read in navigation_functions.js as "originalNav" and take copy of it "fixedNav"
@@ -106,7 +109,14 @@ suppressWarnings({ # Turn off warnings
                   index,
                   fixed = TRUE)
     
+  }
+
+  for (png in PNGs) {
     
+    index <- gsub(paste0("img/", png),
+                  paste0("data:image/png;base64,", base64encode(paste0("../img/", png))),
+                  index,
+                  fixed = TRUE)
     
   }
   
