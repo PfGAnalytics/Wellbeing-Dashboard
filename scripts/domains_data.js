@@ -968,7 +968,7 @@ var domains_data = {
          },
          "Housing stress": {
             importance: "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2018/19",
+            base_year: "2019/20",
             ci: 0,
             data: {
                NI: "",
