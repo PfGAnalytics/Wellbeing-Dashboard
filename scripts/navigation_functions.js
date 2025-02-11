@@ -590,6 +590,8 @@ if (currentURL.includes("?domain=")) {
     back_btn.value = "domains";
     back_btn.innerHTML = '<i class="fa-solid fa-arrow-turn-up fa-flip-horizontal"></i> Back to <strong>Domains</strong> grid';
     back_button.appendChild(back_btn);
+
+    document.getElementById("aig-logo").style.display = "none";
     
 }
 
