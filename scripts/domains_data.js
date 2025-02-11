@@ -623,6 +623,24 @@ var domains_data = {
                insufficient: ""
             }
          },
+         "Good jobs": {
+            importance: 'Providing all workers and their families with a decent and secure income is an important priority for the Department.  Increasing the proportion of Good Jobs will be essential in helping to address pay gaps in society and delivering economic and social change.',
+            base_year: null,
+            ci:1,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "INDGOODJOBSLGD",
+               EQ: "INDGOODJOBSEQ"
+            },
+            improvement: "increase",
+            telling: {
+               improved: "",
+               no_change: "",               
+               worsened: "",
+               insufficient: "Criteria for reporting change are yet to be agreed for this indicator"
+            }
+         },   
          // "Local graduates in narrow STEM subjects": {
          //    importance: "We need to drive increased participation in Narrow STEM subjects, which have particular economic relevance in Northern Ireland and include some of the best opportunities for individuals to develop rewarding careers in the coming decades. As low participation of women in this area is a particular concern, increasing involvement of females in Narrow STEM study and careers is a strategic priority for our economy and society.",
          //    base_year: "2021/22",
