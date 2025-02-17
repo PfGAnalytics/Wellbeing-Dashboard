@@ -1336,7 +1336,16 @@ async function getEqualityGroups(d, e) {
             chart_data_url = queryURL('["77","78","79","80"]')
          }   else if (eq_groups[i] == "Free School Meals") {
             chart_data_url = queryURL('["91","92"]')
+         }   else if (eq_groups[i] == "Industry Sector") {
+            chart_data_url = queryURL('["101","102","103","104","105","106","107","108","109"]')
+         }  else if (eq_groups[i] == "Occupation") {
+            chart_data_url = queryURL('["110","111","112","113","114","115","116","117","118"]')
+         }  else if (eq_groups[i] == "Work pattern") {
+            chart_data_url = queryURL('["123","124"]')
          }
+
+   
+
 
          var result = null;   // Retry plotting chart if data portal link doesn't work first time
          while (result == null) {
