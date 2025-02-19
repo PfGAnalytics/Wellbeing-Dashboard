@@ -1489,7 +1489,7 @@ async function getEqualityGroups(d, e) {
          };         
 
          // Colour palette for bar charts:
-         colours = ["#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1"];
+         colours = ["#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1", "#0A4D46","#F66068","#472C4C"];
 
          for (let j = 0; j < Object.keys(values).length; j ++) {     // Loop through values and create each data series
             data.datasets.push({
