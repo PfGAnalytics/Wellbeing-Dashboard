@@ -624,7 +624,7 @@ var domains_data = {
             }
          },
          "Good jobs": {
-            importance: 'Providing all workers and their families with a decent and secure income is an important priority for the Department.  Increasing the proportion of Good Jobs will be essential in helping to address pay gaps in society and delivering economic and social change.',
+            importance: 'Providing all workers and their families with a decent and secure income is an important priority for the Department for the Economy.  Increasing the proportion of Good Jobs will be essential in helping to address pay gaps in society and delivering economic and social change.',
             base_year: null,
             ci:1,
             data: {
