@@ -812,8 +812,8 @@ var domains_data = {
          },
          "Processing times for criminal cases": {
             importance: "Improving the efficiency and effectiveness of the Criminal Justice System has been a longstanding priority for the Department of Justice and criminal justice partner organisations. The speed of the system matters to victims, witnesses and defendants, and their families and communities. Speeding up delivery of justice reduces trauma for victims and defendants, encourages public confidence in the legal system and helps prevent erosion of the accused’s presumption of innocence. Timeliness also improves general public confidence in the wider justice system, and helps demonstrate legitimacy and respect for the rule of law. Tackling delay however is complex and challenging and reforms take time to embed and for their impact to be seen. The Criminal Justice Board has therefore prioritised a programme of work targeted at reducing avoidable delay with the system.  This work is built around five key workstreams and will take forward existing work on committal reform, existing and emerging work in the digital arena and explore other areas for efficiencies such as early engagement, court remits and out of court disposals.",
-            base_year: null,
-            ci: 0,
+            base_year: "2019/20",
+            ci: 5,
             data: {
                NI: "",
                AA: "",
@@ -824,7 +824,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               worsened: "This may, in recent years, be due to the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. The impact of this backlog is still being reflected in the average time taken to complete cases. The figure for 2023/24 (190 days) is higher than the figure for 2019/20 (149 days).",
                insufficient: ""
             }
          },
