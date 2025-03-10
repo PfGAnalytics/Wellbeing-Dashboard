@@ -512,7 +512,7 @@ var domains_data = {
          "Life satisfaction": {
             importance: "Life satisfaction is a key aspect of personal wellbeing and is strongly linked to health, employment and relationships.",
             base_year: "2021/22",
-            ci: 0.1,
+            ci: 0.11,
             data: {
                NI: "",
                AA: "INDLIFESATAA",
@@ -521,9 +521,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, and also between people with a disability compared to those without a disability.",
+               improved: "",
+               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. Although estimates for life satisfaction in 2023/24 appear to be returning to pre-pandemic levels, the longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and also between people who are married or in a civil partnership compared with any other marital status. Of the 11 LGDs, Newry, Mourne & Down have the highest rates of life satisfaction for 2023/24.",
+               worsened: "",
                insufficient: ""
             }
          },
@@ -557,9 +557,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "",
                no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without and also between people with a white ethnicity compared with any other ethnicity.",
-               worsened: "This commentary is a placeholder.",
+               worsened: "",
                insufficient: ""
             }
          }
@@ -900,9 +900,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels in 2022/23. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, and also between people with a white ethnicity compared with any other ethnicity.",
-               worsened: "This commentary is a placeholder.",
+               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels in 2023/24. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, divorced or widowed, and also between people with a white ethnicity compared with any other ethnicity.",
+               no_change: "",
+               worsened: "",
                insufficient: ""
             }
          },
