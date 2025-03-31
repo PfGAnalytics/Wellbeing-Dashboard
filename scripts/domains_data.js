@@ -1075,7 +1075,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "However, the level of trust in the NI Assembly was higher in 2020 and 2021, compared to 2019 and 2022.",
+               no_change: "However, the level of trust in the NI Assembly was higher in 2020 and 2021, compared to 2019, 2022 and 2023.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
