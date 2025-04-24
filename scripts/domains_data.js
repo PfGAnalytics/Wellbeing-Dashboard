@@ -558,7 +558,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "",
-               no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without and also between people with a white ethnicity compared with any other ethnicity.",
+               no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without.",
                worsened: "",
                insufficient: ""
             }
