@@ -270,7 +270,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained almost the same with 0.63 mg/l reported in 2019 compared with 0.062 mg/l reported in 2023. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
+               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained almost the same with 0.063 mg/l reported in 2019 compared with 0.062 mg/l reported in 2023. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -558,7 +558,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "",
-               no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without and also between people with a white ethnicity compared with any other ethnicity.",
+               no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without.",
                worsened: "",
                insufficient: ""
             }
@@ -1075,7 +1075,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "However, the level of trust in the NI Assembly was higher in 2020 and 2021, compared to 2019 and 2022.",
+               no_change: "However, the level of trust in the NI Assembly was higher in 2020 and 2021, compared to 2019, 2022 and 2023.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
