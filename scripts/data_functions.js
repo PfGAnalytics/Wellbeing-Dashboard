@@ -2119,17 +2119,23 @@ async function dataPortalLive () {
 
    // Fetch data and store in object fetched_data
 
+   let has_error = false;
    let result = null;
 
    try {
       const response = await fetch(api_url);
       const fetched_data = await response.json();
-      result = fetched_data;
+      let result = fetched_data;
+       if (result.hasOwnProperty("error")) {
+         has_error = true;
+       }
    } catch (error) {
       result = null;
    }
 
-   if (result == null) {
+   console.log(result)
+
+   if (has_error) {
       
       screens = document.getElementsByClassName("screen");
 
