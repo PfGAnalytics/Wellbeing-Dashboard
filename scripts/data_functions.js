@@ -2126,11 +2126,10 @@ async function dataPortalLive () {
       const response = await fetch(api_url);
       const fetched_data = await response.json();
       let result = fetched_data;
-       if (result.hasOwnProperty("error")) {
-         has_error = true;
-       }
+      has_error = result.hasOwnProperty("error");
    } catch (error) {
       result = null;
+      has_error = true;
    }
 
    if (has_error) {
