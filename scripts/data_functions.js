@@ -2133,8 +2133,6 @@ async function dataPortalLive () {
       result = null;
    }
 
-   console.log(result)
-
    if (has_error) {
       
       screens = document.getElementsByClassName("screen");
