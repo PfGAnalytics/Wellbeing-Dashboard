@@ -1,0 +1,112 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSFGA",
+          "label": {
+            "INDSFGA": "Gap between percentage of babies found to be small for gestational age for those living in the most and least deprived areas"
+          },
+          "unit": {
+            "INDSFGA": {
+              "decimals": 1,
+              "label": "ppts",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2019", "2020", "2021", "2022"],
+          "label": {
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022"
+          }
+        },
+        "label": "Year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDSFGANI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 108,
+        "value": "Thriving Children"
+      },
+      "product": {
+        "code": "SGA",
+        "value": "Small for gestational age"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSFGANI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - Small for gestational age",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSFGANI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSFGANI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSFGANI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSFGANI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Small for gestational age[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe gap in percentage points between babies born in the most and least deprived areas, who are small for gestational age. For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Maternity System, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]www.health-ni.gov.uk/articles/health-inequalities-statistics[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]The information needed to report on this indicator was collected as normal during Covid-19.[b]\r\n\r\nFurther information[/b]\r\n1. Absolute gap in percentage points (as opposed to relative proportionate gap) was used for calculations.\r\n2. Small for gestational age refers to any live birth with a birth weight falling below the 10th percentile.\r\n3. Deprivation quintiles were defined according to the 2017 NIMDM.\r\n4. For more information on this data please contact the data provider - [url=mailto:healthinequalities@health-ni.gov.uk]Public Health Information & Research Branch, Information Analysis Directorate, DOH[/url] or see the '[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]Health Inequalities Annual Report[/url]'.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 4, 1],
+    "updated": "2024-06-19T10:27:21.997Z",
+    "value": [6.4, 5.6, 5.6, 4.9],
+    "version": "2.0"
+  },
+  "id": {}
+}

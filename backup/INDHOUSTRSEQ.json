@@ -1,0 +1,160 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHOUSTRS",
+          "label": {
+            "INDHOUSTRS": "Number of households in housing stress"
+          },
+          "unit": {
+            "INDHOUSTRS": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2002/03", "2003/04", "2004/05", "2005/06", "2006/07", "2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2002/03": "2002/03",
+            "2003/04": "2003/04",
+            "2004/05": "2004/05",
+            "2005/06": "2005/06",
+            "2006/07": "2006/07",
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["N92000002", "1", "2", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "21", "22", "30", "31", "36", "55", "56", "57", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68"],
+          "label": {
+            "N92000002": "Northern Ireland",
+            "1": "Sex - Male",
+            "2": "Sex - Female",
+            "9": "Marital status - Single",
+            "10": "Marital status - Married/Civil partnership",
+            "11": "Marital status - Separated",
+            "12": "Marital status - Divorced",
+            "13": "Marital status - Widowed",
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "16": "Religion - Other/no religion",
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants",
+            "21": "Ethnic group - White",
+            "22": "Ethnic group - Other",
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural",
+            "36": "Age 65+",
+            "55": "Age 30-39",
+            "56": "Age 40-49",
+            "57": "Age 50-59",
+            "59": "Age Under 18",
+            "60": "Age 18-25",
+            "61": "Age 26-29",
+            "62": "Age 60-64",
+            "63": "Household Group - Elderly",
+            "64": "Household Group - Large Adult",
+            "65": "Household Group - Large Family",
+            "66": "Household Group - Single",
+            "67": "Household Group - Small Adult",
+            "68": "Household Group - Small Family"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDHOUSTRSEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "HS",
+        "value": "Housing stress"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Housing stress",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Housing stress \r\n\r\nHow do we measure this? \r\n[/b] Number of households in housing stress \r\n\r\n[b]Source[/b] \r\nNorthern Ireland Housing Statistics, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/housing-statistics]https://www.communities-ni.gov.uk/topics/housing-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19.\r\n\r\n[b]Further information [/b]\r\n1. ‘Housing stress’ is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme. \r\n2. Due to the introduction of a new Housing Management System (HIMS) in July 2011 equality groups data on the Waiting Lists for the 1 year period from 1st April 2011 – 31st March 2012 is not available. \r\n3. As the number of households in housing stress is taken from an administrative dataset any change could be classed as a real change. \r\n\r\n[b]Sex [/b]\r\n4. ‘Sex’ is taken from the 1st Applicant in the household. \r\n5. Due to the live nature of the system and the point in time at which information has been extracted, there may be inconsistency between total housing stress figures and those disaggregated by sex. \r\n\r\n[b]Age [/b]\r\n6. ‘Age’ is taken from the 1st Applicant in the household. \r\n7. Due to the live nature of the system and the point in time at which information has been extracted, there may be inconsistency between total housing stress figures and those disaggregated by age. \r\n\r\n[b]Marital Status[/b] \r\n8. For consistency in reporting across PfG some categories of marital status have been combined; as a result, figures may present a slight undercount (of up to nine cases) due to disclosure control at a sub-category level. \r\n9. As the information provided is considered sensitive some statistical disclosure controls may have been placed on the tables with the omission of data in cases where there are less than ten applicants. \r\n10. The categories of 'Civil Partnership (CP)', 'CP Separated' and 'CP Legally Dissolved' were added with the introduction of the new Housing Management System. \r\n11. 'Marital Status' is taken from the 1st applicant in the household. \r\n12. Due to the live nature of the system and the point in time at which information has been extracted, there may be inconsistency between total housing stress figures and those disaggregated by marital status. \r\n13.The marital status for a large number of applications that have been carried over from Legacy systems is Unknown and have not been accounted for within the Equality data breakdown. \r\n\r\n[b]Religion [/b]\r\n14. The categories of 'Mixed', 'None' and 'Refused' were added with the introduction of the new Housing Management System. \r\n15. Up to 2011 the NIHE collected and monitored the religion of the 1st applicant making an application. From 2011 onwards information has been collected on the religion of the household. As such, data from these two time periods are not directly comparable. \r\n16. Due to the live nature of the system and the point in time at which information has been extracted, there may be inconsistency between total housing stress figures and those disaggregated by religion. \r\n17.The religion of a number of applications that have been carried over from Legacy systems is Unknown and have not been accounted for within the Equality data breakdown. \r\n\r\n[b]Dependants[/b] \r\n18. Information on Dependants were added in July 2011 with the introduction of a new Housing Management System (HMS). \r\n\r\n[b]Ethnic group[/b] \r\n19. 'Other' includes: 'Irish Traveller'; 'White and Black Caribbean'; 'White and Black African'; 'White and Asian'; 'Any other mixed/multiple ethnic background'; 'Indian'; 'Pakistani'; 'Bangladeshi'; 'Chinese'; 'Any other Asian background'; 'African'; 'Caribbean'; 'Any other Black/African/Caribbean background'; 'Arab'; and 'Any other ethnic group'. \r\n20.The ethnic group of a number of households that have been carried over from Legacy systems is Unknown and have not been accounted for within the Equality data breakdown. \r\n\r\n[b]Urban Rural[/b] \r\n21. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: https://www.nisra.gov.uk/support/geography/urban-rural-classification \r\n22. Data are only available from 2007/08 onwards \r\n\r\n[b]Household group[/b] \r\n23. Applicant Information is as end of March for each respective year. \r\n24. The Household group is recorded at point of application and may not reflect the current composition of the household. \r\n25. Household groups are defined as: \r\n[i]Single Person[/i]: 1 person 16-59 years old \r\n[i]Elderly:[/i] 1 or 2 persons aged 16 or over, at least 1 over 60 \r\n[i]Small adult:[/i] 2 persons 16-59 years old \r\n[i]Small family: [/i]1 or 2 persons aged 16 or over, with 1 or 2 children \r\n[i]Large family[/i]: 1 or 2 persons aged 16 or over, and 3 or more persons aged 0-15, or 3 or more persons aged 16 or over and 2 or more persons aged 0-15 \r\n[i]Large adult:[/i] 3 or more persons aged 16 or over, with or without 1 person aged 0-15.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 22, 31],
+    "updated": "2025-02-11T11:36:04.977Z",
+    "value": [13042, 6028, 7013, 6538, 1380, "NA", 490, 684, 5693, 5638, 1710, "NA", "NA", 11011, 2031, "NA", "NA", 2268, 2597, 1607, 897, 161, 3849, 1237, 425, "NA", "NA", "NA", "NA", "NA", "NA", 14152, 6604, 7544, 7766, 1584, 1507, 578, 798, 6169, 5947, 2032, "NA", "NA", 12090, 2062, "NA", "NA", 2335, 2787, 1848, 1041, 78, 4127, 1359, 573, "NA", "NA", "NA", "NA", "NA", "NA", 15527, 7182, 8337, 8767, 1771, 1648, 742, 937, 6885, 6490, 2144, "NA", "NA", 13631, 1896, "NA", "NA", 2589, 2996, 2129, 1184, 72, 4432, 1552, 565, "NA", "NA", "NA", "NA", "NA", "NA", 17223, 7876, 9342, 9792, 2092, 1935, 866, 1031, 7693, 7445, 2080, "NA", "NA", 15498, 1725, "NA", "NA", 2825, 3250, 2442, 1383, 60, 4847, 1739, 672, "NA", "NA", "NA", "NA", "NA", "NA", 19703, 9000, 10702, 11463, 2610, 2246, 1053, 1177, 8693, 8559, 2450, "NA", "NA", 17960, 1743, "NA", "NA", 3152, 3634, 2781, 1586, 155, 5579, 1989, 826, "NA", "NA", "NA", "NA", "NA", "NA", 21364, 9508, 11850, 12998, 3072, 2335, 1034, 1240, 9204, 8918, 3236, "NA", "NA", 19348, 2016, 18354, 3010, 3364, 3911, 2965, 1790, 183, 6038, 2257, 850, "NA", "NA", "NA", "NA", "NA", "NA", 20481, 9077, 11401, 12727, 2989, 2115, 939, 1129, 8631, 7662, 4185, "NA", "NA", 18264, 2217, 17865, 2616, 3248, 3718, 3036, 1758, 137, 5577, 2201, 803, "NA", "NA", "NA", "NA", "NA", "NA", 19716, 8858, 10833, 12398, 2869, 2027, 825, 1031, 8056, 7227, 4408, "NA", "NA", 17823, 1893, 17282, 2434, 3220, 3575, 2957, 1764, 152, 5109, 2117, 797, "NA", "NA", "NA", "NA", "NA", "NA", 20967, 9244, 11720, 13285, 2948, 2234, 856, 1006, 8821, 7378, 4765, "NA", "NA", 19176, 1791, 18396, 2571, 3155, 3848, 3188, 1968, 146, 5458, 2354, 847, "NA", "NA", "NA", "NA", "NA", "NA", 20211, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 17882, 2329, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 3374, 285, 1136, 8780, 852, 5784, 22414, 9758, 12637, 11382, 2649, 1874, 885, 868, 10336, 7843, 4216, 7668, 14727, 20513, 1901, 19724, 2690, 3086, 4352, 3607, 2362, 116, 5355, 2647, 870, 3472, 306, 1227, 10323, 944, 6142, 21586, 9460, 12109, 10299, 2463, 1723, 856, 869, 10229, 7416, 3924, 7209, 14377, 19748, 1838, 19010, 2576, 3178, 4265, 3523, 2472, 95, 4661, 2498, 877, 3499, 274, 1222, 9975, 903, 5713, 22097, 9684, 12413, 10171, 2401, 1710, 842, 810, 10810, 7213, 4074, 7540, 14557, 20209, 1888, 19468, 2629, 3232, 4533, 3579, 2676, 86, 4535, 2521, 935, 3540, 428, 1228, 10105, 912, 5884, 22645, 9923, 12722, 10111, 2431, 1690, 868, 771, 10902, 7185, 4558, 7821, 14824, 20453, 2192, 19883, 2762, 3342, 4864, 3585, 2759, 79, 4423, 2591, 1002, 3601, 367, 1427, 10297, 926, 6027, 23694, 10330, 13364, 10280, 2477, 1716, 869, 746, 11243, 7367, 5084, 8208, 15486, 21391, 2303, 20632, 3062, 3503, 5178, 3795, 2980, 58, 4415, 2748, 1017, 3706, 397, 1527, 10764, 1016, 6284, 24148, 10625, 13523, 9941, 2481, 1626, 840, 712, 11092, 6952, 6104, 8172, 15976, 21718, 2430, 21049, 3099, 3574, 5484, 3872, 3137, 37, 4210, 2690, 1144, 3757, 428, 1612, 11185, 1034, 6132, 26387, 11561, 14826, 10020, 2534, 1551, 828, 682, 11576, 7147, 7664, 8948, 17439, 24054, 2333, 23062, 3325, 3795, 6150, 4241, 3523, 34, 4483, 2895, 1266, 4094, 481, 1797, 12227, 1118, 6670, 27745, 12204, 15541, 9824, 2578, 1439, 802, 620, 11750, 7183, 8812, 9357, 18388, 25301, 2444, 24154, 3591, 3979, 6631, 4464, 3745, 28, 4572, 2956, 1369, 4261, 525, 1909, 12930, 1197, 6923, 30288, 13374, 16914, 10353, 2476, 1487, 793, 598, 12383, 7236, 10669, 10057, 20231, 27674, 2614, 26211, 4077, 4104, 7495, 4845, 3929, 18, 5205, 3270, 1422, 4252, 563, 2024, 14668, 1311, 7470, 31407, 13806, 17601, 10493, 2489, 1445, 763, 560, 12519, 7128, 11760, 10681, 20726, 28574, 2833, 27164, 4243, 4176, 8001, 5264, 4106, 22, 5038, 3315, 1485, 4247, 607, 2168, 15149, 1330, 7906, 32633, 14170, 18463, 10652, 2488, 1502, 769, 534, 12457, 7117, "NA", 11497, 21136, 29608, 3025, 28130, 4503, 4257, 8525, 5802, 4311, 20, 4721, 3432, 1565, 4297, 678, 2428, 15435, 1404, 8391, 35464, 15561, 19903, 11227, 2628, 1583, 815, 534, 12781, 7379, 6037, 12473, 22991, 31786, 2663, 30492, 4972, 4498, 9392, 6525, 4768, 10, 4819, 3742, 1710, 4543, 745, 2662, 16935, 1513, 9066],
+    "version": "2.0"
+  },
+  "id": {}
+}

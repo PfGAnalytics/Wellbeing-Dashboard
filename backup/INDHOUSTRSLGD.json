@@ -1,0 +1,138 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHOUSTRS",
+          "label": {
+            "INDHOUSTRS": "Number of households in housing stress"
+          },
+          "unit": {
+            "INDHOUSTRS": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
+      }
+    },
+    "extension": {
+      "matrix": "INDHOUSTRSLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "HS",
+        "value": "Housing stress"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Housing stress",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Housing stress[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of households in housing stress\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Housing Statistics, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/housing-statistics]https://www.communities-ni.gov.uk/topics/housing-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19.\r\n\r\n[b]Further information\r\n[/b]1. Data for LGD are only available from 2013/14 onwards.",
+    "role": {
+      "geo": "LGD2014",
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 11, 11],
+    "updated": "2025-04-29T9:30:00.000Z",
+    "value": [1517, 1233, 6912, 1224, 2539, 434, 1165, 1548, 993, 2036, 1985, 1519, 1189, 6933, 1286, 2750, 506, 1173, 1509, 1017, 2151, 2064, 1681, 1142, 7134, 1156, 2981, 537, 1183, 1469, 1030, 2264, 2068, 1668, 1268, 7322, 1292, 3126, 668, 1268, 1563, 1008, 2367, 2144, 1703, 1382, 7336, 1240, 3279, 721, 1420, 1607, 1044, 2388, 2028, 1902, 1713, 8011, 1531, 3401, 1018, 1535, 1625, 1204, 2516, 1931, 2039, 1946, 8143, 1580, 3603, 1153, 1677, 1837, 1173, 2641, 1953, 2187, 2365, 8783, 1753, 3951, 1261, 1747, 1852, 1269, 2976, 2144, 2192, 2271, 9307, 1887, 4076, 1346, 1812, 1955, 1307, 3048, 2206, 2378, 2311, 9531, 2069, 4275, 1396, 1817, 2076, 1380, 3133, 2267, 2674, 2470, 10307, 2296, 4735, 1512, 1975, 2340, 1465, 3286, 2404],
+    "version": "2.0"
+  },
+  "id": {}
+}

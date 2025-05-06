@@ -1,0 +1,153 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDECONINACT",
+          "label": {
+            "INDECONINACT": "Percentage who are inactive for any reason other than being a student (aged 16 to 64)"
+          },
+          "unit": {
+            "INDECONINACT": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2006": "2006",
+            "2007": "2007",
+            "2008": "2008",
+            "2009": "2009",
+            "2010": "2010",
+            "2011": "2011",
+            "2012": "2012",
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["N92000002", "1", "2", "3", "4", "5", "6", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "25", "26", "27", "28", "29", "30", "31"],
+          "label": {
+            "N92000002": "Northern Ireland",
+            "1": "Sex - Male",
+            "2": "Sex - Female",
+            "3": "Age 16-24",
+            "4": "Age 25-34",
+            "5": "Age 35-49",
+            "6": "Age 50-64",
+            "9": "Marital status - Single",
+            "10": "Marital status - Married/Civil partnership",
+            "11": "Marital status - Separated",
+            "12": "Marital status - Divorced",
+            "13": "Marital status - Widowed",
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "16": "Religion - Other/no religion",
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants",
+            "19": "Disability - Yes",
+            "20": "Disability - No",
+            "21": "Ethnic group - White",
+            "22": "Ethnic group - Other",
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived",
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDECONINACTEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 102,
+        "value": "Stronger Economy"
+      },
+      "product": {
+        "code": "EI",
+        "value": "Economic inactivity"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDECONINACTEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Economic inactivity",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDECONINACTEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDECONINACTEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDECONINACTEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDECONINACTEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Economic inactivity rate excluding students[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of the population aged 16 to 64 who are economically inactive for any reason other than being a student.\r\n\r\n[b]Source[/b]\r\nLabour Force Survey, Northern Ireland Statistics and Research Agency\r\n[url=https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey]https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey[/url] \r\n\r\n[b]Impact of Covid-19 [/b]\r\nTypically, the Office for National Statistics (ONS) would reweight the LFS every two years to take account of updated population estimates and projections. Since the onset of the pandemic, the ONS have been monitoring the impact and as a result, there have been five LFS reweightings to improve the estimates. The latest reweighting was introduced in December 2024, affecting data from January-March 2019 to July-September 2024 to make use of more recent population estimates. An overview of the impact of reweighting on the NI estimates of unemployment, employment, and economic inactivity is available on the [url=https://www.nisra.gov.uk/publications/background-information-lfs]NISRA website[/url]. Previous reweightings occurred in October 2020, July 2021, June 2022 and February 2024. The Economic Inactivity rate at the Northern Ireland level increased slightly in 2020 but has since returned to a level similar to the rates seen before the pandemic.\r\n\r\n[b]Further information[/b]\r\n1. 'Economic inactivity rate excluding students' refers to the percentage of people aged 16-64 who are inactive for any reason other than being a student.\r\n\r\n[b]Marital Status[/b]\r\n2. Data is currently only available up to 2019, data for 2020, 2021, 2022, and 2023 may be available following the 2024 annual tables.\r\n\r\n[b]Religion[/b]\r\n3. Data is provided from the first year available (2009).\r\n4. Data is currently only available up to 2019, data for 2020, 2021, 2022, and 2023 may be available following the 2024 annual tables.\r\n5. 'Other' includes those who stated a religion other than Catholic and Protestant, those who stated no religion, those who refused to answer the question, and those whose answer was missing.\r\n\r\n[b]Dependants[/b]\r\n6. For this indicator, 'has dependants' includes those who are the head of the family or the wife/spouse of the head of the family who have any number of children under the age of 19. \r\n7. Information on dependants is based on household level information. This dataset uses a different weighting methodology compared with the person-level dataset. Further information is available in Volume 1, Section 10.5 of the LFS User Guidance: [url=https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/methodologies/labourforcesurveyuserguidance]https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/methodologies/labourforcesurveyuserguidance.[/url]\r\n8. Data is currently only available up to 2019, data for 2020, 2021, 2022, and 2023 may be available following the 2024 annual tables.\r\n\r\n[b]Disability[/b]\r\n9. These data use the GSS Harmonised Standard definition of disability:\r\n'Disability' refers to those reporting (current) physical or mental health condition(s) or illnesses lasting or expected to last 12 months or more; and that the condition(s) or illness(es) reduce their ability to carry out day-to-day activities.\r\n10. Data is provided from the first year available (2014).\r\n11. Data is currently only available up to 2019, data for 2020, 2021, 2022, and 2023 may be available following the 2024 annual tables.\r\n\r\n[b]Ethnic group[/b]\r\n12. Due to small sample sizes, racial groups other than white have been combined. Some figures within this category have been suppressed due to small sample sizes.\r\n13. 'Other includes: Irish traveller, Mixed/Multiple ethnic groups, Asian/Asian British, Black/African/Caribbean/Black British, Chinese, Arab, Other ethnic groups.\r\n14. Data is provided from the first year available (2013).\r\n15. Data is currently only available up to 2019, data for 2020, 2021, 2022, and 2023 may be available following the 2024 annual tables.\r\n\r\n[b]Deprivation [/b]\r\n16. All figures up to and including 2016 are defined according to the 2010 NIMDM; figures from 2017 onwards are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url] \r\n17. Data is provided from the first year available (2014).\r\n18. Data is currently only available up to 2019, data for 2020, 2021, 2022, and 2023 may be available following the 2024 annual tables.\r\n\r\n[b]Urban Rural[/b]\r\n19. Figures up to and including 2015 are defined according to the 2005 urban rural classification; figures from 2016 onwards are based on the 2015 classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url] \r\n20. Data is provided from the first year available (2014).\r\n21. Data is currently only available up to 2019, data for 2020, 2021, 2022, and 2023 may be available following the 2024 annual tables.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 18, 28],
+    "updated": "2024-12-20T9:46:05.037Z",
+    "value": [22.3, 15.4, 29.2, 7.1, 15.3, 20, 43.3, 15.1, 24.3, 36.5, 36.7, 64.5, "NA", "NA", "NA", 22.2, 28.3, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 22, 15.5, 28.4, 8.1, 14.3, 18.3, 44.3, 15.6, 23, 39.9, 41.9, 65.2, "NA", "NA", "NA", 20.8, 29.6, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 22.3, 15.6, 28.9, 10.6, 14.6, 17.6, 43.9, 16.7, 23.3, 38.8, 35.6, 63.1, "NA", "NA", "NA", 18.8, 30.6, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 22.3, 15.8, 28.7, 7.3, 16.5, 17.9, 44, 15.3, 24.2, 38.9, 39, 64, 23.5, 21.3, 21.8, 19.6, 32.3, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 21.3, 14.5, 27.9, 7.8, 13.8, 18.2, 41.1, 15.9, 22.3, 37.2, 37.9, 58.9, 23.4, 20, 18.4, 20.1, 28, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 19.9, 13.5, 26.1, 7.1, 11.3, 17.3, 39, 15.7, 19.6, 35.6, 36.4, 50.8, 21.7, 18.3, 19.4, 17.7, 26.9, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 19, 13.4, 24.4, 7.8, 11.6, 15.5, 36.8, 14.5, 18.9, 30, 40.4, 53.1, 20.8, 17.2, 19.2, 16.8, 24.7, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 19.4, 13.1, 25.4, 6.1, 12, 18.5, 34.8, 13.8, 20.7, 32.3, 37.3, 40, 19.8, 19.9, 15.8, 19.2, 26.1, "NA", "NA", 19.3, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 20.1, 13.9, 26.1, 10.4, 12.8, 16.7, 35.6, 16.2, 19.7, 40.2, 36.5, 46.6, 21, 21.3, 12.9, 19.2, 25.3, 59.3, 10.4, 20.1, "NA", 29.9, 23.8, 17.3, 15.1, 15.8, 20.8, 18.7, 20.1, 13.6, 26.4, 9.5, 15, 16.9, 34, 17.9, 18.5, 33.1, 38.4, 56.6, 20, 21.6, 15.9, 19.4, 25.2, 58.4, 10.3, 20.2, "NA", 28.7, 23.8, 17.8, 15.3, 15.5, 22.2, 16.5, 19.3, 13.3, 25.2, 6.6, 13.2, 17.3, 33.7, 16.1, 18.4, 32.2, 39, 57.1, 20.1, 20.2, 14.9, 17.3, 24.5, 59.3, 9.7, 19.3, "NA", 29.4, 22, 17.3, 14.4, 13.9, 20, 18.2, 20.2, 15, 25.2, 7, 15.8, 16.1, 35.2, 16.7, 19.7, 30.5, 36.3, 50.3, 20.9, 21.4, 15.8, 18, 24.8, 57.2, 10.7, 20.2, "NA", 31.8, 21.4, 18.9, 14.1, 15.2, 21.3, 18.2, 20, 14.9, 25, 8.2, 12.9, 16.1, 35.6, 16.1, 20, 35.1, 34.9, 46.9, 19.2, 20, 21.7, 16.6, 24.8, 57.7, 10.2, 19.9, "NA", 31.3, 21.9, 19, 16, 13.5, 21.7, 17.1, 19.7, 15.2, 24.2, 8.2, 14, 15.9, 33.9, 16.7, 18.7, 38.3, 38.2, 39, 19.7, 19.1, 21.2, 16, 23.9, 56.7, 9.9, 19.6, 20.8, 31.4, 22.8, 16.3, 16.8, 12.6, 21.2, 17.3, 21.7, 16.5, 26.9, 10.5, 15.4, 16.5, 37.2, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 19.2, 16.3, 21.9, 8.3, 14.2, 13.3, 34, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 19.1, 15, 23.2, 6.6, 13.8, 15.3, 32.8, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 18.3, 14.7, 21.8, 5.7, 12.7, 13.9, 32.9, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA"],
+    "version": "2.0"
+  },
+  "id": {}
+}

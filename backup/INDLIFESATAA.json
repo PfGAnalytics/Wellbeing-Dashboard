@@ -1,0 +1,144 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDLIFESAT",
+          "label": {
+            "INDLIFESAT": "Average life satisfaction score (from 0 to 10)"
+          },
+          "unit": {
+            "INDLIFESAT": {
+              "decimals": 1,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "AA": {
+        "category": {
+          "index": ["N06000001", "N06000002", "N06000003", "N06000004", "N06000005", "N06000006", "N06000007", "N06000008", "N06000009", "N06000010", "N06000011", "N06000012", "N06000013", "N06000014", "N06000015", "N06000016", "N06000017", "N06000018"],
+          "label": {
+            "N06000001": "Belfast East",
+            "N06000002": "Belfast North",
+            "N06000003": "Belfast South",
+            "N06000004": "Belfast West",
+            "N06000005": "East Antrim",
+            "N06000006": "East Londonderry",
+            "N06000007": "Fermanagh and South Tyrone",
+            "N06000008": "Foyle",
+            "N06000009": "Lagan Valley",
+            "N06000010": "Mid Ulster",
+            "N06000011": "Newry and Armagh",
+            "N06000012": "North Antrim",
+            "N06000013": "North Down",
+            "N06000014": "South Antrim",
+            "N06000015": "South Down",
+            "N06000016": "Strangford",
+            "N06000017": "Upper Bann",
+            "N06000018": "West Tyrone"
+          }
+        },
+        "label": "Assembly Area",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/62725f2dd9a7acd16cc19b96f580d7b4"
+            }
+          ]
+        }
+      }
+    },
+    "extension": {
+      "matrix": "INDLIFESATAA",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "AA": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 104,
+        "value": "Brighter Futures"
+      },
+      "product": {
+        "code": "LS",
+        "value": "Life satisfaction"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATAA/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "AA"],
+    "label": "Indicator - Life satisfaction",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATAA/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATAA/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATAA/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATAA/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Life satisfaction[/b]\r\n[b]\r\nHow do we measure this?[/b]\r\nAverage life satisfaction score for people aged 16 and over. Life satisfaction is measured on a scale from 0 to 10, where 0 is not at all satisfied and 10 is completely satisfied.\r\n\r\n[b]Source[/b]\r\nIndividual Wellbeing in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/individual-wellbeing-northern-ireland]Individual Wellbeing in Northern Ireland | The Executive Office (executiveoffice-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe coronavirus pandemic resulted in a change in data collection mode and a reduced sample size for 2020/21 and 2021/22. Therefore, users should take this into consideration when interpreting future years of data and care should be taken when comparing any findings published prior to 2020/21.\r\n\r\n[b]Further information[/b]\r\n1. The sample size for 2020/21 was approximately less than half compared to 2017/18, 2018/19 and 2019/20.\r\n2. Data refers to the population aged 16 and over.\r\n3. Data is collected through Continuous Household Survey (CHS). For more information:\r\n[url=https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey] https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey[/url]\r\n4. Some figures have been suppressed due to small sample sizes (less than 100 respondents).",
+    "role": {
+      "geo": "AA",
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 10, 18],
+    "updated": "2025-04-29T9:30:00.000Z",
+    "value": [7.6, 7.3, 8.1, 7.4, 7.6, 7.7, 7.8, 7.8, 8, 7.7, 7.8, 8, 8.1, 7.8, 7.7, 7.9, 7.5, 7.8, 7.8, 7, 7.6, 7.3, 8, 7.7, 8.1, 7.9, 7.8, 7.7, 8.2, 7.9, 8.2, 7.6, 7.8, 8, 7.6, 7.9, 7.7, 7.4, 7.4, 7.5, 8.1, 7.9, 7.5, 7.9, 7.7, 8.2, 8.1, 7.5, 8.1, 8.1, 7.7, 7.6, 7.8, 8.2, 7.9, 7.5, 7.8, 7.5, 7.9, 7.8, 8.2, 7.6, 8.1, 8.1, 8.1, 7.7, 8, 7.8, 8.1, 7.9, 8, 8.1, 7.7, 7.4, 7.9, 7.1, 7.9, 7.9, 7.9, 7.7, 7.8, 8.2, 8, 7.9, 7.9, 7.7, 7.9, 7.7, 8, 7.9, 8.1, 7.6, 7.3, 7.7, 7.4, 7.7, 7.9, 8, 7.6, 7.8, 8, 8, 8, 7.7, 7.9, 8, 7.9, 7.8, 7.7, "NA", 7.4, "NA", 7.8, 7.5, "NA", "NA", 7.8, "NA", 7.9, 7.7, 7.7, 7.4, "NA", 7.8, 7.8, "NA", 7.6, 6.9, 7.6, 6.9, 7.6, 7.8, 7.7, 7.6, 7.9, 7.9, 8.1, 7.8, 8, 7.7, 7.9, 8, 7.9, 7.6, 7.6, 6.8, 7.4, 6.7, 7.3, 7.7, 8.1, 7.5, 7.7, 7.8, 7.9, 7.6, 7.8, 7.6, 7.7, 8, 7.6, 7.5, 7.8, 7.2, 7.8, 7.2, 7.8, 7.8, 7.9, 7.4, 7.9, 8, 7.8, 8, 7.8, 7.5, 8.3, 8.2, 7.7, 7.8],
+    "version": "2.0"
+  },
+  "id": {}
+}

@@ -1,0 +1,153 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHOUSCT",
+          "label": {
+            "INDHOUSCT": "Proportion of households spending 30% or more of household income on housing costs"
+          },
+          "unit": {
+            "INDHOUSCT": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["N92000002", "1", "2", "5", "6", "7", "9", "13", "14", "15", "17", "18", "19", "20", "23", "24", "25", "26", "27", "30", "31", "33", "34", "35", "36", "38", "39", "40", "41", "42", "43", "44"],
+          "label": {
+            "N92000002": "Northern Ireland",
+            "1": "Sex - Male",
+            "2": "Sex - Female",
+            "5": "Age 35-49",
+            "6": "Age 50-64",
+            "7": "Age 65-74",
+            "9": "Marital status - Single",
+            "13": "Marital status - Widowed",
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants",
+            "19": "Disability - Yes",
+            "20": "Disability - No",
+            "23": "Sexual orientation- Heterosexual",
+            "24": "Sexual orientation - Gay/lesbian, bisexual and other",
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural",
+            "33": "Political opinion - Unionist",
+            "34": "Political opinion - Nationalist",
+            "35": "Political opinion - Neither",
+            "36": "Age 65+",
+            "38": "Age 16-34",
+            "39": "Marital status - Divorced/Separated",
+            "40": "Deprivation - Quintile 4/5",
+            "41": "Marital status - Married/Civil partnership/Cohabiting",
+            "42": "Tenure - Private Rental",
+            "43": "Tenure - Social Rented",
+            "44": "Tenure - Buying with Mortgage"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDHOUSCTEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "HCPHI",
+        "value": "Housing costs as a proportion of household income"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Housing costs as a proportion of household income",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Housing costs as a proportion of household income[/b] \r\n\r\n[b]How do we measure this?[/b] \r\nProportion of households spending 30% or more of household income on housing costs. \r\n[b]\r\nSource[/b] \r\nFamily Resources Survey \r\n[url=https://www.communities-ni.gov.uk/topics/family-resources-survey]https://www.communities-ni.gov.uk/topics/family-resources-survey[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nData collection in 2020/21 and 2021/22 was impacted by COVID-19 restrictions resulting in a move to telephone interviewing and a reduced sample size. This led to additional uncertainty around the estimates, particularly for smaller groups. As such, for 2020/21, only figures relating to the whole population in NI are presented in this dashboard. In 2022/23 a mix of face to face and telephone interviews were employed. Changes in estimates over recent years should be interpreted being mindful of the differences in data collection approaches across the period and the effect this had on sample composition, with longer term trends often giving a clearer picture. \r\n\r\n[b]Further information[/b] \r\n1. Further information is available under sub-population charts. \r\n\r\n[b]Age[/b] \r\n2. Age band 16-24 and 25-34 grouped together due to small sample sizes. \r\n3. Some figures have been suppressed due to small sample sizes. \r\n4. Information provided is based on the head of the household. \r\n\r\n[b]Marital Status[/b] \r\n5. The sub groups Divorced and Separated have been grouped together due to small sample sizes. The sub group Co-Habiting has been grouped with Married/Civil Partnership due to small sample sizes. \r\n6. Some figures have been suppressed due to small sample sizes. \r\n7. Information provided is based on the head of the household. \r\n\r\n[b]Religion[/b] \r\n8. Due to small sample sizes, reliable estimates are not available for the 'Other/None/Missing/Refused' category. \r\n9. Information provided is based on the head of the household. \r\n\r\n[b]Dependants[/b] \r\n10. A 'dependant' is an individual aged under 16. A person will also be defined as a child if they are 16-19 years old and they are: not married; living with parents; and in full-time non-advanced education or in unwaged government training. \r\n11. Some figures have been suppressed due to small sample sizes. \r\n12. Information provided is based on the head of the household. \r\n\r\n[b]Disability[/b] \r\n13. Disability status is based on whether someone in the family has a disability / whether no-one in the family has a disability. \r\n14. For this indicator, ‘disability’ is defined as having any long standing illness, disability or infirmity (based on specific impairment types respondents were asked about) that leads to a significant difficulty with one or more areas of the individuals life. Everyone classified as disabled under the FRS definition would also be classified as disabled under the Disability Discrimination Act (DDA). However, some individuals classified as disabled and having rights under the DDA would not be captured by this definition. \r\n15. Information provided is based on the head of the household. \r\n\r\n[b]Political opinion[/b] \r\n16. Information provided is based on the head of the household. \r\n17. Data on Political opinion is not available prior to 2011/12 as questions were not asked on the Family Resources Survey. \r\n18. Political opinion is based on the political opinion of the head of the benefit unit, who is asked Generally speaking, do you regard yourself as a nationalist, a unionist or neither? \r\n\r\n[b]Sexual orientation[/b] \r\n19. Heterosexual/straight is the only group with a large enough sample size. Due to small sample sizes, reliable estimates are not available for 'Gay/Lesbian', 'Bisexual' or 'Other'. \r\n20. Data on Sexual Orientation is not available prior to 2011/12 as questions were not asked on the Family Resources Survey. \r\n21. Information provided is based on the head of the household. \r\n\r\n[b]Deprivation[/b] \r\n22. Quintiles 4 & 5 have been combined due to small sample sizes. \r\n23. The Multiple Deprivation measure used for years prior to 2016/17 is the NIMDM 2010 measure while for 2016/17 onward it is the NIMDM 2017. [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url] \r\n24. Some figures have been suppressed due to small sample sizes. \r\n25. Information provided is based on the head of the household. \r\n\r\n[b]Urban Rural[/b] \r\n26. Information provided is based on the head of the household. \r\n27. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url] \r\n\r\n[b]Tenure[/b] \r\n28. Owner Occupier tenure status not included as they have no housing costs. \r\n29. Some figures have been suppressed due to small sample sizes. \r\n30. Information provided is based on the head of the household. \r\n\r\n[b]Sex[/b] \r\n31. Children have been excluded, this data refers to adult males and adult females only.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 14, 32],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [11, 7, 8, 10, 8, "NA", 28, 11, 13, 10, 11, 11, "NA", "NA", "NA", "NA", 17, 17, 8, 13, 9, "NA", "NA", "NA", 8, 22, 24, 7, 4, 26, 27, 8, 12, 9, 9, 10, 9, "NA", 28, "NA", 14, 8, 12, 12, "NA", "NA", "NA", "NA", 18, 13, 11, 14, 7, "NA", "NA", "NA", "NA", 23, 24, 8, 5, 30, 23, 8, 13, 10, 10, 14, 9, "NA", 26, "NA", 15, 10, 14, 12, "NA", "NA", 13, "NA", 19, 15, 12, 13, 12, 10, 14, 14, "NA", 23, 28, 8, 6, 33, 23, 11, 11, 8, 9, 12, 10, "NA", 30, "NA", 12, 11, 11, 12, 13, 10, 12, "NA", 20, 15, 13, 14, 8, 10, 10, 13, 6, 19, 26, 5, 4, 27, 29, 7, 11, 7, 8, 9, 9, "NA", 28, "NA", 11, 10, 8, 12, 11, 11, 12, "NA", 19, 14, 7, 13, 7, 8, 10, 13, 6, 20, 22, 7, 3, 25, 28, 6, 10, 7, 9, 11, 9, "NA", 27, "NA", 12, 9, 12, 10, 10, 10, 11, "NA", 17, 11, 9, 11, 9, 5, 12, 13, 6, 18, 21, 7, 4, 20, 30, 7, 9, 7, 7, 8, 10, "NA", 23, "NA", 11, 7, 9, 9, 11, 8, 10, "NA", 16, 10, 8, 11, 7, 6, 8, 12, 5, 16, 21, 6, 4, 23, 25, 5, 10, 6, 8, 9, 10, "NA", 23, "NA", 11, 8, 9, 10, 11, 9, 11, "NA", 18, 11, 7, 12, 6, 7, 10, 11, 5, 17, 21, 7, 4, 21, 27, 7, 8, 5, 6, 9, 9, "NA", 23, "NA", 9, 8, 8, 9, 11, 6, 9, "NA", 16, 8, 7, 11, 4, 8, 9, 9, 5, 12, 18, 5, "NA", 16, 25, "NA", 8, 5, 6, 9, 8, "NA", 19, "NA", 8, 7, 7, 8, 10, 6, 8, "NA", 14, 7, 7, 10, 5, 5, 8, 9, 5, 10, 16, 5, 3, 18, 22, "NA", 8, 5, 5, 8, 8, "NA", 21, "NA", 10, 4, 8, 8, 9, 7, 8, "NA", 16, 8, "NA", 9, 5, 4, 8, 9, 4, 12, 18, 5, "NA", 15, 25, "NA", 8, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 6, 5, 5, "NA", 6, "NA", 13, "NA", 7, 6, "NA", 7, 8, 4, 7, "NA", 11, 8, "NA", 7, 4, 5, 8, 6, 5, "NA", 16, 4, "NA", 17, 17, "NA", 8, 6, 6, 6, 7, "NA", 22, "NA", 8, 5, 6, 9, 8, 7, 9, "NA", 10, 9, "NA", 10, 5, 5, 8, 8, 5, 16, 13, 6, "NA", 24, 20, "NA"],
+    "version": "2.0"
+  },
+  "id": {}
+}

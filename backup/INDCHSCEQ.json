@@ -1,0 +1,144 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDCHSC",
+          "label": {
+            "INDCHSC": "Percentage of care leavers who, aged 19, were in education, training or employment"
+          },
+          "unit": {
+            "INDCHSC": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2003/04", "2004/05", "2005/06", "2006/07", "2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2003/04": "2003/04",
+            "2004/05": "2004/05",
+            "2005/06": "2005/06",
+            "2006/07": "2006/07",
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["N92000002", "1", "2", "14", "15", "16", "17", "18", "19", "20", "25", "26", "27", "28", "29", "30", "31"],
+          "label": {
+            "N92000002": "Northern Ireland",
+            "1": "Sex - Male",
+            "2": "Sex - Female",
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "16": "Religion - Other/no religion",
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants",
+            "19": "Disability - Yes",
+            "20": "Disability - No",
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived",
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDCHSCEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 108,
+        "value": "Thriving Children"
+      },
+      "product": {
+        "code": "CSC",
+        "value": "Children's social care"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Children's social care",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Children’s social care[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of care leavers who, aged 19, were in education, training or employment.\r\n\r\n[b]Source[/b]\r\nCare leavers statistics, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/care-leavers]Care leavers | Department of Health (health-ni.gov.uk) [/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe information needed to report on this indicator was collected as normal during Covid-19.\r\n\r\n[b]Further information[/b]\r\n1. Figures for 2004/05 and 2006/07 for Northern Ireland level are estimates as the survey was not completed during these years. Figures for these years for other breakdowns are not available.\r\n\r\n[b]Sex[/b]\r\n2. Figures for 2004/05 and 2006/07 are not available as the survey was not completed during these years.\r\n\r\n[b]Religion[/b]\r\n3. Figures for 2004/05 and 2006/07 are not available as the survey was not completed during these years.\r\n4. Some figures have been suppressed due to small sample sizes.\r\n5. ‘Other' includes all other religions, those with no religion, those who did not want to disclose religion and where religion was missing in the dataset.\r\n\r\n[b]Dependants[/b]\r\n6. Figures for 2004/05 and 2006/07 are not available as the survey was not completed during these years.\r\n7. Due to small numbers of care leavers with dependants, the figures may be subject to high year on year volatility.\r\n8. The dataset only covers 19-year olds hence low numbers means this must be treated with caution.\r\n9. For this indicator, 'has dependants' includes all who have become a mother or father before their 19th birthday.\r\n\r\n[b]Disability[/b]\r\n10. Figures for 2004/05 and 2006/07 are not available as the survey was not completed during these years.\r\n11. Due to small numbers of care leavers with a disability, the figures may be subject to high year on year volatility.\r\n12. 'Disability' refers to a child/young person who has a significant impairment, and, without the provision of additional assistance resources or information, would be disadvantaged/restricted in, or prevented from participating in, the life of the community in the manner which might reasonably be expected in comparison to other children of similar age respecting individual culture and circumstances.\r\n\r\n[b]Deprivation [/b]\r\n13. All figures are defined according to the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url] \r\n14. Figures were not collected prior to 2012/13.\r\n15. Relates to the area the young person was living in on their 19th birthday.\r\n16. Excludes care leavers aged 19 where no geographic location was supplied.\r\n\r\n[b]Urban Rural[/b]\r\n17. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url] \r\n18. Figures were not collected prior to 2012/13.\r\n19. Relates to the area the young person was living in on their 19th birthday.\r\n20. Excludes care leavers aged 19 where no geographic location was supplied.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 20, 17],
+    "updated": "2024-09-04T11:33:54.097Z",
+    "value": [52, 56, 49, 52, 56, "NA", 30, 58, 36, 57, "NA", "NA", "NA", "NA", "NA", "NA", "NA", 56, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 60, 64, 58, 60, 63, "NA", 37, 68, 48, 63, "NA", "NA", "NA", "NA", "NA", "NA", "NA", 53.5, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 47, 46, 47, 37, 56, "NA", 21, 56, 37, 49, "NA", "NA", "NA", "NA", "NA", "NA", "NA", 56, 51, 61, 62, 49, "NA", 30, 62, 55, 56, "NA", "NA", "NA", "NA", "NA", "NA", "NA", 59, 56, 63, 65, 54, "NA", 28, 67, 59, 59, "NA", "NA", "NA", "NA", "NA", "NA", "NA", 67, 66, 67, 70, 62, "NA", 47, 71, 75, 66, "NA", "NA", "NA", "NA", "NA", "NA", "NA", 58, 59, 57, 60, 56, "NA", 23, 68, 58, 58, "NA", "NA", "NA", "NA", "NA", "NA", "NA", 69, 70, 67, 73, 68, "NA", 33, 74, 71, 68, 66, 68, 65, 91, 69, 67, 85, 64, 65, 63, 69, 61, "NA", 37, 70, 53, 66, 57, 73, 71, 71, 53, 61, 71, 66, 70, 62, 69, 63, "NA", 27, 74, 35, 70, 68, 69, 67, 57, 69, 60, 82, 61, 60, 62, 59, 62, "NA", 33, 68, 79, 59, 46, 64, 82, 78, 50, 56, 80, 61, 62, 61, 56, 66, 50, 35, 65, 62, 61, 61, 52, 61, 65, 71, 57, 82, 65, 61, 68, 65, 62, 70, 35, 69, 56, 67, 60, 57, 61, 72, 67, 58, 82, 63, 67, 59, 68, 59, 57, 33, 67, 67, 62, 53, 60, 83, 84, 58, 59, 69, 73, 76, 69, 67, 79, 79, 52, 76, 79, 72, 72, 78, 67, 78, 91, 71, 77, 70, 66, 74, 65, 78, 62, 41, 73, 56, 73, 66, 67, 82, 79, 50, 67, 77, 75, 80, 69, 76, 76, 63, 33, 81, 78, 74, 72, 74, 78, 70, 86, 71, 86, 68, 65, 71, 71, 63, 76, 38, 71, 41, 76, 66, 58, 73, 81, 77, 67, 72],
+    "version": "2.0"
+  },
+  "id": {}
+}

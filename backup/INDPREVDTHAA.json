@@ -1,0 +1,143 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDPREVDTH",
+          "label": {
+            "INDPREVDTH": "Age standardised death rate (per 100,000 population) for causes considered preventable"
+          },
+          "unit": {
+            "INDPREVDTH": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2001-05", "2002-06", "2003-07", "2004-08", "2005-09", "2006-10", "2007-11", "2008-12", "2009-13", "2010-14", "2011-15", "2012-16", "2013-17", "2014-18", "2015-19", "2016-20", "2017-21", "2018-22"],
+          "label": {
+            "2001-05": "2001-05",
+            "2002-06": "2002-06",
+            "2003-07": "2003-07",
+            "2004-08": "2004-08",
+            "2005-09": "2005-09",
+            "2006-10": "2006-10",
+            "2007-11": "2007-11",
+            "2008-12": "2008-12",
+            "2009-13": "2009-13",
+            "2010-14": "2010-14",
+            "2011-15": "2011-15",
+            "2012-16": "2012-16",
+            "2013-17": "2013-17",
+            "2014-18": "2014-18",
+            "2015-19": "2015-19",
+            "2016-20": "2016-20",
+            "2017-21": "2017-21",
+            "2018-22": "2018-22"
+          }
+        },
+        "label": "Grouped year"
+      },
+      "AA": {
+        "category": {
+          "index": ["N06000001", "N06000002", "N06000003", "N06000004", "N06000005", "N06000006", "N06000007", "N06000008", "N06000009", "N06000010", "N06000011", "N06000012", "N06000013", "N06000014", "N06000015", "N06000016", "N06000017", "N06000018"],
+          "label": {
+            "N06000001": "Belfast East",
+            "N06000002": "Belfast North",
+            "N06000003": "Belfast South",
+            "N06000004": "Belfast West",
+            "N06000005": "East Antrim",
+            "N06000006": "East Londonderry",
+            "N06000007": "Fermanagh and South Tyrone",
+            "N06000008": "Foyle",
+            "N06000009": "Lagan Valley",
+            "N06000010": "Mid Ulster",
+            "N06000011": "Newry and Armagh",
+            "N06000012": "North Antrim",
+            "N06000013": "North Down",
+            "N06000014": "South Antrim",
+            "N06000015": "South Down",
+            "N06000016": "Strangford",
+            "N06000017": "Upper Bann",
+            "N06000018": "West Tyrone"
+          }
+        },
+        "label": "Assembly Area"
+      }
+    },
+    "extension": {
+      "matrix": "INDPREVDTHAA",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "AA": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 109,
+        "value": "Healthier Lives"
+      },
+      "product": {
+        "code": "PREV",
+        "value": "Preventable deaths"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHAA/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "AA"],
+    "label": "Indicator - Preventable deaths",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHAA/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHAA/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHAA/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHAA/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Preventable deaths\r\n[/b]\r\n[b]How do we measure this?[/b]\r\nThe age standardised death rate for causes that are considered preventable according to the latest Office for National Statistics (ONS) definition, as proposed by the Organisation for Economic Co-operation and Development (OECD). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nHealth Inequalities Annual Report, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]www.health-ni.gov.uk/articles/health-inequalities-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDeaths due to COVID-19 were introduced to the definition in 2020.\r\n\r\n[b]Further information[/b]\r\n1. 95% Confidence Intervals apply to the figures displayed therefore not all differences are statistically significant. Further information on how to interpret the differences and changes in these figures is available online at [url=https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators]https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators[/url]\r\n2. The definition of 'preventable mortality' is based on the current Office for National Statistics (ONS) definition for avoidable mortality as proposed by the Organisation for Economic Co-operation and Development (OECD). This is calculated by standardising (using the direct method) the average death rate in Northern Ireland (over a five year period) due to preventable causes to the 2013 ESP. Defined as causes of death that can be mainly avoided through effective public health and primary prevention interventions (i.e. before the onset of diseases/injuries, to reduce incidence).\r\n[url=https://www.oecd.org/health/health-systems/Avoidable-mortality-2019-Joint-OECD-Eurostat-List-preventable-treatable-causes-of-death.pdf]www.oecd.org/health/health-systems/Avoidable-mortality-2019-Joint-OECD-Eurostat-List-preventable-treatable-causes-of-death.pdf[/url]\r\n3. For more information on this data please contact the data provider - Public Health Information & Research Branch, Information Analysis Directorate, DOH, email:[url=mailto:healthinequalities@health-ni.gov.uk] healthinequalities@health-ni.gov.uk[/url] or see the 'Health Inequalities Annual Report': [url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]https://www.health-ni.gov.uk/articles/health-inequalities-statistics[/url]",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 18, 18],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [307, 302, 185, 324, 193, 158, 244, 189, 167, 157, 216, 150, 167, 186, 177, 200, 187, 173, 293, 307, 182, 322, 198, 152, 239, 196, 168, 162, 207, 148, 159, 187, 184, 189, 182, 178, 292, 301, 177, 322, 186, 149, 234, 198, 162, 158, 202, 148, 155, 180, 185, 186, 172, 176, 216, 295, 183, 319, 183, 184, 201, 243, 155, 189, 199, 163, 150, 174, 177, 181, 182, 193, 221, 295, 186, 314, 179, 174, 191, 248, 146, 186, 196, 163, 148, 174, 171, 173, 182, 197, 218, 289, 190, 316, 176, 172, 177, 253, 140, 176, 190, 164, 150, 174, 171, 164, 185, 202, 215, 289, 197, 311, 169, 164, 168, 243, 138, 169, 185, 159, 148, 172, 165, 157, 181, 185, 207, 282, 196, 307, 167, 164, 159, 233, 137, 166, 178, 151, 144, 172, 163, 150, 186, 175, 193, 276, 188, 303, 161, 155, 160, 228, 134, 155, 179, 149, 143, 171, 160, 148, 177, 167, 183, 264, 184, 292, 154, 150, 160, 222, 130, 151, 172, 147, 138, 170, 156, 146, 173, 153, 182, 267, 177, 295, 148, 149, 157, 213, 130, 149, 163, 146, 138, 163, 156, 144, 170, 151, 185, 258, 168, 286, 147, 151, 159, 219, 127, 148, 162, 143, 137, 163, 151, 146, 169, 153, 187, 252, 160, 287, 150, 150, 163, 215, 126, 149, 164, 149, 139, 162, 151, 151, 165, 151, 191, 257, 155, 278, 156, 148, 160, 211, 130, 149, 152, 153, 141, 165, 154, 144, 170, 153, 190, 266, 153, 287, 158, 152, 153, 210, 140, 150, 150, 154, 140, 160, 148, 142, 164, 161, 194, 282, 157, 290, 164, 154, 156, 209, 137, 155, 156, 160, 140, 168, 150, 145, 166, 161, 194, 294, 161, 307, 168, 159, 158, 219, 140, 161, 163, 167, 140, 170, 159, 147, 178, 165, 197, 300, 163, 317, 164, 157, 157, 217, 142, 165, 167, 166, 139, 163, 154, 143, 180, 171],
+    "version": "2.0"
+  },
+  "id": {}
+}

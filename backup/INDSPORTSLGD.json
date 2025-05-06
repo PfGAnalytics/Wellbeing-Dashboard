@@ -1,0 +1,125 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSPORTS",
+          "label": {
+            "INDSPORTS": "Percentage participating in sport and physical activity"
+          },
+          "unit": {
+            "INDSPORTS": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government Group"
+      }
+    },
+    "extension": {
+      "matrix": "INDSPORTSLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 109,
+        "value": "Healthier Lives"
+      },
+      "product": {
+        "code": "SAPA",
+        "value": "Sport and physical activity"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Sport and physical activity",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Sport and physical activity[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of adults participating in sport and physical activity during the last 4 weeks.\r\n\r\n[b]Source[/b]\r\nEngagement in culture, arts, heritage and sport by adults in Northern Ireland, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics]Culture and heritage statistics | Department for Communities (communities-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection for the 2023/24 CHS was carried out using a mix of telephone and face-to-face interviewing modes, a similar approach to that used in 2022/23. For 2020/21 and 2021/22 data collection was by telephone interviewing due to the coronavirus (COVID-19) pandemic. There was also a reduction in the number of questions between 2020/21-2022/23. As a result, the figures from 2020/21 onwards are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n\r\n[b]Further Information[/b]\r\n1. Sport & physical activity is defined as the percentage of adults (aged 16+) participating in sport & physical activity within the last 4 weeks (including walking).\r\n2. A question relating to sport and physical activity within the last 4 weeks was not included in the CHS 2020/21.\r\n3. Following a move in 2020/21 from face-to-face interviewing to telephone interviewing to collect data, due to the coronavirus (COVID-19) pandemic, data collection for the Continuous Household Surveys 2021/22 to 2023/24 used a mix of telephone and face-to-face modes. \r\n4. Results from 2021/22 to 2023/24 are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n5. While comparisons can be made between 2021/22 and 2022/23 and 2023/24, it is important to note that participating in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19.\r\n6. Published figures for 2017/18 to 2019/20 were revised on 29 June 2023:\r\n[url=https://www.communities-ni.gov.uk/publications/engagement-culture-arts-heritage-and-sport-adults-northern-irelands-local-government-districts-2022]Engagement in culture, arts, heritage and sport by adults in Northern Ireland’s local government districts 2022 | Department for Communities (communities-ni.gov.uk)[/url].",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 7, 11],
+    "updated": "2025-02-06T9:30:00.000Z",
+    "value": [64, 61, 60, 66, 65, 54, 66, 62, 63, 67, 73, 71, 67, 61, 68, 70, 56, 69, 63, 61, 65, 81, 72, 74, 62, 67, 73, 66, 76, 78, 76, 62, 77, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 82, 74, 73, 76, 67, 74, 82, 83, 60, 70, 85, 81, 75, 70, 78, 75, 76, 88, 75, 68, 71, 82, 78, 77, 74, 75, 65, 66, 82, 73, 67, 69, 85],
+    "version": "2.0"
+  },
+  "id": {}
+}

@@ -1,0 +1,126 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDRECWSTE",
+          "label": {
+            "INDRECWSTE": "Percentage of household waste reused, recycled or composted"
+          },
+          "unit": {
+            "INDRECWSTE": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2006/07", "2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2006/07": "2006/07",
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "N92000002": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDRECWSTENI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "N92000002": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 106,
+        "value": "Cleaner Environment"
+      },
+      "product": {
+        "code": "RW",
+        "value": "Recycled waste"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRECWSTENI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "N92000002"],
+    "label": "Indicator - Recycled waste",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRECWSTENI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRECWSTENI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRECWSTENI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRECWSTENI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Recycled waste\r\n\r\nHow do we measure this?\r\n[/b]Percentage of household waste that is reused, recycled or composted. For this indicator a higher figure is better.\r\n\r\n[b]Source\r\n[/b]Northern Ireland local authority collected municipal waste management statistics, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics]https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]Bin collections were suspended and Civic amenity sites were closed for a period during Covid-19 restrictions. [b]\r\n\r\nFurther information\r\n[/b]1. Break in time series between 2011/12 and 2012/13 due to inclusion of reuse from 2012/13 onwards.[b]\r\n[/b]",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 18, 1],
+    "updated": "2025-02-24T9:30:00.000Z",
+    "value": [27.7, 31.9, 34.4, 35.6, 37.3, 39.7, 39.8, 41.4, 42, 42.2, 44.3, 48.1, 50, 51.9, 50.9, 50.1, 50.7, 51.1],
+    "version": "2.0"
+  },
+  "id": {}
+}

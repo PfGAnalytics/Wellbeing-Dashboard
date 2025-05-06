@@ -1,0 +1,136 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDPREVDTH",
+          "label": {
+            "INDPREVDTH": "Age standardised death rate (per 100,000 population) for causes considered preventable"
+          },
+          "unit": {
+            "INDPREVDTH": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2001-05", "2002-06", "2003-07", "2004-08", "2005-09", "2006-10", "2007-11", "2008-12", "2009-13", "2010-14", "2011-15", "2012-16", "2013-17", "2014-18", "2015-19", "2016-20", "2017-21", "2018-22"],
+          "label": {
+            "2001-05": "2001-05",
+            "2002-06": "2002-06",
+            "2003-07": "2003-07",
+            "2004-08": "2004-08",
+            "2005-09": "2005-09",
+            "2006-10": "2006-10",
+            "2007-11": "2007-11",
+            "2008-12": "2008-12",
+            "2009-13": "2009-13",
+            "2010-14": "2010-14",
+            "2011-15": "2011-15",
+            "2012-16": "2012-16",
+            "2013-17": "2013-17",
+            "2014-18": "2014-18",
+            "2015-19": "2015-19",
+            "2016-20": "2016-20",
+            "2017-21": "2017-21",
+            "2018-22": "2018-22"
+          }
+        },
+        "label": "Grouped year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District"
+      }
+    },
+    "extension": {
+      "matrix": "INDPREVDTHLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 109,
+        "value": "Healthier Lives"
+      },
+      "product": {
+        "code": "PREV",
+        "value": "Preventable deaths"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Preventable deaths",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Preventable deaths[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe age standardised death rate for causes that are considered preventable according to the latest Office for National Statistics (ONS) definition, as proposed by the Organisation for Economic Co-operation and Development (OECD). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nHealth Inequalities Annual Report, Department of Health\r\n[url=http://www.health-ni.gov.uk/articles/health-inequalities-statistics]www.health-ni.gov.uk/articles/health-inequalities-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDeaths due to COVID-19 were introduced to the definition in 2020.\r\n\r\n[b]Further information[/b]\r\n1. 95% Confidence Intervals apply to the figures displayed therefore not all differences are statistically significant. Further information on how to interpret the differences and changes in these figures is available online at [url=https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators]https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators[/url]\r\n2. The definition of 'preventable mortality' is based on the current Office for National Statistics (ONS) definition for avoidable mortality as proposed by the Organisation for Economic Co-operation and Development (OECD). This is calculated by standardising (using the direct method) the average death rate in Northern Ireland (over a five year period) due to preventable causes to the 2013 ESP. Defined as causes of death that can be mainly avoided through effective public health and primary prevention interventions (i.e. before the onset of diseases/injuries, to reduce incidence).\r\n[url=http://www.oecd.org/health/health-systems/Avoidable-mortality-2019-Joint-OECD-Eurostat-List-preventable-treatable-causes-of-death.pdf]www.oecd.org/health/health-systems/Avoidable-mortality-2019-Joint-OECD-Eurostat-List-preventable-treatable-causes-of-death.pdf[/url]\r\n3. For more information on this data please contact the data provider - Public Health Information & Research Branch, Information Analysis Directorate, DOH, email: [url=mailto:healthinequalities@health-ni.gov.uk]healthinequalities@health-ni.gov.uk[/url] or see the 'Health Inequalities Annual Report': [url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]https://www.health-ni.gov.uk/articles/health-inequalities-statistics[/url]",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 18, 11],
+    "updated": "2024-06-10T13:45:37.363Z",
+    "value": [196, 185, 295, 153, 178, 230, 165, 183, 172, 199, 184, 197, 178, 292, 151, 188, 225, 164, 182, 175, 201, 174, 188, 171, 290, 149, 188, 221, 158, 174, 172, 201, 168, 182, 174, 264, 181, 229, 193, 158, 175, 192, 195, 163, 180, 172, 264, 174, 233, 189, 155, 174, 189, 191, 159, 180, 172, 262, 170, 240, 182, 152, 174, 177, 188, 156, 176, 167, 263, 162, 224, 174, 149, 169, 169, 182, 153, 175, 167, 259, 159, 216, 163, 147, 164, 165, 177, 149, 173, 165, 251, 152, 207, 165, 142, 160, 154, 171, 148, 172, 159, 244, 148, 199, 158, 134, 154, 152, 168, 143, 167, 157, 244, 146, 189, 160, 130, 152, 149, 162, 143, 167, 157, 236, 145, 195, 162, 128, 150, 148, 157, 144, 165, 157, 233, 145, 191, 165, 125, 156, 148, 161, 146, 168, 156, 232, 147, 192, 159, 129, 160, 150, 159, 143, 164, 152, 236, 151, 192, 163, 136, 161, 146, 154, 143, 171, 154, 244, 156, 191, 163, 136, 166, 152, 157, 144, 174, 162, 252, 163, 199, 167, 139, 171, 156, 167, 144, 171, 163, 256, 164, 199, 170, 143, 167, 160, 164, 143],
+    "version": "2.0"
+  },
+  "id": {}
+}

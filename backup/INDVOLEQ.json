@@ -1,0 +1,141 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDVOL",
+          "label": {
+            "INDVOL": "Percentage volunteering"
+          },
+          "unit": {
+            "INDVOL": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["N92000002", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "25", "26", "27", "28", "29", "30", "31"],
+          "label": {
+            "N92000002": "Northern Ireland",
+            "1": "Sex - Male",
+            "2": "Sex - Female",
+            "3": "Age 16-24",
+            "4": "Age 25-34",
+            "5": "Age 35-49",
+            "6": "Age 50-64",
+            "7": "Age 65-74",
+            "8": "Age 75+",
+            "9": "Marital status - Single",
+            "10": "Marital status - Married/Civil partnership",
+            "11": "Marital status - Separated",
+            "12": "Marital status - Divorced",
+            "13": "Marital status - Widowed",
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "16": "Religion - Other/no religion",
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants",
+            "19": "Disability - Yes",
+            "20": "Disability - No",
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived",
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDVOLEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 105,
+        "value": "Caring Society"
+      },
+      "product": {
+        "code": "VOL",
+        "value": "Volunteering"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Volunteering",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Volunteering[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of adults volunteering.\r\n\r\n[b]Source[/b]\r\nEngagement in culture, arts, heritage and sport by adults in Northern Ireland, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics]Culture and heritage statistics | Department for Communities (communities-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nFollowing a move in 2020/21 from face-to-face interviewing to telephone interviewing to collect data, due to the coronavirus (COVID-19) pandemic, data collection for the Continuous Household Surveys 2021/22 and 2022/23 used a mix of telephone and face-to-face modes. Therefore, the results from these years are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content. While comparisons can be made between 2021/22 and 2022/23, it is important to note that volunteering in 2021/22 would have been impacted by closures due to COVID-19.\r\n\r\n[b]Further Information[/b]\r\n1. Volunteering is defined as the percentage of adults (aged 16+) who carried out any voluntary work or activity with the last 12 months.\r\n2. Questions relating to volunteering were not included in the CHS 2020/21.\r\n3. Following a move in 2020/21 from face-to-face interviewing to telephone interviewing to collect data, due to the coronavirus (COVID-19) pandemic, data collection for the Continuous Household Surveys 2021/22 and 2022/23 used a mix of telephone and face-to-face modes.\r\n4. Results from 2021/22 and 2022/23 are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n5. While comparisons can be made between 2021/22 and 2022/23, it is important to note that volunteering in 2021/22 would have been impacted by closures due to COVID-19.\r\n\r\n[b]Deprivation[/b]\r\n6. Figures above are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here:\r\n[url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url]\r\n\r\n[b]Urban Rural[/b]\r\n7. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here:\r\n[url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url]\r\n\r\n[b]Marital Status[/b]\r\n8. Figures not provided for 2017/18 are due to small sample size.\r\n\r\n[b]Religion[/b]\r\n9. 'Other' includes those who stated a religion other than Catholic and Protestant, those who stated no religion, those who refused to answer the question, and those whose answer was missing.\r\n\r\n[b]Disability[/b]\r\n10. For this indicator, ‘disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n\r\n[b]Dependants[/b]\r\n11. For this indicator, 'has dependants' includes individuals who have responsibility for the care of: a child(ren); a person with a disability; and/or a dependant elderly person.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 6, 28],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [27, 25, 29, 30, 21, 30, 27, 32, 17, 24, 30, "NA", 24, 18, 23, 32, 22, 28, 26, 21, 29, 20, 25, 26, 30, 32, 24, 32, 27, 28, 26, 35, 20, 30, 27, 31, 17, 27, 29, 17, 25, 21, 25, 30, 25, 27, 28, 23, 29, 20, 25, 29, 32, 31, 26, 30, 28, 28, 28, 29, 24, 29, 29, 31, 21, 27, 30, 13, 18, 21, 24, 32, 25, 28, 28, 26, 29, 21, 22, 29, 31, 35, 25, 32, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 17, 18, 17, 16, 15, 19, 19, 18, 14, 14, 20, 11, 16, 13, 16, 20, 15, 20, 16, 15, 19, 12, 17, 16, 19, 22, 15, 21, 21, 22, 20, 22, 15, 25, 22, 21, 17, 17, 24, 16, 16, 19, 17, 25, 20, 23, 20, 17, 23, 16, 19, 22, 23, 23, 19, 25],
+    "version": "2.0"
+  },
+  "id": {}
+}

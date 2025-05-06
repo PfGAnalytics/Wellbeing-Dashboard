@@ -1,0 +1,115 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDWORRYAC",
+          "label": {
+            "INDWORRYAC": "Percentage of people very worried about (all types) of crime"
+          },
+          "unit": {
+            "INDWORRYAC": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDWORRYACNI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 111,
+        "value": "Safer Communities"
+      },
+      "product": {
+        "code": "WAC",
+        "value": "Worry about crime"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDWORRYACNI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - Worry about crime",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDWORRYACNI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDWORRYACNI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDWORRYACNI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDWORRYACNI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Worry about crime \r\n\r\n[/b] [b]How do we measure this?[/b] \r\nPercentage of people who, when thinking about all types of crime in general, are very worried about being a victim of crime.\r\n\r\n[b]Source[/b] \r\nFindings from the 2022/23 Northern Ireland Safe Community Telephone Survey \r\n[url=https://www.justice-ni.gov.uk/publications/r-s-bulletin-findings-202223-northern-ireland-safe-community-telephone-survey]R & S Bulletin Findings from the 2022/23 Northern Ireland Safe Community Telephone Survey | Department of Justice (justice-ni.gov.uk)[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThere was a change in survey mode from 2020/21 due to the pandemic and the method by which interviews were undertaken changed from face-to-face to telephone. This resulted in a break in the time series. The change reduced the sample size, particularly for 2020/21. Results for the three latest years are not directly comparable with previous sweeps.\r\n\r\n[b]Further information[/b] \r\n1. The Northern Ireland Safe Community Survey was previously known as the NI Crime Survey. Given the change in survey mode as a result of the pandemic, the survey years from 2020/21 are referenced as the Northern Ireland Safe Community Telephone Survey. \r\n2. Previously conducted on an ad hoc basis, the survey began operating on a continuous basis in January 2005. \r\n3. Results exclude don't knows and refusals.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 7, 1],
+    "updated": "2024-06-11T11:39:46.35Z",
+    "value": [6.6, 5.1, 6.7, 6.4, 4.7, 4.9, 4.1],
+    "version": "2.0"
+  },
+  "id": {}
+}

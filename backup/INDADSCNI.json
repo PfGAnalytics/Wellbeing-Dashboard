@@ -1,0 +1,120 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDADSC",
+          "label": {
+            "INDADSC": "Number of adults receiving social care services at home or self directed support for social care as a percentage of the total number of adults receiving care"
+          },
+          "unit": {
+            "INDADSC": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2012": "2012",
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDADSCNI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 105,
+        "value": "Caring Society"
+      },
+      "product": {
+        "code": "ASS",
+        "value": "Adult social care"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDADSCNI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - Adult social care",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDADSCNI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDADSCNI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDADSCNI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDADSCNI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Adult social care[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of adults receiving social care services at home, or self directed support for social care, as a percentage of the total number of adults receiving care.\r\n\r\n[b]Source[/b]\r\nDomiciliary care, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/domiciliary-care]https://www.health-ni.gov.uk/articles/domiciliary-care[/url]\r\nCare packages in effect, Department of Health\r\n[url=https://www.health-ni.gov.uk/publications/care-packages-effect]https://www.health-ni.gov.uk/publications/care-packages-effect[/url]\r\nDirect payments, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/direct-payments]https://www.health-ni.gov.uk/articles/direct-payments[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe method of collection has not changed during or since COVID.\r\n\r\n[b]Further information[/b]\r\n1. This indicator is derived by the following method:\r\n(Clients receiving Domiciliary Care + Direct payments in effect)/(Clients receiving Domiciliary Care + Direct Payments in effect + Nursing and residential home provision)\r\n2. The Domiciliary Care information covers all provision during a survey week in September.\r\n3. The Direct Payments data is collected regionally each quarter and comprises of those clients who are in the Elderly, Mental Health, Learning Disability, Physical & Sensory Disability and Primary Health & Adult Community client group.\r\n4. The Residential and Nursing home provision reflects the position at the quarter end.\r\n5. Limitations include extracting data in differing formats at different time periods. Data is extracted from different HSC Trust IT systems.\r\n6. Prior to 2015, figures for direct payments are collated for the Elderly, Learning Disability, Mental Health and Physical Disability POCs. From 2015 the figure is based on the Elderly, Mental Health, Learning Disability, Physical & Sensory Disability and Primary Health & Adult Community groups. This is due to changes in the return used to collect direct payment information that is now possible to identify and exclude direct payments made to Carers and Children from the measure.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 12, 1],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [68.1, 69.1, 68.5, 67.1, 68, 68.1, 68.8, 68.4, 67.7, 70.3, 69.3, 69.2],
+    "version": "2.0"
+  },
+  "id": {}
+}

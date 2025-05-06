@@ -1,0 +1,131 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDEXSALE",
+          "label": {
+            "INDEXSALE": "Proportion of all survey eligible businesses that sell outside Northern Ireland"
+          },
+          "unit": {
+            "INDEXSALE": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2011": "2011",
+            "2012": "2012",
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District"
+      }
+    },
+    "extension": {
+      "matrix": "INDEXSALELGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 102,
+        "value": "Stronger Economy"
+      },
+      "product": {
+        "code": "ESR",
+        "value": "External sales rate"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEXSALELGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - External sales rate",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEXSALELGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEXSALELGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEXSALELGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEXSALELGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]External sales rate[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nProportion of all survey eligible businesses that sell outside Northern Ireland.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Economic Trade Statistics, Northern Ireland Statistics and Research Agency\r\n[url=https://www.nisra.gov.uk/statistics/business-statistics/broad-economy-sales-and-exports-statistics]https://www.nisra.gov.uk/statistics/business-statistics/broad-economy-sales-and-exports-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe COVID-19 pandemic had a major impact on the economy during 2020, due to (i) lockdown measures being introduced to mitigate its spread and (ii) prolonged periods of business closures. Some of these measures were partially in place throughout the early portion of survey year 2021. During this time many businesses were either closed or working on a much reduced scale. As a result, estimates for counts of traders 2020 and 2021 contain an atypically larger number of imputations (estimates) than previous years and are subject to heavier weighting than normal to compensate for reduced response rates during this time. This has resulted in a one-off spike in the estimate of traders in 2021 and this should be borne in mind when considering the change in counts between 2020 and 2021, and between 2021 and 2022.\r\nWhen examining a time-series of counts of traders, users may wish to consider not including 2020 and 2021 in order to minimise those issues. When the figures are viewed in the broader picture of trends observed over the past number of years, the trend from 2019 to 2022 (ignoring 2020 and 2021) broadly aligns with both what might reasonably have been expected were it not for the impact of the pandemic in 2020.\r\nThis atypical imputation and weighting effect is much less pronounced for values of trade and that data for 2020 and 2021 can be considered normally.\r\n\r\n[b]Further Information[/b]\r\n1. External sales to markets outside Northern Ireland are comprised of sales to GB plus the value of exports combined.\r\n2. External sales rate refers to the proportion of all survey-eligible businesses that sell outside NI.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 13, 11],
+    "updated": "2024-12-23T9:30:00.000Z",
+    "value": [27.4, 22.1, 25.8, 20.4, 25.1, 23.8, 24.2, 17.1, 25.2, 25.5, 14.8, 25.6, 20.2, 27.6, 19.7, 27.4, 30, 31.1, 19.2, 25.5, 23.7, 21.9, 21, 21.9, 32.4, 17.2, 26.8, 26.4, 34.7, 16.8, 20.3, 19.8, 18.3, 26.5, 25, 24.4, 17.1, 28.9, 27.9, 26.8, 16.1, 19.1, 22.1, 25.7, 20.6, 24.2, 22.3, 16.8, 27, 24.6, 27.9, 15.1, 25, 21.4, 23.9, 21.9, 27.5, 21.9, 17, 18.8, 25.5, 23.9, 11.3, 26.4, 23.1, 23.9, 26.8, 27, 25.9, 16.9, 29.2, 25.7, 26.9, 12.2, 30.6, 32.3, 22.5, 23.9, 23.9, 26, 22.9, 31.4, 23.6, 30.9, 22.1, 30.4, 35.2, 17.6, 25.1, 26.4, 29, 18.6, 31, 27.4, 27.8, 23.5, 29.9, 31.2, 25.3, 25.2, 26.1, 28, 21.2, 29.1, 23, 29.6, 22.3, 26.5, 28.3, 19.7, 32.4, 33.1, 33.7, 25, 36.3, 40.5, 34.4, 33, 37.4, 40.7, 23.4, 23.3, 22.5, 28.8, 21.7, 29.3, 26.5, 29.3, 16.8, 23.6, 28.7, 17.8, 30.8, 28, 30.5, 21.6, 28.6, 22.2, 29.2, 20.7, 28.8, 33, 17.6],
+    "version": "2.0"
+  },
+  "id": {}
+}

@@ -1,0 +1,127 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDCHSC",
+          "label": {
+            "INDCHSC": "Percentage of care leavers who, aged 19, were in education, training or employment"
+          },
+          "unit": {
+            "INDCHSC": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2012/13-2014/15", "2013/14-2015/16", "2014/15-2016/17", "2015/16-2017/18", "2016/17-2018/19", "2017/18-2019/20", "2018/19-2020/21", "2019/20-2021/22", "2020/21-2022/23"],
+          "label": {
+            "2012/13-2014/15": "2012/13-2014/15",
+            "2013/14-2015/16": "2013/14-2015/16",
+            "2014/15-2016/17": "2014/15-2016/17",
+            "2015/16-2017/18": "2015/16-2017/18",
+            "2016/17-2018/19": "2016/17-2018/19",
+            "2017/18-2019/20": "2017/18-2019/20",
+            "2018/19-2020/21": "2018/19-2020/21",
+            "2019/20-2021/22": "2019/20-2021/22",
+            "2020/21-2022/23": "2020/21-2022/23"
+          }
+        },
+        "label": "Grouped financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District"
+      }
+    },
+    "extension": {
+      "matrix": "INDCHSCLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 108,
+        "value": "Thriving Children"
+      },
+      "product": {
+        "code": "CSC",
+        "value": "Children's social care"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Children's social care",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Children’s social care\r\n\r\nHow do we measure this?[/b]\r\nPercentage of care leavers who, aged 19, were in education, training or employment.\r\n\r\n[b]Source[/b]\r\nCare leavers statistics, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/care-leavers]Care leavers | Department of Health (health-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe information needed to report on this indicator was collected as normal during Covid-19.\r\n\r\n[b]Further information[/b]\r\n1. Due to small numbers, figures are aggregated over a three year period.\r\n2. Local Government District figures were only collected from 2012/13 onwards.\r\n3. Relates to the area the young person was living in on their 19th birthday.\r\n4. Excludes care leavers aged 19 where no geographic location was supplied.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 9, 11],
+    "updated": "2024-09-04T12:56:59.643Z",
+    "value": [81, 60, 61, 60, 68, 80, 33, 72, 77, 82, 74, 80, 57, 57, 53, 65, 91, 41, 63, 82, 80, 68, 80, 47, 63, 51, 63, 81, 45, 63, 76, 71, 64, 77, 48, 60, 55, 59, 81, 49, 65, 70, 65, 64, 61, 54, 66, 50, 65, 78, 41, 71, 64, 70, 62, 56, 63, 68, 55, 67, 82, 55, 79, 70, 74, 67, 52, 71, 69, 70, 71, 81, 58, 77, 76, 72, 57, 82, 71, 68, 74, 76, 70, 70, 78, 71, 73, 81, 71, 75, 62, 88, 78, 55, 68, 78, 59, 74, 75],
+    "version": "2.0"
+  },
+  "id": {}
+}

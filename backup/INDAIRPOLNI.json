@@ -1,0 +1,121 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDAIRPOL",
+          "label": {
+            "INDAIRPOL": "Annual mean roadside levels of nitrogen dioxide as measured by micorograms per cubic metre (μg/m3)"
+          },
+          "unit": {
+            "INDAIRPOL": {
+              "decimals": 1,
+              "label": "Micorograms per cubic metre (μg/m3)",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2011": "2011",
+            "2012": "2012",
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDAIRPOLNI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 106,
+        "value": "Cleaner Environment"
+      },
+      "product": {
+        "code": "AP",
+        "value": "Air pollution"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDAIRPOLNI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - Air pollution",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDAIRPOLNI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDAIRPOLNI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDAIRPOLNI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDAIRPOLNI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Air pollution \r\n\r\nHow do we measure this?[/b]\r\nAnnual mean roadside levels of nitrogen dioxide as measured by micrograms per cubic metre (μg/m3).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection and maintenance of air monitoring stations was negatively impacted during covid-19 restrictions.\r\n\r\n[b]Further Information[/b]\r\n1. The annual mean nitrogen dioxide concentration is the mean of measures taken at ten roadside/kerbside sites: Armagh Lonsdale Road, Belfast Newtownards Road, Belfast Ormeau Road, Belfast Stockman's Lane, Belfast Westlink Roden Street, Castlereagh Dundonald, Derry Dale's Corner, Downpatrick Roadside, Newtownabbey Antrim Road, North Down Holywood A2.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 13, 1],
+    "updated": "2024-09-16T12:27:05.273Z",
+    "value": [37.7, 38.7, 36.7, 35.6, 33.1, 35.5, 33.4, 33.5, 31.4, 24.3, 26.3, 26.9, 26.7],
+    "version": "2.0"
+  },
+  "id": {}
+}

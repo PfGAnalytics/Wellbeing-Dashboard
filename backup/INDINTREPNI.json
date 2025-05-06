@@ -1,0 +1,117 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDINTREP",
+          "label": {
+            "INDINTREP": "Northern Ireland's score on Nation Brands Index"
+          },
+          "unit": {
+            "INDINTREP": {
+              "decimals": 2,
+              "label": "Index",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "label": {
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023",
+            "2024": "2024"
+          }
+        },
+        "label": "Year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDINTREPNI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 102,
+        "value": "Stronger Economy"
+      },
+      "product": {
+        "code": "INTREP",
+        "value": "International reputation"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINTREPNI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - International reputation",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINTREPNI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINTREPNI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINTREPNI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINTREPNI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]International reputation[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNorthern Ireland's score on the Nation Brands Index (NBI). The overall NBI score is out of 100, and is based on NI's scores for Exports, Governance, Culture, People, Tourism and Immigration and Investment.\r\n\r\n[b]Source\r\n[/b]The Anholt Nation Brands Index: Report for Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/nation-brands-index]https://www.executiveoffice-ni.gov.uk/topics/nation-brands-index[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThe Nation Brands Index survey methodology did not change during or after COVID-19.\r\n\r\n[b]Further information[/b]\r\n1. The overall NBI score is out of 100, and is an average of scores from six dimensions (Exports; Governance; Culture; People; Tourism; and Immigration and Investment).",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 9, 1],
+    "updated": "2024-12-12T15:14:38.237Z",
+    "value": [57.93, 59.01, 58.71, 59.38, 59.16, 61.27, 60.89, 61.62, 61.13],
+    "version": "2.0"
+  },
+  "id": {}
+}

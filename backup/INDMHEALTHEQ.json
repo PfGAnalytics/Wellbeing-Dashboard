@@ -1,0 +1,145 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDMHEALTH",
+          "label": {
+            "INDMHEALTH": "Percentage with GHQ12 scores ≥4 (signifying possible mental health problem)"
+          },
+          "unit": {
+            "INDMHEALTH": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["N92000002", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "25", "26", "27", "28", "29", "30", "31", "32"],
+          "label": {
+            "N92000002": "Northern Ireland",
+            "1": "Sex - Male",
+            "2": "Sex - Female",
+            "3": "Age 16-24",
+            "4": "Age 25-34",
+            "5": "Age 35-49",
+            "6": "Age 50-64",
+            "7": "Age 65-74",
+            "8": "Age 75+",
+            "9": "Marital status - Single",
+            "10": "Marital status - Married/Civil partnership",
+            "11": "Marital status - Separated",
+            "12": "Marital status - Divorced",
+            "13": "Marital status - Widowed",
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "16": "Religion - Other/no religion",
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived",
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural",
+            "32": "Urban Rural - Mixed"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDMHEALTHEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 109,
+        "value": "Healthier Lives"
+      },
+      "product": {
+        "code": "MENT",
+        "value": "Mental health"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDMHEALTHEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Mental health",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDMHEALTHEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDMHEALTHEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDMHEALTHEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDMHEALTHEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Mental health[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage aged 16+ with general health questionnaire-12 (GHQ12) scores greater than or equal to 4 (signifying possible mental health problem). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nHealth Survey Northern Ireland, Department of Health\r\n[url=https://www.health-ni.gov.uk/topics/doh-statistics-and-research/health-survey-northern-ireland]https://www.health-ni.gov.uk/topics/doh-statistics-and-research/health-survey-northern-ireland[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to the coronavirus (COVID-19) pandemic, data collection for the 2020/21, 2021/22 and 2022/23 Health Survey Northern Ireland moved from face-to-face interviewing (with GHQ12 administered as a self-completion module) to telephone mode. Caution should be taken in reaching any conclusions based on 2020/21, 2021/22 and 2022/23 data and comparisons with previous years as the findings may not be directly comparable. Further details on these changes can be found in a document published alongside the 2022/23 report, titled: ‘Health Survey Northern Ireland 2022/23 - Things users need to know'.\r\n\r\n[b]Further information[/b]\r\n1. The GHQ12 information is collected as part of the [url=https://www.health-ni.gov.uk/topics/doh-statistics-and-research/health-survey-northern-ireland]Health Survey Northern Ireland[/url]. The statistics presented here relate to the proportion of adult respondents that scored four or more on the GHQ12 scale and are referred to as having a ‘high GHQ12 score’. A high score signifies a possible mental health problem.\r\n2. In 2018/19, as part of an ongoing methodological review, a revised weighting methodology has been adopted. For comparison purposes, the previous years have been updated to reflect the revised methodology.\r\n3. Data is not available for 2012/13 as the questions were not included in the survey. \r\n4. Prior to the commencement of the Health Survey NI in 2010/11, data were collected in the NI Continuous Household Survey (2009/10) and the NI Health and Wellbeing Survey (2005/06).\r\n5. Respondents are aged 16+.\r\n6. As the 2020/21, 2021/22 and 2022/23 health surveys were carried out in telephone mode, results may not be fully comparable with those collected as self-completion during a household interview.\r\n7. For more information on this data please contact the data provider Public Health Information & Research Branch, Information Analysis Directorate, DOH, email: [url=mailto:phirb@health-ni.gov.uk]phirb@health-ni.gov.uk[/url] or further information on the Health Survey is available online at [url=https://www.health-ni.gov.uk/topics/doh-statistics-and-research/health-survey-northern-ireland]https://www.health-ni.gov.uk/topics/doh-statistics-and-research/health-survey-northern-ireland[/url]\r\n\r\n[b]Sex[/b]\r\n8. In 2022/23, males (18%) were less likely than females (22%) to have a high GHQ12 score.\r\nThe proportion of males with a high GHQ12 score is unchanged from the comparison year of 2018/19, however the proportion of females with a high GHQ12 score has risen from 2018/19.\r\nConsidering the longer term trend, the proportion of both males and females scoring highly remains similar to their respective levels in 2010/11. \r\nFurther information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available [url=https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2Fpublications%2Fhealth%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK]online.[/url]\r\n\r\n[b]Age[/b]\r\n9. In 2022/23, respondents in the 50-64 age group were the most likely to have a high GHQ12 score. This was also the only age group that saw an increase from the comparison year of 2018/19. \r\nConsidering the longer term trend, estimates across the age groups have remained at broadly similar levels to 2010/11. \r\nFurther information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available [url=https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2Fpublications%2Fhealth%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK]online.[/url]\r\n\r\n[b]Marital status[/b]\r\n10. In 2022/23, respondents who were married or in a civil partnership were less likely to have a high GHQ12 score than those that were single, separated, divorced or widowed. \r\nIn comparison with 2018/19, there were increases noted for those who were divorced or widowed, with the other categories remaining at similar levels. \r\nConsidering the longer term trend, in comparison to 2010/11, there was an increase in the proportion scoring highly for those who were widowed and a decrease for those who were married or in a civil partnership. \r\nFurther information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available [url=https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2Fpublications%2Fhealth%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK]online.[/url]\r\n11. The marital status categories were amended from 2013/14 onwards to capture more detail on civil partnerships. It is not considered that this will have had an impact on the data.\r\n12. Some estimates have been suppressed due to small sample sizes (less than 100 respondents).\r\n\r\n[b]Religion[/b]\r\n13. In 2022/23, there was no difference across religion groups in terms of scoring highly on the GHQ12. \r\nIn comparison with 2018/19, there was an increase noted for those who were Protestant, with the other categories remaining at similar levels. \r\nConsidering the longer term trend, estimates across the categories remain at similar levels to 2010/11. \r\nFurther information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available [url=https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2Fpublications%2Fhealth%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK]online.[/url]\r\n14. 'Other' includes those with any other religion other than Catholic and Protestant, those with no religion and those who did not state a religion.\r\n\r\n[b]Deprivation[/b]\r\n15. A consistent gap remains between the most and least deprived areas, with respondents in the most deprived areas (28%) continuing to be more likely to have a high GHQ12 score than those in the least deprived areas (17%). \r\nIn comparison with 2018/19, the proportion scoring highly in the least deprived quintile increased whilst the other quintiles remained at similar levels. \r\nConsidering the longer term trend, estimates remain at similar levels to 2010/11. \r\nFurther information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available [url=https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2Fpublications%2Fhealth%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK]online.[/url]\r\n16. All figures up to and including 2017/18 are defined according to the 2010 NIMDM; figures from 2018/19 onwards are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url]\r\n\r\n[b]Urban Rural[/b]\r\n17. In 2022/23, respondents in urban areas were more likely than those in rural areas to have a high GHQ12 score. \r\nIn comparison with 2018/19, the proportion scoring highly in urban areas increased whilst the other categories remained at similar levels. \r\nConsidering the longer term trend, estimates across the categories remain at similar levels to 2010/11. \r\nFurther information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available [url=https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2Fpublications%2Fhealth%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK]online[/url].\r\n18. Figures up to and including 2015 are defined according 2005 urban rural classification; figures from 2016 onwards are based on the 2015 urban rural classification: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url]",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 13, 25],
+    "updated": "2024-09-05T11:43:30.157Z",
+    "value": [19.6, 16.9, 22.3, 14.3, 21.5, 23, 23.6, 13.5, 11.7, 19.8, 17.5, 37.6, 35, 15.3, 21.5, 17.8, 21.5, 27.1, 20.4, 18.6, 17, 15.8, 20.2, 18.7, "NA", 18.9, 17.3, 20.3, 16.5, 18, 20.9, 21.8, 15.5, 15.1, 20.8, 14.9, 33.1, 31.5, 20.2, 21, 16.3, 21.5, 25.9, 20.5, 16.5, 16.3, 15.9, 21.1, 15.3, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", 18.4, 16.5, 20.3, 17.7, 16.7, 19, 21.5, 16, 16.6, 19.6, 15.3, 32.2, 26.1, 23.9, 18.1, 18.5, 19.2, 25, 22.5, 16.5, 16.2, 12.5, 19.3, 16.7, "NA", 18, 15.8, 20.1, 15.6, 17, 20.2, 19.1, 16.3, 16.7, 19.6, 14.8, 25.9, 28.7, 20.8, 18.9, 15.6, 21.9, 28.8, 15.6, 15.6, 17.3, 14.9, 20, 14.6, "NA", 18.4, 15.6, 21, 20.3, 19.3, 17.8, 20.9, 13.4, 14.8, 22, 13.1, 30.7, 31.8, 17.9, 19.8, 17.7, 16.9, 27.2, 19.2, 17.4, 16.7, 11.9, 20.6, 15.2, 14.9, 17.6, 17, 18.1, 20.4, 18.5, 18.4, 19.1, 10.2, 13.8, 21.5, 12.2, 30.7, 24.4, 20.3, 17.6, 16.3, 20.1, 28.1, 17.1, 16.6, 14.1, 14, 18.8, 15.9, 15.2, 17.4, 16.3, 18.3, 19.7, 15.5, 18, 20.1, 12.9, 13.6, 19.6, 14.2, 23.9, 26.5, 18.9, 17.4, 17, 17.9, 22.2, 19.2, 16.3, 15.5, 14.5, 18.8, 14.5, 18.7, 18, 16.1, 19.8, 24.2, 17.1, 18.1, 18.3, 14.5, 13.2, 22.9, 13.6, 30.4, 24.3, 13.8, 17.3, 16.7, 21.6, 24.3, 23.3, 18.3, 13.1, 11.6, 19.5, 16.4, 14.6, 19.5, 17.6, 21.3, 22.6, 23.9, 18.2, 20.2, 13.8, 15.6, 23.9, 14.4, 33.4, 28.7, 22.4, 16.9, 20.4, 22.4, 26.7, 18.1, 19.3, 17.6, 16.9, 23.5, 13.1, 16.6, 26.9, 23.2, 30.4, 26.7, 31.3, 26.1, 31.3, 21.1, 17.3, 31.5, 21.5, "NA", 43.1, "NA", 25.5, 23.3, 34, 33.3, 26.7, 27, 24.9, 23.2, 28.7, 24.2, 24.2, 20.7, 16.3, 24.9, 17.2, 16.8, 20.9, 26.9, 20.3, 16.1, 20.8, 17.2, 36.9, 36.3, 22.2, 21.8, 18.8, 21.7, 30.3, 18.4, 20.1, 16.8, 20, 24.3, 15, 17.8, 20.2, 18, 22.4, 17.3, 18.8, 20.2, 26, 18.2, 14.7, 23.1, 14.9, 36.4, 33.7, 23.5, 19.7, 20, 21.5, 27.7, 23.8, 18.8, 15.9, 16.6, 22.6, 17, 18.4],
+    "version": "2.0"
+  },
+  "id": {}
+}

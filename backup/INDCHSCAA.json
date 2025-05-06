@@ -1,0 +1,134 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDCHSC",
+          "label": {
+            "INDCHSC": "Percentage of care leavers who, aged 19, were in education, training or employment"
+          },
+          "unit": {
+            "INDCHSC": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2012/13-2014/15", "2013/14-2015/16", "2014/15-2016/17", "2015/16-2017/18", "2016/17-2018/19", "2017/18-2019/20", "2018/19-2020/21", "2019/20-2021/22", "2020/21-2022/23"],
+          "label": {
+            "2012/13-2014/15": "2012/13-2014/15",
+            "2013/14-2015/16": "2013/14-2015/16",
+            "2014/15-2016/17": "2014/15-2016/17",
+            "2015/16-2017/18": "2015/16-2017/18",
+            "2016/17-2018/19": "2016/17-2018/19",
+            "2017/18-2019/20": "2017/18-2019/20",
+            "2018/19-2020/21": "2018/19-2020/21",
+            "2019/20-2021/22": "2019/20-2021/22",
+            "2020/21-2022/23": "2020/21-2022/23"
+          }
+        },
+        "label": "Grouped financial year"
+      },
+      "AA": {
+        "category": {
+          "index": ["N06000001", "N06000002", "N06000003", "N06000004", "N06000005", "N06000006", "N06000007", "N06000008", "N06000009", "N06000010", "N06000011", "N06000012", "N06000013", "N06000014", "N06000015", "N06000016", "N06000017", "N06000018"],
+          "label": {
+            "N06000001": "Belfast East",
+            "N06000002": "Belfast North",
+            "N06000003": "Belfast South",
+            "N06000004": "Belfast West",
+            "N06000005": "East Antrim",
+            "N06000006": "East Londonderry",
+            "N06000007": "Fermanagh and South Tyrone",
+            "N06000008": "Foyle",
+            "N06000009": "Lagan Valley",
+            "N06000010": "Mid Ulster",
+            "N06000011": "Newry and Armagh",
+            "N06000012": "North Antrim",
+            "N06000013": "North Down",
+            "N06000014": "South Antrim",
+            "N06000015": "South Down",
+            "N06000016": "Strangford",
+            "N06000017": "Upper Bann",
+            "N06000018": "West Tyrone"
+          }
+        },
+        "label": "Assembly Area"
+      }
+    },
+    "extension": {
+      "matrix": "INDCHSCAA",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "AA": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 108,
+        "value": "Thriving Children"
+      },
+      "product": {
+        "code": "CSC",
+        "value": "Children's social care"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCAA/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "AA"],
+    "label": "Indicator - Children's social care",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCAA/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCAA/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCAA/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCHSCAA/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Children’s social care\r\n\r\nHow do we measure this?[/b]\r\nPercentage of care leavers who, aged 19, were in education, training or employment.\r\n\r\n[b]Source[/b]\r\nCare leavers statistics, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/care-leavers]Care leavers | Department of Health (health-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe information needed to report on this indicator was collected as normal during Covid-19.\r\n\r\n[b]Further information[/b]\r\n1. Due to small numbers, figures are aggregated over a three year period.\r\n2. Assembly Area figures were only collected from 2012/13 onwards.\r\n3. Relates to the area the young person was living in on their 19th birthday.\r\n4. Excludes care leavers aged 19 where no geographic location was supplied.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 9, 18],
+    "updated": "2024-09-04T12:55:56.11Z",
+    "value": [52, 60, 59, 70, 75, 64, 75, 59, 30, 75, 82, 61, 91, 73, 70, 59, 62, 90, 57, 48, 56, 59, 70, 59, 79, 59, 55, 84, 72, 47, 72, 80, 74, 71, 58, 91, 50, 58, 65, 59, 63, 60, 69, 65, 52, 80, 65, 53, 56, 83, 67, 80, 44, 75, 52, 58, 53, 59, 59, 63, 64, 63, 63, 75, 67, 61, 48, 86, 63, 87, 41, 71, 63, 58, 51, 70, 61, 56, 67, 69, 56, 65, 79, 66, 50, 68, 59, 79, 47, 70, 71, 62, 51, 82, 79, 56, 76, 65, 77, 64, 85, 73, 53, 59, 64, 76, 55, 86, 71, 55, 55, 88, 95, 70, 83, 68, 82, 68, 86, 68, 41, 42, 73, 67, 64, 87, 58, 60, 62, 87, 96, 74, 74, 73, 86, 67, 82, 70, 68, 77, 79, 83, 63, 80, 54, 55, 59, 79, 94, 91, 59, 77, 83, 55, 79, 72, 71, 65, 79, 76, 69, 70],
+    "version": "2.0"
+  },
+  "id": {}
+}
