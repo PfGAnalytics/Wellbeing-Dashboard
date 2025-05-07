@@ -1,0 +1,116 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDLONE",
+          "label": {
+            "INDLONE": "Percentage who were lonely 'often/always' or 'some of the time'"
+          },
+          "unit": {
+            "INDLONE": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["17", "18"],
+          "label": {
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDLONEEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 105,
+        "value": "Caring Society"
+      },
+      "product": {
+        "code": "LON",
+        "value": "Loneliness"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLONEEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Loneliness",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLONEEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLONEEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLONEEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLONEEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Loneliness[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of people aged 16+ who reported feeling lonely 'often/always' or 'some of the time'. For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nIndividual Wellbeing in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/individual-wellbeing-northern-ireland]Individual Wellbeing in Northern Ireland | The Executive Office (executiveoffice-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe coronavirus pandemic resulted in a change in data collection mode and a reduced sample size for 2020/21 and 2021/22. Therefore, users should take this into consideration when interpreting future years of data and care should be taken when comparing any findings published prior to 2020/21.\r\n\r\n[b]Further information[/b]\r\n1. Data is collected through Continuous Household Survey (CHS). For more information: [url=https://www.nisra.gov.uk/statistics/find-your-survey/continuous-household-survey]https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey[/url]\r\n\r\n[b]Marital status[/b]\r\n2. Some figures have been suppressed due to small sample sizes (less than 100 respondents).\r\n\r\n[b]Religion[/b]\r\n3. 'Other' includes those who stated a religion other than Catholic and Protestant, those who stated no religion, those who refused to answer the question, and those whose answer was missing.\r\n\r\n[b]Dependants[/b]\r\n4. For this indicator, 'has dependants' includes individuals who have responsibility for the care of: a child(ren); a person with a disability; and/or a dependant elderly person.\r\n\r\n[b]Disability[/b]\r\n5. For this indicator, ‘disability’ is measured using ‘limiting long-standing illness’.\r\nRespondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n6. Due to the changes to the survey mode and questionnaire as a result of the COVID-19 pandemic, disability was not included in the 2020/21 questionnaire.\r\n\r\n[b]Ethnic group[/b]\r\n7. ‘Other' includes: 'Irish Traveller'; 'White and Black Caribbean'; 'White and Black African'; 'White and Asian'; 'Any other mixed/multiple ethnic background'; 'Indian'; 'Pakistani'; 'Bangladeshi'; 'Chinese'; 'Any other Asian background'; 'African'; 'Caribbean'; 'Any other Black/African/Caribbean background'; 'Arab'; and 'Any other ethnic group'.\r\n8. Some figures have been suppressed due to small sample sizes (less than 100 respondents).\r\n\r\n[b]Sexual orientation[/b]\r\n9. The question asks: 'Which of the options on this card best describes how you think of yourself?'\r\n10. 'Other' includes: 'Gay/Lesbian'; 'Bisexual'; and 'Other'.\r\n11. All figures related to sexual orientation before 2023/24 have been suppressed due to small sample sizes (less than 100 respondents).\r\n\r\n[b]Deprivation[/b]\r\n12. All figures up to and including 2016/17 are defined according to the 2010 NIMDM; figures from 2017/18 onwards are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url]\r\n\r\n[b]Urban Rural[/b]\r\n13. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url]",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 7, 2],
+    "updated": "2025-03-11T15:01:47.743Z",
+    "value": [13.3, 19.9, 16.1, 17.7, 15.2, 18.7, 18, 21.3, 17.5, 22.2, 16.9, 21.2, 14.5, 20.2],
+    "version": "2.0"
+  },
+  "id": {}
+}

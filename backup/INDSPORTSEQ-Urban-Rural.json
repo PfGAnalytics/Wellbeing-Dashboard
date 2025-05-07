@@ -1,0 +1,122 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSPORTS",
+          "label": {
+            "INDSPORTS": "Percentage participating in sport and physical activity"
+          },
+          "unit": {
+            "INDSPORTS": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["30", "31"],
+          "label": {
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDSPORTSEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 109,
+        "value": "Healthier Lives"
+      },
+      "product": {
+        "code": "SAPA",
+        "value": "Sport and physical activity"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Sport and physical activity",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSPORTSEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Sport and physical activity[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of adults participating in sport and physical activity during the last 4 weeks.\r\n\r\n[b]Source[/b]\r\nEngagement in culture, arts, heritage and sport by adults in Northern Ireland, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics]https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection for the 2023/24 CHS was carried out using a mix of telephone and face-to-face interviewing modes, a similar approach to that used in 2022/23. For 2020/21 and 2021/22 data collection was by telephone interviewing due to the coronavirus (COVID-19) pandemic. There was also a reduction in the number of questions between 2020/21-2022/23. As a result, the figures from 2020/21 onwards are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n\r\n[b]Further Information[/b]\r\n1. Sport & physical activity is defined as the percentage of adults (aged 16+) participating in sport & physical activity within the last 4 weeks (including walking).\r\n2. A question relating to sport and physical activity within the last 4 weeks was not included in the CHS 2020/21.\r\n3. Following a move in 2020/21 from face-to-face interviewing to telephone interviewing to collect data, due to the coronavirus (COVID-19) pandemic, data collection for the Continuous Household Surveys 2021/22 to 2023/24 used a mix of telephone and face-to-face modes. \r\n4. Results from 2021/22 to 2023/24 are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n5. While comparisons can be made between 2021/22 and 2022/23 and 2023/24, it is important to note that participating in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19.\r\n\r\n[b]Deprivation[/b]\r\n6. Figures above are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url] \r\n\r\n[b]Urban Rural[/b]\r\n7. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification [/url] \r\n\r\n[b]Religion[/b]\r\n8. 'Other' includes those who stated a religion other than Catholic and Protestant, those who stated no religion, those who refused to answer the question, and those whose answer was missing. \r\n\r\n[b]Disability[/b]\r\n9. For this indicator, ‘disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n\r\n[b]Dependants[/b]\r\n10. For this indicator, 'has dependants' includes individuals who have responsibility for the care of: a child(ren); a person with a disability; and/or a dependant elderly person.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 13, 2],
+    "updated": "2025-01-30T9:30:00.000Z",
+    "value": [54, 51, 60, 58, 65, 60, 65, 65, 64, 59, 65, 60, 63, 64, 67, 65, 68, 74, null, null, 77, 71, 75, 76, 75, 72],
+    "version": "2.0"
+  },
+  "id": {}
+}

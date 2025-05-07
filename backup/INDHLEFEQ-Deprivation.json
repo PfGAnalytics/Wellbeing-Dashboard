@@ -1,0 +1,124 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHLEF",
+          "label": {
+            "INDHLEF": "Healthy life expectancy at birth for females"
+          },
+          "unit": {
+            "INDHLEF": {
+              "decimals": 1,
+              "label": "Years",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2010-12", "2011-13", "2012-14", "2013-15", "2014-16", "2015-17", "2016-18", "2017-19", "2018-20", "2019-21", "2020-22", "2021-23"],
+          "label": {
+            "2010-12": "2010-12",
+            "2011-13": "2011-13",
+            "2012-14": "2012-14",
+            "2013-15": "2013-15",
+            "2014-16": "2014-16",
+            "2015-17": "2015-17",
+            "2016-18": "2016-18",
+            "2017-19": "2017-19",
+            "2018-20": "2018-20",
+            "2019-21": "2019-21",
+            "2020-22": "2020-22",
+            "2021-23": "2021-23"
+          }
+        },
+        "label": "Grouped year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["25", "26", "27", "28", "29"],
+          "label": {
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDHLEFEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 109,
+        "value": "Healthier Lives"
+      },
+      "product": {
+        "code": "HLEF",
+        "value": "Healthy life expectancy (females)"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHLEFEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Healthy life expectancy (females)",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHLEFEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHLEFEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHLEFEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHLEFEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Healthy life expectancy (females) [/b]\r\n\r\n[b]How do we measure this?[/b]\r\nHealthy life expectancy (HLE) at birth for females. This is the average number of years females can expect to live in good health. HLE provides an estimate of lifetime spent in 'Very Good' or 'Good' health, calculated using respondents' perception of their own health according to the Health Survey Northern Ireland (HSNI).\r\n\r\n[b]Source:[/b]\r\nLife Expectancy in Northern Ireland, Department of Health\r\n[url=http://www.health-ni.gov.uk/articles/life-expectancy-northern-ireland]www.health-ni.gov.uk/articles/life-expectancy-northern-ireland[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nChange in methodology; data collection for the 2020/21, 2021/22 and 2022/23 surveys moved from face-to-face interviewing to telephone mode. This may have influenced the responses given by respondents. In addition, the sample size was lower as a result and children were not included in the survey.\r\n\r\n[b]Further information[/b]\r\n1. Healthy life expectancy (HLE) describes the average number of years a person can expect to live in good health. HLE provides an estimate of lifetime spent in ‘Very Good’ or ‘Good’ health, calculated using respondents’ perception of their own health according to the Health Survey Northern Ireland.\r\n2. For more information on this data please contact the data provider - [url=mailto:healthinequalities@health-ni.gov.uk]Public Health Information & Research Branch, Information Analysis Directorate, DOH[/url] or see the '[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]Health Inequalities Annual Report[/url]'.\r\n3. 95% Confidence Intervals apply to the figures displayed therefore not all differences are statistically significant. Further information on how to interpret the differences and changes in these figures is available online: [url=https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators]https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators.[/url]\r\n\r\n[b]Deprivation[/b]\r\n4. All deprivation figures are defined according to the 2010 and 2017 NI Multiple Deprivation Measures (NIMDM). Data prior to 2018/19 is based on the 2010 measure, all other data is based on the 2017 measure. More information can be found on the NISRA website: [url=http://www.nisra.gov.uk/statistics/deprivation]www.nisra.gov.uk/statistics/deprivation[/url].  \r\n5. Due to a delay in the publication of sub-regional population estimates for Northern Ireland, HLE estimates by deprivation quintiles can not currently be produced for the most recent year (2021-2023). \r\n\r\n[b]Urban Rural[/b]\r\n6. Urban rural figures up to and including 2014 are defined according to the 2005 urban rural classification; figures from 2015 onwards use the 2015 classification. More information on urban rural classifications can be found online: [url=http://www.nisra.gov.uk/support/geography/urban-rural-classification]www.nisra.gov.uk/support/geography/urban-rural-classification[/url].\r\n7. Due to small sample sizes, reliable estimates are not available for 'Urban/Rural - Mixed'.\r\n8. Due to a delay in the publication of sub-regional population estimates for Northern Ireland, HLE estimates by urban-rural classification can not currently be produced for the most recent year (2021-2023).",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 12, 5],
+    "updated": "2024-12-18T9:30:00.000Z",
+    "value": [53.7, 59.4, 63.1, 64.1, 66.5, 53.8, 59, 62.6, 63.9, 67.8, 53.4, 59.4, 62.4, 64, 68, 53.1, 58.7, 61.5, 62.5, 67.5, 52.7, 60.1, 62.3, 62.7, 65.7, 51.3, 59.1, 62.5, 61.9, 65.8, 50.8, 59.4, 63.4, 63.1, 66, 51.7, 58.6, 62.6, 63.4, 67.1, 52.5, 60.2, 63.9, 64.3, 67.2, 52.3, 60.6, 64.4, 65.9, 67.4, 52.9, 61.1, 64.2, 66, 67.1, null, null, null, null, null],
+    "version": "2.0"
+  },
+  "id": {}
+}

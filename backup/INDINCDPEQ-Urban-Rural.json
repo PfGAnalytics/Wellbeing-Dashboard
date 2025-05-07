@@ -1,0 +1,130 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDINCDP",
+          "label": {
+            "INDINCDP": "Percentage living in absolute poverty (before housing costs)"
+          },
+          "unit": {
+            "INDINCDP": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2002/03", "2003/04", "2004/05", "2005/06", "2006/07", "2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2002/03": "2002/03",
+            "2003/04": "2003/04",
+            "2004/05": "2004/05",
+            "2005/06": "2005/06",
+            "2006/07": "2006/07",
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["30", "31"],
+          "label": {
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDINCDPEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 107,
+        "value": "Equal Society"
+      },
+      "product": {
+        "code": "INCDEP",
+        "value": "Income deprivation"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINCDPEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Income deprivation",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINCDPEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINCDPEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINCDPEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDINCDPEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Income deprivation[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of people living in absolute poverty (before housing costs).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Poverty and Income Inequality Report, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/family-resources-survey]https://www.communities-ni.gov.uk/topics/family-resources-survey[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection in 2020/21 and 2021/22 was impacted by COVID-19 restrictions resulting in a move to telephone interviewing and a reduced sample size. This led to additional uncertainty around the estimates, particularly for smaller groups. As such, for 2020/21, only figures relating to the whole population in NI are presented in this dashboard. In 2022/23 a mix of face to face and telephone interviews were employed. Changes in estimates over recent years should be interpreted being mindful of the differences in data collection approaches across the period and the effect this had on sample composition, with longer term trends often giving a clearer picture.\r\n\r\n[b]Further information[/b]\r\n1. Further information is available under sub-population charts.\r\n\r\n[b]Age[/b]\r\n2. Age band 16-24 and 25-34 have been grouped together due to small sample sizes.\r\n3. Age is based on the age of the head of the benefit unit (family).\r\n\r\n[b]Marital Status[/b]\r\n4. The sub groups Divorced and Separated have been grouped together due to small sample sizes. The sub group Co-Habiting has been grouped with Married/Civil Partnership due to small sample sizes.\r\n5. Marital status is based on the marital status of the head of the benefit unit.\r\n\r\n[b]Religion[/b]\r\n6. Due to small sample sizes, reliable estimates are not available for the 'Other/None/Missing/Refused' category.\r\n7. Religion is based on the religion of the head of the benefit unit.\r\n\r\n[b]Dependants[/b]\r\n8. A 'dependant' is an individual aged under 16. A person will also be defined as a child if they are 16-19 years old and they are: not married; living with parents; and in full-time non-advanced education or in unwaged government training.\r\n\r\n[b]Disability[/b]\r\n9. Disability status is based on whether someone in the family has a disability / whether no-one in the family has a disability.\r\n10. For this indicator, ‘disability’ is defined as having any long-standing illness, disability or infirmity (based on specific impairment types respondents were asked about) that leads to a significant difficulty with one or more areas of the individuals life. The impairment types changed in 2012/13 therefore disability estimates are not directly comparable with those for years prior to 2012/13. Everyone classified as disabled under the FRS definition would also be classified as disabled under the Disability Discrimination Act (DDA). However, some individuals classified as disabled and having rights under the DDA would not be captured by this definition.\r\n\r\n[b]Political opinion[/b]\r\n11. Data on Political opinion is not available prior to 2011/12 as questions were not asked on the Family Resources Survey.\r\n12. Political opinion is based on the political opinion of the head of the benefit unit, who is asked Generally speaking, do you regard yourself as a nationalist, a unionist or neither?\r\n\r\n[b]Sexual orientation[/b]\r\n13. Heterosexual/straight is the only group with a large enough sample size. Due to small sample sizes, reliable estimates are not available for 'Gay/Lesbian', 'Bisexual' or 'Other'.\r\n14. Data on Sexual Orientation is not available prior to 2011/12 as questions were not asked on the Family Resources Survey.\r\n15. Sexual orientation is based on the sexual orientation of the head of the benefit unit who is asked, Which of the options on this card best describes how you think of yourself? Options are: a. Heterosexual/ Straight, b. Gay/ Lesbian, c. Bisexual, d. Other”.\r\n\r\n[b]Deprivation[/b]\r\n16. Quintiles 4 & 5 have been combined due to small sample sizes.\r\n17. The Multiple Deprivation measure used for years prior to 2016/17 is the NIMDM 2010 measure while for 2016/17 onward it is the NIMDM 2017.\r\n[url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url]\r\n\r\n[b]Urban Rural[/b]\r\n18. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: \r\n[url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url]\r\n\r\n[b]Sex[/b]\r\n19. Children have been excluded, this data refers to adult males and adult females only.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 21, 2],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [22, 23, 21, 25, 22, 24, 20, 24, 19, 21, 20, 18, 18, 22, 20, 21, 19, 22, 21, 26, 19, 21, 19, 26, 19, 22, 15, 17, 16, 14, 14, 13, 15, 18, 12, 15, null, null, 11, 17, 14, 15],
+    "version": "2.0"
+  },
+  "id": {}
+}

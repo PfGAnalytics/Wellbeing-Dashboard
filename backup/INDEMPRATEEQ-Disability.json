@@ -1,0 +1,127 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDEMPRATE",
+          "label": {
+            "INDEMPRATE": "Percentage in employment aged 16 to 64"
+          },
+          "unit": {
+            "INDEMPRATE": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2006": "2006",
+            "2007": "2007",
+            "2008": "2008",
+            "2009": "2009",
+            "2010": "2010",
+            "2011": "2011",
+            "2012": "2012",
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["19", "20"],
+          "label": {
+            "19": "Disability - Yes",
+            "20": "Disability - No"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDEMPRATEEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 102,
+        "value": "Stronger Economy"
+      },
+      "product": {
+        "code": "ERATE",
+        "value": "Employment rate"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEMPRATEEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Employment rate",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEMPRATEEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEMPRATEEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEMPRATEEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDEMPRATEEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Employment rate\r\n\r\nHow do we measure this?[/b]\r\nPercentage of the population aged 16 to 64 who are in employment.\r\n\r\n[b]Source[/b]\r\nLabour Force Survey, Northern Ireland Statistics and Research Agency\r\n[url=https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey]https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey[/url]\r\n\r\n[b]Impact of Covid-19[/b] \r\nTypically, the Office for National Statistics (ONS) would reweight the LFS every two years to take account of updated population estimates and projections. Since the onset of the pandemic, the ONS have been monitoring the impact and as a result, there have been five LFS reweightings to improve the estimates. The latest reweighting was introduced in December 2024, affecting data from January-March 2019 to July-September 2024 to make use of more recent population estimates. An overview of the impact of reweighting on the NI estimates of unemployment, employment, and economic inactivity is available on the [url=https://www.nisra.gov.uk/publications/background-information-lfs]NISRA website[/url]. Previous reweightings occurred in October 2020, July 2021, June 2022 and February 2024. The Employment rate at the Northern Ireland level in 2020 and 2021 was similar to the rates seen before the pandemic.\r\n\r\n[b]Further information[/b]\r\n1. 'Employment rate' refers to the percentage of people aged 16-64 who are in employment.\r\n\r\n[b]Marital status[/b]\r\n2. Some figures have been suppressed due to small sample sizes. \r\n\r\n[b]Religion[/b]\r\n3. Data is provided from the first year available (2009).\r\n4. 'Other' includes those who stated a religion other than Catholic and Protestant, those who stated no religion, those who refused to answer the question, and those whose answer was missing.\r\n\r\n[b]Dependants[/b]\r\n5. For this indicator, 'has dependants' includes those who are the head of the family or the wife/spouse of the head of the family who have any number of children under the age of 19.\r\n6. Information on dependants is based on household level information. This dataset uses a different weighting methodology compared with the person-level dataset. Further information is available in Volume 1, Section 10.5 of the LFS User Guidance: [url=https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/methodologies/labourforcesurveyuserguidance]https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/methodologies/labourforcesurveyuserguidance.[/url]\r\n7. Data is currently only available up to 2022, data for 2023 may be available following the 2024 annual tables.\r\n\r\n[b]Disability [/b]\r\n8. These data use the GSS Harmonised Standard definition of disability: \r\n'Disability' refers to those reporting (current) physical or mental health condition(s) or illnesses lasting or expected to last 12 months or more; and that the condition(s) or illness(es) reduce their ability to carry out day-to-day activities.\r\n9. Data is provided from the first year available (2014).\r\n\r\n[b]Ethnic group[/b]\r\n10. Due to small sample sizes, racial groups other than white have been combined.\r\n11. 'Other includes: Irish traveller, Mixed/Multiple ethnic groups, Asian/Asian British, Black/African/Caribbean/Black British, Chinese, Arab, Other ethnic groups.\r\n12. Data is provided from the first year available (2013).\r\n\r\n[b]Deprivation[/b]\r\n13. All figures up to and including 2016 are defined according to the 2010 NIMDM; figures from 2017 onwards are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url] \r\n14. Data is provided from the first year available (2014).\r\n\r\n[b]Urban Rural[/b]\r\n15. Figures up to and including 2015 are defined according to the 2005 urban rural classification; figures from 2016 onwards are based on the 2015 classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url] \r\n16. Data is provided from the first year available (2014).",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 18, 2],
+    "updated": "2024-12-20T11:49:05.93Z",
+    "value": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 33.4, 76.2, 32.2, 77.8, 33.3, 78.1, 36.1, 77.5, 35.7, 78.8, 37.3, 81, 36.6, 79.9, 37.3, 79.6, 39.1, 81.5, 42.1, 83.4],
+    "version": "2.0"
+  },
+  "id": {}
+}

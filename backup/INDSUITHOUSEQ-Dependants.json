@@ -1,0 +1,112 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSUITHOUS",
+          "label": {
+            "INDSUITHOUS": "Proportion of households who report being either 'very satisfied' or 'fairly satisfied' with their house or flat"
+          },
+          "unit": {
+            "INDSUITHOUS": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["17", "18"],
+          "label": {
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDSUITHOUSEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "ASH",
+        "value": "Availability of suitable housing"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSUITHOUSEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Availability of suitable housing",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSUITHOUSEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSUITHOUSEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSUITHOUSEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSUITHOUSEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": "[b]Availability of suitable housing \r\n\r\nHow do we measure this? \r\n[/b] Proportion of households who report being either 'very satisfied' or 'fairly satisfied' with their house or flat. \r\n\r\n[b]Source \r\n[/b]Northern Ireland Housing Statistics, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/housing-statistics]https://www.communities-ni.gov.uk/topics/housing-statistics[/url]\r\n[b]\r\n[/b] [b]Impact of Covid-19 \r\n[/b]The collection method for this indicator changed due to Covid-19. \r\n\r\n[b]Further information \r\n[/b]1. Further information is available under sub-population charts.[b]\r\n\r\nDeprivation \r\n[/b]2. This is estimated using the Northern Ireland Multiple Deprivation Measure 2017 which is a weighted combination of seven domains of deprivation. Rank 1 indicates the most deprived SOA, while rank 890 denotes the least deprived SOA. The NI Multiple Deprivation Report can be accessed at:[b] [/b][url=https://www.nisra.gov.uk/publications/nimdm17-results]https://www.nisra.gov.uk/publications/nimdm17-results[/url].\r\n[b]\r\nUrban Rural \r\n[/b]3. The data have also been analysed by whether respondents are living in SOAs that have been categorised as either urban or rural as set out in the Statistical Classification and Delineation of Settlements report (2015).\r\n4. This report classified each settlement in Northern Ireland into one of eight bands (A-H) and recommended that Government and other users should consider defining ''urban'' and ''rural'' areas in ways which are appropriate for different programmes and projects. In the absence of a programme-specific definition, Bands A-E can be defined as urban and Bands F-H as rural. This definition was applied in the analysis in this bulletin.\r\n[b] \r\nDisability[/b] \r\n5. For this indicator, ‘disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n[b] \r\n[/b][b] Dependants \r\n[/b]6. For this indicator, 'has dependants' includes individuals who have responsibility for the care of: a child(ren); a person with a disability; and/or a dependant elderly person.\r\n[b] \r\nReligion \r\n[/b]7. 'Other' includes those who stated a religion other than Catholic and Protestant, those who stated no religion, those who refused to answer the question, and those whose answer was missing.\r\n[b] \r\n[/b][b] Tenure \r\n[/b]8. Owner Occupied includes 'Own it outright', 'Buying it with the help of a mortgage or loan' and 'Pay part rent and part mortgage (co-ownership)'. Social Rented includes 'Rented from Housing Executive' and 'Rented from a housing association' and Private Rented includes 'Rented Privately'. Due to small sample sizes 'Living Rent Free' and 'Squatting' are not included in this analysis.",
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 3, 2],
+    "updated": "2025-02-11T10:57:47.007Z",
+    "value": [89, 91, 88, 91, 91, 93],
+    "version": "2.0"
+  },
+  "id": {}
+}
