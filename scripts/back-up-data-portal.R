@@ -32,7 +32,7 @@ for (i in start_line:end_line) {
   if(grepl("eq_groups", data_lines[i])) {
     eq_group <- sub('.*?"(.*?)".*', '\\1', data_lines[i])
     group_vals <- sub(".*\\[(.*)\\].*", "\\1", data_lines[i + 1])
-    if (!eq_group %in% c("backup/", "Skills Level", "-")) {
+    if (!eq_group %in% c("backup/", "Skills Level", "-", " ")) {
       eq_groups[[eq_group]] <- gsub('"', "%22", group_vals) %>% 
         gsub(" ", "", .)
     }
