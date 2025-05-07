@@ -32,7 +32,7 @@ for (i in start_line:end_line) {
   if(grepl("eq_groups", data_lines[i])) {
     eq_group <- sub('.*?"(.*?)".*', '\\1', data_lines[i])
     group_vals <- sub(".*\\[(.*)\\].*", "\\1", data_lines[i + 1])
-    if (!eq_group %in% c("backup/", "Skills Level")) {
+    if (!eq_group %in% c("backup/", "Skills Level", "-")) {
       eq_groups[[eq_group]] <- gsub('"', "%22", group_vals) %>% 
         gsub(" ", "", .)
     }
@@ -83,12 +83,10 @@ for (matrix in matrix_list) {
     ### Create EQ datasets ####
     for (group in groups_present) {
       
-      group_vals <- eq_groups[[group]]
-      
       group_data <- jsonlite::fromJSON(
         paste0(
           "https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B",
-          group_vals,
+          eq_groups[[group]],
           "%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22",
           matrix,
           "%22%7D,%22version%22:%222.0%22%7D%7D")
