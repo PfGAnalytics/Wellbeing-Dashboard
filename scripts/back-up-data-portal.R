@@ -94,6 +94,9 @@ for (matrix in matrix_list) {
 
       if (length(group_data$result$value) > 0) {
         group_data$result$note <- list(group_data$result$note)
+        if (length(group_data$result$dimension$EQUALGROUPS$category$index) == 1) {
+          group_data$result$dimension$EQUALGROUPS$category$index <- list(group_data$result$dimension$EQUALGROUPS$category$index)
+        }
         write_json(group_data, paste0("backup/", matrix, "-", gsub(" ", "-", group, fixed = TRUE), ".json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
       }
     }

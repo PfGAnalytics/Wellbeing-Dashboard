@@ -50,7 +50,9 @@
       },
       "EQUALGROUPS": {
         "category": {
-          "index": "23",
+          "index": [
+            "23"
+          ],
           "label": {
             "23": "Sexual orientation- Heterosexual"
           }
