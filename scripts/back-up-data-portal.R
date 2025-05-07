@@ -46,6 +46,8 @@ for (matrix in matrix_list) {
   json_data <- jsonlite::fromJSON(txt = paste0("https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22", 
                                                matrix, "%22%7D,%22version%22:%222.0%22%7D%7D"))
   
+  json_data$result$note <- list(json_data$result$note)
+  
   write_json(json_data, paste0("backup/", matrix, ".json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
   
   # LGD data sets - create NI only line (if available)
@@ -54,6 +56,7 @@ for (matrix in matrix_list) {
                                                  matrix, "%22%7D,%22version%22:%222.0%22%7D%7D"))
     
     if (length(lgd_data$result$value) > 0) {
+      lgd_data$result$note <- list(lgd_data$result$note)
       write_json(lgd_data, paste0("backup/", matrix, "-NI-line.json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
     }
   }
@@ -65,6 +68,7 @@ for (matrix in matrix_list) {
                                                  matrix, "%22%7D,%22version%22:%222.0%22%7D%7D"))
       
     if (length(eq_data$result$value) > 0) {
+      eq_data$result$note <- list(eq_data$result$note)
       write_json(eq_data, paste0("backup/", matrix, "-NI-line.json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
     }
     
@@ -91,6 +95,7 @@ for (matrix in matrix_list) {
         )
 
       if (length(group_data$result$value) > 0) {
+        group_data$result$note <- list(group_data$result$note)
         write_json(group_data, paste0("backup/", matrix, "-", gsub(" ", "-", group, fixed = TRUE), ".json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
       }
     }
@@ -104,5 +109,7 @@ for (matrix in matrix_list) {
 skills_data <- jsonlite::fromJSON(
   "https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22INDSKILLSLEV%22%7D,%22version%22:%222.0%22%7D%7D"
 )
+
+skills_data$result$note <- list(skills_data$result$note)
   
 write_json(skills_data, "backup/INDSKILLSLEV.json", pretty = TRUE, auto_unbox = TRUE, na = "null")

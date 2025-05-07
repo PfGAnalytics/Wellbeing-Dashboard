@@ -114,7 +114,9 @@
         }
       ]
     },
-    "note": "[b]River water quality\r\n[/b]\r\n[b]How do we measure this?[/b]\r\nLevels of nutrients in our rivers as measured by soluble reactive phosphorus (mg/l).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, river monitoring was affected with samples not taken in April and May and limited numbers taken in March and December of 2020.\r\n\r\n[b]Further information[/b]\r\n1. Soluble Reactive Phosphorus is measured at 93 surveillance rivers.",
+    "note": [
+      "[b]River water quality\r\n[/b]\r\n[b]How do we measure this?[/b]\r\nLevels of nutrients in our rivers as measured by soluble reactive phosphorus (mg/l).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, river monitoring was affected with samples not taken in April and May and limited numbers taken in March and December of 2020.\r\n\r\n[b]Further information[/b]\r\n1. Soluble Reactive Phosphorus is measured at 93 surveillance rivers."
+    ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"

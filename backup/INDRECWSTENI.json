@@ -112,7 +112,9 @@
         }
       ]
     },
-    "note": "[b]Recycled waste\r\n\r\nHow do we measure this?\r\n[/b]Percentage of household waste that is reused, recycled or composted. For this indicator a higher figure is better.\r\n\r\n[b]Source\r\n[/b]Northern Ireland local authority collected municipal waste management statistics, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics]https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]Bin collections were suspended and Civic amenity sites were closed for a period during Covid-19 restrictions. [b]\r\n\r\nFurther information\r\n[/b]1. Break in time series between 2011/12 and 2012/13 due to inclusion of reuse from 2012/13 onwards.[b]\r\n[/b]",
+    "note": [
+      "[b]Recycled waste\r\n\r\nHow do we measure this?\r\n[/b]Percentage of household waste that is reused, recycled or composted. For this indicator a higher figure is better.\r\n\r\n[b]Source\r\n[/b]Northern Ireland local authority collected municipal waste management statistics, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics]https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]Bin collections were suspended and Civic amenity sites were closed for a period during Covid-19 restrictions. [b]\r\n\r\nFurther information\r\n[/b]1. Break in time series between 2011/12 and 2012/13 due to inclusion of reuse from 2012/13 onwards.[b]\r\n[/b]"
+    ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"

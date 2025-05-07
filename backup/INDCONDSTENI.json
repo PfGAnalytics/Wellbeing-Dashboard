@@ -102,7 +102,9 @@
         }
       ]
     },
-    "note": "[b]Condition of protected sites[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of features within protected sites in favourable condition.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, condition monitoring was impacted during 2020.\r\n\r\n[b]Further information[/b]\r\n1. Includes both terrestrial and marine protected sites.",
+    "note": [
+      "[b]Condition of protected sites[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of features within protected sites in favourable condition.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, condition monitoring was impacted during 2020.\r\n\r\n[b]Further information[/b]\r\n1. Includes both terrestrial and marine protected sites."
+    ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"

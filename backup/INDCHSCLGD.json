@@ -113,7 +113,9 @@
         }
       ]
     },
-    "note": "[b]Children’s social care\r\n\r\nHow do we measure this?[/b]\r\nPercentage of care leavers who, aged 19, were in education, training or employment.\r\n\r\n[b]Source[/b]\r\nCare leavers statistics, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/care-leavers]Care leavers | Department of Health (health-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe information needed to report on this indicator was collected as normal during Covid-19.\r\n\r\n[b]Further information[/b]\r\n1. Due to small numbers, figures are aggregated over a three year period.\r\n2. Local Government District figures were only collected from 2012/13 onwards.\r\n3. Relates to the area the young person was living in on their 19th birthday.\r\n4. Excludes care leavers aged 19 where no geographic location was supplied.",
+    "note": [
+      "[b]Children’s social care\r\n\r\nHow do we measure this?[/b]\r\nPercentage of care leavers who, aged 19, were in education, training or employment.\r\n\r\n[b]Source[/b]\r\nCare leavers statistics, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/care-leavers]Care leavers | Department of Health (health-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe information needed to report on this indicator was collected as normal during Covid-19.\r\n\r\n[b]Further information[/b]\r\n1. Due to small numbers, figures are aggregated over a three year period.\r\n2. Local Government District figures were only collected from 2012/13 onwards.\r\n3. Relates to the area the young person was living in on their 19th birthday.\r\n4. Excludes care leavers aged 19 where no geographic location was supplied."
+    ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"

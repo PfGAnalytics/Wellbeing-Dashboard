@@ -106,7 +106,9 @@
         }
       ]
     },
-    "note": "[b]Renewable electricity[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe proportion of electricity consumption that is renewably generated.\r\n\r\n[b]Source[/b]\r\nElectricity Consumption and Renewable Generation Statistics, Department for the Economy\r\n[url=https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics]https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19.",
+    "note": [
+      "[b]Renewable electricity[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe proportion of electricity consumption that is renewably generated.\r\n\r\n[b]Source[/b]\r\nElectricity Consumption and Renewable Generation Statistics, Department for the Economy\r\n[url=https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics]https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19."
+    ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"

@@ -107,7 +107,9 @@
         }
       ]
     },
-    "note": "[b]Air pollution \r\n\r\nHow do we measure this?[/b]\r\nAnnual mean roadside levels of nitrogen dioxide as measured by micrograms per cubic metre (μg/m3).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection and maintenance of air monitoring stations was negatively impacted during covid-19 restrictions.\r\n\r\n[b]Further Information[/b]\r\n1. The annual mean nitrogen dioxide concentration is the mean of measures taken at ten roadside/kerbside sites: Armagh Lonsdale Road, Belfast Newtownards Road, Belfast Ormeau Road, Belfast Stockman's Lane, Belfast Westlink Roden Street, Castlereagh Dundonald, Derry Dale's Corner, Downpatrick Roadside, Newtownabbey Antrim Road, North Down Holywood A2.",
+    "note": [
+      "[b]Air pollution \r\n\r\nHow do we measure this?[/b]\r\nAnnual mean roadside levels of nitrogen dioxide as measured by micrograms per cubic metre (μg/m3).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection and maintenance of air monitoring stations was negatively impacted during covid-19 restrictions.\r\n\r\n[b]Further Information[/b]\r\n1. The annual mean nitrogen dioxide concentration is the mean of measures taken at ten roadside/kerbside sites: Armagh Lonsdale Road, Belfast Newtownards Road, Belfast Ormeau Road, Belfast Stockman's Lane, Belfast Westlink Roden Street, Castlereagh Dundonald, Derry Dale's Corner, Downpatrick Roadside, Newtownabbey Antrim Road, North Down Holywood A2."
+    ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"

@@ -115,7 +115,9 @@
         }
       ]
     },
-    "note": "[b]Availability of suitable housing\r\n\r\nHow do we measure this? \r\n[/b] Proportion of households who report being either 'very satisfied' or 'fairly satisfied' with their house or flat. \r\n\r\n[b]Source \r\n[/b]Northern Ireland Housing Statistics, Department for Communities \r\n[url=https://www.communities-ni.gov.uk/topics/housing-statistics]https://www.communities-ni.gov.uk/topics/housing-statistics[/url]\r\n[b]\r\n[/b] [b]Impact of Covid-19\r\n[/b]The collection method for this indicator changed due to Covid-19. \r\n\r\n[b]Further information\r\n[/b]1. Engagement rates are calculated based on three year rolling averages before 2017/18. These years were not included as they were not comparable due to overlapping samples.",
+    "note": [
+      "[b]Availability of suitable housing\r\n\r\nHow do we measure this? \r\n[/b] Proportion of households who report being either 'very satisfied' or 'fairly satisfied' with their house or flat. \r\n\r\n[b]Source \r\n[/b]Northern Ireland Housing Statistics, Department for Communities \r\n[url=https://www.communities-ni.gov.uk/topics/housing-statistics]https://www.communities-ni.gov.uk/topics/housing-statistics[/url]\r\n[b]\r\n[/b] [b]Impact of Covid-19\r\n[/b]The collection method for this indicator changed due to Covid-19. \r\n\r\n[b]Further information\r\n[/b]1. Engagement rates are calculated based on three year rolling averages before 2017/18. These years were not included as they were not comparable due to overlapping samples."
+    ],
     "role": {
       "geo": "LGD2014",
       "metric": "STATISTIC",
