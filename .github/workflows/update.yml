@@ -15,17 +15,9 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
-            any::pacman 
             any::dplyr
-            any::openxlsx
-            any::readxl
-            any::rjson
             any::jsonlite
-            any::janitor
-            any::gtools
-            any::httr
             any::stringr
-            any::readr
 
       - name: Check out repository
         uses: actions/checkout@v4
