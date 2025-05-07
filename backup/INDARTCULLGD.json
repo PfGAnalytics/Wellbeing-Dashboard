@@ -1,0 +1,135 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDARTCUL",
+          "label": {
+            "INDARTCUL": "Percentage engaging in arts/cultural activities"
+          },
+          "unit": {
+            "INDARTCUL": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2017/18", "2018/19", "2019/20", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
+      }
+    },
+    "extension": {
+      "matrix": "INDARTCULLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 104,
+        "value": "Brighter Futures"
+      },
+      "product": {
+        "code": "ACA",
+        "value": "Arts and cultural activities"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Arts and cultural activties",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Arts and cultural activities[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of adults participating in arts and cultural activities.\r\n\r\n[b]Source[/b]\r\nEngagement in culture, arts, heritage and sport by adults in Northern Ireland, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics]https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection for the 2023/24 CHS was carried out using a mix of telephone and face-to-face interviewing modes, a similar approach to that used in 2022/23. For 2020/21 and 2021/22 data collection was by telephone interviewing due to the coronavirus (COVID-19) pandemic. There was also a reduction in the number of questions between 2020/21-2022/23. As a result, the figures from 2020/21 onwards are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n\r\n[b]Further information[/b]\r\n1. Participation in arts and cultural activities is defined as the percentage of adults (aged 16+) who have done at least one of the following within the last 12 months; engaged in the arts, used the public library service, visited a museum or science centre or used PRONI services.\r\n2. In 2019/20, the questions on visits to museums were revised and as a result figures for visits to museums for 2019/20 onwards are not comparable with previous years. Although this is one element of the overall culture and arts engagement rate, the impact of the change is lessened in the culture and arts estimates as the majority of those who visit museums also engage in some other way with culture and arts.\r\n3. Following a move in 2020/21 from face-to-face interviewing to telephone interviewing to collect data, due to the coronavirus (COVID-19) pandemic, data collection for the Continuous Household Surveys 2021/22 to 2023/24 used a mix of telephone and face-to-face modes. \r\n4. Results from 2021/22 to 2023/24 are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n5. While comparisons can be made between 2021/22 and 2023/24, it is important to note that engaging in arts/cultural activities in 2021/22 would have been impacted by closures due to COVID-19.\r\n6. Published figures for 2017/18 to 2019/20 were revised on 29 June 2023:\r\n[url=https://www.communities-ni.gov.uk/publications/engagement-culture-arts-heritage-and-sport-adults-northern-irelands-local-government-districts-2022]Engagement in culture, arts, heritage and sport by adults in Northern Ireland’s local government districts 2022 | Department for Communities .[/url]."
+    ],
+    "role": {
+      "geo": "LGD2014",
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 6, 11],
+    "updated": "2025-04-29T9:30:00.000Z",
+    "value": [90, 84, 88, 81, 85, 78, 88, 92, 86, 88, 91, 88, 87, 87, 84, 86, 84, 90, 86, 89, 84, 95, 88, 86, 84, 88, 90, 80, 89, 85, 89, 86, 90, 65, 64, 66, 60, 60, 43, 67, 61, 59, 61, 70, 81, 83, 83, 75, 79, 69, 89, 80, 76, 80, 85, 84, 86, 84, 79, 79, 73, 90, 79, 77, 83, 89],
+    "version": "2.0"
+  },
+  "id": {}
+}

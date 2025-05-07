@@ -1,0 +1,132 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHOUSTRS",
+          "label": {
+            "INDHOUSTRS": "Number of households in housing stress"
+          },
+          "unit": {
+            "INDHOUSTRS": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2002/03", "2003/04", "2004/05", "2005/06", "2006/07", "2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2002/03": "2002/03",
+            "2003/04": "2003/04",
+            "2004/05": "2004/05",
+            "2005/06": "2005/06",
+            "2006/07": "2006/07",
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDHOUSTRSEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "HS",
+        "value": "Housing stress"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Housing stress",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSTRSEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Housing stress \r\n\r\nHow do we measure this? \r\n[/b] Number of households in housing stress \r\n\r\n[b]Source[/b] \r\nNorthern Ireland Housing Statistics, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/housing-statistics]https://www.communities-ni.gov.uk/topics/housing-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19.\r\n\r\n[b]Further information [/b]\r\n1. ‘Housing stress’ is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme. \r\n2. Due to the introduction of a new Housing Management System (HIMS) in July 2011 equality groups data on the Waiting Lists for the 1 year period from 1st April 2011 – 31st March 2012 is not available. \r\n3. As the number of households in housing stress is taken from an administrative dataset any change could be classed as a real change. \r\n\r\n[b]Sex [/b]\r\n4. ‘Sex’ is taken from the 1st Applicant in the household. \r\n5. Due to the live nature of the system and the point in time at which information has been extracted, there may be inconsistency between total housing stress figures and those disaggregated by sex. \r\n\r\n[b]Age [/b]\r\n6. ‘Age’ is taken from the 1st Applicant in the household. \r\n7. Due to the live nature of the system and the point in time at which information has been extracted, there may be inconsistency between total housing stress figures and those disaggregated by age. \r\n\r\n[b]Marital Status[/b] \r\n8. For consistency in reporting across PfG some categories of marital status have been combined; as a result, figures may present a slight undercount (of up to nine cases) due to disclosure control at a sub-category level. \r\n9. As the information provided is considered sensitive some statistical disclosure controls may have been placed on the tables with the omission of data in cases where there are less than ten applicants. \r\n10. The categories of 'Civil Partnership (CP)', 'CP Separated' and 'CP Legally Dissolved' were added with the introduction of the new Housing Management System. \r\n11. 'Marital Status' is taken from the 1st applicant in the household. \r\n12. Due to the live nature of the system and the point in time at which information has been extracted, there may be inconsistency between total housing stress figures and those disaggregated by marital status. \r\n13.The marital status for a large number of applications that have been carried over from Legacy systems is Unknown and have not been accounted for within the Equality data breakdown. \r\n\r\n[b]Religion [/b]\r\n14. The categories of 'Mixed', 'None' and 'Refused' were added with the introduction of the new Housing Management System. \r\n15. Up to 2011 the NIHE collected and monitored the religion of the 1st applicant making an application. From 2011 onwards information has been collected on the religion of the household. As such, data from these two time periods are not directly comparable. \r\n16. Due to the live nature of the system and the point in time at which information has been extracted, there may be inconsistency between total housing stress figures and those disaggregated by religion. \r\n17.The religion of a number of applications that have been carried over from Legacy systems is Unknown and have not been accounted for within the Equality data breakdown. \r\n\r\n[b]Dependants[/b] \r\n18. Information on Dependants were added in July 2011 with the introduction of a new Housing Management System (HMS). \r\n\r\n[b]Ethnic group[/b] \r\n19. 'Other' includes: 'Irish Traveller'; 'White and Black Caribbean'; 'White and Black African'; 'White and Asian'; 'Any other mixed/multiple ethnic background'; 'Indian'; 'Pakistani'; 'Bangladeshi'; 'Chinese'; 'Any other Asian background'; 'African'; 'Caribbean'; 'Any other Black/African/Caribbean background'; 'Arab'; and 'Any other ethnic group'. \r\n20.The ethnic group of a number of households that have been carried over from Legacy systems is Unknown and have not been accounted for within the Equality data breakdown. \r\n\r\n[b]Urban Rural[/b] \r\n21. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: https://www.nisra.gov.uk/support/geography/urban-rural-classification \r\n22. Data are only available from 2007/08 onwards \r\n\r\n[b]Household group[/b] \r\n23. Applicant Information is as end of March for each respective year. \r\n24. The Household group is recorded at point of application and may not reflect the current composition of the household. \r\n25. Household groups are defined as: \r\n[i]Single Person[/i]: 1 person 16-59 years old \r\n[i]Elderly:[/i] 1 or 2 persons aged 16 or over, at least 1 over 60 \r\n[i]Small adult:[/i] 2 persons 16-59 years old \r\n[i]Small family: [/i]1 or 2 persons aged 16 or over, with 1 or 2 children \r\n[i]Large family[/i]: 1 or 2 persons aged 16 or over, and 3 or more persons aged 0-15, or 3 or more persons aged 16 or over and 2 or more persons aged 0-15 \r\n[i]Large adult:[/i] 3 or more persons aged 16 or over, with or without 1 person aged 0-15."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 22, 1],
+    "updated": "2025-02-11T11:36:04.977Z",
+    "value": [13042, 14152, 15527, 17223, 19703, 21364, 20481, 19716, 20967, 20211, 22414, 21586, 22097, 22645, 23694, 24148, 26387, 27745, 30288, 31407, 32633, 35464],
+    "version": "2.0"
+  },
+  "id": {}
+}

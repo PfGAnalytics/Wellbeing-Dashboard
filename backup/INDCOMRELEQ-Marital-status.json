@@ -1,0 +1,125 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDCOMREL",
+          "label": {
+            "INDCOMREL": "Percentage who think that relations between Protestants and Catholics are better now than they were five years ago"
+          },
+          "unit": {
+            "INDCOMREL": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["9", "10", "11", "12", "13"],
+          "label": {
+            "9": "Marital status - Single",
+            "10": "Marital status - Married/Civil partnership",
+            "11": "Marital status - Separated",
+            "12": "Marital status - Divorced",
+            "13": "Marital status - Widowed"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDCOMRELEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 110,
+        "value": "Living Peacefully"
+      },
+      "product": {
+        "code": "CREL",
+        "value": "Community relations"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOMRELEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Community relations",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOMRELEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOMRELEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOMRELEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOMRELEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Community relations[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage aged 18+ who think that relations between Protestants and Catholics are better now than they were five years ago.\r\n\r\n[b]Source[/b]\r\nGood Relations Indicators Report, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/good-relations]https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/good-relations[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nIn 2020, the NILT survey was moved from an in-person interviewer-led survey to a combination of CAWI (Computer Assisted Web Interviewing) and CATI (Computer Assisted Telephone Interviewing) - the new format has been used in every year since 2020.\r\n\r\n[b]Further information[/b]\r\n1. The source for this indicator is the Northern Ireland Life and Times Survey (NILT) which is an attitudinal survey that takes place at a particular point in the year. One-off events of a particular local or national level occurring during, or close to the survey's fieldwork period may impact results and create volatility from year to year.\r\n\r\n[b]Sex[/b]\r\n2. Prior to 2018, response options included 'Male' and 'Female'. From 2018 onwards, there was a response option of 'In another way', and from 2019 onwards, there was a response option of 'Don't know'. Only 'Male' and 'Female' response options are provided in the table due to low numbers in the other response options.\r\n\r\n[b]Marital status[/b]\r\n3. The definition of marital status in the Northern Ireland Life & Times survey does not include 'cohabiting' as a classification.\r\n\r\n[b]Religion[/b]\r\n4. Catholic includes the category 'Catholic'.\r\n5. Protestant includes the categories: 'Church of Ireland/Anglican/Episcopal', 'Baptist', 'Methodist', 'Presbyterian', 'Free Presbyterian', 'Brethren', 'United Reform Church (URC)/Congregational', 'Pentecostal', 'Church of Scotland', 'Elim Pentecostal', 'Reformed Presbyterian', 'Non-subscribing Presbyterian', 'Salvation Army', 'Church of Nazarene', 'Other Protestant, specify'.\r\n6. Other/None/Missing/Refused includes the categories: 'No religion', 'Jehovah's Witness', 'Church of Jesus Christ of Latter Day Saints (Mormon)', 'Other Christian, specify', 'Hindu', 'Jewish', 'Islam/Muslim', 'Sikh', 'Buddhist', 'Other (WRITE IN)', 'Don`t know', 'Not answered/Refused'.\r\n\r\n[b]Disability[/b]\r\n7. ‘Disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n8. The Northern Ireland Life & Times survey used the limiting long-standing illness questions:\r\n· Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?\r\n· Does your condition or illness/do any of your conditions or illnesses reduce your ability to carry out day-to-day activities?\r\n\r\n[b]Ethnic Group[/b]\r\n9. 'Other' includes: 'Irish Traveller'; 'Indian'; 'Pakistani'; 'Bangladeshi'; 'Chinese'; 'Any other Asian background'; 'Black African'; 'Black Caribbean'; 'Any other mixed/multiple ethnic background'; and 'Any other ethnic group'.\r\n\r\n[b]Sexual Orientation[/b]\r\n10. The sexual orientation question was not asked in the NILT survey in 2015.\r\n\r\n[b]Urban Rural[/b]\r\n11. Figures prior to 2017 are defined according to the 2005 Urban Rural classification; figures from 2017 onwards are defined according to the 2015 Urban Rural classification.\r\n\r\n[b]Political Opinion[/b]\r\n12. Respondents are asked Generally speaking, do you think of yourself as a unionist, a nationalist or neither? and responses are coded as 'Unionist', 'Nationalist', 'Neither', 'Other' or 'Don`t know'.\r\n13. 'Neither' category includes 'Neither', 'Other', 'Don’t know' , 'Not answered/Refused' and, after 2020, 'Prefer not to say'."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 11, 5],
+    "updated": "2025-02-05T9:30:00.000Z",
+    "value": [41.9, 48.6, 37.5, 46.1, 34.4, 52, 49, 37.2, 48.2, 50.5, 47.4, 54.8, 60, 45.6, 48.5, 58.9, 61.5, 42.9, 45.2, 58.1, 50, 49.4, 44.7, 50.6, 42.9, 43.7, 42.1, 43.9, 39.5, 43, 41, 37.2, 28.9, 35.6, 44.9, 38.8, 39.9, 56.8, 38.9, 39.1, 34.6, 36.2, 33.3, 35.8, 44.3, 34.5, 41.1, 28.3, 36.4, 41.7, 37.2, 41.4, 40, 36.5, 49.1],
+    "version": "2.0"
+  },
+  "id": {}
+}

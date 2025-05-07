@@ -1,0 +1,140 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHOUSCT",
+          "label": {
+            "INDHOUSCT": "Proportion of households spending 30% or more of household income on housing costs"
+          },
+          "unit": {
+            "INDHOUSCT": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2009/10 - 2011/12", "2010/11 - 2012/13", "2011/12 - 2013/14", "2012/13 - 2014/15", "2013/14 - 2015/16", "2014/15 - 2016/17", "2015/16 - 2017/18", "2016/17 - 2018/19", "2017/18 - 2019/20", "2018/19 - 2021/22", "2019/20 - 2022/23"],
+          "label": {
+            "2009/10 - 2011/12": "2009/10 - 2011/12",
+            "2010/11 - 2012/13": "2010/11 - 2012/13",
+            "2011/12 - 2013/14": "2011/12 - 2013/14",
+            "2012/13 - 2014/15": "2012/13 - 2014/15",
+            "2013/14 - 2015/16": "2013/14 - 2015/16",
+            "2014/15 - 2016/17": "2014/15 - 2016/17",
+            "2015/16 - 2017/18": "2015/16 - 2017/18",
+            "2016/17 - 2018/19": "2016/17 - 2018/19",
+            "2017/18 - 2019/20": "2017/18 - 2019/20",
+            "2018/19 - 2021/22": "2018/19 - 2021/22",
+            "2019/20 - 2022/23": "2019/20 - 2022/23"
+          }
+        },
+        "label": "Grouped financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
+      }
+    },
+    "extension": {
+      "matrix": "INDHOUSCTLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "HCPHI",
+        "value": "Housing costs as a proportion of household income"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Housing costs as a proportion of household income",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Housing costs as a proportion of household income[/b] \r\n\r\n[b]How do we measure this?[/b] \r\nProportion of households spending 30% or more of household income on housing costs. \r\n\r\n[b]Source[/b] \r\nFamily Resources Survey \r\n[url=https://www.communities-ni.gov.uk/topics/family-resources-survey]https://www.communities-ni.gov.uk/topics/family-resources-survey[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nData collection in 2020/21 and 2021/22 was impacted by COVID-19 restrictions resulting in a move to telephone interviewing and a reduced sample size. This led to additional uncertainty around the estimates, particularly for smaller groups. As such, for 2020/21, only figures relating to the whole population in NI are presented in this dashboard. In 2022/23 a mix of face to face and telephone interviews were employed. Changes in estimates over recent years should be interpreted being mindful of the differences in data collection approaches across the period and the effect this had on sample composition, with longer term trends often giving a clearer picture. \r\n[b]\r\nFurther Information[/b] \r\n1. Some figures are not available due to small sample sizes. \r\n2. LGD Information provided by 3 year averages rather than individual year due to small sample sizes. \r\n3. The 2018/19-2021/22 data currently covers a 4 year period but data for 2020/21 has been omitted due to a greatly reduced sample size for that year. \r\n4. Information provided is based on the head of the household."
+    ],
+    "role": {
+      "geo": "LGD2014",
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 11, 11],
+    "updated": "2025-04-29T9:30:00.000Z",
+    "value": [11, 12, 14, 13, 14, 8, 9, 13, 10, 14, 9, 8, 11, 15, 11, 15, 9, 8, 15, 11, 14, 9, 8, 10, 14, 12, 16, 10, 7, 14, 11, 13, 9, 9, 9, 14, 13, 14, 10, null, 11, 11, 12, 8, 9, 10, 14, 12, 14, 8, null, 8, 8, 11, 9, 10, 9, 13, 11, 14, null, null, 7, 8, 10, 9, 10, 8, 13, 7, 16, null, null, 7, 5, 9, 9, 11, 8, 12, 9, 14, null, 7, 7, 5, 7, 7, 7, 8, 12, 8, 13, null, null, 5, 5, 6, 7, 6, 6, 11, 7, 12, null, null, null, 7, 6, 7, 5, 5, 11, 7, 12, null, null, 5, 7, 6, 7],
+    "version": "2.0"
+  },
+  "id": {}
+}

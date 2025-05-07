@@ -1,0 +1,122 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSAFETOWN",
+          "label": {
+            "INDSAFETOWN": "Percentage who see towns and city centres in Northern Ireland as safe and welcoming places for people of all walks of life"
+          },
+          "unit": {
+            "INDSAFETOWN": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["14", "15", "16"],
+          "label": {
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "16": "Religion - Other/no religion"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDSAFETOWNEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 111,
+        "value": "Safer Communities"
+      },
+      "product": {
+        "code": "STACC",
+        "value": "Safe towns and city centres"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSAFETOWNEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Safe towns and city centres",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSAFETOWNEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSAFETOWNEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSAFETOWNEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSAFETOWNEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Safe towns and city centres[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage aged 18+ who see towns and city centres in Northern Ireland as safe and welcoming places for people of all walks of life. \r\n\r\n[b]Source[/b]\r\nGood Relations Indicators Report, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/good-relations]https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/good-relations[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nIn 2020, the NILT survey was moved from an in-person interviewer-led survey to a combination of CAWI (Computer Assisted Web Interviewing) and CATI (Computer Assisted Telephone Interviewing) - the new format has been used in every year since 2020.\r\n\r\nPrior to 2020, the wording of this question was How much do you agree or disagree with the following statements? Towns and city centres in Northern Ireland are safe and welcoming places for people of all walks of life. In 2020, this was changed to How much do you agree or disagree with the following statements? In a world without coronavirus (COVID-19), towns and city centres in Northern Ireland are safe and welcoming places for people of all walks of life. The new question format was used again in 2021, and reverted back to the previous wording in 2022.\r\n\r\n[b]Further information[/b]\r\n1. The source for this indicator is the Northern Ireland Life and Times Survey (NILT) which is an attitudinal survey that takes place at a particular point in the year. One-off events of a particular local or national level occurring during, or close to the survey's fieldwork period may impact results and create volatility from year to year.\r\n2. Respondents who answer 'strongly agree' or 'agree' are included.\r\n\r\n[b]Sex[/b]\r\n3. Prior to 2018, response options included 'Male' and 'Female'. From 2018 onwards, there was a response option of 'In another way', and from 2019 onwards, there was a response option of 'Don't know'. Only 'Male' and 'Female' response options are provided in the table due to low numbers in the other response options.\r\n\r\n[b]Marital status[/b]\r\n4. The definition of marital status in the Northern Ireland Life & Times survey does not include 'cohabiting' as a classification.\r\n\r\n[b]Religion[/b]\r\n5. Catholic includes the category 'Catholic'.\r\n6. Protestant includes the categories: 'Church of Ireland/Anglican/Episcopal', 'Baptist', 'Methodist', 'Presbyterian', 'Free Presbyterian', 'Brethren', 'United Reform Church (URC)/Congregational', 'Pentecostal', 'Church of Scotland', 'Elim Pentecostal', 'Reformed Presbyterian', 'Non-subscribing Presbyterian', 'Salvation Army', 'Church of Nazarene', 'Other Protestant, specify'.\r\n7. Other/None/Missing/Refused includes the categories: 'No religion', 'Jehovah's Witness', 'Church of Jesus Christ of Latter Day Saints (Mormon)', 'Other Christian, specify', 'Hindu', 'Jewish', 'Islam/Muslim', 'Sikh', 'Buddhist', 'Other (WRITE IN)', 'Don`t know', 'Not answered/Refused'.\r\n\r\n[b]Disability[/b]\r\n8. ‘Disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n9. The Northern Ireland Life & Times survey used the limiting long-standing illness questions:\r\n· Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?\r\n· Does your condition or illness/do any of your conditions or illnesses reduce your ability to carry out day-to-day activities?\r\n\r\n[b]Ethnic Group[/b]\r\n10. 'Other' includes: 'Irish Traveller'; 'Indian'; 'Pakistani'; 'Bangladeshi'; 'Chinese'; 'Any other Asian background'; 'Black African'; 'Black Caribbean'; 'Any other mixed/multiple ethnic background'; and 'Any other ethnic group'.\r\n\r\n[b]Sexual Orientation[/b]\r\n11. The sexual orientation question was not asked in the NILT survey in 2015.\r\n\r\n[b]Urban Rural[/b]\r\n12. Figures prior to 2017 are defined according to the 2005 Urban Rural classification; figures from 2017 onwards are defined according to the 2015 Urban Rural classification.\r\n\r\n[b]Political Opinion[/b]\r\n13. Respondents are asked Generally speaking, do you think of yourself as a unionist, a nationalist or neither? and responses are coded as 'Unionist', 'Nationalist', 'Neither', 'Other' or 'Don`t know'.\r\n14. 'Neither' category includes 'Neither', 'Other', 'Don’t know' , 'Not answered/Refused' and, after 2020, 'Prefer not to say'."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 10, 3],
+    "updated": "2025-02-05T9:30:00.000Z",
+    "value": [56.3, 54.2, 47.9, 58.1, 57.3, 60.3, 61.7, 63.7, 62.9, 62.6, 62.9, 57.6, 65.7, 71.7, 60.9, 62.6, 69.9, 53.8, 52.6, 57.1, 50.1, 44.8, 55.3, 49.5, 36.8, 50.5, 40, 44.6, 46.3, 43.8],
+    "version": "2.0"
+  },
+  "id": {}
+}

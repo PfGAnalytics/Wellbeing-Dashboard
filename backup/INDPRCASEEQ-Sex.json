@@ -1,0 +1,122 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDPRCASE",
+          "label": {
+            "INDPRCASE": "Average time taken to complete criminal cases"
+          },
+          "unit": {
+            "INDPRCASE": {
+              "decimals": 0,
+              "label": "Days",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["1", "2"],
+          "label": {
+            "1": "Sex - Male",
+            "2": "Sex - Female"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDPRCASEEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 111,
+        "value": "Safer Communities"
+      },
+      "product": {
+        "code": "PTCC",
+        "value": "Processing times for criminal cases"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPRCASEEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Processing times for criminal cases",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPRCASEEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPRCASEEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPRCASEEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPRCASEEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Processing times for criminal cases[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe effectiveness of the criminal justice system can be measured by examining the average (median) length of time to complete criminal cases, from the date an offence is reported to the date a case is dealt with at court.\r\n\r\n[b]Source[/b]\r\nProsecution and Conviction Statistics, Department of Justice\r\n[url=https://www.justice-ni.gov.uk/topics/statistics-and-research/prosecution-and-conviction-statistics]https://www.justice-ni.gov.uk/topics/statistics-and-research/prosecution-and-conviction-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe journey of cases through the justice system was curtailed during the advent of the covid pandemic. This has led to an increase in the time taken to complete cases, as courts work through the backlog incurred during that time.\r\n\r\n[b]Further information[/b]\r\n1. Figures relate to the number of calendar days between the listed dates for each table. Court recess dates are not taken into account.\r\n2. Figures relate to cases disposed at court during the time period specified. Each period is a financial year, running from 1st April to the following 31st March.\r\n3. Figures relate to cases brought on behalf of the PSNI, Harbour and Airport police or the National Crime Agency in Northern Ireland that resulted in a court disposal. \r\n4. Figures do not include cases where the case was dismissed but a caution was administered (though these cases are included for Cases dealt with at Crown Court from 2018-19 onwards), fixed penalty registrations, penalty notices for disorder or cases resulting from a breach of a court order. Successful youth engagement cases were also excluded.\r\n5. The form of average used is the median.\r\n6. Figures relate to initial disposals at courts. Appeals are not included.\r\n\r\n[b]Sex[/b]\r\n7. Due to the small numbers involved, individuals identifying as transgender, those where no gender was recorded and others have been categorised in the male category.\r\n\r\n[b]Age[/b]\r\n8. Age relates to the defendant's age at the date of offence. 'Youth' is defined as defendants aged between 10-17; 'Adult' is defined as defendants aged 18 or over.\r\n\r\n[b]Offence category[/b]\r\n9. Offence category relates to the main offence at the point a case was dealt with.\r\n\r\n[b]Court type[/b]\r\n10. Court type relates to the court in which the case was dealt with i.e. Crown, Adult magistrates’, Youth magistrates’."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 11, 2],
+    "updated": "2025-01-21T11:23:20.41Z",
+    "value": [145, 137, 143, 142, 146, 146, 163, 170, 161, 164, 167, 167, 150, 143, 193, 192, 224, 238, 207, 202, 190, 192],
+    "version": "2.0"
+  },
+  "id": {}
+}

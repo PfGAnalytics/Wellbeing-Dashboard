@@ -1,0 +1,130 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDRIVERQ",
+          "label": {
+            "INDRIVERQ": "Levels of nutrients in our rivers as measured by soluble reactive phosphorus (mg/l)"
+          },
+          "unit": {
+            "INDRIVERQ": {
+              "decimals": 3,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2004": "2004",
+            "2005": "2005",
+            "2006": "2006",
+            "2007": "2007",
+            "2008": "2008",
+            "2009": "2009",
+            "2010": "2010",
+            "2011": "2011",
+            "2012": "2012",
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDRIVERQNI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 106,
+        "value": "Cleaner Environment"
+      },
+      "product": {
+        "code": "RWQ",
+        "value": "River water quality"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRIVERQNI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - River water quality",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRIVERQNI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRIVERQNI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRIVERQNI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRIVERQNI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]River water quality\r\n[/b]\r\n[b]How do we measure this?[/b]\r\nLevels of nutrients in our rivers as measured by soluble reactive phosphorus (mg/l).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, river monitoring was affected with samples not taken in April and May and limited numbers taken in March and December of 2020.\r\n\r\n[b]Further information[/b]\r\n1. Soluble Reactive Phosphorus is measured at 93 surveillance rivers."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 20, 1],
+    "updated": "2024-09-16T12:28:38.393Z",
+    "value": [0.076, 0.083, 0.07, 0.066, 0.063, 0.049, 0.052, 0.058, 0.047, 0.053, 0.064, 0.059, 0.067, 0.066, 0.068, 0.063, 0.067, 0.071, 0.073, 0.062],
+    "version": "2.0"
+  },
+  "id": {}
+}

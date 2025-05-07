@@ -1,0 +1,124 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHOMELN",
+          "label": {
+            "INDHOMELN": "Number of households who are homeless"
+          },
+          "unit": {
+            "INDHOMELN": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["3", "4", "5", "6", "7", "8"],
+          "label": {
+            "3": "Age 16-24",
+            "4": "Age 25-34",
+            "5": "Age 35-49",
+            "6": "Age 50-64",
+            "7": "Age 65-74",
+            "8": "Age 75+"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDHOMELNEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "HOMELES",
+        "value": "Homelessness"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Homelessness",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Homelessness[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of households accepted by the Housing Executive as statutorily homeless.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Homelessness Bulletin, Department for Communities \r\n[url=https://www.communities-ni.gov.uk/articles/northern-ireland-homelessness-bulletin]Northern Ireland Homelessness Bulletin | Department for Communities[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19, however, the impact of COVID-19 has seen a significant increase in demand for temporary accommodation.\r\n\r\n[b]Further information[/b]\r\n1. Full duty applicants (FDA) status is granted to a household presenting as homeless once the NIHE makes enquiries to check if the household is eligible for assistance. The NIHE needs to determine that the household has a priority need for accommodation and that they did not become homeless or threatened with homelessness intentionally. When a household is granted FDA status the NIHE has an obligation to ensure that accommodation becomes available for these households to occupy.\r\n2. Homelessness acceptances are extracted from a live database. The end of year data is extracted at a point in time and therefore the data that can be reported is reliant on the variables that were extracted at that point in time. Any subsequent extraction of the database with additional data fields will not align with the data published on the DfC website.\r\n\r\n[b]Sex[/b]\r\n3. ‘Sex’ is taken form the 1st Applicant in the household.\r\n4. For some years the database did not include this data and therefore is not available.\r\n\r\n[b]Age[/b]\r\n5. ‘Age’ is taken from the 1st Applicant in the household.\r\n6. For some years the database did not include this data and therefore is not available.\r\n\r\n[b]Religion[/b]\r\n7. 'Other' includes 'Buddist', 'Hindu', 'Jewish', 'Mixed', 'Muslim', 'No Data'. 'None', 'Other', 'Refused' and 'Unknown'.\r\n\r\n[b]Ethnic Group[/b]\r\n8. 'Other' includes: 'Irish Traveller'; 'White and Black Caribbean'; 'White and Black African'; 'White and Asian'; 'Any other mixed/multiple ethnic background'; 'Indian'; 'Pakistani'; 'Bangladeshi'; 'Chinese'; 'Any other Asian background'; 'African'; 'Caribbean'; 'Any other Black/African/Caribbean background'; 'Arab'; and 'Any other ethnic group'.\r\n\r\n[b]Household Group[/b]\r\n9. Household groups are defined as: \r\n[i]Single Male:[/i] one male aged between 16-59 years \r\n[i]Single Female:[/i] one female aged between 16-59 years \r\n[i]Couples:[/i] two persons aged between 16-59 years old \r\n[i]Families:[/i] Family households do not necessarily include children under the age of 18. Families may, for example, include parents and children who are over the age of 18 or adult siblings/other relatives living together. \r\n[i]Pensioner household:[/i] A pensioner household refers to households which are predominantly singles or couples where at least one person is aged 60 or over. In an exceptionally small number of cases, there may be adult households of 3 or more included in the pensioner category, if at least one person in the household is aged 60 or over. \r\n[i]Undefined household: [/i]Household type is a compulsory field on the application however occasionally, a system anomaly may allow the household to be recorded as undefined. As the application is progressed the missing data will be updated and amended. The NIHE reporting system extracts data from the live system, therefore all categories may be subject to change and adjustment as each quarterly report is downloaded."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 9, 6],
+    "updated": "2025-02-11T11:33:57.06Z",
+    "value": [null, null, null, null, null, null, null, null, null, null, null, null, 2051, 3163, 2918, 2126, 831, 788, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1468, 2665, 2765, 1890, 762, 585, 1343, 2691, 2955, 1931, 785, 644, null, null, null, null, null, null],
+    "version": "2.0"
+  },
+  "id": {}
+}

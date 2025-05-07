@@ -1,0 +1,116 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDRESDEV",
+          "label": {
+            "INDRESDEV": "Total General Expenditure on Research and Development (GERD)"
+          },
+          "unit": {
+            "INDRESDEV": {
+              "decimals": 1,
+              "label": "Pounds Sterling (£), Millions",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDRESDEVNI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 102,
+        "value": "Stronger Economy"
+      },
+      "product": {
+        "code": "RAD",
+        "value": "Research and development"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRESDEVNI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - Research and development",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRESDEVNI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRESDEVNI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRESDEVNI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDRESDEVNI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Research and development[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nTotal General Expenditure on Research and Development (GERD) in millions of pounds. Business expenditure (BERD) is measured through an annual survey of approximately 1,500 businesses in Northern Ireland. Government (GovERD) and Higher Education expenditure (HERD) is measured through a census of government departments, arms length bodies and universities.  GERD is the total of these three types of expenditure.\r\n\r\n[b]Source[/b]\r\nResearch and Development Survey, NISRA\r\n[url=https://www.nisra.gov.uk/statistics/business-statistics/research-and-development]https://www.nisra.gov.uk/statistics/business-statistics/research-and-development[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection since the 2019 surveys occurred during and post-pandemic, this may have resulted in lower response rates in comparison to pre-COVID-19 surveys. Efforts were made to reduce the impact of a lower response rate. Namely, larger R&D contributors received more contact than usual to encourage a response and the survey response window was extended. As a result, 87% of total R&D spend in 2023 is covered by receipted businesses.\r\n\r\n[b]Further information[/b]\r\n1. As methodological improvements have been implemented for the 2022 survey, users should consider comparisons between pre-2022 BERD data and 2022 BERD data with caution.\r\n2. GDP deflator used to convert cash terms to real terms: 2018 (0.82386), 2019 (0.84142), 2020 (0.88514), 2021 (0.88388), 2023 (0.93191), 2023 (1.0).\r\nSource: [url=https://www.gov.uk/government/statistics/gdp-deflators-at-market-prices-and-money-gdp-october-2024-autumn-budget-2024]GDP deflators at market prices, and money GDP October 2024 (Autumn Budget 2024)[/url]"
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 6, 1],
+    "updated": "2025-01-30T9:30:00.000Z",
+    "value": [1091.7, 1193.7, 1129.8, 1243, 1087.1, 1117.8],
+    "version": "2.0"
+  },
+  "id": {}
+}

@@ -1,0 +1,128 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDPREVDTH",
+          "label": {
+            "INDPREVDTH": "Age standardised death rate (per 100,000 population) for causes considered preventable"
+          },
+          "unit": {
+            "INDPREVDTH": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2001-05", "2002-06", "2003-07", "2004-08", "2005-09", "2006-10", "2007-11", "2008-12", "2009-13", "2010-14", "2011-15", "2012-16", "2013-17", "2014-18", "2015-19", "2016-20", "2017-21", "2018-22"],
+          "label": {
+            "2001-05": "2001-05",
+            "2002-06": "2002-06",
+            "2003-07": "2003-07",
+            "2004-08": "2004-08",
+            "2005-09": "2005-09",
+            "2006-10": "2006-10",
+            "2007-11": "2007-11",
+            "2008-12": "2008-12",
+            "2009-13": "2009-13",
+            "2010-14": "2010-14",
+            "2011-15": "2011-15",
+            "2012-16": "2012-16",
+            "2013-17": "2013-17",
+            "2014-18": "2014-18",
+            "2015-19": "2015-19",
+            "2016-20": "2016-20",
+            "2017-21": "2017-21",
+            "2018-22": "2018-22"
+          }
+        },
+        "label": "Grouped year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDPREVDTHEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": "N92000002"
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 109,
+        "value": "Healthier Lives"
+      },
+      "product": {
+        "code": "PREV",
+        "value": "Preventable deaths"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Preventable deaths",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPREVDTHEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Preventable deaths[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe age standardised death rate for causes that are considered preventable according to the latest Office for National Statistics (ONS) definition, as proposed by the Organisation for Economic Co-operation and Development (OECD). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nHealth Inequalities Annual Report, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]www.health-ni.gov.uk/articles/health-inequalities-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDeaths due to COVID-19 were introduced to the definition in 2020.\r\n\r\n[b]Further information[/b]\r\n1. The definition of 'preventable mortality' is based on the current Office for National Statistics (ONS) definition for avoidable mortality as proposed by the Organisation for Economic Co-operation and Development (OECD). This is calculated by standardising (using the direct method) the average death rate in Northern Ireland (over a five year period) due to preventable causes to the 2013 ESP. Defined as causes of death that can be mainly avoided through effective public health and primary prevention interventions (i.e. before the onset of diseases/injuries, to reduce incidence). \r\n[url=https://www.oecd.org/health/health-systems/Avoidable-mortality-2019-Joint-OECD-Eurostat-List-preventable-treatable-causes-of-death.pdf]www.oecd.org/health/health-systems/Avoidable-mortality-2019-Joint-OECD-Eurostat-List-preventable-treatable-causes-of-death.pdf[/url]\r\n2. For more information on this data please contact the data provider - Public Health Information & Research Branch, Information Analysis Directorate, DOH, email: [url=mailto:healthinequalities@health-ni.gov.uk]healthinequalities@health-ni.gov.uk[/url] or see the 'Health Inequalities Annual Report': [url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]https://www.health-ni.gov.uk/articles/health-inequalities-statistics[/url]\r\n\r\n[b]Sex[/b]\r\n3. 95% Confidence Intervals apply to the figures displayed therefore not all differences are statistically significant. Further information on how to interpret the differences and changes in these figures is available online at [url=https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators]https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators[/url]\r\n\r\n[b]Deprivation[/b]\r\n4. 95% Confidence Intervals apply to the figures displayed therefore not all differences are statistically significant. Further information on how to interpret the differences and changes in these figures is available online at [url=https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators]https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators[/url]\r\n5. All figures up to and including 2010-14 are defined according to the 2010 NIMDM, figures from 2011-15 onwards are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found at [url=http://www.nisra.gov.uk/statistics/deprivation]www.nisra.gov.uk/statistics/deprivation[/url]\r\n\r\n[b]Urban Rural[/b]\r\n6. 95% Confidence Intervals apply to the figures displayed therefore not all differences are statistically significant. Further information on how to interpret the differences and changes in these figures is available online at [url=https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators]https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators[/url]\r\n7. Figures up to and including 2007-11 are defined according to the 2005 Urban Rural classification; figures from 2008-12 onwards use the 2015 classification. More information on Urban Rural classifications can be found here:\r\n[url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]www.nisra.gov.uk/support/geography/urban-rural-classification[/url]"
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 18, 1],
+    "updated": "2024-06-10T12:53:03.107Z",
+    "value": [205, 203, 199, 198, 195, 193, 188, 184, 178, 173, 170, 168, 168, 168, 169, 173, 178, 179],
+    "version": "2.0"
+  },
+  "id": {}
+}

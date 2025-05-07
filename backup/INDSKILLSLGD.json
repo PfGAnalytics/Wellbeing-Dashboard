@@ -1,0 +1,128 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSKILLS",
+          "label": {
+            "INDSKILLS": "Proportion of the population aged 16 to 64 with qualifications at Level 2 and above"
+          },
+          "unit": {
+            "INDSKILLS": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District"
+      }
+    },
+    "extension": {
+      "matrix": "INDSKILLSLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 102,
+        "value": "Stronger Economy"
+      },
+      "product": {
+        "code": "SKILLS",
+        "value": "Skills"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Skills",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Skills[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nProportion of the population aged 16-64 with qualifications at Level 2 and above. Level 2 relates to the attainment of at least 5 GCSEs grades A*-C (including equivalents). For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nLabour Force Survey, NISRA \r\n[url=https://www.nisra.gov.uk/publications/highest-qualification-level-2023]Highest qualification and participation in education and training 2023 | Northern Ireland Statistics and Research Agency[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nTypically, the Office for National Statistics (ONS) would reweight the LFS every two years to take account of updated population estimates and projections. Since the onset of the pandemic, the ONS have been monitoring the impact and as a result, there have been five LFS reweightings to improve the estimates. The latest reweighting was introduced in December 2024, affecting data from January-March 2019 to July-September 2024 to make use of more recent population estimates. An overview of the impact of reweighting on the NI estimates of unemployment, employment, and economic inactivity is available on the [url=https://www.nisra.gov.uk/publications/background-information-lfs]NISRA website[/url]. Previous reweightings occurred in October 2020, July 2021, June 2022 and February 2024. The proportion of people qualified to level 2 and above in 2020 and 2021 was similar to the proportions seen before the pandemic.\r\n\r\n[b]Further information[/b]\r\n1. Level 2 and above qualifications include: Level 2 - O-level, GCSE grade A*-C or equivalent - 5 or more, Level 3 - A-level or equivalent - more than 1, Level 4 to 5 - Foundation degree, HNC/HND/BTEC higher, and Level 6 - First degree or higher.\r\n2. A methodology document on Highest Qualification Levels is available on the LFS background information quality page (linked below), which provides a fuller explanation of methodology and more detail on qualifications included in all levels.\r\n[url=https://www.nisra.gov.uk/publications/background-information-lfs]Background Information - LFS | Northern Ireland Statistics and Research Agency (nisra.gov.uk)[/url]"
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 8, 11],
+    "updated": "2025-01-10T9:30:00.000Z",
+    "value": [71, 71, 73.7, 73.4, 63.5, 75.1, 77, 76, 73.2, 75.6, 74.5, 78.1, 74.7, 66.9, 74, 69.6, 78.5, 79.9, 68.3, 70.9, 68.5, 72.5, 82.2, 74.5, 73.5, 72.6, 71.9, 78.3, 84.8, 71.1, 70, 72.4, 78.4, 81.3, 75.4, 68.9, 70.6, 70.2, 73.2, 88.1, 80.3, 72.2, 77.8, 84.3, 83.1, 76, 70, 68.9, 68, 76.9, 85, 80, 76.4, 80.4, 83.3, 86.3, 76.7, 76.2, 78.4, 75.8, 75.8, 83.6, 75.3, 80.5, 77.7, 80.7, 78.9, 78.1, 74.2, 68.7, 76.4, 74, 77.3, 80, 76.3, 76, 80.1, 84.6, 79.5, 73.3, 73.4, 74.2, 78.8, 77.7, 82.5, 75.8, 82.1, 82.2],
+    "version": "2.0"
+  },
+  "id": {}
+}

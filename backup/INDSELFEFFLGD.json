@@ -1,0 +1,139 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSELFEFF",
+          "label": {
+            "INDSELFEFF": "Percentage with low self-efficacy"
+          },
+          "unit": {
+            "INDSELFEFF": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
+      }
+    },
+    "extension": {
+      "matrix": "INDSELFEFFLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 104,
+        "value": "Brighter Futures"
+      },
+      "product": {
+        "code": "SEFF",
+        "value": "Self-efficacy"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSELFEFFLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Self-efficacy",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSELFEFFLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSELFEFFLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSELFEFFLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSELFEFFLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Self-efficacy[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of the population aged 16 and over with low self-efficacy (or low confidence in their own abilities). For this indicator a lower figure is better.\r\n[b]\r\nSource[/b]\r\nIndividual Wellbeing in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/individual-wellbeing-northern-ireland]Individual Wellbeing in Northern Ireland | The Executive Office (executiveoffice-ni.gov.uk)[/url]\r\n[b]\r\nImpact of Covid-19[/b] \r\nThe coronavirus pandemic resulted in a change in data collection mode and a reduced sample size for 2020/21 and 2021/22. Therefore, users should take this into consideration when interpreting future years of data and care should be taken when comparing any findings published prior to 2020/21.\r\n\r\n[b]Further information[/b]\r\n1. The sample size for 2017/18, 2018/19 and 2019/20 was approximately double that of previous years.\r\n2. Data refers to the percentage of the population aged 16 and over with low self-efficacy.\r\n3. Data is collected through Continuous Household Survey (CHS). For more information: [url=https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey]https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey[/url]\r\n4. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
+    ],
+    "role": {
+      "geo": "LGD2014",
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 10, 11],
+    "updated": "2025-04-29T9:30:00.000Z",
+    "value": ["23.6", "24.9", "22.4", "21.8", "24.4", "28", "19.9", "28.5", "28", "28.1", "22.2", "26.3", "15.9", "24.1", "25.3", "22.3", "22.6", "20.6", "18.6", "27.1", "24.3", "19.6", "17.8", "20.8", "21.1", "21.3", "23.8", "24.3", "20.3", "32.8", "30.6", "17.3", "23.2", "21.1", "20.1", "22.7", "18.9", "18.3", "16.9", "13.4", "27.5", "20.5", "20.1", "15.8", "20.1", "18.1", "23.1", "22.1", "23.1", "15.7", "17.6", "17", "18.9", "16.2", "14.2", "17.3", "19.4", "24.2", "20.1", "21.3", "16.3", "18", "16.1", "18", "18.5", "18.1", "10.9", "14.8", "15.9", "16.4", "16.4", "*", "10.6", "15.1", "14", "21.8", "11.5", "16.1", "17.2", "20.6", "20.3", "21.9", "19.5", "11.2", "22.6", "15", "13.5", "14.6", "16.6", "20.7", "22.4", "20.6", "22.6", "12.7", "15.8", "21.8", "21.7", "15.6", "12.7", "20.2", "28.2", "21.3", "21.4", "24", "18.8", "10.5", "12.6", "19.2", "11.9", "10"],
+    "version": "2.0"
+  },
+  "id": {}
+}

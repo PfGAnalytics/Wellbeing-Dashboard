@@ -1,0 +1,154 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDARTCUL",
+          "label": {
+            "INDARTCUL": "Percentage engaging in arts/cultural activities"
+          },
+          "unit": {
+            "INDARTCUL": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["N92000002", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "25", "26", "27", "28", "29", "30", "31"],
+          "label": {
+            "N92000002": "Northern Ireland",
+            "1": "Sex - Male",
+            "2": "Sex - Female",
+            "3": "Age 16-24",
+            "4": "Age 25-34",
+            "5": "Age 35-49",
+            "6": "Age 50-64",
+            "7": "Age 65-74",
+            "8": "Age 75+",
+            "9": "Marital status - Single",
+            "10": "Marital status - Married/Civil partnership",
+            "11": "Marital status - Separated",
+            "12": "Marital status - Divorced",
+            "13": "Marital status - Widowed",
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "16": "Religion - Other/no religion",
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants",
+            "19": "Disability - Yes",
+            "20": "Disability - No",
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived",
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDARTCULEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 104,
+        "value": "Brighter Futures"
+      },
+      "product": {
+        "code": "ACA",
+        "value": "Arts and cultural activities"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Arts and cultural activties",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDARTCULEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Arts and cultural activities[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of adults participating in arts and cultural activities.\r\n\r\n[b]Source\r\n[/b]Engagement in culture, arts, heritage and sport by adults in Northern Ireland, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics]https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection for the 2023/24 CHS was carried out using a mix of telephone and face-to-face interviewing modes, a similar approach to that used in 2022/23. For 2020/21 and 2021/22 data collection was by telephone interviewing due to the coronavirus (COVID-19) pandemic. There was also a reduction in the number of questions between 2020/21-2022/23. As a result, the figures from 2020/21 onwards are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n\r\n[b]Further information\r\n[/b]1. Participation in arts and cultural activities is defined as the percentage of adults (aged 16+) who have done at least one of the following within the last 12 months; engaged in the arts, used the public library service, visited a museum or science centre or used PRONI services.\r\n2. In 2019/20, the questions on visits to museums were revised and as a result figures for visits to museums for 2019/20 onwards are not comparable with previous years. Although this is one element of the overall culture and arts engagement rate, the impact of the change is lessened in the culture and arts estimates as the majority of those who visit museums also engage in some other way with culture and arts.\r\n3. Following a move in 2020/21 from face-to-face interviewing to telephone interviewing to collect data, due to the coronavirus (COVID-19) pandemic, data collection for the Continuous Household Surveys 2021/22 to 2023/24 used a mix of telephone and face-to-face modes. \r\n4. Results from 2021/22 to 2023/24 are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n5. While comparisons can be made between 2021/22 and 2023/24, it is important to note that engaging in arts/cultural activities in 2021/22 would have been impacted by closures due to COVID-19.\r\n\r\n[b]Deprivation[/b]\r\n6. Figures above are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url] \r\n\r\n[b]Urban Rural[/b]\r\n7. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url] \r\n\r\n[b]Religion[/b]\r\n8. 'Other' includes those who stated a religion other than Catholic and Protestant, those who stated no religion, those who refused to answer the question, and those whose answer was missing.\r\n\r\n[b]Disability[/b]\r\n9. For this indicator, ‘disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n\r\n[b]Dependants[/b]\r\n10. For this indicator, 'has dependants' includes individuals who have responsibility for the care of: a child(ren); a person with a disability; and/or a dependant elderly person."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 17, 28],
+    "updated": "2025-01-24T11:17:45.37Z",
+    "value": [81, 80, 83, 97, 91, 83, 76, 69, 57, 88, 81, 77, 73, 59, 82, 80, 87, null, null, 64, 87, 78, 79, 80, 83, 87, 82, 80, 79, 76, 81, 87, 88, 84, 74, 70, 53, 83, 82, 65, 70, 53, 77, 79, 83, null, null, 61, 84, 70, 74, 80, 81, 88, 80, 77, 84, 80, 86, 92, 90, 89, 81, 74, 60, 88, 84, 80, 75, 68, 83, 84, 87, null, null, 69, 88, 78, 79, 80, 89, 93, 85, 82, 87, 85, 88, 95, 96, 91, 84, 76, 67, 90, 88, 87, 83, 70, 86, 87, 90, 92, 84, 74, 91, 80, 83, 88, 90, 94, 88, 85, 85, 84, 87, 93, 94, 88, 83, 75, 61, 88, 86, 82, 80, 68, 84, 85, 90, 89, 83, 77, 88, 81, 84, 83, 85, 94, 86, 83, 86, 83, 88, 96, 94, 90, 80, 77, 62, 90, 87, 80, 81, 68, 86, 85, 88, 90, 84, 72, 91, 81, 86, 84, 87, 92, 87, 84, 87, 84, 89, 95, 96, 91, 83, 76, 62, 90, 88, 81, 78, 68, 87, 85, 93, 92, 83, 75, 91, 81, 84, 87, 88, 93, 88, 85, 87, 86, 89, 98, 95, 92, 83, 76, 63, 91, 89, 81, 81, 62, 87, 86, 94, 92, 84, 74, 92, 83, 83, 89, 90, 91, 88, 86, 85, 82, 88, 97, 89, 90, 81, 75, 62, 89, 86, 74, 80, 69, 83, 85, 89, 90, 81, 75, 88, 79, 84, 85, 87, 90, 86, 82, 85, 83, 88, 93, 96, 89, 82, 75, 62, 88, 86, 72, 84, 70, 83, 85, 90, 90, 82, 75, 90, 80, 83, 83, 86, 95, 87, 83, 87, 84, 89, 97, 95, 92, 83, 76, 59, 90, 88, 83, 82, 67, 86, 86, 91, 91, 83, 74, 91, 80, 85, 86, 89, 92, 87, 85, 87, 84, 90, 95, 95, 93, 84, 77, 64, 90, 89, 86, 83, 68, 86, 87, 92, 93, 83, 76, 91, 84, 84, 85, 90, 94, 88, 87, 87, 84, 89, 97, 94, 93, 81, 78, 65, 90, 88, 79, 80, 69, 86, 85, 93, 92, 83, 77, 90, 82, 85, 86, 89, 90, 86, 87, 81, 77, 84, 85, 90, 86, 78, 69, 65, 79, 81, 65, 82, 68, 79, 78, 84, 83, 78, null, null, 78, 78, 79, 83, 84, 81, 79, 62, 58, 65, 80, 73, 66, 56, 47, 42, 67, 62, 61, 54, 49, 60, 59, 75, 64, 61, 55, 66, 61, 57, 60, 63, 70, 65, 58, 80, 77, 83, 93, 90, 88, 74, 69, 58, 82, 83, 72, 78, 59, 79, 80, 87, 86, 76, 71, 84, 76, 75, 79, 83, 88, 82, 78, 83, 80, 86, 88, 92, 90, 81, 73, 59, 84, 85, 79, 74, 66, 82, 81, 90, 89, 79, 71, 87, 76, 78, 83, 86, 91, 85, 80],
+    "version": "2.0"
+  },
+  "id": {}
+}

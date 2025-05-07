@@ -1,0 +1,119 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDCOASTQ",
+          "label": {
+            "INDCOASTQ": "Number of coastal water bodies in good ecological condition"
+          },
+          "unit": {
+            "INDCOASTQ": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDCOASTQNI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 106,
+        "value": "Cleaner Environment"
+      },
+      "product": {
+        "code": "CWC",
+        "value": "Coastal water condition"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOASTQNI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - Coastal water condition",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOASTQNI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOASTQNI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOASTQNI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCOASTQNI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Coastal water condition[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of coastal water bodies in good ecological condition\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]Due to restrictions imposed as a result of the Covid-19 pandemic, some condition monitoring was impacted during 2020.\r\n\r\n[b]Further information[/b]\r\n1. The assessment does not include chemical pollutants."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 9, 1],
+    "updated": "2024-09-16T12:27:27.38Z",
+    "value": [12, 11, 14, 13, 13, 14, 13, 13, 13],
+    "version": "2.0"
+  },
+  "id": {}
+}

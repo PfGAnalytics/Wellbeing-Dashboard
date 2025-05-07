@@ -1,0 +1,125 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHOUSCT",
+          "label": {
+            "INDHOUSCT": "Proportion of households spending 30% or more of household income on housing costs"
+          },
+          "unit": {
+            "INDHOUSCT": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["19", "20"],
+          "label": {
+            "19": "Disability - Yes",
+            "20": "Disability - No"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDHOUSCTEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "HCPHI",
+        "value": "Housing costs as a proportion of household income"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Housing costs as a proportion of household income",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOUSCTEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Housing costs as a proportion of household income[/b] \r\n\r\n[b]How do we measure this?[/b] \r\nProportion of households spending 30% or more of household income on housing costs. \r\n[b]\r\nSource[/b] \r\nFamily Resources Survey \r\n[url=https://www.communities-ni.gov.uk/topics/family-resources-survey]https://www.communities-ni.gov.uk/topics/family-resources-survey[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nData collection in 2020/21 and 2021/22 was impacted by COVID-19 restrictions resulting in a move to telephone interviewing and a reduced sample size. This led to additional uncertainty around the estimates, particularly for smaller groups. As such, for 2020/21, only figures relating to the whole population in NI are presented in this dashboard. In 2022/23 a mix of face to face and telephone interviews were employed. Changes in estimates over recent years should be interpreted being mindful of the differences in data collection approaches across the period and the effect this had on sample composition, with longer term trends often giving a clearer picture. \r\n\r\n[b]Further information[/b] \r\n1. Further information is available under sub-population charts. \r\n\r\n[b]Age[/b] \r\n2. Age band 16-24 and 25-34 grouped together due to small sample sizes. \r\n3. Some figures have been suppressed due to small sample sizes. \r\n4. Information provided is based on the head of the household. \r\n\r\n[b]Marital Status[/b] \r\n5. The sub groups Divorced and Separated have been grouped together due to small sample sizes. The sub group Co-Habiting has been grouped with Married/Civil Partnership due to small sample sizes. \r\n6. Some figures have been suppressed due to small sample sizes. \r\n7. Information provided is based on the head of the household. \r\n\r\n[b]Religion[/b] \r\n8. Due to small sample sizes, reliable estimates are not available for the 'Other/None/Missing/Refused' category. \r\n9. Information provided is based on the head of the household. \r\n\r\n[b]Dependants[/b] \r\n10. A 'dependant' is an individual aged under 16. A person will also be defined as a child if they are 16-19 years old and they are: not married; living with parents; and in full-time non-advanced education or in unwaged government training. \r\n11. Some figures have been suppressed due to small sample sizes. \r\n12. Information provided is based on the head of the household. \r\n\r\n[b]Disability[/b] \r\n13. Disability status is based on whether someone in the family has a disability / whether no-one in the family has a disability. \r\n14. For this indicator, ‘disability’ is defined as having any long standing illness, disability or infirmity (based on specific impairment types respondents were asked about) that leads to a significant difficulty with one or more areas of the individuals life. Everyone classified as disabled under the FRS definition would also be classified as disabled under the Disability Discrimination Act (DDA). However, some individuals classified as disabled and having rights under the DDA would not be captured by this definition. \r\n15. Information provided is based on the head of the household. \r\n\r\n[b]Political opinion[/b] \r\n16. Information provided is based on the head of the household. \r\n17. Data on Political opinion is not available prior to 2011/12 as questions were not asked on the Family Resources Survey. \r\n18. Political opinion is based on the political opinion of the head of the benefit unit, who is asked Generally speaking, do you regard yourself as a nationalist, a unionist or neither? \r\n\r\n[b]Sexual orientation[/b] \r\n19. Heterosexual/straight is the only group with a large enough sample size. Due to small sample sizes, reliable estimates are not available for 'Gay/Lesbian', 'Bisexual' or 'Other'. \r\n20. Data on Sexual Orientation is not available prior to 2011/12 as questions were not asked on the Family Resources Survey. \r\n21. Information provided is based on the head of the household. \r\n\r\n[b]Deprivation[/b] \r\n22. Quintiles 4 & 5 have been combined due to small sample sizes. \r\n23. The Multiple Deprivation measure used for years prior to 2016/17 is the NIMDM 2010 measure while for 2016/17 onward it is the NIMDM 2017. [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url] \r\n24. Some figures have been suppressed due to small sample sizes. \r\n25. Information provided is based on the head of the household. \r\n\r\n[b]Urban Rural[/b] \r\n26. Information provided is based on the head of the household. \r\n27. All figures are defined according to the 2015 urban rural classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url] \r\n\r\n[b]Tenure[/b] \r\n28. Owner Occupier tenure status not included as they have no housing costs. \r\n29. Some figures have been suppressed due to small sample sizes. \r\n30. Information provided is based on the head of the household. \r\n\r\n[b]Sex[/b] \r\n31. Children have been excluded, this data refers to adult males and adult females only."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 14, 2],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [null, null, null, null, null, null, 13, 10, 11, 11, 10, 10, 11, 8, 11, 9, 11, 6, 10, 6, 9, 7, null, null, 8, 4, 8, 7],
+    "version": "2.0"
+  },
+  "id": {}
+}

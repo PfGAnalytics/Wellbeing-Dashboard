@@ -1,0 +1,138 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDHOMELN",
+          "label": {
+            "INDHOMELN": "Number of households who are homeless"
+          },
+          "unit": {
+            "INDHOMELN": {
+              "decimals": 0,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
+      }
+    },
+    "extension": {
+      "matrix": "INDHOMELNLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 103,
+        "value": "Better Homes"
+      },
+      "product": {
+        "code": "HOMELES",
+        "value": "Homelessness"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Homelessness",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDHOMELNLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Homelessness[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of households accepted by the Housing Executive as statutorily homeless.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Homelessness Bulletin, Department for Communities \r\n[url=https://www.communities-ni.gov.uk/articles/northern-ireland-homelessness-bulletin]Northern Ireland Homelessness Bulletin | Department for Communities[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19, however, the impact of COVID-19 has seen a significant increase in demand for temporary accommodation.\r\n\r\n[b]Further information[/b]\r\n1. Full duty applicants (FDA) status is granted to a household presenting as homeless once the NIHE makes enquiries to check if the household is eligible for assistance. The NIHE needs to determine that the household has a priority need for accommodation and that they did not become homeless or threatened with homelessness intentionally. When a household is granted FDA status the NIHE has an obligation to ensure that accommodation becomes available for these households to occupy.\r\n2. Homelessness acceptances are extracted from a live database. The end of year data is extracted at a point in time and therefore the data that can be reported is reliant on the variables that were extracted at that point in time. Any subsequent extraction of the database with additional data fields will not align with the data published on the DfC website.\r\n3. The data in relation to Local Government District (LGD) refers to the LGD to which the household presented as homeless."
+    ],
+    "role": {
+      "geo": "LGD2014",
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 9, 11],
+    "updated": "2025-04-29T9:30:00.000Z",
+    "value": [1099, 435, 3316, 811, 1209, 299, 942, 773, 480, 892, 946, 1029, 542, 3593, 789, 1259, 418, 928, 1003, 481, 861, 986, 904, 593, 3940, 716, 1203, 432, 675, 997, 468, 789, 1160, 1052, 790, 3790, 689, 1315, 467, 716, 1088, 542, 907, 1156, 936, 694, 3325, 690, 1222, 467, 756, 1051, 388, 847, 947, 952, 608, 2686, 579, 1146, 353, 552, 928, 362, 792, 931, 873, 606, 2820, 746, 1212, 366, 569, 895, 419, 749, 880, 1012, 641, 2683, 758, 1305, 414, 568, 853, 466, 751, 898, 1013, 749, 3226, 842, 1352, 501, 615, 920, 505, 802, 1012],
+    "version": "2.0"
+  },
+  "id": {}
+}

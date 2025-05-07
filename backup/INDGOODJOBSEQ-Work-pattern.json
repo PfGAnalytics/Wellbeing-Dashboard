@@ -1,0 +1,119 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDGOODJOBS",
+          "label": {
+            "INDGOODJOBS": "Percentage of employees in NI (aged 16-64) meeting three good jobs criteria"
+          },
+          "unit": {
+            "INDGOODJOBS": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "label": {
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023",
+            "2024": "2024"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["123", "124"],
+          "label": {
+            "123": "Work pattern - Full-time",
+            "124": "Work pattern - Part-time"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDGOODJOBSEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 102,
+        "value": "Stronger Economy"
+      },
+      "product": {
+        "code": "GJ",
+        "value": "Good jobs"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDGOODJOBSEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Good jobs",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDGOODJOBSEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDGOODJOBSEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDGOODJOBSEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDGOODJOBSEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Good jobs[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of employees in NI (aged 16-64) in good jobs. For the purposes of this metric a “good job” is one which meets the following requirements: A permanent contract; and A non zero-hour contract; and Earning the Real Living Wage (RLW) or more.\r\n\r\n[b]Source[/b]\r\nGood Jobs in Northern Ireland, NISRA\r\n[url=https://www.nisra.gov.uk/publications/good-jobs-northern-ireland]Good Jobs in Northern Ireland | Northern Ireland Statistics and Research Agency[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nUsers should note that the Coronavirus Job Retention Scheme (CJRS) was in place in 2020 and 2021. The CJRS was a temporary scheme providing grants to employers to pay 80% of staff wages and employment costs up to a cap per person per month designed to help employers whose operations were affected by coronavirus to retain their employees. 16% of all employees in the NI survey in 2020 and 7% in 2021 were identified as being furloughed with reduced earnings.\r\n\r\n[b]Further information[/b]\r\n1. The data for this indicator is collected from the Annual Survey of Hours and Earnings (ASHE).\r\n2. The survey reference date for the latest survey (17th April 2024) was outside the time period for the Coronavirus Job Retention Scheme (CJRS) grant; therefore 2023 earnings were not affected by furlough. Over the pandemic period, earnings estimates were affected by changes in the composition of the workforce and the impact of the CJRS, making interpretation difficult. In particular, the 2020 and 2021 data are subject to more uncertainty and should be treated with caution.\r\n3. The survey reference date was also before public sector pay awards were made and are therefore not included in the 2024 results. Further information on ASHE can be obtained from the ASHE 2024 publication at the following link: [url=https://www.nisra.gov.uk/publications/employee-earnings-ni-2024]https://www.nisra.gov.uk/publications/employee-earnings-ni-2024[/url]"
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 8, 2],
+    "updated": "2025-02-20T12:56:21.147Z",
+    "value": [74.7, 35.7, 74.7, 36, 76.5, 39.5, 73.6, 36.8, 77.8, 39.5, 81.1, 43.8, 81.2, 44.7, 78.4, 37.8],
+    "version": "2.0"
+  },
+  "id": {}
+}

@@ -1,0 +1,153 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDCRIME",
+          "label": {
+            "INDCRIME": "Percentage who were victims of any NI safe community survey crime"
+          },
+          "unit": {
+            "INDCRIME": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2006/07", "2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2006/07": "2006/07",
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["N92000002", "1", "2", "3", "4", "5", "6", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "25", "26", "27", "28", "29", "30", "31", "36"],
+          "label": {
+            "N92000002": "Northern Ireland",
+            "1": "Sex - Male",
+            "2": "Sex - Female",
+            "3": "Age 16-24",
+            "4": "Age 25-34",
+            "5": "Age 35-49",
+            "6": "Age 50-64",
+            "9": "Marital status - Single",
+            "10": "Marital status - Married/Civil partnership",
+            "11": "Marital status - Separated",
+            "12": "Marital status - Divorced",
+            "13": "Marital status - Widowed",
+            "14": "Religion - Catholic",
+            "15": "Religion - Protestant",
+            "16": "Religion - Other/no religion",
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants",
+            "19": "Disability - Yes",
+            "20": "Disability - No",
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived",
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural",
+            "36": "Age 65+"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDCRIMEEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 111,
+        "value": "Safer Communities"
+      },
+      "product": {
+        "code": "CPR",
+        "value": "Crime prevalence rate"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCRIMEEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Crime prevalence rate",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCRIMEEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCRIMEEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCRIMEEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDCRIMEEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Crime prevalence rate \r\n\r\nHow do we measure this?[/b] \r\nPercentage of people who were a victim of any NI safe community survey crime. \r\n\r\n[b]Source[/b] \r\nFindings from the 2022/23 Northern Ireland Safe Community Telephone Survey\r\n[url=R+&+S+Bulletin+Findings+from+the+2022/23+Northern+Ireland+Safe+Community+Telephone+Survey+|+Department+of+Justice+(justice-ni.gov.uk)]R & S Bulletin Findings from the 2022/23 Northern Ireland Safe Community Telephone Survey | Department of Justice (justice-ni.gov.uk) [/url]\r\n\r\n[b]Impact of Covid-19[/b] \r\nThere was a change in survey mode from 2020/21 due to the pandemic and the method by which interviews were undertaken changed from face-to-face to telephone. This resulted in a break in the time series. The change reduced the sample size, particularly for 2020/21. Results for the three latest years are not directly comparable with previous sweeps. \r\n\r\n[b]Further Information[/b] \r\n1. The prevalence rate is the estimated percentage of adults who have been a victim of at least one personal crime or have been resident in a household that was a victim of at least one household crime. \r\n2. The Northern Ireland Safe Community Survey was previously known as the NI Crime Survey. Given the change in survey mode as a result of the pandemic, the survey years from 2020/21 are referenced as the Northern Ireland Safe Community Telephone Survey. \r\n3. Previously conducted on an ad hoc basis, the survey began operating on a continuous basis in January 2005. \r\n4. Data are available prior to 2006/07, but due to the format used, it is not included here but can be found in the source publication\r\n\r\n[b]Age[/b] \r\n5. Missing figures are data which have been suppressed due to small sample sizes (less than 100 respondents). \r\n\r\n[b]Deprivation[/b] \r\n6. All figures up to and including 2008/09 are based on rank order of super output areas and defined according to the 2005 NI Multiple Deprivation Measure. Figures from 2009/10 to 2017/18 are based on the 2010 NIMDM, while from 2018/19 onwards they are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: \r\n[url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url]. \r\n7. Data are not available prior to 2005 as the deprivation quintile breakdown was not included in the data prior to this. \r\n\r\n[b]Urban Rural[/b] \r\n8. All figures up to and including 2016/17 are based on the Report of the Inter-Departmental Urban-Rural Definition Group; figures from 2017/18 onwards are based on the 2015 NISRA Review of the Statistical Classification and Delineation of Settlements. \r\n9. Data are not available for 2001 as an urban rural breakdown was not included in the data. \r\n[b]\r\nReligion[/b] \r\n10. Due to small numbers, figures for 'other' religion and no religion have been combined. \r\n11. Missing figures are data which have been suppressed due to small sample sizes (less than 100 respondents). \r\n\r\n[b]Disability[/b] \r\n12. For this indicator, 'disability' is measured based on the question 'Do you have any long-standing illness, disability or infirmity? By long-standing, I mean anything that has troubled you over a period of time or that is likely to affect you over a period of time?'. \r\n\r\n[b]Dependants[/b] \r\n13. For this indicator, 'has dependants' is measured based on the questions 'Do you have responsibility for the care of a child?' and 'Do you have responsibility for the care of a person with a disability or a dependant elderly person?'. \r\n14. Data are not available prior to 2006/07 as the questions were not included in the survey."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 17, 27],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [14.2, 15.3, 13.2, 22.5, 19.2, 15.4, 10.9, 20.5, 11.8, 14.8, 14.2, 6.3, 15.5, 13, 17.5, 15, 13.8, 14.4, 14.2, 19.2, 13.3, 12.9, 13.4, 12.6, 16.9, 11, 6.2, 13.8, 13.8, 13.8, 22.5, 16.4, 15.6, 11.5, 18.9, 12, 19.7, 16.3, 6.7, 15.9, 11.8, 17.9, 15.9, 12.6, 15.2, 13.3, 18, 13.9, 15.7, 10.7, 11.3, 15.9, 11.3, 6, 13.4, 14.3, 12.6, 20.7, 17.6, 15.1, 12.3, 18.7, 11.3, 17, 11.3, 6.6, 14.4, 12, 19.7, 15.2, 12.2, 13.5, 13.3, 18.2, 13, 14.8, 10.1, 12, 16.5, 9.3, 5.1, 14.3, 15.3, 13.5, 23.1, 18.3, 18.1, 9.5, 19.7, 11.6, 20.2, 20.4, 8, 17.3, 11.5, 19.1, 16.8, 12.9, 14.1, 14.4, 23.2, 13.1, 12.4, 12.1, 12.3, 17.7, 10.1, 6.1, 12.6, 13.3, 11.9, 22, 17.6, 13.5, 10.6, 18.8, 10.3, 11.8, 12.7, 6, 14.5, 10.5, 16.7, 13.7, 11.9, 13.5, 12.2, 19.9, 12.3, 8.4, 12, 12.1, 16.1, 8.4, 4.4, 11.2, 11.5, 10.9, 20.4, 16.4, 12.9, 7, 18.9, 7.7, 16.7, 14.2, 6.5, 11, 10.4, 15.6, 11.7, 10.8, 11.1, 11.2, 14.6, 11.3, 11.8, 10.2, 8.7, 13.2, 8.8, 5.1, 10.9, 11.2, 10.6, 18, 13.8, 10.4, 11.2, 14.8, 9, 13.2, 10.3, 4.4, 11.5, 9.6, 16.5, 12, 10.2, 10.9, 10.8, 16.5, 10.9, 8.9, 9.7, 8.9, 12.5, 7.8, 4.5, 10, 9.8, 10.1, 19.8, 13.2, 11.2, 8.4, 15, 7.4, 17.5, 7.5, 4.6, 11, 8.9, 12.3, 11.2, 9.3, 8.4, 10.5, 14.2, 8.5, 8.8, 8.9, 9.9, 11.3, 7.6, 2.7, 8.8, 9.5, 8.3, 16.3, 12.8, 9.4, 7.3, 13.3, 7.6, null, 10.9, 3.1, 9.5, 7.7, 12.2, 9.5, 8.4, 9.7, 8.4, 12.3, 8.5, 7.9, 8, 8.4, 10, 6.9, 3.7, 8.9, 7.6, 10, 14.1, 10.4, 11.9, 7.6, 11.2, 8.2, 11.1, 11, 5, 9.8, 8.1, 10, 11.4, 7.3, 7.8, 9.2, 12, 6.7, 8, 10, 8.3, 10.2, 6.8, 3.4, 8.7, 7.1, 9.9, 21.5, 11.1, 6.8, 7.6, 14.4, 5.8, 10.3, 7.5, 6.3, 10.4, 6.6, 13.8, 8.7, 8.8, 9, 8.7, 15.4, 6.3, 6.1, 9.4, 7.1, 9.7, 7, 4.2, 7.9, 7.8, 7.9, 15.3, 8.9, 9.9, 5.9, 13.4, 5.8, null, null, 1, 6.1, 8.1, 15, 6.8, 8.6, 9.6, 7.2, 12, 9.4, 5.4, 4.9, 9.4, 10.5, 3.3, 4.2, 7.5, 8.1, 7.1, 13.4, 11.2, 9.3, 6, 12.3, 5.2, 10.3, 7.3, 2.1, 8.2, 6.2, 11.1, 8.8, 6.8, 8.2, 7.4, 12.4, 6.5, 5.7, 7.1, 6.9, 9.8, 4.3, 2.8, 6.9, 6.9, 6.9, 10.9, 9.5, 9.4, 5.8, 9.4, 5.3, 11, 6.6, 3.6, 7.4, 5.7, 9.1, 8.7, 5.7, 6.6, 6.9, 10.4, 5, 5.5, 7.6, 6.2, 8, 5.2, 2.8, 3.9, 3.8, 4.1, null, 4.3, 4.1, 3.8, 3.2, 3.7, null, 6.5, 1.8, 4.3, 3.3, 5.2, 4.1, 3.9, 5.2, 3.4, 4.8, 3.8, 3.1, 5.1, 3.3, 3.9, 4, 3, 3.8, 3.7, 3.9, 4, 5.8, 4.8, 4, 4.9, 2.7, 5.6, 4.8, 2.1, 4.2, 3, 5, 4.4, 3.4, 4.5, 3.5, 7.6, 4.4, 1.5, 2.6, 4.2, 4.9, 2, 1.4, 5.1, 5.3, 5, 8.4, 8.4, 5.7, 4, 7.7, 3.8, 9.7, 6.9, 3.2, 4.9, 4.5, 8.4, 5.2, 5.1, 6.2, 4.7, 7.3, 4.7, 4.4, 4.4, 5.3, 6.6, 3, 3],
+    "version": "2.0"
+  },
+  "id": {}
+}

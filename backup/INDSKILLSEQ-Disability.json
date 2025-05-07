@@ -1,0 +1,119 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSKILLS",
+          "label": {
+            "INDSKILLS": "Proportion of the population aged 16 to 64 with qualifications at Level 2 and above"
+          },
+          "unit": {
+            "INDSKILLS": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["19", "20"],
+          "label": {
+            "19": "Disability - Yes",
+            "20": "Disability - No"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDSKILLSEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 102,
+        "value": "Stronger Economy"
+      },
+      "product": {
+        "code": "SKILLS",
+        "value": "Skills"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Skills",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSKILLSEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Skills[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nProportion of the population aged 16-64 with qualifications at Level 2 and above. Level 2 relates to the attainment of at least 5 GCSEs grades A*-C (including equivalents). For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nLabour Force Survey, NISRA\r\n[url=https://www.nisra.gov.uk/publications/highest-qualification-level-2023]Highest qualification and participation in education and training 2023 | Northern Ireland Statistics and Research Agency[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nTypically, the Office for National Statistics (ONS) would reweight the LFS every two years to take account of updated population estimates and projections. Since the onset of the pandemic, the ONS have been monitoring the impact and as a result, there have been five LFS reweightings to improve the estimates. The latest reweighting was introduced in December 2024, affecting data from January-March 2019 to July-September 2024 to make use of more recent population estimates. An overview of the impact of reweighting on the NI estimates of unemployment, employment, and economic inactivity is available on the [url=https://www.nisra.gov.uk/publications/background-information-lfs]NISRA website[/url]. Previous reweightings occurred in October 2020, July 2021, June 2022 and February 2024. The proportion of people qualified to level 2 and above in 2020 and 2021 was similar to the proportions seen before the pandemic.\r\n\r\n[b]Further information[/b]\r\n1. Level 2 and above qualifications include: Level 2 - O-level, GCSE grade A*-C or equivalent - 5 or more, Level 3 - A-level or equivalent - more than 1, Level 4 to 5 - Foundation degree, HNC/HND/BTEC higher, and Level 6 - First degree or higher.\r\n2. A methodology document on Highest Qualification Levels is available on the LFS background information quality page (linked below), which provides a fuller explanation of methodology and more detail on qualifications included in all levels.\r\n[url=https://www.nisra.gov.uk/publications/background-information-lfs]Background Information - LFS | Northern Ireland Statistics and Research Agency (nisra.gov.uk)[/url]\r\n\r\n[b]Disability[/b]\r\n3. These data use the GSS Harmonised Standard definition of disability:\r\n'Disability' refers to those reporting (current) physical or mental health condition(s) or illnesses lasting or expected to last 12 months or more; and that the condition(s) or illness(es) reduce their ability to carry out day-to-day activities.\r\n\r\n[b]Deprivation[/b]\r\n4. All figures up to and including 2016 are defined according to the 2010 NIMDM; figures from 2017 onwards are based on the 2017 NIMDM. More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation.[/url]\r\n5. Data for Deprivation Quintile 2, 3 and 4 are currently unavailable. Data may be available following the 2024 annual tables.\r\n\r\n[b]Levels[/b]\r\n6. An additional breakdown for Level 3 and above is available at Northern Ireland level on the [url=table/INDSKILLSLEV]NISRA data portal[/url].\r\n7. Level 3 relates to the attainment of more than 1 A-level (including equivalents)."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 8, 2],
+    "updated": "2025-01-10T9:30:00.000Z",
+    "value": [53.1, 78, 52, 77.3, 55.2, 80.2, 56.9, 80.8, 58.1, 81.6, 61, 83.5, 58.3, 81.5, 60.9, 83.4],
+    "version": "2.0"
+  },
+  "id": {}
+}

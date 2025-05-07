@@ -1,0 +1,116 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDOUTREC",
+          "label": {
+            "INDOUTREC": "Percentage of households with accessible natural space within 400 metres"
+          },
+          "unit": {
+            "INDOUTREC": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2023", "2024"],
+          "label": {
+            "2023": "2023",
+            "2024": "2024"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["25", "26", "27", "28", "29"],
+          "label": {
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDOUTRECEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 106,
+        "value": "Cleaner Environment"
+      },
+      "product": {
+        "code": "OUTREC",
+        "value": "Outdoor recreation"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDOUTRECEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Outdoor recreation",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDOUTRECEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDOUTRECEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDOUTRECEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDOUTRECEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Outdoor recreation[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of households with accessible natural space within 400 metres. The indicator includes accessible natural space spanning two hectares or more, as well as off-road trails throughout Northern Ireland. It encompasses natural spaces accessible to the public with permission from the landowners, including urban and rural parks, forests, beaches, and off-road trails.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDuring the Covid-19 pandemic people relied on outdoor physical activities for their daily exercise. This highlighted the need for safe, high quality, accessible and welcoming natural spaces and places.\r\n\r\n[b]Further information[/b]\r\n1. Includes accessible natural space over two hectares and off-road routes, such as urban and country parks, forests, beaches and walking trails."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 2, 5],
+    "updated": "2024-09-17T12:21:29.783Z",
+    "value": [65.8, 51.6, 38.7, 38.3, 45.8, 65.8, 51.8, 38.8, 38.3, 45.8],
+    "version": "2.0"
+  },
+  "id": {}
+}

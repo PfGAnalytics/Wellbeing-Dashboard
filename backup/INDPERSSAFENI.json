@@ -1,0 +1,117 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDPERSSAFE",
+          "label": {
+            "INDPERSSAFE": "Percentage of people feeling very unsafe walking alone in their area after dark"
+          },
+          "unit": {
+            "INDPERSSAFE": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "NI": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Northern Ireland"
+      }
+    },
+    "extension": {
+      "matrix": "INDPERSSAFENI",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "NI": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 111,
+        "value": "Safer Communities"
+      },
+      "product": {
+        "code": "PSAFE",
+        "value": "Personal safety"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPERSSAFENI/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "NI"],
+    "label": "Indicator - Personal safety",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPERSSAFENI/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPERSSAFENI/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPERSSAFENI/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPERSSAFENI/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Personal safety[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of people feeling very unsafe walking alone in their area after dark\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Safe Community Telephone Survey\r\n[url=https://www.justice-ni.gov.uk/publications/r-s-bulletin-findings-202223-northern-ireland-safe-community-telephone-survey]R & S Bulletin Findings from the 2022/23 Northern Ireland Safe Community Telephone Survey | Department of Justice (justice-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere was a change in survey mode from 2020/21 due to the pandemic and the method by which interviews were undertaken changed from face-to-face to telephone. This resulted in a break in the time series. The change reduced the sample size, particularly for 2020/21. Results for the three latest years are not directly comparable with previous sweeps.[b]\r\n\r\nFurther Information[/b]\r\n1. The Northern Ireland Safe Community Survey was previously known as the NI Crime Survey. Given the change in survey mode as a result of the pandemic, the survey years from 2020/21 are referenced as the Northern Ireland Safe Community Telephone Survey.\r\n2. Previously conducted on an ad hoc basis, the survey began operating on a continuous basis in January 2005.\r\n3. Results exclude don't knows and refusals."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 7, 1],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [5.7, 4.8, 7.1, 6.5, 5.6, 5.7, 6.8],
+    "version": "2.0"
+  },
+  "id": {}
+}

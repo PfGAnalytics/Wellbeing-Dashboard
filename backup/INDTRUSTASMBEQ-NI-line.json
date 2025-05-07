@@ -1,0 +1,120 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDTRUSTASMB",
+          "label": {
+            "INDTRUSTASMB": "Percentage who tend to trust the NI Assembly, or trust it a great deal"
+          },
+          "unit": {
+            "INDTRUSTASMB": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "INDTRUSTASMB"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "label": {
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": "N92000002",
+          "label": {
+            "N92000002": "Northern Ireland"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDTRUSTASMBEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": "N92000002"
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 110,
+        "value": "Living Peacefully"
+      },
+      "product": {
+        "code": "TINIA",
+        "value": "Trust in the NI Assembly"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Trust in the NI Assembly",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Trust in the NI Assembly[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of the population aged 16+ who said they tend to trust the Northern Ireland Assembly, or trust it a great deal. For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nPublic Awareness of and Trust in Official Statistics\r\n[url=https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos]https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nIn 2020, the data collection ran for an additional three months (October 2020 to March 2021) to achieve the required sample size. Data collection also changed from face-to-face to telephone interviewing for 2020 and 2021, with both data collection modes used from 2022.\r\n\r\n[b]Further information[/b]\r\n1. In 2019 and 2023, respondents were asked whether they trusted elected bodies, such as the NI Assembly or the UK Parliament as the NI Assembly was suspended at this time.\r\n2. The Public Awareness and Trust in Official Statistics survey only ran in ‘even’ years prior to 2019. Results are not available for 2018, due to an irreparable issue with the source data.\r\n3. The percentages for this indicator are estimated based on a sample of the population and so will have some uncertainty. As the sample size increases, the uncertainty decreases. When calculating the bounds for ‘improving’ and ‘worsening’ in the PfG indicator dashboard the sample sizes for the latest available year (2023) and the comparison year (2019) have been used. This means that we are 95% confident that the trend is ‘worsening’ or ‘improving’ compared to 2019 if the value for 2023 falls in these regions."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 10, 1],
+    "updated": "2025-04-03T11:54:02.06Z",
+    "value": [33.6, null, 33.2, null, null, 22.2, 29.8, 30.4, 20.9, 23.7],
+    "version": "2.0"
+  },
+  "id": {}
+}

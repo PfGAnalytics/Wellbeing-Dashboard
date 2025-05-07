@@ -1,0 +1,120 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDATWALK",
+          "label": {
+            "INDATWALK": "Percentage of journeys under two miles made by walking or cycling"
+          },
+          "unit": {
+            "INDATWALK": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2016", "2017", "2018", "2019", "2020", "2021"],
+          "label": {
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021"
+          }
+        },
+        "label": "Year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["25", "26", "27", "28", "29"],
+          "label": {
+            "25": "Deprivation - Quintile 1 - Most deprived",
+            "26": "Deprivation - Quintile 2",
+            "27": "Deprivation - Quintile 3",
+            "28": "Deprivation - Quintile 4",
+            "29": "Deprivation - Quintile 5 - Least deprived"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDATWALKEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 109,
+        "value": "Healthier Lives"
+      },
+      "product": {
+        "code": "ATWC",
+        "value": "Active travel - walking and cycling"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDATWALKEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - Active travel - walking and cycling",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDATWALKEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDATWALKEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDATWALKEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDATWALKEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Active travel – walking and cycling[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of journeys under two miles people choose to make by walking or cycling. For this indicator a higher percentage is better.\r\n\r\n[b]Source[/b]\r\nTravel Survey for Northern Ireland, Department for Infrastructure\r\n[url=https://www.infrastructure-ni.gov.uk/articles/travel-survey-northern-ireland]https://www.infrastructure-ni.gov.uk/articles/travel-survey-northern-ireland[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere were a number of significant changes to the survey methodology from 2020 in response to the COVID-19 pandemic to ensure the data could continue to be collected safely. Therefore 2020 and 2021 results are not directly comparable to those of previous years and caution should be taken in reaching any conclusions if making these comparisons. Full details of the changes to survey methodology and the effects this has had on reporting the data are given in the Travel Survey for Northern Ireland publications.\r\n\r\n[b]Further information[/b]\r\n1. The Travel Survey for Northern Ireland (TSNI) is an annual survey conducted over a calendar year (from January to December). All persons in the household (adults and children) are eligible to take part in the survey.\r\n2. Sub-population breakdowns are available for 2021, the latest TSNI data currently available. Breakdowns for earlier years will be available at a later date. \r\n3. Method of travel for journeys is based on main mode. Main mode is the form of transport used for the greatest length of the journey.\r\n\r\n[b]Religion[/b]\r\n4. 'Other/no religion' includes those who stated a religion other than Catholic and Protestant and those who stated no religion.\r\n\r\n[b]Disability[/b]\r\n5. ‘Disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n\r\n[b]Deprivation[/b]\r\n6. All figures are defined according to the 2017 Northern Ireland Multiple Deprivation Measures.\r\n\r\n[b]Urban Rural[/b]\r\n7. All figures are defined according to the 2015 urban rural classification."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 6, 5],
+    "updated": "2024-06-10T9:30:00.000Z",
+    "value": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 64.7, 45.7, 48.4, 41.3, 56],
+    "version": "2.0"
+  },
+  "id": {}
+}

@@ -1,0 +1,135 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDVOL",
+          "label": {
+            "INDVOL": "Percentage volunteering"
+          },
+          "unit": {
+            "INDVOL": {
+              "decimals": 0,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
+      }
+    },
+    "extension": {
+      "matrix": "INDVOLLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 105,
+        "value": "Caring Society"
+      },
+      "product": {
+        "code": "VOL",
+        "value": "Volunteering"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Volunteering",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDVOLLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Volunteering[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of adults volunteering.\r\n\r\n[b]Source[/b]\r\nEngagement in culture, arts, heritage and sport by adults in Northern Ireland, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/statistics-and-research/culture-and-heritage-statistics]Culture and heritage statistics | Department for Communities (communities-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nFollowing a move in 2020/21 from face-to-face interviewing to telephone interviewing to collect data, due to the coronavirus (COVID-19) pandemic, data collection for the Continuous Household Surveys 2021/22 and 2022/23 used a mix of telephone and face-to-face modes. Therefore, the results from these years are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content. While comparisons can be made between 2021/22 and 2022/23, it is important to note that volunteering in 2021/22 would have been impacted by closures due to COVID-19.\r\n\r\n[b]Further Information[/b]\r\n1. Volunteering is defined as the percentage of adults (aged 16+) who carried out any voluntary work or activity with the last 12 months.\r\n2. Questions relating to volunteering were not included in the CHS 2020/21.\r\n3. Following a move in 2020/21 from face-to-face interviewing to telephone interviewing to collect data, due to the coronavirus (COVID-19) pandemic, data collection for the Continuous Household Surveys 2021/22 and 2022/23 used a mix of telephone and face-to-face modes.\r\n4. Results from 2021/22 and 2022/23 are not directly comparable to previous years due to the significant changes to the survey in terms of methodology and content.\r\n5. While comparisons can be made between 2021/22 and 2022/23, it is important to note that volunteering in 2021/22 would have been impacted by closures due to COVID-19.\r\n6. Published figures for 2017/18 to 2019/20 were revised on 29 June 2023:\r\n[url=https://www.communities-ni.gov.uk/publications/engagement-culture-arts-heritage-and-sport-by-adults-northern-irelands-local-government-districts]Engagement in culture, arts, heritage and sport by adults in Northern Ireland’s local government districts 2022 | Department for Communities (communities-ni.gov.uk)[/url]"
+    ],
+    "role": {
+      "geo": "LGD2014",
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 6, 11],
+    "updated": "2025-04-29T9:30:00.000Z",
+    "value": [23, 29, 22, 29, 23, 33, 33, 23, 28, 27, 30, 24, 24, 25, 27, 28, 27, 33, 26, 32, 27, 31, 34, 27, 23, 19, 32, 27, 31, 32, 30, 20, 38, null, null, null, null, null, null, null, null, null, null, null, 19, 19, 15, 20, 15, 16, 21, 20, 14, 16, 19, 21, 21, 18, 24, 16, 23, 24, 22, 20, 23, 25],
+    "version": "2.0"
+  },
+  "id": {}
+}

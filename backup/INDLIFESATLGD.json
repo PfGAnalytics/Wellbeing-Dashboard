@@ -1,0 +1,139 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDLIFESAT",
+          "label": {
+            "INDLIFESAT": "Average life satisfaction score (from 0 to 10)"
+          },
+          "unit": {
+            "INDLIFESAT": {
+              "decimals": 1,
+              "label": "Number",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
+      }
+    },
+    "extension": {
+      "matrix": "INDLIFESATLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 104,
+        "value": "Brighter Futures"
+      },
+      "product": {
+        "code": "LS",
+        "value": "Life satisfaction"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Life satisfaction",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDLIFESATLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Life satisfaction[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nAverage life satisfaction score for people aged 16 and over. Life satisfaction is measured on a scale from 0 to 10, where 0 is not at all satisfied and 10 is completely satisfied.\r\n\r\n[b]Source[/b]\r\nIndividual Wellbeing in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/individual-wellbeing-northern-ireland]Individual Wellbeing in Northern Ireland | The Executive Office (executiveoffice-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe coronavirus pandemic resulted in a change in data collection mode and a reduced sample size for 2020/21 and 2021/22. Therefore, users should take this into consideration when interpreting future years of data and care should be taken when comparing any findings published prior to 2020/21.\r\n\r\n[b]Further information[/b]\r\n1. The sample size for 2020/21 was approximately less than half compared to 2017/18, 2018/19 and 2019/20.\r\n2. Data refers to the population aged 16 and over.\r\n3. Data is collected through Continuous Household Survey (CHS). For more information:\r\n[url=https://www.nisra.gov.uk/statistics/find-your-survey/continuous-household-survey]https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey[/url]\r\n4. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
+    ],
+    "role": {
+      "geo": "LGD2014",
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 10, 11],
+    "updated": "2025-04-29T9:30:00.000Z",
+    "value": [7.6, 7.6, 7.6, 7.9, 7.9, 7.9, 8, 7.7, 7.7, 7.7, 8, 7.7, 7.9, 7.4, 7.7, 7.9, 8, 7.7, 7.9, 7.8, 7.8, 8.1, 8, 8, 7.5, 7.8, 8, 7.7, 7.7, 7.8, 8.1, 7.7, 7.9, 7.8, 8, 7.6, 7.8, 7.7, 8.3, 8.1, 7.8, 8, 8, 8, 7.7, 8.1, 7.4, 7.9, 7.6, 7.9, 7.9, 7.9, 8.2, 7.8, 7.8, 7.8, 8, 7.4, 7.9, 7.7, 7.9, 7.9, 7.8, 8, 7.9, 7.7, 7.3, 7.8, 7.5, 7.6, 7.5, null, 7.8, 7.7, 7.9, 7.5, 7.7, 7.7, 8, 7.3, 7.8, 7.5, 7.7, 7.9, 7.7, 7.9, 7.9, 8, 7.6, 7.7, 7.2, 7.7, 7.5, 8, 7.7, 7.4, 7.8, 7.8, 7.8, 7.5, 7.7, 7.5, 7.8, 7.5, 8, 7.9, 7.9, 8, 8.3, 7.9],
+    "version": "2.0"
+  },
+  "id": {}
+}

@@ -1,0 +1,129 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDSLATTGAP",
+          "label": {
+            "INDSLATTGAP": "Gap between the percentage of non-free school meal entitled (non-FSME) school leavers and the percentage of FSME school leavers achieving at level 2 or above including GCSE English and maths"
+          },
+          "unit": {
+            "INDSLATTGAP": {
+              "decimals": 1,
+              "label": "ppts",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2005/06", "2006/07", "2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "label": {
+            "2005/06": "2005/06",
+            "2006/07": "2006/07",
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
+            "2016/17": "2016/17",
+            "2017/18": "2017/18",
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23"
+          }
+        },
+        "label": "Academic year"
+      },
+      "EQUALGROUPS": {
+        "category": {
+          "index": ["30", "31"],
+          "label": {
+            "30": "Urban Rural - Urban",
+            "31": "Urban Rural - Rural"
+          }
+        },
+        "label": "Equality Groups"
+      }
+    },
+    "extension": {
+      "matrix": "INDSLATTGAPEQ",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "EQUALGROUPS": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 104,
+        "value": "Brighter Futures"
+      },
+      "product": {
+        "code": "SLAG",
+        "value": "School leavers attainment gap"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSLATTGAPEQ/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "EQUALGROUPS"],
+    "label": "Indicator - School leavers attainment gap",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSLATTGAPEQ/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSLATTGAPEQ/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSLATTGAPEQ/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDSLATTGAPEQ/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]School leavers attainment gap[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nGap between the percentage of non-free school meal entitled (non-FSME) school leavers and the percentage of free school meals entitled (FSME) school leavers achieving at level 2 or above including GCSE English and maths. Level 2 relates to the attainment of at least 5 GCSEs at grades A*-C (including equivalents). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nQualifications and Destinations of School Leavers, Department of Education\r\n[url=https://www.education-ni.gov.uk/articles/school-leavers]https://www.education-ni.gov.uk/articles/school-leavers[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nIn response to the pandemic, while the data collection method remained the same, the processes for awarding qualifications were amended, or assessment adaptations or other supports provided, from year-to-year, for 2019/20 to 2022/23. It is not possible to accurately make comparisons and assess change in the underlying performance for these years.\r\n\r\n[b]Further information[/b]\r\n1. Data exclude special and independent schools.\r\n2. There was an increase in the number of FSME pupils from 2014/15 which coincided with an extension of the eligibility for free school meals under the Working Tax Credit free school meal criterion, which was extended to post-primary pupils from September 2014.\r\n3. The percentage points (ppts) gap is calculated based on unrounded figures. It is not the difference between the rounded FSME and non-FSME figures.\r\n4. Given the new methods of awarding grades in 2019/20 (Centre Assessed Grades), 2020/21 (Centre Determined Grades), 2021/22 (various assessment adaptations) and 2022/23 (other supports, including Advance Information), caution should be taken when drawing any conclusions relating to changes in student performance. Year-on-year changes in these years are not directly comparable with outcomes in any other years.\r\n\r\n[b]Religion[/b]\r\n5. 'Other' includes Other Christian, No religion and Non-Christian.\r\n\r\n[b]Ethnic group [/b] \r\n6. 'Minority Ethnic Groups' includes Irish Travellers. 'White' does not include Irish Travellers.\r\n\r\n[b]Deprivation[/b]\r\n7. Deprivation quintiles are based on the residential postcode of each individual pupil. Figures up to and including 2017/18 were calculated from the 2010 Multiple Deprivation Measure deciles (NIMDM); from 2018/19 onwards figures have been calculated using the 2017 NIMDM deciles.\r\nMore information on the NI Multiple Deprivation Measures can be found here:\r\n[url=https://www.nisra.gov.uk/statistics/deprivation]https://www.nisra.gov.uk/statistics/deprivation[/url] \r\n8. Data exclude pupils with an invalid, missing or unknown residential postcode.\r\n\r\n[b]Urban Rural[/b]\r\n9. Urban/ Rural categories are based on the residential postcode of each individual pupil and the 2015 Settlement Urban/ Rural geographical boundaries. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url] \r\n10. Data exclude pupils with an invalid, missing or unknown residential postcode.\r\n\r\n[b]Special Educational Needs (SEN)[/b]\r\n11. 'Special Educational Needs' includes pupils with Special Educational Needs at stages 1 through 3. Prior to 2020/21, when the number of stages were reduced from five to three, it included pupils at stages 1 through 5.\r\n12. Data on Special Educational Needs (SEN) are not available for 2018/19 as a consequence of changes to the system of recording SEN and medical conditions.\r\n13. Categorisation of Special Educational Needs (SEN) from 2019/20 follows changes to the system of recording SEN and medical conditions. Previously, pupils with solely a medical condition could have been included as SEN pupils. From 2019/20 this is no longer the case and the data are, therefore, not directly comparable with previous years."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 18, 2],
+    "updated": "2024-07-09T14:16:51.4Z",
+    "value": [32.7, 28.8, 33.7, 28.5, 33.8, 31.8, 34.1, 31.6, 33.6, 28.5, 34, 29.8, 35.2, 29, 32.7, 31.5, 34.8, 32.6, 34.1, 27.7, 32.8, 26.1, 31.7, 25.1, 31, 25.6, 29.9, 25.6, 28.9, 22.9, 25, 19.6, 25.9, 20.3, 25.7, 22.9],
+    "version": "2.0"
+  },
+  "id": {}
+}
