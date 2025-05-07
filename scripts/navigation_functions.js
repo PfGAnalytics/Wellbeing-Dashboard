@@ -1415,13 +1415,11 @@ async function subpopTable() {
         } else {        // Else look up data portal and see which groups are present
             
             if (has_error) {
-                var api_url = "backup/" + domains_data[domain].indicators[all_indicators[i]].data.EQ + ".json";
+                var api_url = config.backupURL + domains_data[domain].indicators[all_indicators[i]].data.EQ + ".json";
             } else {
                 var api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
             }
-            
-
-            
+                        
             try {   // Using "try" so rest of table generates if data portal request unsucessful
                 // Fetch data and store in object fetched_data
                 const response = await fetch(api_url);
