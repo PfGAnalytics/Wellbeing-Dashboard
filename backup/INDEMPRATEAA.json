@@ -61,7 +61,15 @@
             "N06000018": "West Tyrone"
           }
         },
-        "label": "Assembly Area"
+        "label": "Assembly Area",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/62725f2dd9a7acd16cc19b96f580d7b4"
+            }
+          ]
+        }
       }
     },
     "extension": {
@@ -92,7 +100,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -125,11 +133,12 @@
       "[b]Employment rate[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of the population aged 16 to 64 who are in employment.\r\n\r\n[b]Source[/b]\r\nLabour Force Survey, Northern Ireland Statistics and Research Agency\r\n[url=https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey]https://www.nisra.gov.uk/statistics/labour-market-and-social-welfare/labour-force-survey[/url]\r\n\r\n[b]Impact of Covid-19 [/b]\r\nTypically, the Office for National Statistics (ONS) would reweight the LFS every two years to take account of updated population estimates and projections. Since the onset of the pandemic, the ONS have been monitoring the impact and as a result, there have been five LFS reweightings to improve the estimates. The latest reweighting was introduced in December 2024, affecting data from January-March 2019 to July-September 2024 to make use of more recent population estimates. An overview of the impact of reweighting on the NI estimates of unemployment, employment, and economic inactivity is available on the [url=https://www.nisra.gov.uk/publications/background-information-lfs]NISRA website[/url]. Previous reweightings occurred in October 2020, July 2021, June 2022 and February 2024. The Employment rate at the Northern Ireland level in 2020 and 2021 was similar to the rates seen before the pandemic.\r\n\r\n[b]Further information[/b]\r\n1. 'Employment rate' refers to the percentage of people aged 16-64 who are in employment.\r\n2. Data is provided from the first year available for Assembly Areas (2014)."
     ],
     "role": {
+      "geo": "AA",
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
     "size": [1, 10, 18],
-    "updated": "2024-12-20T9:47:12.493Z",
+    "updated": "2025-05-08T9:30:00.000Z",
     "value": [74.9, 52, 71.1, 52.4, 72.5, 66, 68.3, 56.1, 70.4, 66.1, 65.6, 65.1, 73.7, 72.2, 72.5, 73.7, 74.7, 62.7, 74.9, 53.1, 73.5, 61, 76, 57.9, 71.2, 58.1, 73, 67.7, 61.5, 70.3, 76.7, 72.9, 68.9, 71.2, 73.3, 70.2, 74.9, 54.4, 76.1, 66.7, 76.5, 56.2, 66.6, 50.7, 79.6, 73.1, 68, 67.3, 77.2, 75.6, 74.3, 70.1, 69.5, 66.6, 74.9, 62.3, 65.4, 64.7, 73.7, 62.1, 70.3, 53, 77, 72.2, 66.4, 66.2, 79.1, 76.3, 67.2, 71, 73.1, 69, 74.9, 69.5, 66.3, 60.5, 73, 64.4, 73, 60.9, 74.7, 72.6, 68.8, 70.2, 74.1, 77, 73.1, 69.9, 71.1, 66.1, 74.7, 68.5, 72.1, 61.5, 75.1, 66.2, 73, 66.5, 79.6, 73.5, 74, 71.5, 74.9, 80, 75.4, 71.8, 68.6, 66, 71.9, 67, 76.5, 55.6, 67, 66.7, 71.5, 59.6, 72.8, 71.4, 74.7, 70.9, 68.2, 76.5, 72.7, 74.2, 70, 65.9, 78.2, 67.5, 70.7, 55.4, 73.9, 70.8, 77.3, 64.3, 71, 66.5, 70.8, 68.8, 76.3, 73.8, 70.5, 69.1, 69.3, 67.6, 77, 67.1, 70.5, 55.2, 75.3, 66.3, 76.3, 67.5, 72.9, 72, 74.2, 74.3, 72.6, 73.5, 73.2, 75.2, 75.8, 70.6, 78.6, 68.9, 73.7, 56.5, 79.2, 64.3, 69.1, 65.4, 76.4, 74.8, 78.7, 76.4, 73.9, 78.9, 77.6, 76.5, 77.4, 72.4],
     "version": "2.0"
   },

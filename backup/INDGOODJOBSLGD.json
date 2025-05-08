@@ -52,7 +52,15 @@
             "N09000011": "Ards and North Down"
           }
         },
-        "label": "Local Government District"
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
       }
     },
     "extension": {
@@ -83,7 +91,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -116,11 +124,12 @@
       "[b]Good jobs[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of employees in NI (aged 16-64) in good jobs. For the purposes of this metric a “good job” is one which meets the following requirements: A permanent contract; and A non zero-hour contract; and Earning the Real Living Wage (RLW) or more.\r\n\r\n[b]Source[/b]\r\nGood Jobs in Northern Ireland, NISRA\r\n[url=https://www.nisra.gov.uk/publications/good-jobs-northern-ireland]Good Jobs in Northern Ireland | Northern Ireland Statistics and Research Agency[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nUsers should note that the Coronavirus Job Retention Scheme (CJRS) was in place in 2020 and 2021. The CJRS was a temporary scheme providing grants to employers to pay 80% of staff wages and employment costs up to a cap per person per month designed to help employers whose operations were affected by coronavirus to retain their employees. 16% of all employees in the NI survey in 2020 and 7% in 2021 were identified as being furloughed with reduced earnings.\r\n\r\n[b]Further information[/b]\r\n1. The data for this indicator is collected from the Annual Survey of Hours and Earnings (ASHE).\r\n2. The survey reference date for the latest survey (17th April 2024) was outside the time period for the Coronavirus Job Retention Scheme (CJRS) grant; therefore 2023 earnings were not affected by furlough. Over the pandemic period, earnings estimates were affected by changes in the composition of the workforce and the impact of the CJRS, making interpretation difficult. In particular, the 2020 and 2021 data are subject to more uncertainty and should be treated with caution.\r\n3. The survey reference date was also before public sector pay awards were made and are therefore not included in the 2024 results. Further information on ASHE can be obtained from the ASHE 2024 publication at the following link: [url=https://www.nisra.gov.uk/publications/employee-earnings-ni-2024]https://www.nisra.gov.uk/publications/employee-earnings-ni-2024[/url]"
     ],
     "role": {
+      "geo": "LGD2014",
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
     "size": [1, 8, 11],
-    "updated": "2025-02-20T10:36:58.97Z",
+    "updated": "2025-05-08T9:30:00.000Z",
     "value": [66.9, 61.7, 69.6, 49.1, 59.4, 58.5, 62.8, 62.9, 60.2, 56.5, 56, 70.2, 63.1, 68.3, 55.5, 51.3, 56.1, 67.7, 62.1, 56.8, 59.8, 57.1, 67.8, 63.4, 72, 55.4, 58, 64, 66.3, 65, 63.3, 58.9, 53.4, 63.1, 60.7, 71.2, 50.6, 56.2, 59.8, 56.3, 59.3, 56.3, 59.8, 56.9, 67.1, 63.2, 75.6, 53.5, 60.7, 58.4, 61.5, 65, 67.7, 61.8, 60.7, 72.2, 67.9, 75.3, 61, 66.9, 64.5, 70.5, 69.1, 73, 68.7, 60, 73.9, 63.9, 77.2, 59.7, 64.2, 66.8, 69.8, 67.5, 65.7, 66.7, 68.5, 66.4, 63.7, 73.1, 54.4, 62.1, 61.4, 65.8, 60.9, 67.1, 61.5, 62.6],
     "version": "2.0"
   },

@@ -47,7 +47,15 @@
             "N09000011": "Ards and North Down"
           }
         },
-        "label": "Local Government District"
+        "label": "Local Government District",
+        "link": {
+          "enclosure": [
+            {
+              "type": "application/geo+json",
+              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
+            }
+          ]
+        }
       }
     },
     "extension": {
@@ -111,11 +119,12 @@
       "[b]Self-efficacy among young people[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of Year 9-12 pupils with low self-efficacy (or low confidence in their own abilities). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nIndividual Wellbeing among young people in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/individual-wellbeing-among-young-people-northern-ireland]Individual Wellbeing among young people in Northern Ireland | The Executive Office (executiveoffice-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe Young Person's Behaviour and Attitude Survey methodology did not change during or after COVID-19.\r\n\r\n[b]Further information[/b]\r\n1. Data relates to Year 9-12 pupils.\r\n2. All estimates are based on weighted data and have been rounded to one decimal place.\r\n3. Data is collected through the [url=https://www.nisra.gov.uk/statistics/find-your-survey/young-persons-behaviour-attitudes-survey]Young Persons’ Behaviour and Attitudes Survey (YPBAS)[/url]. The survey is usually carried out every three years.\r\n4. LGD figures are currently only available for 2022. LGD data for 2016 and 2019 may be available at a later date depending on sample size."
     ],
     "role": {
+      "geo": "LGD2014",
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
     "size": [1, 3, 11],
-    "updated": "2025-03-21T9:30:00.000Z",
+    "updated": "2025-05-08T9:30:00.000Z",
     "value": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 56.1, 48.9, 56.7, 48.6, 49, 55.6, 48.5, 53.8, 52.1, 56, 56.1],
     "version": "2.0"
   },
