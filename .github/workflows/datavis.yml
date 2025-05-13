@@ -1,0 +1,32 @@
+on:
+   push:
+     branches: main
+
+jobs:
+  prep-output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::magrittr
+            any::base64enc
+            any::httpuv
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run data portal backup
+        run: Rscript -e 'source("scripts/datavis-prep-automated.R")'
+
+      - name: Commit results
+        run: |
+          git config --local user.email " "
+          git config --local user.name "PfGAnalytics"
+          git add dashboard-to-upload/pfg-wellbeing-dashboard.html
+          git commit -m 'Data updated' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
