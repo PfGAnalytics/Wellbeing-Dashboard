@@ -28,5 +28,5 @@ jobs:
           git config --local user.email " "
           git config --local user.name "PfGAnalytics"
           git add dashboard-to-upload/pfg-wellbeing-dashboard.html
-          git commit -m 'Data updated' || echo "No changes to commit"
+          git commit -m 'HTML output created' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
