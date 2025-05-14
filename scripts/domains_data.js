@@ -824,7 +824,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This may, in recent years, be due to the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. The impact of this backlog is still being reflected in the average time taken to complete cases. The figure for 2023/24 (190 days) is higher than the figure for 2019/20 (149 days).",
+               worsened: "This may, in recent years, be due to the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. The impact of this backlog is still being reflected in the average time taken to complete cases. The figure for 2023/24 (190 days) is higher than the figure for 2019/20 (149 days). While the most recent figures are higher than the baseline year (2019/20), there has been a general improvement with the overall indicator going down again year on year since 2021/22.",
                insufficient: ""
             }
          },
