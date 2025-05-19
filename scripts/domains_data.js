@@ -433,7 +433,7 @@ var domains_data = {
          },
          "Mental health": {
             importance: "GHQ-12 is a measure of current mental health among the population. Poor mental health while not only affecting social circumstances such as employment, family relationships and community participation can also be a key factor in determining physical wellbeing as well.",
-            base_year: "2018/19",
+            base_year: "2019/20",
             ci: 1.3,
             data: {
                NI: "",
@@ -443,9 +443,9 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "In 2022/23, a fifth of respondents had a high GHQ12 score, which could indicate a mental health problem. The proportion of males with a high GHQ12 score is unchanged from 2018/19, however the proportion of females with a high GHQ12 score has risen from 2018/19.  Considering the longer term trend, the proportion scoring highly is at a similar level to 2010/11. There was a significant increase during the pandemic however the latest findings suggest an overall return to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas. Further information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available online: <a href = 'https://www.health-ni.gov.uk/sites/default/files/publications/health/ghq12-pfg-tables-hsni.xlsx'>from this link.</a>",
+               improved: "",
+               no_change: "In 2023/24, around a fifth (19%) of respondents had a high GHQ12 score, which could indicate a mental health problem. The proportion of males and females with a high GHQ12 score is unchanged from 2019/20. Considering the longer term trend, the proportion scoring highly is at a similar level to 2010/11. There was a significant worsening during the pandemic however the latest findings suggest an overall return to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas. Further information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available online: <a href = 'https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2F2025-05%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK'>from this link. </a>",
+               worsened: "",
                insufficient: ""
             }
          },
