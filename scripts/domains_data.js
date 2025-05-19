@@ -319,7 +319,7 @@ var domains_data = {
          },
          "Income deprivation": {
             importance: "Absolute poverty is a measure of whether the lowest income households are seeing their incomes rise in real terms over time. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
-            base_year: "2018/19",
+            base_year: "2019/20",
             ci: 4,
             data: {
                NI: "",
@@ -330,14 +330,14 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Over the last ten years, the proportion of individuals in absolute poverty (BHC) generally decreased slowly from a high of 21% in 2013/14 to a low of 12% in 2020/21 before increasing slightly to the current position of 14% in 2022/23.",
+               no_change: "Over the last ten years, the proportion of individuals in absolute poverty (BHC) generally decreased slowly from a high of 21% in 2013/14 to a low of 12% in 2020/21 before increasing to the current position of 15% in 2023/24.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Income inequality": {
             importance: "Relative poverty is a measure of whether the lowest income households are seeing their incomes keep pace with the population as a whole. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
-            base_year: "2018/19",
+            base_year: "2019/20",
             ci: 4,
             data: {
                NI: "",
