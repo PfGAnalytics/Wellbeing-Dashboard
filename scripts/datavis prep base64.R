@@ -19,8 +19,8 @@ p_load("rstudioapi", "magrittr", "base64enc", "httpuv")
 uploadDir <- "dashboard-to-upload/"
 
 # Delete any previous version
-if (file.exists(uploadDir)) {
-  unlink(uploadDir, recursive = TRUE)
+if (file.exists(paste0(uploadDir, "index.html"))) {
+  unlink(paste0(uploadDir, "index.html"))
 }
 
 # Create folder again
