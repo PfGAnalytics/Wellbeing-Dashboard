@@ -98,7 +98,7 @@ suppressWarnings({ # Turn off warnings
   }
   
   # Write out new html file
-  writeLines(index, paste0(uploadDir, "pfg-wellbeing-dashboard.html"))
+  writeLines(index, paste0(uploadDir, "pfg_wellbeing_dashboard.html"))
   
   # Restore navigation_functions.js to its original state
   writeLines(originalNav, "scripts/navigation_functions.js")
