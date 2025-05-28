@@ -908,7 +908,7 @@ var domains_data = {
          },
          "Volunteering": {
             importance: "This indicator provides the proportion of adults in Northern Ireland who volunteer, providing a measure of civic engagement.",
-            base_year: "2021/22",
+            base_year: "2023/24",
             ci: 2,
             data: {
                NI: "",
@@ -918,10 +918,10 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2022/23, it is important to note that volunteering in 2021/22 would have been impacted by closures due to COVID-19.                                                                                                                                                                                                                             In both 2022/23 and 2021/22 gaps can be seen in participation in volunteering between the protestant and catholic communities, people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for most and least deprived areas and urban and rural areas.",
+               improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
-               insufficient: ""
+               insufficient: " Volunteering is defined as “the commitment of time and energy, for the benefit of society and the community, the environment, or individuals outside (or in addition to) one's immediate family. It is unpaid and undertaken freely and by choice”. New questions on volunteering were introduced in 2023/24 to measure participation of adults in both formal and informal volunteering. The questions are now more similar to those used in the rest of the UK. As a result of the change in questions it is not possible to compare figures for 2023/24 with those published for previous years."
             }
          }
        }

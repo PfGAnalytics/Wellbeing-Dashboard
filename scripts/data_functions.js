@@ -1429,6 +1429,8 @@ async function getEqualityGroups(d, e) {
                chart_data_url = queryURL('["123","124"]')
             }  else if (eq_groups[i] == "Work pattern by Sex") {
                chart_data_url = queryURL('["119","120","121","122"]')
+            }  else if (eq_groups[i] == "Volunteering type") {
+               chart_data_url = queryURL('["125","126"]')
             }
          } 
 
