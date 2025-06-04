@@ -142,7 +142,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic.",
+               improved: "In 2024, the mean nitrogen dioxide level was 25.9μg/m3. NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic. From 2021 to 2024, emission levels have remained at a similar concentration.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -161,7 +161,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2023. Excessive nutrient (dissolved inorganic nitrogen) was the most frequent failing element and was reported in 10 of the 12 water bodies that failed to achieve good condition.",
+               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2024. High nutrient (dissolved inorganic nitrogen) levels were responsible for 10 of the 12 water bodies failing to achieve good condition.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -178,9 +178,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "In 2023/24 55.1 per cent of features within protected sites were in favourable condition which is higher than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
+               improved: "This commentary is a placeholder",
                no_change: "This commentary is a placeholder",
-               worsened: "This commentary is a placeholder.",
+               worsened: "In 2024/25 54.3 per cent of features within protected sites were in favourable condition which is lower than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
                insufficient: ""
             }
          },
@@ -270,7 +270,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained almost the same with 0.063 mg/l reported in 2019 compared with 0.062 mg/l reported in 2023. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
+               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained almost the same with 0.065 mg/l reported in 2024 compared to 0.063 mg/l reported in 2019. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
