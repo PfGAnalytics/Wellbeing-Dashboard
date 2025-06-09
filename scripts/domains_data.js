@@ -209,15 +209,15 @@ var domains_data = {
             ci: 0.1,
             data: {
                NI: "", 
-               AA: "INDOUTRECAA",
-               LGD: "INDOUTRECLGD",
+               AA: "",
+               LGD: "",
                EQ: "INDOUTRECEQ"
             },
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The indicator shows that the percentage of households with accessible natural space within 400 metres has not changed since the comparision year 2023. 47.3 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2024.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "The indicator shows that the percentage of households with accessible natural space within 400 metres has decreased since the comparision year 2023. 47.8 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2025.",
                insufficient: ""
             }
          },
