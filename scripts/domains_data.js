@@ -677,24 +677,24 @@ var domains_data = {
                insufficient: ""
             }
          },
-         // "Labour productivity": {
-         //    importance: "Productivity is a key determinant of living standards and economic competitiveness over the long term. The ability to produce the same output with less input or more output with the same input outlay is also relevant to the transition towards a more sustainable economy.",
-         //    base_year: null,
-         //    ci: 1,
-         //    data: {
-         //       NI: "INDLABPRDTNI",
-         //       AA: "",
-         //       LGD: "",
-         //       EQ: ""
-         //    },
-         //    improvement: "increase",
-         //    telling: {
-         //       improved: "This commentary is a placeholder.",
-         //       no_change: "This commentary is a placeholder.",
-         //       worsened: "This commentary is a placeholder.",
-         //       insufficient: ""
-         //    }
-         // },
+         "Labour productivity": {
+            importance: "Productivity is a key determinant of living standards and economic competitiveness over the long term. The ability to produce the same output with less input or more output with the same input outlay is also relevant to the transition towards a more sustainable economy.",
+            base_year: 2019,
+            ci: 0.1,
+            data: {
+               NI: "INDLABPRDTNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "increase",
+            telling: {
+               improved: "In 2023 output per hour worked (productivity) was 6.7% higher in real terms compared to 2019. However, this overlaps with a period of significant disruption due to the COVID-19 pandemic, where productivity indicators were upwardly affected by temporary changes in the sectoral composition of the economy and qualification profile of the workforce. Reflecting this, output per hour worked has declined in real terms each year since the high point seen in 2021 as the structure of the economy and workforce began to revert to pre-COVID norms.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Northern Ireland Composite Economic Index": {
             importance: "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
             base_year: "2018",
