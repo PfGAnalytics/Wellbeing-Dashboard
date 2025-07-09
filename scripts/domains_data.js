@@ -186,7 +186,7 @@ var domains_data = {
          },
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
-            base_year: "2018",
+            base_year: "2019",
             ci: "0.275c",
             data: {
                NI: "INDGREENHGNI",
@@ -196,7 +196,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "In 2022, the downward trend, in GHG emissions, resumed after a 'bounce back' was experienced in 2021 as COVID restrictions were eased.",
+               improved: "In 2023, the downward trend, in GHG emissions, continued to reflect the downward trend that was experienced in 2022.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -968,7 +968,7 @@ var domains_data = {
          },
          "Housing costs as a proportion of household income": {
             importance: "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2018/19",
+            base_year: "2019/20",
             ci: 3,
             data: {
                NI: "",
@@ -979,7 +979,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2012/13 and 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
+               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
