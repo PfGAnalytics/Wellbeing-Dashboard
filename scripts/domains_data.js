@@ -184,24 +184,24 @@ var domains_data = {
                insufficient: ""
             }
          },
-         // "Greenhouse gas emissions": {
-         //    importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
-         //    base_year: "2019",
-         //    ci: "0.275c",
-         //    data: {
-         //       NI: "INDGREENHGNI",
-         //       AA: "",
-         //       LGD: "",
-         //       EQ: ""
-         //    },
-         //    improvement: "decrease",
-         //    telling: {
-         //       improved: "In 2023, the downward trend, in GHG emissions, continued to reflect the downward trend that was experienced in 2022.",
-         //       no_change: "This commentary is a placeholder.",
-         //       worsened: "This commentary is a placeholder.",
-         //       insufficient: ""
-         //    }
-         // },
+         "Greenhouse gas emissions": {
+            importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
+            base_year: "2019",
+            ci: "0.206c",
+            data: {
+               NI: "INDGREENHGNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "decrease",
+            telling: {
+               improved: "In 2023, the downward trend, in GHG emissions, continued to reflect the downward trend that was experienced in 2022.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Outdoor recreation": {
             importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
             base_year: "2023",
@@ -677,7 +677,7 @@ var domains_data = {
             }
          },
          "Labour productivity": {
-            importance: "Productivity is a key determinant of living standards and economic competitiveness over the long term. The ability to produce the same output with less input or more output with the same input outlay is also relevant to the transition towards a more sustainable economy.",
+            importance: "Productivity is a measure of how efficiently the economy can convert inputs (e.g. labour, machinery, raw materials) into outputs (e.g. houses, cars, consumer goods). As such, improved productivity is the key determinant of living standards and economic competitiveness over the long term. The ability to produce the same (or greater) quantity of output with less inputs is also important to the transition towards a more sustainable economy.",
             base_year: '2019',
             ci: 0.1,
             data: {
@@ -688,7 +688,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "In 2023 output per hour worked (productivity) was 6.7% higher in real terms compared to 2019. However, this overlaps with a period of significant disruption due to the COVID-19 pandemic, where productivity indicators were upwardly affected by temporary changes in the sectoral composition of the economy and qualification profile of the workforce. Reflecting this, output per hour worked has declined in real terms each year since the high point seen in 2021 as the structure of the economy and workforce began to revert to pre-COVID norms.",
+               improved: "In 2023 labour productivity was 6.7% higher in real terms compared to 2019. However, this overlaps with a period of significant disruption due to the Covid-19 pandemic, where productivity indicators were upwardly affected by temporary changes in the sectoral composition of the economy and qualification profile of the workforce. Reflecting this, labour productivity has declined in real terms each year since the high point seen in 2021 as the structure of the economy and workforce began to revert to pre-covid norms.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -965,24 +965,24 @@ var domains_data = {
                insufficient: ""
             }
          },
-         // "Housing costs as a proportion of household income": {
-         //    importance: "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-         //    base_year: "2019/20",
-         //    ci: 3,
-         //    data: {
-         //       NI: "",
-         //       AA: "",
-         //       LGD: "INDHOUSCTLGD",
-         //       EQ: "INDHOUSCTEQ"
-         //    },
-         //    improvement: "decrease",
-         //    telling: {
-         //       improved: "This commentary is a placeholder.",
-         //       no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
-         //       worsened: "This commentary is a placeholder.",
-         //       insufficient: ""
-         //    }
-         // },
+         "Housing costs as a proportion of household income": {
+            importance: "This indicator provides one measure of the affordability of housing. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
+            base_year: "2019/20",
+            ci: 3,
+            data: {
+               NI: "",
+               AA: "",
+               LGD: "INDHOUSCTLGD",
+               EQ: "INDHOUSCTEQ"
+            },
+            improvement: "decrease",
+            telling: {
+               improved: "This commentary is a placeholder.",
+               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Housing stress": {
             importance: "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
             base_year: "2019/20",
