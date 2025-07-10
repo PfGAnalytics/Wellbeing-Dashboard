@@ -184,25 +184,24 @@ var domains_data = {
                insufficient: ""
             }
          },
-         "Greenhouse gas emissions": {
-            importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
-            base_year: "2019",
-            ci: "0.275c",
-            data: {
-               NI: "INDGREENHGNI",
-               AA: "",
-               LGD: "",
-               EQ: ""
-            },
-            improvement: "decrease",
-            telling: {
-               improved: "In 2023, the downward trend, in GHG emissions, continued to reflect the downward trend that was experienced in 2022.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
-               insufficient: ""
-
-            }
-         },
+         // "Greenhouse gas emissions": {
+         //    importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
+         //    base_year: "2019",
+         //    ci: "0.275c",
+         //    data: {
+         //       NI: "INDGREENHGNI",
+         //       AA: "",
+         //       LGD: "",
+         //       EQ: ""
+         //    },
+         //    improvement: "decrease",
+         //    telling: {
+         //       improved: "In 2023, the downward trend, in GHG emissions, continued to reflect the downward trend that was experienced in 2022.",
+         //       no_change: "This commentary is a placeholder.",
+         //       worsened: "This commentary is a placeholder.",
+         //       insufficient: ""
+         //    }
+         // },
          "Outdoor recreation": {
             importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
             base_year: "2023",
@@ -966,24 +965,24 @@ var domains_data = {
                insufficient: ""
             }
          },
-         "Housing costs as a proportion of household income": {
-            importance: "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2019/20",
-            ci: 3,
-            data: {
-               NI: "",
-               AA: "",
-               LGD: "INDHOUSCTLGD",
-               EQ: "INDHOUSCTEQ"
-            },
-            improvement: "decrease",
-            telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
-               worsened: "This commentary is a placeholder.",
-               insufficient: ""
-            }
-         },
+         // "Housing costs as a proportion of household income": {
+         //    importance: "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
+         //    base_year: "2019/20",
+         //    ci: 3,
+         //    data: {
+         //       NI: "",
+         //       AA: "",
+         //       LGD: "INDHOUSCTLGD",
+         //       EQ: "INDHOUSCTEQ"
+         //    },
+         //    improvement: "decrease",
+         //    telling: {
+         //       improved: "This commentary is a placeholder.",
+         //       no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
+         //       worsened: "This commentary is a placeholder.",
+         //       insufficient: ""
+         //    }
+         // },
          "Housing stress": {
             importance: "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
             base_year: "2019/20",
