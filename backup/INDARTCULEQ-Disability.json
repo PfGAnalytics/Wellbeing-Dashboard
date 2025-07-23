@@ -71,7 +71,7 @@
       },
       "subject": {
         "code": 104,
-        "value": "Brighter Futures"
+        "value": "Brighter futures"
       },
       "product": {
         "code": "ACA",
@@ -120,7 +120,7 @@
       "time": "TLIST(A1)"
     },
     "size": [1, 17, 2],
-    "updated": "2025-01-24T11:17:45.37Z",
+    "updated": "2025-01-24T11:17:45.370Z",
     "value": [64, 87, 61, 84, 69, 88, 74, 91, 77, 88, 72, 91, 75, 91, 74, 92, 75, 88, 75, 90, 74, 91, 76, 91, 77, 90, null, null, 55, 66, 71, 84, 71, 87],
     "version": "2.0"
   },
