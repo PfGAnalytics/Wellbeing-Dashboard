@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "index": ["2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
           "label": {
             "2006": "2006",
             "2007": "2007",
@@ -40,7 +40,8 @@
             "2020": "2020",
             "2021": "2021",
             "2022": "2022",
-            "2023": "2023"
+            "2023": "2023",
+            "2024": "2024"
           }
         },
         "label": "Year"
@@ -83,7 +84,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -113,15 +114,15 @@
       ]
     },
     "note": [
-      "[b]Northern Ireland's composite economic index\r\n\r\nHow do we measure this?[/b]\r\nAn index of Northern Ireland's economic output.\r\n\r\n[b]Source[/b]\r\n[url=https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index]NI Composite Economic Index[/url], Northern Ireland Statistics and Research Agency\r\n\r\n[b]Impact of Covid-19\r\n[/b]During the pandemic the NICEI reached a series low in Q2 2020, however economic activity post pandemic has recovered substantially and in Q4 2022 a new series high was reached.\r\n\r\n[b]Further Information[/b]\r\n1. The NICEI is a quarterly measure of the performance of the NI economy based on available official statistics. Existing published quarterly indices (i.e. Index of Services (IOS), Index of Production (IOP), Index of Construction (IOC), and public sector employee jobs data from the Quarterly Employment Survey (QES), plus unpublished agricultural output data from DAERA) are weighted using ONS Regional Accounts Gross Value Added (GVA) data to provide a proxy measure of total economic output in the NI economy on a quarterly basis."
+      "[b]Northern Ireland's composite economic index\r\n\r\nHow do we measure this?[/b]\r\nAn index of Northern Ireland's economic output.\r\n\r\n[b]Source[/b]\r\n[url=https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index]NI Composite Economic Index[/url], Northern Ireland Statistics and Research Agency\r\n\r\n[b]Impact of Covid-19\r\n[/b]During the pandemic the NICEI reached a series low in Quarter 2 2020, however economic activity post pandemic has recovered substantially and in Quarter 4 2024 a new series high was reached.\r\n\r\n[b]Further Information[/b]\r\n1. The NICEI is a quarterly measure of the performance of the NI economy based on available official statistics. Existing published quarterly indices (i.e. Index of Services (IOS), Index of Production (IOP), Index of Construction (IOC), and public sector employee jobs data from the Quarterly Employment Survey (QES), plus unpublished agricultural output data from DAERA) are weighted using ONS Regional Accounts Gross Value Added (GVA) data to provide a proxy measure of total economic output in the NI economy on a quarterly basis."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 18, 1],
-    "updated": "2024-09-16T12:26:47.093Z",
-    "value": [103.5, 105.2, 103.1, 98.9, 97.5, 95.9, 94.8, 94.6, 95, 96.3, 97.7, 98.1, 99.1, 100, 94.3, 101.8, 104.3, 106.1],
+    "size": [1, 19, 1],
+    "updated": "2025-07-25T9:30:00.000Z",
+    "value": [99, 100.6, 98.6, 94.6, 93.3, 91.7, 90.6, 90.5, 90.8, 92.1, 93.5, 93.8, 94.8, 95.6, 90.2, 97.6, 100, 101.7, 104.4],
     "version": "2.0"
   },
   "id": {}
