@@ -258,9 +258,15 @@ async function createLineChart(d, e) {
    
    var years = Object.values(dimension)[1].category.index; // Array of years in data
    var num_years = years.length;  // Number of years in data
-   
+
    var base_position = years.indexOf(indicator.base_year); // Which position in the years array is base year
-   var current_year = years[years.length-1]; // The current year
+   
+   if (Array.isArray(years)) {
+      var current_year = years[years.length-1]; // The current year
+   } else {
+      var current_year = years; // For indicators with only one year of data
+      years = [current_year]; // Make sure years is an array
+   }
 
    var years_to_add = 2; // Number of blank data points after current year
 
@@ -280,6 +286,11 @@ async function createLineChart(d, e) {
 
    var base_value = value[base_position]; // The value at the base year
    var data_series = value; // The y axis values to plot
+
+   if (!Array.isArray(data_series)) {
+      data_series = [value];
+   }
+
    var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
 
    // Pull chart title and y axis label from metadata
@@ -1261,6 +1272,10 @@ async function getEqualityGroups(d, e) {
 
          // Start by obtaining x axis values - the years:
          var years = Object.values(dimension)[1].category.index; // Array of years in data
+
+         if (!Array.isArray(years)) {
+            years = [years];
+         }
          
          // Contruct query based on which grouping is selected:
          
