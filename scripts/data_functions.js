@@ -1431,6 +1431,8 @@ async function getEqualityGroups(d, e) {
                chart_data_url = queryURL('["119","120","121","122"]')
             }  else if (eq_groups[i] == "Volunteering type") {
                chart_data_url = queryURL('["125","126"]')
+            }  else if (eq_groups[i] == "Children in poverty") {
+               chart_data_url = queryURL('["127"]')
             }
          } 
 
