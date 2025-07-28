@@ -314,7 +314,7 @@ async function createLineChart(d, e) {
    } else if (indicator.data.NI == "INDAIRPOLNI") {
       y_axis_label = "Annual mean nitrogen dioxide concentration (μg/m³)"
    } else if (indicator.data.NI == "INDNICEINI") {
-      y_axis_label = "Index (base 2013-100)"
+      y_axis_label = "Index (base 2022=100)"
    } else if (y_axis_label == "Percentage") {
       y_axis_label = "%"
    }
@@ -1267,9 +1267,9 @@ async function getEqualityGroups(d, e) {
          if (eq_groups[i] == "Skills Level") {
             chart_data_url = `${config.backupURL}INDSKILLSLEV.json`
          } else {
+
             chart_data_url = `${config.backupURL + matrix}-${eq_groups[i].replaceAll(" ", "-")}.json`;
          }
-      
 
          var result = null;   // Retry plotting chart if data portal link doesn't work first time
          while (result == null) {

@@ -142,7 +142,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic.",
+               improved: "In 2024, the mean nitrogen dioxide level was 25.9μg/m3. NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic. From 2021 to 2024, emission levels have remained at a similar concentration.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -161,7 +161,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2023. Excessive nutrient (dissolved inorganic nitrogen) was the most frequent failing element and was reported in 10 of the 12 water bodies that failed to achieve good condition.",
+               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2024. High nutrient (dissolved inorganic nitrogen) levels were responsible for 10 of the 12 water bodies failing to achieve good condition.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -178,16 +178,16 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "In 2023/24 55.1 per cent of features within protected sites were in favourable condition which is higher than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
+               improved: "This commentary is a placeholder",
                no_change: "This commentary is a placeholder",
-               worsened: "This commentary is a placeholder.",
+               worsened: "In 2024/25 54.3 per cent of features within protected sites were in favourable condition which is lower than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
                insufficient: ""
             }
          },
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
-            base_year: "2018",
-            ci: "0.275c",
+            base_year: "2019",
+            ci: "0.206c",
             data: {
                NI: "INDGREENHGNI",
                AA: "",
@@ -196,11 +196,10 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "In 2022, the downward trend, in GHG emissions, resumed after a 'bounce back' was experienced in 2021 as COVID restrictions were eased.",
+               improved: "In 2023, the downward trend, in GHG emissions, continued to reflect the downward trend that was experienced in 2022.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
-
             }
          },
          "Outdoor recreation": {
@@ -209,15 +208,15 @@ var domains_data = {
             ci: 0.1,
             data: {
                NI: "", 
-               AA: "INDOUTRECAA",
-               LGD: "INDOUTRECLGD",
+               AA: "",
+               LGD: "",
                EQ: "INDOUTRECEQ"
             },
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The indicator shows that the percentage of households with accessible natural space within 400 metres has not changed since the comparision year 2023. 47.3 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2024.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "The indicator shows that the percentage of households with accessible natural space within 400 metres has decreased since the comparision year 2023. 47.8 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2025.",
                insufficient: ""
             }
          },
@@ -270,7 +269,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained almost the same with 0.063 mg/l reported in 2019 compared with 0.062 mg/l reported in 2023. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
+               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained almost the same with 0.065 mg/l reported in 2024 compared to 0.063 mg/l reported in 2019. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -677,27 +676,27 @@ var domains_data = {
                insufficient: ""
             }
          },
-         // "Labour productivity": {
-         //    importance: "Productivity is a key determinant of living standards and economic competitiveness over the long term. The ability to produce the same output with less input or more output with the same input outlay is also relevant to the transition towards a more sustainable economy.",
-         //    base_year: null,
-         //    ci: 1,
-         //    data: {
-         //       NI: "INDLABPRDTNI",
-         //       AA: "",
-         //       LGD: "",
-         //       EQ: ""
-         //    },
-         //    improvement: "increase",
-         //    telling: {
-         //       improved: "This commentary is a placeholder.",
-         //       no_change: "This commentary is a placeholder.",
-         //       worsened: "This commentary is a placeholder.",
-         //       insufficient: ""
-         //    }
-         // },
+         "Labour productivity": {
+            importance: "Productivity is a measure of how efficiently the economy can convert inputs (e.g. labour, machinery, raw materials) into outputs (e.g. houses, cars, consumer goods). As such, improved productivity is the key determinant of living standards and economic competitiveness over the long term. The ability to produce the same (or greater) quantity of output with less inputs is also important to the transition towards a more sustainable economy.",
+            base_year: '2019',
+            ci: 0.1,
+            data: {
+               NI: "INDLABPRDTNI",
+               AA: "",
+               LGD: "",
+               EQ: ""
+            },
+            improvement: "increase",
+            telling: {
+               improved: "In 2023 labour productivity was 6.7% higher in real terms compared to 2019. However, this overlaps with a period of significant disruption due to the Covid-19 pandemic, where productivity indicators were upwardly affected by temporary changes in the sectoral composition of the economy and qualification profile of the workforce. Reflecting this, labour productivity has declined in real terms each year since the high point seen in 2021 as the structure of the economy and workforce began to revert to pre-covid norms.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "This commentary is a placeholder.",
+               insufficient: ""
+            }
+         },
          "Northern Ireland Composite Economic Index": {
             importance: "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
-            base_year: "2018",
+            base_year: "2021",
             ci: 1,
             data: {
                NI: "INDNICEINI",
@@ -707,7 +706,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially following a decline in 2020, and the latest data in 2023 is at a series high. ",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the first quarter of 2025, economic activity in Northern Ireland decreased by 0.6%, driven by negative contributions from the Construction sector (0.5 percentage points) and the Production sector (0.2 percentage points). Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -908,7 +907,7 @@ var domains_data = {
          },
          "Volunteering": {
             importance: "This indicator provides the proportion of adults in Northern Ireland who volunteer, providing a measure of civic engagement.",
-            base_year: "2021/22",
+            base_year: null,
             ci: 2,
             data: {
                NI: "",
@@ -918,10 +917,10 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2022/23, it is important to note that volunteering in 2021/22 would have been impacted by closures due to COVID-19.                                                                                                                                                                                                                             In both 2022/23 and 2021/22 gaps can be seen in participation in volunteering between the protestant and catholic communities, people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for most and least deprived areas and urban and rural areas.",
+               improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
-               insufficient: ""
+               insufficient: " Volunteering is defined as “the commitment of time and energy, for the benefit of society and the community, the environment, or individuals outside (or in addition to) one's immediate family. It is unpaid and undertaken freely and by choice”. New questions on volunteering were introduced in 2023/24 to measure participation of adults in both formal and informal volunteering. The questions are now more similar to those used in the rest of the UK. As a result of the change in questions it is not possible to compare figures for 2023/24 with those published for previous years."
             }
          }
        }
@@ -967,8 +966,8 @@ var domains_data = {
             }
          },
          "Housing costs as a proportion of household income": {
-            importance: "This indicator provides one measure of the affordability of housing.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2018/19",
+            importance: "This indicator provides one measure of the affordability of housing. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
+            base_year: "2019/20",
             ci: 3,
             data: {
                NI: "",
@@ -979,7 +978,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2012/13 and 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
+               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -1049,10 +1048,10 @@ var domains_data = {
             base_year: "2019",
             ci: 3,
             data: {
-               NI: "",
+               NI: "INDTRUSTMEDIANI",
                AA: "",
                LGD: "",
-               EQ: "INDTRUSTMEDIAEQ"
+               EQ: ""
             },
             improvement: "increase",
             telling: {
@@ -1067,10 +1066,10 @@ var domains_data = {
             base_year: "2019",
             ci: 3,
             data: {
-               NI: "",
+               NI: "INDTRUSTASMBNI",
                AA: "",
                LGD: "",
-               EQ: "INDTRUSTASMBEQ"
+               EQ: ""
             },
             improvement: "increase",
             telling: {
