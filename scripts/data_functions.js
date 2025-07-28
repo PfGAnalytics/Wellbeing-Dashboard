@@ -1612,6 +1612,10 @@ async function drawMap() {
 
       var years = Object.values(dimension)[1].category.index; // All years present in the data
 
+      if (!Array.isArray(years)) {
+         years = [years]
+      }
+
       var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
 
       var num_groups = groups.length;     // The number of groups
