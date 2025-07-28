@@ -46,6 +46,7 @@ for (matrix in matrix_list) {
                                                matrix, "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=", apiKey))
   
   json_data$result$note <- list(json_data$result$note)
+  json_data$result$updated <- sub("\\..*", "", json_data$result$updated)
   
   if (!"error" %in% names(json_data)) {
     write_json(json_data, paste0("backup/", matrix, ".json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
