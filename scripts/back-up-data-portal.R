@@ -1,6 +1,7 @@
 library(jsonlite)
 library(dplyr)
 library(stringr)
+library(purrr)
 
 apiKey <- "7e4c5f0c683d5c56976d28cb39bb05e0e7f8ab1171bb3cbd5499fac715e009e6"
 
@@ -24,22 +25,18 @@ for (line in js_lines) {
 }
 
 # Get grouping values for EQ groups ####
-data_lines <- readLines("scripts/data_functions.js", warn = FALSE)
-start_line <- which(grepl('Contruct api query based on which grouping is selected', data_lines))
-end_line <- which(data_lines == "")[which(data_lines == "") > start_line][1]
-
-eq_groups <- list()
-
-for (i in start_line:end_line) {
-  if(grepl("eq_groups", data_lines[i])) {
-    eq_group <- sub('.*?"(.*?)".*', '\\1', data_lines[i])
-    group_vals <- sub(".*\\[(.*)\\].*", "\\1", data_lines[i + 1])
-    if (!eq_group %in% c("backup/", "Skills Level", "-", " ")) {
-      eq_groups[[eq_group]] <- gsub('"', "%22", group_vals) %>% 
-        gsub(" ", "", .)
-    }
-  }
-}
+eq_groups <- readLines("scripts/eqgroups.js") %>%
+  str_c(collapse = "\n") %>%
+  str_remove("var eqgroups\\s*=\\s*") %>%
+  str_remove(";$") %>%
+  str_replace_all("([\\{|,])\\s*\"?(\\w[^\"]*?)\"?\\s*:", "\\1\"\\2\":") %>%
+  str_replace_all("'", "\"") %>%
+  fromJSON() %>%
+  map(~ .x %>%
+        str_replace_all("\\s+", "") %>%          # remove whitespace
+        str_c('"', ., '"') %>%                   # wrap each item in quotes
+        str_c(collapse = ",") %>%                # join into one string
+        str_replace_all('"', "%22"))   
 
 # Loop through all matrices ####
 for (matrix in matrix_list) {
@@ -49,6 +46,7 @@ for (matrix in matrix_list) {
                                                matrix, "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=", apiKey))
   
   json_data$result$note <- list(json_data$result$note)
+  json_data$result$updated <- sub("\\..*", "", json_data$result$updated)
   
   if (!"error" %in% names(json_data)) {
     write_json(json_data, paste0("backup/", matrix, ".json"), pretty = TRUE, auto_unbox = TRUE, na = "null")

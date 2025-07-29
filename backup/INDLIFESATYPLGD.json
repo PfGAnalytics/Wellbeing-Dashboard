@@ -124,7 +124,7 @@
       "time": "TLIST(A1)"
     },
     "size": [1, 3, 11],
-    "updated": "2025-05-08T9:30:00.000Z",
+    "updated": "2025-05-08T9:30:00",
     "value": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 6.6, 6.6, 6.6, 6.2, 6.7, 6.8, 6.8, 6.9, 6.7, 6.8, 6.3],
     "version": "2.0"
   },

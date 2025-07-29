@@ -949,7 +949,7 @@ removeAriaFromIcons = function() {
 
 // Execute the following functions when window loads for first time:
 window.onload = function() {
-    dataPortalLive();    
+    loadDashboard();    
 };
 
 // Execute the following functions anytime the window is resized:
@@ -1323,22 +1323,7 @@ for (let i = 0; i < domains.length; i ++) {
 // Function to create sub population table on Notes page
 async function subpopTable() {
 
-    let currentDate = new Date().toISOString().split('T')[0];    
-
-   dp_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
-
-   // Fetch data and store in object fetched_data
-
-   let has_error = false;
-
-   try {
-      const response = await fetch(dp_url);
-      const fetched_data = await response.json();
-      let dp_result = fetched_data;
-      has_error = dp_result.hasOwnProperty("error");
-   } catch (error) {
-      has_error = true;
-   }
+    
 
     loading = document.createElement("div");        // Div to hold loading image in
 
@@ -1414,11 +1399,7 @@ async function subpopTable() {
             }
         } else {        // Else look up data portal and see which groups are present
             
-            if (has_error) {
-                var api_url = config.backupURL + domains_data[domain].indicators[all_indicators[i]].data.EQ + ".json";
-            } else {
-                var api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + domains_data[domain].indicators[all_indicators[i]].data.EQ + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
-            }
+            var api_url = config.backupURL + domains_data[domain].indicators[all_indicators[i]].data.EQ + ".json";          
                         
             try {   // Using "try" so rest of table generates if data portal request unsucessful
                 // Fetch data and store in object fetched_data
