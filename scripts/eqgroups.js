@@ -21,5 +21,6 @@ var eqgroups = {
   "Occupation": ["110", "111", "112", "113", "114", "115", "116", "117", "118"],
   "Work pattern": ["123", "124"],
   "Work pattern by Sex": ["119", "120", "121", "122"],
-  "Volunteering type": ["125", "126"]
+  "Volunteering type": ["125", "126"],
+  "Children in poverty": ["127"]
 };
