@@ -1282,7 +1282,6 @@ async function getEqualityGroups(d, e) {
          if (eq_groups[i] == "Skills Level") {
             chart_data_url = `${config.backupURL}INDSKILLSLEV.json`
          } else {
-
             chart_data_url = `${config.backupURL + matrix}-${eq_groups[i].replaceAll(" ", "-")}.json`;
          }
 
