@@ -51,11 +51,11 @@
       },
       "EQUALGROUPS": {
         "category": {
-          "index": ["33", "34", "35"],
+          "index": [
+            "127"
+          ],
           "label": {
-            "33": "Political opinion - Unionist",
-            "34": "Political opinion - Nationalist",
-            "35": "Political opinion - Neither"
+            "127": "Children in poverty - Children"
           }
         },
         "label": "Equality Groups"
@@ -125,9 +125,9 @@
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 22, 3],
+    "size": [1, 22, 1],
     "updated": "2025-07-30T9:45:07.600Z",
-    "value": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 19, 24, 20, 16, 23, 18, 18, 20, 23, 17, 27, 22, 16, 15, 19, 18, 16, 19, 17, 16, 15, 15, 20, 21, 11, 19, 18, null, null, null, 17, 20, 14, 14, 18, 21, 16, 14, 19],
+    "value": [null, null, null, null, null, null, 23, 27, 22, 21, 20, 23, 25, 21, 22, 19, 24, 22, null, 18, 24, 23],
     "version": "2.0"
   },
   "id": {}

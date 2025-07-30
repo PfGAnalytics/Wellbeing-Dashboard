@@ -51,12 +51,11 @@
       },
       "EQUALGROUPS": {
         "category": {
-          "index": ["9", "41", "39", "13"],
+          "index": [
+            "127"
+          ],
           "label": {
-            "9": "Marital status - Single",
-            "41": "Marital status - Married/Civil partnership/Cohabiting",
-            "39": "Marital status - Divorced/Separated",
-            "13": "Marital status - Widowed"
+            "127": "Children in poverty - Children"
           }
         },
         "label": "Equality Groups"
@@ -126,9 +125,9 @@
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 22, 4],
+    "size": [1, 22, 1],
     "updated": "2025-07-30T9:45:46.947Z",
-    "value": [26, 18, 39, 31, 26, 18, 41, 30, 26, 18, 36, 33, 23, 18, 31, 37, 24, 16, 35, 31, 25, 15, 36, 34, 19, 17, 29, 31, 23, 18, 28, 28, 26, 17, 29, 26, 26, 21, 33, 26, 26, 16, 33, 27, 28, 19, 27, 20, 25, 17, 26, 27, 18, 13, 30, 23, 19, 13, 23, 24, 18, 10, 22, 22, 18, 16, 17, 16, 14, 11, 22, 20, null, null, null, null, 14, 12, 18, 27, 21, 12, 17, 19, 18, 13, 25, 23],
+    "value": [null, null, null, null, null, null, 22, 25, 22, 24, 22, 24, 22, 18, 18, 15, 21, 17, null, 15, 19, 20],
     "version": "2.0"
   },
   "id": {}
