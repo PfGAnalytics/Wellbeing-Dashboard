@@ -208,8 +208,8 @@ var domains_data = {
             ci: 0.1,
             data: {
                NI: "", 
-               AA: "",
-               LGD: "",
+               AA: "INDOUTRECAA",
+               LGD: "INDOUTRECLGD",
                EQ: "INDOUTRECEQ"
             },
             improvement: "increase",
