@@ -17,6 +17,7 @@ jobs:
             any::dplyr
             any::jsonlite
             any::stringr
+            any:purrr
 
       - name: Check out repository
         uses: actions/checkout@v4
