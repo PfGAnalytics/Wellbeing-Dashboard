@@ -39,10 +39,10 @@
       },
       "EQUALGROUPS": {
         "category": {
-          "index": ["21", "22"],
+          "index": ["17", "18"],
           "label": {
-            "21": "Ethnic group - White",
-            "22": "Ethnic group - Other"
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants"
           }
         },
         "label": "Equality Groups"
@@ -114,7 +114,7 @@
     },
     "size": [1, 10, 2],
     "updated": "2025-08-12T12:32:22.303Z",
-    "value": [9820, 1382, 10401, 1488, 10346, 1531, 10975, 1537, 9866, 1457, 8611, 1278, 8743, 1391, 8985, 1364, 9681, 1856, 9092, 1763],
+    "value": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 4071, 7466, 3630, 7225],
     "version": "2.0"
   },
   "id": {}

@@ -208,8 +208,8 @@ var domains_data = {
             ci: 0.1,
             data: {
                NI: "", 
-               AA: "",
-               LGD: "",
+               AA: "INDOUTRECAA",
+               LGD: "INDOUTRECLGD",
                EQ: "INDOUTRECEQ"
             },
             improvement: "increase",
@@ -221,7 +221,7 @@ var domains_data = {
             }
          },
          "Recycled waste": {
-            importance: "The Earth has limited resources which need to be utilised in a sustainable manner while minimising impacts on the environment. A low carbon, resource efficient society in which resources are valued and reused, putting them back into the economy while preventing waste is desired. Waste is produced by households, by industrial processes, by the construction and demolition industry, through commercial activities and agricultural practices and by public services and utilities. Waste can affect the environment through its visual impact or by emissions to the air, groundwater and surface water as well as the contamination of land. Increasing the amount of waste reused, recycled or composted will reduce the total going to landfill and contribute to better resource use.",
+            importance: "The Earth has limited resources which need to be utilised in a sustainable manner while minimising impacts on the environment. This requires a transition from our current linear model in which we take, make, use and dispose of products to a more circular model in which waste is eliminated by designing products to last, valuing materials and keeping them in use for as long as possible through processes including reuse, repair, refurbishment, remanufacturing and recycling. Waste is produced by households, by industrial processes, by the construction and demolition industry, through commercial activities and agricultural practices and by public services and utilities. Waste can affect the environment through its visual impact or by emissions to the air, groundwater and surface water as well as the contamination of land. Increasing the amount of waste reused, recycled or composted will reduce the total going to landfill and contribute to better resource use.",
             base_year: "2019/20",
             ci: "0.5c",
             data: {
@@ -961,7 +961,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "Since 2021/22 the number of Households that have been accepted as homeless has risen. All of those who are accepted as statutorily homeless have a statutory duty to temporary accommodation and there has also been an increase from 9,265 placements in 2021/22 to 11,368 in 2023/24.  The number of households accepted as homeless is an annual total for each given year whereas the number of households placed in Temporary Accommodation is a cumulative figure that will include households that were accepted as homeless in previous years.  Not all households accepted as homeless will be allocated a home within the same year.",
+               worsened: "From 2021/22 until 2023/24, the number of households that have been accepted as homeless rose year on year. While the number of households accepted as homeless has decreased in 2024/25, it still remains higher than the position in 2021/22. All of those who are accepted as statutorily homeless have a statutory duty to temporary accommodation and there has been an increase in the number of placements in temporary accommodation over the period, from 9,265 placements in 2021/22 to 11,887 in 2024/25.  The number of households accepted as homeless is an annual total for each given year whereas the number of households placed in Temporary Accommodation is a cumulative figure that will include households that were accepted as homeless in previous years.  Not all households accepted as homeless will be allocated a home within the same year.",
                insufficient: ""
             }
          },
