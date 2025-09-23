@@ -450,7 +450,7 @@ var domains_data = {
          },
          "Preventable deaths": {
             importance: "Preventable deaths relate to causes of deaths that could potentially be avoided by the public health interventions in the broadest sense.",
-            base_year: "2014-18",
+            base_year: "2015-19",
             ci: 4.8,
             data: {
                NI: "",
@@ -462,7 +462,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The preventable mortality rate increased by 11 deaths per 100,000 population from 168 deaths per 100,000 population in 2014-18 to 179 deaths per 100,000 population in 2018-22. The change was statistically significant.",
+               worsened: "The preventable mortality rate increased by 8 deaths per 100,000 population from 169 deaths per 100,000 population in 2015-19 to 177 deaths per 100,000 population in 2019-23. The change was statistically significant.",
                insufficient: ""
             }
          },
