@@ -74,7 +74,24 @@ var insufficient_indicator = {};
 // Otherwise it will only read in indicators for the selected domain
 async function indicatorPerformance (dom = null) {
 
-   // Determine whether to read in all domains or just one:
+   let currentDate = new Date().toISOString().split('T')[0];    
+
+   dp_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
+
+   // Fetch data and store in object fetched_data
+
+   let has_error = false;
+
+   try {
+      const response = await fetch(dp_url);
+      const fetched_data = await response.json();
+      let dp_result = fetched_data;
+      has_error = dp_result.hasOwnProperty("error");
+   } catch (error) {
+      has_error = true;
+   }
+
+   // Determine whether ro read in all domains or just one:
    if (dom != null) {
       var doms = [dom];
    } else {
@@ -95,16 +112,27 @@ async function indicatorPerformance (dom = null) {
          if (indicator.data.NI != "") {
             var matrix = indicator.data.NI;
             var statistic = matrix.slice(0, -2);
-            var api_url = `${config.backupURL}${matrix}.json`
+            if (has_error) {
+               api_url = `${config.backupURL}${matrix}.json`
+            } else {
+               api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+            }
          } else if (indicator.data.EQ != "") {
             var matrix = indicator.data.EQ;
             var statistic = matrix.slice(0, -2);
-            var api_url = `${config.backupURL}${matrix}-NI-line.json`
-          
+            if (has_error) {
+               api_url = `${config.backupURL}${matrix}-NI-line.json`
+            } else {
+               api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22"+ matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+            }
          } else {
             var matrix = indicator.data.LGD;
             var statistic = matrix.slice(0, -3);
-            var api_url = `${config.backupURL}${matrix}-NI-line.json`
+            if (has_error) {
+               api_url = `${config.backupURL}${matrix}-NI-line.json`
+            } else {
+               api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22LGD2014%22%5D,%22dimension%22:%7B%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+            }
          }
 
          // The id the line chart canvas element will use
@@ -215,6 +243,23 @@ async function indicatorPerformance (dom = null) {
 // The function is called inside a loop below which runs over all indicators to create all charts as the page loads
 async function createLineChart(d, e) {
 
+   let currentDate = new Date().toISOString().split('T')[0];    
+
+   dp_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
+
+   // Fetch data and store in object fetched_data
+
+   let has_error = false;
+
+   try {
+      const response = await fetch(dp_url);
+      const fetched_data = await response.json();
+      let dp_result = fetched_data;
+      has_error = dp_result.hasOwnProperty("error");
+   } catch (error) {
+      has_error = true;
+   }
+
    var indicator = domains_data[d].indicators[e];  // Select the information for the indicator from domains_data.js
 
    // In the first instance the function checks for NI data for the particular indicator,
@@ -222,15 +267,27 @@ async function createLineChart(d, e) {
    if (indicator.data.NI != "") {
       var matrix = indicator.data.NI;
       var statistic = matrix.slice(0, -2);
-      var api_url = `${config.backupURL}${matrix}.json`
+      if (has_error) {
+         api_url = `${config.backupURL}${matrix}.json`
+      } else {
+         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+      }
    } else if (indicator.data.EQ != "") {
       var matrix = indicator.data.EQ;
       var statistic = matrix.slice(0, -2);
-      var api_url = `${config.backupURL}${matrix}-NI-line.json`
+      if (has_error) {
+         api_url = `${config.backupURL}${matrix}-NI-line.json`
+      } else {
+         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22"+ matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+      }
    } else {
       var matrix = indicator.data.LGD;
       var statistic = matrix.slice(0, -3);
-      var api_url = `${config.backupURL}${matrix}-NI-line.json`
+      if (has_error) {
+         api_url = `${config.backupURL}${matrix}-NI-line.json`
+      } else {
+         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22LGD2014%22%5D,%22dimension%22:%7B%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+      }
    }
 
    // The id the line chart canvas element will use
@@ -257,16 +314,15 @@ async function createLineChart(d, e) {
    const {dimension, value, updated, note} = result;  // from result we then extract the object keys we need
    
    var years = Object.values(dimension)[1].category.index; // Array of years in data
-   var num_years = years.length;  // Number of years in data
-
-   var base_position = years.indexOf(indicator.base_year); // Which position in the years array is base year
    
-   if (Array.isArray(years)) {
-      var current_year = years[years.length-1]; // The current year
-   } else {
-      var current_year = years; // For indicators with only one year of data
-      years = [current_year]; // Make sure years is an array
+   if (!Array.isArray(years)) {
+      years = [years];
    }
+
+   var num_years = years.length;  // Number of years in data
+   
+   var base_position = years.indexOf(indicator.base_year); // Which position in the years array is base year
+   var current_year = years[years.length-1]; // The current year
 
    var years_to_add = 2; // Number of blank data points after current year
 
@@ -286,11 +342,9 @@ async function createLineChart(d, e) {
 
    var base_value = value[base_position]; // The value at the base year
    var data_series = value; // The y axis values to plot
-
    if (!Array.isArray(data_series)) {
-      data_series = [value];
+      data_series = [data_series]
    }
-
    var change_from_baseline = value[value.length - 1] - base_value; // The difference between base year value and last value
 
    // Pull chart title and y axis label from metadata
@@ -1145,10 +1199,31 @@ document.getElementById("source-info").appendChild(source_info_div);
 // This function will read the categories within the EQUALGROUPS variable, then output the available groups in the grey box
 // Each group will then be linked to a pop-up that calls the data for that group from the data portal and plots bar chart
 async function getEqualityGroups(d, e) {
-   
+
+   let currentDate = new Date().toISOString().split('T')[0];    
+
+   dp_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
+
+   // Fetch data and store in object fetched_data
+
+   let has_error = false;
+
+   try {
+      const response = await fetch(dp_url);
+      const fetched_data = await response.json();
+      let dp_result = fetched_data;
+      has_error = dp_result.hasOwnProperty("error");
+   } catch (error) {
+      has_error = true;
+   }
+
    var matrix = domains_data[d].indicators[e].data.EQ;   // The matrix for the EQ dataset
 
-   var api_url = `${config.backupURL}${matrix}.json`;   
+   if (has_error) {
+      var api_url = `${config.backupURL}${matrix}.json`;
+   } else {
+      var api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+   }   
 
    // Fetch data and store in object fetched_data
   const response = await fetch(api_url);
@@ -1273,17 +1348,55 @@ async function getEqualityGroups(d, e) {
          // Start by obtaining x axis values - the years:
          var years = Object.values(dimension)[1].category.index; // Array of years in data
 
-         if (!Array.isArray(years)) {
-            years = [years];
+         // Function to transform query select statement into valid URL string
+         function transformQuery (query) {
+
+            let chars = {
+               ' ': '',
+               '"': '%22',
+               '{': '%7B',
+               '}': '%7D',
+               '[': '%5B',
+               ']': '%5D',
+               '\n': '',
+               '\t': ''
+            };
+            
+            for (let j = 0; j < Object.keys(chars).length; j ++) {
+               query = query.replaceAll(Object.keys(chars)[j], Object.values(chars)[j])
+            }
+
+            return(query);
+         }
+
+         // Function that takes shorter input for EQUALGROUPS selection
+         // Input to funciton in format queryURL('["x","y"]') to cover numeric indexes of all groups that should be included in query
+         function queryURL (query) {
+            return(
+               config.baseURL +
+               transformQuery('api.jsonrpc?data={"jsonrpc":"2.0","method":"PxStat.Data.Cube_API.ReadDataset","params":{"class":"query","id":["EQUALGROUPS"],"dimension":{"EQUALGROUPS":{"category":{"index":') + 
+               transformQuery(JSON.stringify(query)) +
+               transformQuery('}}},"extension":{"pivot":null,"codes":false,"language":{"code":"en"},"format":{"type":"JSON-stat","version":"2.0"},"matrix":"') +
+               matrix +
+               transformQuery('"},"version":"2.0"}}') + 
+               '&apiKey=' + 
+               config.apiKey)
          }
          
-         // Contruct query based on which grouping is selected:
-         
-         if (eq_groups[i] == "Skills Level") {
-            chart_data_url = `${config.backupURL}INDSKILLSLEV.json`
+         // Contruct api query based on which grouping is selected:
+         if (has_error) {
+            if (eq_groups[i] == "Skills Level") {
+               chart_data_url = `${config.backupURL}INDSKILLSLEV.json`
+            } else {
+               chart_data_url = `${config.backupURL + matrix}-${eq_groups[i].replaceAll(" ", "-")}.json`;
+            }
          } else {
-            chart_data_url = `${config.backupURL + matrix}-${eq_groups[i].replaceAll(" ", "-")}.json`;
-         }
+            if (eq_groups[i] == "Skills Level") {
+               chart_data_url = transformQuery(config.baseURL + 'api.jsonrpc?data={"jsonrpc":"2.0","method":"PxStat.Data.Cube_API.ReadDataset","params":{"class":"query","id":[],"dimension":{},"extension":{"pivot":null,"codes":false,"language":{"code":"en"},"format":{"type":"JSON-stat","version":"2.0"},"matrix":"' + matrix.replace("EQ", "LEV") + '"},"version":"2.0"}}&apiKey=' + config.apiKey);
+            } else {
+               chart_data_url = queryURL(eqgroups[eq_groups[i]]);
+            }
+         } 
 
          var result = null;   // Retry plotting chart if data portal link doesn't work first time
          while (result == null) {
@@ -1558,6 +1671,23 @@ async function getEqualityGroups(d, e) {
 // Function to draw a map. This function is called when there are any changes to the dropdown menus on the map screen
 async function drawMap() {
 
+   let currentDate = new Date().toISOString().split('T')[0];    
+
+   dp_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
+
+   // Fetch data and store in object fetched_data
+
+   let has_error = false;
+
+   try {
+      const response = await fetch(dp_url);
+      const fetched_data = await response.json();
+      let dp_result = fetched_data;
+      has_error = dp_result.hasOwnProperty("error");
+   } catch (error) {
+      has_error = true;
+   }
+
    // Display the loading gif while this function runs
    var map_load = document.getElementById("map-load");
    map_load.style.display = "flex";
@@ -1578,8 +1708,11 @@ async function drawMap() {
    var matrix = map_select_3.value;
 
    // URL to query (pre-production)
-   
-   var api_url = `${config.backupURL}${matrix}.json`;
+   if (has_error) {
+      api_url = `${config.backupURL}${matrix}.json`;
+   } else {
+      api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+   }
 
   // Fetch data and store in object fetched_data
   const response = await fetch(api_url);
@@ -1610,10 +1743,6 @@ async function drawMap() {
       var unit = Object.values(Object.values(dimension)[0].category.unit)[0].label; // The unit of measurement according to the metadata
 
       var years = Object.values(dimension)[1].category.index; // All years present in the data
-
-      if (!Array.isArray(years)) {
-         years = [years]
-      }
 
       var groups = Object.values(dimension)[2].category.index; // All the groupings present in the data (eg, LGD, AA)
 
@@ -2045,8 +2174,27 @@ function number_to_word(n) {
   return result.trim()
 }
 
-// Define function to load dashboard
-async function loadDashboard () {
+// Define function to test if data portal is operational
+async function dataPortalLive () {
+
+   let currentDate = new Date().toISOString().split('T')[0];    
+
+   api_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
+
+   // Fetch data and store in object fetched_data
+
+   let has_error;
+   let result;
+
+   try {
+      const response = await fetch(api_url);
+      const fetched_data = await response.json();
+      let result = fetched_data;
+      has_error = result.hasOwnProperty("error");
+   } catch (error) {
+      result = null;
+      has_error = true;
+   }
 
    showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
    sizeForMobile();            // Resize and re-position page elements
