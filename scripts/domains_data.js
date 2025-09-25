@@ -107,8 +107,8 @@ var domains_data = {
          },
          "Small for gestational age": {
             importance: "Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
-            base_year: null,
-            ci: 1,
+            base_year: "2019",
+            ci: 2.75,
             data: {
                NI: "INDSFGANI",
                AA: "",
@@ -118,9 +118,9 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "In 2023, the percentage point gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas was 5.9 compared with 6.4 in 2019. The change was not statistically significant. It is important to note however that data for 2023 does not contain full regional coverage, for a full explanation, see ‘further information’.",
                worsened: "This commentary is a placeholder.",
-               insufficient: "With only four reporting years available, it is not yet possible to provide an indication on what this indicator is telling us."
+               insufficient: ""
             }
          },
       }
