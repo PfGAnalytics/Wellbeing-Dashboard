@@ -706,7 +706,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the first quarter of 2025, economic activity in Northern Ireland decreased by 0.6%, driven by negative contributions from the Construction sector (0.5 percentage points) and the Production sector (0.2 percentage points). Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index'>from this link. </a>",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the second quarter of 2025, economic output in Northern Ireland increased by 2.0%, mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
