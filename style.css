@@ -40,6 +40,18 @@ body {
     filter: brightness(0) invert(1);
 }
 
+.search-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#top-menu-aig-logo {
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
 #dashboard-title {
     width: 300px;
     padding-left: 20px;
