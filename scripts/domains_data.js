@@ -107,8 +107,8 @@ var domains_data = {
          },
          "Small for gestational age": {
             importance: "Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
-            base_year: null,
-            ci: 1,
+            base_year: "2019",
+            ci: 2.75,
             data: {
                NI: "INDSFGANI",
                AA: "",
@@ -118,9 +118,9 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "In 2023, the percentage point gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas was 5.9 compared with 6.4 in 2019. The change was not statistically significant. It is important to note however that data for 2023 does not contain full regional coverage, for a full explanation, see ‘further information’.",
                worsened: "This commentary is a placeholder.",
-               insufficient: "With only four reporting years available, it is not yet possible to provide an indication on what this indicator is telling us."
+               insufficient: ""
             }
          },
       }
@@ -450,7 +450,7 @@ var domains_data = {
          },
          "Preventable deaths": {
             importance: "Preventable deaths relate to causes of deaths that could potentially be avoided by the public health interventions in the broadest sense.",
-            base_year: "2014-18",
+            base_year: "2015-19",
             ci: 4.8,
             data: {
                NI: "",
@@ -462,7 +462,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The preventable mortality rate increased by 11 deaths per 100,000 population from 168 deaths per 100,000 population in 2014-18 to 179 deaths per 100,000 population in 2018-22. The change was statistically significant.",
+               worsened: "The preventable mortality rate increased by 8 deaths per 100,000 population from 169 deaths per 100,000 population in 2015-19 to 177 deaths per 100,000 population in 2019-23. The change was statistically significant.",
                insufficient: ""
             }
          },
@@ -706,7 +706,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the first quarter of 2025, economic activity in Northern Ireland decreased by 0.6%, driven by negative contributions from the Construction sector (0.5 percentage points) and the Production sector (0.2 percentage points). Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index'>from this link. </a>",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the second quarter of 2025, economic output in Northern Ireland increased by 2.0%, mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -811,7 +811,7 @@ var domains_data = {
          },
          "Processing times for criminal cases": {
             importance: "Improving the efficiency and effectiveness of the Criminal Justice System has been a longstanding priority for the Department of Justice and criminal justice partner organisations. The speed of the system matters to victims, witnesses and defendants, and their families and communities. Speeding up delivery of justice reduces trauma for victims and defendants, encourages public confidence in the legal system and helps prevent erosion of the accused’s presumption of innocence. Timeliness also improves general public confidence in the wider justice system, and helps demonstrate legitimacy and respect for the rule of law. Tackling delay however is complex and challenging and reforms take time to embed and for their impact to be seen. The Criminal Justice Board has therefore prioritised a programme of work targeted at reducing avoidable delay with the system.  This work is built around five key workstreams and will take forward existing work on committal reform, existing and emerging work in the digital arena and explore other areas for efficiencies such as early engagement, court remits and out of court disposals.",
-            base_year: "2019/20",
+            base_year: "2020/21",
             ci: 5,
             data: {
                NI: "",
@@ -822,8 +822,8 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This may, in recent years, be due to the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. The impact of this backlog is still being reflected in the average time taken to complete cases. The figure for 2023/24 (190 days) is higher than the figure for 2019/20 (149 days). While the most recent figures are higher than the baseline year (2019/20), there has been a general improvement with the overall indicator going down again year on year since 2021/22.",
+               no_change: "The figure of 2020/21 was the first year to reflect the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. While the impact of this backlog is still being reflected in the average time taken to complete cases, some improvement has been noted. The figure for 2024/25 (189 days) is lower than the figure for 2019/20 (193 days).",
+               worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },

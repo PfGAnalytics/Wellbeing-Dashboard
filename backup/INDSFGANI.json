@@ -21,12 +21,13 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2019", "2020", "2021", "2022"],
+          "index": ["2019", "2020", "2021", "2022", "2023"],
           "label": {
             "2019": "2019",
             "2020": "2020",
             "2021": "2021",
-            "2022": "2022"
+            "2022": "2022",
+            "2023": "2023"
           }
         },
         "label": "Year"
@@ -99,15 +100,15 @@
       ]
     },
     "note": [
-      "[b]Small for gestational age[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe gap in percentage points between babies born in the most and least deprived areas, who are small for gestational age. For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Maternity System, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]www.health-ni.gov.uk/articles/health-inequalities-statistics[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]The information needed to report on this indicator was collected as normal during Covid-19.[b]\r\n\r\nFurther information[/b]\r\n1. Absolute gap in percentage points (as opposed to relative proportionate gap) was used for calculations.\r\n2. Small for gestational age refers to any live birth with a birth weight falling below the 10th percentile.\r\n3. Deprivation quintiles were defined according to the 2017 NIMDM.\r\n4. For more information on this data please contact the data provider - [url=mailto:healthinequalities@health-ni.gov.uk]Public Health Information & Research Branch, Information Analysis Directorate, DOH[/url] or see the '[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]Health Inequalities Annual Report[/url]'."
+      "[b]Small for gestational age[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe gap in percentage points between babies born in the most and least deprived areas, who are small for gestational age. For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nHealth & Social Care Inequalities Monitoring System, Department of Health\r\n[url=http://www.health-ni.gov.uk/articles/health-inequalities-statistics]www.health-ni.gov.uk/articles/health-inequalities-statistics[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThe information needed to report on this indicator was collected as normal during Covid-19.\r\n\r\n[b]Further information[/b]\r\n1. Absolute gap in percentage points (as opposed to relative proportionate gap) was used for calculations.\r\n2. Small for gestational age refers to any live birth with a birth weight falling below the 10th percentile.\r\n3. Deprivation quintiles were defined according to the 2017 NIMDM.\r\n4. For more information on this data please contact the data provider – Public Health Information & Research Branch, Information Analysis Directorate, DoH, email: [url=mailto:healthinequalities@health-ni.gov.uk]healthinequalities@health-ni.gov.uk[/url] or see the '[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]Health Inequalities Annual Report[/url]'.\r\n5. Maternity data on or after 9th November 2023 in South Eastern HSCT are still being developed following the Trust’s transition to completely digitised health records. Therefore, South Eastern HSCT data included within the 2023 reporting for small for gestational age only includes data up until that point. As many residents from outside of the South Eastern trust area utilise maternity services within the Trust, the limitation does not apply solely to South Eastern trust residents. As a result, the sample size in 2023 is markedly lower than the expected number. It is approximated that around 27% of births are absent from the data and therefore any observations should be treated with caution. The figure for 2023 may be subject to revision in the future when complete regional coverage for the data becomes accessible."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 4, 1],
-    "updated": "2024-06-19T10:27:21",
-    "value": [6.4, 5.6, 5.6, 4.9],
+    "size": [1, 5, 1],
+    "updated": "2025-09-26T9:30:00",
+    "value": [6.4, 5.6, 5.6, 4.9, 5.9],
     "version": "2.0"
   },
   "id": {}
