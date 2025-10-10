@@ -163,7 +163,7 @@ h3 {
 }
 
 .box-container {
-    width: 400px;     
+    width: 380px;     
 }
 
 .grey-box {
@@ -667,7 +667,7 @@ footer {
 .y-label {
     font-size: 9pt;
     color: #666;
-    width: 70px;
+    width: 20px;
     line-height: 1.2;
     height: 500px;
     display: flex;
@@ -679,7 +679,6 @@ footer {
  .chart-date {
     font-size: 10pt;
     padding-left: 25px;
-    padding-top: 5px;
     color: #666;
  }
 
@@ -893,6 +892,7 @@ input:focus-visible {
 
 #map-link {
     margin-left: 15px;
+    margin-bottom: 20px;
     background-color: #e8e8e8;
     padding: 15px;
     border-radius: 25px;

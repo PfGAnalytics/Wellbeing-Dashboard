@@ -1165,7 +1165,7 @@ document.getElementById("source-info").appendChild(source_info_div);
   measure_note.id = matrix + "-measure-info";
   measure_note.classList.add("measure-info-text");
   measure_note.classList.add("white-box");
-
+  measure_note.style.width = "100%"
   measure_note.innerHTML = measure_text;
 
   document.getElementById("measure-info").appendChild(measure_note);
