@@ -665,9 +665,9 @@ footer {
  }
 
 .y-label {
-    font-size: 9pt;
-    color: #666;
-    width: 20px;
+    font-size: 10pt;
+    color: #000;
+    width: 70px;
     line-height: 1.2;
     height: 500px;
     display: flex;

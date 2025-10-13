@@ -771,7 +771,11 @@ async function createLineChart(d, e) {
                },
                ticks: {
                   minRotation: 0,      // Stop rotating labels (for accessibility)
-                  maxRotation: 0
+                  maxRotation: 0,
+                  color: "#000",
+                  font: {
+                     size: 14
+                  }
                }
             },
             y: {
@@ -780,7 +784,11 @@ async function createLineChart(d, e) {
                max: max_value,
                ticks: {
                   minRotation: 0,      // Stop rotating labels (for accessibility)
-                  maxRotation: 0
+                  maxRotation: 0,
+                  color: "#000",
+                  font: {
+                     size: 14
+                  }
                }
             }
          },
@@ -842,7 +850,11 @@ async function createLineChart(d, e) {
                },
                ticks: {
                   minRotation: 0,
-                  maxRotation: 0
+                  maxRotation: 0,
+                  color: "#000",
+                  font: {
+                     size: 14
+                  }
                }
             },
             y: {
@@ -851,7 +863,11 @@ async function createLineChart(d, e) {
                max: max_value,
                ticks: {
                   minRotation: 0,
-                  maxRotation: 0
+                  maxRotation: 0,
+                  color: "#000",
+                  font: {
+                     size: 14
+                  }
                }
             },
          },
@@ -886,7 +902,11 @@ async function createLineChart(d, e) {
                },
                ticks: {
                   minRotation: 0,      // Stop rotating labels (for accessibility)
-                  maxRotation: 0
+                  maxRotation: 0,
+                  color: "#000",
+                  font: {
+                     size: 14
+                  }
                }
             },
             y: {
@@ -895,7 +915,11 @@ async function createLineChart(d, e) {
                max: max_value,
                ticks: {
                   minRotation: 0,      // Stop rotating labels (for accessibility)
-                  maxRotation: 0
+                  maxRotation: 0,
+                  color: "#000",
+                  font: {
+                     size: 14
+                  }
                }
             }
          },
