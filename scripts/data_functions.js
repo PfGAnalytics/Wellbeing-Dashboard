@@ -456,6 +456,8 @@ async function createLineChart(d, e) {
       red_box_yMax = base_value - ci_value;
       green_box_yMin = base_value + ci_value;
       green_box_yMax = max_value;
+      yellow_box_yMin = red_box_yMax;
+      yellow_box_yMax = green_box_yMin;
       green_box_yHeight = ((max_value - base_value) / 2) + base_value;
       red_box_yHeight = base_value / 2;
    } else {
@@ -463,6 +465,8 @@ async function createLineChart(d, e) {
       red_box_yMax = max_value;
       green_box_yMin = min_value;
       green_box_yMax = base_value - ci_value;
+      yellow_box_yMin = green_box_yMax;
+      yellow_box_yMax = red_box_yMin;
       green_box_yHeight = base_value / 2;
       red_box_yHeight = ((max_value - base_value) / 2) + base_value;
    }
@@ -714,7 +718,8 @@ async function createLineChart(d, e) {
                            yMax: red_box_yMax,
                            backgroundColor: "#aa000055",
                            borderColor: "#aa0000",
-                           borderWidth: 2
+                           borderWidth: 2,
+                           z: 10
                      },
                      red_text: {                                        // Text inside red box
                         type: "label",
@@ -739,7 +744,8 @@ async function createLineChart(d, e) {
                         yMax: green_box_yMax,
                         backgroundColor: "#00aa0055",
                         borderColor: "#00aa00",
-                        borderWidth: 2
+                        borderWidth: 2,
+                        z: 10
                      },
                      green_text: {                                        // Text inside green box
                         type: "label",
@@ -755,6 +761,16 @@ async function createLineChart(d, e) {
                            x: "end",
                            y: "center"
                         }
+                     },
+                     yellow_box: {                             // Yellow box plotted with co-ordinates
+                        type: "box",
+                        xMin: base_position,
+                        xMax: years.length - 1,
+                        yMin: yellow_box_yMin,
+                        yMax: yellow_box_yMax,
+                        backgroundColor: "#FFD70055",
+                        borderColor: "#FFD700",
+                        borderWidth: 2
                      }
                   }
                },
