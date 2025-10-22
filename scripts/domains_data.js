@@ -570,8 +570,8 @@ var domains_data = {
        indicators: {
          "Economic inactivity": {
             importance: "This indicator shows the percentage of people who are not engaged in the labour market due to any reason except being a student. It is important as a high economic inactivity rate can restrict labour supply which may in turn affect economic growth.",
-            base_year: "2019",
-            ci: 1.4,
+            base_year: "2020",
+            ci: 1.6,
             data: {
                NI: "",
                AA: "INDECONINACTAA",
@@ -580,7 +580,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The proportion of people who are economically inactive for any reason apart from being a student has decreased from 2019.",
+               improved: "The proportion of people who are economically inactive for any reason apart from being a student has decreased from 2020.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -588,8 +588,8 @@ var domains_data = {
          },
          "Employment rate": {
             importance: "The employment rate is important as a key labour market indicator. Those who are employed have money to spend which can contribute towards economic growth.",
-            base_year: "2019",
-            ci: 1.5,
+            base_year: "2020",
+            ci: 1.6,
             data: {
                NI: "",
                AA: "INDEMPRATEAA",
@@ -598,7 +598,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The proportion of people aged 16 to 64 in employment has statistically increased from 2019.",
+               improved: "The proportion of people aged 16 to 64 in employment has statistically increased from 2020.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
