@@ -589,7 +589,7 @@ var domains_data = {
          "Employment rate": {
             importance: "The employment rate is important as a key labour market indicator. Those who are employed have money to spend which can contribute towards economic growth.",
             base_year: "2020",
-            ci: 1.6,
+            ci: 1.8,
             data: {
                NI: "",
                AA: "INDEMPRATEAA",
