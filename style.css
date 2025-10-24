@@ -383,6 +383,15 @@ padding-right: 10px;
     padding-top: 5px;
 }
 
+.key-hex-label.large {
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .key-hex-label.positive {
     background-color: #a1daa1;
     padding-left: 13px;
@@ -679,6 +688,7 @@ footer {
     height: 500px;
     min-width: 680px;
     max-width: 90%;
+    display: flex;
  }
 
 .y-label {
@@ -706,6 +716,21 @@ footer {
     color: #666;
  }
 
+ 
+.key-hex.large {
+  width: 150px;
+  height: 150px
+}
+
+
+#ind-hex-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 
  .chart-title {
     width: 100%;
@@ -799,6 +824,8 @@ footer a:hover {
     justify-content: center;
     flex-direction: column;
 }
+
+
 
 #further-expander, #further-expander-map  {
    cursor: pointer 

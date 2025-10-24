@@ -456,6 +456,8 @@ async function createLineChart(d, e) {
       red_box_yMax = base_value - ci_value;
       green_box_yMin = base_value + ci_value;
       green_box_yMax = max_value;
+      yellow_box_yMin = red_box_yMax;
+      yellow_box_yMax = green_box_yMin;
       green_box_yHeight = ((max_value - base_value) / 2) + base_value;
       red_box_yHeight = base_value / 2;
    } else {
@@ -463,6 +465,8 @@ async function createLineChart(d, e) {
       red_box_yMax = max_value;
       green_box_yMin = min_value;
       green_box_yMax = base_value - ci_value;
+      yellow_box_yMin = green_box_yMax;
+      yellow_box_yMax = red_box_yMin;
       green_box_yHeight = base_value / 2;
       red_box_yHeight = ((max_value - base_value) / 2) + base_value;
    }
@@ -680,6 +684,44 @@ async function createLineChart(d, e) {
       }
    };
 
+ // Custom plugin for drawing middle polygon
+const cumulative_middle = {
+   id: "drawing_middle",
+   beforeDraw(chart, args, options) {
+      const { ctx } = chart;
+      ctx.save();
+
+      const chart_width = chart.chartArea.width;
+      const chart_height = chart.chartArea.height;
+      const space_at_top = chart.chartArea.top;
+      const space_at_bottom = chart.chartArea.bottom;
+      const space_at_left = chart.chartArea.left;
+      const space_at_right = chart.chartArea.right;
+
+      // Calculate start and end positions for top polygon
+      const top_startWidth = (base_position / (years.length - 1)) * chart_width + space_at_left;
+      const top_startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;
+      const top_endHeight = (1 - ((base_value + (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;
+
+      // Calculate start and end positions for bottom polygon
+      const bottom_endHeight = (1 - ((base_value - (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;
+
+      // Draw the middle yellow polygon
+      ctx.beginPath();
+      ctx.moveTo(top_startWidth, top_startHeight);
+      ctx.lineTo(space_at_right, top_endHeight);
+      ctx.lineTo(space_at_right, bottom_endHeight);
+      ctx.lineTo(top_startWidth, top_startHeight);
+
+      ctx.fillStyle = "#FFD70055"; // Yellow with transparency
+      ctx.strokeStyle = "#FFD700";
+      ctx.lineWidth = 1;
+      ctx.fill();
+      ctx.stroke();
+   }
+};
+
+
    // Function to count the number of decimal places present in a number
    Number.prototype.countDecimals = function () {
       if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
@@ -714,7 +756,8 @@ async function createLineChart(d, e) {
                            yMax: red_box_yMax,
                            backgroundColor: "#aa000055",
                            borderColor: "#aa0000",
-                           borderWidth: 2
+                           borderWidth: 2,
+                           z: 10
                      },
                      red_text: {                                        // Text inside red box
                         type: "label",
@@ -739,7 +782,8 @@ async function createLineChart(d, e) {
                         yMax: green_box_yMax,
                         backgroundColor: "#00aa0055",
                         borderColor: "#00aa00",
-                        borderWidth: 2
+                        borderWidth: 2,
+                        z: 10
                      },
                      green_text: {                                        // Text inside green box
                         type: "label",
@@ -755,6 +799,16 @@ async function createLineChart(d, e) {
                            x: "end",
                            y: "center"
                         }
+                     },
+                     yellow_box: {                             // Yellow box plotted with co-ordinates
+                        type: "box",
+                        xMin: base_position,
+                        xMax: years.length - 1,
+                        yMin: yellow_box_yMin,
+                        yMax: yellow_box_yMax,
+                        backgroundColor: "#FFD70055",
+                        borderColor: "#FFD700",
+                        borderWidth: 2
                      }
                   }
                },
@@ -876,7 +930,8 @@ async function createLineChart(d, e) {
             mode: "index"
          }
          },
-         plugins: [cumulative_top,
+         plugins: [cumulative_middle,
+                  cumulative_top,
                   cumulative_bottom]
    };
 
@@ -1007,6 +1062,24 @@ async function createLineChart(d, e) {
    base_statement_div.innerHTML = "<div>" + base_statement + "</div>";
 
    document.getElementById("change-info").appendChild(base_statement_div);
+
+   
+   // Determine the class based on the contents of base_statement
+   let hexDivHTML = "";
+
+   if (base_statement.includes("improved")) {
+       hexDivHTML = '<div class = "row key-text"><div class = "key-hex positive large"><div class = "key-hex-label positive large"><i class = "fa-solid fa-arrow-up-long fa-3x" style = "padding-right: 12px"></i></div>';
+   } else if (base_statement.includes("no real change")) {
+       hexDivHTML = '<div class = "row key-text"><div class = "key-hex neutral large"><div class = "key-hex-label neutral large"><i class = "fa-solid fa-arrow-right-long fa-3x" style = "padding-right: 12px"></i></div>';
+   } else if (base_statement.includes("worsened")) {
+       hexDivHTML = '<div class = "row key-text"><div class = "key-hex negative large"><div class = "key-hex-label negative large"><i class = "fa-solid fa-arrow-down-long fa-3x" style = "padding-right: 10px"></i></div>';
+   } else if (base_statement.includes("insufficient")) {
+       hexDivHTML = '<div class = "row key-text"><div class = "key-hex insufficient large"><div class = "key-hex-label insufficient large"></div>';
+   }
+
+// Insert the div into a container with a known ID
+document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
+
 
    // Load/re-load a domain page if user clicks on hexagon while loop is still executing
    var clicked_hex = document.getElementById("clicked-hex");
