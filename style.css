@@ -658,6 +658,23 @@ footer {
     justify-content: center;
 }
 
+#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data {
+    padding: 10px;
+    font-size: 14pt;
+    background-color: #142062;
+    border: none;
+    color: #ffffff;
+    border-radius: 25px;
+    text-align: center;
+    display: block;
+    margin: 10px auto 0 auto;
+    width: auto;
+}
+
+#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover {
+    background-color: #69729B;
+}
+
 .canvas-container {
     height: 500px;
     min-width: 680px;
@@ -1288,7 +1305,8 @@ tr {
 
     #back-to-start, #skip-link, #top-container, #top-menu, #dashboard-title, #prototype, #search-box, #back-button, #button-left, #button-right, .button-row, 
     #loading-img, #loading-img4, #loading-img5, #loading-img-2, #cookie-banner, .chart-title, #top-menu-items, #footer-container, #search-bar, #nisra-logo-container, 
-    #flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #map-form, #date-display, #map-label-4, input#map-select-4.slider, #chart-link {
+    #flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #map-form, #date-display, #map-label-4, input#map-select-4.slider, #chart-link,
+    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data{
         display: none !important;
     }
 
