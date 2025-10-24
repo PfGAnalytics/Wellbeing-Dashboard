@@ -684,6 +684,44 @@ async function createLineChart(d, e) {
       }
    };
 
+ // Custom plugin for drawing middle polygon
+const cumulative_middle = {
+   id: "drawing_middle",
+   beforeDraw(chart, args, options) {
+      const { ctx } = chart;
+      ctx.save();
+
+      const chart_width = chart.chartArea.width;
+      const chart_height = chart.chartArea.height;
+      const space_at_top = chart.chartArea.top;
+      const space_at_bottom = chart.chartArea.bottom;
+      const space_at_left = chart.chartArea.left;
+      const space_at_right = chart.chartArea.right;
+
+      // Calculate start and end positions for top polygon
+      const top_startWidth = (base_position / (years.length - 1)) * chart_width + space_at_left;
+      const top_startHeight = (1 - (base_value / max_value)) * chart_height + space_at_top;
+      const top_endHeight = (1 - ((base_value + (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;
+
+      // Calculate start and end positions for bottom polygon
+      const bottom_endHeight = (1 - ((base_value - (ci_value * (years.length - base_position - 1))) / max_value)) * chart_height + space_at_top;
+
+      // Draw the middle yellow polygon
+      ctx.beginPath();
+      ctx.moveTo(top_startWidth, top_startHeight);
+      ctx.lineTo(space_at_right, top_endHeight);
+      ctx.lineTo(space_at_right, bottom_endHeight);
+      ctx.lineTo(top_startWidth, top_startHeight);
+
+      ctx.fillStyle = "#FFD70055"; // Yellow with transparency
+      ctx.strokeStyle = "#FFD700";
+      ctx.lineWidth = 1;
+      ctx.fill();
+      ctx.stroke();
+   }
+};
+
+
    // Function to count the number of decimal places present in a number
    Number.prototype.countDecimals = function () {
       if(Math.floor(this.valueOf()) === this.valueOf()) return 0;
@@ -892,7 +930,8 @@ async function createLineChart(d, e) {
             mode: "index"
          }
          },
-         plugins: [cumulative_top,
+         plugins: [cumulative_middle,
+                  cumulative_top,
                   cumulative_bottom]
    };
 
