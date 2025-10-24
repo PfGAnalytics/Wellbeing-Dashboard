@@ -1923,4 +1923,308 @@ const handleOnScroll = () => {
     }
 }
 
+// Script to download chart as an image
+
+    (function () {
+
+        function getChartCanvas() {
+            const canvas = document.querySelector('#line-chart-container canvas[id$="-canvas"]');
+            return canvas || null;
+        }
+
+        function getHeaderText() {
+            const titleEl = document.querySelector('.chart-title');
+            const titleText = titleEl ? titleEl.textContent.trim() : '';
+            return {
+                titleText, labelLines: [] 
+            };
+        }
+
+        function downloadChart(chartOrCanvas) {
+            if(!chartOrCanvas) return;
+
+            const src = chartOrCanvas.canvas ? chartOrCanvas : chartOrCanvas;
+            const width = src.width;
+            const height = src.height;
+
+            const topPadding = 80;
+            const bottomPadding = 15;
+
+            const out = document.createElement('canvas');
+            out.width = width;
+            out.height = height + topPadding + bottomPadding;
+            const ctx = out.getContext('2d');
+
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, out.width, out.height);
+
+            const sidePadding = 20;
+            const titleFont = 'bold 16px Arial, sans-serif';
+            const titleLH = 24;
+            const innerTopPad = 15;
+
+            const {
+                titleText
+            }
+            = getHeaderText();
+            let y = Math.max(innerTopPad, topPadding - titleLH - 5);
+            
+            if (titleText) {
+                ctx.fillStyle = 'black';
+                ctx.font = titleFont;
+                ctx.textBaseline = 'top';
+                
+                const textWidth = ctx.measureText(titleText).width;
+                const x = (out.width - textWidth) / 2;
+                
+                ctx.fillText(titleText, x, y);
+                y += titleLH;
+            }
+
+
+            ctx.drawImage(src, 0, topPadding);
+
+            const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
+            const link = document.createElement('a');
+            link.href = out.toDataURL('image/png');
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+        }
+
+        function wireDownloadButton() {
+            const btn = document.getElementById('download-chart');
+            if (!btn) return;
+
+            const dateDiv = document.querySelector('#line-chart-container .chart-date');
+            if (dateDiv && dateDiv.parentElement) {
+                let meta = dateDiv.parentElement.querySelector('.chart-meta');
+
+                if (!meta) {
+                    meta = document.createElement('div');
+                    meta.className = 'chart-meta';
+                    dateDiv.parentElement.insertBefore(meta, dateDiv.nextSibling);
+                }
+
+                if (dateDiv.parentElement !== meta)
+                    meta.appendChild(btn);
+            }
+
+            btn.onclick = function () { 
+                const canvas = getChartCanvas();
+                if (!canvas) return;
+                downloadChart(canvas);
+            };
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', wireDownloadButton);
+        } else {
+            wireDownloadButton();
+        }
+
+        window.downloadChart = downloadChart;
+        window._wireDownloadButton = wireDownloadButton;
+    })();
+
+    // Script to download chart data
+    
+(function () {
+    function getChartCanvas() {
+        return document.querySelector('#line-chart-container canvas[id$="-canvas"]') || null;
+    }
+
+    function downloadChartDataAsCSV(chart) {
+        if (!chart || !chart.data || !chart.data.labels || !chart.data.datasets) return;
+
+        const labels = chart.data.labels;
+        const datasets = chart.data.datasets;
+
+        let csv = 'Label,' + datasets.map(ds => ds.label || 'Series').join(',') + '\n';
+
+        labels.forEach((label, i) => {
+            const row = [label];
+            datasets.forEach(ds => {
+                row.push(ds.data[i] !== undefined ? ds.data[i] : '');
+            });
+            csv += row.join(',') + '\n';
+        });
+        
+        const titleEl = document.querySelector('.chart-title');
+        const titleText = titleEl ? titleEl.textContent.trim() : '';
+        const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'data') + '.csv';
+
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function wireDataDownloadButton() {
+        const btn = document.getElementById('download-data');
+        if (!btn) return;
+
+        btn.onclick = function () {
+            const canvas = getChartCanvas();
+            if (!canvas) return;
+
+            const chart = Chart.getChart(canvas);
+            if (!chart) return;
+
+            downloadChartDataAsCSV(chart);
+        };
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wireDataDownloadButton);
+    } else {
+        wireDataDownloadButton();
+    }
+
+    // Expose for manual triggering if needed
+    window.downloadChartDataAsCSV = downloadChartDataAsCSV;
+})();
+
+// Script to download map as an image
+
+  (function () {
+  function getCaptureRoot() {
+     return document.getElementById('map-container');
+  }
+
+  function getMapTitleText() {
+    const titleEl = document.getElementById('map-title');
+    return titleEl ? titleEl.textContent.trim() : ' ';
+  }
+
+  function downloadMapImage() {
+    const root = getCaptureRoot();
+    if (!root) {
+      console.warn('Map container not found');
+      return;
+    }
+
+    const titleText = getMapTitleText();
+
+    html2canvas(root, {
+      useCORS: true,
+      backgroundColor: null,
+      ignoreElements: el =>
+        el.id === 'download-map' ||
+        (el.classList && el.classList.contains('map-date')),
+      onclone: doc => {
+        const leg = doc.querySelector('#map-container, .map-legend');
+        if (leg) leg.style.display = 'block';
+      },
+      scale: window.devicePixelRatio
+    }).then(canvas => {
+      const out = document.createElement('canvas');
+      const ctx = out.getContext('2d');
+
+      const titleH = 40;
+      const pad = 30;
+      const midWidth = 1200;
+
+      out.width = Math.max(canvas.width + pad * 2, midWidth);
+      out.height = canvas.height + pad * 2 + titleH;
+
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, out.width, out.height);
+
+      if (titleText) {
+        ctx.fillStyle = '#000';
+        ctx.font = 'bold 16px Arial, sans-serif';
+        ctx.textBaseline = 'top';
+        const tw = ctx.measureText(titleText).width;
+        ctx.fillText(titleText, (out.width - tw) / 2, 10);
+      }
+
+      const dx = Math.round((out.width - canvas.width) / 2);
+      const dy = titleH + pad;
+      ctx.drawImage(canvas, dx, dy);
+
+      const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
+      const link = document.createElement('a');
+      link.download = fileName;
+      link.href = out.toDataURL('image/png');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
+
+  function wireDownloadMapButton() {
+    const btn = document.getElementById('download-map');
+    if (!btn) return;
+    btn.onclick = downloadMapImage;
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireDownloadMapButton);
+  } else {
+    wireDownloadMapButton();
+  }
+})();
+
+// Script to download map data
+
+(function () {
+  function downloadCurrentMapData() {
+    const result = window.latestMapResult;
+    const data_by_year = window.latestMapDataByYear;
+
+    if (!result || !data_by_year) {
+      console.warn('Map data not available yet');
+      return;
+    }
+
+    const groups = Object.values(result.dimension)[2].category.index;
+    const groupLabels = Object.values(result.dimension)[2].category.label;
+    const years = Object.keys(data_by_year);
+
+    let csv = ['Year', 'Geography', 'Value'].join(',') + '\n';
+
+    years.forEach(year => {
+      const values = data_by_year[year];
+      for (let i = 0; i < groups.length; i++) {
+        const label = groupLabels[groups[i]];
+        const value = values[i];
+        if (value !== null && value !== 'N/A') {
+          csv += `"${year}","${label}","${value}"\n`;
+        }
+      }
+    });
+
+    const titleText = document.getElementById('map-title')?.textContent.trim() || 'map-data';
+
+    const cleanedTitle = titleText.toLowerCase().replaceAll(' ', '-').replace(/[\(\)]/g, '').replace(/(?:-\d{4}(?:[-_/]\d{2})?)+/g, '').replace(/-+$/, '').trim();
+    const fileName = cleanedTitle + '.csv';
+
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function wireDownloadMapDataButton() {
+    const btn = document.getElementById('download-map-data');
+    if (!btn) return;
+    btn.onclick = downloadCurrentMapData;
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireDownloadMapDataButton);
+  } else {
+    wireDownloadMapDataButton();
+  }
+})();
+
 window.onscroll = handleOnScroll;

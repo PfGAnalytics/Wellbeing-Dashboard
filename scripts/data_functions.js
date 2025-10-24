@@ -1434,6 +1434,108 @@ async function getEqualityGroups(d, e) {
          pop_canvas.id = "pop-canvas";
          pop_up_container.appendChild(pop_canvas);
 
+         // Create a download button to download pop up chart
+         const download_btn = document.createElement("button");
+         download_btn.id = "download-pop-up-chart";
+         download_btn.textContent = "Download chart as image";
+
+         download_btn.onclick = function () {
+            const canvas = document.getElementById("pop-canvas");
+            if (!canvas) return;
+            
+            const chartInstance = Chart.getChart(canvas);
+            if (!chartInstance) return;
+            
+            // Temporarily remove legend title
+            const originalLegendTitle = chartInstance.options.plugins.legend.title.text;
+            chartInstance.options.plugins.legend.title.text = '';
+            chartInstance.update();
+            
+            requestAnimationFrame(() => {
+               const titleEl = document.getElementById("pop-up-title");
+               const titleText = titleEl ? titleEl.textContent.trim() : '';
+               const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
+               
+               // Use offsetWidth/offsetHeight to capture full rendered chart
+               const chartCanvas = chartInstance.canvas;
+               const renderedWidth = chartCanvas.offsetWidth;
+               const renderedHeight = chartCanvas.offsetHeight;
+               
+               const outCanvas = document.createElement("canvas");
+               outCanvas.width = renderedWidth;
+               outCanvas.height = renderedHeight + 50;
+               const ctx = outCanvas.getContext("2d");
+               
+               ctx.fillStyle = "#fff";
+               ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
+               
+               if (titleText) {
+                  ctx.font = "bold 18px Arial";
+                  ctx.fillStyle = "#000";
+                  ctx.textAlign = "center";
+                  ctx.fillText(titleText, outCanvas.width / 2, 20);
+               }
+               
+               // Draw chart with full rendered size
+               ctx.drawImage(chartCanvas, 0, 50, renderedWidth, renderedHeight);
+               
+               // Restore legend title
+               chartInstance.options.plugins.legend.title.text = originalLegendTitle;
+               chartInstance.update();
+               
+               const link = document.createElement("a");
+               link.download = fileName;
+               link.href = outCanvas.toDataURL("image/png");
+               document.body.appendChild(link);
+               link.click();
+               document.body.removeChild(link);
+            });
+         };
+
+         // Append the button to the pop-up chart
+         pop_up_chart.appendChild(download_btn);
+
+         // Create a download data button for pop-up chart
+         const download_data_btn = document.createElement("button");
+         download_data_btn.id = "download-pop-up-data";
+         download_data_btn.textContent = "Download data";
+         
+         download_data_btn.onclick = function () {
+            const canvas = document.getElementById("pop-canvas");
+            if (!canvas) return;
+            
+            const chartInstance = Chart.getChart(canvas);
+            if (!chartInstance || !chartInstance.data || !chartInstance.data.labels || !chartInstance.data.datasets) return;
+            
+            const labels = chartInstance.data.labels;
+            const datasets = chartInstance.data.datasets;
+            
+            let csv = 'Label,' + datasets.map(ds => ds.label || 'Series').join(',') + '\n';
+            
+            labels.forEach((label, i) => {
+               const row = [label];
+               datasets.forEach(ds => {
+                  row.push(ds.data[i] !== undefined ? ds.data[i] : '');
+               });
+               csv += row.join(',') + '\n';
+            });
+            
+            const titleEl = document.getElementById("pop-up-title");
+            const titleText = titleEl ? titleEl.textContent.trim() : '';
+            const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'data') + '.csv';
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+         };
+         
+         // Append the button to the pop-up chart
+         pop_up_chart.appendChild(download_data_btn);
+
          // Container for footnotes:
          note = document.createElement("div");
          note.style.marginLeft = "25px";
@@ -1925,6 +2027,10 @@ async function drawMap() {
          maxZoom: 19,
          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(map); // Add a background map   
+
+      window.latestMapResult = result;
+      window.latestMapDataByYear = data_by_year;
+
 
       function mapForYear () {
 
