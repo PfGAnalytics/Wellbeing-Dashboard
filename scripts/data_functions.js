@@ -1063,6 +1063,24 @@ const cumulative_middle = {
 
    document.getElementById("change-info").appendChild(base_statement_div);
 
+   
+   // Determine the class based on the contents of base_statement
+   let hexDivHTML = "";
+
+   if (base_statement.includes("improved")) {
+       hexDivHTML = '<div class = "row key-text"><div class = "key-hex positive large"><div class = "key-hex-label positive large"><i class = "fa-solid fa-arrow-up-long fa-3x" style = "padding-right: 12px"></i></div>';
+   } else if (base_statement.includes("no real change")) {
+       hexDivHTML = '<div class = "row key-text"><div class = "key-hex neutral large"><div class = "key-hex-label neutral large"><i class = "fa-solid fa-arrow-right-long fa-3x" style = "padding-right: 12px"></i></div>';
+   } else if (base_statement.includes("worsened")) {
+       hexDivHTML = '<div class = "row key-text"><div class = "key-hex negative large"><div class = "key-hex-label negative large"><i class = "fa-solid fa-arrow-down-long fa-3x" style = "padding-right: 10px"></i></div>';
+   } else if (base_statement.includes("insufficient")) {
+       hexDivHTML = '<div class = "row key-text"><div class = "key-hex insufficient large"><div class = "key-hex-label insufficient large"></div>';
+   }
+
+// Insert the div into a container with a known ID
+document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
+
+
    // Load/re-load a domain page if user clicks on hexagon while loop is still executing
    var clicked_hex = document.getElementById("clicked-hex");
    if (clicked_hex.textContent != "") {
