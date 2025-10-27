@@ -58,8 +58,8 @@ var domain_count = document.getElementsByClassName("domain-count");
 var box_containers = document.getElementsByClassName("box-container");
 var further_expander = document.getElementById("further-expander");
 var user_guide_link = document.getElementsByClassName("user-guide-link");
-var help_scrn = document.getElementById("help-scrn");
-var help_btn = document.getElementById("help-btn");
+var about_scrn = document.getElementById("about-scrn");
+var about_btn = document.getElementById("about-btn");
 var chart_link = document.getElementById("chart-link");
 var further_infos = document.getElementsByClassName("further-info-text");
 var hex_rows = document.getElementsByClassName("hex-row");
@@ -502,7 +502,7 @@ if (currentURL.includes("tab=")) {
 
     title.textContent += " -" + document.getElementsByClassName("selected-item")[0].innerText;
 
-    if (currentTab == "help") {
+    if (currentTab == "about") {
         subpopTable();
     }
 
@@ -1221,11 +1221,11 @@ further_expander_map.onclick = function() {
 }
 
 
-// Any link on the dashboard that directs the user to the Help Screen
+// Any link on the dashboard that directs the user to the About Screen
 for (let i = 0; i < user_guide_link.length; i ++) {
 
     user_guide_link[i].onclick = function() {
-        help_btn.click(); // Have it simulate clicking the help screen button in the menu
+        about_btn.click(); // Have it simulate clicking the about screen button in the menu
     }    
 
 }
@@ -1320,7 +1320,7 @@ for (let i = 0; i < domains.length; i ++) {
 
 }
 
-// Function to create sub population table on Notes page
+// Function to create sub population table on About page
 async function subpopTable() {
 
     let currentDate = new Date().toISOString().split('T')[0];    

@@ -29,7 +29,7 @@
     - [How do we move indicators between domains?](#how-do-we-move-indicators-between-domains)
     - [How do we add a new map?](#how-do-we-add-a-new-map)
     - [How do we change improving/worsening on charts?](#how-do-we-change-improvingworsening-on-charts)
-    - [How do we add a new page, e.g. notes?](#how-do-we-add-a-new-page-eg-notes)
+    - [How do we add a new page, e.g. about?](#how-do-we-add-a-new-page-eg-about)
     - [How do we hide pages?](#how-do-we-hide-pages)
     - [How do we change branding, logos, etc.?](#how-do-we-change-branding-logos-etc)
     - [How do we change colours of chart, maps, boxes?](#how-do-we-change-colours-of-chart-maps-boxes)
@@ -255,7 +255,7 @@ The properties `base_year`, `ci` and `improvement` for each indicator found in [
    * If a value that is _higher than the year before_ would be seen as an improvement then enter "increasing".
    * If a value that is _lower than the year before_ would be seen as an improvement then enter "decreasing". 
 
-### How do we add a new page, e.g. notes?
+### How do we add a new page, e.g. about?
 There are two changes that need to be made in the [`index.html`](index.html) script to add a page:
 
  1. Inside the `<div>` element with the id `top-container` there is a `<form>` element with the id `top-menu-items`:
@@ -265,7 +265,7 @@ There are two changes that need to be made in the [`index.html`](index.html) scr
       <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
       <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
       <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
-      <button id = "help-btn" class = "top-menu-item" name = "tab" value = "help"><i class="fa-regular fa-address-book"></i></i> Notes</button>
+      <button id = "about-btn" class = "top-menu-item" name = "tab" value = "about"><i class="fa-regular fa-circle-question"></i></i> About</button>
     </form>
     ```
 
