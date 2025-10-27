@@ -1385,7 +1385,7 @@ async function getEqualityGroups(d, e) {
          close_pop_up = document.createElement("div");      // Div for "X" close button in top corner of pop-up
          close_pop_up.id = "close-pop-up";                  // Give it an id
          close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";      // Position it 30 pixels from end of box
-         close_pop_up.innerHTML = '<i class="fa-solid fa-xmark"></i>';        // Place an X icon in box
+         close_pop_up.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';        // Place an X icon in box
          close_pop_up.tabIndex = "0";
 
          close_pop_up.onclick = function () {      // When close button is clicked:
@@ -1394,6 +1394,22 @@ async function getEqualityGroups(d, e) {
          }
 
          pop_up_chart.appendChild(close_pop_up);   // Insert close button into document
+
+         // Back button returns to indicator page when pop up chart is open
+         history.pushState({ base: true }, "", location.href);
+         history.pushState({ popupOpen: true }, "", "#popup");
+
+         window.addEventListener("popstate", function (event) {
+            if (event.state && event.state.base) {
+               // Close the pop-up instead of navigating back
+               if (main_container.contains(pop_up_chart)) {
+                  indicator_scrn.style.filter = "opacity(100%)";
+                  main_container.removeChild(pop_up_chart);
+               }
+               // Prevent further back navigation into popup
+               history.replaceState(null, "", location.pathname);
+            }
+         });
 
          pop_up_title = document.createElement("div");      // Insert a div for chart title
          pop_up_title.id = "pop-up-title";                  // Give it id
