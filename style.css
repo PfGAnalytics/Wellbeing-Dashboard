@@ -1122,9 +1122,25 @@ input:focus-visible {
   .btn {
     color: #ffffff
   }
+  
+  .btn:hover {
+    color: #ffffff;
+  }
+
+  .btn:focus {
+    box-shadow: none;
+  }
+
+  #search-text:focus {
+    outline: none;
+  }
+  
+  #search-text {
+    font-size: 14pt;
+  }
 
   #search-box {
-    border: 2px solid #ffffff;
+    border: 3px solid #ffffff;
     border-radius: 0px;
   }
 
