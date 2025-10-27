@@ -1776,7 +1776,19 @@ async function getEqualityGroups(d, e) {
                legend: {
                   title: {
                      display: true,
-                     text: "Click legend item to hide/show series in chart"
+                     text: "Click legend item to hide/show series in chart",
+                     color: "#212529",
+                     font: {
+                        family: "Arial, Helvetica, sans-serif",
+                        size: 18
+                     }
+                  },
+                  labels: {
+                     color: "#212529",
+                      font: {
+                        family: "Arial, Helvetica, sans-serif",
+                        size: 14
+                     }
                   }
                }
               }
