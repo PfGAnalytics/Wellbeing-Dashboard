@@ -1045,8 +1045,8 @@ var domains_data = {
          },
          "Trust in the media": {
             importance: "Integrity of the media is important in ensuring that people can access reliable information about matters of public interest that impact them. Trust in the media contributes to democratic wellbeing which can impact directly on personal wellbeing.",
-            base_year: "2019",
-            ci: 3,
+            base_year: "2020",
+            ci: 3.9,
             data: {
                NI: "INDTRUSTMEDIANI",
                AA: "",
@@ -1055,16 +1055,16 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "",
-               no_change: "This commentary is a placeholder.",
+               improved: "This commentary is a placeholder.",
+               no_change: "However, trust in the media was lower in 2024, than in 2022 and 2023.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Trust in the NI Assembly": {
             importance: "Trust in elected representatives is central to a functioning, democratic society.  Lack of trust in elected representatives can discourage people from democratic participation and people can feel as though they do not have a voice in decisions that affect them.  This in turn can influence wellbeing.",
-            base_year: "2019",
-            ci: 3,
+            base_year: "2020",
+            ci: 3.8,
             data: {
                NI: "INDTRUSTASMBNI",
                AA: "",
@@ -1074,7 +1074,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "However, the level of trust in the NI Assembly was higher in 2020 and 2021, compared to 2019, 2022 and 2023.",
+               no_change: "However, trust in the NI Assembly was higher in 2024 than in 2022 and 2023.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
