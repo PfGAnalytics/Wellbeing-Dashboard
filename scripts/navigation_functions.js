@@ -830,6 +830,8 @@ function autocomplete(inp, arr) {
                 /*close the list of autocompleted values,
                 (or any other open lists of autocompleted values:*/
                 closeAllLists();
+                search_btn.click();
+
             });
             a.appendChild(b);
         }
@@ -860,9 +862,6 @@ function autocomplete(inp, arr) {
         } else {
             search_text.value = "";
             search_text.placeholder = "Not a valid indicator name";
-            search_box.removeAttribute("style");
-            search_box.style.animation = "shake 0.5s";
-            search_box.style.animationIterationCount =  "one"; 
         }
 
         if (currentFocus > -1) {
@@ -872,6 +871,28 @@ function autocomplete(inp, arr) {
 
         }
     });
+
+    // Remove placeholder text when search box is clicked
+    search_text.addEventListener("focus", function () {
+  if (this.placeholder === "Search by indicator name") {
+    this.placeholder = "";
+  }
+});
+
+    // Restore placeholder text when clicking outside the search box
+    document.addEventListener("click", function (e) {
+        const isClickInside = search_text.contains(e.target);
+        
+    // Only reset placeholder if it's empty AND not already showing an error
+    if (
+        !isClickInside &&
+        search_text.value === "" &&
+        search_text.placeholder === ""
+    ) {
+        search_text.placeholder = "Search by indicator name";
+    }
+});
+
     function addActive(x) {
     /*a function to classify an item as "active":*/
     if (!x) return false;
@@ -1245,9 +1266,9 @@ search_btn.onclick = function () {
         // If indicator not found inform user inside search bar
         search_text.value = "";
         search_text.placeholder = "Not a valid indicator name";
-        search_box.removeAttribute("style");
+        search_box.style.animation = "none";
         search_box.style.animation = "shake 0.5s";
-        search_box.style.animationIterationCount =  "one";
+        void search_box.offsetWidth;
 
         
 
