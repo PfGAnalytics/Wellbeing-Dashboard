@@ -172,7 +172,14 @@ h3 {
     padding: 10px;
     border-radius: 25px;
     margin-left: 10px;
+    margin-bottom: 20px;
 }
+
+
+.hover-underline:hover {
+    text-decoration: underline;
+}
+
 
 .covid-box {
     background-color: #e8e8e8;
