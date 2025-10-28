@@ -768,7 +768,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Latest findings show the proportion of respondents who had been a victim of any NISCS crime in 2023/24 was 4.5%; the apparent increase from 3.8% in 2021/22  is not statistically significant.",
+               no_change: "Latest findings show the proportion of respondents who had been a victim of any NISCS crime in 2023/24 was 4.5%; the apparent increase from 3.8% in 2021/22 is not statistically significant.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
