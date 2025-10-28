@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
+          "index": ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
           "label": {
             "2014": "2014",
             "2015": "2015",
@@ -32,7 +32,8 @@
             "2020": "2020",
             "2021": "2021",
             "2022": "2022",
-            "2023": "2023"
+            "2023": "2023",
+            "2024": "2024"
           }
         },
         "label": "Year"
@@ -75,7 +76,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -105,15 +106,15 @@
       ]
     },
     "note": [
-      "[b]Trust in the NI Assembly\r\n\r\n[/b][b]How do we measure this?[/b] \r\nPercentage of the population aged 16+ who said they tend to trust the Northern Ireland Assembly, or trust it a great deal. For this indicator a higher figure is better. \r\n\r\n[b]Source[/b] \r\nPublic Awareness of and Trust in Official Statistics \r\n[url=https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos]https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nIn 2020, the data collection ran for an additional three months (October 2020 to March 2021) to achieve the required sample size. Data collection also changed from face-to-face to telephone interviewing for 2020 and 2021, with both data collection modes used from 2022. \r\n\r\n[b]Further information[/b] \r\n1. In 2019 and 2023, respondents were asked whether they trusted elected bodies, such as the NI Assembly or the UK Parliament as the NI Assembly was suspended at this time. \r\n2. The Public Awareness and Trust in Official Statistics survey only ran in ‘even’ years prior to 2019. Results are not available for 2018, due to an irreparable issue with the source data. \r\n3. The percentages for this indicator are estimated based on a sample of the population and so will have some uncertainty. As the sample size increases, the uncertainty decreases. When calculating the bounds for ‘improving’ and ‘worsening’ in the PfG indicator dashboard the sample sizes for the latest available year (2023) and the comparison year (2019) have been used. This means that we are 95% confident that the trend is ‘worsening’ or ‘improving’ compared to 2019 if the value for 2023 falls in these regions.\r\n4. Data for this indicator by age has not been provided as there was no significant difference between age groups in 2023. We have also removed the data for previous years as there is no consistent pattern by age."
+      "[b]Trust in the NI Assembly\r\n\r\n[/b][b]How do we measure this?[/b] \r\nPercentage of the population aged 16+ who said they tend to trust the Northern Ireland Assembly, or trust it a great deal. For this indicator a higher figure is better. \r\n\r\n[b]Source[/b] \r\nPublic Awareness of and Trust in Official Statistics \r\n[url=https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos]https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nIn 2020, the data collection ran for an additional three months (October 2020 to March 2021) to achieve the required sample size. Data collection also changed from face-to-face to telephone interviewing for 2020 and 2021, with both data collection modes used from 2022. \r\n\r\n[b]Further information[/b] \r\n1. In 2019 and 2023, respondents were asked whether they trusted elected bodies, such as the NI Assembly or the UK Parliament as the NI Assembly was suspended at this time. \r\n2. The Public Awareness and Trust in Official Statistics survey only ran in ‘even’ years prior to 2019. Results are not available for 2018, due to an irreparable issue with the source data. \r\n3. The percentages for this indicator are estimated based on a sample of the population and so will have some uncertainty. As the sample size increases, the uncertainty decreases. When calculating the bounds for ‘improving’ and ‘worsening’ in the PfG indicator dashboard the sample sizes for the latest available year (2024) and the comparison year (2020) have been used. This means that we are 95% confident that the trend is ‘worsening’ or ‘improving’ compared to 2020 if the value for 2024 falls in these regions."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 10, 1],
-    "updated": "2025-06-10T13:00:12",
-    "value": [33.6, null, 33.2, null, null, 22.2, 29.8, 30.4, 20.9, 23.7],
+    "size": [1, 11, 1],
+    "updated": "2025-10-28T9:30:00",
+    "value": [33.6, null, 33.2, null, null, 22.2, 29.8, 30.4, 20.9, 23.7, 29.9],
     "version": "2.0"
   },
   "id": {}
