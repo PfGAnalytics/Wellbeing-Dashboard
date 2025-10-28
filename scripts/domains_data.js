@@ -768,8 +768,8 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "Latest findings show the proportion of respondents who had been a victim of any NISCS crime in 2022/23 was 5.1%, a statistically significant increase from 3.8% in 2021/22.",
+               no_change: "Latest findings show the proportion of respondents who had been a victim of any NISCS crime in 2023/24 was 4.5%; the apparent increase from 3.8% in 2021/22  is not statistically significant.",
+               worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
@@ -804,7 +804,7 @@ var domains_data = {
            improvement: "decrease",
            telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Latest findings show the proportion, 7%, who felt very unsafe walking alone in their area after dark was similar to the 2021/22 figure of 6%.",
+               no_change: "Latest findings show the proportion, 5.7%, who felt very unsafe walking alone in their area after dark was the same as the 2021/22 figure, also 5.7%.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
            }
@@ -858,7 +858,7 @@ var domains_data = {
            improvement: "decrease",
            telling: {
               improved: "This commentary is a placeholder.",
-                no_change: "Latest findings show the apparent decrease from 5% (year of comparison) to 4% (latest findings) is not statistically significant.",
+                no_change: "Latest findings show the proportion, 5.2%, who felt very worried about becoming a victim of crime was similar to the 2021/22 figure, 4.9%.",
                 worsened: "This commentary is a placeholder.",
                 insufficient: ""
              }
