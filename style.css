@@ -1207,30 +1207,12 @@ input:focus-visible {
     box-shadow: 10px 10px 8px 2px #00000011;
   }
 
-  #pop-canvas {
-    display: flex;
-    padding: 0px;
-    margin: 0px;
-    max-height: 400px;
-  }
-
-  #pop-up-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 0px;
-    background-color: #ffffff !important;
-    max-width: 400px;
-    align-items: center;
-    margin-left: 400px;
-    margin-right: 400px;
-  }
-
 
   #pop-up-container {
     width: 80%;
-    flex: 0 1 200px;
-    min-height: 200px;
-    justify-content: center;
+    height: 553px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #close-pop-up {
@@ -1254,6 +1236,13 @@ input:focus-visible {
 
   #pop-up-title {
     text-align: center;
+  }
+
+  #pop-up-buttons {
+    display: flex;
+    background-color: #FFFFFF !important;
+    margin-left: 400px;
+    margin-right: 400px;
   }
 
   table, th, td {
