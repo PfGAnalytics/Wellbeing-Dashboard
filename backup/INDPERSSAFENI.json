@@ -21,15 +21,26 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "index": ["2006/07", "2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
           "label": {
+            "2006/07": "2006/07",
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
             "2016/17": "2016/17",
             "2017/18": "2017/18",
             "2018/19": "2018/19",
             "2019/20": "2019/20",
             "2020/21": "2020/21",
             "2021/22": "2021/22",
-            "2022/23": "2022/23"
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
           }
         },
         "label": "Financial year"
@@ -102,15 +113,15 @@
       ]
     },
     "note": [
-      "[b]Personal safety[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of people feeling very unsafe walking alone in their area after dark\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Safe Community Telephone Survey\r\n[url=https://www.justice-ni.gov.uk/publications/r-s-bulletin-findings-202223-northern-ireland-safe-community-telephone-survey]R & S Bulletin Findings from the 2022/23 Northern Ireland Safe Community Telephone Survey | Department of Justice (justice-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere was a change in survey mode from 2020/21 due to the pandemic and the method by which interviews were undertaken changed from face-to-face to telephone. This resulted in a break in the time series. The change reduced the sample size, particularly for 2020/21. Results for the three latest years are not directly comparable with previous sweeps.[b]\r\n\r\nFurther Information[/b]\r\n1. The Northern Ireland Safe Community Survey was previously known as the NI Crime Survey. Given the change in survey mode as a result of the pandemic, the survey years from 2020/21 are referenced as the Northern Ireland Safe Community Telephone Survey.\r\n2. Previously conducted on an ad hoc basis, the survey began operating on a continuous basis in January 2005.\r\n3. Results exclude don't knows and refusals."
+      "[b]Personal safety[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of people feeling very unsafe walking alone in their area after dark\r\n\r\n[b]Source[/b] \r\nNorthern Ireland Safe Community Telephone Survey \r\n[url=https://www.justice-ni.gov.uk/articles/findings-northern-ireland-safe-community-telephone-survey]https://www.justice-ni.gov.uk/articles/findings-northern-ireland-safe-community-telephone-survey[/url]\r\n\r\n[b]Impact of Covid-19[/b] \r\nThere was a change in survey mode from 2020/21 due to the pandemic and the method by which interviews were undertaken changed from face-to-face to telephone. This resulted in a break in the time series. Results for the four latest years, 2020/21 to 2023/24, are not directly comparable with previous sweeps. The change also reduced the sample size for the first two years, particularly in 2020/21. \r\n\r\n[b] Further Information[/b] \r\n1. The Northern Ireland Safe Community Survey was previously known as the NI Crime Survey. Given the change in survey mode as a result of the pandemic, the survey years from 2020/21 are referenced as the Northern Ireland Safe Community Telephone Survey. \r\n2. Previously conducted on an ad hoc basis, the survey began operating on a continuous basis in January 2005. \r\n3. Data is available prior to 2006/07, but due to the format used, it is not included here but can be found in the source publication. \r\n4. Results exclude don't knows and refusals."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 7, 1],
-    "updated": "2024-06-10T9:30:00",
-    "value": [5.7, 4.8, 7.1, 6.5, 5.6, 5.7, 6.8],
+    "size": [1, 18, 1],
+    "updated": "2025-10-29T9:30:00",
+    "value": [11, 11.7, 9.6, 9.6, 8.8, 8.1, 7.1, 7.2, 7.1, 6.6, 5.7, 4.8, 7.1, 6.5, 5.6, 5.7, 6.8, 5.7],
     "version": "2.0"
   },
   "id": {}
