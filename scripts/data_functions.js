@@ -1370,21 +1370,21 @@ async function getEqualityGroups(d, e) {
          pop_up_chart.style.backgroundColor = "#F2F2F2";       // Set its background colour
 
          // This will position the pop-up to always be immediately below the Indicator title
-         pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
+         // pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
 
          // Set the width of the pop-up box depending on screen size/type
-         if (window.innerWidth < 1200) {
-            pop_up_chart.style.width = window.innerWidth - 20 + "px";
-         } else {
-            pop_up_chart.style.width = "1190px";
-         }
+         // if (window.innerWidth < 1200) {
+         //    pop_up_chart.style.width = window.innerWidth - 20 + "px";
+         // } else {
+         //    pop_up_chart.style.width = "1190px";
+         // }
 
          // Add the pop-up box to the main page
          main_container.appendChild(pop_up_chart);
 
          close_pop_up = document.createElement("div");      // Div for "X" close button in top corner of pop-up
          close_pop_up.id = "close-pop-up";                  // Give it an id
-         close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";      // Position it 30 pixels from end of box
+         close_pop_up.style.marginLeft = null;     // Position it 30 pixels from end of box
          close_pop_up.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';        // Place an X icon in box
          close_pop_up.tabIndex = "0";
 

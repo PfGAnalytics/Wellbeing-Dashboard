@@ -1183,6 +1183,8 @@ input:focus-visible {
   }
 
   #pop-up-chart {
+    margin-top: 20px;
+    margin-right: 40px;
     padding-bottom: 15px;
     background-color: #ffffff;
     position: absolute;
@@ -1218,7 +1220,7 @@ input:focus-visible {
   }
 
   #pop-up-title {
-    margin-left: 25px;
+    text-align: center;
   }
 
   table, th, td {
