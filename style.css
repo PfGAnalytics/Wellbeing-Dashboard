@@ -1207,10 +1207,9 @@ input:focus-visible {
     box-shadow: 10px 10px 8px 2px #00000011;
   }
 
-
   #pop-up-container {
     width: 80%;
-    height: 553px;
+    height: 500px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
@@ -1243,6 +1242,17 @@ input:focus-visible {
     background-color: #FFFFFF !important;
     margin-left: 400px;
     margin-right: 400px;
+  }
+
+  .note-container {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+  .note-span {
+    font-weight: normal;
+    font-size: 12pt;
+    color: #142062;
   }
 
   table, th, td {

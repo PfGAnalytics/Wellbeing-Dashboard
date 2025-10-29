@@ -1374,14 +1374,14 @@ async function getEqualityGroups(d, e) {
          pop_up_buttons.style.backgroundColor = "#F2F2F2";       // Set its background colour
 
          // This will position the pop-up to always be immediately below the Indicator title
-         // pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
+         pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
 
          // Set the width of the pop-up box depending on screen size/type
-         // if (window.innerWidth < 1200) {
-         //    pop_up_chart.style.width = window.innerWidth - 20 + "px";
-         // } else {
-         //    pop_up_chart.style.width = "1190px";
-         // }
+         if (window.innerWidth < 1200) {
+            pop_up_chart.style.width = window.innerWidth - 20 + "px";
+         } else {
+            pop_up_chart.style.width = "1190px";
+         }
 
          // Add the pop-up box to the main page
          main_container.appendChild(pop_up_chart);
@@ -1560,8 +1560,7 @@ async function getEqualityGroups(d, e) {
 
          // Container for footnotes:
          note = document.createElement("div");
-         note.style.marginLeft = "25px";
-         note.style.marginRight = "25px";
+         note.classList.add("note-container");
          pop_up_chart.appendChild(note);
 
          // Plot the bar chart:
@@ -1867,10 +1866,10 @@ async function getEqualityGroups(d, e) {
             
             notes = notes.filter(function (n) {return n != "" & n != " "})
 
-            if (notes.length == 1) {
-               note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Note:</p>";
+            if (notes.length === 1) {
+               note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Note: <span class='note-span'><i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand</span></p>`;
             } else if (notes.length > 1) {
-               note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Notes:</p>";
+               note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Notes: <span class='note-span'><i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand</span></p>`;
             }
 
             let notes_list = document.createElement("ol");
@@ -1887,6 +1886,19 @@ async function getEqualityGroups(d, e) {
             }
 
             note.appendChild(notes_list);
+
+            // Hide the notes list initially
+            notes_list.style.display = "none";
+            
+            // Add toggle functionality to the span
+            toggleSpan = note.querySelector(".note-span");
+            toggleSpan.style.cursor = "pointer";
+            
+            toggleSpan.addEventListener("click", function () {
+               isVisible = notes_list.style.display === "block";
+               notes_list.style.display = isVisible ? "none" : "block";
+               toggleSpan.innerHTML = isVisible ? `<i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand`: `<i style="color: #142062" class="fa-solid fa-minus"></i> Click to collapse`;
+            });
          };           
   
      }
