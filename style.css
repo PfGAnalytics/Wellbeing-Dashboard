@@ -22,21 +22,35 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #142062 !important;
-    width: 100%
+    width: 100%;
+    flex-direction: column;
 }
 
 #top-menu {
     padding: 0px;
-    width: 1200px;
+    width: 100%;
     margin: 0px;
     align-items: center;
     justify-content: center;
+    display: flex;
+    flex-direction: row;
 }
+
+
+#top-menu-items {
+  width: 100%;
+  display: flex;
+  padding-bottom: 15px;
+  justify-content: center;
+  background-color: #142062;
+  padding-top: 10px;
+}
+
 
 #top-menu-exec-logo {
     width: 250px;
     padding-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     filter: brightness(0) invert(1);
 }
 
@@ -44,23 +58,17 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-}
+    gap: 20px;
+;}
 
 #top-menu-aig-logo {
-    height: 50px;
+    height: 60px;
 }
 
 #dashboard-title {
-    width: 300px;
+    width: 550px;
     padding-left: 20px;
     display: flex;
-    justify-content: center;
-}
-
-#top-menu-items {
-    margin-top: 10px;
-    width: 550px;
     justify-content: center;
 }
 
@@ -70,18 +78,23 @@ h1 {
 }
 
 .top-menu-item {
-    padding: 10px;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
     color: white;
     font-size: 16pt;
     font-weight: bold;
     cursor: pointer;
     border-radius: 25px;
     border-width: 0px;
-    background-color: #142062;
+    background-color: 	#142062;
     border: 2px solid #FFFFFF;
+    flex: 1 1 50px;
+    align-content: center;
+    justify-content: center;
+    max-width: 350px;
 }
+
+
 
 .top-menu-item:hover {
     background-color: #ffffff55;
@@ -1139,6 +1152,7 @@ input:focus-visible {
     margin-top: 10px;
     padding-bottom: 5px;
     margin-bottom: 5px;
+    padding-right: 20px;
   }
 
   .btn {
@@ -1163,7 +1177,7 @@ input:focus-visible {
 
   #search-box {
     border: 3px solid #ffffff;
-    border-radius: 0px;
+    border-radius: 25px;
   }
 
   #framework-container, #subpop-container {

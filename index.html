@@ -49,12 +49,6 @@
             <img id = "top-menu-exec-logo" src = "img/Northern_Ireland_Executive_logo.svg" alt = "Northern Ireland Executive logo">
             <div id = "dashboard-title"><h1>PfG Wellbeing Framework</h1></div>
             <div role = "navigation">
-                <form id = "top-menu-items" class = "row">
-                    <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
-                    <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
-                    <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
-                    <button id = "about-btn" class = "top-menu-item" name = "tab" value = "about"><i class="fa-regular fa-circle-question"></i> About</button>
-                </form>
                 <div class = "row search-row">
                 <form id = "search-bar" autocomplete = "off">
                     <div id = "search-box">
@@ -68,7 +62,15 @@
             </div>
         </div>
         </div>
+        <form id = "top-menu-items">
+            <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
+            <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 25px;"> Overall</button>
+            <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 30px;"> Maps</button>
+            <button id = "about-btn" class = "top-menu-item" name = "tab" value = "about"><i class="fa-regular fa-circle-question"></i> About</button>
+        </form>
     </div>    
+
+    
 
     <div class= "button-row" style = "display: none;">
         <form id = "back-button-container" class = "row">
