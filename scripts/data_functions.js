@@ -1369,6 +1369,10 @@ async function getEqualityGroups(d, e) {
          pop_up_chart.id = "pop-up-chart";                     // Give it a class
          pop_up_chart.style.backgroundColor = "#F2F2F2";       // Set its background colour
 
+         pop_up_buttons = document.createElement("div");         // Create a div to hold the pop-up
+         pop_up_buttons.id = "pop-up-buttons";                     // Give it a class
+         pop_up_buttons.style.backgroundColor = "#F2F2F2";       // Set its background colour
+
          // This will position the pop-up to always be immediately below the Indicator title
          pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
 
@@ -1509,7 +1513,7 @@ async function getEqualityGroups(d, e) {
          };
 
          // Append the button to the pop-up chart
-         pop_up_chart.appendChild(download_btn);
+         pop_up_buttons.appendChild(download_btn);
 
          // Create a download data button for pop-up chart
          const download_data_btn = document.createElement("button");
@@ -1550,7 +1554,9 @@ async function getEqualityGroups(d, e) {
          };
          
          // Append the button to the pop-up chart
-         pop_up_chart.appendChild(download_data_btn);
+         pop_up_buttons.appendChild(download_data_btn);
+
+         pop_up_chart.appendChild(pop_up_buttons);
 
          // Container for footnotes:
          note = document.createElement("div");
