@@ -9,6 +9,7 @@ var domains_title = document.getElementById("domains-title");
 var domain_info = document.getElementById("domain-info");
 var clicked_hex = document.getElementById("clicked-hex");
 var domain_name_text = document.getElementById("domain-name");
+var hex_count_container = document.getElementById("hex-class-count");
 var click_to_see = document.getElementById("click-to-see");
 var clicked_desc = document.getElementById("clicked-desc");
 var indicator_hexes = document.getElementById("indicator-hexes");
@@ -288,7 +289,31 @@ function generateHexagons (d) {
         }
     }
 
+
+    countHexagonClasses()
 }
+
+function countHexagonClasses() {
+    const counts = {
+        positive: document.querySelectorAll('.ind-hex.positive').length,
+        negative: document.querySelectorAll('.ind-hex.negative').length,
+        insufficient: document.querySelectorAll('.ind-hex.insufficient').length,
+        neutral: document.querySelectorAll('.ind-hex.neutral').length
+    };
+
+
+    // Assign counts to HTML elements by ID
+    document.getElementById('count-positive').textContent = counts.positive;
+    document.getElementById('count-negative').textContent = counts.negative;
+    document.getElementById('count-insufficient').textContent = counts.insufficient;
+    document.getElementById('count-neutral').textContent = counts.neutral;
+
+    
+    return counts 
+
+}
+
+
 
 // This next loop will go through all the hexagons on the Domains screen and functionality for clicking on each Domain
 hexagons = domains_grid_container.getElementsByClassName("hex-inner");
@@ -538,6 +563,7 @@ if (currentURL.includes("?domain=")) {
     domain_toggle.style.display = "none";
     domains_intro.style.display = "none";       // Hide the "domains-intro" div
     indicator_intro.style.display = "block";    // Show the "indicator-intro" div
+    hex_count_container.style.display = "block";
 
     var domain_name = lookUpDomain;    // Obtain domain name from hexagon text
 
