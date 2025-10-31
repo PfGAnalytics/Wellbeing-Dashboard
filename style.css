@@ -715,8 +715,7 @@ footer {
     justify-content: center;
 }
 
-#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data,
-#toggle-chart-type {
+#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data {
     padding: 10px;
     font-size: 14pt;
     background-color: #142062;
@@ -729,9 +728,60 @@ footer {
     width: auto;
 }
 
-#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover,
-#toggle-chart-type:hover {
+#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover {
     background-color: #69729B;
+}
+
+.switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 10px auto 20px auto;
+  height: 40px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.chart-slider {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  border-radius: 34px;
+  background: #142062;
+  transition: background-color 0.4s;
+  cursor: pointer;
+}
+
+.chart-slider:hover, input:checked + .chart-slider:hover {
+  background-color: #69729B;
+}
+
+.chart-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #ffffff;
+  transition: transform 0.4s;
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+input:checked + .chart-slider:before {
+  transform: translateX(26px);
+}
+
+.switch-label {
+  margin-left: 10px;
+  font-size: 14pt;
+  color: #142062;
 }
 
 .canvas-container {
@@ -1243,6 +1293,9 @@ input:focus-visible {
     display: flex;
     background-color: #FFFFFF !important;
     margin-bottom: 20px;
+    gap: 10px; 
+    justify-content: center;
+    align-items: center;
 }
 
   .note-container {
@@ -1421,7 +1474,7 @@ tr {
     #back-to-start, #skip-link, #top-container, #top-menu, #dashboard-title, #prototype, #search-box, #back-button, #button-left, #button-right, .button-row, 
     #loading-img, #loading-img4, #loading-img5, #loading-img-2, #cookie-banner, .chart-title, #top-menu-items, #footer-container, #search-bar, #nisra-logo-container, 
     #flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #map-form, #date-display, #map-label-4, input#map-select-4.slider, #chart-link,
-    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data, #toggle-chart-type {
+    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data, #toggle-chart-type, .chart-slider, .switch-label {
         display: none !important;
     }
 
