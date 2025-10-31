@@ -907,7 +907,7 @@ var domains_data = {
          },
          "Volunteering": {
             importance: "This indicator provides the proportion of adults in Northern Ireland who volunteer, providing a measure of civic engagement.",
-            base_year: 2023/24,
+            base_year: "2023/24",
             ci: 2,
             data: {
                NI: "",
