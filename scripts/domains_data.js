@@ -907,7 +907,7 @@ var domains_data = {
          },
          "Volunteering": {
             importance: "This indicator provides the proportion of adults in Northern Ireland who volunteer, providing a measure of civic engagement.",
-            base_year: null,
+            base_year: 2023/24,
             ci: 2,
             data: {
                NI: "",
@@ -918,9 +918,9 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "Although the overall estimate for volunteering in 2024/25 has not changed, consistent gaps continue to exist across key groups. These include differences between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and between people with dependants and those without dependants. Of the 11 LGDs, Fermanagh and Omagh and Lisburn and Castlereagh had the highest proportion of adults volunteering in 2024/25.",
                worsened: "This commentary is a placeholder.",
-               insufficient: " Volunteering is defined as “the commitment of time and energy, for the benefit of society and the community, the environment, or individuals outside (or in addition to) one's immediate family. It is unpaid and undertaken freely and by choice”. New questions on volunteering were introduced in 2023/24 to measure participation of adults in both formal and informal volunteering. The questions are now more similar to those used in the rest of the UK. As a result of the change in questions it is not possible to compare figures for 2023/24 with those published for previous years."
+               insufficient: "This commentary is a placeholder."
             }
          }
        }
