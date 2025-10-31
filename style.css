@@ -715,7 +715,8 @@ footer {
     justify-content: center;
 }
 
-#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data {
+#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data,
+#toggle-chart-type {
     padding: 10px;
     font-size: 14pt;
     background-color: #142062;
@@ -728,7 +729,8 @@ footer {
     width: auto;
 }
 
-#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover {
+#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover,
+#toggle-chart-type:hover {
     background-color: #69729B;
 }
 
@@ -1240,9 +1242,8 @@ input:focus-visible {
   #pop-up-buttons {
     display: flex;
     background-color: #FFFFFF !important;
-    margin-left: 400px;
-    margin-right: 400px;
-  }
+    margin-bottom: 20px;
+}
 
   .note-container {
     margin-left: 25px;
@@ -1420,7 +1421,7 @@ tr {
     #back-to-start, #skip-link, #top-container, #top-menu, #dashboard-title, #prototype, #search-box, #back-button, #button-left, #button-right, .button-row, 
     #loading-img, #loading-img4, #loading-img5, #loading-img-2, #cookie-banner, .chart-title, #top-menu-items, #footer-container, #search-bar, #nisra-logo-container, 
     #flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #map-form, #date-display, #map-label-4, input#map-select-4.slider, #chart-link,
-    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data{
+    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data, #toggle-chart-type {
         display: none !important;
     }
 
@@ -1437,13 +1438,15 @@ tr {
         font-size: 14pt !important;
     }
 
-    #further-expander span, #further-expander i.fa-solid, #further-expander-map span, #further-expander-map i.fa-solid {
+    #further-expander span, #further-expander i.fa-solid, #further-expander-map span, #further-expander-map i.fa-solid,
+    .note-container .note-span, .note-container .fa-plus {
         display: none !important;
     }
 
-    #further-info, #further-info .further-info-text, #further-info-map, #further-info-map .further-info-map-text {
+    #further-info, #further-info .further-info-text, #further-info-map, #further-info-map .further-info-map-text, .note-container ol {
         max-height: none !important;
         visibility: visible !important;
+        display: block !important;
     }
     
     .further-info-text ol, .further-info-text ul, .further-info-map-text ol, .further-info-map-text ul  {
@@ -1455,11 +1458,11 @@ tr {
 
     #domains-grid-container, #improving-hexes.overall-container, #no-change-hexes.overall-container, #worsening-hexes.overall-container,
     #insufficient-hexes.overall-container, #map-container {
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-align: center !important;
-}
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
 
   #framework-container .hex-container {
     margin: 10px 20px 10px 0 !important;

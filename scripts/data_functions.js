@@ -1458,6 +1458,7 @@ async function getEqualityGroups(d, e) {
          const download_btn = document.createElement("button");
          download_btn.id = "download-pop-up-chart";
          download_btn.textContent = "Download chart as image";
+         download_btn.classList.add("btn", "btn-primary");
 
          download_btn.onclick = function () {
             const canvas = document.getElementById("pop-canvas");
@@ -1519,6 +1520,7 @@ async function getEqualityGroups(d, e) {
          const download_data_btn = document.createElement("button");
          download_data_btn.id = "download-pop-up-data";
          download_data_btn.textContent = "Download data";
+         download_data_btn.classList.add("btn", "btn-primary");
          
          download_data_btn.onclick = function () {
             const canvas = document.getElementById("pop-canvas");
@@ -1747,6 +1749,13 @@ async function getEqualityGroups(d, e) {
             year = year + 1
          }
 
+         let chartInstance = null;
+
+         function buildChart(chartType) {
+            if (chartInstance) {
+               chartInstance.destroy();
+            }
+         
          // Construct data object for chart.js bar chart
          var data = {
             labels: years.slice(first_year),
@@ -1757,18 +1766,25 @@ async function getEqualityGroups(d, e) {
          colours = ["#3878c5", "#00205b", "#68a41e", "#732777", "#ce70d2", "#434700", "#a88f8f","#3b3b3b","#e64791", "#400b23"];
 
          for (let j = 0; j < Object.keys(values).length; j ++) {     // Loop through values and create each data series
-            data.datasets.push({
+            const dataset = {
                label: Object.keys(values)[j],
                data: values[Object.keys(values)[j]].slice(first_year),
-               backgroundColor: [
-                  colours[j % colours.length]
-               ]
-            })
+            };
+            
+            if (chartType === 'bar') {
+               dataset.backgroundColor = colours[j % colours.length];
+            } else if (chartType === 'line') {
+               dataset.borderColor = colours[j % colours.length];
+               dataset.pointBackgroundColor = colours[j % colours.length];
+               dataset.fill = false
+            }
+
+            data.datasets.push(dataset)
          }
 
          // Chart configuration for chart.js
          const chart_config = {
-            type: 'bar',
+            type: chartType,
             data: data,
             options: {
                responsive: true,                   //  Allow resizing of canvas
@@ -1809,14 +1825,35 @@ async function getEqualityGroups(d, e) {
                       font: {
                         family: "Arial, Helvetica, sans-serif",
                         size: 14
-                     }
+                     },
+                     usePointStyle: chartType === 'line',
+                     pointStyle: chartType === 'line' ? 'circle' : 'rect'
                   }
                }
               }
             },
           };
 
-         new Chart(pop_canvas, chart_config);      // Plot chart
+         chartInstance = new Chart(pop_canvas, chart_config);      // Plot chart
+      }
+      
+      // Create a toggle button
+      const toggle_btn = document.createElement("button");
+      toggle_btn.id = "toggle-chart-type";
+      toggle_btn.textContent = "Switch to Line Graph"; 
+      toggle_btn.classList.add("btn", "btn-primary");
+
+      pop_up_buttons.appendChild(toggle_btn);
+      
+      let currentChartType = 'bar';
+      
+      toggle_btn.addEventListener("click", function () {
+         currentChartType = currentChartType === 'bar' ? 'line' : 'bar';
+         this.textContent = currentChartType === 'bar' ? 'Switch to Line Chart' : 'Switch to Bar Chart';
+         buildChart(currentChartType);
+      });
+      
+      buildChart(currentChartType);
          
          note_text = result.note[0].replaceAll("[b] ", "[b]").replaceAll("\n", "");         
          
