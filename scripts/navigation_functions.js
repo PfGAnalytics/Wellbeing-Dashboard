@@ -298,7 +298,8 @@ function countHexagonClasses() {
         positive: document.querySelectorAll('.ind-hex.positive').length,
         negative: document.querySelectorAll('.ind-hex.negative').length,
         insufficient: document.querySelectorAll('.ind-hex.insufficient').length,
-        neutral: document.querySelectorAll('.ind-hex.neutral').length
+        neutral: document.querySelectorAll('.ind-hex.neutral').length + Array.from(document.querySelectorAll('div.ind-hex')).filter(el => el.classList.length === 1).length
+
     };
 
 
@@ -1673,6 +1674,7 @@ browse_domains.onclick = function() {
     browse_grid.style.display = "flex";
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "none";
+    hex_count_container.style.display = "none";
 
 }
 
@@ -1685,6 +1687,7 @@ expand_all.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "block";
     by_mission_grid.style.display = "none";
+    hex_count_container.style.display = "block";
 
 }
 
@@ -1696,7 +1699,8 @@ by_mission.onclick = function() {
 
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
-    by_mission_grid.style.display = "block"
+    by_mission_grid.style.display = "block";
+    hex_count_container.style.display = "block";
 
 }
 
@@ -1717,7 +1721,7 @@ plotExpandedDomains = function() {
     '<div class = "row key-text"><div class = "key-hex negative"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long"></i></div></div>Worsening</div>' +
     '<div class = "row key-text"><div class = "key-hex insufficient"><div class = "key-hex-label insufficient"></div></div>Insufficient Data</div>'
 
-    expanded_domains.appendChild(key);
+    // expanded_domains.appendChild(key);
 
     for (let i = 0; i < domains.length; i ++) {
         
@@ -1820,6 +1824,7 @@ plotExpandedDomains = function() {
 
         }
 
+        countHexagonClasses()
 
     }
 
@@ -1835,7 +1840,7 @@ plotExpandedDomains = function() {
 
     key2.innerHTML = key.innerHTML;
 
-    by_mission_grid.appendChild(key2);
+    // by_mission_grid.appendChild(key2);
 
     var missions = ["People", "Planet", "Prosperity", "Peace"];
 
@@ -1944,6 +1949,8 @@ plotExpandedDomains = function() {
             document.getElementById("mission-" + i + "-row-" + row_num).appendChild(ind_hex_container);
 
         }
+
+        countHexagonClasses()
         
 
     }
