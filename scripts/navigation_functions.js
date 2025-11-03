@@ -2148,6 +2148,7 @@ const handleOnScroll = () => {
 
   (function () {
   function getCaptureRoot() {
+    
      return document.getElementById('map-container');
   }
 
@@ -2164,6 +2165,13 @@ const handleOnScroll = () => {
     }
 
     const titleText = getMapTitleText();
+
+    shiftGElements(140, 59.5);
+
+    const svg = document.querySelector('svg');
+
+    svg.setAttribute('height', 600);
+    
 
     html2canvas(root, {
       useCORS: true,
@@ -2210,6 +2218,10 @@ const handleOnScroll = () => {
       link.click();
       document.body.removeChild(link);
     });
+    
+    document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
+    svg.removeAttribute('height');
+
   }
 
   function wireDownloadMapButton() {
@@ -2220,6 +2232,7 @@ const handleOnScroll = () => {
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', wireDownloadMapButton);
+    
   } else {
     wireDownloadMapButton();
   }
@@ -2282,3 +2295,31 @@ const handleOnScroll = () => {
 })();
 
 window.onscroll = handleOnScroll;
+
+
+function shiftGElements(dx, dy) {
+  const gElements = document.querySelectorAll('g');
+  const svg = document.querySelector('#map-container svg');
+  gElements.forEach(g => {
+    const currentTransform = g.getAttribute('transform') || '';
+    const translateRegex = /translate\(([^)]+)\)/;
+    const match = currentTransform.match(translateRegex);
+
+    let newTransform = `translate(${dx}, ${dy})`;
+
+    if (match) {
+      // If there's already a translate, add to it
+      const [x, y] = match[1].split(',').map(Number);
+      newTransform = `translate(${x + dx}, ${y + dy})`;
+      g.setAttribute('transform', currentTransform.replace(translateRegex, newTransform));
+    } else {
+      // No existing translate
+      g.setAttribute('transform', newTransform);
+    }
+  });
+
+    
+
+  
+}
+
