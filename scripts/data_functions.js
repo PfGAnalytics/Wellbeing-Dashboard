@@ -1838,18 +1838,31 @@ async function getEqualityGroups(d, e) {
       }
       
       // Create a toggle button
-      const toggle_btn = document.createElement("button");
-      toggle_btn.id = "toggle-chart-type";
-      toggle_btn.textContent = "Switch to Line Graph"; 
-      toggle_btn.classList.add("btn", "btn-primary");
+      const toggle_btn = document.createElement("label");
+      toggle_btn.classList.add("switch");
+
+      const switchInput = document.createElement("input");
+      switchInput.type = "checkbox";
+      switchInput.id = "toggle-chart-type";
+
+      const switchSlider = document.createElement("span");
+      switchSlider.classList.add("chart-slider");
+
+      const switchLabel = document.createElement("span");
+      switchLabel.classList.add("switch-label");
+      switchLabel.textContent = "Bar chart"; 
+
+      toggle_btn.appendChild(switchInput);
+      toggle_btn.appendChild(switchSlider);
+      toggle_btn.appendChild(switchLabel);
 
       pop_up_buttons.appendChild(toggle_btn);
       
       let currentChartType = 'bar';
-      
-      toggle_btn.addEventListener("click", function () {
-         currentChartType = currentChartType === 'bar' ? 'line' : 'bar';
-         this.textContent = currentChartType === 'bar' ? 'Switch to Line Chart' : 'Switch to Bar Chart';
+
+      switchInput.addEventListener("change", function() {
+         currentChartType = this.checked ? 'line' : 'bar';
+         switchLabel.textContent = this.checked ? 'Line chart' : 'Bar chart';
          buildChart(currentChartType);
       });
       
