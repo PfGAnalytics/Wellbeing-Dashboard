@@ -1221,16 +1221,32 @@ input:focus-visible {
 
   #search-text:focus {
     outline: none;
+    color: #142062;
   }
   
   #search-text {
     font-size: 14pt;
+    color: #142062;
   }
+
+  
+  #search-text::placeholder {
+  color: #142062;
+  font-weight: bold;
+  }
+
 
   #search-box {
     border: 3px solid #ffffff;
     border-radius: 25px;
+    background-color: #ffffff;
   }
+
+  
+  .fa-magnifying-glass {
+  color: #142062;
+  }
+
 
   #framework-container, #subpop-container {
     display: flex;
