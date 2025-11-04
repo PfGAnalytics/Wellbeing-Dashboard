@@ -510,11 +510,11 @@ padding-right: 10px;
 }
 
 .overall-label {
-    width: 160px;
+    width: 165px;
     margin-left: 15px;
     margin-right: 15px;
-    height: 86px;
-    font-size: 14pt;
+    height: 90px;
+    font-size: 15pt;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -525,7 +525,8 @@ padding-right: 10px;
 }
 
 .label-container {
-    margin-top: 20px;
+    align-self: flex-start;
+    margin-top: 40px;
 }
 
 #improving-label {
