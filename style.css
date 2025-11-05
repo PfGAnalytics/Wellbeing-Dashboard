@@ -242,6 +242,10 @@ h3 {
     
   }
 
+  #framework-container .hex, .hex-inner, .blue-label {
+    cursor: pointer;
+  }
+
   .mission-hex {
     height: 200px;
     width: 200px;

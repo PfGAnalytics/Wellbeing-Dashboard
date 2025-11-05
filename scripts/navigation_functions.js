@@ -209,6 +209,26 @@ function generateIndicatorPage(d, e) {
 
 }
 
+// Allows for navigation to domains page from 'about' tab
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.hex-inner, .blue-label').forEach(hex => {
+        hex.addEventListener('click', function() {
+            let domainName;
+            if (this.classList.contains('blue-label')) {
+                domainName = this.closest('.row').querySelector('.hex-inner').textContent.trim();
+            } else {
+                domainName = this.textContent.trim();
+            }
+
+            // Convert domain name to URL-friendly format (lowercase, replace spaces with +)
+            const domainParam = domainName.toLowerCase().replace(/\s+/g, '+');
+
+            // Navigate to the domains page with query string
+            window.location.href = '?domain=' + domainParam;
+        });
+    });
+});
+
 // This function generates a page when any of the hexagons on the Domains screen are clicked
 // "d" refers to the name of the Domain clicked
 function generateHexagons (d) {
@@ -1571,7 +1591,7 @@ for (let i = 0; i < key_hexes.length; i ++) {
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.style.filter = "opacity(50%)";
             }
-            for (let j = 0; j < no_change.length; j ++) {
+            for (let j = 0; j < insufficient.length; j ++) {
                 insufficient[j].parentElement.style.filter = "opacity(50%)";
             }
         } else if (hex_class == "negative") {
@@ -1581,7 +1601,7 @@ for (let i = 0; i < key_hexes.length; i ++) {
             for (let j = 0; j < no_change.length; j ++) {
                 no_change[j].parentElement.style.filter = "opacity(50%)";
             }
-            for (let j = 0; j < no_change.length; j ++) {
+            for (let j = 0; j < insufficient.length; j ++) {
                 insufficient[j].parentElement.style.filter = "opacity(50%)";
             }
         } else if (hex_class == "insufficient") {
@@ -1601,7 +1621,7 @@ for (let i = 0; i < key_hexes.length; i ++) {
             for (let j = 0; j < negative.length; j ++) {
                 negative[j].parentElement.style.filter = "opacity(50%)";
             }
-            for (let j = 0; j < no_change.length; j ++) {
+            for (let j = 0; j < insufficient.length; j ++) {
                 insufficient[j].parentElement.style.filter = "opacity(50%)";
             }
         }
@@ -1621,7 +1641,7 @@ for (let i = 0; i < key_hexes.length; i ++) {
                 no_change[j].parentElement.removeAttribute("style");
             }
 
-            for (let j = 0; j < no_change.length; j ++) {
+            for (let j = 0; j < insufficient.length; j ++) {
                 insufficient[j].parentElement.removeAttribute("style");
             }
         } else if (hex_class == "negative") {
@@ -1633,7 +1653,7 @@ for (let i = 0; i < key_hexes.length; i ++) {
                 no_change[j].parentElement.removeAttribute("style");
             }
 
-            for (let j = 0; j < no_change.length; j ++) {
+            for (let j = 0; j < insufficient.length; j ++) {
                 insufficient[j].parentElement.removeAttribute("style");
             }
         } else if (hex_class == "insufficient") {
@@ -1657,7 +1677,7 @@ for (let i = 0; i < key_hexes.length; i ++) {
                 negative[j].parentElement.removeAttribute("style");
             }
 
-            for (let j = 0; j < no_change.length; j ++) {
+            for (let j = 0; j < insufficient.length; j ++) {
                 insufficient[j].parentElement.removeAttribute("style");
             }
         }
