@@ -21,15 +21,25 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23"],
+          "index": ["2007/08", "2008/09", "2009/10", "2010/11", "2011/12", "2012/13", "2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
           "label": {
+            "2007/08": "2007/08",
+            "2008/09": "2008/09",
+            "2009/10": "2009/10",
+            "2010/11": "2010/11",
+            "2011/12": "2011/12",
+            "2012/13": "2012/13",
+            "2013/14": "2013/14",
+            "2014/15": "2014/15",
+            "2015/16": "2015/16",
             "2016/17": "2016/17",
             "2017/18": "2017/18",
             "2018/19": "2018/19",
             "2019/20": "2019/20",
             "2020/21": "2020/21",
             "2021/22": "2021/22",
-            "2022/23": "2022/23"
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
           }
         },
         "label": "Financial year"
@@ -72,7 +82,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -102,15 +112,15 @@
       ]
     },
     "note": [
-      "[b]Worry about crime \r\n\r\n[/b] [b]How do we measure this?[/b] \r\nPercentage of people who, when thinking about all types of crime in general, are very worried about being a victim of crime.\r\n\r\n[b]Source[/b] \r\nFindings from the 2022/23 Northern Ireland Safe Community Telephone Survey \r\n[url=https://www.justice-ni.gov.uk/publications/r-s-bulletin-findings-202223-northern-ireland-safe-community-telephone-survey]R & S Bulletin Findings from the 2022/23 Northern Ireland Safe Community Telephone Survey | Department of Justice (justice-ni.gov.uk)[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThere was a change in survey mode from 2020/21 due to the pandemic and the method by which interviews were undertaken changed from face-to-face to telephone. This resulted in a break in the time series. The change reduced the sample size, particularly for 2020/21. Results for the three latest years are not directly comparable with previous sweeps.\r\n\r\n[b]Further information[/b] \r\n1. The Northern Ireland Safe Community Survey was previously known as the NI Crime Survey. Given the change in survey mode as a result of the pandemic, the survey years from 2020/21 are referenced as the Northern Ireland Safe Community Telephone Survey. \r\n2. Previously conducted on an ad hoc basis, the survey began operating on a continuous basis in January 2005. \r\n3. Results exclude don't knows and refusals."
+      "[b]Worry about crime \r\n\r\n[/b] [b]How do we measure this?[/b] \r\nPercentage of people who, when thinking about all types of crime in general, are very worried about being a victim of crime.\r\n\r\n[b]Source[/b] \r\nNorthern Ireland Safe Community Telephone Survey\r\n[url=https://www.justice-ni.gov.uk/articles/findings-northern-ireland-safe-community-telephone-survey]https://www.justice-ni.gov.uk/articles/findings-northern-ireland-safe-community-telephone-survey[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere was a change in survey mode from 2020/21 due to the pandemic and the method by which interviews were undertaken changed from face-to-face to telephone. This resulted in a break in the time series. Results for the four latest years, 2020/21 to 2023/24, are not directly comparable with previous sweeps. The change also reduced the sample size for the first two years, particularly in 2020/21.\r\n\r\n[b]Further information[/b] \r\n1. The Northern Ireland Safe Community Survey was previously known as the NI Crime Survey. Given the change in survey mode as a result of the pandemic, the survey years from 2020/21 are referenced as the Northern Ireland Safe Community Telephone Survey. \r\n2. Previously conducted on an ad hoc basis, the survey began operating on a continuous basis in January 2005.\r\n3. Data are not available for 2006/07 as the question was only asked from 2007/08.\r\n4. Results exclude don't knows and refusals."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 7, 1],
-    "updated": "2024-06-11T11:39:46",
-    "value": [6.6, 5.1, 6.7, 6.4, 4.7, 4.9, 4.1],
+    "size": [1, 17, 1],
+    "updated": "2025-10-29T9:30:00",
+    "value": [9, 8.2, 8.1, 9, 7.7, 6.9, 7.4, 7, 5.6, 6.6, 5.1, 6.7, 6.4, 4.7, 4.9, 4.1, 5.2],
     "version": "2.0"
   },
   "id": {}

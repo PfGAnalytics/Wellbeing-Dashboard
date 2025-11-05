@@ -570,8 +570,8 @@ var domains_data = {
        indicators: {
          "Economic inactivity": {
             importance: "This indicator shows the percentage of people who are not engaged in the labour market due to any reason except being a student. It is important as a high economic inactivity rate can restrict labour supply which may in turn affect economic growth.",
-            base_year: "2019",
-            ci: 1.4,
+            base_year: "2020",
+            ci: 1.6,
             data: {
                NI: "",
                AA: "INDECONINACTAA",
@@ -580,7 +580,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The proportion of people who are economically inactive for any reason apart from being a student has decreased from 2019.",
+               improved: "The proportion of people who are economically inactive for any reason apart from being a student has decreased from 2020.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -588,8 +588,8 @@ var domains_data = {
          },
          "Employment rate": {
             importance: "The employment rate is important as a key labour market indicator. Those who are employed have money to spend which can contribute towards economic growth.",
-            base_year: "2019",
-            ci: 1.5,
+            base_year: "2020",
+            ci: 1.8,
             data: {
                NI: "",
                AA: "INDEMPRATEAA",
@@ -598,7 +598,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The proportion of people aged 16 to 64 in employment has statistically increased from 2019.",
+               improved: "The proportion of people aged 16 to 64 in employment has statistically increased from 2020.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -731,9 +731,9 @@ var domains_data = {
             }
          },
          "Skills": {
-            importance: "The proportion of the workforce with low or no qualifications (level 2 or below) has been a persistent problem in Northern Ireland. Whilst substantial progress was made, continued improvement will be required to keep pace with other comparable small advanced economies.",
-            base_year: "2019",
-            ci: 1.5,
+            importance: "The proportion of the workforce with low or no qualifications (Level 2 or below) has been a persistent problem in Northern Ireland. Whilst substantial progress was made, continued improvement will be required to keep pace with other comparable small advanced economies.",
+            base_year: "2020",
+            ci: 1.7,
             data: {
                NI: "",
                AA: "",
@@ -768,8 +768,8 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "Latest findings show the proportion of respondents who had been a victim of any NISCS crime in 2022/23 was 5.1%, a statistically significant increase from 3.8% in 2021/22.",
+               no_change: "Latest findings show the proportion of respondents who had been a victim of any NISCS crime in 2023/24 was 4.5%; the apparent increase from 3.8% in 2021/22 is not statistically significant.",
+               worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
@@ -804,7 +804,7 @@ var domains_data = {
            improvement: "decrease",
            telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Latest findings show the proportion, 7%, who felt very unsafe walking alone in their area after dark was similar to the 2021/22 figure of 6%.",
+               no_change: "Latest findings show the proportion, 5.7%, who felt very unsafe walking alone in their area after dark was the same as the 2021/22 figure, also 5.7%.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
            }
@@ -858,7 +858,7 @@ var domains_data = {
            improvement: "decrease",
            telling: {
               improved: "This commentary is a placeholder.",
-                no_change: "Latest findings show the apparent decrease from 5% (year of comparison) to 4% (latest findings) is not statistically significant.",
+                no_change: "Latest findings show the proportion, 5.2%, who felt very worried about becoming a victim of crime was similar to the 2021/22 figure, 4.9%.",
                 worsened: "This commentary is a placeholder.",
                 insufficient: ""
              }
@@ -907,7 +907,7 @@ var domains_data = {
          },
          "Volunteering": {
             importance: "This indicator provides the proportion of adults in Northern Ireland who volunteer, providing a measure of civic engagement.",
-            base_year: null,
+            base_year: "2023/24",
             ci: 2,
             data: {
                NI: "",
@@ -918,9 +918,9 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "Although the overall estimate for volunteering in 2024/25 has not changed, consistent gaps continue to exist across key groups. These include differences between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and between people with dependants and those without dependants. Of the 11 LGDs, Fermanagh and Omagh and Lisburn and Castlereagh had the highest proportion of adults volunteering in 2024/25.",
                worsened: "This commentary is a placeholder.",
-               insufficient: " Volunteering is defined as “the commitment of time and energy, for the benefit of society and the community, the environment, or individuals outside (or in addition to) one's immediate family. It is unpaid and undertaken freely and by choice”. New questions on volunteering were introduced in 2023/24 to measure participation of adults in both formal and informal volunteering. The questions are now more similar to those used in the rest of the UK. As a result of the change in questions it is not possible to compare figures for 2023/24 with those published for previous years."
+               insufficient: "This commentary is a placeholder."
             }
          }
        }
@@ -1045,8 +1045,8 @@ var domains_data = {
          },
          "Trust in the media": {
             importance: "Integrity of the media is important in ensuring that people can access reliable information about matters of public interest that impact them. Trust in the media contributes to democratic wellbeing which can impact directly on personal wellbeing.",
-            base_year: "2019",
-            ci: 3,
+            base_year: "2020",
+            ci: 3.9,
             data: {
                NI: "INDTRUSTMEDIANI",
                AA: "",
@@ -1055,16 +1055,16 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "",
-               no_change: "This commentary is a placeholder.",
+               improved: "This commentary is a placeholder.",
+               no_change: "However, trust in the media was lower in 2024, than in 2022 and 2023.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Trust in the NI Assembly": {
             importance: "Trust in elected representatives is central to a functioning, democratic society.  Lack of trust in elected representatives can discourage people from democratic participation and people can feel as though they do not have a voice in decisions that affect them.  This in turn can influence wellbeing.",
-            base_year: "2019",
-            ci: 3,
+            base_year: "2020",
+            ci: 3.8,
             data: {
                NI: "INDTRUSTASMBNI",
                AA: "",
@@ -1074,7 +1074,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "However, the level of trust in the NI Assembly was higher in 2020 and 2021, compared to 2019, 2022 and 2023.",
+               no_change: "However, trust in the NI Assembly was higher in 2024 than in 2022 and 2023.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
