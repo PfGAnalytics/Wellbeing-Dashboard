@@ -1388,7 +1388,7 @@ async function getEqualityGroups(d, e) {
 
          close_pop_up = document.createElement("div");      // Div for "X" close button in top corner of pop-up
          close_pop_up.id = "close-pop-up";                  // Give it an id
-         close_pop_up.style.marginLeft = null;     // Position it 30 pixels from end of box
+         close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";     // Position it 30 pixels from end of box
          close_pop_up.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';        // Place an X icon in box
          close_pop_up.tabIndex = "0";
 
