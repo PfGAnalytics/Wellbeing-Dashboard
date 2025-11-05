@@ -1836,35 +1836,67 @@ async function getEqualityGroups(d, e) {
 
          chartInstance = new Chart(pop_canvas, chart_config);      // Plot chart
       }
+
+      // Create the chart type dropdown
+const chartTypeSelect = document.createElement("select");
+chartTypeSelect.id = "chart-type-select";
+chartTypeSelect.classList.add("chart-dropdown");
+
+// Define chart options
+const chartOptions = [
+   { value: "bar", text: "Bar chart" },
+   { value: "line", text: "Line chart" },
+];
+
+chartOptions.forEach(optionData => {
+   const option = document.createElement("option");
+   option.value = optionData.value;
+   option.textContent = optionData.text;
+   chartTypeSelect.appendChild(option);
+});
+
+// Append only the dropdown to your container
+pop_up_buttons.appendChild(chartTypeSelect);
+
+// Initial chart type
+let currentChartType = chartTypeSelect.value;
+
+// Event listener for dropdown change
+chartTypeSelect.addEventListener("change", function () {
+   currentChartType = this.value;
+   buildChart(currentChartType);
+});
+
+
       
       // Create a toggle button
-      const toggle_btn = document.createElement("label");
-      toggle_btn.classList.add("switch");
+      // const toggle_btn = document.createElement("label");
+      // toggle_btn.classList.add("switch");
 
-      const switchInput = document.createElement("input");
-      switchInput.type = "checkbox";
-      switchInput.id = "toggle-chart-type";
+      // const switchInput = document.createElement("input");
+      // switchInput.type = "checkbox";
+      // switchInput.id = "toggle-chart-type";
 
-      const switchSlider = document.createElement("span");
-      switchSlider.classList.add("chart-slider");
+      // const switchSlider = document.createElement("span");
+      // switchSlider.classList.add("chart-slider");
 
-      const switchLabel = document.createElement("span");
-      switchLabel.classList.add("switch-label");
-      switchLabel.textContent = "Bar chart"; 
+      // const switchLabel = document.createElement("span");
+      // switchLabel.classList.add("switch-label");
+      // switchLabel.textContent = "Bar chart"; 
 
-      toggle_btn.appendChild(switchInput);
-      toggle_btn.appendChild(switchSlider);
-      toggle_btn.appendChild(switchLabel);
+      // toggle_btn.appendChild(switchInput);
+      // toggle_btn.appendChild(switchSlider);
+      // toggle_btn.appendChild(switchLabel);
 
-      pop_up_buttons.appendChild(toggle_btn);
+      // pop_up_buttons.appendChild(toggle_btn);
       
-      let currentChartType = 'bar';
+      // let currentChartType = 'bar';
 
-      switchInput.addEventListener("change", function() {
-         currentChartType = this.checked ? 'line' : 'bar';
-         switchLabel.textContent = this.checked ? 'Line chart' : 'Bar chart';
-         buildChart(currentChartType);
-      });
+      // switchInput.addEventListener("change", function() {
+      //    currentChartType = this.checked ? 'line' : 'bar';
+      //    switchLabel.textContent = this.checked ? 'Line chart' : 'Bar chart';
+      //    buildChart(currentChartType);
+      // });
       
       buildChart(currentChartType);
          
