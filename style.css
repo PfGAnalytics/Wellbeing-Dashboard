@@ -720,7 +720,7 @@ footer {
     justify-content: center;
 }
 
-#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data, .chart-dropdown  {
+#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data  {
     padding: 10px;
     font-size: 14pt;
     background-color: #142062;
@@ -734,22 +734,60 @@ footer {
     height: 50px;
 }
 
-#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover, .chart-dropdown:hover {
+#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover {
     background-color: #69729B;
 }
 
-.chart-dropdown:focus {
-  outline: none;
+.chart-dropdown {
+    justify-content:center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    padding: 10px;
+    font-size: 14pt;
+    font-weight: bold;
+    background-color: #FFFFFF;
+    color: #142062;
+    border: 2px solid #142062;
+    border-radius: 25px;
+    text-align: center;
+    display: block;
+    margin: 10px auto 0 auto;
+    width: auto;
+    height: 50px;
 }
 
-/* .chart-dropdown:focus-visible {         
-    outline: 2px solid #ff0000;
-    outline-offset: 4px;
-} */
+.chart-dropdown:hover {
+  background-color: #69729B;
+  color: #FFFFFF;
+}
+
+.chart-dropdown:focus {
+    outline: none;
+}
 
 .chart-dropdown option {
   background-color: #ffffff;
   color: #142062;
+}
+
+.chart-dropdown-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+    width: fit-content;
+    gap: 8px;
+}
+
+.chart-label {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #142062;
+    margin-right: 5px;
+    margin-top: 20px;
+    align-items: center;
 }
 
 .canvas-container {
