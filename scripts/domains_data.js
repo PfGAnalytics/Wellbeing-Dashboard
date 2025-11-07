@@ -822,7 +822,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The figure of 2020/21 was the first year to reflect the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. While the impact of this backlog is still being reflected in the average time taken to complete cases, some improvement has been noted. The figure for 2024/25 (189 days) is lower than the figure for 2019/20 (193 days).",
+               no_change: "The figure of 2020/21 was the first year to reflect the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. While the impact of this backlog is still being reflected in the average time taken to complete cases, some improvement has been noted. The figure for 2024/25 (189 days) is lower than the figure for 2020/21 (193 days).",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
