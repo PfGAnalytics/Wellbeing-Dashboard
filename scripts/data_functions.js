@@ -1068,13 +1068,13 @@ const cumulative_middle = {
    let hexDivHTML = "";
 
    if (base_statement.includes("improved")) {
-       hexDivHTML = '<div class = "row key-text"><div class = "key-hex positive large"><div class = "key-hex-label positive large"><i class = "fa-solid fa-arrow-up-long fa-3x" style = "padding-right: 12px"></i></div>';
+       hexDivHTML = '<div class = "row key-text">Improving<div class = "key-hex positive"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
    } else if (base_statement.includes("no real change")) {
-       hexDivHTML = '<div class = "row key-text"><div class = "key-hex neutral large"><div class = "key-hex-label neutral large"><i class = "fa-solid fa-arrow-right-long fa-3x" style = "padding-right: 12px"></i></div>';
+       hexDivHTML = '<div class = "row key-text">No change<div class = "key-hex neutral"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
    } else if (base_statement.includes("worsened")) {
-       hexDivHTML = '<div class = "row key-text"><div class = "key-hex negative large"><div class = "key-hex-label negative large"><i class = "fa-solid fa-arrow-down-long fa-3x" style = "padding-right: 10px"></i></div>';
+       hexDivHTML = '<div class = "row key-text">Worsening<div class = "key-hex negative"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 10px"></i></div>';
    } else if (base_statement.includes("insufficient")) {
-       hexDivHTML = '<div class = "row key-text"><div class = "key-hex insufficient large"><div class = "key-hex-label insufficient large"></div>';
+       hexDivHTML = '<div class = "row key-text">Insufficient<div class = "key-hex insufficient"><div class = "key-hex-label insufficient"></div>';
    }
 
 // Insert the div into a container with a known ID
@@ -1374,7 +1374,7 @@ async function getEqualityGroups(d, e) {
          pop_up_buttons.style.backgroundColor = "#F2F2F2";       // Set its background colour
 
          // This will position the pop-up to always be immediately below the Indicator title
-         pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
+         pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
 
          // Set the width of the pop-up box depending on screen size/type
          if (window.innerWidth < 1200) {
