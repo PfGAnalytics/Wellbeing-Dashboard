@@ -246,6 +246,10 @@ h3 {
     cursor: pointer;
   }
 
+  #framework-container {
+    display: flex;
+  }
+
   .mission-hex {
     height: 200px;
     width: 200px;
@@ -1260,20 +1264,21 @@ input:focus-visible {
 
 
   #framework-container, #subpop-container {
-    display: flex;
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
   }
 
   #subpop-container {
-    overflow: auto;
+    overflow: scroll;
+    max-width: 1200px;
   }
 
-/* #subpop-table th, #subpop-table td {
-    font-size: 9px;
-    padding: 2px;
-} */
+  #subpop-table {
+    width: max-content;
+    height: max-content;
+  }
+
 
   .overall-text {
     margin-left: 10px;

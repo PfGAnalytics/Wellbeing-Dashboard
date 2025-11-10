@@ -1430,10 +1430,12 @@ async function subpopTable() {
     //     "Free School Meals"];
     const headings = Object.keys(eqgroups);
     
-    subpop_headers.innerHTML = "<th style = 'text-align: left;'>Indicator</th>" + 
+
+    subpop_headers.innerHTML = "<th style='text-align: left; position: sticky; left: 0; top: 0; z-index: 2;'>Indicator</th>" +
                                "<th>NI Level</th>" +
-                               "<th>Assembly Area</th>" + 
-                               "<th>Local Government District</th>"
+                               "<th>Assembly Area</th>" +
+                               "<th>Local Government District</th>";
+
 
     // Add EQ group headers in loop
     for (let i = 0; i < headings.length; i ++) {
@@ -1458,6 +1460,12 @@ async function subpopTable() {
         indicator_name = document.createElement("td");      // Create a new cell, insert indicator name and link to indicator page
         indicator_name.innerHTML = "<a href = '?indicator=" + all_indicators[i].replace(/[^a-z ]/gi, '').replaceAll(" ", "+").toLowerCase() + "'>" + all_indicators[i] + "</a>";
         indicator_name.style.textAlign = "left";        // Align text left
+
+        // Make the cell horizontally sticky
+        indicator_name.style.position = "sticky";
+        indicator_name.style.left = "0"; // Stick to the left edge
+        indicator_name.style.background = "#f2f2f2"; // Prevent overlap transparency
+
         subpop_row.appendChild(indicator_name);     // Add cell to row
 
         ni_level = document.createElement("td");        // Add a dot for "NI level"
