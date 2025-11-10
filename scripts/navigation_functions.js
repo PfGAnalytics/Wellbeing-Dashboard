@@ -1426,7 +1426,9 @@ async function subpopTable() {
     subpop_headers = document.createElement("tr");
 
     // Array of all EQ group headings
-    headings = ["Deprivation", "Age", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group"];
+    // headings = ["Deprivation", "Age", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group", "Year group",
+    //     "Free School Meals"];
+    const headings = Object.keys(eqgroups);
     
     subpop_headers.innerHTML = "<th style = 'text-align: left;'>Indicator</th>" + 
                                "<th>NI Level</th>" +

@@ -1068,13 +1068,13 @@ const cumulative_middle = {
    let hexDivHTML = "";
 
    if (base_statement.includes("improved")) {
-       hexDivHTML = '<div class = "row key-text"><div class = "key-hex positive large"><div class = "key-hex-label positive large"><i class = "fa-solid fa-arrow-up-long fa-3x" style = "padding-right: 12px"></i></div>';
+       hexDivHTML = '<div class = "row key-text">Improving<div class = "key-hex positive"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
    } else if (base_statement.includes("no real change")) {
-       hexDivHTML = '<div class = "row key-text"><div class = "key-hex neutral large"><div class = "key-hex-label neutral large"><i class = "fa-solid fa-arrow-right-long fa-3x" style = "padding-right: 12px"></i></div>';
+       hexDivHTML = '<div class = "row key-text">No change<div class = "key-hex neutral"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
    } else if (base_statement.includes("worsened")) {
-       hexDivHTML = '<div class = "row key-text"><div class = "key-hex negative large"><div class = "key-hex-label negative large"><i class = "fa-solid fa-arrow-down-long fa-3x" style = "padding-right: 10px"></i></div>';
+       hexDivHTML = '<div class = "row key-text">Worsening<div class = "key-hex negative"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 10px"></i></div>';
    } else if (base_statement.includes("insufficient")) {
-       hexDivHTML = '<div class = "row key-text"><div class = "key-hex insufficient large"><div class = "key-hex-label insufficient large"></div>';
+       hexDivHTML = '<div class = "row key-text">Insufficient<div class = "key-hex insufficient"><div class = "key-hex-label insufficient"></div>';
    }
 
 // Insert the div into a container with a known ID
@@ -1379,7 +1379,7 @@ async function getEqualityGroups(d, e) {
          pop_up_buttons.style.backgroundColor = "#F2F2F2";       // Set its background colour
 
          // This will position the pop-up to always be immediately below the Indicator title
-         pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + 30 + domain_title.clientHeight + "px";
+         pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
 
          // Set the width of the pop-up box depending on screen size/type
          if (window.innerWidth < 1200) {
@@ -1393,7 +1393,7 @@ async function getEqualityGroups(d, e) {
 
          close_pop_up = document.createElement("div");      // Div for "X" close button in top corner of pop-up
          close_pop_up.id = "close-pop-up";                  // Give it an id
-         close_pop_up.style.marginLeft = null;     // Position it 30 pixels from end of box
+         close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";     // Position it 30 pixels from end of box
          close_pop_up.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';        // Place an X icon in box
          close_pop_up.tabIndex = "0";
 
@@ -1861,33 +1861,46 @@ async function getEqualityGroups(d, e) {
 
          chartInstance = new Chart(pop_canvas, chart_config);      // Plot chart
       }
+
+      // Create label
+      const chartTypeLabel = document.createElement("label");
+      chartTypeLabel.setAttribute("for", "chart-type-select");
+      chartTypeLabel.textContent = "Select chart type";
+      chartTypeLabel.classList.add("chart-label");
+
+      // Create drop down
+      const chartTypeSelect = document.createElement("select");
+      chartTypeSelect.id = "chart-type-select";
+      chartTypeSelect.classList.add("chart-dropdown")
       
-      // Create a toggle button
-      const toggle_btn = document.createElement("label");
-      toggle_btn.classList.add("switch");
-
-      const switchInput = document.createElement("input");
-      switchInput.type = "checkbox";
-      switchInput.id = "toggle-chart-type";
-
-      const switchSlider = document.createElement("span");
-      switchSlider.classList.add("chart-slider");
-
-      const switchLabel = document.createElement("span");
-      switchLabel.classList.add("switch-label");
-      switchLabel.textContent = "Bar chart"; 
-
-      toggle_btn.appendChild(switchInput);
-      toggle_btn.appendChild(switchSlider);
-      toggle_btn.appendChild(switchLabel);
-
-      pop_up_buttons.appendChild(toggle_btn);
+      // Define chart options
+      const chartOptions = [
+         { value: "bar", text: "Bar chart" },
+         { value: "line", text: "Line chart" },
+      ];
       
-      let currentChartType = 'bar';
+      chartOptions.forEach(optionData => {
+         const option = document.createElement("option");
+         option.value = optionData.value;
+         option.textContent = optionData.text;
+         chartTypeSelect.appendChild(option);
+      });
+      
+      // Create a wrapper to hold label and dropdown together
+      const chartTypeWrapper = document.createElement("div");
+      chartTypeWrapper.classList.add("chart-dropdown-wrapper");
+      chartTypeWrapper.appendChild(chartTypeLabel);
+      chartTypeWrapper.appendChild(chartTypeSelect);
 
-      switchInput.addEventListener("change", function() {
-         currentChartType = this.checked ? 'line' : 'bar';
-         switchLabel.textContent = this.checked ? 'Line chart' : 'Bar chart';
+      // Append only the dropdown to your container
+      pop_up_buttons.appendChild(chartTypeWrapper);
+      
+      // Initial chart type
+      let currentChartType = chartTypeSelect.value;
+      
+      // Event listener for dropdown change
+      chartTypeSelect.addEventListener("change", function () {
+         currentChartType = this.value;
          buildChart(currentChartType);
       });
       
@@ -2179,9 +2192,9 @@ async function drawMap() {
 
          // Colour palettes for increasing/decreasing indicators
          if (domains_data[map_select_1.value].indicators[map_select_2.value].improvement == "increase") {
-            var palette = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
+            var palette = ["#f7fcf5", "#c7e9c0", "#74c476", "#238b45", "#00441b"];
          } else {
-            var palette = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
+            var palette = ["#fff5f0", "#fcbba1", "#fc9272", "#de2d26", "#a50f15"]
          }
 
          // When called chooses a colour from above palette based on value of colours array

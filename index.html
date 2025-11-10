@@ -239,6 +239,7 @@
                 <div class = "row">
                     <div id = "domain-title" class = "blue-label"></div>
                     <h2 id = "indicator-title"></h2>
+                    <div id="ind-hex-container"></div>
                 </div>
                 <div id = "indicator-content">
                     <div class = "row" style = "margin-top: 15px;">
@@ -251,7 +252,7 @@
                             <form id = "map-link"></form>
                             <button id="download-chart" class="btn btn-primary">Download chart as image</button>
                             <button id="download-data" class="btn btn-primary">Download data</button>
-                            <div id="ind-hex-container"></div>                      
+                                               
                         </div>                                     
                     </div>
                     <div class = "row" style = "margin-top: 20px;">
@@ -263,20 +264,18 @@
                         <div id = "ind-important" class = "white-box"></div>
                     </div>
                     <div class="grey-box">
-                        <div id="further-expander" tabindex="0">
-                            <strong>Further information</strong>
-                            <i style="color: #142062" class="fa-solid fa-plus"></i>
-                            <span class = "hover-underline" style = "font-size: 12pt; color: #142062">Click to expand</span>
-                        </div>
-                        <div id="further-info"></div>
-                    </div>
-                    <div class="grey-box">
                         <strong>Source:</strong>
                         <div id="source-info"></div>
                         <strong>More data:</strong>
                         <p id="data-info"></p>
                         <strong>Impact of Covid-19</strong><br>
                         <div id="covid-info"></div>
+                         <div id="further-expander" tabindex="0">
+                            <strong>Further information</strong>
+                            <i style="color: #142062" class="fa-solid fa-plus"></i>
+                            <span class = "hover-underline" style = "font-size: 12pt; color: #142062">Click to expand</span>
+                        </div>
+                        <div id="further-info"></div>
                     </div>
                 </div>
             </div>
@@ -323,14 +322,6 @@
                         <div class = "blue-label" style = "min-width: 280px;">Why is this indicator important?</div>
                         <div id = "ind-important-map" class = "white-box"></div>
                     </div>
-                    <div class="grey-box" id="further-container-map">
-                        <div id="further-expander-map" tabindex="0">
-                            <strong>Further information</strong>
-                            <i style="color: #142062" class="fa-solid fa-plus"></i>
-                            <span class = "hover-underline" style="font-size: 12pt; color: #142062;">Click to expand</span>
-                            <div id="further-info-map"></div>
-                        </div>
-                    </div>
                     <div class="grey-box">
                         <strong>Source:</strong>
                         <p id="source-info-map"></p>
@@ -338,6 +329,12 @@
                         <p id="data-info-map"></p>
                         <strong>Impact of Covid-19</strong><br>
                         <div id="covid-info-map"></div>
+                         <div id="further-expander-map" tabindex="0">
+                            <strong>Further information</strong>
+                            <i style="color: #142062" class="fa-solid fa-plus"></i>
+                            <span class = "hover-underline" style="font-size: 12pt; color: #142062;">Click to expand</span>
+                            <div id="further-info-map"></div>
+                        </div>
                     </div>
                 </div>
             </div>
