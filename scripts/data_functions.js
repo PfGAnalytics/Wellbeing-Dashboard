@@ -1789,9 +1789,9 @@ async function getEqualityGroups(d, e) {
            if (label === "Northern Ireland") {
              // Always render NI as a line
              dataset.type = 'line';
-             dataset.borderColor = "#000000";
-             dataset.pointBackgroundColor = "#000000";
-             dataset.backgroundColor = "#000000";
+             dataset.borderColor = "#3878c5";
+             dataset.pointBackgroundColor = "#3878c5";
+             dataset.backgroundColor = "#3878c5";
              dataset.borderWidth = 3;
              dataset.pointStyle = 'circle';
              dataset.fill = false;
