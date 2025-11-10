@@ -36,7 +36,9 @@ eq_groups <- readLines("scripts/eqgroups.js") %>%
         str_replace_all("\\s+", "") %>%          # remove whitespace
         str_c('"', ., '"') %>%                   # wrap each item in quotes
         str_c(collapse = ",") %>%                # join into one string
-        str_replace_all('"', "%22"))   
+        str_replace_all('"', "%22"))
+
+updated <- list()
 
 # Loop through all matrices ####
 for (matrix in matrix_list) {
@@ -47,6 +49,8 @@ for (matrix in matrix_list) {
   
   json_data$result$note <- list(json_data$result$note)
   json_data$result$updated <- sub("\\..*", "", json_data$result$updated)
+
+  updated[[matrix]] <- json_data$result$updated
   
   if (!"error" %in% names(json_data)) {
     write_json(json_data, paste0("backup/", matrix, ".json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
@@ -127,3 +131,6 @@ if (!"error" %in% names(skills_data)) {
   skills_data$result$note <- list(skills_data$result$note)  
   write_json(skills_data, "backup/INDSKILLSLEV.json", pretty = TRUE, auto_unbox = TRUE, na = "null")
 }
+
+# Write out updated dates ####
+write_json(updated, "scripts/updated.json", pretty = TRUE, auto_unbox = TRUE, na = "null")
