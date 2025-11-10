@@ -963,6 +963,29 @@ footer a:hover {
     overflow: hidden;
 }
 
+#further-expander span, #further-expander i.fa-solid, #further-expander-map span, #further-expander-map i.fa-solid,
+.note-container .note-span, .note-container .fa-plus {
+    display: none !important;
+}
+
+#further-info, #further-info .further-info-text, #further-info-map, #further-info-map .further-info-map-text, .note-container ol {
+    max-height: none !important;
+    visibility: visible !important;
+    display: block !important;
+}
+    
+.further-info-text ol, .further-info-text ul, .further-info-map-text ol, .further-info-map-text ul  {
+    list-style-type: decimal !important;
+    list-style-position: inside !important;
+    margin-left: 1.5em !important;
+    padding-left: 0 !important;
+}
+
+#further-expander {
+    padding-top: 15px
+}
+
+
 .separator {
     width: 96%;
     height: 5px;

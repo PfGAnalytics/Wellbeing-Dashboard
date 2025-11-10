@@ -1063,12 +1063,6 @@ function updateMapSelect2() {
 // This function updates the third dropdown menu on the maps screen based on what has been selected by the user in the second dropdown menu
 function updateMapSelect3() {
 
-    // If the further info has been expanded when looking at the lsat map then collapse it again:
-    further_info_map.removeAttribute("style");  // Remove style attributes
-    further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand"; // Change text back to "click to expand"
-    further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");         // remove minus sign icon   
-    further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");             // add plus sign icon
-
     // The indicator based on selections in first two dropdowns:
     var indicator = domains_data[map_select_1.value].indicators[map_select_2.value];
     var data = indicator.data;      // The data object within that indicator
@@ -1248,44 +1242,6 @@ function sizeForMobile() {
         }
     }    
 
-}
-
-// Functionality when user clicks on "Expand further information"
-further_expander.onclick = function() {
-
-   info_div = document.getElementsByClassName("further-selected")[0];   // The div containing the further information for the relevant indicator
-
-   if (info_div.clientHeight == 0) {        // When the "info_div" isn't visible, then show it:
-      info_div.style.maxHeight = "5000px";                                                  // Set max height to very high value to allow it to expand
-      further_expander.getElementsByTagName("span")[0].textContent = "Click to hide";       // Change display text
-      further_expander.getElementsByTagName("i")[0].classList.remove("fa-plus");            // Remove plus sign icon
-      further_expander.getElementsByTagName("i")[0].classList.add("fa-minus");              // Show minus sign icon
-   } else {     // When it is shown, hide it:
-      info_div.removeAttribute("style");    // Revert style applid above
-      setTimeout(function() {
-        further_expander.getElementsByTagName("span")[0].textContent = "Click to expand";   // Change display text
-        further_expander.getElementsByTagName("i")[0].classList.remove("fa-minus");         // Remove minus sign icon
-        further_expander.getElementsByTagName("i")[0].classList.add("fa-plus");             // Add plus sign icon
-      }, 800)
-   }
-}
-
-further_expander_map.onclick = function() {
-
-    if (further_info_map.clientHeight == 0) { // When the "further_info_map" div isn't visible, then show it:
-        further_info_map.style.maxHeight = "5000px";                                              // Set max height to very high value to allow it to expand
-        further_expander_map.getElementsByTagName("span")[0].textContent = "Click to hide";       // Change display text
-        further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-plus");            // Remove plus sign icon
-        further_expander_map.getElementsByTagName("i")[0].classList.add("fa-minus");              // Show minus sign icon
-    } else {
-        further_info_map.removeAttribute("style");    // Revert style applid above
-        setTimeout(function() {
-            further_expander_map.getElementsByTagName("span")[0].textContent = "Click to expand";   // Change display text
-            further_expander_map.getElementsByTagName("i")[0].classList.remove("fa-minus");         // Remove minus sign icon
-            further_expander_map.getElementsByTagName("i")[0].classList.add("fa-plus");             // Add plus sign icon
-        }, 800)
-    }
-    
 }
 
 

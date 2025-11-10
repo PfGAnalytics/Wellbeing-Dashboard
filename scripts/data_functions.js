@@ -1156,9 +1156,6 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
 
    document.getElementById("further-info").appendChild(further_info_div);
 
-   if (further_note == "Not available") {
-      document.getElementById("further-expander").style.display = "none";
-  }
 
   // The source info is pulled out of the note object
   source_info = note[0];
@@ -2354,14 +2351,6 @@ async function drawMap() {
          if (further_info_map.firstChild) {
             further_info_map.removeChild(further_info_map.firstChild);
          }
-
-         further_info_map.appendChild(further_list);
-
-         if (further_note == "Not available") {
-            further_expander_map.style.display = "none";
-      } else {
-            further_expander_map.removeAttribute("style");
-      }
 
          // Legend divs added to map
          if (!document.getElementById(matrix + "-legend")) {
