@@ -1332,18 +1332,23 @@ async function getEqualityGroups(d, e) {
   var eq_groups = [];      // Empty array to be filled with groupings
 
   for (let i = 0; i < labels.length; i ++) {    // Loop through all labels
-      if (labels[i] != "Northern Ireland") {    // Exclude Northern Ireland category
 
-         group = labels[i].slice(0, labels[i].indexOf("-")).trim();     // Truncate group name at position of first hyphen (-)
+
+         let group;
+         if (labels[i].includes("-")) {
+           group = labels[i].slice(0, labels[i].indexOf("-")).trim();
+         } else {
+           group = labels[i].trim();
+         }
+
 
          if (group.includes("Age")) {
             group = "Age"              // Rename any Age category to just "Age"
         }
 
-         if (!eq_groups.includes(group)) {
+         if (!eq_groups.includes(group) & group != "Northern Ireland") {
             eq_groups.push(group)         // If grouping isn't already in eq_groups array, then add it to the array
          }
-      }
   }
 
   if (e == "Skills") {
@@ -1593,17 +1598,24 @@ async function getEqualityGroups(d, e) {
 
          // Function that takes shorter input for EQUALGROUPS selection
          // Input to funciton in format queryURL('["x","y"]') to cover numeric indexes of all groups that should be included in query
-         function queryURL (query) {
-            return(
-               config.baseURL +
-               transformQuery('api.jsonrpc?data={"jsonrpc":"2.0","method":"PxStat.Data.Cube_API.ReadDataset","params":{"class":"query","id":["EQUALGROUPS"],"dimension":{"EQUALGROUPS":{"category":{"index":') + 
-               transformQuery(JSON.stringify(query)) +
-               transformQuery('}}},"extension":{"pivot":null,"codes":false,"language":{"code":"en"},"format":{"type":"JSON-stat","version":"2.0"},"matrix":"') +
-               matrix +
-               transformQuery('"},"version":"2.0"}}') + 
-               '&apiKey=' + 
-               config.apiKey)
+
+         function queryURL(query) {
+           const niCode = "N92000002";
+           if (!query.includes(niCode)) {
+             query.unshift(niCode); // Add NI to the front
+           }
+           return (
+             config.baseURL +
+             transformQuery('api.jsonrpc?data={"jsonrpc":"2.0","method":"PxStat.Data.Cube_API.ReadDataset","params":{"class":"query","id":["EQUALGROUPS"],"dimension":{"EQUALGROUPS":{"category":{"index":') +
+             transformQuery(JSON.stringify(query)) +
+             transformQuery('}}},"extension":{"pivot":null,"codes":false,"language":{"code":"en"},"format":{"type":"JSON-stat","version":"2.0"},"matrix":"') +
+             matrix +
+             transformQuery('"},"version":"2.0"}}') +
+             '&apiKey=' +
+             config.apiKey
+           );
          }
+
          
          // Contruct api query based on which grouping is selected:
          if (has_error) {
@@ -1660,29 +1672,30 @@ async function getEqualityGroups(d, e) {
 
          } else {
 
-            for (let j = 0; j < groups.length; j ++) {
 
-               // Take text after first hyphen as group name, except for Age where it is after first space
-               if (eq_groups[i] == "Age") {
-                  group_label = groups[j].slice(groups[j].indexOf(" ")).trim();
-                  if (group_label.indexOf("-") == 0) {
-                     group_label = group_label.slice(1).trim();
-                  }
-               } else {
-                  group_label = groups[j].slice(groups[j].indexOf("-") + 1).trim();
-               }            
+         for (let j = 0; j < groups.length; j++) {
+           let group_label;
 
-               // For each group pull out the relevant values
-               values[group_label] = [];
+           if (groups[j] === "Northern Ireland") {
+             group_label = "Northern Ireland";
+           } else if (eq_groups[i] === "Age") {
+             group_label = groups[j].slice(groups[j].indexOf(" ")).trim();
+             if (group_label.indexOf("-") === 0) {
+               group_label = group_label.slice(1).trim();
+             }
+           } else if (groups[j].includes("-")) {
+             group_label = groups[j].slice(groups[j].indexOf("-") + 1).trim();
+           } else {
+             group_label = groups[j].trim(); // fallback for labels without hyphens
+           }
 
-               for (let k = 0; k < result.value.length; k ++) {
-                  if (k % groups.length == j) {
-                     values[group_label].push(result.value[k])
-                  }
-               }
-
-            }
-
+           values[group_label] = [];
+           for (let k = 0; k < result.value.length; k++) {
+             if (k % groups.length === j) {
+               values[group_label].push(result.value[k]);
+             }
+           }
+         }
          }
 
          // Some age group tidy ups:
@@ -1765,22 +1778,34 @@ async function getEqualityGroups(d, e) {
          // Colour palette for bar charts:
          colours = ["#3878c5", "#00205b", "#68a41e", "#732777", "#ce70d2", "#434700", "#a88f8f","#3b3b3b","#e64791", "#400b23"];
 
-         for (let j = 0; j < Object.keys(values).length; j ++) {     // Loop through values and create each data series
-            const dataset = {
-               label: Object.keys(values)[j],
-               data: values[Object.keys(values)[j]].slice(first_year),
-            };
-            
-            if (chartType === 'bar') {
-               dataset.backgroundColor = colours[j % colours.length];
-            } else if (chartType === 'line') {
-               dataset.borderColor = colours[j % colours.length];
-               dataset.pointBackgroundColor = colours[j % colours.length];
-               dataset.fill = false
-            }
 
-            data.datasets.push(dataset)
+         for (let j = 0; j < Object.keys(values).length; j++) {
+           const label = Object.keys(values)[j];
+           const dataset = {
+             label: label,
+             data: values[label].slice(first_year),
+           };
+
+           if (label === "Northern Ireland") {
+             // Always render NI as a line
+             dataset.type = 'line';
+             dataset.borderColor = "#000000";
+             dataset.pointBackgroundColor = "#000000";
+             dataset.backgroundColor = "#000000";
+             dataset.borderWidth = 3;
+             dataset.pointStyle = 'circle';
+             dataset.fill = false;
+           } else if (chartType === 'bar') {
+             dataset.backgroundColor = colours[j % colours.length];
+           } else if (chartType === 'line') {
+             dataset.borderColor = colours[j % colours.length];
+             dataset.pointBackgroundColor = colours[j % colours.length];
+             dataset.fill = false;
+           }
+
+           data.datasets.push(dataset);
          }
+
 
          // Chart configuration for chart.js
          const chart_config = {
