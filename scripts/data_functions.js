@@ -1702,6 +1702,14 @@ async function getEqualityGroups(d, e) {
          if (eq_groups[i] == "Age") {        
             values = sortObject(values);
 
+
+            if (Object.keys(values).includes("Northern Ireland")) {
+               const niValues = values["Northern Ireland"];
+               delete values["Northern Ireland"];
+               values = { "Northern Ireland": niValues, ...values };
+            }
+
+
             if (e == "Housing stress") {     // Reorder for Housing Stress
 
                reordered = {
