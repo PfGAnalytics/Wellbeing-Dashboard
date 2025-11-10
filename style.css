@@ -730,7 +730,7 @@ footer {
     text-align: center;
     display: block;
     margin: 10px auto 0 auto;
-    width: auto;
+    width: 250px;
     height: 50px;
 }
 
@@ -1049,6 +1049,12 @@ input:focus-visible {
     border-radius: 25px;
     margin-top: 15px;
     width: 100%
+}
+
+#chart-boxes {
+    background-color: #e8e8e8; 
+    border-radius: 25px;
+    padding: 15px;
 }
 
 #AA-link, #LGD-link, .eq-link {
