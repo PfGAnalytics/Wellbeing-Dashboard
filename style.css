@@ -532,9 +532,16 @@ padding-right: 10px;
     text-align: left;
 }
 
-.label-container {
-    align-self: flex-start;
-    margin-top: 40px;
+#overall-hexes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+}
+
+#h3-improving, #h3-no-change, #h3-worsening, #h3-insufficient {
+    margin-top: 20px;
 }
 
 #improving-label {
