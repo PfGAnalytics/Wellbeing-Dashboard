@@ -934,6 +934,9 @@ footer a:hover {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    background-color: #e8e8e8;
+    border-radius: 25px;
+    padding-bottom: 25px;
 }
 
 
