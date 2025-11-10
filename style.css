@@ -730,7 +730,7 @@ footer {
     text-align: center;
     display: block;
     margin: 10px auto 0 auto;
-    width: 250px;
+    width: 270px;
     height: 50px;
 }
 
@@ -1043,11 +1043,9 @@ input:focus-visible {
 
 #map-link {
     margin-left: 15px;
-    margin-bottom: 20px;
     background-color: #e8e8e8;
     padding: 15px;
     border-radius: 25px;
-    margin-top: 15px;
     width: 100%
 }
 
