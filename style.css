@@ -721,7 +721,7 @@ footer {
 }
 
 #download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data  {
-    padding: 10px;
+    padding-bottom: 10px;
     font-size: 14pt;
     background-color: #142062;
     border: none;
