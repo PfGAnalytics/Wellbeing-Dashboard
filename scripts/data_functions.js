@@ -2167,9 +2167,9 @@ async function drawMap() {
 
          // Colour palettes for increasing/decreasing indicators
          if (domains_data[map_select_1.value].indicators[map_select_2.value].improvement == "increase") {
-            var palette = ["#edf8fb", "#b2e2e2", "#66c2a4", "#2ca25f", "#006d2c"];
+            var palette = ["#f7fcf5", "#c7e9c0", "#74c476", "#238b45", "#00441b"];
          } else {
-            var palette = ["#f4d0cc", "#e9a299", "#df7366", "#d44533", "#c91600"];
+            var palette = ["#fff5f0", "#fcbba1", "#fc9272", "#de2d26", "#a50f15"]
          }
 
          // When called chooses a colour from above palette based on value of colours array
