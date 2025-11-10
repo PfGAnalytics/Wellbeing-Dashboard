@@ -982,7 +982,8 @@ footer a:hover {
 }
 
 #further-expander {
-    padding-top: 15px
+    padding-top: 15px;
+    cursor: default;
 }
 
 
