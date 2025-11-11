@@ -2587,15 +2587,41 @@ fetch('scripts/updated.json?nocache=' + Date.now())
     const tbody = document.querySelector('#recentTable tbody');
     tbody.innerHTML = ''; // Clear any old rows to avoid duplicates
 
-    top5.forEach(item => {
-      const row = document.createElement('tr');
-      const formattedDate = isNaN(item.updated) ? 'Not Available' : formatBritishDate(item.updated);
-      const indicatorName = codeToNameMap[item.dataset] || item.dataset; // Replace code with indicator name
-      row.innerHTML = `
-        <td style="border: 1px solid #ccc; padding: 8px;">${indicatorName}</td>
-        <td style="border: 1px solid #ccc; padding: 8px;">${formattedDate}</td>
-      `;
-      tbody.appendChild(row);
-    });
+
+   top5.forEach(item => {
+     const row = document.createElement('tr');
+     const formattedDate = isNaN(item.updated) ? 'Not Available' : formatBritishDate(item.updated);
+     const indicatorName = codeToNameMap[item.dataset] || item.dataset || 'Unknown';
+
+     // Create URL-friendly version of the indicator name
+     const urlIndicator = indicatorName
+       .toLowerCase()
+       .replace(/[^\w\s]/g, '') // Remove punctuation
+       .replace(/\s+/g, '+');    // Replace spaces with '+'
+
+     // Create the link element
+     const link = document.createElement('a');
+     link.href = `index.html?indicator=${urlIndicator}`;
+     link.textContent = indicatorName;
+
+     // Create the table cells
+     const nameCell = document.createElement('td');
+     nameCell.style.border = '1px solid #ccc';
+     nameCell.style.padding = '8px';
+     nameCell.appendChild(link); // Add the link to the cell
+
+     const dateCell = document.createElement('td');
+     dateCell.style.border = '1px solid #ccc';
+     dateCell.style.padding = '8px';
+     dateCell.textContent = formattedDate;
+
+     // Append cells to the row
+     row.appendChild(nameCell);
+     row.appendChild(dateCell);
+     tbody.appendChild(row);
+   });
+
+
   })
   .catch(error => console.error('Error loading JSON:', error));
+
