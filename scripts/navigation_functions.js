@@ -88,6 +88,7 @@ var browse_domains = document.getElementById("browse-domains");
 var expand_all = document.getElementById("expand-all");
 var domain_toggle = document.getElementById("domain-toggle");
 var browse_grid = document.getElementById("browse-grid");
+var recent_updates = document.getElementById("recent-updates");
 var expanded_domains = document.getElementById("expanded-domains");
 var by_mission = document.getElementById("by-mission");
 var by_mission_grid = document.getElementById("by-mission-grid");
@@ -1669,6 +1670,9 @@ browse_domains.onclick = function() {
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "none";
+    
+    document.getElementById("recent-updates").style.display = "block";
+    document.getElementById("h3-recent-updates").style.display = "block";
 
 }
 
@@ -1683,6 +1687,9 @@ expand_all.onclick = function() {
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "block";
 
+    document.getElementById("recent-updates").style.display = "none";
+    document.getElementById("h3-recent-updates").style.display = "none";
+
 }
 
 by_mission.onclick = function() {
@@ -1695,6 +1702,9 @@ by_mission.onclick = function() {
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "block";
     hex_count_container.style.display = "block";
+
+    document.getElementById("recent-updates").style.display = "none";
+    document.getElementById("h3-recent-updates").style.display = "none";
 
 }
 
