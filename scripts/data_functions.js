@@ -2542,3 +2542,60 @@ async function dataPortalLive () {
    removeAriaFromIcons();
 
 }
+
+// Build mapping from domains_data
+const codeToNameMap = (() => {
+  const domainsData = window.domains_data; // Ensure domains_data is loaded globally
+  const map = {};
+  for (const domain of Object.values(domainsData)) {
+    for (const [indicatorName, indicatorData] of Object.entries(domain.indicators)) {
+      for (const code of Object.values(indicatorData.data)) {
+        if (code) {
+          map[code] = indicatorName;
+        }
+      }
+    }
+  }
+  return map;
+})();
+
+function normalizeDate(dateStr) {
+  return dateStr.replace(/T(\d):/, 'T0$1:');
+}
+
+function formatBritishDate(dateObj) {
+  const day = String(dateObj.getDate()).padStart(2, '0');
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+  const year = dateObj.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
+fetch('scripts/updated.json?nocache=' + Date.now())
+  .then(response => response.json())
+  .then(data => {
+    const items = Object.entries(data).map(([dataset, updated]) => {
+      const normalized = normalizeDate(updated);
+      return {
+        dataset,
+        updated: new Date(normalized)
+      };
+    });
+
+    items.sort((a, b) => b.updated - a.updated);
+    const top5 = items.slice(0, 5);
+
+    const tbody = document.querySelector('#recentTable tbody');
+    tbody.innerHTML = ''; // Clear any old rows to avoid duplicates
+
+    top5.forEach(item => {
+      const row = document.createElement('tr');
+      const formattedDate = isNaN(item.updated) ? 'Not Available' : formatBritishDate(item.updated);
+      const indicatorName = codeToNameMap[item.dataset] || item.dataset; // Replace code with indicator name
+      row.innerHTML = `
+        <td style="border: 1px solid #ccc; padding: 8px;">${indicatorName}</td>
+        <td style="border: 1px solid #ccc; padding: 8px;">${formattedDate}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  })
+  .catch(error => console.error('Error loading JSON:', error));
