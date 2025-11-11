@@ -2584,7 +2584,7 @@ fetch('scripts/updated.json?nocache=' + Date.now())
     items.sort((a, b) => b.updated - a.updated);
     const top5 = items.slice(0, 5);
 
-    const tbody = document.querySelector('#recentTable tbody');
+    const tbody = document.querySelector('#recent-table tbody');
     tbody.innerHTML = ''; // Clear any old rows to avoid duplicates
 
 

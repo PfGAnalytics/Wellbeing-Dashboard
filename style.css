@@ -1641,3 +1641,34 @@ tr {
     border-radius: 50px;
     font-weight: bold;
 }
+
+#h3-recent-updates {
+    text-align: center; 
+    padding-top: 20px;
+}
+
+#recent-updates {
+    margin-top: 30px;
+}
+
+#recent-table {
+    width: 60%; 
+    margin: 0 auto; 
+    border-collapse: collapse; 
+    font-family: Arial, sans-serif;
+    margin-bottom: 30px;
+}
+
+#recent-table tr {
+    background-color: #f4f4f4;
+}
+
+#recent-table th {
+    border: 1px solid black; 
+    padding: 8px;
+}
+
+#recent-table td {
+    border: 1px solid black !important; 
+    padding: 8px;
+}
