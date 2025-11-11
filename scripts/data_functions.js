@@ -2270,6 +2270,7 @@ async function drawMap() {
          // Further info and how do we measure this divs:
          var measure_info_map = document.getElementById("measure-info-map");
          var further_info_map = document.getElementById("further-info-map");
+         console.log(further_info_map)
 
          // Obtain further info text from query
          var further_note = note[0].replaceAll("\n", "");

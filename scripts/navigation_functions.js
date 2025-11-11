@@ -1024,11 +1024,17 @@ window.onload = function() {
 window.onresize = function() {
     sizeForMobile();                // Resize and re-position page elements (see below)
     mainContainerHeight();          // See above
-    plotOverallHexes("improving");  // Re-plot improving hexagons on Overall screen (see above)
-    plotOverallHexes("no_change");  // Re-plot no change hexagons Overall screen (see above)
-    plotOverallHexes("worsening");  // Re-plot worsening hexagons Overall screen (see above)
-    plotOverallHexes("insufficient");
-    plotExpandedDomains();
+
+    if (window.location.search.includes("tab=overall")) {
+        plotOverallHexes("improving");  // Re-plot improving hexagons on Overall screen (see above)
+        plotOverallHexes("no_change");  // Re-plot no change hexagons Overall screen (see above)
+        plotOverallHexes("worsening");  // Re-plot worsening hexagons Overall screen (see above)
+        plotOverallHexes("insufficient");
+    }
+
+    if (window.location.search.includes("tab=domains")) {
+        plotExpandedDomains();
+    }
 }
 
 // This function updates the second dropdown menu on the maps screen based on what has been selected by the user in the first dropdown menu
