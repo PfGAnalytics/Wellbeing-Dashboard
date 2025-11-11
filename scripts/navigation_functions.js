@@ -89,6 +89,7 @@ var expand_all = document.getElementById("expand-all");
 var domain_toggle = document.getElementById("domain-toggle");
 var browse_grid = document.getElementById("browse-grid");
 var recent_updates = document.getElementById("recent-updates");
+var h3_recent_updates = document.getElementById("h3-recent-updates");
 var expanded_domains = document.getElementById("expanded-domains");
 var by_mission = document.getElementById("by-mission");
 var by_mission_grid = document.getElementById("by-mission-grid");
@@ -584,6 +585,8 @@ if (currentURL.includes("?domain=")) {
     click_to_see.style.display = "none";        // Hide the "click-to-see" div
     domain_toggle.style.display = "none";
     domains_intro.style.display = "none";       // Hide the "domains-intro" div
+    recent_updates.style.display = "none";
+    h3_recent_updates.style.display = "none";
     indicator_intro.style.display = "block";    // Show the "indicator-intro" div
     hex_count_container.style.display = "block";
 
