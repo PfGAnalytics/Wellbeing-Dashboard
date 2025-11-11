@@ -970,12 +970,11 @@ footer a:hover {
     overflow: hidden;
 }
 
-#further-expander span, #further-expander i.fa-solid, #further-expander-map span, #further-expander-map i.fa-solid,
-.note-container .note-span, .note-container .fa-plus {
+#further-expander span, #further-expander i.fa-solid, #further-expander-map span, #further-expander-map i.fa-solid {
     display: none !important;
 }
 
-#further-info, #further-info .further-info-text, #further-info-map, #further-info-map .further-info-map-text, .note-container ol {
+#further-info, #further-info .further-info-text, #further-info-map, #further-info-map .further-info-map-text {
     max-height: none !important;
     visibility: visible !important;
     display: block !important;
