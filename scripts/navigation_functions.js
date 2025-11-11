@@ -1203,7 +1203,9 @@ function sizeForMobile() {
         map_container.removeAttribute("style");             // Remove any style attributes set above for map container
         top_menu_items_div.removeAttribute("style");        // Remove any style attributes set above for top menu items div
         // dashboard_title.removeAttribute("style");           // Remove any style attributes set above dashboard title
-        grey_box[0].style.width = "1150px";
+        for (let i = 0; i < grey_box.length; i++) {
+            grey_box[i].style.width = "1150px";
+        }
 
         for (let i = 0; i < top_menu_items.length; i++) {
             top_menu_items[i].removeAttribute("style");     // Remove any style attributes set above for top menu items

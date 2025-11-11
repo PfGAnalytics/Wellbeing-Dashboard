@@ -2270,10 +2270,10 @@ async function drawMap() {
          // Further info and how do we measure this divs:
          var measure_info_map = document.getElementById("measure-info-map");
          var further_info_map = document.getElementById("further-info-map");
-         console.log(further_info_map)
 
          // Obtain further info text from query
          var further_note = note[0].replaceAll("\n", "");
+         console.log(further_note)
 
          if (further_note.indexOf("Further information") != -1) {
             var further_string = "Further information";
@@ -2352,6 +2352,8 @@ async function drawMap() {
          if (further_info_map.firstChild) {
             further_info_map.removeChild(further_info_map.firstChild);
          }
+
+         further_info_map.appendChild(further_list);
 
          // Legend divs added to map
          if (!document.getElementById(matrix + "-legend")) {
