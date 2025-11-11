@@ -1068,13 +1068,13 @@ const cumulative_middle = {
    let hexDivHTML = "";
 
    if (base_statement.includes("improved")) {
-       hexDivHTML = '<div class = "row key-text">Improving<div class = "key-hex positive"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
+       hexDivHTML = '<div class = "row key-text performance">Improving<div class = "key-hex positive" style="margin-left:5px;"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
    } else if (base_statement.includes("no real change")) {
-       hexDivHTML = '<div class = "row key-text">No change<div class = "key-hex neutral"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
+       hexDivHTML = '<div class = "row key-text performance">No change<div class = "key-hex neutral" style="margin-left:5px;"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
    } else if (base_statement.includes("worsened")) {
-       hexDivHTML = '<div class = "row key-text">Worsening<div class = "key-hex negative"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 10px"></i></div>';
+       hexDivHTML = '<div class = "row key-text performance">Worsening<div class = "key-hex negative" style="margin-left:5px;"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 10px"></i></div>';
    } else if (base_statement.includes("insufficient")) {
-       hexDivHTML = '<div class = "row key-text">Insufficient<div class = "key-hex insufficient"><div class = "key-hex-label insufficient"></div>';
+       hexDivHTML = '<div class = "row key-text performance">Insufficient<div class = "key-hex insufficient" style="margin-left:5px;"><div class = "key-hex-label insufficient"></div>';
    }
 
 // Insert the div into a container with a known ID

@@ -1634,3 +1634,10 @@ tr {
   display: flex !important;
   }
 }
+
+.performance {
+    background-color: #e8e8e8;
+    padding: 5px 15px 5px 15px;
+    border-radius: 50px;
+    font-weight: bold;
+}
