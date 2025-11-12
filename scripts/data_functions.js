@@ -2619,6 +2619,11 @@ fetch('scripts/updated.json?nocache=' + Date.now())
      domainCell.style.border = '1px solid #ccc';
      domainCell.style.padding = '8px';
      domainCell.textContent = domainName;
+     
+     const performanceCell = document.createElement('td');
+     performanceCell.style.border = '1px solid #ccc';
+     performanceCell.style.padding = '8px';
+   //   performance.textContent = ;
 
      const dateCell = document.createElement('td');
      dateCell.style.border = '1px solid #ccc';
@@ -2628,6 +2633,7 @@ fetch('scripts/updated.json?nocache=' + Date.now())
      // Append cells to the row
      row.appendChild(nameCell);
      row.append(domainCell);
+     row.appendChild(performanceCell);
      row.appendChild(dateCell);
      tbody.appendChild(row);
    });
