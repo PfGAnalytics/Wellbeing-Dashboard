@@ -342,6 +342,14 @@ padding-right: 10px;
     100% { transform: translate(1px, -1px) rotate(1deg); }
 }
 
+#recent-updates td:first-child {
+  width: 75%
+}
+
+#recent-updates td:nth-child(2) {
+  cursor: default
+}
+
 .ind-hex-container {
    height: 180px;
    width: 180px;
