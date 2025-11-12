@@ -1333,6 +1333,15 @@ input:focus-visible {
     height: max-content;
   }
 
+#subpop-table td:nth-child(1):hover {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+#subpop-table td:nth-child(1) {
+  width: 350px;
+  background-color: #f2f2f2;
+}
 
   .overall-text {
     margin-left: 10px;
