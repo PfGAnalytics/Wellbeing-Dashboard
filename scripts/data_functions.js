@@ -2544,14 +2544,17 @@ async function dataPortalLive () {
 }
 
 // Build mapping from domains_data
-const codeToNameMap = (() => {
+const codeToInfoMap = (() => {
   const domainsData = window.domains_data; // Ensure domains_data is loaded globally
   const map = {};
-  for (const domain of Object.values(domainsData)) {
-    for (const [indicatorName, indicatorData] of Object.entries(domain.indicators)) {
+  for (const [domainName, domainData] of Object.entries(domainsData)) {
+    for (const [indicatorName, indicatorData] of Object.entries(domainData.indicators)) {
       for (const code of Object.values(indicatorData.data)) {
         if (code) {
-          map[code] = indicatorName;
+          map[code] = {
+            indicator: indicatorName,
+            domain: domainName
+          };
         }
       }
     }
@@ -2590,8 +2593,10 @@ fetch('scripts/updated.json?nocache=' + Date.now())
 
    top5.forEach(item => {
      const row = document.createElement('tr');
-     const formattedDate = isNaN(item.updated) ? 'Not Available' : formatBritishDate(item.updated);
-     const indicatorName = codeToNameMap[item.dataset] || item.dataset || 'Unknown';
+     const formattedDate = isNaN(item.updated) ? 'Not Available' : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
+     const info = codeToInfoMap[item.dataset] || {};
+     const indicatorName = info.indicator || item.dataset || 'Unknown';
+     const domainName = info.domain || 'Unknown';
 
      // Create URL-friendly version of the indicator name
      const urlIndicator = indicatorName
@@ -2610,6 +2615,11 @@ fetch('scripts/updated.json?nocache=' + Date.now())
      nameCell.style.padding = '8px';
      nameCell.appendChild(link); // Add the link to the cell
 
+     const domainCell = document.createElement('td');
+     domainCell.style.border = '1px solid #ccc';
+     domainCell.style.padding = '8px';
+     domainCell.textContent = domainName;
+
      const dateCell = document.createElement('td');
      dateCell.style.border = '1px solid #ccc';
      dateCell.style.padding = '8px';
@@ -2617,6 +2627,7 @@ fetch('scripts/updated.json?nocache=' + Date.now())
 
      // Append cells to the row
      row.appendChild(nameCell);
+     row.append(domainCell);
      row.appendChild(dateCell);
      tbody.appendChild(row);
    });
