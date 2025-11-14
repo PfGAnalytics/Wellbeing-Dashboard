@@ -1,89 +1,348 @@
 {
-  "INDCHSCAA": "2025-05-08T9:30:00",
-  "INDCHSCLGD": "2025-05-08T9:30:00",
-  "INDCHSCEQ": "2024-09-04T11:33:54",
-  "INDLIFESATYPLGD": "2025-05-08T9:30:00",
-  "INDLIFESATYPEQ": "2025-03-21T9:30:00",
-  "INDSEYPLGD": "2025-05-08T9:30:00",
-  "INDSEYPEQ": "2025-03-21T9:30:00",
-  "INDSFGANI": "2025-09-26T9:30:00",
-  "INDAIRPOLNI": "2025-06-05T9:30:00",
-  "INDCOASTQNI": "2025-06-05T9:30:00",
-  "INDCONDSTENI": "2025-06-05T9:30:00",
-  "INDGREENHGNI": "2025-07-10T10:22:04",
-  "INDOUTRECAA": "2025-08-12T12:34:41",
-  "INDOUTRECLGD": "2025-08-12T12:34:02",
-  "INDOUTRECEQ": "2025-08-12T12:35:10",
-  "INDRECWSTENI": "2025-02-24T9:30:00",
-  "INDRECWSTELGD": "2025-04-29T9:30:00",
-  "INDRENEWNI": "2025-03-18T10:20:19",
-  "INDRIVERQNI": "2025-06-05T9:30:00",
-  "INDATPUBEQ": "2024-09-02T12:09:49",
-  "INDCULTIDEQ": "2025-11-10T9:30:00",
-  "INDINCDPLGD": "2025-05-20T9:30:00",
-  "INDINCDPEQ": "2025-07-30T9:45:46",
-  "INDINCIEQLGD": "2025-05-20T9:30:00",
-  "INDINCIEQEQ": "2025-07-30T9:45:07",
-  "INDRESPECTEQ": "2024-09-05T12:57:53",
-  "INDATWALKEQ": "2024-06-10T9:30:00",
-  "INDHLEFEQ": "2025-09-19T15:31:04",
-  "INDHLEMEQ": "2025-09-19T15:31:32",
-  "INDMHEALTHEQ": "2025-05-20T9:30:00",
-  "INDPREVDTHAA": "2025-09-24T9:30:00",
-  "INDPREVDTHLGD": "2025-09-24T9:30:00",
-  "INDPREVDTHEQ": "2025-09-24T9:30:00",
-  "INDSPORTSLGD": "2025-05-08T9:30:00",
-  "INDSPORTSEQ": "2025-01-30T9:30:00",
-  "INDARTCULLGD": "2025-04-29T9:30:00",
-  "INDARTCULEQ": "2025-01-24T11:17:45",
-  "INDLIFESATAA": "2025-04-29T9:30:00",
-  "INDLIFESATLGD": "2025-04-29T9:30:00",
-  "INDLIFESATEQ": "2025-03-11T9:30:00",
-  "INDSLATTGAPAA": "2025-08-14T9:30:00",
-  "INDSLATTGAPLGD": "2025-08-14T9:30:00",
-  "INDSLATTGAPEQ": "2025-08-14T9:30:00",
-  "INDSELFEFFAA": "2025-04-29T9:30:00",
-  "INDSELFEFFLGD": "2025-04-29T9:30:00",
-  "INDSELFEFFEQ": "2025-03-11T9:30:00",
-  "INDECONINACTAA": "2025-10-23T9:30:00",
-  "INDECONINACTLGD": "2025-10-23T9:30:00",
-  "INDECONINACTEQ": "2025-10-23T15:31:54",
-  "INDEMPRATEAA": "2025-10-23T9:30:00",
-  "INDEMPRATELGD": "2025-10-23T9:30:00",
-  "INDEMPRATEEQ": "2025-10-23T16:42:06",
-  "INDEXSALENI": "2024-12-23T9:30:00",
-  "INDEXSALELGD": "2025-05-08T9:30:00",
-  "INDGOODJOBSLGD": "2025-05-08T9:30:00",
-  "INDGOODJOBSEQ": "2025-02-20T12:56:21",
-  "INDINTREPNI": "2024-12-12T15:14:38",
-  "INDLABPRDTNI": "2025-07-10T13:58:19",
-  "INDNICEINI": "2025-09-26T15:02:13",
-  "INDRESDEVNI": "2025-01-30T9:30:00",
-  "INDSKILLSLGD": "2025-10-24T14:40:02",
-  "INDSKILLSEQ": "2025-10-24T14:39:03",
-  "INDCRIMEAA": "2025-10-30T16:00:13",
-  "INDCRIMELGD": "2025-10-30T16:04:44",
-  "INDCRIMEEQ": "2025-10-30T15:56:00",
-  "INDPERSSAFENI": "2025-10-29T9:30:00",
-  "INDPRCASEEQ": "2025-10-07T9:30:00",
-  "INDSAFETOWNEQ": "2025-11-10T9:30:00",
-  "INDWORRYACNI": "2025-10-29T9:30:00",
-  "INDADSCNI": "2024-06-10T9:30:00",
-  "INDLONEAA": "2025-04-29T9:30:00",
-  "INDLONELGD": "2025-04-29T9:30:00",
-  "INDLONEEQ": "2025-03-11T15:01:47",
-  "INDVOLLGD": "2025-10-31T15:38:46",
-  "INDVOLEQ": "2025-10-31T15:36:47",
-  "INDSUITHOUSLGD": "2025-04-29T9:30:00",
-  "INDSUITHOUSEQ": "2025-10-08T14:37:50",
-  "INDHOMELNLGD": "2025-08-12T12:32:55",
-  "INDHOMELNEQ": "2025-08-12T12:32:22",
-  "INDHOUSCTLGD": "2025-07-10T10:23:10",
-  "INDHOUSCTEQ": "2025-07-10T16:39:42",
-  "INDHOUSTRSLGD": "2025-04-29T9:30:00",
-  "INDHOUSTRSEQ": "2025-02-11T11:36:04",
-  "INDCOMRELEQ": "2025-11-10T9:30:00",
-  "INDSHARCOMEQ": "2025-11-10T9:30:00",
-  "INDTRUSTMEDIANI": "2025-10-28T9:30:00",
-  "INDTRUSTASMBNI": "2025-10-28T9:30:00"
+  "INDCHSCAA": {
+    "updated": "2025-05-08T9:30:00",
+    "performance": "improving"
+  },
+  "INDCHSCLGD": {
+    "updated": "2025-05-08T9:30:00",
+    "performance": "improving"
+  },
+  "INDCHSCEQ": {
+    "updated": "2024-09-04T11:33:54",
+    "performance": "improving"
+  },
+  "INDLIFESATYPLGD": {
+    "updated": "2025-05-08T9:30:00",
+    "performance": "worsening"
+  },
+  "INDLIFESATYPEQ": {
+    "updated": "2025-03-21T9:30:00",
+    "performance": "worsening"
+  },
+  "INDSEYPLGD": {
+    "updated": "2025-05-08T9:30:00",
+    "performance": "worsening"
+  },
+  "INDSEYPEQ": {
+    "updated": "2025-03-21T9:30:00",
+    "performance": "worsening"
+  },
+  "INDSFGANI": {
+    "updated": "2025-09-26T9:30:00",
+    "performance": "no change"
+  },
+  "INDAIRPOLNI": {
+    "updated": "2025-06-05T9:30:00",
+    "performance": "improving"
+  },
+  "INDCOASTQNI": {
+    "updated": "2025-06-05T9:30:00",
+    "performance": "no change"
+  },
+  "INDCONDSTENI": {
+    "updated": "2025-06-05T9:30:00",
+    "performance": "worsening"
+  },
+  "INDGREENHGNI": {
+    "updated": "2025-07-10T10:22:04",
+    "performance": "improving"
+  },
+  "INDOUTRECAA": {
+    "updated": "2025-08-12T12:34:41",
+    "performance": "no change"
+  },
+  "INDOUTRECLGD": {
+    "updated": "2025-08-12T12:34:02",
+    "performance": "no change"
+  },
+  "INDOUTRECEQ": {
+    "updated": "2025-08-12T12:35:10",
+    "performance": "no change"
+  },
+  "INDRECWSTENI": {
+    "updated": "2025-02-24T9:30:00",
+    "performance": "no change"
+  },
+  "INDRECWSTELGD": {
+    "updated": "2025-04-29T9:30:00"
+  },
+  "INDRENEWNI": {
+    "updated": "2025-03-18T10:20:19",
+    "performance": "worsening"
+  },
+  "INDRIVERQNI": {
+    "updated": "2025-06-05T9:30:00",
+    "performance": "no change"
+  },
+  "INDATPUBEQ": {
+    "updated": "2024-09-02T12:09:49",
+    "performance": "insufficient data"
+  },
+  "INDCULTIDEQ": {
+    "updated": "2025-11-14T15:15:02",
+    "performance": "worsening"
+  },
+  "INDINCDPLGD": {
+    "updated": "2025-05-20T9:30:00",
+    "performance": "no change"
+  },
+  "INDINCDPEQ": {
+    "updated": "2025-07-30T9:45:46",
+    "performance": "no change"
+  },
+  "INDINCIEQLGD": {
+    "updated": "2025-05-20T9:30:00",
+    "performance": "no change"
+  },
+  "INDINCIEQEQ": {
+    "updated": "2025-07-30T9:45:07",
+    "performance": "no change"
+  },
+  "INDRESPECTEQ": {
+    "updated": "2024-09-05T12:57:53",
+    "performance": "worsening"
+  },
+  "INDATWALKEQ": {
+    "updated": "2024-06-10T9:30:00",
+    "performance": "insufficient data"
+  },
+  "INDHLEFEQ": {
+    "updated": "2025-09-19T15:31:04",
+    "performance": "no change"
+  },
+  "INDHLEMEQ": {
+    "updated": "2025-09-19T15:31:32",
+    "performance": "no change"
+  },
+  "INDMHEALTHEQ": {
+    "updated": "2025-05-20T9:30:00",
+    "performance": "no change"
+  },
+  "INDPREVDTHAA": {
+    "updated": "2025-09-24T9:30:00",
+    "performance": "worsening"
+  },
+  "INDPREVDTHLGD": {
+    "updated": "2025-09-24T9:30:00",
+    "performance": "worsening"
+  },
+  "INDPREVDTHEQ": {
+    "updated": "2025-09-24T9:30:00",
+    "performance": "worsening"
+  },
+  "INDSPORTSLGD": {
+    "updated": "2025-05-08T9:30:00",
+    "performance": "no change"
+  },
+  "INDSPORTSEQ": {
+    "updated": "2025-01-30T9:30:00",
+    "performance": "no change"
+  },
+  "INDARTCULLGD": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "improving"
+  },
+  "INDARTCULEQ": {
+    "updated": "2025-01-24T11:17:45",
+    "performance": "improving"
+  },
+  "INDLIFESATAA": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "no change"
+  },
+  "INDLIFESATLGD": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "no change"
+  },
+  "INDLIFESATEQ": {
+    "updated": "2025-03-11T9:30:00",
+    "performance": "no change"
+  },
+  "INDSLATTGAPAA": {
+    "updated": "2025-08-14T9:30:00",
+    "performance": "insufficient data"
+  },
+  "INDSLATTGAPLGD": {
+    "updated": "2025-08-14T9:30:00",
+    "performance": "insufficient data"
+  },
+  "INDSLATTGAPEQ": {
+    "updated": "2025-08-14T9:30:00",
+    "performance": "insufficient data"
+  },
+  "INDSELFEFFAA": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "no change"
+  },
+  "INDSELFEFFLGD": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "no change"
+  },
+  "INDSELFEFFEQ": {
+    "updated": "2025-03-11T9:30:00",
+    "performance": "no change"
+  },
+  "INDECONINACTAA": {
+    "updated": "2025-10-23T9:30:00",
+    "performance": "improving"
+  },
+  "INDECONINACTLGD": {
+    "updated": "2025-10-23T9:30:00",
+    "performance": "improving"
+  },
+  "INDECONINACTEQ": {
+    "updated": "2025-10-23T15:31:54",
+    "performance": "improving"
+  },
+  "INDEMPRATEAA": {
+    "updated": "2025-10-23T9:30:00",
+    "performance": "improving"
+  },
+  "INDEMPRATELGD": {
+    "updated": "2025-10-23T9:30:00",
+    "performance": "improving"
+  },
+  "INDEMPRATEEQ": {
+    "updated": "2025-10-23T16:42:06",
+    "performance": "improving"
+  },
+  "INDEXSALENI": {
+    "updated": "2024-12-23T9:30:00",
+    "performance": "no change"
+  },
+  "INDEXSALELGD": {
+    "updated": "2025-05-08T9:30:00"
+  },
+  "INDGOODJOBSLGD": {
+    "updated": "2025-05-08T9:30:00",
+    "performance": "insufficient data"
+  },
+  "INDGOODJOBSEQ": {
+    "updated": "2025-02-20T12:56:21",
+    "performance": "insufficient data"
+  },
+  "INDINTREPNI": {
+    "updated": "2024-12-12T15:14:38",
+    "performance": "improving"
+  },
+  "INDLABPRDTNI": {
+    "updated": "2025-07-10T13:58:19",
+    "performance": "improving"
+  },
+  "INDNICEINI": {
+    "updated": "2025-09-26T15:02:13",
+    "performance": "improving"
+  },
+  "INDRESDEVNI": {
+    "updated": "2025-01-30T9:30:00",
+    "performance": "worsening"
+  },
+  "INDSKILLSLGD": {
+    "updated": "2025-10-24T14:40:02",
+    "performance": "improving"
+  },
+  "INDSKILLSEQ": {
+    "updated": "2025-10-24T14:39:03",
+    "performance": "improving"
+  },
+  "INDCRIMEAA": {
+    "updated": "2025-10-30T16:00:13",
+    "performance": "no change"
+  },
+  "INDCRIMELGD": {
+    "updated": "2025-10-30T16:04:44",
+    "performance": "no change"
+  },
+  "INDCRIMEEQ": {
+    "updated": "2025-10-30T15:56:00",
+    "performance": "no change"
+  },
+  "INDPERSSAFENI": {
+    "updated": "2025-10-29T9:30:00",
+    "performance": "no change"
+  },
+  "INDPRCASEEQ": {
+    "updated": "2025-10-07T9:30:00",
+    "performance": "no change"
+  },
+  "INDSAFETOWNEQ": {
+    "updated": "2025-11-14T15:17:34",
+    "performance": "worsening"
+  },
+  "INDWORRYACNI": {
+    "updated": "2025-10-29T9:30:00",
+    "performance": "no change"
+  },
+  "INDADSCNI": {
+    "updated": "2024-06-10T9:30:00",
+    "performance": "no change"
+  },
+  "INDLONEAA": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "improving"
+  },
+  "INDLONELGD": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "improving"
+  },
+  "INDLONEEQ": {
+    "updated": "2025-03-11T15:01:47",
+    "performance": "improving"
+  },
+  "INDVOLLGD": {
+    "updated": "2025-10-31T15:38:46",
+    "performance": "no change"
+  },
+  "INDVOLEQ": {
+    "updated": "2025-10-31T15:36:47",
+    "performance": "no change"
+  },
+  "INDSUITHOUSLGD": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "no change"
+  },
+  "INDSUITHOUSEQ": {
+    "updated": "2025-10-08T14:37:50",
+    "performance": "no change"
+  },
+  "INDHOMELNLGD": {
+    "updated": "2025-08-12T12:32:55",
+    "performance": "worsening"
+  },
+  "INDHOMELNEQ": {
+    "updated": "2025-08-12T12:32:22",
+    "performance": "worsening"
+  },
+  "INDHOUSCTLGD": {
+    "updated": "2025-07-10T10:23:10",
+    "performance": "no change"
+  },
+  "INDHOUSCTEQ": {
+    "updated": "2025-07-10T16:39:42",
+    "performance": "no change"
+  },
+  "INDHOUSTRSLGD": {
+    "updated": "2025-04-29T9:30:00",
+    "performance": "worsening"
+  },
+  "INDHOUSTRSEQ": {
+    "updated": "2025-02-11T11:36:04",
+    "performance": "worsening"
+  },
+  "INDCOMRELEQ": {
+    "updated": "2025-11-14T15:14:22",
+    "performance": "improving"
+  },
+  "INDSHARCOMEQ": {
+    "updated": "2025-11-14T15:17:06",
+    "performance": "no change"
+  },
+  "INDTRUSTMEDIANI": {
+    "updated": "2025-10-28T9:30:00",
+    "performance": "no change"
+  },
+  "INDTRUSTASMBNI": {
+    "updated": "2025-10-28T9:30:00",
+    "performance": "no change"
+  }
 }

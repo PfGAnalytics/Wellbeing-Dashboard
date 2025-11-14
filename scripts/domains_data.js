@@ -678,7 +678,7 @@ var domains_data = {
          },
          "Labour productivity": {
             importance: "Productivity is a measure of how efficiently the economy can convert inputs (e.g. labour, machinery, raw materials) into outputs (e.g. houses, cars, consumer goods). As such, improved productivity is the key determinant of living standards and economic competitiveness over the long term. The ability to produce the same (or greater) quantity of output with less inputs is also important to the transition towards a more sustainable economy.",
-            base_year: '2019',
+            base_year: "2019",
             ci: 0.1,
             data: {
                NI: "INDLABPRDTNI",

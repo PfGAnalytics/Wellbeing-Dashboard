@@ -2530,6 +2530,8 @@ fetch('scripts/updated.json?nocache=' + Date.now())
       };
     });
 
+    console.log(response)
+
     items.sort((a, b) => b.updated - a.updated);
     const top5 = items.slice(0, 5);
 
