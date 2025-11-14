@@ -351,6 +351,10 @@ padding-right: 10px;
   font-weight: bold;
 }
 
+#recent-updates td:nth-child(2) {
+  width: 20%;
+}
+
 #recent-updates td:first-child, #recent-updates td:nth-child(2) {
   text-align: left;
 }
