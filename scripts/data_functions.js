@@ -2568,6 +2568,10 @@ fetch('scripts/updated.json?nocache=' + Date.now())
         link.href = `index.html?indicator=${urlIndicator}`;
         link.textContent = indicatorName;
 
+        const domainLink = document.createElement('a');
+        domainLink.href = `index.html?domain=${domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
+        domainLink.textContent = domainName;
+
         // Create the table cells
         const nameCell = document.createElement('td');
         nameCell.style.border = '1px solid #ccc';
@@ -2577,7 +2581,7 @@ fetch('scripts/updated.json?nocache=' + Date.now())
         const domainCell = document.createElement('td');
         domainCell.style.border = '1px solid #ccc';
         domainCell.style.padding = '8px';
-        domainCell.textContent = domainName;
+        domainCell.appendChild(domainLink); // Add the domain link to the cell
 
         const performanceCell = document.createElement('td');
         performanceCell.style.border = '1px solid #ccc';
