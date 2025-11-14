@@ -351,6 +351,10 @@ padding-right: 10px;
   font-weight: bold;
 }
 
+#recent-updates td:nth-child(2) {
+  width: 20%;
+}
+
 #recent-updates td:first-child, #recent-updates td:nth-child(2) {
   text-align: left;
 }
@@ -1695,6 +1699,7 @@ tr {
 #recent-table th {
     border: 1px solid black; 
     padding: 8px;
+    text-align: left !important;
 }
 
 #recent-table td {
