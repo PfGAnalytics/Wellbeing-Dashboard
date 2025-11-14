@@ -1394,9 +1394,7 @@ async function subpopTable() {
     subpop_headers = document.createElement("tr");
 
     // Array of all EQ group headings
-    // headings = ["Deprivation", "Age", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group", "Year group",
-    //     "Free School Meals"];
-    const headings = Object.keys(eqgroups);
+    headings = ["Deprivation", "Age", "Sex", "Urban Rural", "Marital status", "Religion", "Political opinion", "Disability", "Dependants", "Sexual orientation", "Ethnic group"];
     
 
     subpop_headers.innerHTML = "<th style='text-align: left; position: sticky; left: 0; top: 0; z-index: 2;'>Indicator</th>" +
@@ -1432,7 +1430,6 @@ async function subpopTable() {
         // Make the cell horizontally sticky
         indicator_name.style.position = "sticky";
         indicator_name.style.left = "0"; // Stick to the left edge
-        indicator_name.style.background = "#f2f2f2"; // Prevent overlap transparency
 
         subpop_row.appendChild(indicator_name);     // Add cell to row
 
@@ -1491,10 +1488,29 @@ async function subpopTable() {
                     }
                 }                
 
-                for (let i = 0; i < headings.length; i ++) {    // If data exists for a particular grouping add a navy dot to table cell
+                for (let h = 0; h < headings.length; h ++) {    // If data exists for a particular grouping add a navy dot to table cell
                     td = document.createElement("td");
-                    if (eq_groups.includes(headings[i])) {
-                        td.innerHTML = '<div class = "navy-dot"></div>';
+                    if (eq_groups.includes(headings[h])) {
+                        
+                        const popupType = headings[h].toLowerCase().replace(/\s+/g, "+");
+                        const indicatorSlug = all_indicators[i].replace(/[^a-z ]/gi, '').replaceAll(" ", "+").toLowerCase();
+                        
+                        const dotLink = document.createElement("a");
+                        dotLink.href = `?indicator=${indicatorSlug}&popup=${popupType}`;
+                        dotLink.className = "navy-dot-link";
+                        
+                        dotLink.onclick = function (event) {
+                            event.preventDefault();
+                            openPopup(domain, all_indicators[i], headings[h]); 
+                            const popupURL = location.pathname + location.search + `&popup=${popupType}`;
+                            history.pushState({ popupOpen: true }, "", popupURL);
+                        };
+                        
+                        const dotDiv = document.createElement("div");
+                        dotDiv.className = "navy-dot";
+                        
+                        dotLink.appendChild(dotDiv);
+                        td.appendChild(dotLink);
                     }
                     subpop_row.appendChild(td)
                 }

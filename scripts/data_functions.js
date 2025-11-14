@@ -1351,13 +1351,25 @@ async function getEqualityGroups(d, e) {
          close_pop_up.onclick = function () {      // When close button is clicked:
             indicator_scrn.style.filter = "opacity(100%)";     // Set main page brightness back to full
             main_container.removeChild(pop_up_chart);          // Remove the pop-up
+            
+            // Remove popup parameter from URL when closing popup
+            const params = new URLSearchParams(location.search);
+            params.delete("popup");
+            const newURL = location.pathname + "?" + params.toString();
+            history.replaceState(null, "", newURL);
          }
 
          pop_up_chart.appendChild(close_pop_up);   // Insert close button into document
 
+         // Save indicator URL for popups
+         const indicatorURL = location.pathname + location.search;
+         history.pushState({ base: true, indicatorURL: indicatorURL }, "", indicatorURL);
+
          // Back button returns to indicator page when pop up chart is open
          history.pushState({ base: true }, "", location.href);
-         history.pushState({ popupOpen: true }, "", "#popup");
+         const popupType = eq_groups[i].toLowerCase().replace(/\s+/g, "+"); 
+         const popupURL = location.pathname + location.search + `&popup=${popupType}`;
+         history.pushState({ popupOpen: true }, "", popupURL);
 
          window.addEventListener("popstate", function (event) {
             if (event.state && event.state.base) {
@@ -1367,7 +1379,7 @@ async function getEqualityGroups(d, e) {
                   main_container.removeChild(pop_up_chart);
                }
                // Prevent further back navigation into popup
-               history.replaceState(null, "", location.pathname);
+               history.replaceState(null, "", event.state.indicatorURL);
             }
          });
 
