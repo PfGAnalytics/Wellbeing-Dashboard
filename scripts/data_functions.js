@@ -237,6 +237,15 @@ async function indicatorPerformance (dom = null) {
 
 }
 
+let improvinghexDivHTML = '<div class = "row key-text performance">Improving<div class = "key-hex positive" style="margin-left:5px;"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
+
+let nochangehexDivHTML = '<div class = "row key-text performance">No change<div class = "key-hex neutral" style="margin-left:5px;"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
+
+let worseninghexDivHTML = '<div class = "row key-text performance">Worsening<div class = "key-hex negative" style="margin-left:5px;"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 12px"></i></div>';
+
+let insufficienthexDivHTML = '<div class = "row key-text performance">Insufficient<div class = "key-hex insufficient" style="margin-left:5px;"><div class = "key-hex-label insufficient"></div>';
+
+
 // Function below uses the api to fetch the data and plots it in a line chart
 // It also generates the baseline statement, the source information, the further information and how do we measure this
 // using information on the data portal. The two inputs to the function are a domain name "d" and indicator name "e"
@@ -1066,15 +1075,14 @@ const cumulative_middle = {
    
    // Determine the class based on the contents of base_statement
    let hexDivHTML = "";
-
    if (base_statement.includes("improved")) {
-       hexDivHTML = '<div class = "row key-text performance">Improving<div class = "key-hex positive" style="margin-left:5px;"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
+       hexDivHTML = improvinghexDivHTML;
    } else if (base_statement.includes("no real change")) {
-       hexDivHTML = '<div class = "row key-text performance">No change<div class = "key-hex neutral" style="margin-left:5px;"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
+       hexDivHTML = nochangehexDivHTML;
    } else if (base_statement.includes("worsened")) {
-       hexDivHTML = '<div class = "row key-text performance">Worsening<div class = "key-hex negative" style="margin-left:5px;"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 10px"></i></div>';
+      hexDivHTML = worseninghexDivHTML;
    } else if (base_statement.includes("insufficient")) {
-       hexDivHTML = '<div class = "row key-text performance">Insufficient<div class = "key-hex insufficient" style="margin-left:5px;"><div class = "key-hex-label insufficient"></div>';
+      hexDivHTML = insufficienthexDivHTML;
    }
 
 // Insert the div into a container with a known ID
@@ -2543,6 +2551,11 @@ async function dataPortalLive () {
 
 }
 
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await indicatorPerformance();
+
+
 // Build mapping from domains_data
 const codeToInfoMap = (() => {
   const domainsData = window.domains_data; // Ensure domains_data is loaded globally
@@ -2591,54 +2604,68 @@ fetch('scripts/updated.json?nocache=' + Date.now())
     tbody.innerHTML = ''; // Clear any old rows to avoid duplicates
 
 
-   top5.forEach(item => {
-     const row = document.createElement('tr');
+      top5.forEach(item => {
+        const row = document.createElement('tr');
      const formattedDate = isNaN(item.updated) ? 'Not Available' : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
-     const info = codeToInfoMap[item.dataset] || {};
-     const indicatorName = info.indicator || item.dataset || 'Unknown';
-     const domainName = info.domain || 'Unknown';
+        const info = codeToInfoMap[item.dataset] || {};
+        const indicatorName = info.indicator || item.dataset || 'Unknown';
+        const domainName = info.domain || 'Unknown';
 
-     // Create URL-friendly version of the indicator name
-     const urlIndicator = indicatorName
-       .toLowerCase()
-       .replace(/[^\w\s]/g, '') // Remove punctuation
-       .replace(/\s+/g, '+');    // Replace spaces with '+'
+        // Create URL-friendly version of the indicator name
+        const urlIndicator = indicatorName
+          .toLowerCase()
+          .replace(/[^\w\s]/g, '') // Remove punctuation
+          .replace(/\s+/g, '+');    // Replace spaces with '+'
 
-     // Create the link element
-     const link = document.createElement('a');
-     link.href = `index.html?indicator=${urlIndicator}`;
-     link.textContent = indicatorName;
+        // Create the link element
+        const link = document.createElement('a');
+        link.href = `index.html?indicator=${urlIndicator}`;
+        link.textContent = indicatorName;
 
-     // Create the table cells
-     const nameCell = document.createElement('td');
-     nameCell.style.border = '1px solid #ccc';
-     nameCell.style.padding = '8px';
-     nameCell.appendChild(link); // Add the link to the cell
+        // Create the table cells
+        const nameCell = document.createElement('td');
+        nameCell.style.border = '1px solid #ccc';
+        nameCell.style.padding = '8px';
+        nameCell.appendChild(link); // Add the link to the cell
 
-     const domainCell = document.createElement('td');
-     domainCell.style.border = '1px solid #ccc';
-     domainCell.style.padding = '8px';
-     domainCell.textContent = domainName;
-     
-     const performanceCell = document.createElement('td');
-     performanceCell.style.border = '1px solid #ccc';
-     performanceCell.style.padding = '8px';
-   //   performance.textContent = ;
+        const domainCell = document.createElement('td');
+        domainCell.style.border = '1px solid #ccc';
+        domainCell.style.padding = '8px';
+        domainCell.textContent = domainName;
 
-     const dateCell = document.createElement('td');
-     dateCell.style.border = '1px solid #ccc';
-     dateCell.style.padding = '8px';
-     dateCell.textContent = formattedDate;
+        const performanceCell = document.createElement('td');
+        performanceCell.style.border = '1px solid #ccc';
+        performanceCell.style.padding = '8px';
 
-     // Append cells to the row
-     row.appendChild(nameCell);
-     row.append(domainCell);
-     row.appendChild(performanceCell);
-     row.appendChild(dateCell);
-     tbody.appendChild(row);
+        // Determine performance status
+
+        if (worsening_indicator.hasOwnProperty(indicatorName)) {
+          performanceCell.innerHTML = worseninghexDivHTML;
+        } else if (improving_indicator.hasOwnProperty(indicatorName)) {
+          performanceCell.innerHTML = improvinghexDivHTML;
+        } else if (no_change_indicator.hasOwnProperty(indicatorName)) {
+          performanceCell.innerHTML = nochangehexDivHTML;
+        } else if (insufficient_indicator.hasOwnProperty(indicatorName)) {
+          performanceCell.innerHTML = insufficienthexDivHTML;
+        } else {
+          performanceCell.textContent = 'Unknown';
+        }
+
+        const dateCell = document.createElement('td');
+        dateCell.style.border = '1px solid #ccc';
+        dateCell.style.padding = '8px';
+        dateCell.textContent = formattedDate;
+
+        // Append cells to the row
+        row.appendChild(nameCell);
+        row.appendChild(domainCell);
+        row.appendChild(performanceCell);
+        row.appendChild(dateCell);
+        tbody.appendChild(row);
    });
 
 
   })
   .catch(error => console.error('Error loading JSON:', error));
 
+})
