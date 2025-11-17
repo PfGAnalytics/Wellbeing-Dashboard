@@ -295,7 +295,7 @@ function generateHexagons (d) {
             loading_img_3.style.display = "none";
             domain_info.style.display = "block";
         }
-
+        
     }
 
     // After all hexagons are plotted we will get an array of all the hexagon rows
@@ -312,7 +312,6 @@ function generateHexagons (d) {
     }
 
 
-    countHexagonClasses()
 }
 
 function countHexagonClasses() {
@@ -326,14 +325,17 @@ function countHexagonClasses() {
 
 
     // Assign counts to HTML elements by ID
-    document.getElementById('count-positive').textContent = counts.positive;
-    document.getElementById('count-negative').textContent = counts.negative;
-    document.getElementById('count-insufficient').textContent = counts.insufficient;
-    document.getElementById('count-neutral').textContent = counts.neutral;
+    document.getElementById('count-positive').textContent = counts.positive / 3;
+    document.getElementById('count-negative').textContent = counts.negative / 3;
+    document.getElementById('count-insufficient').textContent = counts.insufficient / 3;
+    document.getElementById('count-neutral').textContent = counts.neutral / 3;
 
-    
-    return counts 
+    document.getElementById('count-positive-2').textContent = counts.positive / 3;
+    document.getElementById('count-negative-2').textContent = counts.negative / 3;
+    document.getElementById('count-insufficient-2').textContent = counts.insufficient / 3;
+    document.getElementById('count-neutral-2').textContent = counts.neutral / 3;
 
+    return counts;
 }
 
 
@@ -420,7 +422,7 @@ function plotOverallHexes (change_type) {
             hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i]
         }
 
-        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row
+        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row    
 
     }
 
@@ -588,7 +590,7 @@ if (currentURL.includes("?domain=")) {
     recent_updates.style.display = "none";
     h3_recent_updates.style.display = "none";
     indicator_intro.style.display = "block";    // Show the "indicator-intro" div
-    hex_count_container.style.display = "block";
+    hex_count_container.style.display = "none";
 
     var domain_name = lookUpDomain;    // Obtain domain name from hexagon text
 
@@ -1021,7 +1023,7 @@ removeAriaFromIcons = function() {
 
 // Execute the following functions when window loads for first time:
 window.onload = function() {
-    dataPortalLive();    
+    dataPortalLive();  
 };
 
 // Execute the following functions anytime the window is resized:
@@ -1704,7 +1706,7 @@ expand_all.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "block";
     by_mission_grid.style.display = "none";
-    hex_count_container.style.display = "block";
+    hex_count_container.style.display = "flex";
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
@@ -1720,7 +1722,7 @@ by_mission.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "block";
-    hex_count_container.style.display = "block";
+    hex_count_container.style.display = "flex";
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
@@ -1847,7 +1849,6 @@ plotExpandedDomains = function() {
 
         }
 
-        countHexagonClasses()
 
     }
 
@@ -1959,7 +1960,7 @@ plotExpandedDomains = function() {
                 ind_hex_container.style.display = "none";
             }
 
-            
+
             ind_hex_container.classList.add("shake-hex");            
             ind_hex_container.classList.add("ind-hex-container");
             ind_hex_container.name = "indicator";
@@ -1971,9 +1972,11 @@ plotExpandedDomains = function() {
             
             document.getElementById("mission-" + i + "-row-" + row_num).appendChild(ind_hex_container);
 
+            countHexagonClasses();
+
+
         }
 
-        countHexagonClasses()
         
 
     }

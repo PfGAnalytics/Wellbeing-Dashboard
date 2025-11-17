@@ -102,6 +102,24 @@
                     <div id = "expand-all" class = "domain-toggle-btn" tabindex="0">Expand all Domains</div>
                     <div id = "by-mission" class = "domain-toggle-btn" tabindex="0">View by Mission</div>
                 </div>
+                <div id = "hex-class-count" class="row key-text" style = "justify-content: center; display: none;">
+                    <div class="key-hex positive">
+                        <div class="key-hex-label positive"><i class="fa-solid fa-arrow-up-long"></i></div>
+                    </div>
+                    Improving:&nbsp;<strong><span id="count-positive" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex neutral">
+                        <div class="key-hex-label"><i class="fa-solid fa-arrow-right-long"></i></div>
+                    </div>
+                    No Change:&nbsp;<strong><span id="count-neutral" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex negative">
+                        <div class="key-hex-label negative"><i class="fa-solid fa-arrow-down-long"></i></div>
+                    </div>
+                    Worsening:&nbsp;<strong><span id="count-negative" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex insufficient">
+                        <div class="key-hex-label insufficient"></div>
+                    </div>
+                    Insufficient Data:&nbsp;<strong><span id="count-insufficient"></span></strong>
+                </div>
                 <div id = "indicator-intro" class = "intro">
                     <p>This overview shows how well we are doing across the indicators that fall under the <span id = "domain-name"></span> domain. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts. Decisions on performance are made independently of Ministers.</p>
                 </div>
@@ -123,26 +141,15 @@
                                 </div>
                             </div>
                             <div id="hex-class-count" class="intro" style="justify-items: center; padding-bottom: 10px; display: none">
-                                <div class="row key-text">
-                                    <div class="key-hex positive">
-                                        <div class="key-hex-label positive"><i class="fa-solid fa-arrow-up-long"></i></div>
-                                    </div>
-                                    Improving:&nbsp;<strong><span id="count-positive" style="padding-right: 10px"></span></strong>
-                                    <div class="key-hex neutral">
-                                        <div class="key-hex-label"><i class="fa-solid fa-arrow-right-long"></i></div>
-                                    </div>
-                                    No Change:&nbsp;<strong><span id="count-neutral" style="padding-right: 10px"></span></strong>
-                                    <div class="key-hex negative">
-                                        <div class="key-hex-label negative"><i class="fa-solid fa-arrow-down-long"></i></div>
-                                    </div>
-                                    Worsening:&nbsp;<strong><span id="count-negative" style="padding-right: 10px"></span></strong>
-                                    <div class="key-hex insufficient">
-                                        <div class="key-hex-label insufficient"></div>
-                                    </div>
-                                    Insufficient Data:&nbsp;<strong><span id="count-insufficient"></span></strong>
-                                </div>
                             </div>
                             <div class = "row">
+                                <div id = "key">
+                                    <div style = "margin-left: 8px;">Key:</div>
+                                    <div class = "row key-text"><div class = "key-hex positive"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long"></i></div></div>Improving</div>
+                                    <div class = "row key-text"><div class = "key-hex neutral"><div class = "key-hex-label"><i class = "fa-solid fa-arrow-right-long"></i></div></div>No Change</div>
+                                    <div class = "row key-text"><div class = "key-hex negative"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long"></i></div></div>Worsening</div>
+                                    <div class = "row key-text"><div class = "key-hex insufficient"><div class = "key-hex-label insufficient"></div></div>Insufficient Data</div>
+                                </div>
                                 <form id = "indicator-hexes"></form>
                             </div>
                             <div class = "blue-label" style = "width: 400px; margin-left: 165px; text-align: center; margin-top: 20px; margin-bottom: 20px;"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
@@ -184,6 +191,24 @@
                 <h2>Overall</h2>
                 <div id = "overall-intro" class = "intro">
                     <p>This overview shows how well we are doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts. Decisions on performance are made independently of Ministers.</p>
+                </div>
+                <div id = "hex-class-count" class="row key-text" style = "justify-content: center">
+                    <div class="key-hex positive">
+                        <div class="key-hex-label positive"><i class="fa-solid fa-arrow-up-long"></i></div>
+                    </div>
+                    Improving:&nbsp;<strong><span id="count-positive-2" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex neutral">
+                        <div class="key-hex-label"><i class="fa-solid fa-arrow-right-long"></i></div>
+                    </div>
+                    No Change:&nbsp;<strong><span id="count-neutral-2" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex negative">
+                        <div class="key-hex-label negative"><i class="fa-solid fa-arrow-down-long"></i></div>
+                    </div>
+                    Worsening:&nbsp;<strong><span id="count-negative-2" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex insufficient">
+                        <div class="key-hex-label insufficient"></div>
+                    </div>
+                    Insufficient Data:&nbsp;<strong><span id="count-insufficient-2"></span></strong>
                 </div>
                 <div id = "loading-img">
                     <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
