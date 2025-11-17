@@ -520,18 +520,6 @@ padding-right: 10px;
 }
 
 
-.sticky-row {
-  align-items: center;
-  margin-bottom: 30px;
-  /* position: sticky; */
-  top: 20px;
-  z-index: 10;
-  /* background-color: white; */
-  border-radius: 25px;
-  width: 97%;
-}
-
-
 .pxwidget-canvas-wrapper {
     height: 500px !important;
     width: 700px;
