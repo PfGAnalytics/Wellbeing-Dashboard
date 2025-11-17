@@ -2116,47 +2116,32 @@ const handleOnScroll = () => {
         return document.querySelector('#line-chart-container canvas[id$="-canvas"]') || null;
     }
 
-    function downloadChartDataAsCSV(chart) {
-        if (!chart || !chart.data || !chart.data.labels || !chart.data.datasets) return;
-
-        const labels = chart.data.labels;
-        const datasets = chart.data.datasets;
-
-        let csv = 'Label,' + datasets.map(ds => ds.label || 'Series').join(',') + '\n';
-
-        labels.forEach((label, i) => {
-            const row = [label];
-            datasets.forEach(ds => {
-                row.push(ds.data[i] !== undefined ? ds.data[i] : '');
-            });
-            csv += row.join(',') + '\n';
-        });
-        
-        const titleEl = document.querySelector('.chart-title');
-        const titleText = titleEl ? titleEl.textContent.trim() : '';
-        const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'data') + '.csv';
-
-        const blob = new Blob([csv], { type: 'text/csv' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = fileName;;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
     function wireDataDownloadButton() {
         const btn = document.getElementById('download-data');
         if (!btn) return;
 
         btn.onclick = function () {
-            const canvas = getChartCanvas();
-            if (!canvas) return;
+            // Get current domain and indicator from the page
+            const domain = document.getElementById('domain-title')?.textContent.trim();
+            const indicator = document.getElementById('indicator-title')?.textContent.trim();
+            if (!domain || !indicator) return;
 
-            const chart = Chart.getChart(canvas);
-            if (!chart) return;
+            // Get the indicator data object
+            const indicatorData = domains_data[domain]?.indicators[indicator]?.data;
+            if (!indicatorData) return;
 
-            downloadChartDataAsCSV(chart);
+            // Prioritise EQ, fallback to NI
+            const indicatorCode = indicatorData.EQ || indicatorData.NI;
+            if (!indicatorCode) {
+                alert('No downloadable data available for this indicator.');
+                return;
+            }
+
+            // Build the download URL
+            const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
+
+            // Redirect to the URL
+            window.location.href = downloadUrl;
         };
     }
 
