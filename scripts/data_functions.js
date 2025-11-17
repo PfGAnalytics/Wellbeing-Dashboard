@@ -2509,11 +2509,6 @@ async function dataPortalLive () {
 
 }
 
-
-document.addEventListener('DOMContentLoaded', async () => {
-  await indicatorPerformance();
-
-
 // Build mapping from domains_data
 const codeToInfoMap = (() => {
   const domainsData = window.domains_data; // Ensure domains_data is loaded globally
@@ -2544,92 +2539,102 @@ function formatBritishDate(dateObj) {
   return `${day}/${month}/${year}`;
 }
 
-fetch('scripts/updated.json?nocache=' + Date.now())
-  .then(response => response.json())
-  .then(data => {
-    const items = Object.entries(data).map(([dataset, updated]) => {
-      const normalized = normalizeDate(updated);
-      return {
-        dataset,
-        updated: new Date(normalized)
-      };
-    });
 
-    console.log(response)
+   fetch('scripts/updated.json?nocache=' + Date.now())
+     .then(response => response.json())
+     .then(data => {
+       // Convert the new structure into an array of objects
+       const items = Object.entries(data).map(([dataset, details]) => {
+         const normalizedDate = normalizeDate(details.updated); // Keep your normalizeDate function
+         return {
+           dataset,
+           updated: new Date(normalizedDate),
+           performance: details.performance || 'unknown'
+         };
+       });
 
-    items.sort((a, b) => b.updated - a.updated);
-    const top5 = items.slice(0, 5);
+       // Sort by updated date (most recent first)
+       items.sort((a, b) => b.updated - a.updated);
 
-    const tbody = document.querySelector('#recent-table tbody');
-    tbody.innerHTML = ''; // Clear any old rows to avoid duplicates
+       // Take top 5
+       const top5 = items.slice(0, 5);
 
+       const tbody = document.querySelector('#recent-table tbody');
+       tbody.innerHTML = ''; // Clear old rows
 
-      top5.forEach(item => {
-        const row = document.createElement('tr');
-     const formattedDate = isNaN(item.updated) ? 'Not Available' : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
-        const info = codeToInfoMap[item.dataset] || {};
-        const indicatorName = info.indicator || item.dataset || 'Unknown';
-        const domainName = info.domain || 'Unknown';
+       top5.forEach(item => {
+         const row = document.createElement('tr');
 
-        // Create URL-friendly version of the indicator name
-        const urlIndicator = indicatorName
-          .toLowerCase()
-          .replace(/[^\w\s]/g, '') // Remove punctuation
-          .replace(/\s+/g, '+');    // Replace spaces with '+'
+         // Format date
+         const formattedDate = isNaN(item.updated)
+           ? 'Not Available'
+           : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
 
-        // Create the link element
-        const link = document.createElement('a');
-        link.href = `index.html?indicator=${urlIndicator}`;
-        link.textContent = indicatorName;
+         // Get indicator and domain info
+         const info = codeToInfoMap[item.dataset] || {};
+         const indicatorName = info.indicator || item.dataset || 'Unknown';
+         const domainName = info.domain || 'Unknown';
 
-        const domainLink = document.createElement('a');
-        domainLink.href = `index.html?domain=${domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
-        domainLink.textContent = domainName;
+         // Create URL-friendly indicator name
+         const urlIndicator = indicatorName
+           .toLowerCase()
+           .replace(/[^\w\s]/g, '')
+           .replace(/\s+/g, '+');
 
-        // Create the table cells
-        const nameCell = document.createElement('td');
-        nameCell.style.border = '1px solid #ccc';
-        nameCell.style.padding = '8px';
-        nameCell.appendChild(link); // Add the link to the cell
+         // Indicator link
+         const link = document.createElement('a');
+         link.href = `index.html?indicator=${urlIndicator}`;
+         link.textContent = indicatorName;
 
-        const domainCell = document.createElement('td');
-        domainCell.style.border = '1px solid #ccc';
-        domainCell.style.padding = '8px';
-        domainCell.appendChild(domainLink); // Add the domain link to the cell
+         // Domain link
+         const domainLink = document.createElement('a');
+         domainLink.href = `index.html?domain=${domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
+         domainLink.textContent = domainName;
 
-        const performanceCell = document.createElement('td');
-        performanceCell.style.border = '1px solid #ccc';
-        performanceCell.style.padding = '8px';
+         // Create table cells
+         const nameCell = document.createElement('td');
+         nameCell.style.border = '1px solid #ccc';
+         nameCell.style.padding = '8px';
+         nameCell.appendChild(link);
 
-        // Determine performance status
+         const domainCell = document.createElement('td');
+         domainCell.style.border = '1px solid #ccc';
+         domainCell.style.padding = '8px';
+         domainCell.appendChild(domainLink);
 
-        if (worsening_indicator.hasOwnProperty(indicatorName)) {
-          performanceCell.innerHTML = worseninghexDivHTML;
-        } else if (improving_indicator.hasOwnProperty(indicatorName)) {
-          performanceCell.innerHTML = improvinghexDivHTML;
-        } else if (no_change_indicator.hasOwnProperty(indicatorName)) {
-          performanceCell.innerHTML = nochangehexDivHTML;
-        } else if (insufficient_indicator.hasOwnProperty(indicatorName)) {
-          performanceCell.innerHTML = insufficienthexDivHTML;
-        } else {
-          performanceCell.textContent = 'Unknown';
-        }
+         const performanceCell = document.createElement('td');
+         performanceCell.style.border = '1px solid #ccc';
+         performanceCell.style.padding = '8px';
 
-        const dateCell = document.createElement('td');
-        dateCell.style.border = '1px solid #ccc';
-        dateCell.style.padding = '8px';
-        dateCell.textContent = formattedDate;
+         // Use performance value to determine status
+         switch (item.performance.toLowerCase()) {
+           case 'worsening':
+             performanceCell.innerHTML = worseninghexDivHTML;
+             break;
+           case 'improving':
+             performanceCell.innerHTML = improvinghexDivHTML;
+             break;
+           case 'no change':
+             performanceCell.innerHTML = nochangehexDivHTML;
+             break;
+           case 'insufficient':
+             performanceCell.innerHTML = insufficienthexDivHTML;
+             break;
+           default:
+             performanceCell.textContent = 'Unknown';
+         }
 
-        // Append cells to the row
-        row.appendChild(nameCell);
-        row.appendChild(domainCell);
-        row.appendChild(performanceCell);
-        row.appendChild(dateCell);
-        tbody.appendChild(row);
-   });
+         const dateCell = document.createElement('td');
+         dateCell.style.border = '1px solid #ccc';
+         dateCell.style.padding = '8px';
+         dateCell.textContent = formattedDate;
 
-
-  })
-  .catch(error => console.error('Error loading JSON:', error));
-
-})
+         // Append cells to row
+         row.appendChild(nameCell);
+         row.appendChild(domainCell);
+         row.appendChild(performanceCell);
+         row.appendChild(dateCell);
+         tbody.appendChild(row);
+       });
+     })
+     .catch(error => console.error('Error loading JSON:', error));
