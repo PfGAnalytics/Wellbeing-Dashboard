@@ -2212,7 +2212,7 @@ async function drawMap() {
                      stroke: true,
                      color: "#555555",
                      opacity: 0.75,
-                     weight: 1
+                     weight: 2
                   });
 
                   l.on("mouseover", function (e) {
