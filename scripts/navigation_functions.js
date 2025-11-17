@@ -668,7 +668,7 @@ if (currentURL.includes("?indicator=")) {
     if (currentIndicator.includes("&")) {
         if (currentIndicator.includes("popup")) {
             popup_clicked = currentIndicator.slice(currentIndicator.indexOf("popup=") + "popup=".length)
-            popup_clicked = toTitleCase(popup_clicked).replaceAll("+", " ");
+            popup_clicked = toTitleCase(popup_clicked.replaceAll("+", " "));
         }
         currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("&"))
     }
@@ -750,7 +750,7 @@ if (currentURL.includes("?oindicator=")) {
     if (currentIndicator.includes("&")) {
         if (currentIndicator.includes("popup")) {
             popup_clicked = currentIndicator.slice(currentIndicator.indexOf("popup=") + "popup=".length)
-            popup_clicked = toTitleCase(popup_clicked).replaceAll("+", " ");
+            popup_clicked = toTitleCase(popup_clicked.replaceAll("+", " "));
         }
         currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("&"))
     }

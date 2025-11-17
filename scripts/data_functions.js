@@ -2646,8 +2646,16 @@ function formatBritishDate(dateObj) {
 
 
 function toTitleCase(str) {
+
+   if (["ethnic group", "year group", "sexual orientation", "marital status", "political opinion", "offence category", "court type", "work pattern", "volunteering type", "children in poverty"].includes(str)) {
+      return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()
+   }
+
+   if (str == "work pattern by sex") return "Work pattern by Sex"
+
   return str.replace(
     /\w\S*/g,
     text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
   );
+
 }
