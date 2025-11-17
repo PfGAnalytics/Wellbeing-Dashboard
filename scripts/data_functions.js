@@ -1726,11 +1726,20 @@ async function getEqualityGroups(d, e) {
          let first_year = [];
          let year = 0;
 
-         while (first_year.length == 0) {
-            if (values[Object.keys(values)[0]][year] != null) {
-               first_year.push(year)
-            }
-            year = year + 1
+
+         while (first_year.length == 0 && year < years.length) {
+             // Check if any non-NI group has data for this year
+             let hasData = false;
+             for (let g = 1; g < Object.keys(values).length; g++) { // start at 1 to skip NI
+                 if (values[Object.keys(values)[g]][year] != null) {
+                     hasData = true;
+                     break;
+                 }
+             }
+             if (hasData) {
+                 first_year.push(year);
+             }
+             year++;
          }
 
          let chartInstance = null;
