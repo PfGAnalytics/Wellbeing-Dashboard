@@ -149,7 +149,7 @@ for (let i = 0; i < hex_rows.length; i++) {
 // Function to generate indicator page for domain "d" and indicator "e"
 // The function is called when an indicator hexagon is clicked on or when a
 // "next indicator" or "previous indicator" button is clicked
-function generateIndicatorPage(d, e) {    
+async function generateIndicatorPage(d, e) {    
 
     domain_title.innerHTML = d;             // Place the domain name inside the "domain-title" div element
 
@@ -675,8 +675,14 @@ if (currentURL.includes("?indicator=")) {
 
     currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
 
-    if (currentIndicator.includes("#")) {
-        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("#"))
+    let popup_clicked = null;
+
+    if (currentIndicator.includes("&")) {
+        if (currentIndicator.includes("popup")) {
+            popup_clicked = currentIndicator.slice(currentIndicator.indexOf("popup=") + "popup=".length)
+            popup_clicked = toTitleCase(popup_clicked.replaceAll("+", " "));
+        }
+        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("&"))
     }
 
     lookUpIndicator = "";
@@ -704,6 +710,7 @@ if (currentURL.includes("?indicator=")) {
 
     createLineChart(lookUpDomain, lookUpIndicator);
     generateIndicatorPage(lookUpDomain, lookUpIndicator);
+    if (popup_clicked != null) renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
 
     for (let i = 0; i < button_rows.length; i ++) {
         button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
@@ -750,8 +757,14 @@ if (currentURL.includes("?indicator=")) {
 
     currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
 
-    if (currentIndicator.includes("#")) {
-        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("#"))
+    let popup_clicked = null;
+
+    if (currentIndicator.includes("&")) {
+        if (currentIndicator.includes("popup")) {
+            popup_clicked = currentIndicator.slice(currentIndicator.indexOf("popup=") + "popup=".length)
+            popup_clicked = toTitleCase(popup_clicked.replaceAll("+", " "));
+        }
+        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("&"))
     }
 
     domains_btn.classList.remove("selected-item");
@@ -784,6 +797,7 @@ if (currentURL.includes("?indicator=")) {
 
     createLineChart(lookUpDomain, lookUpIndicator);
     generateIndicatorPage(lookUpDomain, lookUpIndicator);
+    if (popup_clicked != null) renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
 
     button_rows[0].style.display = "flex";
 
