@@ -86,6 +86,8 @@ var grey_box = document.getElementsByClassName("grey-box");
 var skip_link = document.getElementById("skip-link");
 var browse_domains = document.getElementById("browse-domains");
 var expand_all = document.getElementById("expand-all");
+var by_performance = document.getElementById("by-performance");
+var overall_screen = document.getElementById("overall-scrn");
 var domain_toggle = document.getElementById("domain-toggle");
 var browse_grid = document.getElementById("browse-grid");
 var recent_updates = document.getElementById("recent-updates");
@@ -94,6 +96,7 @@ var expanded_domains = document.getElementById("expanded-domains");
 var by_mission = document.getElementById("by-mission");
 var by_mission_grid = document.getElementById("by-mission-grid");
 var back_to_start = document.getElementById("back-to-start");
+let performanceLoaded = false;
 
 
 for (let i = 0; i< domain_count.length; i ++) {
@@ -350,6 +353,11 @@ for (let i = 0; i < hexagons.length; i++) {
 // The function below plots the Hexagons on the Overall and is called three times. Once each for "improving", "no_change" and "worsening" indicators
 // The function runs any time the user resizes the window and when the Overall screen is accessed via the menu at top or a back button
 function plotOverallHexes (change_type) {
+
+    // Show loading image only if not loaded yet
+    if (!performanceLoaded) {
+        loading_img.style.display = "flex";
+    }
         
     // Use the user's screen size to determine a value "h" which will be the number of hexagons that can fit in a single row
     gridWidth = overall_scrn.clientWidth - 195;
@@ -396,7 +404,7 @@ function plotOverallHexes (change_type) {
         var hex_label = document.createElement("div");          // Create a hexagon label
 
         hex_container.classList.add("ind-hex-container");       // Give hexagon conatiner the class "ind-hex-container"
-        hex_container.name = "oindicator";
+        hex_container.name = "indicator";
         hex_container.value = Object.keys(eval(change_type + "_indicator"))[i].replace(/[^a-z ]/gi, '').toLowerCase();
 
         hex.classList.add("ind-hex");                           // Give hexagon the class "ind-hex"
@@ -422,9 +430,13 @@ function plotOverallHexes (change_type) {
             hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i]
         }
 
-        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row    
+        hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row  
 
     }
+
+    loading_img.style.display = "none";
+
+    performanceLoaded = true;
 
 }
 
@@ -734,9 +746,9 @@ if (currentURL.includes("?indicator=")) {
 }
 
 // Page navigation when indicator is clicked from Overall screen
-if (currentURL.includes("?oindicator=")) {
+if (currentURL.includes("?indicator=")) {
 
-    currentIndicator = currentURL.slice(currentURL.indexOf("?oindicator=") + "?oindicator=".length);
+    currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
 
     if (currentIndicator.includes("#")) {
         currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("#"))
@@ -1686,11 +1698,13 @@ browse_domains.onclick = function() {
     browse_domains.classList.add("domain-toggle-selected");
     expand_all.classList.remove("domain-toggle-selected");
     by_mission.classList.remove("domain-toggle-selected");
+    by_performance.classList.remove("domain-toggle-selected");
 
     browse_grid.style.display = "flex";
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "none";
+    overall_screen.style.display = "none";
     
     document.getElementById("recent-updates").style.display = "block";
     document.getElementById("h3-recent-updates").style.display = "block";
@@ -1702,11 +1716,13 @@ expand_all.onclick = function() {
     browse_domains.classList.remove("domain-toggle-selected");
     expand_all.classList.add("domain-toggle-selected");
     by_mission.classList.remove("domain-toggle-selected");
+    by_performance.classList.remove("domain-toggle-selected");
 
     browse_grid.style.display = "none";
     expanded_domains.style.display = "block";
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "flex";
+    overall_screen.style.display = "none";
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
@@ -1718,14 +1734,39 @@ by_mission.onclick = function() {
     browse_domains.classList.remove("domain-toggle-selected");
     expand_all.classList.remove("domain-toggle-selected");
     by_mission.classList.add("domain-toggle-selected");
+    by_performance.classList.remove("domain-toggle-selected");
 
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "block";
     hex_count_container.style.display = "flex";
+    overall_screen.style.display = "none";
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
+
+}
+
+by_performance.onclick = function() {
+
+    browse_domains.classList.remove("domain-toggle-selected");
+    expand_all.classList.remove("domain-toggle-selected");
+    by_mission.classList.remove("domain-toggle-selected");
+    by_performance.classList.add("domain-toggle-selected");
+
+    browse_grid.style.display = "none";
+    expanded_domains.style.display = "none";
+    by_mission_grid.style.display = "none";
+    hex_count_container.style.display = "flex";
+    overall_screen.style.display = "block";
+
+
+    document.getElementById("recent-updates").style.display = "none";
+    document.getElementById("h3-recent-updates").style.display = "none";
+
+    plotOverallHexes();
+    loading_img.style.display = "none";
+
 
 }
 
@@ -1972,14 +2013,16 @@ plotExpandedDomains = function() {
             
             document.getElementById("mission-" + i + "-row-" + row_num).appendChild(ind_hex_container);
 
-            countHexagonClasses();
 
 
         }
 
-        
+
+
 
     }
+
+    countHexagonClasses();
 
 }
 

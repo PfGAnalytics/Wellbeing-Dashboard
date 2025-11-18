@@ -64,7 +64,6 @@
         </div>
         <form id = "top-menu-items">
             <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fa-solid fa-house-user"></i> Home</button>
-            <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 25px;"> Overall</button>
             <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 30px;"> Maps</button>
             <button id = "about-btn" class = "top-menu-item" name = "tab" value = "about"><i class="fa-regular fa-circle-question"></i> About</button>
         </form>
@@ -94,6 +93,7 @@
                     <div id = "browse-domains" class = "domain-toggle-btn domain-toggle-selected" tabindex="0">Browse Domains</div>
                     <div id = "expand-all" class = "domain-toggle-btn" tabindex="0">Expand all Domains</div>
                     <div id = "by-mission" class = "domain-toggle-btn" tabindex="0">View by Mission</div>
+                    <div id = "by-performance" class = "domain-toggle-btn" tabindex="0">View by Performance</div>
                 </div>
                 <div id = "hex-class-count" class="row key-text" style = "justify-content: center; display: none;">
                     <div class="key-hex positive">
@@ -159,6 +159,48 @@
                         <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
                     </div>
                 </form>
+                <div id = "overall-scrn" class = "screen" style = "display: none;">
+                    <div id = "overall-intro" class = "intro">
+                        <p>This overview shows how well we are doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts. Decisions on performance are made independently of Ministers.</p>
+                    </div>
+                    <div id = "loading-img" style = "display: none">
+                        <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
+                    </div>
+                    <div id = "overall-hexes" style = "display: none">
+                        <div id = "overall-click">
+                            <div class = "blue-label" style = "width: 400px; text-align: center; margin-top: 1rem"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
+                        </div>
+                        <div class = "label-container">
+                            <h3 id = "h3-improving" class = "overall-text"></h3>
+                        </div>
+                        <div class = "row">
+                            <form id = "improving-hexes" class = "overall-container"></form>
+                        </div>
+                        <div class = "separator"></div>
+                        <div class = "label-container">
+                            <h3 id = "h3-no-change" class = "overall-text"></h3>
+                        </div>
+                        <div class = "row">
+                            <form id = "no-change-hexes" class = "overall-container"></form>
+                        </div>
+                        <div class = "separator"></div>
+                        <div class = "label-container">
+                            <h3 id = "h3-worsening" class = "overall-text"></h3>
+                        </div>
+                        <div class = "row">
+                            <form id = "worsening-hexes" class = "overall-container"></form>
+                        </div>
+                        <div class = "separator"></div>
+                        <div class = "row">
+                            <div class = "label-container">
+                                    <h3 id = "h3-insufficient" class = "overall-text"></h3>
+                                </div>
+                            </div>
+                            <form id = "insufficient-hexes" class = "overall-container"></form>
+                        </div>
+                        <p style = "font-size: 12pt; margin-top: 1em;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">About</span> tab.</p>
+                    <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
+                </div>
                 <h2 id = "domains-title" style="width: 100%; text-align: center;">Doing What Matters Most</h2>
                 <div id = "domains-intro" class = "intro" style="clear:both">
                     <P>Wellbeing is a combination of social, environmental, economic, and democratic factors which are essential for society to flourish. These factors align to our Missions of People, Planet, Prosperity and our cross-cutting commitment to Peace.</p>
@@ -186,71 +228,7 @@
                 </div>
             </div>
 
-            <div id = "overall-scrn" class = "screen" style = "display: none;">
-                <h2>Overall</h2>
-                <div id = "overall-intro" class = "intro">
-                    <p>This overview shows how well we are doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts. Decisions on performance are made independently of Ministers.</p>
-                </div>
-                <div id = "hex-class-count" class="row key-text" style = "justify-content: center">
-                    <div class="key-hex positive">
-                        <div class="key-hex-label positive"><i class="fa-solid fa-arrow-up-long"></i></div>
-                    </div>
-                    Improving:&nbsp;<strong><span id="count-positive-2" style="padding-right: 10px"></span></strong>
-                    <div class="key-hex neutral">
-                        <div class="key-hex-label"><i class="fa-solid fa-arrow-right-long"></i></div>
-                    </div>
-                    No Change:&nbsp;<strong><span id="count-neutral-2" style="padding-right: 10px"></span></strong>
-                    <div class="key-hex negative">
-                        <div class="key-hex-label negative"><i class="fa-solid fa-arrow-down-long"></i></div>
-                    </div>
-                    Worsening:&nbsp;<strong><span id="count-negative-2" style="padding-right: 10px"></span></strong>
-                    <div class="key-hex insufficient">
-                        <div class="key-hex-label insufficient"></div>
-                    </div>
-                    Insufficient Data:&nbsp;<strong><span id="count-insufficient-2"></span></strong>
-                </div>
-                <div id = "loading-img">
-                    <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
-                </div>
-                <div id = "overall-hexes" style = "display: none">
-                    <div id = "overall-click">
-                        <div class = "blue-label" style = "width: 400px; text-align: center; margin-top: 1rem"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
-                    </div>
-                    <div class = "label-container">
-                        <h3 id = "h3-improving" class = "overall-text"></h3>
-                    </div>
-                    <div class = "row">
-                        <form id = "improving-hexes" class = "overall-container"></form>
-                    </div>
-                    <div class = "separator"></div>
-                    <div class = "label-container">
-                        <h3 id = "h3-no-change" class = "overall-text"></h3>
-                    </div>
-                    <div class = "row">
-                        <form id = "no-change-hexes" class = "overall-container"></form>
-                    </div>
-                    <div class = "separator"></div>
-                    <div class = "label-container">
-                        <h3 id = "h3-worsening" class = "overall-text"></h3>
-                    </div>
-                    <div class = "row">
-                        <form id = "worsening-hexes" class = "overall-container"></form>
-                    </div>
-                    <div class = "separator"></div>
-                    <div class = "row">
-                        <div class = "label-container">
-                                <h3 id = "h3-insufficient" class = "overall-text"></h3>
-                            </div>
-                        </div>
-                        <form id = "insufficient-hexes" class = "overall-container"></form>
-                    </div>
-                    <p style = "font-size: 12pt; margin-top: 1em;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">About</span> tab.</p>
-                <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
-            </div>
 
-            <div id = "loading-img-2" style = "display: none">
-                <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
-            </div>
 
             <div id = "indicator-scrn" class = "screen" style = "display:none;">
                 <div class = "row">

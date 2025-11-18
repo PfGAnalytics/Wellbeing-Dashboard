@@ -40,10 +40,10 @@ body {
 #top-menu-items {
   width: 100%;
   display: flex;
-  padding-bottom: 15px;
-  justify-content: center;
+  padding: 10px 0px 15px;
+  justify-content: space-between;
   background-color: #142062;
-  padding-top: 10px;
+  max-width: 1500px
 }
 
 
