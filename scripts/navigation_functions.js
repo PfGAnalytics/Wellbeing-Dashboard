@@ -335,44 +335,51 @@ function plotOverallHexes (change_type) {
         loading_img.style.display = "flex";
     }
         
-    // Use the user's screen size to determine a value "h" which will be the number of hexagons that can fit in a single row
-    gridWidth = overall_scrn.clientWidth - 195;
+          const isOverallHidden = overall_scrn.offsetParent === null || overall_scrn.clientWidth === 0;
+          let gridWidth;
+          if (isOverallHidden) {
+            // Fallback to a visible container or window width
+            const fallbackW = (main_container?.clientWidth || document.documentElement.clientWidth || window.innerWidth);
+            gridWidth = Math.max(fallbackW - 195, 0);
+          } else {
+            gridWidth = Math.max(overall_scrn.clientWidth - 195, 0);
+          }
 
-    // Set "h" to the number of hexagons that will fit on screen
-    h = Math.floor((gridWidth - 14) / 166);
+          // Compute hexes per row and clamp to >= 2 so modulo math stays valid
+          let h = Math.floor((gridWidth - 14) / 166);
+          if (h < 2) h = 2;
 
-    // The change type "no_change" has the class "no-change"
-    className = change_type.replace("_", "-");
-    
-    // Remove any hexagons created in previous calls of plotOverallHexes()
-    while (document.getElementById(className + "-hexes").firstChild) {
-        document.getElementById(className + "-hexes").removeChild(document.getElementById(className + "-hexes").firstChild)
-    }
+          const className = change_type.replace("_", "-");
 
-    // Loop through the indicators within each change_type
-    for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {            
+          // Clear previous hexes
+          const target = document.getElementById(className + "-hexes");
+          while (target.firstChild) target.removeChild(target.firstChild);
 
-        // Ensuring there are "h" and "h - 1" hexagons in alternating rows
-        if (i % (2 * h - 1) == 0 || i % (2 * h - 1) == h)  {
-            var hex_row = document.createElement("div");    // Create a div for a new row
-            hex_row.classList.add("row");                   // Give div the class "row"
-            hex_row.classList.add(className + "-hex-row");  // Give div the class 'className + "-hex-row"' (eg, "improving-hex-row")
-            document.getElementById(className + "-hexes").appendChild(hex_row);     // Place hex-row in relevant div on Overall page (eg, "improving-hex-row" goes into "improving-hexes")
-        }            
+          // Precompute the period (avoids negative/zero)
+          const period = 2 * h - 1;
 
-        if (i % (2 * h - 1) == h) {
-            hex_row.style.marginLeft = "98px"; // Even numbered rows are indented by 105px
-        } else if (i % (2 * h - 1) == 0) {
-            hex_row.style.marginLeft = "15px";  // And odd numbered ones by 15px
-        }
+          // Build rows & set offsets
+          for (let i = 0; i < Object.keys(eval(change_type + "_indicator")).length; i++) {
+            if (i % period === 0 || i % period === h) {
+              var hex_row = document.createElement("div");
+              hex_row.classList.add("row", className + "-hex-row");
+              target.appendChild(hex_row);
+            }
 
-        if (i >= h) {
-            hex_row.style.marginTop = "-43px";  // All rows after first row are moved up by 30px
-        }
+            if (i % period === h) {
+              hex_row.style.marginLeft = "98px"; // even rows
+            } else if (i % period === 0) {
+              hex_row.style.marginLeft = "15px"; // odd rows
+            }
 
-        if (h < 2) {
-            hex_row.style.marginTop = "0px"; // Re-position hexagons if screen very narrow
-        }
+            if (i >= h) {
+              hex_row.style.marginTop = "-43px";
+            }
+
+            if (h < 2) {
+              hex_row.style.marginTop = "0px"; // very narrow screens
+            }
+
 
         var hex_container = document.createElement("button");      // Create a hexagon container div. The hexagon div and the hexagon label div will be nested under this one
         hex_container.classList.add("shake-hex");               // Give it the class "shake-hex"
