@@ -1518,8 +1518,6 @@ async function subpopTable() {
                         dotLink.className = "navy-dot-link";
                         
                         dotLink.onclick = function (event) {
-                            event.preventDefault();
-                            openPopup(domain, all_indicators[i], headings[h]); 
                             const popupURL = location.pathname + location.search + `&popup=${popupType}`;
                             history.pushState({ popupOpen: true }, "", popupURL);
                         };
