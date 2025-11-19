@@ -54,6 +54,7 @@ var domains_data = {
          "Children's social care": {
             importance: "Care-experienced children and young people generally have poorer outcomes than their non care-experienced peers. We want to close this gap, and ensure that care-experienced children and young people have the same opportunities in education, training and employment as their peers.",
             base_year: "2018/19",
+            AOS: true,
             ci: "1c",
             data: {
                NI: "",
@@ -133,6 +134,7 @@ var domains_data = {
          "Air pollution": {
             importance: "The air that we breathe is vital to our health and wellbeing. Good air quality is essential for human health, the climate, habitats and the built environment. Pollutants from human activity are present in our atmosphere which may adversely impact upon our health and natural environment. Nitrogen dioxide is part of a group of gaseous air pollutants produced as a result of road traffic and other fossil fuel combustion processes. It can irritate the lungs and lower resistance to respiratory infections such as influenza.",
             base_year: "2019",
+            AOS: true,
             ci: 1,
             data: {
                NI: "INDAIRPOLNI",
@@ -151,6 +153,7 @@ var domains_data = {
          "Coastal water condition": {
             importance: "Water is an essential natural resource and plays a vital role in maintaining biodiversity, our health and social welfare and our economic development. Our rivers, lakes, estuaries, seas and groundwater provide water to sustain many of our core social and economic activities, and also provide drinking water for our population. The majority of Northern Ireland’s 650 km of coastline is protected for its special interest and a number of our coastal species and habitats are recognised as internationally important. ",
             base_year: "2019",
+            AOS: true,
             ci: 1,
             data: {
                NI: "INDCOASTQNI", 
@@ -170,6 +173,7 @@ var domains_data = {
             importance: "Our natural environment is our life support system and our greatest asset. For its size, Northern Ireland is amongst the most geologically diverse areas in the world and this shapes its varied and beautiful landscapes and rich nature, wildlife and habitats. Our natural environment contributes to our prosperity and well-being. The state of our biodiversity reflects the state of our air, water and land environments. ",
             base_year: "2019/20",
             ci: 0,
+            AOS: true,
             data: {
                NI: "INDCONDSTENI", 
                AA: "",
@@ -205,6 +209,7 @@ var domains_data = {
          "Outdoor recreation": {
             importance: "Connection with nature during time spent outdoors is aligned with greater care and concern for biodiversity, landscapes and the environment and increased pro-nature conservation behaviours. Outdoor recreation in nature brings additional benefits to society including improving health and well-being (exercise, social engagement and mental well-being), increasing active travel, growing and greening the economy, tackling inequality and enhancing education and learning. ",
             base_year: "2023",
+            AOS: true,
             ci: 0.1,
             data: {
                NI: "", 
@@ -223,6 +228,7 @@ var domains_data = {
          "Recycled waste": {
             importance: "The Earth has limited resources which need to be utilised in a sustainable manner while minimising impacts on the environment. This requires a transition from our current linear model in which we take, make, use and dispose of products to a more circular model in which waste is eliminated by designing products to last, valuing materials and keeping them in use for as long as possible through processes including reuse, repair, refurbishment, remanufacturing and recycling. Waste is produced by households, by industrial processes, by the construction and demolition industry, through commercial activities and agricultural practices and by public services and utilities. Waste can affect the environment through its visual impact or by emissions to the air, groundwater and surface water as well as the contamination of land. Increasing the amount of waste reused, recycled or composted will reduce the total going to landfill and contribute to better resource use.",
             base_year: "2019/20",
+            AOS: true,
             ci: "0.5c",
             data: {
                NI: "INDRECWSTENI",
@@ -259,6 +265,7 @@ var domains_data = {
          "River water quality": {
             importance: "Water is an essential natural resource and plays a vital role in maintaining biodiversity, our health and social welfare and our economic development. Our rivers, lakes, estuaries, seas and groundwater provide water to sustain many of our core social and economic activities, and also provide drinking water for our population. Soluble reactive phosphorus is a plant nutrient, which, when present in rivers in elevated concentrations, can lead to accelerated growth of algae and other plants. The impact on the composition and abundance of plant species can have adverse implications for other aspects of water quality, such as oxygen levels, and for the characteristics of river habitats. These various changes can cause undesirable disturbances to populations of water animals, such as invertebrates and fish.",
             base_year: "2019",
+            AOS: true,
             ci: 0.01,
             data: {
                NI: "INDRIVERQNI", 
@@ -277,6 +284,7 @@ var domains_data = {
          "Sustainable travel - public transport": {
             importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
             base_year: null,
+            AOS: true,
             ci: 1.1,
             data: {
                NI: "",
@@ -319,6 +327,7 @@ var domains_data = {
          "Income deprivation": {
             importance: "Absolute poverty is a measure of whether the lowest income households are seeing their incomes rise in real terms over time. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
             base_year: "2019/20",
+            AOS: true,
             ci: 4,
             data: {
                NI: "",
@@ -337,6 +346,7 @@ var domains_data = {
          "Income inequality": {
             importance: "Relative poverty is a measure of whether the lowest income households are seeing their incomes keep pace with the population as a whole. Poverty can impact on health, education, living arrangements, employment opportunities and interaction with family, friends and wider society.",
             base_year: "2019/20",
+            AOS: true,
             ci: 4,
             data: {
                NI: "",
@@ -379,6 +389,7 @@ var domains_data = {
          "Active travel - walking and cycling": {
             importance: "Encouraging more active and sustainable ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
             base_year: null,
+            AOS: true,
             ci: 2.4,
             data: {
                NI: "",
@@ -529,6 +540,7 @@ var domains_data = {
          "School leavers attainment gap": {
             importance: "Ensuring children have the best start in life includes empowering young people to achieve their potential and make informed and effective decisions throughout their lives. It supports our young people to develop as individuals and as contributors to society, the economy, and the environment. Educational attainment provides a measure of their life chances and readiness for future health and wellbeing, and the gap in attainment provides a measure of educational disadvantage.",
             base_year: null,
+            AOS: true,
             ci: 4,
             data: {
                NI: "",
@@ -571,6 +583,7 @@ var domains_data = {
          "Economic inactivity": {
             importance: "This indicator shows the percentage of people who are not engaged in the labour market due to any reason except being a student. It is important as a high economic inactivity rate can restrict labour supply which may in turn affect economic growth.",
             base_year: "2020",
+            AOS: true,
             ci: 1.6,
             data: {
                NI: "",
@@ -589,6 +602,7 @@ var domains_data = {
          "Employment rate": {
             importance: "The employment rate is important as a key labour market indicator. Those who are employed have money to spend which can contribute towards economic growth.",
             base_year: "2020",
+            AOS: true,
             ci: 1.8,
             data: {
                NI: "",
@@ -607,6 +621,7 @@ var domains_data = {
          "External sales rate": {
             importance: 'Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a "Trade and Investment Strategy for a 10x economy" in which they note "Trade can support the ambitions of our \'10X Economy\' across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become."',
             base_year: "2019",
+            AOS: true,
             ci: 0.7,
             data: {
                NI: "INDEXSALENI",
@@ -715,6 +730,7 @@ var domains_data = {
          "Research and development": {
             importance: "Research and development (R&D) is an essential component of a strong and sustainable economy, investment in R&D helps drive increased innovation, leads to increased productivity and higher levels of economic growth.",
             base_year: "2019",
+            AOS: true,
             ci: 1,
             data: {
                NI: "INDRESDEVNI",
@@ -733,6 +749,7 @@ var domains_data = {
          "Skills": {
             importance: "The proportion of the workforce with low or no qualifications (Level 2 or below) has been a persistent problem in Northern Ireland. Whilst substantial progress was made, continued improvement will be required to keep pace with other comparable small advanced economies.",
             base_year: "2020",
+            AOS: true,
             ci: 1.7,
             data: {
                NI: "",
@@ -932,6 +949,7 @@ var domains_data = {
          "Availability of suitable housing": {
             importance: "This indicator provides the proportion of households who are satisfied with their house or flat.  Access to good quality, sustainable and affordable housing that is appropriate for the household' s needs, enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
             base_year: "2021/22",
+            AOS: true,
             ci: 2,
             data: {
                NI: "",
@@ -968,6 +986,7 @@ var domains_data = {
          "Housing costs as a proportion of household income": {
             importance: "This indicator provides one measure of the affordability of housing. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
             base_year: "2019/20",
+            AOS: true,
             ci: 3,
             data: {
                NI: "",
@@ -986,6 +1005,7 @@ var domains_data = {
          "Housing stress": {
             importance: "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
             base_year: "2019/20",
+            AOS: true,
             ci: 0,
             data: {
                NI: "",
