@@ -317,30 +317,6 @@ function generateHexagons (d) {
 
 }
 
-function countHexagonClasses() {
-    const counts = {
-        positive: document.querySelectorAll('.ind-hex.positive').length,
-        negative: document.querySelectorAll('.ind-hex.negative').length,
-        insufficient: document.querySelectorAll('.ind-hex.insufficient').length,
-        neutral: document.querySelectorAll('.ind-hex.neutral').length + Array.from(document.querySelectorAll('div.ind-hex')).filter(el => el.classList.length === 1).length
-
-    };
-
-
-    // Assign counts to HTML elements by ID
-    document.getElementById('count-positive').textContent = counts.positive / 3;
-    document.getElementById('count-negative').textContent = counts.negative / 3;
-    document.getElementById('count-insufficient').textContent = counts.insufficient / 3;
-    document.getElementById('count-neutral').textContent = counts.neutral / 3;
-
-    document.getElementById('count-positive-2').textContent = counts.positive / 3;
-    document.getElementById('count-negative-2').textContent = counts.negative / 3;
-    document.getElementById('count-insufficient-2').textContent = counts.insufficient / 3;
-    document.getElementById('count-neutral-2').textContent = counts.neutral / 3;
-
-    return counts;
-}
-
 
 
 // This next loop will go through all the hexagons on the Domains screen and functionality for clicking on each Domain
@@ -438,7 +414,14 @@ function plotOverallHexes (change_type) {
 
     performanceLoaded = true;
 
+    document.getElementById('count-positive').textContent = Object.keys(improving_indicator).length;
+    document.getElementById('count-negative').textContent = Object.keys(worsening_indicator).length;
+    document.getElementById('count-insufficient').textContent = Object.keys(insufficient_indicator).length;
+    document.getElementById('count-neutral').textContent = Object.keys(no_change_indicator).length;
+
 }
+
+
 
 // Function to Write the "More data" sentence on indicator and map pages
 function writeDataInfo (d) {
@@ -1601,112 +1584,6 @@ negative = document.getElementsByClassName("ind-hex negative");
 no_change = document.getElementsByClassName("ind-hex neutral")
 insufficient = document.getElementsByClassName("ind-hex insufficient")
 
-for (let i = 0; i < key_hexes.length; i ++) {
-    key_hexes[i].onmouseover = function() {
-
-        hex_class = key_hexes[i].classList[1];
-        
-        if (hex_class == "positive") {
-            for (let j = 0; j < negative.length; j ++) {
-                negative[j].parentElement.style.filter = "opacity(50%)";
-            }
-            for (let j = 0; j < no_change.length; j ++) {
-                no_change[j].parentElement.style.filter = "opacity(50%)";
-            }
-            for (let j = 0; j < insufficient.length; j ++) {
-                insufficient[j].parentElement.style.filter = "opacity(50%)";
-            }
-        } else if (hex_class == "negative") {
-            for (let j = 0; j < positive.length; j ++) {
-                positive[j].parentElement.style.filter = "opacity(50%)";
-            }
-            for (let j = 0; j < no_change.length; j ++) {
-                no_change[j].parentElement.style.filter = "opacity(50%)";
-            }
-            for (let j = 0; j < insufficient.length; j ++) {
-                insufficient[j].parentElement.style.filter = "opacity(50%)";
-            }
-        } else if (hex_class == "insufficient") {
-            for (let j = 0; j < positive.length; j ++) {
-                positive[j].parentElement.style.filter = "opacity(50%)";
-            }
-            for (let j = 0; j < negative.length; j ++) {
-                negative[j].parentElement.style.filter = "opacity(50%)";
-            }
-            for (let j = 0; j < no_change.length; j ++) {
-                no_change[j].parentElement.style.filter = "opacity(50%)";
-            }
-        } else  {
-            for (let j = 0; j < positive.length; j ++) {
-                positive[j].parentElement.style.filter = "opacity(50%)";
-            }
-            for (let j = 0; j < negative.length; j ++) {
-                negative[j].parentElement.style.filter = "opacity(50%)";
-            }
-            for (let j = 0; j < insufficient.length; j ++) {
-                insufficient[j].parentElement.style.filter = "opacity(50%)";
-            }
-        }
-
-    }
-
-    key_hexes[i].onmouseout = function() {
-
-        hex_class = key_hexes[i].classList[1];
-
-        if (hex_class == "positive") {
-            for (let j = 0; j < negative.length; j ++) {
-                negative[j].parentElement.removeAttribute("style");
-            }
-            
-            for (let j = 0; j < no_change.length; j ++) {
-                no_change[j].parentElement.removeAttribute("style");
-            }
-
-            for (let j = 0; j < insufficient.length; j ++) {
-                insufficient[j].parentElement.removeAttribute("style");
-            }
-        } else if (hex_class == "negative") {
-            for (let j = 0; j < positive.length; j ++) {
-                positive[j].parentElement.removeAttribute("style");
-            }
-            
-            for (let j = 0; j < no_change.length; j ++) {
-                no_change[j].parentElement.removeAttribute("style");
-            }
-
-            for (let j = 0; j < insufficient.length; j ++) {
-                insufficient[j].parentElement.removeAttribute("style");
-            }
-        } else if (hex_class == "insufficient") {
-            for (let j = 0; j < positive.length; j ++) {
-                positive[j].parentElement.removeAttribute("style");
-            }
-            
-            for (let j = 0; j < negative.length; j ++) {
-                negative[j].parentElement.removeAttribute("style");
-            }
-
-            for (let j = 0; j < no_change.length; j ++) {
-                no_change[j].parentElement.removeAttribute("style");
-            }
-        } else {
-            for (let j = 0; j < positive.length; j ++) {
-                positive[j].parentElement.removeAttribute("style");
-            }
-            
-            for (let j = 0; j < negative.length; j ++) {
-                negative[j].parentElement.removeAttribute("style");
-            }
-
-            for (let j = 0; j < insufficient.length; j ++) {
-                insufficient[j].parentElement.removeAttribute("style");
-            }
-        }
-    }
-
-}
-
 browse_domains.onclick = function() {
 
     browse_domains.classList.add("domain-toggle-selected");
@@ -2035,8 +1912,6 @@ plotExpandedDomains = function() {
 
 
     }
-
-    countHexagonClasses();
 
 }
 
