@@ -317,30 +317,6 @@ function generateHexagons (d) {
 
 }
 
-function countHexagonClasses() {
-    const counts = {
-        positive: document.querySelectorAll('.ind-hex.positive').length,
-        negative: document.querySelectorAll('.ind-hex.negative').length,
-        insufficient: document.querySelectorAll('.ind-hex.insufficient').length,
-        neutral: document.querySelectorAll('.ind-hex.neutral').length + Array.from(document.querySelectorAll('div.ind-hex')).filter(el => el.classList.length === 1).length
-
-    };
-
-
-    // Assign counts to HTML elements by ID
-    document.getElementById('count-positive').textContent = counts.positive / 3;
-    document.getElementById('count-negative').textContent = counts.negative / 3;
-    document.getElementById('count-insufficient').textContent = counts.insufficient / 3;
-    document.getElementById('count-neutral').textContent = counts.neutral / 3;
-
-    document.getElementById('count-positive-2').textContent = counts.positive / 3;
-    document.getElementById('count-negative-2').textContent = counts.negative / 3;
-    document.getElementById('count-insufficient-2').textContent = counts.insufficient / 3;
-    document.getElementById('count-neutral-2').textContent = counts.neutral / 3;
-
-    return counts;
-}
-
 
 
 // This next loop will go through all the hexagons on the Domains screen and functionality for clicking on each Domain
@@ -438,7 +414,14 @@ function plotOverallHexes (change_type) {
 
     performanceLoaded = true;
 
+    document.getElementById('count-positive').textContent = Object.keys(improving_indicator).length;
+    document.getElementById('count-negative').textContent = Object.keys(worsening_indicator).length;
+    document.getElementById('count-insufficient').textContent = Object.keys(insufficient_indicator).length;
+    document.getElementById('count-neutral').textContent = Object.keys(no_change_indicator).length;
+
 }
+
+
 
 // Function to Write the "More data" sentence on indicator and map pages
 function writeDataInfo (d) {
@@ -1929,8 +1912,6 @@ plotExpandedDomains = function() {
 
 
     }
-
-    countHexagonClasses();
 
 }
 
