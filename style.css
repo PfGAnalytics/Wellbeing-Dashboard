@@ -1123,6 +1123,7 @@ input:focus-visible {
 .eq-link {
     margin-bottom: 0px;
     font-weight: normal;
+    margin-left: auto;
 }
 
 #eq-col-1, #eq-col-2 {
