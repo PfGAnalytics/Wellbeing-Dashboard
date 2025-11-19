@@ -156,9 +156,26 @@ async function generateIndicatorPage(d, e) {
     indicator_title.innerHTML = e;          // Place the indicator name inside the div element "indicator-title"
     ind_important.innerHTML = domains_data[d].indicators[e].importance;   // Update the indicator importance div element
     
-    var data = domains_data[d].indicators[e].data;      // The nested "data" object for the relevant indicator
+
+    var indicatorObj = domains_data[d].indicators[e]; // Full indicator object
+    var data = indicatorObj.data;
 
     data_info.innerHTML = writeDataInfo(data);   // Place sentence in "data-info" div    
+
+
+    if (indicatorObj.AOS) {
+        const aosImage = document.createElement('img');
+        const hexContainer = document.getElementById("ind-hex-container");
+        const rowDiv = document.getElementById("indicator-aos");
+        aosImage.src = 'img/Accredited Official Statistics Logo English.svg';
+        aosImage.alt = 'AOS Indicator';
+        aosImage.style.height = '100px';
+        aosImage.classList.add('aos-icon'); // Optional: add a CSS class for styling
+
+        // Insert the image between the title and the hex container
+        rowDiv.insertBefore(aosImage, hexContainer);
+    }
+
 
     // This next section will add a link to the relevant map on an indicator page. If available
     while(map_link.firstChild) {

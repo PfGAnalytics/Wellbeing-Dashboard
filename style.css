@@ -144,7 +144,7 @@ h3 {
 }
 
 #main-container {
-    width: 1200px;
+    max-width: 1200px;
 }
 
 #domains-grid-container {
@@ -185,7 +185,7 @@ h3 {
     font-size: 12pt;
     text-align: left;
     margin: 10px;
-    width: 860px;
+    max-width: 860px;
     display: flex;
     align-items: center;
 }
@@ -195,7 +195,7 @@ h3 {
 }
 
 .grey-box {
-    width: 1150px;
+    max-width: 1150px;
     background-color: #e8e8e8;
     padding: 10px;
     border-radius: 25px;
@@ -326,6 +326,17 @@ padding-right: 10px;
 
 #indicator-intro {
     display: none;
+}
+
+#title-row {
+    display: flex;
+    align-items: center;
+    max-width: 1400px;
+    justify-content: space-between;
+}
+
+#indicator-aos {
+    justify-content: right;
 }
 
 .shake-hex:hover {
@@ -472,6 +483,10 @@ padding-right: 10px;
 
 .key-hex-label.insufficient {
     background-color: #B0B0B0;
+}
+
+.aos-icon {
+    margin-left: 100px
 }
 
 #indicator-title {

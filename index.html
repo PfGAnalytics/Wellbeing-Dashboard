@@ -231,17 +231,21 @@
 
 
             <div id = "indicator-scrn" class = "screen" style = "display:none;">
-                <div class = "row">
+                <div class = "row" id = "title-row">
+                    <div class = "row" id = "dom-ind-title">
                     <div id = "domain-title" class = "blue-label"></div>
                     <h2 id = "indicator-title"></h2>
-                    <div id="ind-hex-container" style = "margin-left: auto; margin-right: 30px"></div>
+                    </div>
+                    <div class = "row" id = "indicator-aos">
+                    <div id="ind-hex-container" style = "margin-right: 30px"></div>
+                    </div>
                 </div>
                 <div id = "indicator-content">
                     <div class = "row" style = "margin-top: 15px;">
                         <div class = "blue-label">How do we measure this?</div>
                         <div id = "measure-info" style="width:910px"></div>
                     </div>
-                    <div class = "row" style = "margin-top: 20px; align-items: center; justify-content: space-between; margin-right: 35px">
+                    <div class = "row" id = "main-ind-container" style = "margin-top: 20px; align-items: center; justify-content: space-between; margin-right: 35px">
                         <div id = "line-chart-container" alt = "A summary of this chart's findings can be found in the 'What is this indicator telling us?' box"></div>
                         <div id = "chart-boxes" class = "box-container" style = "max-width: 358px">
                             <form id = "map-link"></form>
