@@ -759,64 +759,6 @@ if (currentURL.includes("?indicator=")) {
 
 }
 
-// Page navigation when indicator is clicked from Overall screen
-if (currentURL.includes("?indicator=")) {
-
-    currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
-
-    let popup_clicked = null;
-
-    if (currentIndicator.includes("&")) {
-        if (currentIndicator.includes("popup")) {
-            popup_clicked = currentIndicator.slice(currentIndicator.indexOf("popup=") + "popup=".length)
-            popup_clicked = toTitleCase(popup_clicked.replaceAll("+", " "));
-        }
-        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("&"))
-    }
-
-    domains_btn.classList.remove("selected-item");
-    domains_btn.firstChild.classList.remove("selected-icon");
-    overall_btn.classList.add("selected-item");
-    overall_btn.firstChild.classList.add("selected-icon");
-
-    lookUpIndicator = "";
-    for (let i = 0; i < all_indicators.length; i ++) {
-        if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
-            lookUpIndicator = all_indicators[i]
-        }
-    }
-
-    title.textContent += " - " + lookUpIndicator;
-
-    lookUpDomain = "";
-    for (let i = 0; i < domains.length; i ++) {
-        
-        indicators = Object.keys(domains_data[domains[i]].indicators);
-
-        if (indicators.includes(lookUpIndicator)) {
-            lookUpDomain = domains[i];
-        }
-
-    }  
-
-    domains_scrn.style.display = "none";    // Hide Domains screen
-    indicator_scrn.style.display = "block"
-
-    createLineChart(lookUpDomain, lookUpIndicator);
-    generateIndicatorPage(lookUpDomain, lookUpIndicator);
-    if (popup_clicked != null) renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
-
-    button_rows[0].style.display = "flex";
-
-    back_btn = document.createElement("button");
-    back_btn.classList.add("nav-btn");
-    back_btn.name = "tab";
-    back_btn.value = "overall";
-    back_btn.innerHTML = '<i class="fa-solid fa-arrow-turn-up fa-flip-horizontal"></i> Back to <strong>Overall</strong> grid';
-    back_button.appendChild(back_btn);
-
-}
-
 if (currentURL.includes("map=")) {
 
     domains_btn.classList.remove("selected-item");
