@@ -264,7 +264,14 @@ h3 {
     border: 0px;
     padding: 0px;
     margin-right: -16px;
+    justify-items: center;
 }
+
+.row.desc {
+    justify-content: left;
+    gap: 50px
+}
+
 
 .hex .hex-inner {
 position: absolute;

@@ -1369,6 +1369,23 @@ for (let i = 0; i < domains.length; i ++) {
     desc.style.fontSize = "12pt";
     desc.textContent = domains_data[domains[i]].description;        // Insert domain description from domains_data
 
+    // function findDomainByDescription(obj, searchText) {
+    //   for (const key in obj) {
+    //     if (obj[key].description === searchText) {
+    //       return key;
+    //     }
+    //   }
+    //   return null;
+    // }
+
+    // const domainKey = findDomainByDescription(domains_data, desc.textContent);
+
+
+    // desc.id = domainKey
+    //   .trim()
+    //   .toLowerCase()                
+    //   .replace(/\s+/g, '-') + '-desc';
+
     framework_row.appendChild(desc);                        // Place label in row
 
     if (i % 2 == 1) {
@@ -1713,21 +1730,37 @@ plotExpandedDomains = function() {
         hex.classList.add("shake-hex");
         hex.appendChild(hex_inner);
 
+        desc = document.createElement("div");                   // Create div for description to sit in
+        desc.classList.add("blue-label");                       // Give it the class "blue-label"
+        desc.style.width = "350px";                             // Set width to 500px
+        desc.style.minHeight = "68px";                          // Set min height to 76px
+        desc.style.fontSize = "12pt";
+        desc.textContent = domains_data[domains[i]].description; 
+
         hex_container = document.createElement("button");
         hex_container.classList.add("hex-container");
         hex_container.name = "domain";
         hex_container.value = domains[i].replace(/[^a-z ]/gi, '').toLowerCase();
         hex_container.appendChild(hex);
 
+        desc_row = document.createElement("div");
+        desc_row.classList.add("row");
+        desc_row.appendChild(hex_container);
+        desc_row.appendChild(desc);
+        desc_row.classList.add("desc")
+
         row = document.createElement("div");
         row.classList.add("row");
         row.style.marginTop = "20px";
-        row.appendChild(hex_container);
+
+
+
 
         if (i % 2 == 0) {
             row.style.marginLeft = "100px";
             ind_space = main_container.clientWidth - 300;
         } else {
+            row.style.marginLeft = "100px";
             ind_space = main_container.clientWidth - 200;
         }
 
@@ -1753,11 +1786,15 @@ plotExpandedDomains = function() {
                 ind_row.style.marginTop = "-42px";
             }
 
+            
             ind_rows.appendChild(ind_row);
+            
         }
 
+        
         row.appendChild(ind_rows);
 
+        expanded_domains.appendChild(desc_row);
         expanded_domains.appendChild(row);
        
         
