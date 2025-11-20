@@ -2659,3 +2659,21 @@ function toTitleCase(str) {
   );
 
 }
+
+// Function for share indicator screen button
+const pageTitle = document.getElementsByTagName("title")[0];
+
+function sharePage() {
+   if (navigator.share) {
+      navigator.share({
+         title: pageTitle.textContent,
+         url: document.location.href,
+         text: pageTitle.textContent
+      }).catch(console.error);
+   } else {
+      // Fallback
+      alert("Sharing is not supported on this browser.");
+   }
+}
+
+document.getElementById("share").addEventListener("click", sharePage);
