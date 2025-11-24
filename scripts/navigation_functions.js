@@ -1696,15 +1696,23 @@ plotExpandedDomains = function() {
         row.style.marginTop = "20px";
 
 
-
-
+    if (main_container.clientWidth > 1050) {
         if (i % 2 == 0) {
-            row.style.marginLeft = "100px";
-            ind_space = main_container.clientWidth - 300;
+            row.style.marginLeft = "18%";
+            ind_space = (main_container.clientWidth / 100) * 70
         } else {
-            row.style.marginLeft = "100px";
-            ind_space = main_container.clientWidth - 200;
+            row.style.marginLeft = "18%";
+            ind_space = (main_container.clientWidth / 100) * 65
         }
+    } else {
+         if (i % 2 == 0) {
+            row.style.marginLeft = "11%";
+            ind_space = (main_container.clientWidth / 100) * 80
+        } else {
+            row.style.marginLeft = "11%";
+            ind_space = (main_container.clientWidth / 100) * 75
+        }
+    }
 
         ind_per_row = Math.floor((ind_space - 14) / 166);
 
