@@ -1821,6 +1821,7 @@ async function renderPopup (d, e, eq_group) {
             },
             plugins: {
             legend: {
+            // position: "bottom",
                title: {
                   display: true,
                   text: "Click legend item to hide/show series in chart",
@@ -1828,8 +1829,12 @@ async function renderPopup (d, e, eq_group) {
                   font: {
                      family: "Arial, Helvetica, sans-serif",
                      size: 18
-                  }
                },
+
+               padding: {
+                  top: 10
+               }
+            },
                labels: {
                   color: "#212529",
                      font: {
@@ -1842,8 +1847,49 @@ async function renderPopup (d, e, eq_group) {
             }
             }
          },
-         };
+         
+         plugins: [{
+            id: 'legendBackground',
+            beforeDraw(chart) {
+               const { ctx, chartArea: { top, left, width } } = chart;
+               ctx.save();
+               ctx.fillStyle = '#f0f0f0'; // light grey background
+               ctx.strokeStyle = '#142062';
+               
+               const boxX = left;
+               const boxY = top - 65; // position above chart
+               const boxWidth = width;
+               const boxHeight = 65;
+               const radius = 12; // border radius
 
+               // Draw rounded rectangle
+               ctx.beginPath();
+               
+               ctx.moveTo(boxX + radius, boxY);
+               ctx.lineTo(boxX + boxWidth - radius, boxY);
+               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + radius);
+               
+               // Right side
+               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - radius);
+               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - radius, boxY + boxHeight);
+               
+               ctx.moveTo(boxX + radius, boxY);
+               ctx.lineTo(boxX + boxWidth - radius, boxY);
+               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + radius);
+               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - radius);
+               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - radius, boxY + boxHeight);
+               ctx.lineTo(boxX + radius, boxY + boxHeight);
+               ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - radius);
+               ctx.lineTo(boxX, boxY + radius);
+               ctx.quadraticCurveTo(boxX, boxY, boxX + radius, boxY);
+               ctx.closePath();
+
+               ctx.fillRect(left, top - 65, width, 65); // adjust height for legend
+               ctx.stroke();
+               ctx.restore();
+            }
+         }]
+      };
       chartInstance = new Chart(pop_canvas, chart_config);      // Plot chart
    }
 
