@@ -268,10 +268,10 @@ h3 {
 }
 
 .row.desc {
-    justify-content: left;
-    gap: 50px
+    justify-content: center;
+    gap: 50px;
+    padding-top: 30px;
 }
-
 
 .hex .hex-inner {
 position: absolute;
