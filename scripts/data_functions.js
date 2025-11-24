@@ -1830,7 +1830,6 @@ async function renderPopup (d, e, eq_group) {
                      family: "Arial, Helvetica, sans-serif",
                      size: 18
                },
-
                padding: {
                   top: 10
                }
@@ -1850,29 +1849,35 @@ async function renderPopup (d, e, eq_group) {
          
          plugins: [{
             id: 'legendBackground',
+
             beforeDraw(chart) {
                const { ctx, chartArea: { top, left, width } } = chart;
                ctx.save();
                ctx.fillStyle = '#f0f0f0'; // light grey background
-               ctx.strokeStyle = '#142062';
-               
-               const boxX = left;
-               const boxY = top - 65; // position above chart
-               const boxWidth = width;
-               const boxHeight = 65;
-               const radius = 12; // border radius
+               ctx.strokeStyle = '#f0f0f0';
+
+               const labelCount = chart.legend.legendItems.length;
+
+               if (labelCount > 5 && Object.keys(values).some(key => key.includes("Quintile"))) {
+
+               var boxX = left + 40;
+               var boxY = top - 85;
+               var boxWidth = width - 110;
+               var boxHeight = 80;
+               var radius = 12;
+
+               } else {
+                  
+                  var boxX = left + 85;
+                  var boxY = top - 65;
+                  var boxWidth = width - 190;
+                  var boxHeight = 60;
+                  var radius = 12;
+
+               }
 
                // Draw rounded rectangle
                ctx.beginPath();
-               
-               ctx.moveTo(boxX + radius, boxY);
-               ctx.lineTo(boxX + boxWidth - radius, boxY);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + radius);
-               
-               // Right side
-               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - radius);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - radius, boxY + boxHeight);
-               
                ctx.moveTo(boxX + radius, boxY);
                ctx.lineTo(boxX + boxWidth - radius, boxY);
                ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + radius);
@@ -1883,9 +1888,8 @@ async function renderPopup (d, e, eq_group) {
                ctx.lineTo(boxX, boxY + radius);
                ctx.quadraticCurveTo(boxX, boxY, boxX + radius, boxY);
                ctx.closePath();
-
-               ctx.fillRect(left, top - 65, width, 65); // adjust height for legend
-               ctx.stroke();
+               ctx.fill();   // Fill with grey background
+               ctx.stroke(); // Optional border
                ctx.restore();
             }
          }]
