@@ -1368,7 +1368,7 @@ input:focus-visible {
     margin-bottom: 0px;
   }
 
-  #pop-up-chart {
+  #pop-up-chart, #pop-up-map {
     margin-top: 20px;
     margin-right: 40px;
     padding-bottom: 15px;
