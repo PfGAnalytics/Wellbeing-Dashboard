@@ -964,6 +964,80 @@ footer {
     z-index: 1;
 }
 
+#popup-map-title {
+    font-size: 14pt !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    color: #212529;
+    text-align: center;
+    margin-bottom: 20px !important;
+    margin-top: 20px !important;
+}
+
+.popup-map-legend {
+    width: 160px;
+    background-color: #ffffff77;
+    padding: 10px;
+    border-radius: 25px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 999; 
+}
+
+
+.legend-colour-block {
+    width: 25px;
+    height: 25px;
+}
+
+.legend-min {
+    margin-bottom: 5px;
+}
+
+.legend-max {
+    position: absolute;
+    top: 10px; /* Move above last block */
+    right: 0px;   /* Align above last color block */
+}
+
+#popup-map-year-label {
+    text-align: center;
+    position: relative;
+    z-index: 999;
+}
+
+#popup-map-slider {
+    width: 200px;
+}
+
+#popup-map-updated {
+    font-size: 14px;
+    position: absolute;
+    bottom: 8%;
+    left: 20%;
+    z-index: 999;
+}
+
+#popup-map-slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 20%;
+    gap: 4px;
+}
+
+#popup-map-container {
+    width: 60%;
+    height: 450px;
+    margin: 0 auto;
+}
+
+#popup-map-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 #map-load {
     width: 700px;
     display: flex;
@@ -1210,10 +1284,9 @@ input:focus-visible {
     justify-content: baseline;
 }
 
-.slider {
+.slider, #popup-map-slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 300px;
     height: 15px;
     border-radius: 5px;  
     background: #d3d3d3;
@@ -1222,8 +1295,12 @@ input:focus-visible {
     -webkit-transition: .2s;
     transition: opacity .2s;
   }
-  
-  .slider::-webkit-slider-thumb {
+
+  .slider {
+    width: 300px;
+  }
+
+  .slider::-webkit-slider-thumb, #popup-map-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
@@ -1233,7 +1310,7 @@ input:focus-visible {
     cursor: pointer;
   }
   
-  .slider::-moz-range-thumb {
+  .slider::-moz-range-thumb, #popup-map-slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
