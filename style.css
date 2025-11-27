@@ -381,6 +381,7 @@ padding-right: 10px;
 
 #recent-updates th:nth-child(3), #recent-updates th:nth-child(4), #recent-updates td:nth-child(3), #recent-updates td:nth-child(4) {
     text-align: right;
+    justify-items: center;
 }
 
 #recent-updates td:nth-child(2), #recent-updates td:nth-child(3), #recent-updates td:nth-child(4) {
@@ -1710,6 +1711,7 @@ tr {
 
 #recent-table tr {
     background-color: #f4f4f4;
+
 }
 
 #recent-table th {
@@ -1721,4 +1723,8 @@ tr {
 #recent-table td {
     border: 1px solid black !important; 
     padding: 8px;
+}
+
+.row.key-text.performance {
+    width: fit-content
 }
