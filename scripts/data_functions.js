@@ -1633,6 +1633,7 @@ async function getEqualityGroups(d, e) {
             }
             
             notes = notes.filter(function (n) {return n != "" & n != " "})
+            
 
             if (notes.length == 1) {
                note.innerHTML = "<p style = 'font-weight: bold; margin-bottom: 0px'>Note:</p>";
@@ -1646,8 +1647,9 @@ async function getEqualityGroups(d, e) {
                notes_list_item = document.createElement("li");
                if (notes[j].indexOf(["[url="]) > -1) {      // Add hyperlinks to any url's found
                   link = notes[j].slice(notes[j].indexOf("[url=") + "[url=".length);
+                  link_text = link.slice(link.indexOf("]") + 1, link.indexOf("["));
                   link = link.slice(0, link.indexOf("]")).replaceAll(". ", ".");
-                  notes[j] = notes[j].slice(0, notes[j].indexOf("[url=")) + "<a href = '" + link + "' target = '_blank'>" + link + "</a>";
+                  notes[j] = notes[j].slice(0, notes[j].indexOf("[url=")) + "<a href = '" + link + "' target = '_blank'>" + link_text + "</a>";
                }
                notes_list_item.innerHTML = notes[j];
                notes_list.appendChild(notes_list_item);
