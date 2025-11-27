@@ -163,18 +163,18 @@ async function generateIndicatorPage(d, e) {
     data_info.innerHTML = writeDataInfo(data);   // Place sentence in "data-info" div    
 
 
-    if (indicatorObj.AOS) {
-        const aosImage = document.createElement('img');
-        const hexContainer = document.getElementById("ind-hex-container");
-        const rowDiv = document.getElementById("indicator-aos");
-        aosImage.src = 'img/Accredited Official Statistics Logo English.svg';
-        aosImage.alt = 'AOS Indicator';
-        aosImage.style.height = '100px';
-        aosImage.classList.add('aos-icon'); // Optional: add a CSS class for styling
+    // if (indicatorObj.AOS) {
+    //     const aosImage = document.createElement('img');
+    //     const hexContainer = document.getElementById("ind-hex-container");
+    //     const rowDiv = document.getElementById("indicator-aos");
+    //     aosImage.src = 'img/Accredited Official Statistics Logo English.svg';
+    //     aosImage.alt = 'AOS Indicator';
+    //     aosImage.style.height = '100px';
+    //     aosImage.classList.add('aos-icon');
 
-        // Insert the image between the title and the hex container
-        rowDiv.insertBefore(aosImage, hexContainer);
-    }
+    //     // Insert the image between the title and the hex container
+    //     rowDiv.insertBefore(aosImage, hexContainer);
+    // }
 
 
     // This next section will add a link to the relevant map on an indicator page. If available

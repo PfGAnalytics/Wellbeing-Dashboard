@@ -1163,8 +1163,21 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
    } else {
       source_link = source_info.slice(source_info.indexOf("http"))
    }
+
+    var indicatorObj = domains_data[d].indicators[e]; // Full indicator object
+    var data = indicatorObj.data;
+
+    if (indicatorObj.AOS) {
+
+      source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. This is an Accredited Official Statistic.";
+
+    } else {
+
+      source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. This is an Official Statistic.";
+
+    }
    
-   source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
+   
 
 } else {
 
