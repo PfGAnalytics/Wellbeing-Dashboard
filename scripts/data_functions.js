@@ -237,13 +237,21 @@ async function indicatorPerformance (dom = null) {
 
 }
 
-let improvinghexDivHTML = '<div class = "row key-text performance">Improving<div class = "key-hex positive" style="margin-left:5px;"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
+// let improvinghexDivHTML = '<div class = "row key-text performance">Improving<div class = "key-hex positive" style="margin-left:5px;"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
 
-let nochangehexDivHTML = '<div class = "row key-text performance">No change<div class = "key-hex neutral" style="margin-left:5px;"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
+// let nochangehexDivHTML = '<div class = "row key-text performance">No change<div class = "key-hex neutral" style="margin-left:5px;"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
 
-let worseninghexDivHTML = '<div class = "row key-text performance">Worsening<div class = "key-hex negative" style="margin-left:5px;"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 12px"></i></div>';
+// let worseninghexDivHTML = '<div class = "row key-text performance">Worsening<div class = "key-hex negative" style="margin-left:5px;"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 12px"></i></div>';
 
-let insufficienthexDivHTML = '<div class = "row key-text performance">Insufficient<div class = "key-hex insufficient" style="margin-left:5px;"><div class = "key-hex-label insufficient"></div>';
+// let insufficienthexDivHTML = '<div class = "row key-text performance">Insufficient<div class = "key-hex insufficient" style="margin-left:5px;"><div class = "key-hex-label insufficient"></div>';
+
+let improvinghexDivHTML = '<div class = "row key-text performance" style = "background-color: #a1daa1; border: 2px solid; border-color: #00A857">Improving';
+
+let nochangehexDivHTML = '<div class = "row key-text performance" style = "background-color: #FF9A5C; border: 2px solid; border-color: #FF6200 ">No change';
+
+let worseninghexDivHTML = '<div class = "row key-text performance" style = "background-color: #FF7A7A; border: 2px solid; border-color: #db0000">Worsening';
+
+let insufficienthexDivHTML = '<div class = "row key-text performance" style = "background-color: #B0B0B0; border: 2px solid; border-color: #757575">Insufficient';
 
 
 // Function below uses the api to fetch the data and plots it in a line chart
