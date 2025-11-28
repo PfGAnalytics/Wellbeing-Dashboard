@@ -2110,9 +2110,6 @@ const handleOnScroll = () => {
     } else {
         wireDataDownloadButton();
     }
-
-    // Expose for manual triggering if needed
-    window.downloadChartDataAsCSV = downloadChartDataAsCSV;
 })();
 
 // Script to download map as an image
@@ -2120,24 +2117,30 @@ const handleOnScroll = () => {
   (function () {
   function getCaptureRoot() {
     
-     return document.getElementById('map-container');
+     return document.getElementById('pop-up-map') || document.getElementById('map-container');
   }
 
   function getMapTitleText() {
-    const titleEl = document.getElementById('map-title');
+    const titleEl = document.getElementById('popup-map-title') || document.getElementById('map-title');
     return titleEl ? titleEl.textContent.trim() : ' ';
   }
 
-  function downloadMapImage() {
-    const root = getCaptureRoot();
+  function downloadMapImage(root) {
     if (!root) {
-      console.warn('Map container not found');
-      return;
+        root = getCaptureRoot();
+    }
+
+    // Validate container size
+    if (!root || root.offsetWidth === 0 || root.offsetHeight === 0) {
+        alert('Map is still loading. Please try again.');
+        return;
     }
 
     const titleText = getMapTitleText();
+    const updatedEl = document.querySelector('.map-date, .popup-map-updated');
+    const updatedText = updatedEl ? updatedEl.textContent.trim() : '';
 
-    shiftGElements(140, 59.5);
+    shiftGElements(145, 75);
 
     const svg = document.querySelector('svg');
 
@@ -2149,9 +2152,9 @@ const handleOnScroll = () => {
       backgroundColor: null,
       ignoreElements: el =>
         el.id === 'download-map' ||
-        (el.classList && el.classList.contains('map-date')),
+        (el.classList && el.classList.contains('map-date') || el.classList.contains('popup-map-updated')),
       onclone: doc => {
-        const leg = doc.querySelector('#map-container, .map-legend');
+        const leg = doc.querySelector('#map-container, .map-legend, #pop-up-map, .popup-map-legend');
         if (leg) leg.style.display = 'block';
       },
       scale: window.devicePixelRatio
@@ -2171,29 +2174,38 @@ const handleOnScroll = () => {
 
       if (titleText) {
         ctx.fillStyle = '#000';
-        ctx.font = 'bold 16px Arial, sans-serif';
+        ctx.font = '14pt Arial, sans-serif';
         ctx.textBaseline = 'top';
         const tw = ctx.measureText(titleText).width;
         ctx.fillText(titleText, (out.width - tw) / 2, 10);
       }
-
+      
       const dx = Math.round((out.width - canvas.width) / 2);
-      const dy = titleH + pad;
+      const dy = titleH;
       ctx.drawImage(canvas, dx, dy);
-
-      const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
-      const link = document.createElement('a');
-      link.download = fileName;
-      link.href = out.toDataURL('image/png');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
+      
+      // Draw updated date
+      if (updatedText) {
+        ctx.font = '12px Arial, sans-serif';
+        ctx.textBaseline = 'top';
+        const leftMargin = dx;
+        ctx.fillText(updatedText, leftMargin, dy + canvas.height + 10);
+    }
     
-    document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
-    svg.removeAttribute('height');
+    const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
+    const link = document.createElement('a');
+    link.download = fileName;
+    link.href = out.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
 
-  }
+document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
+svg.removeAttribute('height');
+}
+
+  window.downloadMapImage = downloadMapImage;
 
   function wireDownloadMapButton() {
     const btn = document.getElementById('download-map');
@@ -2209,60 +2221,38 @@ const handleOnScroll = () => {
   }
 })();
 
-// Script to download map data
 
 (function () {
-  function downloadCurrentMapData() {
-    const result = window.latestMapResult;
-    const data_by_year = window.latestMapDataByYear;
+    function handlePopupMapDownload(e) {
+        if (e.target && e.target.classList.contains("popup-download-btn") && e.target.textContent.includes("CSV")) {
+            const btn = e.target;
+            const domain = btn.dataset.domain;
+            const indicator = btn.dataset.indicator;
+            const type = btn.dataset.type;
 
-    if (!result || !data_by_year) {
-      console.warn('Map data not available yet');
-      return;
+            if (!domain || !indicator || !type) {
+                alert('Missing domain, indicator, or type for map download.');
+                return;
+            }
+
+            const indicatorData = domains_data[domain]?.indicators[indicator]?.data;
+            if (!indicatorData) {
+                alert('No data found for this map indicator.');
+                return;
+            }
+
+            const indicatorCode = indicatorData[type];
+            if (!indicatorCode) {
+                alert(`No data available for ${type}.`);
+                return;
+            }
+
+            const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
+            window.location.href = downloadUrl;
+        }
     }
 
-    const groups = Object.values(result.dimension)[2].category.index;
-    const groupLabels = Object.values(result.dimension)[2].category.label;
-    const years = Object.keys(data_by_year);
-
-    let csv = ['Year', 'Geography', 'Value'].join(',') + '\n';
-
-    years.forEach(year => {
-      const values = data_by_year[year];
-      for (let i = 0; i < groups.length; i++) {
-        const label = groupLabels[groups[i]];
-        const value = values[i];
-        if (value !== null && value !== 'N/A') {
-          csv += `"${year}","${label}","${value}"\n`;
-        }
-      }
-    });
-
-    const titleText = document.getElementById('map-title')?.textContent.trim() || 'map-data';
-
-    const cleanedTitle = titleText.toLowerCase().replaceAll(' ', '-').replace(/[\(\)]/g, '').replace(/(?:-\d{4}(?:[-_/]\d{2})?)+/g, '').replace(/-+$/, '').trim();
-    const fileName = cleanedTitle + '.csv';
-
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  function wireDownloadMapDataButton() {
-    const btn = document.getElementById('download-map-data');
-    if (!btn) return;
-    btn.onclick = downloadCurrentMapData;
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', wireDownloadMapDataButton);
-  } else {
-    wireDownloadMapDataButton();
-  }
+    document.addEventListener("click", handlePopupMapDownload);
 })();
 
 window.onscroll = handleOnScroll;

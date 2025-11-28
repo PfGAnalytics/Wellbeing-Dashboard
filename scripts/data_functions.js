@@ -2098,10 +2098,82 @@ async function renderMapPopup(d, e, type) {
       mapContainer.id = "popup-map-container";
 
       pop_up_map.appendChild(mapContainer);
+      
+      // Buttons container
+      const buttonsContainer = document.createElement("div");
+      buttonsContainer.classList.add("popup-maps-buttons")
+      
+      // Download Map button
+      const downloadMapBtn = document.createElement("button");
+      downloadMapBtn.id = "popup-download-map";
+      downloadMapBtn.textContent = "Download map to image (PNG format)";
+      downloadMapBtn.classList.add("popup-download-btn");
+
+      // Download Data button
+      const downloadDataBtn = document.createElement("button");
+      downloadDataBtn.textContent = "Download data in CSV format";
+      downloadDataBtn.classList.add("popup-download-btn");
+      
+      // Attach domain, indicator, and type as data attributes
+      downloadDataBtn.dataset.domain = d;
+      downloadDataBtn.dataset.indicator = e;
+      downloadDataBtn.dataset.type = type;
+
+      // Append buttons
+      buttonsContainer.appendChild(downloadMapBtn);
+      buttonsContainer.appendChild(downloadDataBtn);
+      pop_up_map.appendChild(buttonsContainer);
+      
+
+      downloadMapBtn.addEventListener("click", () => downloadMapImage(mapContainer));
+
+      // Create popup notes container
+      const popupNotesContainer = document.createElement("div");
+      popupNotesContainer.classList.add("popup-map-note-container");
+      
+      // Add heading
+      const heading = document.createElement("p");
+      heading.classList.add("popup-map-notes");
+      heading.textContent = "Further information ";
+
+      // Create toggle span
+      const toggleSpan = document.createElement("span");
+      toggleSpan.classList.add("note-span");
+      toggleSpan.style.cursor = "pointer";
+      toggleSpan.innerHTML = `<i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand`;
+      
+      // Append toggle span to heading
+      heading.appendChild(toggleSpan);
+      popupNotesContainer.appendChild(heading);
+      
+      // Create ordered list and hide initially
+      const ol = document.createElement("ol");
+      ol.style.display = "none"; // Hidden by default
+
+      // Populate list items
+      notes.forEach(n => {
+         const li = document.createElement("li");
+         li.innerHTML = n;
+         ol.appendChild(li);
+      });
+
+      // Append list to container
+      popupNotesContainer.appendChild(ol);
+      
+      // Toggle functionality
+      toggleSpan.addEventListener("click", function () {
+         const isVisible = ol.style.display === "block";
+         ol.style.display = isVisible ? "none" : "block";
+         toggleSpan.innerHTML = isVisible
+         ? `<i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand`: `<i style="color: #142062" class="fa-solid fa-minus"></i> Click to collapse`;
+      });
+      
+      // Append container to popup
+      pop_up_map.appendChild(popupNotesContainer);
 
       // Fetch data and draw map
       await drawPopupMap(d, e, type, mapContainer, loading);
-}
+   }
 
 async function drawPopupMap(d, e, type, main_container, loading) {
     const indicator = domains_data[d].indicators[e];
