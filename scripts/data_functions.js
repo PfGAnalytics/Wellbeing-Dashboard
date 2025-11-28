@@ -2136,20 +2136,10 @@ async function renderMapPopup(d, e, type) {
       const heading = document.createElement("p");
       heading.classList.add("popup-map-notes");
       heading.textContent = "Further information ";
-
-      // Create toggle span
-      const toggleSpan = document.createElement("span");
-      toggleSpan.classList.add("note-span");
-      toggleSpan.style.cursor = "pointer";
-      toggleSpan.innerHTML = `<i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand`;
-      
-      // Append toggle span to heading
-      heading.appendChild(toggleSpan);
       popupNotesContainer.appendChild(heading);
       
-      // Create ordered list and hide initially
+      // Create ordered list
       const ol = document.createElement("ol");
-      ol.style.display = "none"; // Hidden by default
 
       // Populate list items
       notes.forEach(n => {
@@ -2160,14 +2150,6 @@ async function renderMapPopup(d, e, type) {
 
       // Append list to container
       popupNotesContainer.appendChild(ol);
-      
-      // Toggle functionality
-      toggleSpan.addEventListener("click", function () {
-         const isVisible = ol.style.display === "block";
-         ol.style.display = isVisible ? "none" : "block";
-         toggleSpan.innerHTML = isVisible
-         ? `<i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand`: `<i style="color: #142062" class="fa-solid fa-minus"></i> Click to collapse`;
-      });
       
       // Append container to popup
       pop_up_map.appendChild(popupNotesContainer);
