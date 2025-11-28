@@ -1846,7 +1846,7 @@ async function renderPopup (d, e, eq_group) {
                title: {
                   display: true,
                   text: "Click legend item to hide/show series in chart",
-                  color: "#212529",
+                  color: "#ffffff",
                   font: {
                      family: "Arial, Helvetica, sans-serif",
                      size: 18
@@ -1874,44 +1874,45 @@ async function renderPopup (d, e, eq_group) {
             beforeDraw(chart) {
                const { ctx, chartArea: { top, left, width } } = chart;
                ctx.save();
-               ctx.fillStyle = '#f0f0f0'; // light grey background
-               ctx.strokeStyle = '#f0f0f0';
+               ctx.fillStyle = '#142062'; // light grey background
+               ctx.strokeStyle = '#142062';
 
                const labelCount = chart.legend.legendItems.length;
 
-               if (labelCount > 5 && Object.keys(values).some(key => key.includes("Quintile"))) {
+               const boxX = Math.round(left + 215);
+               const boxY = Math.round(
+                 top - (
+                   labelCount > 5 && Object.keys(values).some(key => key.includes("Quintile"))
+                     ? 88
+                     : 65
+                 )
+               );
+               const boxWidth  = Math.round(width - 460);
+               const boxHeight = 33;
 
-               var boxX = left + 40;
-               var boxY = top - 85;
-               var boxWidth = width - 110;
-               var boxHeight = 80;
-               var radius = 12;
+               // Clamp radius to avoid overlapping curves
+               const radiusRaw = 20;
+               const r = Math.min(radiusRaw, boxWidth / 2, boxHeight / 2);
 
-               } else {
-                  
-                  var boxX = left + 85;
-                  var boxY = top - 65;
-                  var boxWidth = width - 190;
-                  var boxHeight = 60;
-                  var radius = 12;
+               // Improve stroke appearance
+               ctx.lineJoin = 'round';
+               ctx.lineCap  = 'round';
 
-               }
-
-               // Draw rounded rectangle
                ctx.beginPath();
-               ctx.moveTo(boxX + radius, boxY);
-               ctx.lineTo(boxX + boxWidth - radius, boxY);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + radius);
-               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - radius);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - radius, boxY + boxHeight);
-               ctx.lineTo(boxX + radius, boxY + boxHeight);
-               ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - radius);
-               ctx.lineTo(boxX, boxY + radius);
-               ctx.quadraticCurveTo(boxX, boxY, boxX + radius, boxY);
+               ctx.moveTo(boxX + r, boxY);
+               ctx.lineTo(boxX + boxWidth - r, boxY);
+               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + r);
+               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - r);
+               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - r, boxY + boxHeight);
+               ctx.lineTo(boxX + r, boxY + boxHeight);
+               ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - r);
+               ctx.lineTo(boxX, boxY + r);
+               ctx.quadraticCurveTo(boxX, boxY, boxX + r, boxY);
                ctx.closePath();
-               ctx.fill();   // Fill with grey background
-               ctx.stroke(); // Optional border
-               ctx.restore();
+
+               ctx.fill();      // Fill with grey background
+               ctx.stroke();    // Optional border
+
             }
          }]
       };
