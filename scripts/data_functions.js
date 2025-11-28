@@ -2079,9 +2079,10 @@ async function renderMapPopup(d, e, type) {
          }
       }
 
-      const cleanedMeasureText = measure_text.trim().replace(/\.$/, "");
+      const cleanedMeasureText = measure_text.trim();
+      const firstSentence = cleanedMeasureText.split('.')[0]; // Take text before first '.'
       const fullType = getTypeFullName(type);
-      mapTitle.textContent = `${cleanedMeasureText} by ${fullType}.`;
+      mapTitle.textContent = `${firstSentence} by ${fullType}.`;
       mapTitle.classList.add("popup-map-title");
       pop_up_map.insertAdjacentElement("afterbegin", mapTitle);
       
