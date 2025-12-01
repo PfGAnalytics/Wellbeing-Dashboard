@@ -2082,7 +2082,19 @@ async function renderMapPopup(d, e, type, data) {
       const cleanedMeasureText = measure_text.trim();
       const firstSentence = cleanedMeasureText.split('.')[0]; // Take text before first '.'
       const fullType = getTypeFullName(type);
-      mapTitle.textContent = `${firstSentence} by ${fullType}.`;
+      
+      let customTitle = null;
+
+      if (cleanedMeasureText.startsWith("The age standardised death rate for causes that are considered preventable")) {
+         customTitle = "Age standardised death rate (per 100,000 population) for causes considered preventable";
+      }
+
+      if (customTitle) {
+         mapTitle.textContent = `${customTitle} by ${fullType}.`;
+      } else {
+         mapTitle.textContent = `${firstSentence} by ${fullType}.`;
+      }
+
       mapTitle.classList.add("popup-map-title");
       pop_up_map.insertAdjacentElement("afterbegin", mapTitle);
       
