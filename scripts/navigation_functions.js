@@ -207,9 +207,10 @@ async function generateIndicatorPage(d, e) {
         AA_link.onclick = (event) => {
             event.preventDefault();
             event.stopPropagation();
-
-            // const popupParam = "assembly+area";
-            // window.location.search += `&popup=${popupParam}`;
+            
+            const params = new URLSearchParams(window.location.search);
+            params.set("popup", "assembly area");
+            history.replaceState(null, "", location.pathname + "?" + params.toString());
 
             renderMapPopup(d, e, "AA", data); // Pass domain, indicator, and type
             };
@@ -228,8 +229,9 @@ async function generateIndicatorPage(d, e) {
             event.preventDefault();
             event.stopPropagation();
 
-            // const popupParam = "local+government+district";
-            // window.location.search += `&popup=${popupParam}`;
+            const params = new URLSearchParams(window.location.search);
+            params.set("popup", "local government district");
+            history.replaceState(null, "", location.pathname + "?" + params.toString());
 
             renderMapPopup(d, e, "LGD", data); // Pass domain, indicator, and type
             };
