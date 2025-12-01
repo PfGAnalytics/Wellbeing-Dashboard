@@ -211,7 +211,7 @@ async function generateIndicatorPage(d, e) {
             // const popupParam = "assembly+area";
             // window.location.search += `&popup=${popupParam}`;
 
-            renderMapPopup(d, e, "AA"); // Pass domain, indicator, and type
+            renderMapPopup(d, e, "AA", data); // Pass domain, indicator, and type
             };
             map_link.appendChild(AA_link);
         }
@@ -231,7 +231,7 @@ async function generateIndicatorPage(d, e) {
             // const popupParam = "local+government+district";
             // window.location.search += `&popup=${popupParam}`;
 
-            renderMapPopup(d, e, "LGD"); // Pass domain, indicator, and type
+            renderMapPopup(d, e, "LGD", data); // Pass domain, indicator, and type
             };
 
         map_link.appendChild(LGD_link);      // Add link to "map-link" div

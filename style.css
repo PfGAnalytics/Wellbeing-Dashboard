@@ -1063,6 +1063,7 @@ footer {
 p.popup-map-notes {
     font-weight: bold;
     padding-top: 2%;
+    margin-bottom: 0rem !important;
 }
 
 #map-load {

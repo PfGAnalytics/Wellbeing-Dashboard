@@ -2026,7 +2026,7 @@ async function renderPopup (d, e, eq_group) {
 
 }
 
-async function renderMapPopup(d, e, type) {
+async function renderMapPopup(d, e, type, data) {
    // Remove existing popup
     if (document.getElementById("pop-up-map")) {
         main_container.removeChild(document.getElementById("pop-up-map"));
@@ -2127,15 +2127,79 @@ async function renderMapPopup(d, e, type) {
       
 
       downloadMapBtn.addEventListener("click", () => downloadMapImage(mapContainer));
+      
+      let indicatorCode = data[type];
+      if (!indicatorCode) {
+         console.warn("No indicator code found for type:", type);
+         return;
+      }
+      
+      let apiUrl = `/backup/${indicatorCode}.json`;
+      let apiResponse;
+      try {
+         apiResponse = await fetch(apiUrl).then(res => res.json());
+      } catch (err) {
+         console.error("Failed to fetch indicator data:", err);         
+         return;
+      }
+      
+      if (!apiResponse.result || !apiResponse.result.note) {
+         console.warn("No note data available in API response");
+         return;
+      }
+      
+      let popup_further_note = apiResponse.result.note[0].replaceAll("\n", "");
+      
+      let further_string;
+      if (popup_further_note.indexOf("Further information") !== -1) {
+         further_string = "Further information";
+      } else if (popup_further_note.indexOf("Further Information") !== -1) {
+         further_string = "Further Information";
+      } else if (popup_further_note.indexOf("Notes:") !== -1) {
+         further_string = "Notes:";
+      } else {
+         popup_further_note = "Not available";
+      }
+      
+      let notes = [];
+      if (popup_further_note !== "Not available") {
+         popup_further_note = popup_further_note.slice(popup_further_note.indexOf(further_string) + further_string.length);
+         popup_further_note = popup_further_note.slice(popup_further_note.indexOf("[/b]") + 4);
+         if (popup_further_note.indexOf("[b]") !== -1) {
+            popup_further_note = popup_further_note.slice(0, popup_further_note.indexOf("[b]"));
+         }
+
+        // Convert URLs
+        while (popup_further_note.indexOf("[url") > -1) {
+         let link = popup_further_note.slice(popup_further_note.indexOf("[url"), popup_further_note.indexOf("[/url]") + "[/url]".length);
+         let linked_text = link.slice(link.indexOf("]") + 1, link.indexOf("[/"));
+         let url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+         popup_further_note = popup_further_note.replace(link, `${url}${linked_text}</a>`);
+      }
+
+      popup_further_note = popup_further_note.replaceAll("[i]", "<em>");
+      popup_further_note = popup_further_note.replaceAll("[/i]", "</em>");
+      
+      notes = popup_further_note.split("\r");
+      for (let i = notes.length - 1; i >= 0; i--) {
+         if (notes[i].charAt(0) <= "9" && notes[i].charAt(0) >= "0") {
+            notes[i] = notes[i].substring(notes[i].indexOf(".") + 1).trim();
+         } else {
+            notes[i - 1] += notes[i];
+            notes[i] = "";
+         }
+      }
+      notes = notes.filter(n => n !== "" && n !== " ");
+   }
 
       // Create popup notes container
       const popupNotesContainer = document.createElement("div");
       popupNotesContainer.classList.add("popup-map-note-container");
-      
+
       // Add heading
       const heading = document.createElement("p");
       heading.classList.add("popup-map-notes");
-      heading.textContent = "Further information ";
+      heading.textContent = "Further information:";
       popupNotesContainer.appendChild(heading);
       
       // Create ordered list
