@@ -2256,7 +2256,8 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     // Prepare map
     const map = L.map(main_container.id, {
         zoomControl: false,
-        attributionControl: false
+        attributionControl: false,
+        dragging: false
     }).setView([54.65, -6.8], 8);
 
     L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
