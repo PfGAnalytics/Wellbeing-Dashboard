@@ -1455,13 +1455,45 @@ async function subpopTable() {
 
         aa = document.createElement("td");  // If AA data is present add a dot for "Assembly Area"
         if (domains_data[domain].indicators[all_indicators[i]].data.AA != "") {
-            aa.innerHTML = '<div class = "navy-dot"></div>';
+            const indicatorSlug = all_indicators[i].replace(/[^a-z ]/gi, '').replaceAll(" ", "+").toLowerCase();
+            const popupType = "Assembly Area".toLowerCase().replace(/\s+/g, "+");
+
+            const dotLink = document.createElement("a");
+            dotLink.href = `?indicator=${indicatorSlug}&popup=${popupType}`;
+            dotLink.className = "navy-dot-link";
+            
+            dotLink.onclick = function (event) {
+                const popupURL = location.pathname + location.search + `&popup=${popupType}`;
+                history.pushState({ popupOpen: true }, "", popupURL);
+ 
+            };
+            const dotDiv = document.createElement("div");
+            dotDiv.className = "navy-dot";
+            
+            dotLink.appendChild(dotDiv);
+            aa.appendChild(dotLink);
         }
         subpop_row.appendChild(aa);
 
         lgd = document.createElement("td"); // If LGD data is present add a dot for "Local Government District"
         if (domains_data[domain].indicators[all_indicators[i]].data.LGD != "") {
-            lgd.innerHTML = '<div class = "navy-dot"></div>';
+            const indicatorSlug = all_indicators[i].replace(/[^a-z ]/gi, '').replaceAll(" ", "+").toLowerCase();
+            const popupType = "Local Government District".toLowerCase().replace(/\s+/g, "+");
+
+            const dotLink = document.createElement("a");
+            dotLink.href = `?indicator=${indicatorSlug}&popup=${popupType}`;
+            dotLink.className = "navy-dot-link";
+            
+            dotLink.onclick = function (event) {
+                const popupURL = location.pathname + location.search + `&popup=${popupType}`;
+                history.pushState({ popupOpen: true }, "", popupURL);
+            };
+
+            const dotDiv = document.createElement("div");
+            dotDiv.className = "navy-dot";
+            
+            dotLink.appendChild(dotDiv);
+            lgd.appendChild(dotLink);
         }
         subpop_row.appendChild(lgd);
 
