@@ -2266,11 +2266,16 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     const groups = Object.values(dimension)[2].category.index;
 
     // Prepare map
-    const map = L.map(main_container.id, {
-        zoomControl: false,
-        attributionControl: false,
-        dragging: false
-    }).setView([54.65, -6.8], 8);
+    const map = L.map(main_container.id, 
+      {zoomControl: false,
+         dragging: false,
+         touchZoom: false,
+         doubleClickZoom: false,
+         scrollWheelZoom: false,
+         boxZoom: false,
+         keyboard: false,
+         attributionControl: false,
+         tap: false}).setView([54.65, -6.8], 8);
 
     L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
