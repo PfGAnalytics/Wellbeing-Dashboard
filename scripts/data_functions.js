@@ -2012,9 +2012,9 @@ async function renderPopup (d, e, eq_group) {
          notes = notes.filter(function (n) {return n != "" & n != " "})
 
          if (notes.length === 1) {
-            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Note: <span class='note-span'><i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand</span></p>`;
+            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Note:</p>`;
          } else if (notes.length > 1) {
-            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Notes: <span class='note-span'><i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand</span></p>`;
+            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Notes:</p>`;
          }
 
          let notes_list = document.createElement("ol");
@@ -2032,18 +2032,6 @@ async function renderPopup (d, e, eq_group) {
 
          note.appendChild(notes_list);
 
-         // Hide the notes list initially
-         notes_list.style.display = "none";
-         
-         // Add toggle functionality to the span
-         toggleSpan = note.querySelector(".note-span");
-         toggleSpan.style.cursor = "pointer";
-         
-         toggleSpan.addEventListener("click", function () {
-            isVisible = notes_list.style.display === "block";
-            notes_list.style.display = isVisible ? "none" : "block";
-            toggleSpan.innerHTML = isVisible ? `<i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand`: `<i style="color: #142062" class="fa-solid fa-minus"></i> Click to collapse`;
-         });
       };           
 
 }
