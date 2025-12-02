@@ -1429,6 +1429,7 @@ async function subpopTable() {
     for (let i = 0; i < all_indicators.length; i ++) {
 
         // Obtain the domain name of the indicator
+        let domain = null;
         for (let j = 0; j < domains.length; j ++) {
             if (Object.keys(domains_data[domains[j]].indicators).indexOf(all_indicators[i]) > -1) {
                 domain = domains[j];
@@ -1463,9 +1464,14 @@ async function subpopTable() {
             dotLink.className = "navy-dot-link";
             
             dotLink.onclick = function (event) {
+                // event.preventDefault();
+                console.log("Dot clicked:", popupType, "Domain:", domains, "Indicator:", all_indicators[i]);
+                console.log("link accessed:", location.pathname + location.search + `&popup=${popupType}`);
                 const popupURL = location.pathname + location.search + `&popup=${popupType}`;
+                // const popupURL = `${location.pathname}?indicator=${indicatorSlug}&popup=${popupType}`;
                 history.pushState({ popupOpen: true }, "", popupURL);
- 
+                
+                // renderMapPopup(domain, all_indicators[i], "AA"); // For Assembly Area
             };
             const dotDiv = document.createElement("div");
             dotDiv.className = "navy-dot";
