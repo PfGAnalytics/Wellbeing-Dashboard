@@ -706,7 +706,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the second quarter of 2025, economic output in Northern Ireland increased by 2.0%, mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index'>from this link. </a>",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the second quarter of 2025, economic output in Northern Ireland increased by 2.0%, mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -985,7 +985,7 @@ var domains_data = {
          },
          "Housing stress": {
             importance: "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2019/20",
+            base_year: "2020/21",
             ci: 0,
             data: {
                NI: "",
