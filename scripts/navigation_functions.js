@@ -2091,9 +2091,6 @@ const handleOnScroll = () => {
     } else {
         wireDataDownloadButton();
     }
-
-    // Expose for manual triggering if needed
-    window.downloadChartDataAsCSV = downloadChartDataAsCSV;
 })();
 
 // Script to download map as an image

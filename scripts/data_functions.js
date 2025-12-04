@@ -1503,36 +1503,33 @@ async function renderPopup (d, e, eq_group) {
       download_data_btn.classList.add("btn", "btn-primary");
       
       download_data_btn.onclick = function () {
-         const canvas = document.getElementById("pop-canvas");
-         if (!canvas) return;
+         // Get domain and indicator titles
+         const domain = document.getElementById('domain-title')?.textContent.trim();
+         const indicator = document.getElementById('indicator-title')?.textContent.trim();
+         if (!domain || !indicator) {
+            alert('Domain or indicator not found.');
+            return;
+         }
          
-         const chartInstance = Chart.getChart(canvas);
-         if (!chartInstance || !chartInstance.data || !chartInstance.data.labels || !chartInstance.data.datasets) return;
+         // Get indicator data object from domains_data
+         const indicatorData = domains_data[domain]?.indicators[indicator]?.data;
+         if (!indicatorData) {
+            alert('Indicator data not available.');
+            return;
+         }
          
-         const labels = chartInstance.data.labels;
-         const datasets = chartInstance.data.datasets;
+         // Prioritise EQ, fallback to NI
+         const indicatorCode = indicatorData.EQ || indicatorData.NI;
+         if (!indicatorCode) {
+            alert('No downloadable data available for this indicator.');
+            return;
+         }
          
-         let csv = 'Label,' + datasets.map(ds => ds.label || 'Series').join(',') + '\n';
+         // Build the download URL
+         const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
          
-         labels.forEach((label, i) => {
-            const row = [label];
-            datasets.forEach(ds => {
-               row.push(ds.data[i] !== undefined ? ds.data[i] : '');
-            });
-            csv += row.join(',') + '\n';
-         });
-         
-         const titleEl = document.getElementById("pop-up-title");
-         const titleText = titleEl ? titleEl.textContent.trim() : '';
-         const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'data') + '.csv';
-         
-         const blob = new Blob([csv], { type: 'text/csv' });
-         const link = document.createElement("a");
-         link.href = URL.createObjectURL(blob);
-         link.download = fileName;
-         document.body.appendChild(link);
-         link.click();
-         document.body.removeChild(link);
+         // Redirect to the URL
+         window.location.href = downloadUrl;
       };
       
       // Append the button to the pop-up chart
