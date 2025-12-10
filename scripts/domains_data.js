@@ -714,7 +714,7 @@ var domains_data = {
          },
          "Research and development": {
             importance: "Research and development (R&D) is an essential component of a strong and sustainable economy, investment in R&D helps drive increased innovation, leads to increased productivity and higher levels of economic growth.",
-            base_year: "2019",
+            base_year: "2020",
             ci: 1,
             data: {
                NI: "INDRESDEVNI",
@@ -726,7 +726,7 @@ var domains_data = {
             telling: {
                improved: "",
                no_change: "",
-               worsened: "There has been a 6.4% decrease in real terms between 2019 and 2023. There has been a real terms increase of 2.8% in GERD between 2022 and 2023. An improving trend is defined as anything more than a 0.1% increase on the 2019 GERD value; a worsening trend is defined as anything more than a 0.1% decrease on the 2019 GERD value.",
+               worsened: "There has been a 14.5% decrease in real terms between 2020 and 2024. There has been a real terms decrease of 3.1% in GERD between 2023 and 2024. An improving trend is defined as anything more than a 0.1% increase on the 2020 GERD value; a worsening trend is defined as anything more than a 0.1% decrease on the 2020 GERD value.",
                insufficient: ""
             }
          },
