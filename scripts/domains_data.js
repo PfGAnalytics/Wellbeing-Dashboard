@@ -276,8 +276,8 @@ var domains_data = {
          },
          "Sustainable travel - public transport": {
             importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
-            base_year: null,
-            ci: 1.1,
+            base_year: "2022",
+            ci: 1.4,
             data: {
                NI: "",
                AA: "",
@@ -287,9 +287,9 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "There were a number of significant changes to the survey methodology from 2020, due to the Covid-19 pandemic. In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 to 2023 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The base year for this indicator has been set to 2022.",
                worsened: "This commentary is a placeholder.",
-               insufficient: "There were a number of significant changes to the survey methodology from 2020, due to the COVID-19 pandemic.  In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 and 2021 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The comparison year for this indicator has been set to 2022."
+               insufficient: ""
             }
          },
        }
@@ -378,8 +378,8 @@ var domains_data = {
        indicators: {
          "Active travel - walking and cycling": {
             importance: "Encouraging more active and sustainable ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
-            base_year: null,
-            ci: 2.4,
+            base_year: "2022",
+            ci: 3.6,
             data: {
                NI: "",
                AA: "",
@@ -389,9 +389,9 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "There were a number of significant changes to the survey methodology from 2020, due to the Covid-19 pandemic. In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 to 2023 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The base year for this indicator has been set to 2022.",
                worsened: "This commentary is a placeholder.",
-               insufficient: "There were a number of significant changes to the survey methodology from 2020, due to the COVID-19 pandemic.  In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 and 2021 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The comparison year for this indicator has been set to 2022."
+               insufficient: ""
             }
          },
          "Healthy life expectancy (females)": {
