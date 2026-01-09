@@ -1437,7 +1437,7 @@ async function renderPopup (d, e, eq_group) {
       // Create a download button to download pop up chart
       const download_btn = document.createElement("button");
       download_btn.id = "download-pop-up-chart";
-      download_btn.textContent = "Download chart as image";
+      download_btn.textContent = "Download chart to image (PNG format)";
       download_btn.classList.add("btn", "btn-primary");
 
       download_btn.onclick = function () {
@@ -1499,9 +1499,9 @@ async function renderPopup (d, e, eq_group) {
       // Create a download data button for pop-up chart
       const download_data_btn = document.createElement("button");
       download_data_btn.id = "download-pop-up-data";
-      download_data_btn.textContent = "Download data";
+      download_data_btn.textContent = "Download data in CSV format";
       download_data_btn.classList.add("btn", "btn-primary");
-      
+
       download_data_btn.onclick = function () {
          // Get domain and indicator titles
          const domain = document.getElementById('domain-title')?.textContent.trim();

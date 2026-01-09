@@ -796,6 +796,11 @@ footer {
     height: 50px;
 }
 
+#download-pop-up-chart {
+    padding: 0px !important;
+    font-size: 13.5pt !important;
+}
+
 
 .leaflet-tile {
     filter: grayscale(100%);
