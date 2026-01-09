@@ -37,11 +37,10 @@
       },
       "EQUALGROUPS": {
         "category": {
-          "index": ["14", "15", "16"],
+          "index": ["17", "18"],
           "label": {
-            "14": "Religion - Catholic",
-            "15": "Religion - Protestant",
-            "16": "Religion - Other/no religion"
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants"
           }
         },
         "label": "Equality Groups"
@@ -111,9 +110,9 @@
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 8, 3],
+    "size": [1, 8, 2],
     "updated": "2026-01-09T9:30:00.000Z",
-    "value": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2.2, 1.6, 1.9, 3.7, 3, 4, 2.1, 3.7, 5.8],
+    "value": [null, null, null, null, null, null, null, null, null, null, null, null, 1.9, 4.7, 2.2, 4.5],
     "version": "2.0"
   },
   "id": {}

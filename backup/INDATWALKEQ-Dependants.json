@@ -37,10 +37,10 @@
       },
       "EQUALGROUPS": {
         "category": {
-          "index": ["19", "20"],
+          "index": ["17", "18"],
           "label": {
-            "19": "Disability - Yes",
-            "20": "Disability - No"
+            "17": "Dependants - With dependants (overall)",
+            "18": "Dependants - Without dependants"
           }
         },
         "label": "Equality Groups"
@@ -112,7 +112,7 @@
     },
     "size": [1, 8, 2],
     "updated": "2026-01-09T9:30:00.000Z",
-    "value": [null, null, null, null, null, null, null, null, null, null, 43.9, 52.5, 49.6, 57.7, 59.2, 55.3],
+    "value": [null, null, null, null, null, null, null, null, null, null, null, null, 51.2, 58.8, 49, 63.9],
     "version": "2.0"
   },
   "id": {}
