@@ -2145,9 +2145,16 @@ async function renderMapPopup(d, e, type, data) {
 
       downloadMapBtn.addEventListener("click", () => downloadMapImage(mapContainer));
       
-      let indicatorCode = data[type];
+      // let indicatorCode = data[type];
+      // if (!indicatorCode) {
+      //    console.warn("No indicator code found for type:", type);
+      //    return;
+      // }
+      
+      const indicatorCode = domains_data?.[d]?.indicators?.[e]?.data?.[type];
       if (!indicatorCode) {
-         console.warn("No indicator code found for type:", type);
+         loading.style.display = "none";
+         pop_up_map.appendChild(document.createTextNode("Map data not available."));
          return;
       }
       
@@ -2238,6 +2245,8 @@ async function renderMapPopup(d, e, type, data) {
       // Fetch data and draw map
       await drawPopupMap(d, e, type, mapContainer, loading);
    }
+
+   window.addEventListener("DOMContentLoaded", handleRefreshPopup);
 
 async function drawPopupMap(d, e, type, main_container, loading) {
     const indicator = domains_data[d].indicators[e];
@@ -3126,3 +3135,26 @@ function sharePage() {
 }
 
 document.getElementById("share").addEventListener("click", sharePage);
+
+function handleRefreshPopup() {
+  const params = new URLSearchParams(location.search);
+  const popup = params.get("popup");
+  if (!popup) return;
+
+  const parts = popup.split("|");
+  if (parts.length < 4) return;
+
+  const [kind, domainEnc, indicatorEnc, typeOrGroup] = parts;
+
+  const decodeSafe = s => {
+    try { return decodeURIComponent(decodeURIComponent(s)); } 
+    catch (_) { try { return decodeURIComponent(s); } catch (_) { return s; } }
+  };
+  const domain    = decodeSafe(domainEnc);
+  const indicator = decodeSafe(indicatorEnc);
+
+  if (kind === "map") {
+    window.__suppressChartOnLoad__ = true;
+    renderMapPopup(domain, indicator, typeOrGroup);
+  }
+}

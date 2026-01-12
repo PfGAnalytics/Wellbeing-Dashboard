@@ -209,7 +209,8 @@ async function generateIndicatorPage(d, e) {
             event.stopPropagation();
             
             const params = new URLSearchParams(window.location.search);
-            params.set("popup", "assembly area");
+            // params.set("popup", "assembly area");
+            params.set("popup", `map|${encodeURIComponent(d)}|${encodeURIComponent(e)}|AA`);
             history.replaceState(null, "", location.pathname + "?" + params.toString());
 
             renderMapPopup(d, e, "AA", data); // Pass domain, indicator, and type
@@ -230,7 +231,8 @@ async function generateIndicatorPage(d, e) {
             event.stopPropagation();
 
             const params = new URLSearchParams(window.location.search);
-            params.set("popup", "local government district");
+            // params.set("popup", "local government district");
+            params.set("popup", `map|${encodeURIComponent(d)}|${encodeURIComponent(e)}|LGD`);
             history.replaceState(null, "", location.pathname + "?" + params.toString());
 
             renderMapPopup(d, e, "LGD", data); // Pass domain, indicator, and type
@@ -738,7 +740,16 @@ if (currentURL.includes("?indicator=")) {
 
     createLineChart(lookUpDomain, lookUpIndicator);
     generateIndicatorPage(lookUpDomain, lookUpIndicator);
-    if (popup_clicked != null) renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
+    // if (popup_clicked != null) renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
+    
+    if (popup_clicked != null) {
+        const popupParam = new URLSearchParams(location.search).get("popup");
+        if (popupParam && popupParam.startsWith("map|")) {
+            console.debug("Map popup requested; skipping chart popup.");
+        } else {
+            renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
+        }
+    }
 
     for (let i = 0; i < button_rows.length; i ++) {
         button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
