@@ -233,7 +233,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.7 per cent in 2019/20.",
+               no_change: "During 2024/25, half (51.0 per cent) of the household waste collected by NI councils was reused, recycled or composted. The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.7 per cent in 2019/20.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -941,8 +941,8 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The proportion of households who report being very satisfied or fairly satisified with their house or flat has improved significantly during this time.",
-               no_change: "This commentary is a placeholder.",
+               improved: "This commentary is a placeholder",
+               no_change: "While the proportion of households who report being very satisfied or fairly satisified with their house or flat had improved in 2023/24, the level in 2024/25 is now similar to that in 2021/22.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
