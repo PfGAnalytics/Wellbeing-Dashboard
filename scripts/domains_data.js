@@ -395,9 +395,9 @@ var domains_data = {
             }
          },
          "Healthy life expectancy (females)": {
-            importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
-            base_year: "2017-19",
-            ci: 1.5,
+            importance: "Healthy life expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
+            base_year: "2018-20",
+            ci: 1.7,
             data: {
                NI: "",
                AA: "",
@@ -407,15 +407,15 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "",
-               no_change: "There was no significant change in female healthy life expectancy between 2017-19 (61.0 years) and 2021-23 (61.4 years).",
-               worsened: "",
+               no_change: "",
+               worsened: "There was a significant decrease in female healthy life expectancy between 2018-20 (62.1 years) and 2022-24 (60.2 years).",
                insufficient: ""
             }
          },
          "Healthy life expectancy (males)": {
-            importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
-            base_year: "2017-19",
-            ci: 1.6,
+            importance: "Healthy life expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
+            base_year: "2018-20",
+            ci: 1.7,
             data: {
                NI: "",
                AA: "",
@@ -425,7 +425,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "",
-               no_change: "There was no significant change in male healthy life expectancy between 2017-19 (59.2 years) and 2021-23 (60.3 years).",
+               no_change: "There was no significant change in male healthy life expectancy between 2018-20 (60.1 years) and 2022-24 (59.3 years).",
                worsened: "",
                insufficient: ""
             }
