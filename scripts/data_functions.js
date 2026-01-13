@@ -2617,90 +2617,122 @@ function formatBritishDate(dateObj) {
        // Sort by updated date (most recent first)
        items.sort((a, b) => b.updated - a.updated);
 
-       // Take top 5
-       const top5 = items.slice(0, 5);
-
        const tbody = document.querySelector('#recent-table tbody');
-       tbody.innerHTML = ''; // Clear old rows
+       
+       function renderFiltered(days) {
+         const now = new Date();
+         const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+         
+         // Filter by window (keep valid dates only)
+         const filtered = items.filter(item => !isNaN(item.updated) && item.updated >= cutoff);
 
-       top5.forEach(item => {
-         const row = document.createElement('tr');
-
-         // Format date
-         const formattedDate = isNaN(item.updated)
-           ? 'Not Available'
-           : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
-
-         // Get indicator and domain info
-         const info = codeToInfoMap[item.dataset] || {};
-         const indicatorName = info.indicator || item.dataset || 'Unknown';
-         const domainName = info.domain || 'Unknown';
-
-         // Create URL-friendly indicator name
-         const urlIndicator = indicatorName
-           .toLowerCase()
-           .replace(/[^\w\s]/g, '')
-           .replace(/\s+/g, '+');
-
-         // Indicator link
-         const link = document.createElement('a');
-         link.href = `index.html?indicator=${urlIndicator}`;
-         link.textContent = indicatorName;
-
-         // Domain link
-         const domainLink = document.createElement('a');
-         domainLink.href = `index.html?domain=${domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
-         domainLink.textContent = domainName;
-
-         // Create table cells
-         const nameCell = document.createElement('td');
-         nameCell.style.border = '1px solid #ccc';
-         nameCell.style.padding = '8px';
-         nameCell.appendChild(link);
-
-         const domainCell = document.createElement('td');
-         domainCell.style.border = '1px solid #ccc';
-         domainCell.style.padding = '8px';
-         domainCell.appendChild(domainLink);
-
-         const performanceCell = document.createElement('td');
-         performanceCell.style.border = '1px solid #ccc';
-         performanceCell.style.padding = '8px';
-
-         // Use performance value to determine status
-         switch (item.performance.toLowerCase()) {
-           case 'worsening':
-             performanceCell.innerHTML = worseninghexDivHTML;
-             break;
-           case 'improving':
-             performanceCell.innerHTML = improvinghexDivHTML;
-             break;
-           case 'no change':
-             performanceCell.innerHTML = nochangehexDivHTML;
-             break;
-           case 'insufficient':
-             performanceCell.innerHTML = insufficienthexDivHTML;
-             break;
-           default:
-             performanceCell.textContent = 'Unknown';
+         const seen = new Set();
+         const toRender = [];
+         
+         for (const item of filtered) {
+            const info = codeToInfoMap[item.dataset] || {};
+            const indicatorName = info.indicator || item.dataset || 'Unknown';
+            const domainName = info.domain || 'Unknown';
+            const key = `${domainName}||${indicatorName}`;
+            
+            if (!seen.has(key)) {
+               seen.add(key);
+               toRender.push({ ...item, indicatorName, domainName });
+            }
          }
 
-         const dateCell = document.createElement('td');
-         dateCell.style.border = '1px solid #ccc';
-         dateCell.style.padding = '8px';
-         dateCell.textContent = formattedDate;
+         // Clear and render
+         tbody.innerHTML = '';
+         
+         // No updates
+         if (toRender.length === 0) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = 4;
+            cell.style.padding = '8px';
+            cell.textContent = `No updates in the last ${days} days.`;
+            row.appendChild(cell);
+            tbody.appendChild(row);
+            return;
+         }
+         
+         toRender.forEach(item => {
+            const row = document.createElement('tr');
+            
+            // Format date
+            const formattedDate = isNaN(item.updated) ? 'Not Available' : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
+            
+            // Indicator/domain lookup
+            const info = codeToInfoMap[item.dataset] || {};
+            const indicatorName = info.indicator || item.dataset || 'Unknown';
+            const domainName = info.domain || 'Unknown';
+            
+            // Indicator link
+            const urlIndicator = indicatorName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+');
+            const link = document.createElement('a');
+            link.href = `index.html?indicator=${urlIndicator}`;
+            link.textContent = indicatorName;
 
-         // Append cells to row
-         row.appendChild(nameCell);
-         row.appendChild(domainCell);
-         row.appendChild(performanceCell);
-         row.appendChild(dateCell);
-         tbody.appendChild(row);
-       });
-     })
-     .catch(error => console.error('Error loading JSON:', error));
+            // Domain link
+            const domainLink = document.createElement('a');
+            domainLink.href = `index.html?domain=${domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
+            domainLink.textContent = domainName;
 
+            // Cells
+            const nameCell = document.createElement('td');
+            nameCell.style.border = '1px solid #ccc';
+            nameCell.style.padding = '8px';
+            nameCell.appendChild(link);
 
+            const domainCell = document.createElement('td');
+            domainCell.style.border = '1px solid #ccc';
+            domainCell.style.padding = '8px';
+            domainCell.appendChild(domainLink);
+
+            const performanceCell = document.createElement('td');
+            performanceCell.style.border = '1px solid #ccc';
+            performanceCell.style.padding = '8px';
+            
+            switch ((item.performance || 'unknown').toLowerCase()) {
+               case 'worsening': performanceCell.innerHTML = worseninghexDivHTML;
+               break;
+               case 'improving': performanceCell.innerHTML = improvinghexDivHTML;
+               break;
+               case 'no change':
+               performanceCell.innerHTML = nochangehexDivHTML;
+               break;
+               case 'insufficient':
+               performanceCell.innerHTML = insufficienthexDivHTML;
+               break;
+               default: performanceCell.textContent = 'Unknown';
+            }
+            
+            const dateCell = document.createElement('td');
+            dateCell.style.border = '1px solid #ccc';
+            dateCell.style.padding = '8px';
+            dateCell.textContent = formattedDate;
+
+            // Append
+            row.appendChild(nameCell);
+            row.appendChild(domainCell);
+            row.appendChild(performanceCell);
+            row.appendChild(dateCell);
+            tbody.appendChild(row);
+         });
+      }
+      
+      // Initial render defaults to last 30 days
+      renderFiltered(30);
+
+      const recentSelect = document.getElementById('recent-window');
+      if (recentSelect) {
+         recentSelect.addEventListener('change', function () {
+            const days = Number(this.value) || 30;
+            renderFiltered(days);
+         });
+      }
+   })
+   .catch(error => console.error('Error loading JSON:', error));
 
 function toTitleCase(str) {
 

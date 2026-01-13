@@ -1730,6 +1730,12 @@ tr {
     padding: 8px;
 }
 
+#recent-filter {
+    margin-top: 30px;
+    margin-left: 1px;
+    text-align: left;
+}
+
 .row.key-text.performance {
     width: fit-content
 }
