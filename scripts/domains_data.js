@@ -233,7 +233,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "During 2024/25, half (51.0 per cent) of the household waste collected by NI councils was reused, recycled or composted. The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.7 per cent in 2019/20.",
+               no_change: "During 2024/25, half (51.0 per cent) of the household waste collected by NI councils was reused, recycled or composted. The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.9 per cent in 2019/20.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
