@@ -2688,24 +2688,6 @@ function formatBritishDate(dateObj) {
             domainCell.style.border = '1px solid #ccc';
             domainCell.style.padding = '8px';
             domainCell.appendChild(domainLink);
-
-            const performanceCell = document.createElement('td');
-            performanceCell.style.border = '1px solid #ccc';
-            performanceCell.style.padding = '8px';
-            
-            switch ((item.performance || 'unknown').toLowerCase()) {
-               case 'worsening': performanceCell.innerHTML = worseninghexDivHTML;
-               break;
-               case 'improving': performanceCell.innerHTML = improvinghexDivHTML;
-               break;
-               case 'no change':
-               performanceCell.innerHTML = nochangehexDivHTML;
-               break;
-               case 'insufficient':
-               performanceCell.innerHTML = insufficienthexDivHTML;
-               break;
-               default: performanceCell.textContent = 'Unknown';
-            }
             
             const dateCell = document.createElement('td');
             dateCell.style.border = '1px solid #ccc';
@@ -2715,7 +2697,6 @@ function formatBritishDate(dateObj) {
             // Append
             row.appendChild(nameCell);
             row.appendChild(domainCell);
-            row.appendChild(performanceCell);
             row.appendChild(dateCell);
             tbody.appendChild(row);
          });
