@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2010-12", "2011-13", "2012-14", "2013-15", "2014-16", "2015-17", "2016-18", "2017-19", "2018-20", "2019-21", "2020-22", "2021-23"],
+          "index": ["2010-12", "2011-13", "2012-14", "2013-15", "2014-16", "2015-17", "2016-18", "2017-19", "2018-20", "2019-21", "2020-22", "2021-23", "2022-24"],
           "label": {
             "2010-12": "2010-12",
             "2011-13": "2011-13",
@@ -34,7 +34,8 @@
             "2018-20": "2018-20",
             "2019-21": "2019-21",
             "2020-22": "2020-22",
-            "2021-23": "2021-23"
+            "2021-23": "2021-23",
+            "2022-24": "2022-24"
           }
         },
         "label": "Grouped year"
@@ -78,7 +79,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -108,15 +109,15 @@
       ]
     },
     "note": [
-      "[b]Healthy life expectancy (females)[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nHealthy life expectancy (HLE) at birth for females. This is the average number of years females can expect to live in good health. HLE provides an estimate of lifetime spent in 'Very Good' or 'Good' health, calculated using respondents' perception of their own health according to the Health Survey Northern Ireland (HSNI).\r\n\r\n[b]Source:[/b]\r\nLife Expectancy in Northern Ireland, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/life-expectancy-northern-ireland]https://www.health-ni.gov.uk/articles/life-expectancy-northern-ireland[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nChange in methodology; data collection for the 2020/21, 2021/22 and 2022/23 surveys moved from face-to-face interviewing to telephone mode. This may have influenced the responses given by respondents. In addition, the sample size was lower as a result and children were not included in the survey.\r\n\r\n[b]Further information[/b]\r\n1. Healthy life expectancy (HLE) describes the average number of years a person can expect to live in good health. HLE provides an estimate of lifetime spent in ‘Very Good’ or ‘Good’ health, calculated using respondents’ perception of their own health according to the Health Survey Northern Ireland.\r\n2. For more information on this data please contact the data provider - [url=mailto:healthinequalities@health-ni.gov.uk]Public Health Information & Research Branch, Information Analysis Directorate, DoH[/url] or see the '[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]Health Inequalities Annual Report[/url]'.\r\n3. 95% Confidence Intervals apply to the figures displayed therefore not all differences are statistically significant. Further information on how to interpret the differences and changes in these figures is available online: [url=https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators]https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators[/url].\r\n\r\n[b]Deprivation[/b]\r\n4. All deprivation figures are defined according to the 2010 and 2017 NI Multiple Deprivation Measures (NIMDM). Data prior to 2018/19 is based on the 2010 measure, all other data is based on the 2017 measure. More information can be found on the NISRA website: [url=http://www.nisra.gov.uk/statistics/deprivation]www.nisra.gov.uk/statistics/deprivation[/url].\r\n\r\n[b]Urban Rural[/b]\r\n5. Urban rural figures up to and including 2014 are defined according to the 2005 Urban Rural classification; figures from 2015 onwards use the 2015 classification. More information on Urban Rural classifications can be found online: [url=http://www.nisra.gov.uk/support/geography/urban-rural-classification]www.nisra.gov.uk/support/geography/urban-rural-classification[/url].\r\n6. Due to small sample sizes, reliable estimates are not available for 'Urban/Rural - Mixed'."
+      "[b]Healthy life expectancy (females)[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nHealthy life expectancy (HLE) at birth for females. This is the average number of years females can expect to live in good health. HLE provides an estimate of lifetime spent in 'Very Good' or 'Good' health, calculated using respondents' perception of their own health according to the Health Survey Northern Ireland (HSNI).\r\n\r\n[b]Source[/b]\r\nLife Expectancy in Northern Ireland, Department of Health\r\n[url=https://www.health-ni.gov.uk/articles/life-expectancy-northern-ireland]https://www.health-ni.gov.uk/articles/life-expectancy-northern-ireland[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nChange in methodology; data collection for the 2020/21, 2021/22 and 2022/23 surveys moved from face-to-face interviewing to telephone mode. This may have influenced the responses given by respondents. In addition, the sample size was lower as a result and children were not included in the survey. To ensure the figures remained as representative as possible of the entire population, data relating to children in 2019 was held constant from 2020 to 2022.\r\n\r\n[b]Further information[/b]\r\n1. Healthy life expectancy (HLE) describes the average number of years a person can expect to live in good health. HLE provides an estimate of lifetime spent in ‘Very Good’ or ‘Good’ health, calculated using respondents’ perception of their own health according to the Health Survey Northern Ireland.\r\n2. For more information on this data please contact the data provider - [url=mailto:healthinequalities@health-ni.gov.uk]Public Health Information & Research Branch, Information Analysis Directorate, DoH[/url] or see the '[url=https://www.health-ni.gov.uk/articles/health-inequalities-statistics]Health Inequalities Annual Report[/url]'.\r\n3. 95% Confidence Intervals apply to the figures displayed therefore not all differences are statistically significant. For guidance on how to interpret the differences and changes in these figures, refer to ‘[url=https://www.health-ni.gov.uk/publications/how-interpret-hscims-indicators]How to interpret HSCIMS indicators[/url]’.\r\n\r\n[b]Deprivation[/b]\r\n4. All deprivation figures are defined according to the 2010 and 2017 NI Multiple Deprivation Measures (NIMDM). Data prior to 2018/19 is based on the 2010 measure, all other data is based on the 2017 measure. More information on the NIMDM can be found on the NISRA website: [url=https://www.nisra.gov.uk/statistics/people-and-communities/deprivation]https://www.nisra.gov.uk/statistics/people-and-communities/deprivation[/url].\r\n\r\n[b]Urban Rural[/b]\r\n5. Urban Rural figures up to and including 2014 are defined according to the 2005 Urban Rural classification; figures from 2015 onwards use the 2015 classification. More information on Urban Rural classifications can be found online: [url=http://www.nisra.gov.uk/support/geography/urban-rural-classification]www.nisra.gov.uk/support/geography/urban-rural-classification[/url].\r\n6. Due to small sample sizes, reliable estimates are not available for 'Urban/Rural - Mixed'."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 12, 2],
-    "updated": "2025-09-19T15:31:04.177Z",
-    "value": [60.3, 63.6, 60.5, 63.7, 60.3, 64.2, 59.5, 63.4, 59.3, 63.5, 58.4, 63.3, 59.1, 63.4, 59.3, 63.5, 60.2, 64.4, 60.4, 66.3, 60.5, 66.3, 59.4, 64.6],
+    "size": [1, 13, 2],
+    "updated": "2026-01-14T9:30:00.000Z",
+    "value": [60.3, 63.6, 60.5, 63.7, 60.3, 64.2, 59.5, 63.4, 59.3, 63.5, 58.4, 63.3, 59.1, 63.4, 59.3, 63.5, 60.2, 64.4, 60.4, 66.3, 60.5, 66.3, 59.4, 64.6, 58.4, 62.7],
     "version": "2.0"
   },
   "id": {}
