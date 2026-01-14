@@ -2028,10 +2028,6 @@ async function renderPopup (d, e, eq_group) {
 
 async function renderMapPopup(d, e, type, data) {
    
-    console.log("renderMapPopup called with:", { domain: d, indicator: e, type: type });
-    const measure_text = domains_data[d].indicators[e].importance || e;
-    const cleanedMeasureText = measure_text.trim();
-
    // Remove existing popup
     if (document.getElementById("pop-up-map")) {
         main_container.removeChild(document.getElementById("pop-up-map"));
@@ -2084,7 +2080,7 @@ async function renderMapPopup(d, e, type, data) {
          }
       }
 
-      // const cleanedMeasureText = measure_text.trim();
+      const cleanedMeasureText = measure_text.trim();
       const firstSentence = cleanedMeasureText.split('.')[0]; // Take text before first '.'
       const fullType = getTypeFullName(type);
       
