@@ -2450,14 +2450,6 @@ async function drawMap() {
       has_error = true;
    }
 
-   // Target div with id "map-container"
-   var map_container = document.getElementById("map-container");
-
-   // Delete any map already inside map-container
-   while (map_container.firstChild) {
-       map_container.removeChild(map_container.firstChild);
-   }
-
    var matrix = map_select_3.value;
 
    // URL to query (pre-production)
@@ -2563,7 +2555,6 @@ async function drawMap() {
       map_div = document.createElement("div");
       map_div.id = matrix + "-map";
       map_div.classList.add("map");
-      map_container.appendChild(map_div);
 
       // Create a map
       var map = L.map(matrix + "-map",
@@ -2804,8 +2795,6 @@ async function drawMap() {
 
             legend_div.appendChild(legend_row_2);
 
-            map_container.appendChild(legend_div);
-
          }        
 
          min_value.innerHTML = range_min.toLocaleString("en-GB");       
@@ -2875,7 +2864,6 @@ async function drawMap() {
       update_div = document.createElement("div");
       update_div.classList.add("map-date");
       update_div.innerHTML = updated_note;
-      map_container.appendChild(update_div);
 
    }
 

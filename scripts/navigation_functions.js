@@ -32,7 +32,6 @@ var footer = document.getElementsByTagName("footer")[0];
 var main_container = document.getElementById("main-container");
 var prototype = document.getElementById("prototype");
 var line_chart_container = document.getElementById("line-chart-container");
-var map_container = document.getElementById("map-container");
 var top_menu_items_div = document.getElementById("top-menu-items");
 var white_box = document.getElementsByClassName("white-box");
 var top_container = document.getElementById("top-container");
@@ -974,7 +973,6 @@ function sizeForMobile() {
             domains_grid_container.style.marginLeft = ((window.innerWidth - 800) / 2) + "px";
         }
 
-        map_container.style.marginLeft = ((window.innerWidth - 700) / 2) + "px";        // Re-position map in middle of screen
         top_menu_items_div.style.marginBottom = "20px";                                 // Extra space underneath top menu items
         top_menu_items_div.style.marginTop= "10px";                                     // Extra space above top menu items
         top_menu_items_div.style.width = "100%";                                        // Move top menu onto its own row by setting it to full width
@@ -1019,7 +1017,6 @@ function sizeForMobile() {
         click_to_see.style.width = "150px";                 // Reset click-to-see width to 100px
         click_to_see.style.marginLeft = "0px"
         domains_grid_container.style.marginLeft = "50px";   // Reset domains grid left margin to 50px
-        map_container.removeAttribute("style");             // Remove any style attributes set above for map container
         top_menu_items_div.removeAttribute("style");        // Remove any style attributes set above for top menu items div
         // dashboard_title.removeAttribute("style");           // Remove any style attributes set above dashboard title
         for (let i = 0; i < grey_box.length; i++) {
@@ -2021,11 +2018,9 @@ const handleOnScroll = () => {
 
     const overlayCanvas = await capture((doc) => {
       const container = doc.getElementById('popup-map-container') ||
-                        doc.getElementById('pop-up-map') ||
-                        doc.getElementById('map-container');
+                        doc.getElementById('pop-up-map');
       const liveContainer = document.getElementById('popup-map-container') ||
-                            document.getElementById('pop-up-map') ||
-                            document.getElementById('map-container');
+                            document.getElementById('pop-up-map');
 
       if (!container || !liveContainer) return;
 
