@@ -2450,15 +2450,6 @@ async function drawMap() {
       has_error = true;
    }
 
-   // Display the loading gif while this function runs
-   var map_load = document.getElementById("map-load");
-   map_load.style.display = "flex";
-   
-
-   // Hide map title during load
-   var map_title = document.getElementById("map-title");
-   map_title.style.color = "#fafafa";
-
    // Target div with id "map-container"
    var map_container = document.getElementById("map-container");
 
@@ -2822,9 +2813,6 @@ async function drawMap() {
 
          chart_title = Object.values(dimension.STATISTIC.category.label)[0];
 
-         
-         map_title.innerHTML = chart_title + " (" + selected_year + ")";
-
          var source_info_map = document.getElementById("source-info-map");
 
          // Source info pulled from data portal:
@@ -2891,10 +2879,6 @@ async function drawMap() {
 
    }
 
-  // Hide loading gif after map is generated
-  map_load.style.display = "none";
-  map_title.removeAttribute("style");
-
 }
 
 // This function converts a number to a word
@@ -2960,9 +2944,6 @@ async function dataPortalLive () {
    showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
    sizeForMobile();            // Resize and re-position page elements
    mainContainerHeight();      // See above
-   if (maps_scrn.style.display == "block") {
-      drawMap();
-   }
    removeAriaFromIcons();
 
 }

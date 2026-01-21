@@ -19,28 +19,18 @@ var button_rows = document.getElementsByClassName("button-row");
 var domains_scrn = document.getElementById("domains-scrn");
 var overall_scrn = document.getElementById("overall-scrn");
 var indicator_scrn = document.getElementById("indicator-scrn");
-var maps_scrn = document.getElementById("maps-scrn");
 var domain_title = document.getElementById("domain-title");
 var indicator_title = document.getElementById("indicator-title");
 var ind_important = document.getElementById("ind-important");
 var data_info = document.getElementById("data-info");
 var map_link = document.getElementById("map-link");
 var domains_btn = document.getElementById("domains-btn");
-var maps_btn = document.getElementById("maps-btn");
 var overall_btn = document.getElementById("overall-btn");
-var map_select_1 = document.getElementById("map-select-1");
-var map_select_2 = document.getElementById("map-select-2");
-var map_select_3 = document.getElementById("map-select-3");
 var key = document.getElementById("key");
 var top_menu = document.getElementById("top-menu");
 var footer = document.getElementsByTagName("footer")[0];
 var main_container = document.getElementById("main-container");
 var prototype = document.getElementById("prototype");
-var further_expander_map = document.getElementById("further-expander-map");
-var further_info_map = document.getElementById("further-info-map");
-var map_title = document.getElementById("map-title");
-var data_info_map = document.getElementById("data-info-map");
-var ind_important_map = document.getElementById("ind-important-map");
 var line_chart_container = document.getElementById("line-chart-container");
 var map_container = document.getElementById("map-container");
 var top_menu_items_div = document.getElementById("top-menu-items");
@@ -50,10 +40,6 @@ var dashboard_title = document.getElementById("dashboard-title");
 var nisra_logo_container = document.getElementById("nisra-logo-container");
 var footer_container = document.getElementById("footer-container");
 var button_rows = document.getElementsByClassName("button-row");
-var map_form = document.getElementById("map-form");
-var map_label_2 = document.getElementById("map-label-2");
-var map_label_3 = document.getElementById("map-label-3");
-var breaks = map_form.getElementsByTagName('br');
 var domain_info_container = document.getElementById("domain-info-container");
 var domain_count = document.getElementsByClassName("domain-count");
 var box_containers = document.getElementsByClassName("box-container");
@@ -528,14 +514,6 @@ for (let i = 0; i < domains.length; i ++) {
         }
 
     }
-                
-    if (has_geo_data == true) {                     // When there is geographical data for any indicator in this domain:
-        option = document.createElement("option");      // Create an "option" element
-        option.value = domains[i];                      // Set the value of the option to the Domain name
-        option.innerHTML = domains[i];                  // Set the text label of the option to the Domain name
-        map_select_1.appendChild(option);               // Add the option to the first dropdown menu on Maps screen
-    }
-
 }
 
 // Top menu navigation:
@@ -570,25 +548,6 @@ if (currentURL.includes("tab=")) {
             top_menu_items[i].classList.remove("selected-item");
             top_menu_items[i].firstChild.classList.remove("selected-icon");
         }
-
-        if (currentTab == "maps") {
-            loading_img.style.display = "none";
-            maps_scrn.style.display = "block";
-
-            updateMapSelect2();         // Update list of options inside second map drop down menu
-            updateMapSelect3();         // Update list of options inside third map drop down menu
-
-            setTimeout(function() {
-                if (map_select_3.value != map_select_3.options[0].value) {
-                    location.reload();
-                }
-            }, 1)
-
-        } else if (currentTab == "overall" | currentTab == "domains") {
-            indicatorPerformance();
-        } else {
-            loading_img.style.display = "none";
-        }        
 
     }
 
@@ -791,66 +750,6 @@ if (currentURL.includes("?indicator=")) {
 
 }
 
-if (currentURL.includes("map=")) {
-
-    domains_btn.classList.remove("selected-item");
-    domains_btn.firstChild.classList.remove("selected-icon");
-    maps_btn.classList.add("selected-item");
-    maps_btn.firstChild.classList.add("selected-icon");
-
-    currentMap = currentURL.slice(currentURL.indexOf("map=") + "map=".length);
-
-    if (currentMap.includes("#")) {
-        currentMap = currentMap.slice(0, currentMap.indexOf("#"))
-    }
-
-    domains_scrn.style.display = "none";
-    maps_scrn.style.display = "block";
-
-    // Find the domain and indicator name
-    for (let i = 0; i < domains.length; i ++) {
-
-        indicators = Object.keys(domains_data[domains[i]].indicators);
-
-        for (let j = 0; j < indicators.length; j ++) {
-
-            AA_data = domains_data[domains[i]].indicators[indicators[j]].data.AA;
-            LGD_data = domains_data[domains[i]].indicators[indicators[j]].data.LGD;
-
-            if (currentMap == AA_data && AA_data != "") {
-                currentDomain = domains[i];
-                currentIndicator = indicators[j];
-                break;
-            } else if (currentMap == LGD_data && LGD_data != "") {
-                currentDomain = domains[i];
-                currentIndicator = indicators[j];
-                break;
-            }
-            
-        }
-    }
-
-    map_select_1.value = currentDomain;
-    updateMapSelect2();
-    map_select_2.value = currentIndicator;
-    updateMapSelect3();
-    map_select_3.value = currentMap;
-
-    setTimeout(function() {
-        if (map_select_3.value != currentMap) {
-            location.reload();
-        }
-    }, 1)
-
-    if (currentMap.slice(-3) == "LGD") {
-        title.textContent += " - " + currentIndicator + " by Local Government District"
-    } else if (currentMap.slice(-2) == "AA") {
-        title.textContent += " - " + currentIndicator + " by Assembly Area"
-    }
-
-}
-
-
 // Activate search bar:
 // Function adapted from one found on https://www.w3schools.com/howto/howto_css_searchbar.asp
 function autocomplete(inp, arr) {
@@ -1050,92 +949,6 @@ window.onresize = function() {
     }
 }
 
-// This function updates the second dropdown menu on the maps screen based on what has been selected by the user in the first dropdown menu
-function updateMapSelect2() {
-
-    // List all the indicators in the domain selected in first dropdown:
-    indicators = Object.keys(domains_data[map_select_1.value].indicators); 
-
-    // Remove any options already in second dropdown menu:
-    while (map_select_2.firstChild) {
-        map_select_2.removeChild(map_select_2.firstChild);
-    }
-
-    // Loop through all indicators under the domain:
-    for (let i = 0; i < indicators.length; i++) {
-
-        // The data object:
-        var data = domains_data[map_select_1.value].indicators[indicators[i]].data;
-
-        // If data exists for either AA or LGD generate an option in second dropdown menu:
-        if (data.AA != "" || data.LGD != "") {
-
-            option = document.createElement("option");      // Create an "option" element
-            option.value = indicators[i];                   // Set the value of the option to the Indicator name
-            option.innerHTML = indicators[i];               // Set the text label of the option to the Indicator name
-            map_select_2.appendChild(option);               // Add the option to the second dropdown menu on Maps screen
-
-        }
-    }
-}
-
-// This function updates the third dropdown menu on the maps screen based on what has been selected by the user in the second dropdown menu
-function updateMapSelect3() {
-
-    // The indicator based on selections in first two dropdowns:
-    var indicator = domains_data[map_select_1.value].indicators[map_select_2.value];
-    var data = indicator.data;      // The data object within that indicator
-
-    // Remove any options in third dropdown
-    while (map_select_3.firstChild) {
-        map_select_3.removeChild(map_select_3.firstChild);
-    }
-
-    // If AA data is available then add a dropdown option:
-    if (data.AA != "") {
-        option = document.createElement("option");  // Create an "option" element
-        option.value = data.AA;                     // Set the value of the option to the AA matrix name
-        option.innerHTML = "Assembly Area";         // Set the text label to "Assembly Area"
-        map_select_3.appendChild(option);           // Add the option to the third dropdown menu on the Map screen
-    }
-
-    // If LGD data is available then add a dropdown option:
-    if (data.LGD != "") {               
-        option = document.createElement("option");          // Create an "option" element
-        option.value = data.LGD;                            // Set the value of the option to the LGD matrix name
-        option.innerHTML = "Local Government District";     // Set the text label to "Local Government District"
-        map_select_3.appendChild(option);                   // Add the option to the third dropdown menu on the Map screen
-    }
-
-    // Update the map title div
-    map_title.innerHTML = indicator.chart_title;
-
-    // Update the More data section (see writeDataInfo() function above)
-    data_info_map.innerHTML = writeDataInfo(data);
-
-    // Update "Why is this indicator important" section
-    ind_important_map.innerHTML = indicator.importance;    
-
-}
-
-// When there is any change to the first dropdown menu on the maps screen run the following functions:
-map_select_1.onchange =  function() {
-    updateMapSelect2();     // Update options in second dropdown (see above)
-    updateMapSelect3();     // Update options in third dropdown (see above)
-    map_form.submit();
-}
-
-// When there is any change to the second dropdown menu on the maps screen run the following functions:
-map_select_2.onchange = function() {
-    updateMapSelect3();     // Update options in third dropdown (see above)
-    map_form.submit();
-}
-
-// When there is any change to the third dropdown menu on the maps screen run the following functions:
-map_select_3.onchange = function() {
-    map_form.submit()
-}
-
 // Resizing for mobile
 function sizeForMobile() {
 
@@ -1193,13 +1006,6 @@ function sizeForMobile() {
 
         domains_footer.style.fontSize = "14pt";
         
-        while (breaks[0]) {
-            map_form.removeChild(breaks[0]);                // Remove any line breaks between map dropdown menus
-        }
-
-        map_form.insertBefore(document.createElement("br"), map_label_2);   // Insert a line break before second dropdown
-        map_form.insertBefore(document.createElement("br"), map_label_3);   // Insert a line break before third dropdown
-
         // Re-shape framework structure diagram on mobile:
         column_1.style.width = "100%";
         column_2.style.width = "100%";
@@ -1238,10 +1044,6 @@ function sizeForMobile() {
 
         domains_footer.style.fontSize = "12pt";
 
-        while (breaks[0]) {
-            map_form.removeChild(breaks[0]);            // Remove any line breaks between dropdown menus
-        }
-
         button_left.removeAttribute("style");           // Remove any style attributes set above on "previous indicator/domain" button
         button_right.removeAttribute("style");           // Remove any style attributes set above on "next indicator/domain" button
 
@@ -1273,12 +1075,6 @@ for (let i = 0; i < user_guide_link.length; i ++) {
         about_btn.click(); // Have it simulate clicking the about screen button in the menu
     }    
 
-}
-
-
-// The link to the Indicator page on map screen:
-chart_link.onclick = function() {
-    chart_link.value = map_select_2.value.replace(/[^a-z ]/gi, '').toLowerCase();
 }
 
 // Code to execute when someone clicks on search button
