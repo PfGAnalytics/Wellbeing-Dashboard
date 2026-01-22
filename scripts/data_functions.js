@@ -3103,23 +3103,20 @@ document.getElementById("share").addEventListener("click", sharePage);
 
 function handleRefreshPopup() {
   const params = new URLSearchParams(location.search);
+  
   const popup = params.get("popup");
-  if (!popup) return;
+  if (popup !== "assembly area" && popup !== "local government district") return
 
-  const parts = popup.split("|");
-  if (parts.length < 4) return;
+  const d  = sessionStorage.getItem("popup_domain");
+  const e  = sessionStorage.getItem("popup_indicator");
+  const mt = sessionStorage.getItem("popup_measure_text");
+  const type = sessionStorage.getItem("popup_type");
 
-  const [kind, domainEnc, indicatorEnc, typeOrGroup] = parts;
+   if (!d || !e || !type) return;
 
-  const decodeSafe = s => {
-    try { return decodeURIComponent(decodeURIComponent(s)); } 
-    catch (_) { try { return decodeURIComponent(s); } catch (_) { return s; } }
-  };
-  const domain    = decodeSafe(domainEnc);
-  const indicator = decodeSafe(indicatorEnc);
+   window.measure_text = mt;
 
-  if (kind === "map") {
-    window.__suppressChartOnLoad__ = true;
-    renderMapPopup(domain, indicator, typeOrGroup);
+   window.__suppressChartOnLoad__ = true
+   
+    renderMapPopup(d, e, type);
   }
-}

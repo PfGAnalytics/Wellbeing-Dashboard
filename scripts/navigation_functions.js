@@ -193,9 +193,13 @@ async function generateIndicatorPage(d, e) {
             event.preventDefault();
             event.stopPropagation();
             
+            sessionStorage.setItem("popup_domain", d);
+            sessionStorage.setItem("popup_indicator", e);
+            sessionStorage.setItem("popup_measure_text", measure_text);
+            sessionStorage.setItem("popup_type", "AA");
+            
             const params = new URLSearchParams(window.location.search);
-            // params.set("popup", "assembly area");
-            params.set("popup", `map|${encodeURIComponent(d)}|${encodeURIComponent(e)}|AA`);
+            params.set("popup", "assembly area");
             history.replaceState(null, "", location.pathname + "?" + params.toString());
 
             renderMapPopup(d, e, "AA", data); // Pass domain, indicator, and type
@@ -215,9 +219,13 @@ async function generateIndicatorPage(d, e) {
             event.preventDefault();
             event.stopPropagation();
 
+            sessionStorage.setItem("popup_domain", d);
+            sessionStorage.setItem("popup_indicator", e);
+            sessionStorage.setItem("popup_measure_text", measure_text);
+            sessionStorage.setItem("popup_type", "LGD");
+
             const params = new URLSearchParams(window.location.search);
-            // params.set("popup", "local government district");
-            params.set("popup", `map|${encodeURIComponent(d)}|${encodeURIComponent(e)}|LGD`);
+            params.set("popup", "local government district");
             history.replaceState(null, "", location.pathname + "?" + params.toString());
 
             renderMapPopup(d, e, "LGD", data); // Pass domain, indicator, and type
@@ -698,11 +706,10 @@ if (currentURL.includes("?indicator=")) {
 
     createLineChart(lookUpDomain, lookUpIndicator);
     generateIndicatorPage(lookUpDomain, lookUpIndicator);
-    // if (popup_clicked != null) renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
     
     if (popup_clicked != null) {
         const popupParam = new URLSearchParams(location.search).get("popup");
-        if (popupParam && popupParam.startsWith("map|")) {
+        if (popupParam === "assembly area" || popupParam === "local government district"){
             console.debug("Map popup requested; skipping chart popup.");
         } else {
             renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
