@@ -1960,21 +1960,6 @@ const handleOnScroll = () => {
 
 
 (function () {
-  // --- helper: grayscale the html2canvas result in-place ---
-  function grayscaleCanvasInPlace(canvas) {
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
-
-    for (let i = 0; i < data.length; i += 4) {
-      const y = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
-      data[i] = data[i + 1] = data[i + 2] = y; // grayscale
-    }
-
-    ctx.putImageData(imageData, 0, 0);
-    return canvas;
-  }
-
   function getCaptureRoot() {
     return document.getElementById('pop-up-map') || document.getElementById('popup-map-container');
   }
@@ -1983,101 +1968,85 @@ const handleOnScroll = () => {
     const titleEl = document.getElementById('popup-map-title') || document.getElementById('map-title');
     return titleEl ? titleEl.textContent.trim() : ' ';
   }
+  
+  function downloadMapImage(root) {
+    if (!root) {
+        root = getCaptureRoot();
+    }
 
-  // --- helper: copy dimensions from live DOM to cloned DOM ---
-  function fixDimensions(liveEl, clonedEl) {
-    if (!liveEl || !clonedEl) return;
-    const rect = liveEl.getBoundingClientRect();
-    clonedEl.style.width = rect.width + 'px';
-    clonedEl.style.height = rect.height + 'px';
-    clonedEl.style.display = 'block';
-    clonedEl.style.position = getComputedStyle(liveEl).position || 'relative';
-  }
-
-  async function downloadMapImage(root) {
-    if (!root) root = getCaptureRoot();
+    // Validate container size
     if (!root || root.offsetWidth === 0 || root.offsetHeight === 0) {
-      alert('Map is still loading. Please try again.');
-      return;
+        alert('Map is still loading, try again.');
+        return;
     }
 
     const titleText = getMapTitleText();
-    const updatedEl = document.querySelector('.map-date, .popup-map-updated');
+    const updatedEl = document.querySelector('.popup-map-updated');
     const updatedText = updatedEl ? updatedEl.textContent.trim() : '';
 
-    if (typeof shiftGElements === 'function') shiftGElements(145, 75);
-    const liveSvg = document.querySelector('svg');
-    if (liveSvg) liveSvg.setAttribute('height', 600);
+    shiftGElements(145, 75);
 
-    const capture = (onclone) => html2canvas(root, {
-      useCORS: true,
-      backgroundColor: null,
-      scale: window.devicePixelRatio,
-      onclone
+    const svg = document.querySelector('svg');
+
+    svg.setAttribute('height', 600);
+
+    html2canvas(root, {
+        useCORS: true,
+        ignoreElements: el =>
+            el.id === 'popup-download-map' ||
+        (el.classList && el.classList.contains('popup-map-updated')),
+        onclone: doc => {
+            const leg = doc.querySelector('#pop-up-map, .popup-map-legend');
+            if (leg) leg.style.display = 'block';
+        },
+        scale: window.devicePixelRatio,
+    }).then(canvas => {
+        const out = document.createElement('canvas');
+        const ctx = out.getContext('2d');
+
+        const titleH = 40;
+        pad = 30;
+        midWidth = 1200;
+
+        out.width = Math.max(canvas.width + pad * 2, midWidth);
+        out.height = canvas.height + pad * 2 + titleH;
+
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, out.width, out.height);
+        
+        if (titleText) {
+            ctx.fillStyle = '#000';
+            ctx.font = '14pt Arial, sans-serif';
+            ctx.textBaseline = 'top';
+            const tw = ctx.measureText(titleText).width;
+            ctx.fillText(titleText, (out.width - tw) / 2, 10);
+        }
+        
+        const dx = Math.round((out.width - canvas.width) / 2);
+        const dy = titleH;
+        ctx.drawImage(canvas, dx, dy);
+        
+        if (updatedText) {
+            ctx.font = '12px Arial, sans-serif';
+            ctx.textBaseline = 'top';
+            const leftMargin = dx;
+            ctx.fillText(updatedText, leftMargin, dy + canvas.height + 10);
+        }
+
+        const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
+        const link = document.createElement('a');
+        link.download = fileName;
+        link.href = out.toDataURL('image/png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     });
-
-    const overlayCanvas = await capture((doc) => {
-      const container = doc.getElementById('popup-map-container') ||
-                        doc.getElementById('pop-up-map');
-      const liveContainer = document.getElementById('popup-map-container') ||
-                            document.getElementById('pop-up-map');
-
-      if (!container || !liveContainer) return;
-
-      // Fix container dimensions
-      fixDimensions(liveContainer, container);
-
-      // Hide tile pane only
-      const tilePane = container.querySelector('.leaflet-tile-pane');
-      if (tilePane) tilePane.style.visibility = 'hidden';
-    });
-
-    // ✅ COMPOSITE
-    const out = document.createElement('canvas');
-    const ctx = out.getContext('2d');
-    const titleH = 40, pad = 30, midWidth = 1200;
-
-    const baseW = overlayCanvas.width;
-    const baseH = overlayCanvas.height;
-
-    out.width = Math.max(baseW + pad * 2, midWidth);
-    out.height = baseH + pad * 2 + titleH;
-
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, out.width, out.height);
-
-    if (titleText) {
-      ctx.fillStyle = '#000';
-      ctx.font = '14pt Arial, sans-serif';
-      ctx.textBaseline = 'top';
-      const tw = ctx.measureText(titleText).width;
-      ctx.fillText(titleText, (out.width - tw) / 2, 10);
-    }
-
-    const dx = Math.round((out.width - baseW) / 2);
-    const dy = titleH;
-
-    ctx.drawImage(overlayCanvas, dx, dy);
-
-    if (updatedText) {
-      ctx.font = '12px Arial, sans-serif';
-      ctx.textBaseline = 'top';
-      ctx.fillText(updatedText, dx, dy + baseH + 10);
-    }
-
-    const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
-    const link = document.createElement('a');
-    link.download = fileName;
-    link.href = out.toDataURL('image/png');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
 
     document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
-    if (liveSvg) liveSvg.removeAttribute('height');
-  }
+    svg.removeAttribute('height');
+}
 
-  window.downloadMapImage = downloadMapImage;
+ window.downloadMapImage = downloadMapImage;
 
   function wireDownloadMapButton() {
     const btn = document.getElementById('download-map');

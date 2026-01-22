@@ -795,11 +795,6 @@ footer {
     height: 50px;
 }
 
-
-.leaflet-tile {
-    filter: grayscale(100%);
-}
-
 #download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover, #share:hover {
     background-color: #69729B;
 }

@@ -2286,11 +2286,11 @@ async function drawPopupMap(d, e, type, main_container, loading) {
          keyboard: false,
          attributionControl: false,
          tap: false}).setView([54.65, -6.8], 8);
-
-    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© <a href="https://www.openstreetmap.org/copyrighttMap</a>'
-    }).addTo(map);
+         
+         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+            maxZoom: 16
+         }).addTo(map);
 
     // Build data by year
     const num_groups = groups.length;
@@ -2568,10 +2568,10 @@ async function drawMap() {
          attributionControl: false,
          tap: false}).setView([54.65, -6.8], 8); // Set initial co-ordinates and zoom
 
-      L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-         maxZoom: 19,
-         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(map); // Add a background map   
+         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+            maxZoom: 16
+         }).addTo(map); // Add a background map   
 
       window.latestMapResult = result;
       window.latestMapDataByYear = data_by_year;
