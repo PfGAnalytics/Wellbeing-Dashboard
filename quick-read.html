@@ -18,7 +18,7 @@
     type="image/vnd.microsoft.icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-  <link href="style.css" rel="stylesheet">
+  <link href="custom.css" rel="stylesheet">
 
   <!-- scripts to import JavaScript libraries -->
   <script type="text/javascript" src="scripts/quick-read.js"></script>
@@ -66,11 +66,11 @@
   </header>
   <main>
   <div class="container">
-    <div class="row">
-      <div class="col-6 text-big" style="font-size:x-large;">
+    <div id = "header-row" class="row">
+      <div class="col-10 text-big" style="font-size:x-large;">
         <h1><b>PfG Wellbeing Dashboard - Quick read</b></h1>
       </div>
-      <div class="col-6" style="text-align:right;">
+      <div class="col-2" style="text-align:right;">
         <div class="d-grid gap-2 d-md-block">
           <button class="btn btn-primary" type="button" alt="Home" onclick="window.location.href='index.html';">Home</button>
           <button class="btn btn-primary" type="share" alt="Share this page">Share</button>
@@ -79,9 +79,6 @@
     </div>
 
     <div class="card" style="margin-top:5px; margin-bottom:20px;">
-      <div class="card-header">
-        <h2>Key statistics for <span class="current_year_value"></span> (2024-25 is based on provisional outturn data. All previous years are based on final outturn data) </h2>
-      </div>
 
       <div class="card-body" style="padding-bottom:0px;">
         <div class="row">
@@ -116,11 +113,11 @@
         <div class="card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
-              <h3 class="card-title">
+              <h2 class="card-title">
               <span style="font-size:20px; font-weight:700; line-height:1.1;">
                 Health
               </span>
-             </h3>
+             </h2>
             </div>
           </div>
           <div class="card-body">
@@ -152,11 +149,11 @@
         <div class="card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
-              <h3 class="card-title">
+              <h2 class="card-title">
               <span style="font-size:20px; font-weight:700; line-height:1.1;">
                 Education
               </span>
-             </h3>
+             </h2>
               <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
               </div>
             </div>
@@ -190,11 +187,11 @@
         <div class="card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
-              <h3 class="card-title">
+              <h2 class="card-title">
               <span style="font-size:20px; font-weight:700; line-height:1.1;">
                 Infrastructure
               </span>
-             </h3>
+             </h2>
               <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
               </div>
             </div>
@@ -229,11 +226,11 @@
         <div class="card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
-              <h3 class="card-title">
+              <h2 class="card-title">
               <span style="font-size:20px; font-weight:700; line-height:1.1;">
                 Justice<span class="doj_current_year_value"></span>
               </span>
-             </h3>
+             </h2>
               <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
               </div>
             </div>
@@ -270,11 +267,11 @@
         <div class="card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
-              <h3 class="card-title">
+              <h2 class="card-title">
               <span style="font-size:20px; font-weight:700; line-height:1.1;">
                 Communities<span class="dfc_current_year_value"></span>
               </span>
-             </h3>
+             </h2>
               <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
               </div>
             </div>
@@ -313,11 +310,11 @@
         <div class="card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
-              <h3 class="card-title">
+              <h2 class="card-title">
               <span style="font-size:20px; font-weight:700; line-height:1.1;">
                 Economy<span class="dfe_current_year_value"></span>
               </span>
-             </h3>
+             </h2>
               <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
               </div>
             </div>
@@ -353,12 +350,12 @@
         <div class="card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
-              <h3 class="card-title">
+              <h2 class="card-title">
               <span style="font-size:16px; font-weight:700; line-height:1.1;">
                 Agriculture, Environment and
                   Rural Affairs<span class="daera_current_year_value"></span>
               </span>
-             </h3>
+             </h2>
               <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
               </div>
             </div>
@@ -401,11 +398,11 @@
         <div class="card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
-              <h3 class="card-title">
+              <h2 class="card-title">
               <span style="font-size:20px; font-weight:700; line-height:1.1;">
                 Finance<span class="dof_current_year_value"></span>
               </span>
-             </h3>
+             </h2>
               <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
               </div>
             </div>
@@ -443,11 +440,11 @@
                     <div class="card h-100" style="width: 100%;">
                       <div class="card-header" style="padding-top:10px;">
                         <div class="col">
-                          <h3 class="card-title">
+                          <h2 class="card-title">
               <span style="font-size:20px; font-weight:700; line-height:1.1;">
                 The Executive Office<span class="teo_current_year_value"></span>
               </span>
-             </h3>
+             </h2>
               <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
               </div>
                         </div>
@@ -484,7 +481,7 @@
   <div class="container">
     <div class="card" style="margin-top:10px;margin-bottom:10px;">
       <div class="card-header">
-        <h3 id="further-information-section" style="font-weight: 400;">Additional spending</h3>
+        <h2 id="further-information-section" style="font-weight: 400;">Additional spending</h2>
       </div>
       <div class="card-body">
         <p>There is a second pot of money that is distributed by the NI departments which can only be used for spending on areas like benefits and pensions. That second pot was <span class="ame_spend_value"></span> in <span
@@ -510,7 +507,7 @@
   <div class="container">
     <div class="card" style="margin-top:10px;margin-bottom:10px;">
       <div class="card-header">
-        <h3 id="further-information-section" style="font-weight: 400;">Further information</h3>
+        <h2 id="further-information-section" style="font-weight: 400;">Further information</h2>
       </div>
       <div class="card-body">
 
@@ -534,7 +531,7 @@
     <div class="container">
       <div class="row">
         <div class="col" style="padding: 20px 20px 0px 20px;">
-          <h3 style="padding-left:32px;font-weight:700;font-size:18px;">Links</h3><br>
+          <h2 style="padding-left:32px;font-weight:700;font-size:18px;">Links</h2><br>
           <ul class="nisrafooter">
             <li><a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data Portal</a></li>
             <li><a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">Census Flexible Table Builder</a></li>
@@ -544,7 +541,7 @@
           </ul>
         </div>
         <div class="col" style="padding: 20px 20px 0px 20px;">
-          <h3 style="padding-left:32px;font-weight:700;font-size:18px;">Follow NISRA</h3>
+          <h2 style="padding-left:32px;font-weight:700;font-size:18px;">Follow NISRA</h2>
           <br>
           <ul class="nisrafooter">
             <li><a href="https://www.facebook.com/nisra.gov.uk" target="_blank" rel="noopener noreferrer">Facebook</a></li>

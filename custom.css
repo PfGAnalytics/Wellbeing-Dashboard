@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+    background-color: #F2F2F2;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+}
+
+h1 {
+    font-weight: bold;
+    color: white;
+}
+
+#header-row {
+    background-color: #142062;
+    border-radius: 10px;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    align-items: center;
+}
