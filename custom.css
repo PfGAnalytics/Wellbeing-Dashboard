@@ -6,6 +6,10 @@ body {
     print-color-adjust:exact !important;
 }
 
+.nav-tint {
+    background-color: #142062;
+}
+
 h1 {
     font-weight: bold;
     color: white;
@@ -131,4 +135,9 @@ footer a:hover {
 #back-to-start.hidden {
     opacity: 0;
     visibility: hidden;
+}
+
+#nav-nie-logo {
+    width: 250px;
+    filter: brightness(0) invert(1);
 }
