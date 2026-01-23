@@ -11,8 +11,8 @@ body {
 }
 
 h1 {
-    font-weight: bold;
     color: white;
+    font-size: 28pt;
 }
 
 #header-row {
@@ -26,7 +26,7 @@ h1 {
     align-items: center;
 }
 
-  .nisrafooter ul {
+.nisrafooter ul {
     display: block;
     list-style-type: disc;
     margin-block-start: 1em;
@@ -37,7 +37,6 @@ h1 {
     font-size: 14pt;
     font-weight:700;
 }
-
 
 .nisrafooter li {
     margin-right: 18px;
@@ -71,7 +70,6 @@ h1 {
     font-size: 14pt;
     list-style-type: none;
 }
-
 
 footer {
     color: #ffffff;
@@ -139,5 +137,41 @@ footer a:hover {
 
 #nav-nie-logo {
     width: 250px;
+    padding-top: 10px;
+    margin-bottom: 0px;
     filter: brightness(0) invert(1);
+}
+
+#nav-aig-logo {
+    width: 250px;
+    align-content: flex-end;
+}
+
+#quick-read-title {
+    width: 720px;
+    display: flex;
+    justify-content: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-right: 10px;
+
+}
+
+#share, #home {
+    font-size: 14pt;
+    background-color: #008675;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 25px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    width: 150px;
+    height: 48px;
 }
