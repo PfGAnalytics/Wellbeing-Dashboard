@@ -24,15 +24,24 @@
   <script type="text/javascript" src="scripts/quick-read.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+  <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
     crossorigin="anonymous"></script>
+  <script src = "scripts/config.js"></script>
 
 </head>
 
 <body onresize="responsiveFonts()">
+
+  <div id = "back-to-start" role = "region" on:click=goStart>
+      <a id = "back-to-start-link" href="#" tabindex="0">
+          Back to top
+          <img src = "img/cd-top-arrow.svg" style = "margin-bottom: 2px;">
+      </a>
+  </div>
 
   <div id = "cookie-banner" role = "cookies-information"></div>
 
@@ -487,15 +496,15 @@
         <div id="footer-container" role = "contentinfo">
             <div class="row">
                 <div style="height: 170px; width: 350px; margin: 10px;">
-                <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Links</h3>
+                <h2 style="font-weight: 700; font-size: 18px; color: #ffffff">Links</h2>
                 <a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data Portal</a><br>
                 <a href="https://visual.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data Visualisation Hub</a><br>
                 <a href="https://www.opendatani.gov.uk/" target="_blank" rel="noopener noreferrer">OpenDataNI</a><br>
                 <a href="https://www.nidirect.gov.uk" target="_blank" rel="noopener noreferrer">NIDirect</a><br>  
                 <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">GOV.UK</a><br>
                 </div> 
-                <div style="height: 170px; width: 120px; margin: 20px 0px 20px 60px;">
-                <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h3>
+                <div style="height: 170px; width: 200px; margin: 20px 0px 20px 60px;">
+                <h2 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h2>
                 <i class="fa-brands fa-facebook-f"></i> <a href="https://www.facebook.com/nisra.gov.uk" target="_blank" rel="noopener noreferrer">Facebook</a><br> 
                 <i class="fa-brands fa-x-twitter"></i> <a href="https://x.com/NISRA" target="_blank" rel="noopener noreferrer">Twitter / X</a><br> 
                 <i class="fa-brands fa-youtube"></i> <a href="https://www.youtube.com/user/nisrastats" target="_blank" rel="noopener noreferrer">YouTube</a><br>

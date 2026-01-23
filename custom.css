@@ -21,3 +21,114 @@ h1 {
     margin-right: 0px;
     align-items: center;
 }
+
+  .nisrafooter ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    font-size: 14pt;
+    font-weight:700;
+}
+
+
+.nisrafooter li {
+    margin-right: 18px;
+    display: inline-block;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.nisrafooter a {
+    color: #FFFFFF !important;
+}
+
+.cc-li a {
+    color: #FFFFFF !important;
+}
+
+.flex-list-footer {
+    position: relative;
+    margin: 20px 0em 0em 0em; /* T R B L */
+    display:block;
+    overflow: hidden;
+}
+
+.cc-li {
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: 0.25em 0;
+    padding: 0 1em;
+    text-align: center;
+    border-left: 1px solid #ccc;
+    font-size: 14pt;
+    list-style-type: none;
+}
+
+
+footer {
+    color: #ffffff;
+    background-color: #142062;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    padding-bottom: 28px;
+}
+
+#footer-container {
+    width: 1200px;
+}
+
+#nisra-logo-container {
+    height: 210px;
+    display: flex;
+    flex: 0 1 550px;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 1200px;
+    min-width: 250px;
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+#footer-nisra-logo {
+    width: 250px;
+    filter: brightness(0) invert(1);
+}
+
+#back-to-start {
+    opacity: 1;
+    transition: opacity 0.5s, visibility 0.5s;
+    position: fixed;
+    z-index: 99;
+    right: 0px;
+    user-select: none;
+    bottom: 0px;
+    color: #ffffff;
+    background-color: #142062;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: auto;
+}
+
+#back-to-start a {
+    color:#ffffff
+}
+
+#back-to-start.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
