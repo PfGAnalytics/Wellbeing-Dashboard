@@ -239,12 +239,16 @@ footer a:hover {
 }
 
 .domain-card-body {
-    height: 482px;
     border: 1px solid #000000;
+    flex: 1 1 300px;
 }
 
 .card-header {
     color: #FFFFFF;
     background-color: #008675;
     border: 1px solid #000000;
+}
+
+.row {
+    align-items: stretch;
 }
