@@ -23,9 +23,8 @@
   <link href="custom.css" rel="stylesheet">
 
   <!-- scripts to import JavaScript libraries -->
-  <script type="text/javascript" src="scripts/quick-read.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
   <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap"></script>
@@ -112,8 +111,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - thriving children -->
-                <div style="height: 150px;">
-                  <canvas id="doh_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="domainGauge" style="margin-left: 10%; margin-right:10%;"></canvas>
                 </div>
                 <!-- summary - thriving children -->
                 <p style="padding-top:20px;">The Thriving Children domain accounts for:</p>
@@ -513,6 +512,8 @@
         </div>
     </footer>
 
+      <script type="text/javascript" src="scripts/quick-read.js"></script>
+
 </body>
 
 
@@ -542,55 +543,29 @@
   };
 
   // register datalabels plugin for chart js
-  Chart.register(ChartDataLabels);
+  // Chart.register(ChartDataLabels);
   // set datalables global defaults if needed
   // Chart.defaults.set('plugins.datalabels', {
   // });
 
+
+  // 4) Render the gauge and keep the returned Chart instance in a variable.
+
   
-  var doh_pie_labels = [['Health'], ['Rest']];
-  var dfc_pie_labels = [['Communities'], ['Rest']];
-  var dfe_pie_labels = [['Economy'], ['Rest']];
-  var dof_pie_labels = [['Finance'], ['Rest']];
-  var daera_pie_labels = [['DAERA'], ['Rest']];
-  var doj_pie_labels = [['Justice'], ['Rest']];
-  var teo_pie_labels = [['TEO'], ['Rest']];
-  var dfi_pie_labels = [['Infrastructure'], ['Rest']];
-  var de_pie_labels = [['Education'], ['Rest']];
+  (async () => {
+    const gauge = await renderDomainImprovementGauge({
+      canvasId: 'domainGauge',
+      domainName: 'Thriving Children',        // <- change this to any domain name in domains_data.js
+      domainsDataUrl: 'scripts/domains_data.js',     // <- path to your file
+      updatesUrl: 'scripts/updated.json',            // <- path to your file
+      // Optional behaviour flags:
+      includeInsufficientInDenominator: false, // exclude “insufficient data” indicators from denominator by default
+      statusesToCount: ['improving']          // what counts as “improving”
+    });
 
-  var overall_pie_labels = [['Benefits and pensions'], ['Public Services'],];
-
-  // chart js code
-  const canvas_doh_pie = document.getElementById('doh_pie_chart');
-  const ctx_doh_pie = canvas_doh_pie.getContext('2d');
-
-  const canvas_doj_pie = document.getElementById('doj_pie_chart');
-  const ctx_doj_pie = canvas_doj_pie.getContext('2d');
-
-  const canvas_dfe_pie = document.getElementById('dfe_pie_chart');
-  const ctx_dfe_pie = canvas_dfe_pie.getContext('2d');
-
-  const canvas_dfc_pie = document.getElementById('dfc_pie_chart');
-  const ctx_dfc_pie = canvas_dfc_pie.getContext('2d');
-
-  const canvas_dfi_pie = document.getElementById('dfi_pie_chart');
-  const ctx_dfi_pie = canvas_dfi_pie.getContext('2d');
-
-  const canvas_de_pie = document.getElementById('de_pie_chart');
-  const ctx_de_pie = canvas_de_pie.getContext('2d');
-
-  const canvas_teo_pie = document.getElementById('teo_pie_chart');
-  const ctx_teo_pie = canvas_teo_pie.getContext('2d');
-
-  const canvas_dof_pie = document.getElementById('dof_pie_chart');
-  const ctx_dof_pie = canvas_dof_pie.getContext('2d');
-
-  const canvas_daera_pie = document.getElementById('daera_pie_chart');
-  const ctx_daera_pie = canvas_daera_pie.getContext('2d');
-
-  const canvas_overall_pie = document.getElementById('overall_pie_chart');
-  const ctx_overall_pie = canvas_overall_pie.getContext('2d');
-
+    // You can later update/re-use: gauge.update(); gauge.destroy(); etc.
+    window.myGauge = gauge; // expose if you want to refer to it elsewhere
+  })();
 
 </script>
 

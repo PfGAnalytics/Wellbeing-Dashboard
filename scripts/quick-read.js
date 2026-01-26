@@ -14,372 +14,6 @@ async function getData() {
   } catch (error) {
       
   }
-
-  // defining data driven values - called by class name (value within querySeletorAll() below) in html section tag
-  const total_spend_elements = document.querySelectorAll('.total_spend_value');
-  for (let i = 0; i < total_spend_elements.length; i++) {
-    total_spend_elements[i].innerHTML = ['£' + data.overall.spend.toFixed(1).toLocaleString('en') + ' billion'];
-  }
-  const total_spend_pp_elements = document.querySelectorAll('.total_spend_pp_value');
-  for (let i = 0; i < total_spend_pp_elements.length; i++) {
-    total_spend_pp_elements[i].innerHTML = ['£' + data.overall.spend_pp.toLocaleString('en')];
-  }
-  const del_spend_elements = document.querySelectorAll('.del_spend_value');
-  for (let i = 0; i < del_spend_elements.length; i++) {
-    del_spend_elements[i].innerHTML = ['£' + data.del.spend.toFixed(1).toLocaleString('en') + ' billion'];
-  }
-
-  const del_spend_value_millions_elements = document.querySelectorAll('.del_spend_value_millions');
-  for (let i = 0; i < del_spend_value_millions_elements.length; i++) {
-    del_spend_value_millions_elements[i].innerHTML = ['£' + Math.abs(data.del.spend * 1000).toLocaleString('en') + ' million'];
-  }
-
-  const del_spend_value_full_elements = document.querySelectorAll('.del_spend_value_full');
-  for (let i = 0; i < del_spend_value_full_elements.length; i++) {
-    del_spend_value_full_elements[i].innerHTML = ['£' + Math.abs(data.del.spend * 1000000000).toLocaleString('en')];
-  }
-
-  const del_spend_pp_elements = document.querySelectorAll('.del_spend_pp_value');
-  for (let i = 0; i < del_spend_pp_elements.length; i++) {
-    del_spend_pp_elements[i].innerHTML = ['£' + data.del.spend_pp.toLocaleString('en')];
-  }
-  const ame_spend_elements = document.querySelectorAll('.ame_spend_value');
-  for (let i = 0; i < ame_spend_elements.length; i++) {
-    ame_spend_elements[i].innerHTML = ['£' + data.ame.spend.toFixed(1).toLocaleString('en') + ' billion'];
-  }
-  const ame_spend_pp_elements = document.querySelectorAll('.ame_spend_pp_value');
-  for (let i = 0; i < ame_spend_pp_elements.length; i++) {
-    ame_spend_pp_elements[i].innerHTML = ['£' + data.ame.spend_pp.toLocaleString('en')];
-  }
-
-  const population_elements = document.querySelectorAll('.population_value');
-  for (let i = 0; i < population_elements.length; i++) {
-    population_elements[i].innerHTML = [data.overall.population.toLocaleString('en')];
-  }
-
-
-  const current_year_elements = document.querySelectorAll('.current_year_value');
-  for (let i = 0; i < current_year_elements.length; i++) {
-    current_year_elements[i].innerHTML = Object.keys(data.overall.line_data).pop();
-  }
-
-
-
-  const ame_current_year_elements = document.querySelectorAll('.ame_current_year_value');
-  for (let i = 0; i < ame_current_year_elements.length; i++) {
-    ame_current_year_elements[i].innerHTML = ['£' + Object.values(data.ame.line_data).pop().toLocaleString() + ' million'];
-  }
-  const doh_current_year_elements = document.querySelectorAll('.doh_current_year_value');
-  for (let i = 0; i < doh_current_year_elements.length; i++) {
-    doh_current_year_elements[i].innerHTML = ['£' + Object.values(data.doh.line_data).pop().toLocaleString() + 'm'];
-  }
-  const dfc_current_year_elements = document.querySelectorAll('.dfc_current_year_value');
-  for (let i = 0; i < dfc_current_year_elements.length; i++) {
-    dfc_current_year_elements[i].innerHTML = ['£' + Object.values(data.dfc.line_data).pop().toLocaleString() + 'm'];
-  }
-  const de_current_year_elements = document.querySelectorAll('.de_current_year_value');
-  for (let i = 0; i < de_current_year_elements.length; i++) {
-    de_current_year_elements[i].innerHTML = ['£' + Object.values(data.de.line_data).pop().toLocaleString() + 'm'];
-  }
-  const dfi_current_year_elements = document.querySelectorAll('.dfi_current_year_value');
-  for (let i = 0; i < dfi_current_year_elements.length; i++) {
-    dfi_current_year_elements[i].innerHTML = ['£' + Object.values(data.dfi.line_data).pop().toLocaleString() + 'm'];
-  }
-  const doj_current_year_elements = document.querySelectorAll('.doj_current_year_value');
-  for (let i = 0; i < doj_current_year_elements.length; i++) {
-    doj_current_year_elements[i].innerHTML = ['£' + Object.values(data.doj.line_data).pop().toLocaleString() + 'm'];
-  }
-  const dfe_current_year_elements = document.querySelectorAll('.dfe_current_year_value');
-  for (let i = 0; i < dfe_current_year_elements.length; i++) {
-    dfe_current_year_elements[i].innerHTML = ['£' + Object.values(data.dfe.line_data).pop().toLocaleString() + 'm'];
-  }
-  const dof_current_year_elements = document.querySelectorAll('.dof_current_year_value');
-  for (let i = 0; i < dof_current_year_elements.length; i++) {
-    dof_current_year_elements[i].innerHTML = ['£' + Object.values(data.dof.line_data).pop().toLocaleString() + 'm'];
-  }
-  const daera_current_year_elements = document.querySelectorAll('.daera_current_year_value');
-  for (let i = 0; i < daera_current_year_elements.length; i++) {
-    daera_current_year_elements[i].innerHTML = ['£' + Object.values(data.daera.line_data).pop().toLocaleString() + 'm'];
-  }
-  const teo_current_year_elements = document.querySelectorAll('.teo_current_year_value');
-  for (let i = 0; i < teo_current_year_elements.length; i++) {
-    teo_current_year_elements[i].innerHTML = ['£' + Object.values(data.teo.line_data).pop().toLocaleString() + 'm'];
-  }
-  const other_current_year_elements = document.querySelectorAll('.other_current_year_value');
-  for (let i = 0; i < other_current_year_elements.length; i++) {
-    other_current_year_elements[i].innerHTML = ['£' + data.other.recent_spend.toLocaleString() + 'm'];
-  }
-
-  // percentage figures for ER 
-
-  // DoH
-  const doh_current_year_perc_elements = document.querySelectorAll('.doh_current_year_as_percentage');
-  for (let i = 0; i < doh_current_year_perc_elements.length; i++) {
-    doh_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.doh.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-
-  // DE
-  const de_current_year_perc_elements = document.querySelectorAll('.de_current_year_as_percentage');
-  for (let i = 0; i < de_current_year_perc_elements.length; i++) {
-    de_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.de.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-  // DfI
-  const dfi_current_year_perc_elements = document.querySelectorAll('.dfi_current_year_as_percentage');
-  for (let i = 0; i < dfi_current_year_perc_elements.length; i++) {
-    dfi_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.dfi.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-  // DoJ
-  const doj_current_year_perc_elements = document.querySelectorAll('.doj_current_year_as_percentage');
-  for (let i = 0; i < doj_current_year_perc_elements.length; i++) {
-    doj_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.doj.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-  // DfC
-  const dfc_current_year_perc_elements = document.querySelectorAll('.dfc_current_year_as_percentage');
-  for (let i = 0; i < dfc_current_year_perc_elements.length; i++) {
-    dfc_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.dfc.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-  // DfE
-  const dfe_current_year_perc_elements = document.querySelectorAll('.dfe_current_year_as_percentage');
-  for (let i = 0; i < dfe_current_year_perc_elements.length; i++) {
-    dfe_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.dfe.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-  // DAERA
-  const daera_current_year_perc_elements = document.querySelectorAll('.daera_current_year_as_percentage');
-  for (let i = 0; i < daera_current_year_perc_elements.length; i++) {
-    daera_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.daera.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-  // DoF
-  const dof_current_year_perc_elements = document.querySelectorAll('.dof_current_year_as_percentage');
-  for (let i = 0; i < dof_current_year_perc_elements.length; i++) {
-    dof_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.dof.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-  // TEO
-  const teo_current_year_perc_elements = document.querySelectorAll('.teo_current_year_as_percentage');
-  for (let i = 0; i < teo_current_year_perc_elements.length; i++) {
-    teo_current_year_perc_elements[i].innerHTML = [Math.round(Object.values(data.teo.line_data).pop() / Math.abs(data.del.spend * 1000) * 100) + '%'];
-  }
-
-  var doh_pie = [Math.round(Object.values(data.doh.line_data).pop())];
-  var doj_pie = [Math.round(Object.values(data.doj.line_data).pop())];
-  var dfe_pie = [Math.round(Object.values(data.dfe.line_data).pop())];
-  var dfc_pie = [Math.round(Object.values(data.dfc.line_data).pop())];
-  var dfi_pie = [Math.round(Object.values(data.dfi.line_data).pop())];
-  var dof_pie = [Math.round(Object.values(data.dof.line_data).pop())];
-  var de_pie = [Math.round(Object.values(data.de.line_data).pop())];
-  var teo_pie = [Math.round(Object.values(data.teo.line_data).pop())];
-  var daera_pie = [Math.round(Object.values(data.daera.line_data).pop())];
-
-  var doh_pie_data = [doh_pie, (data.del.spend * 1000) - doh_pie];
-  var doj_pie_data = [doj_pie, (data.del.spend * 1000) - doj_pie];
-  var dfe_pie_data = [dfe_pie, (data.del.spend * 1000) - dfe_pie];
-  var dfc_pie_data = [dfc_pie, (data.del.spend * 1000) - dfc_pie];
-  var dfi_pie_data = [dfi_pie, (data.del.spend * 1000) - dfi_pie];
-  var dof_pie_data = [dof_pie, (data.del.spend * 1000) - dof_pie];
-  var de_pie_data = [de_pie, (data.del.spend * 1000) - de_pie];
-  var teo_pie_data = [teo_pie, (data.del.spend * 1000) - teo_pie];
-  var daera_pie_data = [daera_pie, (data.del.spend * 1000) - daera_pie];
-
-  var overall_pie_data = [data.ame.spend, data.del.spend];
-
-  const doh_pie_chart_data = {
-    labels: doh_pie_labels,
-    datasets: [{
-      data: doh_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#008eaa", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-  const doj_pie_chart_data = {
-    labels: doj_pie_labels,
-    datasets: [{
-      data: doj_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#893b67", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-  const dfe_pie_chart_data = {
-    labels: dfe_pie_labels,
-    datasets: [{
-      data: dfe_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#0072CE", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-  const dfc_pie_chart_data = {
-    labels: dfc_pie_labels,
-    datasets: [{
-      data: dfc_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#7d55c7", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-
-  const dfi_pie_chart_data = {
-    labels: dfi_pie_labels,
-    datasets: [{
-      data: dfi_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#c28400", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-  const de_pie_chart_data = {
-    labels: de_pie_labels,
-    datasets: [{
-      data: de_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#ca2c93", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-
-  const teo_pie_chart_data = {
-    labels: teo_pie_labels,
-    datasets: [{
-      data: teo_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#5698c8", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-  const dof_pie_chart_data = {
-    labels: dof_pie_labels,
-    datasets: [{
-      data: dof_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#899064", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-
-  const daera_pie_chart_data = {
-    labels: daera_pie_labels,
-    datasets: [{
-      data: daera_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#009a44", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-
-  const overall_pie_chart_data = {
-    labels: overall_pie_labels,
-    datasets: [{
-      data: overall_pie_data,
-      borderColor: '#ffffff',
-      backgroundColor: ["#3878c5", '#b2b2b2'],
-      borderWidth: 2,
-    }]
-  };
-
-  const pie_options = {
-
-    plugins: {
-      legend: {
-        position: 'bottom',
-        labels: {
-          usePointStyle: true,
-          font: {
-            size: 10
-          }
-        },
-      },
-      datalabels: { display: false },
-      tooltip: { enabled: false }
-    },
-    events: [], // Disable all interactions, including clicks
-    hover: { mode: null },
-
-  };
-
-  const doh_pie_chart = new Chart(ctx_doh_pie, {
-    type: 'pie',
-    data: doh_pie_chart_data,
-    options: pie_options
-  });
-  const doj_pie_chart = new Chart(ctx_doj_pie, {
-    type: 'pie',
-    data: doj_pie_chart_data,
-    options: pie_options
-  });
-
-
-
-
-  const dfe_pie_chart = new Chart(ctx_dfe_pie, {
-    type: 'pie',
-    data: dfe_pie_chart_data,
-    options: pie_options
-  });
-
-
-
-  const dfc_pie_chart = new Chart(ctx_dfc_pie, {
-    type: 'pie',
-    data: dfc_pie_chart_data,
-    options: pie_options
-  });
-
-  const dfi_pie_chart = new Chart(ctx_dfi_pie, {
-    type: 'pie',
-    data: dfi_pie_chart_data,
-    options: pie_options
-  });
-
-
-
-
-  const de_pie_chart = new Chart(ctx_de_pie, {
-    type: 'pie',
-    data: de_pie_chart_data,
-    options: pie_options
-  });
-
-
-  const teo_pie_chart = new Chart(ctx_teo_pie, {
-    type: 'pie',
-    data: teo_pie_chart_data,
-    options: pie_options
-  });
-
-
-  const daera_pie_chart = new Chart(ctx_daera_pie, {
-    type: 'pie',
-    data: daera_pie_chart_data,
-    options: pie_options
-  });
-
-  const dof_pie_chart = new Chart(ctx_dof_pie, {
-    type: 'pie',
-    data: dof_pie_chart_data,
-    options: pie_options
-  });
-
-  const overall_pie_chart = new Chart(ctx_overall_pie, {
-    type: 'pie',
-    data: overall_pie_chart_data,
-    options: pie_options
-  });
 }
 
 
@@ -636,3 +270,277 @@ function copyToClipboard(text) {
   window.addEventListener('DOMContentLoaded', function() {
     document.getElementById('reject-cookies').addEventListener('click', rejectCookies);
   });
+
+  
+
+/**
+ * Renders a semi-circular gauge showing the % of indicators in a domain that are "improving".
+ * Returns the Chart.js instance.
+ *
+ * Options:
+ * - canvasId: string (required)
+ * - domainName: string (required)
+ * - domainsDataUrl: string (default './domains_data.js') – file defining window.domains_data
+ * - updatesUrl: string (default './updated.json') – {code: {performance: "..."}}
+ * - includeInsufficientInDenominator: boolean (default false)
+ * - statusesToCount: string[] (default ['improving'])
+ * - title: string (optional)
+ * - subtitle: string (optional)
+ * - colorStops: {good:number, warn:number} (default {good: 60, warn: 40})
+ * - centerTextOffsetY: number (default 0) – negative moves text up
+ * - centerTextGap: number (default 12) – space between % and caption
+ */
+async function renderDomainImprovementGauge({
+  canvasId,
+  domainName,
+  domainsDataUrl = './domains_data.js',
+  updatesUrl = './updated.json',
+  includeInsufficientInDenominator = false,
+  statusesToCount = ['improving'],
+  colorStops = { good: 60, warn: 40 },
+  centerTextOffsetY = 0,
+  centerTextGap = 12
+} = {}) {
+  if (!canvasId) throw new Error('canvasId is required');
+  if (!domainName) throw new Error('domainName is required');
+
+  // 1) Ensure domains_data is available
+  await ensureDomainsData(domainsDataUrl);
+
+  // 2) Load updated.json
+  const updates = await loadUpdates(updatesUrl);
+
+  // 3) Compute stats
+  const { percent, counts, totalEligible, details } = computeImprovementStats({
+    domainName,
+    includeInsufficientInDenominator,
+    statusesToCount,
+    domainsData: window.domains_data,
+    updates
+  });
+
+  // 4) Compose chart
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
+
+  // Cleanup previous chart on the same canvas
+  if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
+    canvas._chartInstance.destroy();
+  }
+
+  const gaugeColor = pickGaugeColor(percent, colorStops);
+  const data = [percent, Math.max(0, 100 - percent)];
+
+  // Per-chart center text plugin (closure captures percent/labels)
+  const centerTextPlugin = {
+    id: `centerText_${canvasId}`, // unique per-canvas
+    afterDraw(chart) {
+      const meta = chart.getDatasetMeta(0);
+      if (!meta?.data?.length) return;
+
+      const arc = meta.data[0];
+      const xC = arc.x;
+      const yBase = arc.y - 50; // move text up/down in one place
+
+      const ctx = chart.ctx;
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // % number
+      ctx.fillStyle = '#111';
+      ctx.font = 'bold 50px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+      ctx.fillText(`${Math.round(percent)}%`, xC, yBase - 8);
+
+      // Caption
+      ctx.fillStyle = '#111';
+      ctx.font = '30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+      ctx.fillText('improving', xC, yBase + 30);
+      ctx.restore();
+    }
+  };
+
+  // Optional: if the datalabels plugin is present globally, turn it off per chart by default
+  const maybeDatalabelsOff = (Chart.registry.plugins.get('datalabels'))
+    ? { datalabels: { display: false } }
+    : {};
+
+  const chart = new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: ['Improving', 'Other'],
+      datasets: [{
+        data,
+        backgroundColor: ['#008675', '#e9ecef'],
+        borderWidth: 0,
+        hoverOffset: 0,
+        circumference: 180,  // semicircle
+        rotation: -90,       // start at left
+        cutout: '70%'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        ...maybeDatalabelsOff,
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.label}: ${(+ctx.raw).toFixed(1)}%`
+          }
+        },
+      },
+      layout: { padding: { top: 0 } }
+    },
+    plugins: [centerTextPlugin] // register plugin only for THIS chart
+  });
+
+  chart.metrics = { domainName, percent, counts, totalEligible, details };
+  canvas._chartInstance = chart;
+  return chart;
+}
+
+// ---------------- Internals ----------------
+
+async function ensureDomainsData(url) {
+  if (window.domains_data && typeof window.domains_data === 'object') return;
+  await loadScript(url);
+
+  const maxWaitMs = 4000;
+  const start = performance.now();
+  while (!window.domains_data) {
+    if (performance.now() - start > maxWaitMs) {
+      throw new Error(`Timed out waiting for domains_data from ${url}`);
+    }
+    await new Promise(r => setTimeout(r, 40));
+  }
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.async = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+    document.head.appendChild(s);
+  });
+}
+
+async function loadUpdates(url) {
+  const res = await fetch(url, { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status} ${res.statusText}`);
+  return res.json();
+}
+
+// Pick first available code from this priority list
+function pickPreferredCode(dataObj) {
+  const priority = ['NI', 'AA', 'LGD', 'EQ', 'LEV'];
+  for (const key of priority) {
+    const code = (dataObj && typeof dataObj[key] === 'string') ? dataObj[key].trim() : '';
+    if (code) return { key, code };
+  }
+  return { key: null, code: null };
+}
+
+function computeImprovementStats({
+  domainName,
+  includeInsufficientInDenominator,
+  statusesToCount,
+  domainsData,
+  updates
+}) {
+  const domain = domainsData?.[domainName];
+  if (!domain) throw new Error(`Domain '${domainName}' not found in domains_data`);
+
+  const indicators = domain.indicators || {};
+  const details = [];
+
+  let improving = 0;
+  let worsening = 0;
+  let noChange = 0;
+  let insufficient = 0;
+  let eligible = 0;
+
+  for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
+    const { code } = pickPreferredCode(indicatorObj?.data);
+    let perf = null;
+
+    if (code && updates[code] && typeof updates[code] === 'object') {
+      perf = (updates[code].performance || '').toLowerCase().trim();
+    }
+
+    if (!perf) perf = 'insufficient data';
+    if (perf === 'insufficient') perf = 'insufficient data';
+
+    const isInsufficient = (perf === 'insufficient data');
+
+    const countsInDenominator = includeInsufficientInDenominator ? true : !isInsufficient;
+    if (countsInDenominator) eligible += 1;
+
+    const countsAsImproving = statusesToCount.map(s => s.toLowerCase()).includes(perf);
+
+    if (countsInDenominator && countsAsImproving) improving += 1;
+    else if (perf === 'worsening') worsening += 1;
+    else if (perf === 'no change') noChange += 1;
+    else insufficient += 1;
+
+    details.push({ indicatorName, code, performance: perf, countedInDenominator: countsInDenominator });
+  }
+
+  const percent = (eligible > 0) ? (improving / eligible) * 100 : 0;
+
+  return {
+    percent,
+    counts: { improving, worsening, noChange, insufficient },
+    totalEligible: eligible,
+    details
+  };
+}
+
+function pickGaugeColor(percent, { good, warn }) {
+  if (percent >= good) return '#2cb34a';  // green
+  if (percent >= warn) return '#f0ad4e';  // amber
+  return '#d9534f';                       // red
+}
+
+// ---------------- Convenience Wrapper(s) ----------------
+
+/**
+ * Convenience wrapper so callers only need canvasId + domainName,
+ * while still allowing overrides for everything else.
+ */
+window.createDomainGauge = async function createDomainGauge(
+  canvasId,
+  domainName,
+  overrides = {}
+) {
+  const defaults = {
+    domainsDataUrl: './domains_data.js',
+    updatesUrl: './updated.json',
+    includeInsufficientInDenominator: false,
+    statusesToCount: ['improving'],
+    centerTextOffsetY: 0,
+    centerTextGap: 12
+  };
+
+  return renderDomainImprovementGauge({
+    ...defaults,
+    ...overrides,
+    canvasId,
+    domainName
+  });
+};
+
+/**
+ * Optional helper to switch the domain on an existing canvas.
+ * Destroys the previous chart and returns the new instance.
+ */
+window.updateDomainGauge = async function updateDomainGauge(chart, newDomainName, overrides = {}) {
+  if (chart && typeof chart.destroy === 'function') chart.destroy();
+  const canvasId = chart?.canvas?.id;
+  if (!canvasId) throw new Error('Could not infer canvasId from chart; pass one explicitly.');
+
+  return createDomainGauge(canvasId, newDomainName, overrides);
+};
