@@ -570,3 +570,134 @@ function computeImprovementStats({
     domainName: 'Living Peacefully',
   });
 })();
+
+
+async function renderAllDomainsGauge({
+  canvasId,
+  domainsDataUrl = 'scripts/domains_data.js',
+  updatesUrl = 'scripts/updated.json',
+  includeInsufficientInDenominator = false,
+  statusesToCount = ['improving']
+} = {}) {
+  if (!canvasId) throw new Error('canvasId is required');
+
+  // 1) Load everything
+  await ensureDomainsData(domainsDataUrl);
+  const updates = await loadUpdates(updatesUrl);
+
+  // 2) Build a pseudo-domain that merges all indicators
+  const mergedIndicators = {};
+  for (const [domainName, domainObj] of Object.entries(window.domains_data || {})) {
+    const indicators = domainObj?.indicators || {};
+    for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
+      // Use a unique key in case names collide
+      const mergedKey = `${domainName} :: ${indicatorName}`;
+      mergedIndicators[mergedKey] = indicatorObj;
+    }
+  }
+
+  const fakeDomainsData = {
+    __ALL__: {
+      indicators: mergedIndicators
+    }
+  };
+
+  // 3) Compute stats on the merged pseudo-domain
+  const { percent, counts, totalEligible, details } = computeImprovementStats({
+    domainName: '__ALL__',
+    includeInsufficientInDenominator,
+    statusesToCount,
+    domainsData: fakeDomainsData,
+    updates
+  });
+
+  // 4) Render a semicircle gauge *exactly like* renderDomainImprovementGauge
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
+
+  // Cleanup
+  if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
+    canvas._chartInstance.destroy();
+  }
+
+  const data = [percent, Math.max(0, 100 - percent)];
+
+  const centerTextPlugin = {
+    id: `centerText_${canvasId}`,
+    afterDraw(chart) {
+      const meta = chart.getDatasetMeta(0);
+      if (!meta?.data?.length) return;
+
+      const arc = meta.data[0];
+      const xC = arc.x;
+      const yBase = arc.y - 50;
+
+      const ctx = chart.ctx;
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      ctx.fillStyle = '#111';
+      ctx.font = 'bold 50px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+      ctx.fillText(`${Math.round(percent)}%`, xC, yBase - 8);
+
+      ctx.fillStyle = '#111';
+      ctx.font = '30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+      ctx.fillText('improving (all domains)', xC, yBase + 30);
+      ctx.restore();
+    }
+  };
+
+  const maybeDatalabelsOff = (Chart.registry.plugins.get('datalabels'))
+    ? { datalabels: { display: false } }
+    : {};
+
+  const chart = new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: ['Improving', 'Other'],
+      datasets: [{
+        data,
+        backgroundColor: ['#008675', '#e9ecef'],
+        borderWidth: 0,
+        hoverOffset: 0,
+        circumference: 180,
+        rotation: -90,
+        cutout: '70%'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        ...maybeDatalabelsOff,
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.label}: ${(+ctx.raw).toFixed(1)}%`
+          }
+        }
+      },
+      layout: { padding: { top: 0 } }
+    },
+    plugins: [centerTextPlugin]
+  });
+
+  chart.metrics = {
+    domainName: '__ALL__',
+    percent,
+    counts,
+    totalEligible,
+    details
+  };
+  canvas._chartInstance = chart;
+  return chart;
+}
+
+(async () => {
+  await renderAllDomainsGauge({
+    canvasId: 'all_domains_gauge',
+    // includeInsufficientInDenominator: true, // optional
+    // statusesToCount: ['improving', 'no change'], // optional
+  });
+})();

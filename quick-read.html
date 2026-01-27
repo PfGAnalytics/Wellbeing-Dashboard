@@ -48,16 +48,16 @@
   <div class="container">
 
   <header class="mb-3 border-bottom">
-    <div class="nav-tint" style="padding-top:5px; border-radius: 10px;">
+    <div class="nav-tint">
       <div class="container" style="padding-bottom: 5px;">
         <div class="row tint-row" style="width:100%">
            <div class="col"><a target="_blank" rel="noopener noreferrer"><img src="img/Northern_Ireland_Executive_logo.svg" id="nav-nie-logo" alt="Northern Ireland Executive logo"></a></div>
            <div id="quick-read-title"><h1><b>PfG Wellbeing Dashboard - Quick read</b></h1></div>
-           <div class="col"><a target="_blank" rel="noopener noreferrer"><img src="img/AIG-colour-blue-background.png" id="nav-aig-logo" alt="NISRA logo"></a></div>
+           <div class="col"><a target="_blank" rel="noopener noreferrer"><img src="img/AIG-colour-blue-background.png" id="nav-aig-logo" alt="NISRA logo" style = "margin: 10px 0px 20px 50px;"></a></div>
         </div>
         <div class="button-row">
-          <button id="home" class="btn btn-primary" type="button" alt="Home" onclick="window.location.href='index.html';">Home</button>
-          <button id="share" class="btn btn-primary" type="share" alt="Share this page">Share</button>
+          <button id = "home-btn" class = "top-menu-item"  onclick="window.location.href='index.html'"><i class = "fa-solid fa-house-user"></i> Home</button>
+          <button id="share" class="top-menu-item" type="share" alt="Share this page"><i class = "fa-solid fa-share"></i> Share</button>
         </div>
       </div>
       </div>
@@ -71,7 +71,7 @@
           <div class="col-sm-12" style="padding-bottom:20px;">
             <div class="card" style="width: 100%;">
               <div style="overflow: hidden;" id="er-banner">
-                <img src="" alt ="Gauge chart" width="100%">
+                <canvas id = 'all_domains_gauge'>
               </div>
               <div class="card-body" style="border-bottom:2px;">
                 <div class="row">
@@ -80,7 +80,6 @@
                       <div class="col">
                         <div class="blocktitle" style="margin: 0; width: 100%; font-weight: normal;">
                           <div class="blocktitle" style="margin: 0; width: 100%; font-weight: normal;">
-                            <p>Placeholder</p>
                           </div>
                         </div>
                       </div>
