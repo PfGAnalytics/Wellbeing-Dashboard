@@ -293,8 +293,8 @@ function copyToClipboard(text) {
 async function renderDomainImprovementGauge({
   canvasId,
   domainName,
-  domainsDataUrl = './domains_data.js',
-  updatesUrl = './updated.json',
+  domainsDataUrl = 'scripts/domains_data.js',
+  updatesUrl = 'scripts/updated.json',
   includeInsufficientInDenominator = false,
   statusesToCount = ['improving'],
   colorStops = { good: 60, warn: 40 },
@@ -321,6 +321,7 @@ async function renderDomainImprovementGauge({
 
   // 4) Compose chart
   const canvas = document.getElementById(canvasId);
+  canvas.style.margin = "0% 10% 0% 10%";
   if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
 
   // Cleanup previous chart on the same canvas
@@ -328,7 +329,6 @@ async function renderDomainImprovementGauge({
     canvas._chartInstance.destroy();
   }
 
-  const gaugeColor = pickGaugeColor(percent, colorStops);
   const data = [percent, Math.max(0, 100 - percent)];
 
   // Per-chart center text plugin (closure captures percent/labels)
@@ -442,6 +442,7 @@ function pickPreferredCode(dataObj) {
     if (code) return { key, code };
   }
   return { key: null, code: null };
+
 }
 
 function computeImprovementStats({
@@ -466,6 +467,7 @@ function computeImprovementStats({
   for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
     const { code } = pickPreferredCode(indicatorObj?.data);
     let perf = null;
+
 
     if (code && updates[code] && typeof updates[code] === 'object') {
       perf = (updates[code].performance || '').toLowerCase().trim();
@@ -499,48 +501,72 @@ function computeImprovementStats({
   };
 }
 
-function pickGaugeColor(percent, { good, warn }) {
-  if (percent >= good) return '#2cb34a';  // green
-  if (percent >= warn) return '#f0ad4e';  // amber
-  return '#d9534f';                       // red
-}
-
-// ---------------- Convenience Wrapper(s) ----------------
-
-/**
- * Convenience wrapper so callers only need canvasId + domainName,
- * while still allowing overrides for everything else.
- */
-window.createDomainGauge = async function createDomainGauge(
-  canvasId,
-  domainName,
-  overrides = {}
-) {
-  const defaults = {
-    domainsDataUrl: './domains_data.js',
-    updatesUrl: './updated.json',
-    includeInsufficientInDenominator: false,
-    statusesToCount: ['improving'],
-    centerTextOffsetY: 0,
-    centerTextGap: 12
-  };
-
-  return renderDomainImprovementGauge({
-    ...defaults,
-    ...overrides,
-    canvasId,
-    domainName
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'thriving_children_gauge',
+    domainName: 'Thriving Children',
   });
-};
+})();
 
-/**
- * Optional helper to switch the domain on an existing canvas.
- * Destroys the previous chart and returns the new instance.
- */
-window.updateDomainGauge = async function updateDomainGauge(chart, newDomainName, overrides = {}) {
-  if (chart && typeof chart.destroy === 'function') chart.destroy();
-  const canvasId = chart?.canvas?.id;
-  if (!canvasId) throw new Error('Could not infer canvasId from chart; pass one explicitly.');
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'cleaner_environment_gauge',
+    domainName: 'Cleaner Environment',
+  });
+})();
 
-  return createDomainGauge(canvasId, newDomainName, overrides);
-};
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'equal_society_gauge',
+    domainName: 'Equal Society',
+  });
+})();
+
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'healthier_lives_gauge',
+    domainName: 'Healthier Lives',
+  });
+})();
+
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'brighter_futures_gauge',
+    domainName: 'Brighter Futures',
+  });
+})();
+
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'stronger_economy_gauge',
+    domainName: 'Stronger Economy',
+  });
+})();
+
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'safer_communities_gauge',
+    domainName: 'Safer Communities',
+  });
+})();
+
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'caring_society_gauge',
+    domainName: 'Caring Society',
+  });
+})();
+
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'better_homes_gauge',
+    domainName: 'Better Homes',
+  });
+})();
+
+(async () => {
+  const gauge = await renderDomainImprovementGauge({
+    canvasId: 'living_peacefully_gauge',
+    domainName: 'Living Peacefully',
+  });
+})();

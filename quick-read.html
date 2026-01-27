@@ -112,7 +112,7 @@
               <div class="col-sm-12">
                 <!-- chart - thriving children -->
                 <div>
-                  <canvas id="domainGauge" style="margin-left: 10%; margin-right:10%;"></canvas>
+                  <canvas id="thriving_children_gauge"></canvas>
                 </div>
                 <!-- summary - thriving children -->
                 <p style="padding-top:20px;">The Thriving Children domain accounts for:</p>
@@ -148,8 +148,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - cleaner environment -->
-                <div style="height: 150px;">
-                  <canvas id="de_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="cleaner_environment_gauge"></canvas>
                 </div>
                 <!-- summary - cleaner environment -->
                 <p style="padding-top:20px;">The Cleaner Environment domain accounts for:</p>
@@ -190,8 +190,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - equal society -->
-                <div style="height: 150px;">
-                  <canvas id="dfi_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="equal_society_gauge"></canvas>
                 </div>
                 <!-- summary - equal society -->
                 <p style="padding-top:20px;">The Equal Society domain accounts for:</p>
@@ -226,8 +226,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - healthier lives -->
-                <div style="height: 150px;">
-                  <canvas id="doj_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="healthier_lives_gauge"></canvas>
                 </div>
                 <!-- summary - healthier lives -->
                 <p style="padding-top:20px;">The Healthier Lives domain accounts for</p>
@@ -265,8 +265,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - brighter futures -->
-                <div style="height: 150px;">
-                  <canvas id="dfc_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="brighter_futures_gauge"></canvas>
                 </div>
                 <!-- summary - brighter futures -->
                 <p style="padding-top:20px;">The Brigther Futures domain accounts for:</p>
@@ -302,8 +302,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - stronger economy -->
-                <div style="height: 150px;">
-                  <canvas id="dfe_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="stronger_economy_gauge"></canvas>
                 </div>
                 <!-- summary - stronger economy -->
                 <p style="padding-top:20px;">The Stronger Economy domain accounts for:</p>
@@ -344,8 +344,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - safer communities -->
-                <div style="height: 150px;">
-                  <canvas id="daera_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="safer_communities_gauge"></canvas>
                 </div>
                 <!-- summary - safer communities -->
                 <p style="padding-top:20px;">The Safter Communities domain accounts for:</p>
@@ -383,8 +383,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - caring society -->
-                <div style="height: 150px;">
-                  <canvas id="dof_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="caring_society_gauge"></canvas>
                 </div>
                 <!-- summary - caring society -->
                 <p style="padding-top:20px;">The Caring Society domain accounts for:</p>
@@ -418,8 +418,8 @@
                         <div class="row">
                           <div class="col-sm-12">
                             <!-- chart - better homes -->
-                            <div style="height: 150px;">
-                              <canvas id="teo_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                            <div>
+                              <canvas id="better_homes_gauge"></canvas>
                             </div>
                             <!-- summary - better homes -->
                             <p style="padding-top:20px;">The Better Homes domain accounts for:</p>
@@ -454,8 +454,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <!-- chart - living peacefully -->
-                <div style="height: 150px;">
-                  <canvas id="dof_pie_chart" style="margin-left: auto; margin-right:auto;"></canvas>
+                <div>
+                  <canvas id="living_peacefully_gauge"></canvas>
                 </div>
                 <!-- summary - living peacefully -->
                 <p style="padding-top:20px;">The Living Peacefully domain accounts for:
@@ -552,20 +552,7 @@
   // 4) Render the gauge and keep the returned Chart instance in a variable.
 
   
-  (async () => {
-    const gauge = await renderDomainImprovementGauge({
-      canvasId: 'domainGauge',
-      domainName: 'Thriving Children',        // <- change this to any domain name in domains_data.js
-      domainsDataUrl: 'scripts/domains_data.js',     // <- path to your file
-      updatesUrl: 'scripts/updated.json',            // <- path to your file
-      // Optional behaviour flags:
-      includeInsufficientInDenominator: false, // exclude “insufficient data” indicators from denominator by default
-      statusesToCount: ['improving']          // what counts as “improving”
-    });
-
-    // You can later update/re-use: gauge.update(); gauge.destroy(); etc.
-    window.myGauge = gauge; // expose if you want to refer to it elsewhere
-  })();
+  
 
 </script>
 
