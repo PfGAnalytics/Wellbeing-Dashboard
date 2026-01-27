@@ -614,6 +614,7 @@ async function renderAllDomainsGauge({
   // 4) Render a semicircle gauge *exactly like* renderDomainImprovementGauge
   const canvas = document.getElementById(canvasId);
   if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
+  canvas.style.paddingTop = "20px"
 
   // Cleanup
   if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
@@ -643,7 +644,7 @@ async function renderAllDomainsGauge({
 
       ctx.fillStyle = '#111';
       ctx.font = '30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-      ctx.fillText('improving (all domains)', xC, yBase + 30);
+      ctx.fillText('improving', xC, yBase + 30);
       ctx.restore();
     }
   };
@@ -691,13 +692,25 @@ async function renderAllDomainsGauge({
     details
   };
   canvas._chartInstance = chart;
+  document.getElementById("improving-count").innerText = chart.metrics.counts.improving + " indicators that are improving";
+  document.getElementById("no-change-count").innerText = chart.metrics.counts.noChange + " indicators that have seen no change";
+  document.getElementById("worsening-count").innerText = chart.metrics.counts.worsening + " indicators that are worsening";
+  document.getElementById("insufficient-count").innerText = chart.metrics.counts.insufficient + " indicators with insufficient data";
   return chart;
+
 }
+
+
 
 (async () => {
   await renderAllDomainsGauge({
     canvasId: 'all_domains_gauge',
     // includeInsufficientInDenominator: true, // optional
     // statusesToCount: ['improving', 'no change'], // optional
+    
   });
 })();
+
+
+
+

@@ -286,3 +286,7 @@ footer a:hover {
 .top-menu-item.selected-item:hover img {
     filter: brightness(0) invert(1);
 }
+
+.p {
+    margin: 0px 0px 0px 0px;
+}

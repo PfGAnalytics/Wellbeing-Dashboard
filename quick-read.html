@@ -64,29 +64,34 @@
   </header>
 
   <main>
-    <div class="card" style="margin-top:5px; margin-bottom:20px;">
 
-      <div class="card-body" style="padding-bottom:0px;">
-        <div class="row">
-          <div class="col-sm-12" style="padding-bottom:20px;">
-            <div class="card" style="width: 100%;">
-              <div style="overflow: hidden;" id="er-banner">
-                <canvas id = 'all_domains_gauge'>
+     <div class="col-sm-12" style="padding-bottom:20px;">
+      <div id="domain-card" class="card h-100" style="width: 100%;">
+        <div class="card-header" style="padding-top:10px;">
+          <div class="col">
+            <h2 class="card-title">
+            <span style="font-size:20px; font-weight:700; line-height:1.1;">
+              All Domains Performance
+            </span>
+           </h2>
+          </div>
+        </div>
+        <div class="domain-card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- chart - thriving children -->
+              <div>
+                <canvas id="all_domains_gauge"></canvas>
               </div>
-              <div class="card-body" style="border-bottom:2px;">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="row">
-                      <div class="col">
-                        <div class="blocktitle" style="margin: 0; width: 100%; font-weight: normal;">
-                          <div class="blocktitle" style="margin: 0; width: 100%; font-weight: normal;">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <!-- summary - thriving children -->
+              <p style="padding-top:20px;">Across all domains, there are currently:</p>
+
+              <ul>
+                <li id = "improving-count"></li>
+                <li id = "no-change-count"></li>
+                <li id = "worsening-count"></li>
+                <li id = "insufficient-count"></li>
+              </ul>
             </div>
           </div>
         </div>
