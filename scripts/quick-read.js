@@ -1,20 +1,20 @@
 var data;
 
 window.onload = function () {
-    getData();
+    // getData();
     showCookieBanner();
 }
 
-async function getData() {
+// async function getData() {
 
-  try {
-      const response = await fetch("data.json");
-      const responseData = await response.json();
-      data = responseData;
-  } catch (error) {
+//   try {
+//       const response = await fetch("data.json");
+//       const responseData = await response.json();
+//       data = responseData;
+//   } catch (error) {
       
-  }
-}
+//   }
+// }
 
 
 // copy to clipboard for use in share button function
@@ -271,12 +271,7 @@ function copyToClipboard(text) {
     document.getElementById('reject-cookies').addEventListener('click', rejectCookies);
   });
 
-  
-
 /**
- * Renders a semi-circular gauge showing the % of indicators in a domain that are "improving".
- * Returns the Chart.js instance.
- *
  * Options:
  * - canvasId: string (required)
  * - domainName: string (required)
@@ -284,12 +279,9 @@ function copyToClipboard(text) {
  * - updatesUrl: string (default './updated.json') – {code: {performance: "..."}}
  * - includeInsufficientInDenominator: boolean (default false)
  * - statusesToCount: string[] (default ['improving'])
- * - title: string (optional)
- * - subtitle: string (optional)
- * - colorStops: {good:number, warn:number} (default {good: 60, warn: 40})
  * - centerTextOffsetY: number (default 0) – negative moves text up
- * - centerTextGap: number (default 12) – space between % and caption
  */
+
 async function renderDomainImprovementGauge({
   canvasId,
   domainName,
@@ -297,70 +289,87 @@ async function renderDomainImprovementGauge({
   updatesUrl = 'scripts/updated.json',
   includeInsufficientInDenominator = false,
   statusesToCount = ['improving'],
-  colorStops = { good: 60, warn: 40 },
   centerTextOffsetY = 0,
-  centerTextGap = 12
+
+  mode = 'four-slices',
+  improvingColor = '#00A857',
+  noChangeColor = '#FF6200',
+  worseningColor = '#db0000',
+  insufficientColor = '#757575',
+
+  // center text options
+  centerMode = 'stacked'
 } = {}) {
   if (!canvasId) throw new Error('canvasId is required');
   if (!domainName) throw new Error('domainName is required');
 
-  // 1) Ensure domains_data is available
   await ensureDomainsData(domainsDataUrl);
-
-  // 2) Load updated.json
   const updates = await loadUpdates(updatesUrl);
 
-  // 3) Compute stats
-  const { percent, counts, totalEligible, details } = computeImprovementStats({
+  const { counts, totalEligible, details } = computeImprovementStats({
     domainName,
     includeInsufficientInDenominator,
     statusesToCount,
     domainsData: window.domains_data,
     updates
-  });
+  }
+);
 
-  // 4) Compose chart
+  // ---- Percentages ----
+  const denom = includeInsufficientInDenominator
+    ? (totalEligible || 0) : ( (totalEligible || 0) + (counts.insufficient || 0) );
+
+  const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
+
+  const improvingPct   = pct(counts.improving);
+  const noChangePct    = pct(counts.noChange);
+  const worseningPct   = pct(counts.worsening);
+  const insufficientPct= pct(counts.insufficient);
+
   const canvas = document.getElementById(canvasId);
   canvas.style.margin = "0% 10% 0% 10%";
   if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
 
-  // Cleanup previous chart on the same canvas
   if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
     canvas._chartInstance.destroy();
   }
 
-  const data = [percent, Math.max(0, 100 - percent)];
+  let labels, dataset;
+  if (mode === 'four-slices') {
+    labels = ['Improving', 'No change', 'Worsening', 'Insufficient data'];
+    dataset = {
+      data: [improvingPct, noChangePct, worseningPct, insufficientPct],
+      backgroundColor: [improvingColor, noChangeColor, worseningColor, insufficientColor]
+    }
+  } 
 
-  // Per-chart center text plugin (closure captures percent/labels)
   const centerTextPlugin = {
-    id: `centerText_${canvasId}`, // unique per-canvas
+    id: `centerText_${canvasId}`,
     afterDraw(chart) {
       const meta = chart.getDatasetMeta(0);
       if (!meta?.data?.length) return;
-
       const arc = meta.data[0];
       const xC = arc.x;
-      const yBase = arc.y - 50; // move text up/down in one place
-
+      const yBase = arc.y - 50 + centerTextOffsetY;
       const ctx = chart.ctx;
       ctx.save();
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      // % number
-      ctx.fillStyle = '#111';
-      ctx.font = 'bold 50px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-      ctx.fillText(`${Math.round(percent)}%`, xC, yBase - 8);
-
-      // Caption
-      ctx.fillStyle = '#111';
-      ctx.font = '30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-      ctx.fillText('improving', xC, yBase + 30);
+      if (mode === 'four-slices') {
+        if (centerMode === 'stacked') {
+          ctx.fillStyle = '#000000';
+          ctx.font = 'bold 30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+          ctx.fillText(`${counts.improving}/${denom}`, xC, yBase - 22);
+          ctx.fillStyle = '#000000';
+          ctx.font = '18px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+          ctx.fillText('indicators are improving', xC, yBase - 2);
+        }
+      }
       ctx.restore();
     }
   };
 
-  // Optional: if the datalabels plugin is present globally, turn it off per chart by default
   const maybeDatalabelsOff = (Chart.registry.plugins.get('datalabels'))
     ? { datalabels: { display: false } }
     : {};
@@ -368,14 +377,13 @@ async function renderDomainImprovementGauge({
   const chart = new Chart(canvas, {
     type: 'doughnut',
     data: {
-      labels: ['Improving', 'Other'],
+      labels,
       datasets: [{
-        data,
-        backgroundColor: ['#008675', '#e9ecef'],
-        borderWidth: 0,
+        ...dataset,
+        borderWidth: 5,
         hoverOffset: 0,
-        circumference: 180,  // semicircle
-        rotation: -90,       // start at left
+        circumference: 180,
+        rotation: -90,
         cutout: '70%'
       }]
     },
@@ -384,19 +392,31 @@ async function renderDomainImprovementGauge({
       maintainAspectRatio: false,
       plugins: {
         ...maybeDatalabelsOff,
-        legend: { display: false },
+        legend: { 
+          display: false },
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.label}: ${(+ctx.raw).toFixed(1)}%`
+            label: (ctx) => `${(+ctx.raw).toFixed(1)}%`
           }
-        },
+        }
       },
-      layout: { padding: { top: 0 } }
+      layout: { 
+        padding: { 
+          top: 0 
+        } 
+      }
     },
-    plugins: [centerTextPlugin] // register plugin only for THIS chart
-  });
+    plugins: [centerTextPlugin]
+  }
+);
 
-  chart.metrics = { domainName, percent, counts, totalEligible, details };
+  chart.metrics = {
+    domainName,
+    counts,
+    totalEligible: totalEligible,
+    details
+  };
+
   canvas._chartInstance = chart;
   return chart;
 }
