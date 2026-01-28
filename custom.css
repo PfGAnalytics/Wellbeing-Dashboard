@@ -251,6 +251,7 @@ footer a:hover {
 
 .top-menu-item {
     margin-bottom: 12px;
+    padding-bottom: 45px;
     color: white;
     font-size: 16pt;
     font-weight: bold;
@@ -263,6 +264,7 @@ footer a:hover {
     align-content: center;
     justify-content: center;
     max-width: 300px;
+    max-height: 40px;
 }
 
 .top-menu-item:hover {
