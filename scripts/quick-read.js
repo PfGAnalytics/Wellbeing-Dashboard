@@ -290,225 +290,92 @@ function copyToClipboard(text) {
  * - centerTextOffsetY: number (default 0) – negative moves text up
  * - centerTextGap: number (default 12) – space between % and caption
  */
-// async function renderDomainImprovementGauge({
-//   canvasId,
-//   domainName,
-//   domainsDataUrl = 'scripts/domains_data.js',
-//   updatesUrl = 'scripts/updated.json',
-//   includeInsufficientInDenominator = false,
-//   statusesToCount = ['improving'],
-//   colorStops = { good: 60, warn: 40 },
-//   centerTextOffsetY = 0,
-//   centerTextGap = 12
-// } = {}) {
-//   if (!canvasId) throw new Error('canvasId is required');
-//   if (!domainName) throw new Error('domainName is required');
-
-//   // 1) Ensure domains_data is available
-//   await ensureDomainsData(domainsDataUrl);
-
-//   // 2) Load updated.json
-//   const updates = await loadUpdates(updatesUrl);
-
-//   // 3) Compute stats
-//   const { percent, counts, totalEligible, details } = computeImprovementStats({
-//     domainName,
-//     includeInsufficientInDenominator,
-//     statusesToCount,
-//     domainsData: window.domains_data,
-//     updates
-//   });
-
-//   // 4) Compose chart
-//   const canvas = document.getElementById(canvasId);
-//   canvas.style.margin = "0% 10% 0% 10%";
-//   if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
-
-//   // Cleanup previous chart on the same canvas
-//   if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
-//     canvas._chartInstance.destroy();
-//   }
-
-//   const data = [percent, Math.max(0, 100 - percent)];
-
-//   // Per-chart center text plugin (closure captures percent/labels)
-//   const centerTextPlugin = {
-//     id: `centerText_${canvasId}`, // unique per-canvas
-//     afterDraw(chart) {
-//       const meta = chart.getDatasetMeta(0);
-//       if (!meta?.data?.length) return;
-
-//       const arc = meta.data[0];
-//       const xC = arc.x;
-//       const yBase = arc.y - 50; // move text up/down in one place
-
-//       const ctx = chart.ctx;
-//       ctx.save();
-//       ctx.textAlign = 'center';
-//       ctx.textBaseline = 'middle';
-
-//       // % number
-//       ctx.fillStyle = '#111';
-//       ctx.font = 'bold 50px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-//       ctx.fillText(`${Math.round(percent)}%`, xC, yBase - 8);
-
-//       // Caption
-//       ctx.fillStyle = '#111';
-//       ctx.font = '30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-//       ctx.fillText('improving', xC, yBase + 30);
-//       ctx.restore();
-//     }
-//   };
-
-//   // Optional: if the datalabels plugin is present globally, turn it off per chart by default
-//   const maybeDatalabelsOff = (Chart.registry.plugins.get('datalabels'))
-//     ? { datalabels: { display: false } }
-//     : {};
-
-//   const chart = new Chart(canvas, {
-//     type: 'doughnut',
-//     data: {
-//       labels: ['Improving', 'Other'],
-//       datasets: [{
-//         data,
-//         backgroundColor: ['#008675', '#e9ecef'],
-//         borderWidth: 0,
-//         hoverOffset: 0,
-//         circumference: 180,  // semicircle
-//         rotation: -90,       // start at left
-//         cutout: '70%'
-//       }]
-//     },
-//     options: {
-//       responsive: true,
-//       maintainAspectRatio: false,
-//       plugins: {
-//         ...maybeDatalabelsOff,
-//         legend: { display: false },
-//         tooltip: {
-//           callbacks: {
-//             label: (ctx) => `${ctx.label}: ${(+ctx.raw).toFixed(1)}%`
-//           }
-//         },
-//       },
-//       layout: { padding: { top: 0 } }
-//     },
-//     plugins: [centerTextPlugin] // register plugin only for THIS chart
-//   });
-
-//   chart.metrics = { domainName, percent, counts, totalEligible, details };
-//   canvas._chartInstance = chart;
-//   return chart;
-// }
-
-// Renders a semi-circular gauge with Improving (green) + Worsening (red)
-// Optional: include a grey "Other" remainder.
-// Uses existing computeImprovementStats() and Chart.js v4.
-async function renderDomainSplitGauge({
+async function renderDomainImprovementGauge({
   canvasId,
   domainName,
   domainsDataUrl = 'scripts/domains_data.js',
   updatesUrl = 'scripts/updated.json',
   includeInsufficientInDenominator = false,
-
-  // Visual configuration
-  improvingColor = '#008675', // NI green
-  worseningColor = '#C0002F', // deep accessible red
-  otherColor = '#e9ecef',     // light grey remainder
-  showOther = true,           // set false to show ONLY green+red (renormalised to 100%)
-  captionText = 'indicators'  // center caption
+  statusesToCount = ['improving'],
+  colorStops = { good: 60, warn: 40 },
+  centerTextOffsetY = 0,
+  centerTextGap = 12
 } = {}) {
   if (!canvasId) throw new Error('canvasId is required');
   if (!domainName) throw new Error('domainName is required');
 
-  // 1) Ensure data is loaded
+  // 1) Ensure domains_data is available
   await ensureDomainsData(domainsDataUrl);
+
+  // 2) Load updated.json
   const updates = await loadUpdates(updatesUrl);
 
-  // 2) Get counts for the domain
-  const { counts, totalEligible } = computeImprovementStats({
+  // 3) Compute stats
+  const { percent, counts, totalEligible, details } = computeImprovementStats({
     domainName,
     includeInsufficientInDenominator,
-    // statusesToCount here doesn't change counts; we just need the breakdown
-    statusesToCount: ['improving'],
+    statusesToCount,
     domainsData: window.domains_data,
     updates
   });
 
-  // 3) Compute percentages
-  const improvingPct = totalEligible ? (counts.improving / totalEligible) * 100 : 0;
-  const worseningPct = totalEligible ? (counts.worsening / totalEligible) * 100 : 0;
-
-  let data, labels, colors;
-  if (showOther) {
-    const otherPct = Math.max(0, 100 - improvingPct - worseningPct);
-    data   = [improvingPct, worseningPct, otherPct];
-    labels = ['Improving', 'Worsening', 'Other'];
-    colors = [improvingColor, worseningColor, otherColor];
-  } else {
-    // Renormalise so green + red sum to 100% for a two-segment gauge
-    const sum = improvingPct + worseningPct;
-    const normImproving = sum > 0 ? (improvingPct / sum) * 100 : 0;
-    const normWorsening = sum > 0 ? (worseningPct / sum) * 100 : 0;
-    data   = [normImproving, normWorsening];
-    labels = ['Improving', 'Worsening'];
-    colors = [improvingColor, worseningColor];
-  }
-
-  // 4) Prepare canvas & destroy any prior chart
+  // 4) Compose chart
   const canvas = document.getElementById(canvasId);
+  canvas.style.margin = "0% 10% 0% 10%";
   if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
+
+  // Cleanup previous chart on the same canvas
   if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
     canvas._chartInstance.destroy();
   }
 
-  // 5) Center text plugin shows both values
+  const data = [percent, Math.max(0, 100 - percent)];
+
+  // Per-chart center text plugin (closure captures percent/labels)
   const centerTextPlugin = {
-    id: `centerText_${canvasId}`,
+    id: `centerText_${canvasId}`, // unique per-canvas
     afterDraw(chart) {
       const meta = chart.getDatasetMeta(0);
       if (!meta?.data?.length) return;
 
-      // Use first arc to get center coordinates
       const arc = meta.data[0];
       const xC = arc.x;
-      const yBase = arc.y - 50;
-      const ctx = chart.ctx;
+      const yBase = arc.y - 50; // move text up/down in one place
 
+      const ctx = chart.ctx;
       ctx.save();
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      // Top line: "Imp X% / Wors Y%"
-      const impVal = Math.round(improvingPct);
-      const worVal = Math.round(worseningPct);
+      // % number
       ctx.fillStyle = '#111';
-      ctx.font = 'bold 44px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-      ctx.fillText(`Imp ${impVal}% / Wors ${worVal}%`, xC, yBase - 6);
+      ctx.font = 'bold 50px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+      ctx.fillText(`${Math.round(percent)}%`, xC, yBase - 8);
 
-      // Bottom line: caption
-      ctx.font = '28px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-      ctx.fillText(captionText, xC, yBase + 28);
+      // Caption
+      ctx.fillStyle = '#111';
+      ctx.font = '30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+      ctx.fillText('improving', xC, yBase + 30);
       ctx.restore();
     }
   };
 
-  const datalabelsOff = (Chart.registry.plugins.get('datalabels'))
+  // Optional: if the datalabels plugin is present globally, turn it off per chart by default
+  const maybeDatalabelsOff = (Chart.registry.plugins.get('datalabels'))
     ? { datalabels: { display: false } }
     : {};
 
-  // 6) Render semicircle doughnut
   const chart = new Chart(canvas, {
     type: 'doughnut',
     data: {
-      labels,
+      labels: ['Improving', 'Other'],
       datasets: [{
         data,
-        backgroundColor: colors,
+        backgroundColor: ['#008675', '#e9ecef'],
         borderWidth: 0,
         hoverOffset: 0,
-        circumference: 180,
-        rotation: -90,
+        circumference: 180,  // semicircle
+        rotation: -90,       // start at left
         cutout: '70%'
       }]
     },
@@ -516,21 +383,20 @@ async function renderDomainSplitGauge({
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        ...datalabelsOff,
+        ...maybeDatalabelsOff,
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.label}: ${( +ctx.raw ).toFixed(1)}%`
+            label: (ctx) => `${ctx.label}: ${(+ctx.raw).toFixed(1)}%`
           }
-        }
+        },
       },
       layout: { padding: { top: 0 } }
     },
-    plugins: [centerTextPlugin]
+    plugins: [centerTextPlugin] // register plugin only for THIS chart
   });
 
-  // Keep some metrics for external use if needed
-  chart.metrics = { improvingPct, worseningPct, counts, totalEligible };
+  chart.metrics = { domainName, percent, counts, totalEligible, details };
   canvas._chartInstance = chart;
   return chart;
 }
