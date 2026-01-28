@@ -290,3 +290,10 @@ footer a:hover {
 .p {
     margin: 0px 0px 0px 0px;
 }
+
+.top-menu-logo {
+    width: 25px;
+    padding-top: 10px;
+    margin-bottom: 15px;
+    filter: brightness(0) invert(1);
+}
