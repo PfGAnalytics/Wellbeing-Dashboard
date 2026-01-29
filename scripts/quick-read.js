@@ -591,13 +591,20 @@ function computeImprovementStats({
   });
 })();
 
-
 async function renderAllDomainsGauge({
   canvasId,
   domainsDataUrl = 'scripts/domains_data.js',
   updatesUrl = 'scripts/updated.json',
   includeInsufficientInDenominator = false,
-  statusesToCount = ['improving']
+
+  improvingColor = '#00A857',
+  noChangeColor = '#FF6200',
+  worseningColor = '#db0000',
+  insufficientColor = '#757575',
+  centerMode = 'stacked',
+  spacing = 0,
+  borderColor = '#ffffff',
+  borderWidth = 5
 } = {}) {
   if (!canvasId) throw new Error('canvasId is required');
 
@@ -605,33 +612,37 @@ async function renderAllDomainsGauge({
   await ensureDomainsData(domainsDataUrl);
   const updates = await loadUpdates(updatesUrl);
 
-  // 2) Build a pseudo-domain that merges all indicators
+  // 2) Merge all indicators into a pseudo-domain
   const mergedIndicators = {};
   for (const [domainName, domainObj] of Object.entries(window.domains_data || {})) {
     const indicators = domainObj?.indicators || {};
     for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
-      // Use a unique key in case names collide
       const mergedKey = `${domainName} :: ${indicatorName}`;
       mergedIndicators[mergedKey] = indicatorObj;
     }
   }
+  const fakeDomainsData = { __ALL__: { indicators: mergedIndicators } };
 
-  const fakeDomainsData = {
-    __ALL__: {
-      indicators: mergedIndicators
-    }
-  };
-
-  // 3) Compute stats on the merged pseudo-domain
-  const { percent, counts, totalEligible, details } = computeImprovementStats({
+  // 3) Compute stats for all indicators together
+  const { counts, totalEligible, details } = computeImprovementStats({
     domainName: '__ALL__',
     includeInsufficientInDenominator,
-    statusesToCount,
+    statusesToCount: ['improving'],
     domainsData: fakeDomainsData,
     updates
   });
 
-  // 4) Render a semicircle gauge *exactly like* renderDomainImprovementGauge
+  // 4) Percentages: choose denominator so 4 slices sum to 100%
+  const denom = includeInsufficientInDenominator
+    ? (totalEligible || 0) : ((totalEligible || 0) + (counts.insufficient || 0));
+    const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
+    
+    const improvingPct    = pct(counts.improving);
+    const noChangePct     = pct(counts.noChange);
+    const worseningPct    = pct(counts.worsening);
+    const insufficientPct = pct(counts.insufficient);
+
+  // 5) Build chart
   const canvas = document.getElementById(canvasId);
   if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
   canvas.style.paddingTop = "20px"
@@ -641,14 +652,17 @@ async function renderAllDomainsGauge({
     canvas._chartInstance.destroy();
   }
 
-  const data = [percent, Math.max(0, 100 - percent)];
+  const labels = ['Improving', 'No change', 'Worsening', 'Insufficient data'];
+  const dataset = {
+    data: [improvingPct, noChangePct, worseningPct, insufficientPct],
+    backgroundColor: [improvingColor, noChangeColor, worseningColor, insufficientColor]
+  };
 
   const centerTextPlugin = {
     id: `centerText_${canvasId}`,
     afterDraw(chart) {
       const meta = chart.getDatasetMeta(0);
       if (!meta?.data?.length) return;
-
       const arc = meta.data[0];
       const xC = arc.x;
       const yBase = arc.y - 50;
@@ -658,13 +672,15 @@ async function renderAllDomainsGauge({
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      ctx.fillStyle = '#111';
-      ctx.font = 'bold 50px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-      ctx.fillText(`${Math.round(percent)}%`, xC, yBase - 8);
+      if (centerMode === 'stacked') {
+        // Improving
+        ctx.fillStyle = '#000000';
+        ctx.font = 'bold 28px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+        ctx.fillText(`${counts.improving}/${denom}`, xC, yBase - 22);
+        ctx.font = '18px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+        ctx.fillText('indicators are improving', xC, yBase - 2);
+      }
 
-      ctx.fillStyle = '#111';
-      ctx.font = '30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-      ctx.fillText('improving', xC, yBase + 30);
       ctx.restore();
     }
   };
@@ -676,11 +692,13 @@ async function renderAllDomainsGauge({
   const chart = new Chart(canvas, {
     type: 'doughnut',
     data: {
-      labels: ['Improving', 'Other'],
+      labels,
       datasets: [{
-        data,
-        backgroundColor: ['#008675', '#e9ecef'],
-        borderWidth: 0,
+        ...dataset,
+        spacing,
+        borderColor,
+        borderWidth,
+        borderAlign: 'inner',
         hoverOffset: 0,
         circumference: 180,
         rotation: -90,
@@ -692,25 +710,35 @@ async function renderAllDomainsGauge({
       maintainAspectRatio: false,
       plugins: {
         ...maybeDatalabelsOff,
-        legend: { display: false },
+        legend: { 
+          display: false 
+        },
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.label}: ${(+ctx.raw).toFixed(1)}%`
+            label: (ctx) => {
+              const valuePct = (+ctx.raw).toFixed(1) + '%';
+              return `${valuePct}`;
+            }
           }
         }
       },
-      layout: { padding: { top: 0 } }
+      layout: { 
+        padding: {
+          top: 0 
+        } 
+      }
     },
+
     plugins: [centerTextPlugin]
   });
 
   chart.metrics = {
     domainName: '__ALL__',
-    percent,
     counts,
     totalEligible,
     details
   };
+
   canvas._chartInstance = chart;
   document.getElementById("improving-count").innerText = chart.metrics.counts.improving + " indicators that are improving";
   document.getElementById("no-change-count").innerText = chart.metrics.counts.noChange + " indicators that have seen no change";
@@ -720,17 +748,8 @@ async function renderAllDomainsGauge({
 
 }
 
-
-
 (async () => {
   await renderAllDomainsGauge({
-    canvasId: 'all_domains_gauge',
-    // includeInsufficientInDenominator: true, // optional
-    // statusesToCount: ['improving', 'no change'], // optional
-    
+    canvasId: 'all_domains_gauge',  
   });
 })();
-
-
-
-
