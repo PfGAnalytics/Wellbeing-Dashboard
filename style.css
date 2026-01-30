@@ -1620,8 +1620,8 @@ tr {
     #back-to-start, #skip-link, #top-container, #top-menu, #dashboard-title, #prototype, #search-box, #back-button, #button-left, #button-right, .button-row, 
     #loading-img, #loading-img4, #loading-img5, #loading-img-2, #cookie-banner, .chart-title, #top-menu-items, #footer-container, #search-bar, #nisra-logo-container, 
     #flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #map-form, #date-display, #map-label-4, input#map-select-4.slider, #chart-link,
-    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data, #toggle-chart-type, .chart-slider, .switch-label, .box-container, #subpop-container, 
-    .subpop-heading {
+    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data, #toggle-chart-type, .chart-slider, .switch-label, .box-container, 
+    #share, .chart-dropdown-wrapper {
         display: none !important;
     }
 
