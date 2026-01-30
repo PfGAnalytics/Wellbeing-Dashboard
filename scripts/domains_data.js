@@ -521,7 +521,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. Although estimates for life satisfaction in 2023/24 appear to be returning to pre-pandemic levels, the longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and also between people who are married or in a civil partnership compared with any other marital status. Of the 11 LGDs, Newry, Mourne & Down have the highest rates of life satisfaction for 2023/24.",
+               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend also shows no change in life satisfaction since reporting began in 2014/15. However, consistent gaps remain between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and also between people who are married or in a civil partnership compared with any other marital status. Of the 11 LGDs, Ards & North Down have the highest rates of life satisfaction for 2024/25.",
                worsened: "",
                insufficient: ""
             }
@@ -557,8 +557,8 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "",
-               no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without.",
-               worsened: "",
+               no_change: "",
+               worsened: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. Consistent gaps remain between males and females, the most and least deprived areas, and people with a disability compared with those without.",
                insufficient: ""
             }
          }
@@ -899,7 +899,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels in 2023/24. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, divorced or widowed, and also between people with a white ethnicity compared with any other ethnicity.",
+               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels since 2023/24. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, divorced or widowed, and also between people with a white ethnicity compared with any other ethnicity.",
                no_change: "",
                worsened: "",
                insufficient: ""
