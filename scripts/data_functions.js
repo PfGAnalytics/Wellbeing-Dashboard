@@ -237,14 +237,6 @@ async function indicatorPerformance (dom = null) {
 
 }
 
-// let improvinghexDivHTML = '<div class = "row key-text performance">Improving<div class = "key-hex positive" style="margin-left:5px;"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
-
-// let nochangehexDivHTML = '<div class = "row key-text performance">No change<div class = "key-hex neutral" style="margin-left:5px;"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
-
-// let worseninghexDivHTML = '<div class = "row key-text performance">Worsening<div class = "key-hex negative" style="margin-left:5px;"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 12px"></i></div>';
-
-// let insufficienthexDivHTML = '<div class = "row key-text performance">Insufficient<div class = "key-hex insufficient" style="margin-left:5px;"><div class = "key-hex-label insufficient"></div>';
-
 let improvinghexDivHTML = '<div class = "row key-text performance" style = "background-color: #a1daa1; border: 2px solid; border-color: #00A857">Improving';
 
 let nochangehexDivHTML = '<div class = "row key-text performance" style = "background-color: #FF9A5C; border: 2px solid; border-color: #FF6200 ">No change';
@@ -1381,7 +1373,7 @@ async function renderPopup (d, e, eq_group) {
       close_pop_up = document.createElement("div");      // Div for "X" close button in top corner of pop-up
       close_pop_up.id = "close-pop-up";                  // Give it an id
       close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";     // Position it 30 pixels from end of box
-      close_pop_up.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';        // Place an X icon in box
+      close_pop_up.innerHTML = '<img src="img/xmark-solid-full.svg" alt="Close" style="filter:invert(1);">'; // Place an X icon in box
       close_pop_up.tabIndex = "0";
 
       close_pop_up.onclick = function () {      // When close button is clicked:

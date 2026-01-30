@@ -283,18 +283,18 @@ function generateHexagons (d) {
         if (Object.keys(worsening_indicator).includes(indicators[i])) {   // If the word "worsened" appears in the baseline statement:
             hex.classList.add("negative");      // Add the class "negative" to the hexagon
             hex_label.classList.add("negative");    // Add the class "negative" to the label text
-            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-down-long"></i>' ;      // Place the indicator name in the label
+            hex_label.innerHTML = indicators[i] + '<br><img style = "margin-top: 0.5em; width: 40px;" src="img/arrow-down-long-solid-full.svg">';      // Place the indicator name in the label
         } else if (Object.keys(improving_indicator).includes(indicators[i])) {    // If the word "improved" appears in the baseline statement:
             hex.classList.add("positive");              // Add the class "positive" to the hexagon
             hex_label.classList.add("positive");        // Add the class "negative" to the label text
-            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-up-long"></i>';      // Place the indicator name in the label
+            hex_label.innerHTML = indicators[i] + '<br><img style = "margin-top: 0.5em; width: 40px;" src="img/arrow-up-long-solid-full.svg">';      // Place the indicator name in the label
         } else if (Object.keys(insufficient_indicator).includes(indicators[i])) {
             hex.classList.add("insufficient");
             hex_label.classList.add("insufficient");
             hex_label.innerHTML = indicators[i];
         } else if (Object.keys(no_change_indicator).includes(indicators[i])) {    // Otherwise:
             hex.classList.add("neutral");
-            hex_label.innerHTML = indicators[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long">';      // Place the indicator name in the label
+            hex_label.innerHTML = indicators[i] + '<br><img style = "margin-top: 0.5em; width: 40px;" src="img/arrow-right-long-solid-full.svg">'; 
         } else {
             hex_container.style.display = "none";
         }
@@ -417,13 +417,13 @@ function plotOverallHexes (change_type) {
         if (change_type == "improving") {   // For improving indicators:
             hex.classList.add("positive");                              // Hexagon is given class "positive"
             hex_label.classList.add("positive");                        // Hexagon label is given class "positive"
-            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-up-long"></i>';   // Hexagon label text is outputted
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><img src="img/arrow-up-long-solid-full.svg" style="width:30px; margin-top: 0.5em;">';
         } else if (change_type == "no_change") { // For no_change indicators:
-            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-right-long"></i>';   // Hexagon label text is outputted
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><img src="img/arrow-right-long-solid-full.svg" style="width:30px; margin-top: 0.5em;">';
         } else if (change_type == "worsening") {    // For worsening indicators:
             hex.classList.add("negative");                              // Hexagon is given class "negative"
             hex_label.classList.add("negative");                            // Hexagon label is given class "negative"
-            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><i style = "margin-top: 0.5em;" class="fa-solid fa-arrow-down-long"></i>';   // Hexagon label text is outputted
+            hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><img src="img/arrow-down-long-solid-full.svg" style="width:30px; margin-top: 0.5em;">';
         } else if (change_type == "insufficient") {
             hex.classList.add("insufficient");                              // Hexagon is given class "negative"
             hex_label.classList.add("insufficient");
@@ -637,7 +637,7 @@ if (currentURL.includes("?domain=")) {
         previous_btn.classList.add("nav-btn");          // Given the class "nav-btn"
         previous_btn.name = "domain";
         previous_btn.value = domains[current_index - 1].toLowerCase();
-        previous_btn.innerHTML =  '</strong> <i class="fa-solid fa-backward"></i> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
+        previous_btn.innerHTML =  '</strong><img src = "img/backward-solid-full.svg" style = "width: 25px"> Previous domain: <strong>' + hexagons[current_index - 1].textContent;
         button_left.appendChild(previous_btn);  // Button is added to div "button-left"
     }
 
@@ -651,7 +651,7 @@ if (currentURL.includes("?domain=")) {
         next_btn.classList.add("nav-btn");              // Given the class "nav-btn"
         next_btn.name = "domain";        
         next_btn.value = domains[current_index + 1].toLowerCase();
-        next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <i class="fa-solid fa-forward"></i> ';
+        next_btn.innerHTML = 'Next domain: <strong>' + hexagons[current_index + 1].textContent +'</strong> <img src = "img/forward-solid-full.svg" style = "width: 25px">';
         button_right.appendChild(next_btn);   // Button is added to div "button-right"
     }
 
@@ -660,7 +660,7 @@ if (currentURL.includes("?domain=")) {
     back_btn.classList.add("nav-btn");
     back_btn.name = "tab";
     back_btn.value = "domains";
-    back_btn.innerHTML = '<i class="fa-solid fa-arrow-turn-up fa-flip-horizontal"></i> Back to <strong>Domains</strong> grid';
+    back_btn.innerHTML = '<img src = "img/arrow-turn-up-solid-full.svg" style = "width: 25px"> Back to <strong>Domains</strong> grid';
     back_button.appendChild(back_btn);
     
 }
@@ -734,7 +734,7 @@ if (currentURL.includes("?indicator=")) {
         previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
         previous_btn_2.name = "indicator";
         previous_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
-        previous_btn_2.innerHTML = '<i class="fa-solid fa-backward"></i> Previous indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1] +'</strong>';
+        previous_btn_2.innerHTML = '<img src = "img/backward-solid-full.svg" style = "width: 25px"> Previous indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1] +'</strong>';
         button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
     }    
 
@@ -746,7 +746,7 @@ if (currentURL.includes("?indicator=")) {
         next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
         next_btn_2.name = "indicator";
         next_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
-        next_btn_2.innerHTML = 'Next indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1] +'</strong> <i class="fa-solid fa-forward"></i> ';
+        next_btn_2.innerHTML = 'Next indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1] +'</strong> <img src = "img/forward-solid-full.svg" style = "width: 25px"> ';
         button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
     }
 
@@ -754,7 +754,7 @@ if (currentURL.includes("?indicator=")) {
     back_btn.classList.add("nav-btn");
     back_btn.name = "domain";
     back_btn.value = lookUpDomain.toLowerCase();
-    back_btn.innerHTML = '<i class="fa-solid fa-arrow-turn-up fa-flip-horizontal"></i> Back to <strong>' + lookUpDomain + '</strong> domain';
+    back_btn.innerHTML = '<img src = "img/arrow-turn-up-solid-full.svg" style = "width: 25px"> Back to <strong>' + lookUpDomain + '</strong> domain';
     back_button.appendChild(back_btn);
 
 }
@@ -1761,17 +1761,17 @@ plotExpandedDomains = function() {
             if (Object.keys(improving_indicator).includes(inds[j])) {
                 ind_hex.classList.add("positive");
                 ind_hex_label.classList.add("positive");
-                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>';
+                ind_hex_label.innerHTML = inds[j] + '<br><img src = "img/arrow-up-long-solid-full.svg" style="margin-top: 0.5em; width: 30px;">';
             } else if (Object.keys(worsening_indicator).includes(inds[j])) {
                 ind_hex.classList.add("negative") 
                 ind_hex_label.classList.add("negative");
-                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>';
+                ind_hex_label.innerHTML = inds[j] + '<br><img src = "img/arrow-down-long-solid-full.svg" style="margin-top: 0.5em; width: 30px;">';
             } else if (Object.keys(insufficient_indicator).includes(inds[j])) {
                 ind_hex.classList.add("insufficient");
                 ind_hex_label.classList.add("insufficient");
                 ind_hex_label.innerHTML = inds[j];
             } else if (Object.keys(no_change_indicator).includes(inds[j])) {
-                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+                ind_hex_label.innerHTML = inds[j] + '<br><img src = "img/arrow-right-long-solid-full.svg" style="margin-top: 0.5em; width: 30px;">';
             } else {
                 ind_hex_container.style.display = "none";
             }
@@ -1886,17 +1886,17 @@ plotExpandedDomains = function() {
             if (Object.keys(improving_indicator).includes(inds[j])) {
                 ind_hex.classList.add("positive");
                 ind_hex_label.classList.add("positive");
-                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>';
+                ind_hex_label.innerHTML = inds[j] + '<br><img src = "img/arrow-up-long-solid-full.svg" style="margin-top: 0.5em; width: 30px;">';
             } else if (Object.keys(worsening_indicator).includes(inds[j])) {
                 ind_hex.classList.add("negative") 
                 ind_hex_label.classList.add("negative");
-                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>';
+                ind_hex_label.innerHTML = inds[j] + '<br><img src = "img/arrow-down-long-solid-full.svg" style="margin-top: 0.5em; width: 30px;">';
             } else if (Object.keys(insufficient_indicator).includes(inds[j])) {
                 ind_hex.classList.add("insufficient");
                 ind_hex_label.classList.add("insufficient");
                 ind_hex_label.innerHTML = inds[j];
             } else if (Object.keys(no_change_indicator).includes(inds[j])) {
-                ind_hex_label.innerHTML = inds[j] + '<br><i style="margin-top: 0.5em;" class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>';
+                ind_hex_label.innerHTML = inds[j] + '<br><img src = "img/arrow-right-long-solid-full.svg" style="margin-top: 0.5em; width: 30px;">';
             } else {
                 ind_hex_container.style.display = "none";
             }
