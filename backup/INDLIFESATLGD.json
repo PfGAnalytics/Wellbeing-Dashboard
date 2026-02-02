@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "index": ["2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24", "2024/25"],
           "label": {
             "2014/15": "2014/15",
             "2015/16": "2015/16",
@@ -32,7 +32,8 @@
             "2020/21": "2020/21",
             "2021/22": "2021/22",
             "2022/23": "2022/23",
-            "2023/24": "2023/24"
+            "2023/24": "2023/24",
+            "2024/25": "2024/25"
           }
         },
         "label": "Financial year"
@@ -123,16 +124,16 @@
       ]
     },
     "note": [
-      "[b]Life satisfaction[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nAverage life satisfaction score for people aged 16 and over. Life satisfaction is measured on a scale from 0 to 10, where 0 is not at all satisfied and 10 is completely satisfied.\r\n\r\n[b]Source[/b]\r\nIndividual Wellbeing in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/individual-wellbeing-northern-ireland]Individual Wellbeing in Northern Ireland | The Executive Office (executiveoffice-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe coronavirus pandemic resulted in a change in data collection mode and a reduced sample size for 2020/21 and 2021/22. Therefore, users should take this into consideration when interpreting future years of data and care should be taken when comparing any findings published prior to 2020/21.\r\n\r\n[b]Further information[/b]\r\n1. The sample size for 2020/21 was approximately less than half compared to 2017/18, 2018/19 and 2019/20.\r\n2. Data refers to the population aged 16 and over.\r\n3. Data is collected through Continuous Household Survey (CHS). For more information:\r\n[url=https://www.nisra.gov.uk/statistics/find-your-survey/continuous-household-survey]https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey[/url]\r\n4. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
+      "[b]Life satisfaction\r\n\r\nHow do we measure this?[/b]\r\nAverage life satisfaction score for people aged 16 and over. Life satisfaction is measured on a scale from 0 to 10, where 0 is not at all satisfied and 10 is completely satisfied. For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nIndividual Wellbeing in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/individual-wellbeing-northern-ireland-16-and-over]https://www.executiveoffice-ni.gov.uk/topics/individual-wellbeing-northern-ireland-16-and-over[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThe coronavirus pandemic resulted in a change in data collection mode and a reduced sample size for 2020/21 and 2021/22. Therefore, users should take this into consideration when interpreting future years of data and care should be taken when comparing any findings published prior to 2020/21.\r\n\r\n[b]Further information[/b]\r\n1. The sample size for 2020/21 was approximately less than half compared to 2017/18, 2018/19 and 2019/20.\r\n2. Data refers to the population aged 16 and over. \r\n3. Data is collected through Continuous Household Survey (CHS). For more information, refer to: [url=https://www.nisra.gov.uk/statistics/find-your-survey/continuous-household-survey]NISRA Statistics – Continuous Household Survey[/url]\r\n4. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
     ],
     "role": {
       "geo": "LGD2014",
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 10, 11],
-    "updated": "2025-04-29T9:30:00",
-    "value": [7.6, 7.6, 7.6, 7.9, 7.9, 7.9, 8, 7.7, 7.7, 7.7, 8, 7.7, 7.9, 7.4, 7.7, 7.9, 8, 7.7, 7.9, 7.8, 7.8, 8.1, 8, 8, 7.5, 7.8, 8, 7.7, 7.7, 7.8, 8.1, 7.7, 7.9, 7.8, 8, 7.6, 7.8, 7.7, 8.3, 8.1, 7.8, 8, 8, 8, 7.7, 8.1, 7.4, 7.9, 7.6, 7.9, 7.9, 7.9, 8.2, 7.8, 7.8, 7.8, 8, 7.4, 7.9, 7.7, 7.9, 7.9, 7.8, 8, 7.9, 7.7, 7.3, 7.8, 7.5, 7.6, 7.5, null, 7.8, 7.7, 7.9, 7.5, 7.7, 7.7, 8, 7.3, 7.8, 7.5, 7.7, 7.9, 7.7, 7.9, 7.9, 8, 7.6, 7.7, 7.2, 7.7, 7.5, 8, 7.7, 7.4, 7.8, 7.8, 7.8, 7.5, 7.7, 7.5, 7.8, 7.5, 8, 7.9, 7.9, 8, 8.3, 7.9],
+    "size": [1, 11, 11],
+    "updated": "2026-02-02T9:30:00",
+    "value": [7.6, 7.6, 7.6, 7.9, 7.9, 7.9, 8, 7.7, 7.7, 7.7, 8, 7.7, 7.9, 7.4, 7.7, 7.9, 8, 7.7, 7.9, 7.8, 7.8, 8.1, 8, 8, 7.5, 7.8, 8, 7.7, 7.7, 7.8, 8.1, 7.7, 7.9, 7.8, 8, 7.6, 7.8, 7.7, 8.3, 8.1, 7.8, 8, 8, 8, 7.7, 8.1, 7.4, 7.9, 7.6, 7.9, 7.9, 7.9, 8.2, 7.8, 7.8, 7.8, 8, 7.4, 7.9, 7.7, 7.9, 7.9, 7.8, 8, 7.9, 7.7, 7.3, 7.8, 7.5, 7.6, 7.5, null, 7.8, 7.7, 7.9, 7.5, 7.7, 7.7, 8, 7.3, 7.8, 7.5, 7.7, 7.9, 7.7, 7.9, 7.9, 8, 7.6, 7.7, 7.2, 7.7, 7.5, 8, 7.7, 7.4, 7.8, 7.8, 7.8, 7.5, 7.7, 7.5, 7.8, 7.5, 8, 7.9, 7.9, 8, 8.3, 7.9, 7.7, 7.6, 7.4, 8, 7.4, 8, 7.8, 7.8, 7.9, 7.9, 8.1],
     "version": "2.0"
   },
   "id": {}
