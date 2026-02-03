@@ -2523,6 +2523,14 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     slider.min = 0;
     slider.max = years.length - 1;
     slider.value = years.length - 1;
+
+
+   slider.setAttribute("aria-labelledby", "popup-map-slider-label");
+   slider.setAttribute("aria-valuemin", years[0]);
+   slider.setAttribute("aria-valuemax", years[years.length - 1]);
+   slider.setAttribute("aria-valuenow", years[slider.value]);  
+   slider.setAttribute("aria-valuetext", years[slider.value]);
+
     
     // Append label and slider to inner container
     sliderContainer.appendChild(sliderLabel);
@@ -2538,6 +2546,10 @@ async function drawPopupMap(d, e, type, main_container, loading) {
       const selectedYear = years[slider.value];
       yearLabel.textContent = `${selectedYear}`;
       const selectedData = data_by_year[selectedYear];
+
+      slider.setAttribute("aria-valuenow", selectedYear);
+      slider.setAttribute("aria-valuetext", `${selectedYear}`);
+
       
       const rangeMin = globalMin;
       const rangeMax = globalMax;
