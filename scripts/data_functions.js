@@ -1363,7 +1363,9 @@ async function renderPopup (d, e, eq_group) {
       close_pop_up.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';        // Place an X icon in box
       close_pop_up.tabIndex = "0";
 
-      close_pop_up.onclick = function () {      // When close button is clicked:
+      let onEsc;
+
+      function closePopUp() {      // When close button is clicked:
          indicator_scrn.style.filter = "opacity(100%)";     // Set main page brightness back to full
          main_container.removeChild(pop_up_chart);          // Remove the pop-up
          
@@ -1372,7 +1374,20 @@ async function renderPopup (d, e, eq_group) {
          params.delete("popup");
          const newURL = location.pathname + "?" + params.toString();
          history.replaceState(null, "", newURL);
+
+         document.removeEventListener("keydown", onEsc);
       }
+      
+      close_pop_up.onclick = closePopUp;
+      
+      onEsc = function (e) {
+         if (e.key === "Escape" || e.key === "Esc") {
+            e.preventDefault();
+            closePopUp();
+         }
+      };
+      
+      document.addEventListener("keydown", onEsc);
 
       pop_up_chart.appendChild(close_pop_up);   // Insert close button into document
 
@@ -2055,15 +2070,31 @@ async function renderMapPopup(d, e, type, data) {
       closeBtn.style.top = "0px";
       closeBtn.style.right = "-10px";
       closeBtn.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';
+
+      let onEsc;
       
-      closeBtn.onclick = function () {
+      function closePopUp() {
          indicator_scrn.style.filter = "opacity(100%)";
          main_container.removeChild(pop_up_map);
          
          const params = new URLSearchParams(location.search);
          params.delete("popup");
          history.replaceState(null, "", location.pathname + "?" + params.toString());
+
+         document.removeEventListener("keydown", onEsc);
       };
+
+      closeBtn.onclick = closePopUp;
+      
+      onEsc = function (e) {
+         if (e.key === "Escape" || e.key === "Esc") {
+            e.preventDefault();
+            closePopUp();
+         }
+      };
+      
+      document.addEventListener("keydown", onEsc);
+
       pop_up_map.appendChild(closeBtn);
 
       // After creating pop_up_map and before appending mapContainer
@@ -2111,6 +2142,24 @@ async function renderMapPopup(d, e, type, data) {
       const mapContainer = document.createElement("div");
       mapContainer.id = "popup-map-container";
 
+      mapContainer.setAttribute("role", "region");
+      mapContainer.setAttribute("tabindex", "0");
+
+      function setAriaLabel() {
+         const ariaTitle = document.getElementById("popup-map-title");
+         const baseSentence = "A map of Northern Ireland showing the";
+
+         let titleText = ariaTitle ? ariaTitle.textContent.trim().replace(/\s*\.$/, "") : "";
+         
+         if (titleText) {
+            titleText = titleText.charAt(0).toLowerCase() + titleText.slice(1);
+         }
+
+         const ariaText = titleText ? `${baseSentence} ${titleText}.` : `${baseSentence}.`;
+         mapContainer.setAttribute("aria-label", ariaText);
+      }
+      
+      setAriaLabel();
       pop_up_map.appendChild(mapContainer);
       
       // Buttons container
@@ -2140,35 +2189,47 @@ async function renderMapPopup(d, e, type, data) {
       
 
       downloadMapBtn.addEventListener("click", () => downloadMapImage(mapContainer));
-      
-      // let indicatorCode = data[type];
-      // if (!indicatorCode) {
-      //    console.warn("No indicator code found for type:", type);
-      //    return;
-      // }
-      
-      const indicatorCode = domains_data?.[d]?.indicators?.[e]?.data?.[type];
-      if (!indicatorCode) {
+
+      const indicator = domains_data[d].indicators[e];
+
+      if (!indicator) {
          loading.style.display = "none";
          pop_up_map.appendChild(document.createTextNode("Map data not available."));
          return;
+      } 
+
+      const matrix = indicator.data[type]; // AA or LGD
+      if (!matrix) {
+         main_container.innerHTML = "<p>No data available for this indicator.</p>";
+         return;
       }
+
+      let currentDate = new Date().toISOString().split('T')[0];    
+
+      let dp_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
       
-      let apiUrl = `/backup/${indicatorCode}.json`;
-      let apiResponse;
       try {
-         apiResponse = await fetch(apiUrl).then(res => res.json());
-      } catch (err) {
-         console.error("Failed to fetch indicator data:", err);         
-         return;
+         const response = await fetch(dp_url);
+         const fetched_data = await response.json();
+         let dp_result = fetched_data;
+         has_error = dp_result.hasOwnProperty("error");
+      } catch (error) {
+         has_error = true;
       }
       
-      if (!apiResponse.result || !apiResponse.result.note) {
-         console.warn("No note data available in API response");
-         return;
+      // URL to query (pre-production)
+      if (has_error) {
+         api_url = `${config.backupURL}${matrix}.json`;
+      } else {
+         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
       }
-      
-      let popup_further_note = apiResponse.result.note[0].replaceAll("\n", "");
+
+     // Fetch data and store in object fetched_data
+     const response = await fetch(api_url);
+     const fetched_data = await response.json();
+     const {result} = fetched_data;
+
+     let popup_further_note = String(result.note[0] || "").replaceAll("\n", "");
       
       let further_string;
       if (popup_further_note.indexOf("Further information") !== -1) {
@@ -2245,6 +2306,9 @@ async function renderMapPopup(d, e, type, data) {
    window.addEventListener("DOMContentLoaded", handleRefreshPopup);
 
 async function drawPopupMap(d, e, type, main_container, loading) {
+
+   let currentDate = new Date().toISOString().split('T')[0];   
+
     const indicator = domains_data[d].indicators[e];
     const matrix = indicator.data[type]; // AA or LGD
     if (!matrix) {
@@ -2252,18 +2316,30 @@ async function drawPopupMap(d, e, type, main_container, loading) {
         return;
     }
 
-    // Build API URL
-    const api_url = config.baseURL +
-        `api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22${matrix}%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=${config.apiKey}`;
+    dp_url = config.baseURL + "api.jsonrpc?data=%7B%0A%09%22jsonrpc%22:%20%222.0%22,%0A%09%22method%22:%20%22PxStat.Data.Cube_API.ReadCollection%22,%0A%09%22params%22:%20%7B%0A%09%09%22language%22:%20%22en%22,%0A%09%09%22datefrom%22:%20%22" + currentDate + "%22%0A%09%7D%0A%7D&apiKey=" + config.apiKey;
 
-    const response = await fetch(api_url);
-    const fetched_data = await response.json();
-    const { result } = fetched_data;
+    let has_error = false;
 
-    if (!result) {
-        main_container.innerHTML = "<p>No data available.</p>";
-        return;
+    try {
+      const response = await fetch(dp_url);
+      const fetched_data = await response.json();
+      let dp_result = fetched_data;
+      has_error = dp_result.hasOwnProperty("error");
+    } catch (error) {
+      has_error = true;
     }
+
+   // URL to query (pre-production)
+   if (has_error) {
+      api_url = `${config.backupURL}${matrix}.json`;
+   } else {
+      api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+   }
+
+     // Fetch data and store in object fetched_data
+     const response = await fetch(api_url);
+     const fetched_data = await response.json();
+     const {result} = fetched_data;
 
     loading.style.display = "none";
 
