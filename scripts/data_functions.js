@@ -2182,16 +2182,37 @@ async function renderMapPopup(d, e, type, data) {
       mapContainer.setAttribute("tabindex", "0");
 
       function setAriaLabel() {
-         const ariaTitle = document.getElementById("popup-map-title");
+         const ariaTitleEl = document.getElementById("popup-map-title");
          const baseSentence = "A map of Northern Ireland showing the";
 
-         let titleText = ariaTitle ? ariaTitle.textContent.trim().replace(/\s*\.$/, "") : "";
+         const rawTitle = ariaTitleEl ? ariaTitleEl.textContent.trim().replace(/\s*\.$/, "") : "";
+         let titleText = rawTitle;
          
          if (titleText) {
             titleText = titleText.charAt(0).toLowerCase() + titleText.slice(1);
          }
 
-         const ariaText = titleText ? `${baseSentence} ${titleText}.` : `${baseSentence}.`;
+         let customAriaTitle;
+
+         if (rawTitle && rawTitle.startsWith("Gap between the percentage of non-free school meal entitled (non-FSME)")) {
+            let suffix = "";
+
+            const byID = rawTitle.toLowerCase().lastIndexOf(" by ");
+            if (byID) {
+               suffix = rawTitle.slice(byID);
+            }
+
+            customAriaTitle = "gap between the percentage of non-FSME and FSME school leavers achieving at level 2 or above" + (suffix ? suffix : "");
+         }
+
+         let ariaText;
+
+         if (customAriaTitle) {
+            ariaText =  `${baseSentence} ${customAriaTitle}.`;
+         } else {
+            ariaText = titleText ? `${baseSentence} ${titleText}.` : `${baseSentence}.`;
+         }
+
          mapContainer.setAttribute("aria-label", ariaText);
       }
       
