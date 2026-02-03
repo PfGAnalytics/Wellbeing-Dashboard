@@ -18,6 +18,9 @@ jobs:
             any::jsonlite
             any::stringr
             any::purrr
+            any::openxlsx
+            any::lubridate
+            any::V8
 
       - name: Check out repository
         uses: actions/checkout@v4
