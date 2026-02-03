@@ -2042,6 +2042,8 @@ async function renderPopup (d, e, eq_group) {
 }
 
 async function renderMapPopup(d, e, type, data) {
+
+   const previouslyFocused = document.activeElement;
    
    // Remove existing popup
     if (document.getElementById("pop-up-map")) {
@@ -2052,6 +2054,7 @@ async function renderMapPopup(d, e, type, data) {
     // Create popup container
     const pop_up_map = document.createElement("div");
     pop_up_map.id = "pop-up-map";
+    pop_up_map.setAttribute("tabindex", "-1");
 
     pop_up_map.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
     
@@ -2061,7 +2064,39 @@ async function renderMapPopup(d, e, type, data) {
          pop_up_map.style.width = "1190px";
       }
 
+
+      function trapFocus(container) {
+          const focusableSelectors = `
+              a[href], button, input, select, textarea, 
+              [tabindex]:not([tabindex="-1"])
+          `;
+          const getFocusable = () =>
+              [...container.querySelectorAll(focusableSelectors)]
+                  .filter(el => !el.disabled && el.offsetParent !== null);
+
+          container.addEventListener("keydown", e => {
+              if (e.key !== "Tab") return;
+
+              const focusable = getFocusable();
+              if (focusable.length === 0) return;
+
+              const first = focusable[0];
+              const last = focusable[focusable.length - 1];
+
+              if (e.shiftKey && document.activeElement === first) {
+                  e.preventDefault();
+                  last.focus();
+              } else if (!e.shiftKey && document.activeElement === last) {
+                  e.preventDefault();
+                  first.focus();
+              }
+          });
+      }
+
+
       main_container.appendChild(pop_up_map);
+      pop_up_map.focus();
+      trapFocus(pop_up_map);
       
       // Create close button
       closeBtn = document.createElement("div");
@@ -2076,6 +2111,7 @@ async function renderMapPopup(d, e, type, data) {
       function closePopUp() {
          indicator_scrn.style.filter = "opacity(100%)";
          main_container.removeChild(pop_up_map);
+         previouslyFocused.focus();
          
          const params = new URLSearchParams(location.search);
          params.delete("popup");
