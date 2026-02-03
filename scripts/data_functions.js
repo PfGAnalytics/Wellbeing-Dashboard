@@ -1344,6 +1344,79 @@ async function renderPopup (d, e, eq_group) {
    pop_up_buttons.id = "pop-up-buttons";                     // Give it a class
    pop_up_buttons.style.backgroundColor = "#F2F2F2";       // Set its background colour
 
+
+      const previouslyFocused = document.activeElement;
+
+      // Make popup focusable
+      pop_up_chart.setAttribute("tabindex", "-1");
+
+      // Focus trap function
+      function trapFocus(container) {
+         const focusableSelectors = `
+            a[href], button, input, select, textarea,
+            [tabindex]:not([tabindex="-1"])
+         `;
+
+         const getFocusable = () =>
+            [...container.querySelectorAll(focusableSelectors)]
+               .filter(el => !el.disabled && el.offsetParent !== null);
+
+         container.addEventListener("keydown", e => {
+            if (e.key !== "Tab") return;
+
+            const focusable = getFocusable();
+            if (focusable.length === 0) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (e.shiftKey && document.activeElement === first) {
+               e.preventDefault();
+               last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+               e.preventDefault();
+               first.focus();
+            }
+         });
+      }
+
+      // Apply focus trap
+      trapFocus(pop_up_chart);
+
+
+      // ESC key support
+      function handleEsc(e) {
+          if (e.key === "Escape" || e.key === "Esc") {
+              e.preventDefault();
+              closePopUp();
+          }
+      }
+      document.addEventListener("keydown", handleEsc);
+
+
+      // Focus popup itself
+      setTimeout(() => pop_up_chart.focus(), 0);
+
+      // Modify closePopUp to restore focus
+      const originalClosePopUp = closePopUp; // store reference
+
+
+      function closePopUp() {
+          indicator_scrn.style.filter = "opacity(100%)";
+          main_container.removeChild(pop_up_chart);
+
+          // Remove popup parameter from URL when closing
+          const params = new URLSearchParams(location.search);
+          params.delete("popup");
+          const newURL = location.pathname + "?" + params.toString();
+          history.replaceState(null, "", newURL);
+
+          // Remove ESC listener
+          document.removeEventListener("keydown", handleEsc);
+      }
+
+
+
       // This will position the pop-up to always be immediately below the Indicator title
       pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
 
@@ -2031,6 +2104,11 @@ async function renderPopup (d, e, eq_group) {
          // Add toggle functionality to the span
          toggleSpan = note.querySelector(".note-span");
          toggleSpan.style.cursor = "pointer";
+
+         toggleSpan.setAttribute("tabindex", "0");
+         toggleSpan.setAttribute("role", "button");
+         toggleSpan.setAttribute("aria-expanded", "false");
+
          
          toggleSpan.addEventListener("click", function () {
             isVisible = notes_list.style.display === "block";

@@ -118,6 +118,13 @@ h1 {
     filter: brightness(0) invert(1);
 }
 
+
+#pop-up-chart *:focus {
+    outline: 3px solid #c00; /* or your existing red */
+    outline-offset: 3px;
+}
+
+
 .selected-icon {
     filter: brightness(0) saturate(100%) invert(12%) sepia(94%) saturate(1827%) hue-rotate(221deg) brightness(82%) contrast(101%);
 }
