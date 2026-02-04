@@ -1995,6 +1995,7 @@ async function renderPopup (d, e, eq_group) {
    const chartTypeSelect = document.createElement("select");
    chartTypeSelect.id = "chart-type-select";
    chartTypeSelect.classList.add("chart-dropdown")
+   chartTypeSelect.setAttribute("aria-label", "A dropdown that can be used to change the chart type. Use the up and down arrow keys to adjust the chart type.");
 
    // Define chart options
    const chartOptions = [
@@ -2115,9 +2116,13 @@ async function renderPopup (d, e, eq_group) {
             notes_list.style.display = isVisible ? "none" : "block";
             toggleSpan.innerHTML = isVisible ? `<i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand`: `<i style="color: #142062" class="fa-solid fa-minus"></i> Click to collapse`;
          });
-      };           
+      };
+      
+      setAltTextChart(pop_up_title);
 
 }
+
+let mapContainer;
 
 async function renderMapPopup(d, e, type, data) {
 
@@ -2253,48 +2258,11 @@ async function renderMapPopup(d, e, type, data) {
       loading.style.marginTop = "100px";
       
       // Create map container
-      const mapContainer = document.createElement("div");
+      mapContainer = document.createElement("div");
       mapContainer.id = "popup-map-container";
-
       mapContainer.setAttribute("role", "region");
       mapContainer.setAttribute("tabindex", "0");
-
-      function setAriaLabel() {
-         const ariaTitleEl = document.getElementById("popup-map-title");
-         const baseSentence = "A map of Northern Ireland showing the";
-
-         const rawTitle = ariaTitleEl ? ariaTitleEl.textContent.trim().replace(/\s*\.$/, "") : "";
-         let titleText = rawTitle;
-         
-         if (titleText) {
-            titleText = titleText.charAt(0).toLowerCase() + titleText.slice(1);
-         }
-
-         let customAriaTitle;
-
-         if (rawTitle && rawTitle.startsWith("Gap between the percentage of non-free school meal entitled (non-FSME)")) {
-            let suffix = "";
-
-            const byID = rawTitle.toLowerCase().lastIndexOf(" by ");
-            if (byID) {
-               suffix = rawTitle.slice(byID);
-            }
-
-            customAriaTitle = "gap between the percentage of non-FSME and FSME school leavers achieving at level 2 or above" + (suffix ? suffix : "");
-         }
-
-         let ariaText;
-
-         if (customAriaTitle) {
-            ariaText =  `${baseSentence} ${customAriaTitle}.`;
-         } else {
-            ariaText = titleText ? `${baseSentence} ${titleText}.` : `${baseSentence}.`;
-         }
-
-         mapContainer.setAttribute("aria-label", ariaText);
-      }
       
-      setAriaLabel();
       pop_up_map.appendChild(mapContainer);
       
       // Buttons container
@@ -2523,7 +2491,7 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     yearLabel.id = "popup-map-year-label";
     yearLabel.classList.add("popup-map-year-label");
     sliderWrapper.appendChild(yearLabel);
-    
+
     // Inner container for label + slider
     const sliderContainer = document.createElement("div");
     sliderContainer.id = "popup-map-slider-container";
@@ -2545,8 +2513,7 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     slider.max = years.length - 1;
     slider.value = years.length - 1;
 
-
-   slider.setAttribute("aria-labelledby", "popup-map-slider-label");
+   slider.setAttribute("aria-label", "A slider that can be used to change the map to different years. Use the left and right arrow keys to adjust the year.");
    slider.setAttribute("aria-valuemin", years[0]);
    slider.setAttribute("aria-valuemax", years[years.length - 1]);
    slider.setAttribute("aria-valuenow", years[slider.value]);  
@@ -2567,6 +2534,9 @@ async function drawPopupMap(d, e, type, main_container, loading) {
       const selectedYear = years[slider.value];
       yearLabel.textContent = `${selectedYear}`;
       const selectedData = data_by_year[selectedYear];
+
+      const yearMin = Math.min(...selectedData);
+      const yearMax = Math.max(...selectedData)
 
       slider.setAttribute("aria-valuenow", selectedYear);
       slider.setAttribute("aria-valuetext", `${selectedYear}`);
@@ -2589,11 +2559,13 @@ async function drawPopupMap(d, e, type, main_container, loading) {
         }
 
         const shapes = type === "LGD" ? LGD_map : AA_map;
+        let shapeNames = [];
         window.popupShapes = L.geoJSON(shapes, {
             onEachFeature: (f, l) => {
                 const idx = f.properties['OBJECTID'] - 1;
                 const val = selectedData[idx];
                 l.bindTooltip(`${f.properties[type === "LGD" ? "LGDNAME" : "PC_NAME"]} (${selectedYear}): <b>${val ?? "Not available"}</b> (${unit})`);
+                shapeNames.push(`${f.properties[type === "LGD" ? "LGDNAME" : "PC_NAME"]}`)
                 l.setStyle({
                     fillColor: getColor(val),
                     fillOpacity: 0.75,
@@ -2602,6 +2574,10 @@ async function drawPopupMap(d, e, type, main_container, loading) {
                 });
             }
         }).addTo(map);
+        const shapeMin = shapeNames[selectedData.indexOf(yearMin, selectedData)];
+        const shapeMax = shapeNames[selectedData.indexOf(yearMax, selectedData)];
+        
+        setAltTextMap(shapeMin, yearMin, shapeMax, yearMax);
 
         // Crop map to bounds
         map.fitBounds(window.popupShapes.getBounds());
@@ -3343,3 +3319,32 @@ function handleRefreshPopup() {
    
     renderMapPopup(d, e, type);
   }
+  
+  function setAltTextMap(shapeMin, yearMin, shapeMax, yearMax) {
+   const baseSentence = "A map of Northern Ireland";
+   const yearEl = document.getElementById("popup-map-year-label");
+   const lowHighSentence = `The lowest was ${shapeMin} with ${yearMin} and the highest was ${shapeMax} with ${yearMax}`;
+
+   let titleText;
+
+   const currentYear = yearEl ? yearEl.textContent.trim() : "";
+   const yearText = currentYear ? `for the year ${currentYear}.` : "";
+         
+   const altText = titleText ? `${baseSentence} ${titleText} ${yearText} ${lowHighSentence}.` : `${baseSentence} ${yearText} ${lowHighSentence}.`;
+   mapContainer.setAttribute("alt", altText);
+}
+
+function setAltTextChart () {
+   const baseSentence = "A time-series";
+   const titleEl = document.getElementById("pop-up-title");
+   const withNI = "with a Northern Ireland line for comparison"
+
+   const eqGroup = titleEl ? titleEl.textContent.trim() : "";
+   const bySentence = eqGroup.match(/by\s.+$/i)?.[0] || "";
+
+   let titleText;
+
+   const altText = titleText ? `${baseSentence} ${bySentence} ${withNI}.` : `${baseSentence} ${bySentence} ${withNI}.`;
+
+   pop_canvas.setAttribute("alt", altText);
+}
