@@ -3335,7 +3335,7 @@ function handleRefreshPopup() {
   function setAltTextMap(shapeMin, yearMin, shapeMax, yearMax) {
    const baseSentence = "A map of Northern Ireland";
    const yearEl = document.getElementById("popup-map-year-label");
-   const lowHighSentence = `The lowest was ${shapeMin} with ${yearMin} and the highest was ${shapeMax} with ${yearMax}`;
+   const lowHighSentence = `The lowest value was ${shapeMin} with ${yearMin} and the highest value was ${shapeMax} with ${yearMax}`;
 
    let titleText;
 
