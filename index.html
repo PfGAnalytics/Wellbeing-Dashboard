@@ -62,9 +62,8 @@
         </div>
         </div>
         <form id = "top-menu-items">
-            <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><img id = "home-icon" src="img/house-user-solid-full.svg" alt = "Home icon" style="width: 30px;"> Home</button>
-            <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 30px;"> Maps</button>
-            <button id = "about-btn" class = "top-menu-item" name = "tab" value = "about"><img id ="about-icon" src="img/circle-question-regular-full.svg" alt ="About icon" style = "width: 30px;"> About</button>
+            <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fa-solid fa-house-user"></i> Home</button>
+            <button id = "about-btn" class = "top-menu-item" name = "tab" value = "about"><i class="fa-regular fa-circle-question"></i> About</button>
         </form>
     </div>    
 
@@ -299,63 +298,6 @@
                             <strong>Further information</strong>
                         </div>
                         <div id="further-info"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id = "maps-scrn" class = "screen" style = "display: none;">
-                <h2>Mapping the indicators</h2>
-                <form id = "map-form">
-                    <label for="map-select-1">Domain:</label>
-                    <select id = "map-select-1"></select>
-                    <label for="map-select-2" id = "map-label-2">Indicator:</label>
-                    <select id = "map-select-2"></select>
-                    <label for="map-select-3" id = "map-label-3">Geography:</label>
-                    <select name = "map" id = "map-select-3"></select>
-                </form>
-                <div id = "map-content">
-                    <form>
-                        <div class = "row">
-                            <label for = "map-select-4" id = "map-label-4">Select year:</label>
-                            <div style = "margin-left: 10px">
-                                <div id = "date-display"></div>
-                                <input id ="map-select-4" type="range" class="slider" id="myRange">
-                            </div>
-                        </div>
-                    </form>
-                    <div id = "map-title"></div>
-                    <div class = "row" style = "align-items: start;">
-                        <div id = "map-load"><img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation"></div>
-                        <div id = "map-container"></div>
-                        <div id = "map-boxes" class = "box-container">
-                            <form style = "margin-top: 15px; display: flex; justify-content: center;">
-                                <button id = "chart-link" name = "indicator">
-                                     <img id="chart-icon" src="img/chart-line-solid-full.svg" style="width: 30px;">
-                                    See trend data for this indicator<br>at Northern Ireland level
-                                </button>
-                            </form>
-                            <strong style = "padding-left: 33px"> Download:</strong>
-                            <button id="download-map" class="btn btn-primary">Map to image (PNG format)</button>
-                            <button id="download-map-data" class="btn btn-primary">Data in CSV format</button>
-                        </div>
-                    </div>
-                    <div class = "row" style = "margin-top: 20px;">
-                        <div class = "blue-label" style = "min-width: 280px;">How do we measure this?</div>
-                        <div id = "measure-info-map" class = "white-box"></div>
-                    </div>
-                    <div class = "row" style = "margin-top: 20px;">
-                        <div class = "blue-label" style = "min-width: 280px;">Why is this indicator important?</div>
-                        <div id = "ind-important-map" class = "white-box"></div>
-                    </div>
-                    <div class="grey-box">
-                        <strong>Source:</strong>
-                        <p id="source-info-map"></p>
-                        <strong>More data:</strong>
-                        <p id="data-info-map"></p>
-                        <strong>Impact of Covid-19</strong><br>
-                        <div id="covid-info-map"></div>
-                        <strong>Further information</strong>
-                        <div id="further-info-map"></div>
                     </div>
                 </div>
             </div>
