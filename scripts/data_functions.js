@@ -2380,6 +2380,18 @@ async function renderMapPopup(d, e, type, data) {
       const popupNotesContainer = document.createElement("div");
       popupNotesContainer.classList.add("popup-map-note-container");
 
+      // Map summary
+      const summaryHeading = document.createElement("p");
+      summaryHeading.classList.add("popup-map-summary");
+      summaryHeading.textContent = "Summary:";
+      popupNotesContainer.appendChild(summaryHeading);
+
+      // Summary text
+      const summaryText = document.createElement("p");
+      summaryText.classList.add("popup-map-summary-text");
+      // summaryText.textContent = setAltTextMap(shapeMin, yearMin, shapeMax, yearMax);
+      popupNotesContainer.appendChild(summaryText);
+
       // Add heading
       const heading = document.createElement("p");
       heading.classList.add("popup-map-notes");
@@ -3331,7 +3343,9 @@ function handleRefreshPopup() {
    const yearText = currentYear ? `for the year ${currentYear}.` : "";
          
    const altText = titleText ? `${baseSentence} ${titleText} ${yearText} ${lowHighSentence}.` : `${baseSentence} ${yearText} ${lowHighSentence}.`;
-   mapContainer.setAttribute("alt", altText);
+   
+   const summaryTextEl = document.querySelector(".popup-map-summary-text");
+   if (summaryTextEl) summaryTextEl.textContent = altText;
 }
 
 function setAltTextChart () {

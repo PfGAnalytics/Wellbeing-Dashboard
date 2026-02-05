@@ -1058,7 +1058,7 @@ footer {
     height: 50px;
 } 
 
-p.popup-map-notes {
+p.popup-map-notes, p.popup-map-summary {
     font-weight: bold;
     padding-top: 2%;
     margin-bottom: 0rem !important;
