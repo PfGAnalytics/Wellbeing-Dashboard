@@ -1244,6 +1244,8 @@ document.getElementById("source-info").appendChild(source_info_div);
 
 }
 
+let y_axis_label;
+
 // This function will read the categories within the EQUALGROUPS variable, then output the available groups in the grey box
 // Each group will then be linked to a pop-up that calls the data for that group from the data portal and plots bar chart
 async function getEqualityGroups(d, e) {
@@ -3335,7 +3337,48 @@ function handleRefreshPopup() {
   function setAltTextMap(shapeMin, yearMin, shapeMax, yearMax) {
    const baseSentence = "A map of Northern Ireland";
    const yearEl = document.getElementById("popup-map-year-label");
-   const lowHighSentence = `The lowest value was ${shapeMin} with ${yearMin} and the highest value was ${shapeMax} with ${yearMax}`;
+   const labelEl = (y_label_div.textContent || '').trim();
+   const titleEl = (chart_title_div.textContent || '').trim();
+
+   let summarySign;
+
+   if (labelEl.includes('%')) {
+      summarySign = '%';
+   } else if (labelEl.includes('Average (mean) life satisfaction score')) {
+      summarySign = ' average life satisfaction score';
+   } else if (labelEl.includes('Percentage points')) {
+      summarySign = ' percentage points';
+   } else if (labelEl.includes('Number') && titleEl.includes('Average life satisfaction score (from 0 to 10)')) {
+      summarySign = ' average life satisfaction score';
+   } else if (labelEl.includes('Annual mean nitrogen dioxide concentration (μg/m³)')) {
+      summarySign = ' mean NO₂ (μg/m³)';
+   } else if (labelEl.includes('MtCO₂e')) {
+      summarySign = ' net GHG emissions (MtCO₂e)';
+   } else if (labelEl.includes('mg/l soluble reactive phosphorus (SRP)')) {
+      summarySign = ' soluble reactive phosphorus (mg/L)';
+   } else if (labelEl.includes('Years')) {
+      summarySign = ' years';
+   } else if (labelEl.includes('Deaths per 100,000 population')) {
+      summarySign = ' deaths per 100,000 population'
+   } else if (labelEl.includes('NBI score (out of 100)')) {
+      summarySign = ' NBI score';
+   } else if (labelEl.includes('Index')) {
+      summarySign = ' output per hour worked';
+   } else if (labelEl.includes('Index (base 2022=100)')) {
+      summarySign = ' economic output';
+   } else if (labelEl.includes('Pounds Sterling (£), Millions')) {
+      summarySign = ' Pounds Sterling (£), Millions'
+   } else if (labelEl.includes('Days')) {
+      summarySign = ' days';
+   } else if (labelEl.includes('Number') && titleEl.includes('Number of households accepted by the Housing Executive as statutorily homeless')) {
+      summarySign = ' households';
+   } else if (labelEl.includes('Number of Applicants')) {
+      summarySign = ' applicants';
+   } else if (labelEl.includes('Number') && titleEl.includes('Number of coastal water bodies in good ecological condition')) {
+      summarySign = ' coastal water bodies';
+   }
+
+   const lowHighSentence = `The lowest value was ${shapeMin} with ${yearMin}${summarySign} and the highest value was ${shapeMax} with ${yearMax}${summarySign}`;
 
    let titleText;
 
