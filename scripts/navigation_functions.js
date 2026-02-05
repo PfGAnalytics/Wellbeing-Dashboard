@@ -92,6 +92,7 @@ var domain_toggle = document.getElementById("domain-toggle");
 var browse_grid = document.getElementById("browse-grid");
 var recent_updates = document.getElementById("recent-updates");
 var h3_recent_updates = document.getElementById("h3-recent-updates");
+var recent_filter = document.getElementById("recent-filter");
 var expanded_domains = document.getElementById("expanded-domains");
 var by_mission = document.getElementById("by-mission");
 var by_mission_grid = document.getElementById("by-mission-grid");
@@ -1631,6 +1632,10 @@ by_performance.onclick = function() {
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "block";
+    domains_intro.style.display = "none";
+    domains_title.style.display = "none";
+    domains_footer.style.display = "none";
+    recent_filter.style.display = "none";
 
 
     document.getElementById("recent-updates").style.display = "none";
