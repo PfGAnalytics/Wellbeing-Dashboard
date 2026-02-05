@@ -37,6 +37,7 @@ body {
 }
 
 
+
 #top-menu-items {
   width: 100%;
   display: flex;
@@ -94,7 +95,13 @@ h1 {
     max-width: 350px;
 }
 
+.selected-item #home-icon {
+    filter: brightness(0) saturate(100%) invert(16%) sepia(23%) saturate(3354%) hue-rotate(208deg) brightness(90%) contrast(95%);
+}
 
+.top-menu-item.selected-item:hover #home-icon {
+    filter: invert(0) brightness(100%);
+}
 
 .top-menu-item:hover {
     background-color: #ffffff55;
@@ -235,6 +242,11 @@ h3 {
     text-align: center;
     margin-top: 20px;
     margin-left: 50px;
+}
+
+#arrow-pointer {
+    filter: brightness(0) invert(1);
+    width: 25px;
 }
 
 .hex {
@@ -388,6 +400,7 @@ padding-right: 10px;
 
 #recent-updates th:nth-child(3), #recent-updates th:nth-child(4), #recent-updates td:nth-child(3), #recent-updates td:nth-child(4) {
     text-align: right;
+    justify-items: center;
 }
 
 #recent-updates td:nth-child(2), #recent-updates td:nth-child(3), #recent-updates td:nth-child(4) {
@@ -428,6 +441,15 @@ padding-right: 10px;
 
 .ind-hex.negative {
     background-color: #db0000;
+}
+
+#arrow-down, #arrow-up {
+    margin-left: -5px;
+    max-height: 25px;
+}
+
+#arrow-across {
+    max-width: 25px;
 }
 
 .ind-hex.insufficient {
@@ -786,6 +808,23 @@ footer {
     margin: 10px auto 10px auto;
     width: 150px;
     height: 48px;
+    margin-right: 10px;
+}
+
+#measure-info {
+    max-width: 700px;
+}
+
+@media (max-width: 992px) {
+    #measure-info {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    #measure-info {
+        max-width: 100%;
+    }
 }
 
 #download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data  {
@@ -800,6 +839,11 @@ footer {
     margin: 10px auto 0 auto;
     width: 270px;
     height: 50px;
+}
+
+#download-pop-up-chart {
+    padding: 0px !important;
+    font-size: 13.5pt !important;
 }
 
 #download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover, #share:hover {
@@ -1125,7 +1169,7 @@ footer a:hover {
     overflow: hidden;
 }
 
-#further-expander span, #further-expander i.fa-solid, #further-expander-map span, #further-expander-map i.fa-solid {
+#further-expander span, #further-expander-map span {
     display: none !important;
 }
 
@@ -1448,9 +1492,8 @@ input:focus-visible {
     background-color: #ffffff;
   }
 
-  
-  .fa-magnifying-glass {
-  color: #142062;
+  #search-button {
+    width: 25px;
   }
 
 
@@ -1696,8 +1739,8 @@ tr {
     #back-to-start, #skip-link, #top-container, #top-menu, #dashboard-title, #prototype, #search-box, #back-button, #button-left, #button-right, .button-row, 
     #loading-img, #loading-img4, #loading-img5, #loading-img-2, #cookie-banner, .chart-title, #top-menu-items, #footer-container, #search-bar, #nisra-logo-container, 
     #flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #map-form, #date-display, #map-label-4, input#map-select-4.slider, #chart-link,
-    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data, #toggle-chart-type, .chart-slider, .switch-label, .box-container, #subpop-container, 
-    .subpop-heading {
+    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data, #toggle-chart-type, .chart-slider, .switch-label, .box-container, 
+    #share, .chart-dropdown-wrapper {
         display: none !important;
     }
 
@@ -1714,8 +1757,8 @@ tr {
         font-size: 14pt !important;
     }
 
-    #further-expander span, #further-expander i.fa-solid, #further-expander-map span, #further-expander-map i.fa-solid,
-    .note-container .note-span, .note-container .fa-plus {
+    #further-expander span, #further-expander-map span,
+    .note-container .note-span {
         display: none !important;
     }
 
@@ -1812,6 +1855,7 @@ tr {
 
 #recent-table tr {
     background-color: #f4f4f4;
+
 }
 
 #recent-table th {
@@ -1823,4 +1867,31 @@ tr {
 #recent-table td {
     border: 1px solid black !important; 
     padding: 8px;
+}
+
+
+#recent-table th:nth-child(1),
+#recent-table td:nth-child(1) {
+    width: 40%;
+}
+
+#recent-table th:nth-child(2),
+#recent-table td:nth-child(2) {
+    width: 40%;
+}
+
+
+#recent-table th:nth-child(3),
+#recent-table td:nth-child(3) {
+    width: 20%;
+}
+
+#recent-filter {
+    margin-top: 30px;
+    margin-left: 1px;
+    text-align: left;
+}
+
+.row.key-text.performance {
+    width: fit-content
 }

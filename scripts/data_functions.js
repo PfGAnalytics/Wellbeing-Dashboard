@@ -237,13 +237,13 @@ async function indicatorPerformance (dom = null) {
 
 }
 
-let improvinghexDivHTML = '<div class = "row key-text performance">Improving<div class = "key-hex positive" style="margin-left:5px;"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long" style = "padding-right: 12px"></i></div>';
+let improvinghexDivHTML = '<div class = "row key-text performance" style = "background-color: #a1daa1; border: 2px solid; border-color: #00A857">Improving';
 
-let nochangehexDivHTML = '<div class = "row key-text performance">No change<div class = "key-hex neutral" style="margin-left:5px;"><div class = "key-hex-label neutral"><i class = "fa-solid fa-arrow-right-long" style = "padding-right: 12px"></i></div>';
+let nochangehexDivHTML = '<div class = "row key-text performance" style = "background-color: #FF9A5C; border: 2px solid; border-color: #FF6200 ">No change';
 
-let worseninghexDivHTML = '<div class = "row key-text performance">Worsening<div class = "key-hex negative" style="margin-left:5px;"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long" style = "padding-right: 12px"></i></div>';
+let worseninghexDivHTML = '<div class = "row key-text performance" style = "background-color: #FF7A7A; border: 2px solid; border-color: #db0000">Worsening';
 
-let insufficienthexDivHTML = '<div class = "row key-text performance">Insufficient<div class = "key-hex insufficient" style="margin-left:5px;"><div class = "key-hex-label insufficient"></div>';
+let insufficienthexDivHTML = '<div class = "row key-text performance" style = "background-color: #B0B0B0; border: 2px solid; border-color: #757575">Insufficient';
 
 
 // Function below uses the api to fetch the data and plots it in a line chart
@@ -1155,8 +1155,21 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
    } else {
       source_link = source_info.slice(source_info.indexOf("http"))
    }
+
+    var indicatorObj = domains_data[d].indicators[e]; // Full indicator object
+    var data = indicatorObj.data;
+
+    if (indicatorObj.AOS) {
+
+      source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. This is an Accredited Official Statistic.";
+
+    } else {
+
+      source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. This is an Official Statistic.";
+
+    }
    
-   source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
+   
 
 } else {
 
@@ -1435,7 +1448,7 @@ async function renderPopup (d, e, eq_group) {
       close_pop_up = document.createElement("div");      // Div for "X" close button in top corner of pop-up
       close_pop_up.id = "close-pop-up";                  // Give it an id
       close_pop_up.style.marginLeft = pop_up_chart.clientWidth - 30 + "px";     // Position it 30 pixels from end of box
-      close_pop_up.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';        // Place an X icon in box
+      close_pop_up.innerHTML = '<img src="img/xmark-solid-full.svg" alt="Close" style="filter:invert(1);">'; // Place an X icon in box
       close_pop_up.tabIndex = "0";
 
       let onEsc;
@@ -1506,7 +1519,7 @@ async function renderPopup (d, e, eq_group) {
       // Create a download button to download pop up chart
       const download_btn = document.createElement("button");
       download_btn.id = "download-pop-up-chart";
-      download_btn.textContent = "Download chart as image";
+      download_btn.textContent = "Download chart to image (PNG format)";
       download_btn.classList.add("btn", "btn-primary");
 
       download_btn.onclick = function () {
@@ -1568,40 +1581,37 @@ async function renderPopup (d, e, eq_group) {
       // Create a download data button for pop-up chart
       const download_data_btn = document.createElement("button");
       download_data_btn.id = "download-pop-up-data";
-      download_data_btn.textContent = "Download data";
+      download_data_btn.textContent = "Download data in CSV format";
       download_data_btn.classList.add("btn", "btn-primary");
-      
+
       download_data_btn.onclick = function () {
-         const canvas = document.getElementById("pop-canvas");
-         if (!canvas) return;
+         // Get domain and indicator titles
+         const domain = document.getElementById('domain-title')?.textContent.trim();
+         const indicator = document.getElementById('indicator-title')?.textContent.trim();
+         if (!domain || !indicator) {
+            alert('Domain or indicator not found.');
+            return;
+         }
          
-         const chartInstance = Chart.getChart(canvas);
-         if (!chartInstance || !chartInstance.data || !chartInstance.data.labels || !chartInstance.data.datasets) return;
+         // Get indicator data object from domains_data
+         const indicatorData = domains_data[domain]?.indicators[indicator]?.data;
+         if (!indicatorData) {
+            alert('Indicator data not available.');
+            return;
+         }
          
-         const labels = chartInstance.data.labels;
-         const datasets = chartInstance.data.datasets;
+         // Prioritise EQ, fallback to NI
+         const indicatorCode = indicatorData.EQ || indicatorData.NI;
+         if (!indicatorCode) {
+            alert('No downloadable data available for this indicator.');
+            return;
+         }
          
-         let csv = 'Label,' + datasets.map(ds => ds.label || 'Series').join(',') + '\n';
+         // Build the download URL
+         const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
          
-         labels.forEach((label, i) => {
-            const row = [label];
-            datasets.forEach(ds => {
-               row.push(ds.data[i] !== undefined ? ds.data[i] : '');
-            });
-            csv += row.join(',') + '\n';
-         });
-         
-         const titleEl = document.getElementById("pop-up-title");
-         const titleText = titleEl ? titleEl.textContent.trim() : '';
-         const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'data') + '.csv';
-         
-         const blob = new Blob([csv], { type: 'text/csv' });
-         const link = document.createElement("a");
-         link.href = URL.createObjectURL(blob);
-         link.download = fileName;
-         document.body.appendChild(link);
-         link.click();
-         document.body.removeChild(link);
+         // Redirect to the URL
+         window.location.href = downloadUrl;
       };
       
       // Append the button to the pop-up chart
@@ -1915,7 +1925,7 @@ async function renderPopup (d, e, eq_group) {
                title: {
                   display: true,
                   text: "Click legend item to hide/show series in chart",
-                  color: "#212529",
+                  color: "#ffffff",
                   font: {
                      family: "Arial, Helvetica, sans-serif",
                      size: 18
@@ -1943,44 +1953,45 @@ async function renderPopup (d, e, eq_group) {
             beforeDraw(chart) {
                const { ctx, chartArea: { top, left, width } } = chart;
                ctx.save();
-               ctx.fillStyle = '#f0f0f0'; // light grey background
-               ctx.strokeStyle = '#f0f0f0';
+               ctx.fillStyle = '#142062'; // light grey background
+               ctx.strokeStyle = '#142062';
 
                const labelCount = chart.legend.legendItems.length;
 
-               if (labelCount > 5 && Object.keys(values).some(key => key.includes("Quintile"))) {
+               const boxX = Math.round(left + 215);
+               const boxY = Math.round(
+                 top - (
+                   labelCount > 5 && Object.keys(values).some(key => key.includes("Quintile"))
+                     ? 88
+                     : 65
+                 )
+               );
+               const boxWidth  = Math.round(width - 460);
+               const boxHeight = 33;
 
-               var boxX = left + 40;
-               var boxY = top - 85;
-               var boxWidth = width - 110;
-               var boxHeight = 80;
-               var radius = 12;
+               // Clamp radius to avoid overlapping curves
+               const radiusRaw = 20;
+               const r = Math.min(radiusRaw, boxWidth / 2, boxHeight / 2);
 
-               } else {
-                  
-                  var boxX = left + 85;
-                  var boxY = top - 65;
-                  var boxWidth = width - 190;
-                  var boxHeight = 60;
-                  var radius = 12;
+               // Improve stroke appearance
+               ctx.lineJoin = 'round';
+               ctx.lineCap  = 'round';
 
-               }
-
-               // Draw rounded rectangle
                ctx.beginPath();
-               ctx.moveTo(boxX + radius, boxY);
-               ctx.lineTo(boxX + boxWidth - radius, boxY);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + radius);
-               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - radius);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - radius, boxY + boxHeight);
-               ctx.lineTo(boxX + radius, boxY + boxHeight);
-               ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - radius);
-               ctx.lineTo(boxX, boxY + radius);
-               ctx.quadraticCurveTo(boxX, boxY, boxX + radius, boxY);
+               ctx.moveTo(boxX + r, boxY);
+               ctx.lineTo(boxX + boxWidth - r, boxY);
+               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + r);
+               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - r);
+               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - r, boxY + boxHeight);
+               ctx.lineTo(boxX + r, boxY + boxHeight);
+               ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - r);
+               ctx.lineTo(boxX, boxY + r);
+               ctx.quadraticCurveTo(boxX, boxY, boxX + r, boxY);
                ctx.closePath();
-               ctx.fill();   // Fill with grey background
-               ctx.stroke(); // Optional border
-               ctx.restore();
+
+               ctx.fill();      // Fill with grey background
+               ctx.stroke();    // Optional border
+
             }
          }]
       };
@@ -2081,9 +2092,9 @@ async function renderPopup (d, e, eq_group) {
          notes = notes.filter(function (n) {return n != "" & n != " "})
 
          if (notes.length === 1) {
-            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Note: <span class='note-span'><i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand</span></p>`;
+            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Note:</p>`;
          } else if (notes.length > 1) {
-            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Notes: <span class='note-span'><i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand</span></p>`;
+            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Notes:</p>`;
          }
 
          let notes_list = document.createElement("ol");
@@ -3196,90 +3207,103 @@ function formatBritishDate(dateObj) {
        // Sort by updated date (most recent first)
        items.sort((a, b) => b.updated - a.updated);
 
-       // Take top 5
-       const top5 = items.slice(0, 5);
-
        const tbody = document.querySelector('#recent-table tbody');
-       tbody.innerHTML = ''; // Clear old rows
+       
+       function renderFiltered(days) {
+         const now = new Date();
+         const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+         
+         // Filter by window (keep valid dates only)
+         const filtered = items.filter(item => !isNaN(item.updated) && item.updated >= cutoff);
 
-       top5.forEach(item => {
-         const row = document.createElement('tr');
-
-         // Format date
-         const formattedDate = isNaN(item.updated)
-           ? 'Not Available'
-           : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
-
-         // Get indicator and domain info
-         const info = codeToInfoMap[item.dataset] || {};
-         const indicatorName = info.indicator || item.dataset || 'Unknown';
-         const domainName = info.domain || 'Unknown';
-
-         // Create URL-friendly indicator name
-         const urlIndicator = indicatorName
-           .toLowerCase()
-           .replace(/[^\w\s]/g, '')
-           .replace(/\s+/g, '+');
-
-         // Indicator link
-         const link = document.createElement('a');
-         link.href = `index.html?indicator=${urlIndicator}`;
-         link.textContent = indicatorName;
-
-         // Domain link
-         const domainLink = document.createElement('a');
-         domainLink.href = `index.html?domain=${domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
-         domainLink.textContent = domainName;
-
-         // Create table cells
-         const nameCell = document.createElement('td');
-         nameCell.style.border = '1px solid #ccc';
-         nameCell.style.padding = '8px';
-         nameCell.appendChild(link);
-
-         const domainCell = document.createElement('td');
-         domainCell.style.border = '1px solid #ccc';
-         domainCell.style.padding = '8px';
-         domainCell.appendChild(domainLink);
-
-         const performanceCell = document.createElement('td');
-         performanceCell.style.border = '1px solid #ccc';
-         performanceCell.style.padding = '8px';
-
-         // Use performance value to determine status
-         switch (item.performance.toLowerCase()) {
-           case 'worsening':
-             performanceCell.innerHTML = worseninghexDivHTML;
-             break;
-           case 'improving':
-             performanceCell.innerHTML = improvinghexDivHTML;
-             break;
-           case 'no change':
-             performanceCell.innerHTML = nochangehexDivHTML;
-             break;
-           case 'insufficient':
-             performanceCell.innerHTML = insufficienthexDivHTML;
-             break;
-           default:
-             performanceCell.textContent = 'Unknown';
+         const seen = new Set();
+         const toRender = [];
+         
+         for (const item of filtered) {
+            const info = codeToInfoMap[item.dataset] || {};
+            const indicatorName = info.indicator || item.dataset || 'Unknown';
+            const domainName = info.domain || 'Unknown';
+            const key = `${domainName}||${indicatorName}`;
+            
+            if (!seen.has(key)) {
+               seen.add(key);
+               toRender.push({ ...item, indicatorName, domainName });
+            }
          }
 
-         const dateCell = document.createElement('td');
-         dateCell.style.border = '1px solid #ccc';
-         dateCell.style.padding = '8px';
-         dateCell.textContent = formattedDate;
+         // Clear and render
+         tbody.innerHTML = '';
+         
+         // No updates
+         if (toRender.length === 0) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = 4;
+            cell.style.padding = '8px';
+            cell.textContent = `No updates in the last ${days} days.`;
+            row.appendChild(cell);
+            tbody.appendChild(row);
+            return;
+         }
+         
+         toRender.forEach(item => {
+            const row = document.createElement('tr');
+            
+            // Format date
+            const formattedDate = isNaN(item.updated) ? 'Not Available' : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
+            
+            // Indicator/domain lookup
+            const info = codeToInfoMap[item.dataset] || {};
+            const indicatorName = info.indicator || item.dataset || 'Unknown';
+            const domainName = info.domain || 'Unknown';
+            
+            // Indicator link
+            const urlIndicator = indicatorName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+');
+            const link = document.createElement('a');
+            link.href = `index.html?indicator=${urlIndicator}`;
+            link.textContent = indicatorName;
 
-         // Append cells to row
-         row.appendChild(nameCell);
-         row.appendChild(domainCell);
-         row.appendChild(performanceCell);
-         row.appendChild(dateCell);
-         tbody.appendChild(row);
-       });
-     })
-     .catch(error => console.error('Error loading JSON:', error));
+            // Domain link
+            const domainLink = document.createElement('a');
+            domainLink.href = `index.html?domain=${domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
+            domainLink.textContent = domainName;
 
+            // Cells
+            const nameCell = document.createElement('td');
+            nameCell.style.border = '1px solid #ccc';
+            nameCell.style.padding = '8px';
+            nameCell.appendChild(link);
 
+            const domainCell = document.createElement('td');
+            domainCell.style.border = '1px solid #ccc';
+            domainCell.style.padding = '8px';
+            domainCell.appendChild(domainLink);
+            
+            const dateCell = document.createElement('td');
+            dateCell.style.border = '1px solid #ccc';
+            dateCell.style.padding = '8px';
+            dateCell.textContent = formattedDate;
+
+            // Append
+            row.appendChild(nameCell);
+            row.appendChild(domainCell);
+            row.appendChild(dateCell);
+            tbody.appendChild(row);
+         });
+      }
+      
+      // Initial render defaults to last 30 days
+      renderFiltered(30);
+
+      const recentSelect = document.getElementById('recent-window');
+      if (recentSelect) {
+         recentSelect.addEventListener('change', function () {
+            const days = Number(this.value) || 30;
+            renderFiltered(days);
+         });
+      }
+   })
+   .catch(error => console.error('Error loading JSON:', error));
 
 function toTitleCase(str) {
 

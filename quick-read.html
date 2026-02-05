@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+
+<!-- metadata section for the document - not shown -->
+
+<head>
+
+  <!-- title for the document, used for tab name, bookmarks etc -->
+  <title>PfG Wellbeing Dashboard - Quick Read</title>
+  <link rel="icon" type="image" href="img/Northern_Ireland_Executive_icon.svg">
+
+  <!-- description for the document - will show on search engines -->
+  <meta name="description"
+    content="This page has been created to give a simple overview of how the Northern Ireland Executive (NI Government) spends the money that it has been given">
+  <!-- use a specified set of characters for text -->
+  <meta charset="utf-8">
+  <!-- tells the browser that this page has been made with mobile usage in mind -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="https://www.nisra.gov.uk/sites/nisra.gov.uk/themes/nisra_theme/favicon.ico"
+    type="image/vnd.microsoft.icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="custom.css" rel="stylesheet">
+
+  <!-- scripts to import JavaScript libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <!-- <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <script src = "scripts/config.js"></script>
+
+</head>
+
+<body onresize="responsiveFonts()">
+
+  <div id = "back-to-start" role = "region" on:click=goStart>
+      <a id = "back-to-start-link" href="#" tabindex="0">
+          Back to top
+          <img src = "img/cd-top-arrow.svg" style = "margin-bottom: 2px;">
+      </a>
+  </div>
+
+  <div id = "cookie-banner" role = "cookies-information"></div>
+  <div class="container">
+
+  <header class="mb-3 border-bottom">
+    <div class="nav-tint">
+      <div class="container" style="padding-bottom: 5px;">
+        <div class="row tint-row" style="width:100%">
+           <div class="col"><a target="_blank" rel="noopener noreferrer"><img src="img/Northern_Ireland_Executive_logo.svg" id="nav-nie-logo" alt="Northern Ireland Executive logo"></a></div>
+           <div id="quick-read-title"><h1><b>PfG Wellbeing Dashboard - Quick read</b></h1></div>
+           <div class="col"><a target="_blank" rel="noopener noreferrer"><img src="img/AIG-colour-blue-background.png" id="nav-aig-logo" alt="NISRA logo" style = "margin: 10px 0px 20px 50px;"></a></div>
+        </div>
+        <div class="button-row">
+          <button id = "home-btn" class = "top-menu-item"  onclick="window.location.href='index.html'">
+             <img class="top-menu-logo" src="img/house-user-solid-full.svg">
+             Home</button>
+          <button id="share" class="top-menu-item" type="share" alt="Share this page">
+             <img class="top-menu-logo" src="img/share-solid-full.svg">
+            Share</button>
+        </div>
+      </div>
+      </div>
+  </header>
+
+  <main>
+
+     <div class="col-sm-12" style="padding-bottom:20px;">
+      <div id="domain-card" class="card h-100" style="width: 100%;">
+        <div class="card-header" style="padding-top:10px;">
+          <div class="col">
+            <h2 class="card-title">
+            <span style="font-size:20px; font-weight:700; line-height:1.1;">
+              All Domains Performance
+            </span>
+           </h2>
+          </div>
+        </div>
+        <div class="domain-card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- chart - thriving children -->
+              <div>
+                <canvas id="all_domains_gauge"></canvas>
+              </div>
+              <!-- summary - thriving children -->
+              <p style="padding-top:20px;">Across all domains, there are currently:</p>
+
+              <ul>
+                <li id = "improving-count"></li>
+                <li id = "no-change-count"></li>
+                <li id = "worsening-count"></li>
+                <li id = "insufficient-count"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- beginning of thriving children -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div id="domain-card" class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Thriving Children
+              </span>
+             </h2>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - thriving children -->
+                <div>
+                  <canvas id="thriving_children_gauge"></canvas>
+                </div>
+                <!-- summary - thriving children -->
+                <p style="padding-top:20px;">The Thriving Children domain accounts for:</p>
+
+                <ul>
+                  <li>Children's social care</li>
+                  <li>Life satisfaction among young people</li>
+                  <li>Self-efficacy among young people</li>
+                  <li>Small for gestational age</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of thriving children -->
+
+      <!-- beginning of cleaner environment -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Cleaner Environment 
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - cleaner environment -->
+                <div>
+                  <canvas id="cleaner_environment_gauge"></canvas>
+                </div>
+                <!-- summary - cleaner environment -->
+                <p style="padding-top:20px;">The Cleaner Environment domain accounts for:</p>
+                <ul>
+                  <li>Air pollution</li>
+                  <li>Coastal water condition</li>
+                  <li>Condition of protected sites</li>
+                  <li>Greenhouse gas emissions</li>
+                  <li>Outdoor recreation</li>
+                  <li>Recycled waste</li>
+                  <li>Renewable electricity</li>
+                  <li>River water quality</li>
+                  <li>Sustainable travel - public transport</li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of cleaner environment -->
+
+
+      <!-- beginning equal society -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Equal Society
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - equal society -->
+                <div>
+                  <canvas id="equal_society_gauge"></canvas>
+                </div>
+                <!-- summary - equal society -->
+                <p style="padding-top:20px;">The Equal Society domain accounts for:</p>
+                <ul>
+                  <li>Cultural identity</li>
+                  <li>Income deprivation</li>
+                  <li>Income inequality</li>
+                  <li>Respect</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of equal society-->
+
+      <!-- beginning of healthier lives -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                 Healthier Lives<span class="doj_current_year_value"></span>
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - healthier lives -->
+                <div>
+                  <canvas id="healthier_lives_gauge"></canvas>
+                </div>
+                <!-- summary - healthier lives -->
+                <p style="padding-top:20px;">The Healthier Lives domain accounts for</p>
+                <ul>
+                  <li>Active travel - walking and cycling</li>
+                  <li>Healthy life expectancy (females)</li>
+                  <li>Healthy life expectancy (males)</li>
+                  <li>Mental health</li>
+                  <li>Preventable deaths</li>
+                  <li>Sport and physical activity</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of  healthier lives -->
+
+
+      <!-- beginning of brighter futures -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Brighter Futures<span class="dfc_current_year_value"></span>
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - brighter futures -->
+                <div>
+                  <canvas id="brighter_futures_gauge"></canvas>
+                </div>
+                <!-- summary - brighter futures -->
+                <p style="padding-top:20px;">The Brigther Futures domain accounts for:</p>
+                <ul>
+                  <li>Arts and cultural activities</li>
+                  <li>Life satisfaction</li>
+                  <li>School leavers attainment gap</li>
+                  <li>Self-efficacy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of brighter futures -->
+
+
+      <!-- beginning stronger economy -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Stronger Economy<span class="dfe_current_year_value"></span>
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - stronger economy -->
+                <div>
+                  <canvas id="stronger_economy_gauge"></canvas>
+                </div>
+                <!-- summary - stronger economy -->
+                <p style="padding-top:20px;">The Stronger Economy domain accounts for:</p>
+                <ul>
+                  <li>Economic inactivity</li>
+                  <li>Employment rate</li>
+                  <li>External sales rate</li>
+                  <li>Good jobs</li>
+                  <li>International reputation</li>
+                  <li>Labour productivity</li>
+                  <li>Northern Ireland Composite Economic Index</li>
+                  <li>Research and development</li>
+                  <li>Skills</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of stronger economy -->
+
+
+      <!-- beginning of safer communities -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Safer Communities<span class="daera_current_year_value"></span>
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - safer communities -->
+                <div>
+                  <canvas id="safer_communities_gauge"></canvas>
+                </div>
+                <!-- summary - safer communities -->
+                <p style="padding-top:20px;">The Safter Communities domain accounts for:</p>
+                <ul>
+                  <li>Crime prevalence rate</li>
+                  <li>Personal safety</li>
+                  <li>Processing times for criminal cases</li>
+                  <li>Safe towns and city centres</li>
+                  <li>Worry about crime</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of safer communities -->
+
+
+
+      <!-- beginning of caring society -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Caring Society<span class="dof_current_year_value"></span>
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - caring society -->
+                <div>
+                  <canvas id="caring_society_gauge"></canvas>
+                </div>
+                <!-- summary - caring society -->
+                <p style="padding-top:20px;">The Caring Society domain accounts for:</p>
+                <ul>
+                  <li>Adult social care</li>
+                  <li>Loneliness</li>
+                  <li>Volunteering</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of caring society -->
+
+                  <!-- beginning of better homes -->
+                  <div class="col-sm-6" style="padding-bottom:20px;">
+                    <div class="card h-100" style="width: 100%;">
+                      <div class="card-header" style="padding-top:10px;">
+                        <div class="col">
+                          <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Better Homes<span class="teo_current_year_value"></span>
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+                        </div>
+                      </div>
+                      <div class="domain-card-body">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <!-- chart - better homes -->
+                            <div>
+                              <canvas id="better_homes_gauge"></canvas>
+                            </div>
+                            <!-- summary - better homes -->
+                            <p style="padding-top:20px;">The Better Homes domain accounts for:</p>
+                            <ul>
+                              <li>Availability of suitable housing</li>
+                              <li>Homelessness</li>
+                              <li>Housing costs as a proportion of household income</li>
+                              <li>Housing stress</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end of better homes  -->
+
+                   <!-- beginning of living peacefully -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                Living Peacefully<span class="dof_current_year_value"></span>
+              </span>
+             </h2>
+              <div class="card-subtitle mb-2 text-body-secondary" style="padding-left:44px; margin-top:4px;">
+              </div>
+            </div>
+          </div>
+          <div class="domain-card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- chart - living peacefully -->
+                <div>
+                  <canvas id="living_peacefully_gauge"></canvas>
+                </div>
+                <!-- summary - living peacefully -->
+                <p style="padding-top:20px;">The Living Peacefully domain accounts for:
+                <ul>
+                  <li>Community relations</li>
+                  <li>Shared community</li>
+                  <li>Trust in the media</li>
+                  <li>Trust in the NI Assembly</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of living peacefully -->
+    </div>
+  </div>
+  </div>
+  </div>
+
+  </main>
+  <footer>
+        <div id="footer-container" role = "contentinfo">
+            <div class="row">
+                <div style="height: 170px; width: 350px; margin: 10px;">
+                <h2 style="font-weight: 700; font-size: 18px; color: #ffffff">Links</h2>
+                <a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data Portal</a><br>
+                <a href="https://visual.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data Visualisation Hub</a><br>
+                <a href="https://www.opendatani.gov.uk/" target="_blank" rel="noopener noreferrer">OpenDataNI</a><br>
+                <a href="https://www.nidirect.gov.uk" target="_blank" rel="noopener noreferrer">NIDirect</a><br>  
+                <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">GOV.UK</a><br>
+                </div> 
+                <div style="height: 170px; width: 200px; margin: 20px 0px 20px 60px;">
+                <h2 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h2>
+                 <img id="facebook-logo" src="img/facebook-f-brands-solid-full.svg" style="filter: invert(1); width: 25px;">
+                <a href="https://www.facebook.com/nisra.gov.uk" target="_blank" rel="noopener noreferrer">Facebook</a><br> 
+                 <img id="x-logo" src="img/x-twitter-brands-solid-full.svg" style="filter: invert(1); width: 25px;">
+                <a href="https://x.com/NISRA" target="_blank" rel="noopener noreferrer">Twitter / X</a><br> 
+                 <img id="youtube-logo" src="img/youtube-brands-solid-full.svg" style="filter: invert(1); width: 25px;">
+                <a href="https://www.youtube.com/user/nisrastats" target="_blank" rel="noopener noreferrer">YouTube</a><br>
+                </div>
+                <div id = "nisra-logo-container">
+                <a href = "https://www.nisra.gov.uk/" target = "_blank"><img id = "footer-nisra-logo" src="img/nisra-logo.svg" alt = "NISRA logo. Clicking image takes user to NISRA website"></a>
+                </div>
+            </div>
+            <div class="flex-list-footer">
+                <ul style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin-left: -1px;">
+                <li class="cc-li" style="border-left:0px;"><a href = "https://www.nisra.gov.uk/crown-copyright" target="_blank" rel="noopener noreferrer">© Crown Copyright</a></li> 
+                <li class="cc-li"><a href="https://www.nisra.gov.uk/contacts/programme-government-analytics-executive-office" target="_blank" rel="noopener noreferrer">Contact us</a></li>
+                <li class = "cc-li"><a href = "https://consultations.nidirect.gov.uk/teo/10e30bd3" target = "_blank">Leave feedback</a></li>
+                <li class="cc-li"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank" rel="noopener noreferrer">Terms and conditions</a></li> 
+                <li class="cc-li"><a href="https://www.nisra.gov.uk/cookies" target="_blank" rel="noopener noreferrer">Cookies</a></li> 
+                <li class="cc-li"><a href="https://www.nisra.gov.uk/nisra-privacy-notice"  target="_blank" rel="noopener noreferrer">Privacy</a></li> 
+                <li class="cc-li"><a href="https://datavis.nisra.gov.uk/dissemination/accessibility-statement-visualisations.html" target="_blank" rel="noopener noreferrer">Accessibility Statement</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+      <script type="text/javascript" src="scripts/quick-read.js"></script>
+
+</body>
+
+
+
+</html>
+
+<!-- charts and functions  -->
+
+<script>
+
+  // chart text defaults before resize
+  // if(window.outerWidth > 700) {
+  //   Chart.defaults.font.size = 16;
+  //   overall_y_label.style.fontSize = "15px";
+  // };
+  if (window.outerWidth <= 700 && window.outerWidth > 600) {
+    Chart.defaults.font.size = 14;
+    overall_y_label.style.fontSize = "15px";
+  };
+  if (window.outerWidth <= 600 && window.outerWidth > 450) {
+    Chart.defaults.font.size = 12;
+    overall_y_label.style.fontSize = "12pt";
+  };
+  if (window.outerWidth < 450) {
+    Chart.defaults.font.size = 8;
+    overall_y_label.style.fontSize = "8pt";
+  };
+
+  // register datalabels plugin for chart js
+  // Chart.register(ChartDataLabels);
+  // set datalables global defaults if needed
+  // Chart.defaults.set('plugins.datalabels', {
+  // });
+
+
+  // 4) Render the gauge and keep the returned Chart instance in a variable.
+
+  
+  
+
+</script>
+
+<script type="text/javascript" src="scripts/cookies_script.js"></script>
