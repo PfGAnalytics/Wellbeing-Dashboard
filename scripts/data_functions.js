@@ -1412,10 +1412,6 @@ async function renderPopup (d, e, eq_group) {
       // Focus popup itself
       setTimeout(() => pop_up_chart.focus(), 0);
 
-      // Modify closePopUp to restore focus
-      const originalClosePopUp = closePopUp; // store reference
-
-
       function closePopUp() {
           indicator_scrn.style.filter = "opacity(100%)";
           main_container.removeChild(pop_up_chart);
@@ -3164,15 +3160,6 @@ const codeToInfoMap = (() => {
 function normalizeDate(dateStr) {
   return dateStr.replace(/T(\d):/, 'T0$1:');
 }
-
-function formatBritishDate(dateObj) {
-  const day = String(dateObj.getDate()).padStart(2, '0');
-  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-  const year = dateObj.getFullYear();
-  return `${day}/${month}/${year}`;
-}
-
-
    fetch('scripts/updated.json?nocache=' + Date.now())
      .then(response => response.json())
      .then(data => {

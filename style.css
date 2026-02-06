@@ -332,7 +332,7 @@ padding-right: 10px;
     font-size: 20pt;
 }
 
-#domain-intro {
+#domains-intro {
     margin-bottom: 15px;
     text-align: left;
 }
@@ -637,12 +637,6 @@ padding-right: 10px;
     height: 842px;
 }
 
-#not-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 iframe {
     border: none;
 }
@@ -822,7 +816,7 @@ footer {
     }
 }
 
-#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data, #download-map-data  {
+#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data  {
     padding-bottom: 10px;
     font-size: 14pt;
     background-color: #142062;
@@ -841,7 +835,7 @@ footer {
     font-size: 13.5pt !important;
 }
 
-#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #download-map-data:hover, #share:hover {
+#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #share:hover {
     background-color: #69729B;
 }
 
@@ -960,10 +954,6 @@ footer {
 
  select {
     width: 250px;
- }
-
- #chart-title {
-    margin-top: 15px;
  }
 
  path.leaflet-interactive:focus {
@@ -1140,19 +1130,10 @@ footer a:hover {
     padding-bottom: 25px;
 }
 
-
-
-#further-expander, #further-expander-map  {
-   cursor: pointer 
-}
-
-#further-expander:focus-visible {
+#further-information:focus-visible {
     outline: 2px solid #ff0000;
 }
 
-#further-expander-map:focus-visible {
-    outline: 2px solid #ff0000;
-}
 
 .further-info-text, #further-info-map {
     max-height: 0px;
@@ -1164,7 +1145,7 @@ footer a:hover {
     overflow: hidden;
 }
 
-#further-expander span, #further-expander-map span {
+#further-information span {
     display: none !important;
 }
 
@@ -1181,11 +1162,10 @@ footer a:hover {
     padding-left: 0 !important;
 }
 
-#further-expander {
+#further-information {
     padding-top: 15px;
     cursor: default;
 }
-
 
 .separator {
     width: 96%;
@@ -1262,10 +1242,6 @@ input:focus-visible {
     background-color: #69729B;
     border: 0px;
     color: #ffffff;
-}
-
-#forward-btn {
-    text-align: right;
 }
 
 .nav-btn:hover {
@@ -1619,12 +1595,6 @@ button:focus-visible {
     z-index: 1;        
 }
 
-#search-label {
-    color: #ffffff;
-    margin-top: 10px;
-    margin-right: 5px;
-}
-
 tr {
     height: 24px;
 }
@@ -1726,9 +1696,9 @@ tr {
     }
 
     #back-to-start, #skip-link, #top-container, #top-menu, #dashboard-title, #prototype, #search-box, #back-button, #button-left, #button-right, .button-row, 
-    #loading-img, #loading-img4, #loading-img5, #loading-img-2, #cookie-banner, .chart-title, #top-menu-items, #footer-container, #search-bar, #nisra-logo-container, 
-    #flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #map-form, #date-display, #map-label-4, input#map-select-4.slider, #chart-link,
-    #download-pop-up-chart, #download-map, #download-pop-up-data, #download-map-data, #toggle-chart-type, .chart-slider, .switch-label, .box-container, 
+    #loading-img, #loading-img-4, #loading-img-5, #loading-img-2, #cookie-banner, .chart-title, #top-menu-items, #footer-container, #search-bar, #nisra-logo-container, 
+    .flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #map-form, #date-display, #map-label-4, input#map-select-4.slider, #chart-link,
+    #download-pop-up-chart, #download-map, #download-pop-up-data, .box-container, 
     #share, .chart-dropdown-wrapper {
         display: none !important;
     }
@@ -1741,13 +1711,12 @@ tr {
         font-size: 16pt !important;
     }
 
-    #domain-title, .grey-box, .grey-box ol, #source-info, #further-info, #covid-info, #further-expander, #ind-important, #ind-important-map, #change-info, .white-box.base-statement, 
-    #covid-info-map, #further-info-map, #further-expander-map {
+    #domain-title, .grey-box, .grey-box ol, #source-info, #further-info, #covid-info, #further-information, #ind-important, #ind-important-map, #change-info, .white-box.base-statement, 
+    #covid-info-map, #further-info-map {
         font-size: 14pt !important;
     }
 
-    #further-expander span, #further-expander-map span,
-    .note-container .note-span {
+    #further-information span, .note-container .note-span {
         display: none !important;
     }
 

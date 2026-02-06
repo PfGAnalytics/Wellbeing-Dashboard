@@ -38,11 +38,10 @@ var top_container = document.getElementById("top-container");
 var dashboard_title = document.getElementById("dashboard-title");
 var nisra_logo_container = document.getElementById("nisra-logo-container");
 var footer_container = document.getElementById("footer-container");
-var button_rows = document.getElementsByClassName("button-row");
 var domain_info_container = document.getElementById("domain-info-container");
 var domain_count = document.getElementsByClassName("domain-count");
 var box_containers = document.getElementsByClassName("box-container");
-var further_expander = document.getElementById("further-expander");
+var further_information = document.getElementById("further-information");
 var user_guide_link = document.getElementsByClassName("user-guide-link");
 var about_scrn = document.getElementById("about-scrn");
 var about_btn = document.getElementById("about-btn");
@@ -148,21 +147,6 @@ async function generateIndicatorPage(d, e) {
     var data = indicatorObj.data;
 
     data_info.innerHTML = writeDataInfo(data);   // Place sentence in "data-info" div    
-
-
-    // if (indicatorObj.AOS) {
-    //     const aosImage = document.createElement('img');
-    //     const hexContainer = document.getElementById("ind-hex-container");
-    //     const rowDiv = document.getElementById("indicator-aos");
-    //     aosImage.src = 'img/Accredited Official Statistics Logo English.svg';
-    //     aosImage.alt = 'AOS Indicator';
-    //     aosImage.style.height = '100px';
-    //     aosImage.classList.add('aos-icon');
-
-    //     // Insert the image between the title and the hex container
-    //     rowDiv.insertBefore(aosImage, hexContainer);
-    // }
-
 
     // This next section will add a link to the relevant map on an indicator page. If available
     while(map_link.firstChild) {
@@ -1144,23 +1128,6 @@ for (let i = 0; i < domains.length; i ++) {
     desc.style.fontSize = "12pt";
     desc.textContent = domains_data[domains[i]].description;        // Insert domain description from domains_data
 
-    // function findDomainByDescription(obj, searchText) {
-    //   for (const key in obj) {
-    //     if (obj[key].description === searchText) {
-    //       return key;
-    //     }
-    //   }
-    //   return null;
-    // }
-
-    // const domainKey = findDomainByDescription(domains_data, desc.textContent);
-
-
-    // desc.id = domainKey
-    //   .trim()
-    //   .toLowerCase()                
-    //   .replace(/\s+/g, '-') + '-desc';
-
     framework_row.appendChild(desc);                        // Place label in row
 
     if (i % 2 == 1) {
@@ -1827,7 +1794,7 @@ const handleOnScroll = () => {
 
 // Script to download chart as an image
 
-    (function () {
+    (function downloadChartAsImage () {
 
         function getChartCanvas() {
             const canvas = document.querySelector('#line-chart-container canvas[id$="-canvas"]');
@@ -1933,10 +1900,7 @@ const handleOnScroll = () => {
 
     // Script to download chart data
     
-(function () {
-    function getChartCanvas() {
-        return document.querySelector('#line-chart-container canvas[id$="-canvas"]') || null;
-    }
+(function downloadChartData () {
 
     function wireDataDownloadButton() {
         const btn = document.getElementById('download-data');
@@ -1977,7 +1941,7 @@ const handleOnScroll = () => {
 // Script to download map as an image
 
 
-(function () {
+(function downloadMapAsImage () {
   function getCaptureRoot() {
     return document.getElementById('pop-up-map') || document.getElementById('popup-map-container');
   }
@@ -2080,7 +2044,7 @@ const handleOnScroll = () => {
 })();
 
 
-(function () {
+(function downloadMapData() {
     function handlePopupMapDownload(e) {
         if (e.target && e.target.classList.contains("popup-download-btn") && e.target.textContent.includes("CSV")) {
             const btn = e.target;
@@ -2136,9 +2100,4 @@ function shiftGElements(dx, dy) {
       g.setAttribute('transform', newTransform);
     }
   });
-
-    
-
-  
 }
-
