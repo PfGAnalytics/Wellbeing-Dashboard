@@ -1568,12 +1568,6 @@ input:focus-visible {
     margin-right: 25px;
   }
 
-  .note-span {
-    font-weight: normal;
-    font-size: 12pt;
-    color: #142062;
-  }
-
   table, th, td {
     border: 1px solid black;
     font-size: 10pt;

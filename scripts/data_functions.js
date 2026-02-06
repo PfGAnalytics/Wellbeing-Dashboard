@@ -2111,24 +2111,6 @@ async function renderPopup (d, e, eq_group) {
          }
 
          note.appendChild(notes_list);
-
-         // Hide the notes list initially
-         notes_list.style.display = "none";
-         
-         // Add toggle functionality to the span
-         toggleSpan = note.querySelector(".note-span");
-         toggleSpan.style.cursor = "pointer";
-
-         toggleSpan.setAttribute("tabindex", "0");
-         toggleSpan.setAttribute("role", "button");
-         toggleSpan.setAttribute("aria-expanded", "false");
-
-         
-         toggleSpan.addEventListener("click", function () {
-            isVisible = notes_list.style.display === "block";
-            notes_list.style.display = isVisible ? "none" : "block";
-            toggleSpan.innerHTML = isVisible ? `<i style="color: #142062" class="fa-solid fa-plus"></i> Click to expand`: `<i style="color: #142062" class="fa-solid fa-minus"></i> Click to collapse`;
-         });
       };
       
       setAltTextChart(pop_up_title);
@@ -2200,7 +2182,7 @@ async function renderMapPopup(d, e, type, data) {
       closeBtn.style.position = "absolute";
       closeBtn.style.top = "0px";
       closeBtn.style.right = "-10px";
-      closeBtn.innerHTML = '<i class="fa-solid fa-xmark fa-xl"></i>';
+      closeBtn.innerHTML = '<img src="img/xmark-solid-full.svg" alt="Close" style="filter:invert(1);">';
 
       let onEsc;
       
