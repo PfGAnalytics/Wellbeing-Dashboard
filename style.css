@@ -19,7 +19,6 @@ body {
 
 #top-container {
     display: flex;
-    justify-content: center;
     align-items: center;
     background-color: #142062 !important;
     width: 100%;
@@ -36,8 +35,6 @@ body {
     flex-direction: row;
 }
 
-
-
 #top-menu-items {
   width: 100%;
   display: flex;
@@ -47,7 +44,6 @@ body {
   max-width: 1500px
 }
 
-
 #top-menu-exec-logo {
     width: 250px;
     padding-top: 10px;
@@ -55,22 +51,21 @@ body {
     filter: brightness(0) invert(1);
 }
 
-.search-row{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-;}
-
 #top-menu-aig-logo {
     height: 60px;
 }
 
 #dashboard-title {
-    width: 550px;
-    padding-left: 20px;
+    width: 45%;
     display: flex;
     justify-content: center;
+    padding-right: 5%;
+}
+
+@media (max-width: 1110px) {
+    h1 {
+        font-size: 30px !important;
+    }
 }
 
 h1 {
