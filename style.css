@@ -33,6 +33,7 @@ body {
     justify-content: center;
     display: flex;
     flex-direction: row;
+    max-width: 1500px;
 }
 
 #top-menu-items {
@@ -52,20 +53,33 @@ body {
 }
 
 #top-menu-aig-logo {
-    height: 60px;
+    width: 225px;
 }
 
 #dashboard-title {
-    width: 45%;
+    width: 66%;
     display: flex;
     justify-content: center;
-    padding-right: 5%;
 }
 
 @media (max-width: 1110px) {
     h1 {
         font-size: 30px !important;
     }
+    #dashboard-title {
+        width: 50%;
+    }
+    #domains-btn {
+        width: 20%;
+    }
+    #about-btn {
+        width: 20%;
+    }
+    #search-box {
+        width: 45%;
+        height: 48px;
+    }
+
 }
 
 h1 {
@@ -74,8 +88,8 @@ h1 {
 }
 
 .top-menu-item {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
     color: white;
     font-size: 16pt;
     font-weight: bold;
@@ -1461,6 +1475,8 @@ input:focus-visible {
     border: 3px solid #ffffff;
     border-radius: 25px;
     background-color: #ffffff;
+    margin-left: 2%;
+    margin-right: 2%;
   }
 
   #search-button {
