@@ -114,15 +114,15 @@
       ]
     },
     "note": [
-      "[b]Northern Ireland's composite economic index\r\n\r\nHow do we measure this?[/b]\r\nAn index of Northern Ireland's economic output.\r\n\r\n[b]Source[/b]\r\n[url=https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index]NI Composite Economic Index[/url], Northern Ireland Statistics and Research Agency\r\n\r\n[b]Impact of Covid-19\r\n[/b]During the pandemic the NICEI reached a series low in Quarter 2 2020, however economic activity post pandemic has recovered substantially and in Quarter 4 2024 a new series high was reached.\r\n\r\n[b]Further Information[/b]\r\n1. The NICEI is a quarterly measure of the performance of the NI economy based on available official statistics. Existing published quarterly indices (i.e. Index of Services (IOS), Index of Production (IOP), Index of Construction (IOC), and public sector employee jobs data from the Quarterly Employment Survey (QES), plus unpublished agricultural output data from DAERA) are weighted using ONS Regional Accounts Gross Value Added (GVA) data to provide a proxy measure of total economic output in the NI economy on a quarterly basis."
+      "[b]Northern Ireland's composite economic index\r\n\r\nHow do we measure this?[/b]\r\nAn index of Northern Ireland's economic output.\r\n\r\n[b]Source[/b]\r\n[url=https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index]NI Composite Economic Index[/url], Northern Ireland Statistics and Research Agency\r\n\r\n[b]Impact of Covid-19\r\n[/b]During the pandemic the NICEI reached a series low in Quarter 2 2020, however economic activity post pandemic has recovered substantially and in Quarter 3 2025 a new series high was reached.\r\n\r\n[b]Further Information[/b]\r\n1. The NICEI is a quarterly measure of the performance of the NI economy based on available official statistics. Existing published quarterly indices (i.e. Index of Services (IOS), Index of Production (IOP), Index of Construction (IOC), and public sector employee jobs data from the Quarterly Employment Survey (QES), plus unpublished agricultural output data from DAERA) are weighted using ONS Regional Accounts Gross Value Added (GVA) data to provide a proxy measure of total economic output in the NI economy on a quarterly basis."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
     "size": [1, 19, 1],
-    "updated": "2025-09-26T15:02:13",
-    "value": [98.9, 100.5, 98.5, 94.5, 92.8, 91.9, 90.6, 90.4, 90.8, 92, 93.4, 93.7, 94.7, 95.6, 90.2, 97.5, 100, 101.7, 104.2],
+    "updated": "2026-01-19T11:13:06",
+    "value": [98.2, 99.9, 98, 93.8, 92.1, 91, 89.8, 89.6, 90, 91.4, 92.7, 92.9, 93.8, 94.5, 89.1, 96.3, 98.5, 100, 102.4],
     "version": "2.0"
   },
   "id": {}

@@ -147,7 +147,15 @@ for (matrix in matrix_list) {
             ci_num <- as.numeric(ci)
           }
           
-          performance <- if (improvement == "increase") {
+          performance <- if (matrix == "INDOUTRECEQ") {
+              if (current_value > base_value) {
+                "improving"
+              } else if (current_value < base_value) {
+                "worsening"
+              } else {
+                "no change"
+              }
+          } else if (improvement == "increase") {
             if (current_value > base_value + ci_num) {
               "improving"
             } else if (current_value < base_value - ci_num) {

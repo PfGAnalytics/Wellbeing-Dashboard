@@ -21,13 +21,14 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "index": ["2019/20", "2020/21", "2021/22", "2022/23", "2023/24", "2024/25"],
           "label": {
             "2019/20": "2019/20",
             "2020/21": "2020/21",
             "2021/22": "2021/22",
             "2022/23": "2022/23",
-            "2023/24": "2023/24"
+            "2023/24": "2023/24",
+            "2024/25": "2024/25"
           }
         },
         "label": "Financial year"
@@ -125,16 +126,16 @@
       ]
     },
     "note": [
-      "[b]Loneliness[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of people aged 16+ who reported feeling lonely 'often/always' or 'some of the time'. For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nIndividual Wellbeing in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/statistics-and-research/individual-wellbeing-northern-ireland]Individual Wellbeing in Northern Ireland | The Executive Office (executiveoffice-ni.gov.uk)[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThe coronavirus pandemic resulted in a change in data collection mode and a reduced sample size for 2020/21 and 2021/22. Therefore, users should take this into consideration when interpreting future years of data and care should be taken when comparing any findings published prior to 2020/21.\r\n\r\n[b]Further information[/b]\r\n1. Data is collected through Continuous Household Survey (CHS). For more information:\r\n[url=https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey] https://www.nisra.gov.uk/statistics/central-survey-unit/continuous-household-survey[/url]\r\n2. Assembly Area data is not available prior to 2019/20.\r\n3. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
+      "[b]Loneliness[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of people aged 16+ who reported feeling lonely ‘often/always’ or ‘some of the time’. For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nIndividual Wellbeing in Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/individual-wellbeing-northern-ireland-16-and-over]https://www.executiveoffice-ni.gov.uk/topics/individual-wellbeing-northern-ireland-16-and-over[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThe coronavirus pandemic resulted in a change in data collection mode and a reduced sample size for 2020/21 and 2021/22. Therefore, users should take this into consideration when interpreting future years of data and care should be taken when comparing any findings published prior to 2020/21\r\n\r\n[b]Further information[/b]\r\n1. Data is collected through Continuous Household Survey (CHS). For more information, refer to: [url=https://www.nisra.gov.uk/statistics/find-your-survey/continuous-household-survey]NISRA Statistics – Continuous Household Survey[/url]\r\n2. Assembly Area data is not available prior to 2019/20.\r\n3. Some figures have been suppressed due to small sample sizes (less than 100 respondents).\r\n4. Data refers to the population aged 16 and over who reported feeling lonely ‘often/always’ or ‘some of the time’."
     ],
     "role": {
       "geo": "AA",
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 5, 18],
-    "updated": "2025-04-29T9:30:00",
-    "value": [17.9, 29.5, 22.4, 22, 13.9, 14, 13.5, 23.3, 12.8, 21.9, 14.4, 15.1, 18, 13.8, 15.1, 14, 20.4, 10.8, 21, null, 18.7, null, 14, 21.6, null, null, 13.1, null, 20.8, 18.5, 16, 19.6, null, 17.1, 20.9, null, 19.8, 27.6, 24.8, 25.2, 21.8, 19.5, 23.8, 18.1, 19.7, 15.4, 18.8, 18.2, 16.4, 15.1, 17, 18.6, 27.2, 18, 17.3, 34.6, 24.8, 32.9, 19.3, 26.1, 10.3, 19.6, 15.4, 14.8, 18.9, 20.3, 16.4, 17.8, 16.7, 14.3, 23.1, 20.4, 17.9, 24.7, 13.7, 17.3, 17.4, 21.7, 20.5, 19.1, 16.2, 8.9, 20.2, 16.3, 16.1, 20.5, 13.4, 11.9, 23.8, 21.7],
+    "size": [1, 6, 18],
+    "updated": "2026-02-02T9:30:00",
+    "value": [17.9, 29.5, 22.4, 22, 13.9, 14, 13.5, 23.3, 12.8, 21.9, 14.4, 15.1, 18, 13.8, 15.1, 14, 20.4, 10.8, 21, null, 18.7, null, 14, 21.6, null, null, 13.1, null, 20.8, 18.5, 16, 19.6, null, 17.1, 20.9, null, 19.8, 27.6, 24.8, 25.2, 21.8, 19.5, 23.8, 18.1, 19.7, 15.4, 18.8, 18.2, 16.4, 15.1, 17, 18.6, 27.2, 18, 17.3, 34.6, 24.8, 32.9, 19.3, 26.1, 10.3, 19.6, 15.4, 14.8, 18.9, 20.3, 16.4, 17.8, 16.7, 14.3, 23.1, 20.4, 17.9, 24.7, 13.7, 17.3, 17.4, 21.7, 20.5, 19.1, 16.2, 8.9, 20.2, 16.3, 16.1, 20.5, 13.4, 11.9, 23.8, 21.7, 16.8, 24.3, 16.1, 18.6, 11.5, 23.7, 21.1, 25.6, 16.4, 17.1, 19, 16.7, 19.3, 16.2, 15.9, 10.6, 21.2, 11.7],
     "version": "2.0"
   },
   "id": {}

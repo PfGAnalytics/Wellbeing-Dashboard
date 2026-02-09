@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "index": ["2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24", "2024/25"],
           "label": {
             "2015/16": "2015/16",
             "2016/17": "2016/17",
@@ -31,7 +31,8 @@
             "2020/21": "2020/21",
             "2021/22": "2021/22",
             "2022/23": "2022/23",
-            "2023/24": "2023/24"
+            "2023/24": "2023/24",
+            "2024/25": "2024/25"
           }
         },
         "label": "Financial year"
@@ -53,15 +54,7 @@
             "N09000011": "Ards and North Down"
           }
         },
-        "label": "Local Government District",
-        "link": {
-          "enclosure": [
-            {
-              "type": "application/geo+json",
-              "href": "https://ws-data.nisra.gov.uk/public/api.static/PxStat.Data.GeoMap_API.Read/450c0bbfce9cc5595a6142e35c589ba5"
-            }
-          ]
-        }
+        "label": "Local Government District"
       }
     },
     "extension": {
@@ -122,16 +115,15 @@
       ]
     },
     "note": [
-      "[b]Recycled waste [/b]\r\n\r\n[b]How is this measured?[/b]\r\nPercentage of household waste that is reused, recycled or composted. For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland local authority collected municipal waste management statistics, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics]https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]Bin collections were suspended and Civic amenity sites were closed for a period during Covid-19 restrictions.\r\n\r\n[b]Further information[/b]\r\n1. Break in time series between 2011/12 and 2012/13 due to inclusion of reuse from 2012/13 onwards.\r\n2. Data not available for LGD prior to 2015/16."
+      "[b]Recycled waste [/b]\r\n\r\n[b]How is this measured?[/b]\r\nPercentage of household waste that is reused, recycled or composted. For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland local authority collected municipal waste management statistics, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics]https://www.daera-ni.gov.uk/articles/northern-ireland-local-authority-collected-municipal-waste-management-statistics[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]Bin collections were suspended and Civic amenity sites were closed for a period during Covid-19 restrictions.\r\n\r\n[b]Further information[/b]\r\n1. Data not available for LGD prior to 2015/16."
     ],
     "role": {
-      "geo": "LGD2014",
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 9, 11],
-    "updated": "2025-04-29T9:30:00",
-    "value": [46.8, 48, 40, 38.8, 33.3, 45.5, 41.9, 42.9, 49.6, 38.9, 40.2, 47.5, 48.2, 39.4, 42.3, 40.6, 45.3, 41.1, 45.3, 51.6, 40.1, 49.2, 52.2, 50.5, 44.4, 42.2, 43.3, 46.3, 46.3, 52.8, 54.3, 46.1, 52.1, 56.1, 51.6, 44.4, 47.7, 44.3, 49.3, 48.1, 52, 56, 51.4, 53.1, 57.3, 54.8, 45.4, 53.8, 44.2, 49.1, 50.8, 51.4, 58.8, 53.7, 54.7, 56.9, 54.3, 43, 53.9, 46.1, 47.3, 50.4, 50.8, 58.9, 51.9, 51, 60.2, 53.4, 41, 52.3, 45.1, 47.7, 49.7, 51.9, 58.2, 49.8, 48.3, 60.3, 54.2, 40.8, 52.7, 46, 47.5, 50.5, 51.7, 58.4, 49.6, 51.9, 59.4, 55.6, 41.6, 49.6, 48.2, 46.7, 50.9, 50.7, 58.6, 50.1, 55.1],
+    "size": [1, 10, 11],
+    "updated": "2026-01-13T9:30:00",
+    "value": [46.8, 48, 40, 38.8, 33.3, 45.5, 41.9, 42.9, 49.6, 38.9, 40.2, 47.5, 48.2, 39.4, 42.3, 40.6, 45.3, 41.1, 45.3, 51.6, 40.1, 49.2, 52.2, 50.5, 44.4, 42.2, 43.3, 46.3, 46.3, 52.8, 54.3, 46.1, 52.1, 56.1, 51.6, 44.4, 47.7, 44.3, 49.3, 48.1, 52, 56, 51.4, 53.1, 57.3, 54.8, 45.4, 53.8, 44.2, 49.1, 50.8, 51.4, 58.8, 53.7, 54.7, 56.9, 54.3, 43, 53.9, 46.1, 47.3, 50.4, 50.8, 58.9, 51.9, 51, 60.2, 53.4, 41, 52.3, 45.1, 47.7, 49.7, 51.9, 58.2, 49.8, 48.3, 60.3, 54.2, 40.8, 52.7, 46, 47.5, 50.5, 51.7, 58.4, 49.6, 51.9, 59.4, 55.6, 41.6, 49.6, 48.2, 46.7, 50.9, 50.7, 58.6, 50.1, 55.1, 56.9, 54.6, 42.4, 50.4, 48.4, 47.7, 50.4, 50.8, 59.3, 48.7, 56.1],
     "version": "2.0"
   },
   "id": {}

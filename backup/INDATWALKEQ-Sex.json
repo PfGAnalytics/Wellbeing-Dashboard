@@ -21,14 +21,16 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2016", "2017", "2018", "2019", "2020", "2021"],
+          "index": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"],
           "label": {
             "2016": "2016",
             "2017": "2017",
             "2018": "2018",
             "2019": "2019",
             "2020": "2020",
-            "2021": "2021"
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
           }
         },
         "label": "Year"
@@ -102,15 +104,15 @@
       ]
     },
     "note": [
-      "[b]Active travel – walking and cycling[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of journeys under two miles people choose to make by walking or cycling. For this indicator a higher percentage is better.\r\n\r\n[b]Source[/b]\r\nTravel Survey for Northern Ireland, Department for Infrastructure\r\n[url=https://www.infrastructure-ni.gov.uk/articles/travel-survey-northern-ireland]https://www.infrastructure-ni.gov.uk/articles/travel-survey-northern-ireland[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere were a number of significant changes to the survey methodology from 2020 in response to the COVID-19 pandemic to ensure the data could continue to be collected safely. Therefore 2020 and 2021 results are not directly comparable to those of previous years and caution should be taken in reaching any conclusions if making these comparisons. Full details of the changes to survey methodology and the effects this has had on reporting the data are given in the Travel Survey for Northern Ireland publications.\r\n\r\n[b]Further information[/b]\r\n1. The Travel Survey for Northern Ireland (TSNI) is an annual survey conducted over a calendar year (from January to December). All persons in the household (adults and children) are eligible to take part in the survey.\r\n2. Sub-population breakdowns are available for 2021, the latest TSNI data currently available. Breakdowns for earlier years will be available at a later date. \r\n3. Method of travel for journeys is based on main mode. Main mode is the form of transport used for the greatest length of the journey.\r\n\r\n[b]Religion[/b]\r\n4. 'Other/no religion' includes those who stated a religion other than Catholic and Protestant and those who stated no religion.\r\n\r\n[b]Disability[/b]\r\n5. ‘Disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n\r\n[b]Deprivation[/b]\r\n6. All figures are defined according to the 2017 Northern Ireland Multiple Deprivation Measures.\r\n\r\n[b]Urban Rural[/b]\r\n7. All figures are defined according to the 2015 urban rural classification."
+      "[b]Active travel – walking and cycling[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of journeys under two miles people choose to make by walking or cycling. For this indicator a higher percentage is better.\r\n\r\n[b]Source[/b]\r\nTravel Survey for Northern Ireland, Department for Infrastructure\r\n[url=https://www.infrastructure-ni.gov.uk/articles/travel-survey-northern-ireland]https://www.infrastructure-ni.gov.uk/articles/travel-survey-northern-ireland[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThere were a number of significant changes to the survey methodology from 2020 in response to the Covid-19 pandemic to ensure the data could continue to be collected safely. Therefore 2020 to 2023 results are not directly comparable to those of previous years and caution should be taken in reaching any conclusions if making these comparisons. Full details of the changes to survey methodology and the effects this has had on reporting the data are given in the Travel Survey for Northern Ireland publications.\r\n\r\n[b]Further information[/b]\r\n1. The Travel Survey for Northern Ireland (TSNI) is an annual survey conducted over a calendar year (from January to December). All persons in the household (adults and children) are eligible to take part in the survey.\r\n2. Subpopulation breakdowns are given from 2021 onwards.\r\n3. Method of travel for journeys is based on main mode. Main mode is the form of transport used for the greatest length of the journey.\r\n\r\n[b]Religion[/b]\r\n4. 'Other/no religion' includes those who stated a religion other than Catholic and Protestant and those who stated no religion.\r\n5. Religion question is only asked of respondents aged 16 and over.\r\n\r\n[b]Dependants[/b]\r\n6. For this indicator, 'with dependants' includes individuals who have responsibility for the care of: a child(ren); a person with a disability; and/or a dependant elderly person.\r\n7. Dependants questions are only asked of respondents aged 16 and over.\r\n\r\n[b]Disability[/b]\r\n8. ‘Disability’ is measured using ‘limiting long-standing illness’. Respondents are defined as having a limiting long standing illness if they have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more, and the condition(s) or illness(es) reduce their ability to carry out day to day activities.\r\n9. Disability questions are only asked of respondents aged 16 and over.\r\n\r\n[b]Deprivation[/b]\r\n10. All figures are defined according to the 2017 Northern Ireland Multiple Deprivation Measure (NIMDM). More information on the NI Multiple Deprivation Measures can be found here: [url=https://www.nisra.gov.uk/statistics/people-and-communities/deprivation]https://www.nisra.gov.uk/statistics/people-and-communities/deprivation[/url] \r\n\r\n[b]Urban Rural[/b]\r\n11. All figures are defined according to the 2015 Urban Rural classification. More information on Urban Rural classifications can be found here: [url=https://www.nisra.gov.uk/support/geography/urban-rural-classification]https://www.nisra.gov.uk/support/geography/urban-rural-classification[/url] \r\n12. Urban and Rural are assigned based on where the respondent lives."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 6, 2],
-    "updated": "2024-06-10T9:30:00.000Z",
-    "value": [null, null, null, null, null, null, null, null, null, null, 51.5, 50.5],
+    "size": [1, 8, 2],
+    "updated": "2026-01-09T9:30:00.000Z",
+    "value": [null, null, null, null, null, null, null, null, null, null, 51.5, 50.5, 54.3, 57.3, 57.9, 55.1],
     "version": "2.0"
   },
   "id": {}

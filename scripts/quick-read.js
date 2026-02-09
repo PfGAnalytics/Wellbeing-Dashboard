@@ -282,149 +282,10 @@ function copyToClipboard(text) {
  * - centerTextOffsetY: number (default 0) – negative moves text up
  */
 
-async function renderDomainImprovementGauge({
-  canvasId,
-  domainName,
-  domainsDataUrl = 'scripts/domains_data.js',
-  updatesUrl = 'scripts/updated.json',
-  includeInsufficientInDenominator = false,
-  statusesToCount = ['improving'],
-  centerTextOffsetY = 0,
-
-  mode = 'four-slices',
-  improvingColor = '#00A857',
-  noChangeColor = '#FF6200',
-  worseningColor = '#db0000',
-  insufficientColor = '#757575',
-
-  // center text options
-  centerMode = 'stacked'
-} = {}) {
-  if (!canvasId) throw new Error('canvasId is required');
-  if (!domainName) throw new Error('domainName is required');
-
-  await ensureDomainsData(domainsDataUrl);
-  const updates = await loadUpdates(updatesUrl);
-
-  const { counts, totalEligible, details } = computeImprovementStats({
-    domainName,
-    includeInsufficientInDenominator,
-    statusesToCount,
-    domainsData: window.domains_data,
-    updates
-  }
-);
-
-  // ---- Percentages ----
-  const denom = includeInsufficientInDenominator
-    ? (totalEligible || 0) : ( (totalEligible || 0) + (counts.insufficient || 0) );
-
-  const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
-
-  const improvingPct   = pct(counts.improving);
-  const noChangePct    = pct(counts.noChange);
-  const worseningPct   = pct(counts.worsening);
-  const insufficientPct= pct(counts.insufficient);
-
-  const canvas = document.getElementById(canvasId);
-  canvas.style.margin = "0% 10% 0% 10%";
-  if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
-
-  if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
-    canvas._chartInstance.destroy();
-  }
-
-  let labels, dataset;
-  if (mode === 'four-slices') {
-    labels = ['Improving', 'No change', 'Worsening', 'Insufficient data'];
-    dataset = {
-      data: [improvingPct, noChangePct, worseningPct, insufficientPct],
-      backgroundColor: [improvingColor, noChangeColor, worseningColor, insufficientColor]
-    }
-  } 
-
-  const centerTextPlugin = {
-    id: `centerText_${canvasId}`,
-    afterDraw(chart) {
-      const meta = chart.getDatasetMeta(0);
-      if (!meta?.data?.length) return;
-      const arc = meta.data[0];
-      const xC = arc.x;
-      const yBase = arc.y - 50 + centerTextOffsetY;
-      const ctx = chart.ctx;
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      if (mode === 'four-slices') {
-        if (centerMode === 'stacked') {
-          ctx.fillStyle = '#000000';
-          ctx.font = 'bold 30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-          ctx.fillText(`${counts.improving}/${denom}`, xC, yBase - 22);
-          ctx.fillStyle = '#000000';
-          ctx.font = '18px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-          ctx.fillText('indicators are improving', xC, yBase - 2);
-        }
-      }
-      ctx.restore();
-    }
-  };
-
-  const maybeDatalabelsOff = (Chart.registry.plugins.get('datalabels'))
-    ? { datalabels: { display: false } }
-    : {};
-
-  const chart = new Chart(canvas, {
-    type: 'doughnut',
-    data: {
-      labels,
-      datasets: [{
-        ...dataset,
-        borderWidth: 5,
-        hoverOffset: 0,
-        circumference: 180,
-        rotation: -90,
-        cutout: '70%'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        ...maybeDatalabelsOff,
-        legend: { 
-          display: false },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => `${(+ctx.raw).toFixed(1)}%`
-          }
-        }
-      },
-      layout: { 
-        padding: { 
-          top: 0 
-        } 
-      }
-    },
-    plugins: [centerTextPlugin]
-  }
-);
-
-  chart.metrics = {
-    domainName,
-    counts,
-    totalEligible: totalEligible,
-    details
-  };
-
-  canvas._chartInstance = chart;
-  return chart;
-}
-
-// ---------------- Internals ----------------
 
 async function ensureDomainsData(url) {
   if (window.domains_data && typeof window.domains_data === 'object') return;
+
   await loadScript(url);
 
   const maxWaitMs = 4000;
@@ -450,75 +311,195 @@ function loadScript(src) {
 
 async function loadUpdates(url) {
   const res = await fetch(url, { cache: 'no-cache' });
-  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status} ${res.statusText}`);
+  if (!res.ok) {
+    throw new Error(`Failed to load ${url}: ${res.status} ${res.statusText}`);
+  }
   return res.json();
 }
 
-// Pick first available code from this priority list
-function pickPreferredCode(dataObj) {
-  const priority = ['NI', 'AA', 'LGD', 'EQ', 'LEV'];
-  for (const key of priority) {
-    const code = (dataObj && typeof dataObj[key] === 'string') ? dataObj[key].trim() : '';
-    if (code) return { key, code };
-  }
-  return { key: null, code: null };
 
-}
-
-function computeImprovementStats({
+async function renderDomainImprovementGauge({
+  canvasId,
   domainName,
-  includeInsufficientInDenominator,
-  statusesToCount,
-  domainsData,
-  updates
-}) {
-  const domain = domainsData?.[domainName];
-  if (!domain) throw new Error(`Domain '${domainName}' not found in domains_data`);
+  domainsDataUrl = 'scripts/domains_data.js',
+  updatesUrl = 'scripts/updated.json',
+
+  includeInsufficientInDenominator = false,  // Option A (original behaviour)
+
+  mode = 'four-slices',
+  improvingColor = '#00A857',
+  noChangeColor = '#FF6200',
+  worseningColor = '#db0000',
+  insufficientColor = '#757575',
+
+  centerTextOffsetY = 0,
+  centerMode = 'stacked'
+} = {}) {
+
+  if (!canvasId) throw new Error('canvasId is required');
+  if (!domainName) throw new Error('domainName is required');
+
+  // ------- Load domain and update data -------
+  await ensureDomainsData(domainsDataUrl);
+  const updates = await loadUpdates(updatesUrl);
+
+  const domain = window.domains_data?.[domainName];
+  if (!domain) throw new Error(`Domain '${domainName}' not found`);
 
   const indicators = domain.indicators || {};
-  const details = [];
 
-  let improving = 0;
-  let worsening = 0;
-  let noChange = 0;
-  let insufficient = 0;
-  let eligible = 0;
+  // ------- Count performance values -------
+  const counts = { improving: 0, noChange: 0, worsening: 0, insufficient: 0 };
+  let totalEligible = 0;
+
+  const priority = ['EQ', 'NI', 'LGD', 'AA', 'LEV'];
 
   for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
-    const { code } = pickPreferredCode(indicatorObj?.data);
-    let perf = null;
 
-
-    if (code && updates[code] && typeof updates[code] === 'object') {
-      perf = (updates[code].performance || '').toLowerCase().trim();
+    // Preferred code lookup (same as old behavior)
+    let code = null;
+    for (const key of priority) {
+      const candidate = indicatorObj?.data?.[key];
+      if (candidate && candidate.trim()) {
+        code = candidate.trim();
+        break;
+      }
     }
 
+    // No usable code → insufficient
+    let perf = 'insufficient data';
+
+    if (code && updates[code]) {
+      const raw = updates[code].performance;
+      if (typeof raw === 'string') perf = raw.toLowerCase().trim();
+    }
+
+    // Normalize
     if (!perf) perf = 'insufficient data';
     if (perf === 'insufficient') perf = 'insufficient data';
 
     const isInsufficient = (perf === 'insufficient data');
 
-    const countsInDenominator = includeInsufficientInDenominator ? true : !isInsufficient;
-    if (countsInDenominator) eligible += 1;
+    // Denominator logic = Option A
+    const inDenom = includeInsufficientInDenominator ? true : !isInsufficient;
 
-    const countsAsImproving = statusesToCount.map(s => s.toLowerCase()).includes(perf);
+    if (inDenom) totalEligible++;
 
-    if (countsInDenominator && countsAsImproving) improving += 1;
-    else if (perf === 'worsening') worsening += 1;
-    else if (perf === 'no change') noChange += 1;
-    else insufficient += 1;
-
-    details.push({ indicatorName, code, performance: perf, countedInDenominator: countsInDenominator });
+    // Count categories
+    if (perf === 'improving') counts.improving++;
+    else if (perf === 'no change') counts.noChange++;
+    else if (perf === 'worsening') counts.worsening++;
+    else if (perf == 'insufficient data') counts.insufficient++;
   }
 
-  const percent = (eligible > 0) ? (improving / eligible) * 100 : 0;
+  // ------- Percentages -------
+  const denom = includeInsufficientInDenominator
+    ? totalEligible
+    : totalEligible + counts.insufficient;
 
-  return {
-    percent,
-    counts: { improving, worsening, noChange, insufficient },
-    totalEligible: eligible,
-    details
+  const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
+
+  const improvingPct    = pct(counts.improving);
+  const noChangePct     = pct(counts.noChange);
+  const worseningPct    = pct(counts.worsening);
+  const insufficientPct = pct(counts.insufficient);
+
+  // ------- Chart Setup -------
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
+  canvas.style.margin = "0% 10% 0% 10%";
+
+  if (canvas._chartInstance?.destroy) {
+    canvas._chartInstance.destroy();
+  }
+
+  const labels = ['Improving', 'No change', 'Worsening', 'Insufficient data'];
+  const dataset = {
+    data: [improvingPct, noChangePct, worseningPct, insufficientPct],
+    backgroundColor: [
+      improvingColor,
+      noChangeColor,
+      worseningColor,
+      insufficientColor
+    ]
   };
+
+  // ------- Center Text Plugin -------
+  const centerTextPlugin = {
+    id: `centerText_${canvasId}`,
+    afterDraw(chart) {
+      const meta = chart.getDatasetMeta(0);
+      const arc0 = meta?.data?.[0];
+      const { chartArea } = chart;
+
+      // Safe center positioning
+      const xC = arc0?.x ?? (chartArea.left + chartArea.right) / 2;
+      const yArc = arc0?.y ?? (chartArea.top + chartArea.bottom) / 2;
+      const yBase = yArc - 50 + centerTextOffsetY;
+
+      const ctx = chart.ctx;
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      if (centerMode === 'stacked') {
+        ctx.fillStyle = '#000000';
+        ctx.font = 'bold 30px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+        ctx.fillText(`${counts.improving}/${denom}`, xC, yBase - 22);
+
+        ctx.font = '18px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+        ctx.fillText('indicators are improving', xC, yBase - 2);
+      }
+
+      ctx.restore();
+    }
+  };
+
+  const maybeDatalabelsOff =
+    (Chart.registry?.plugins?.get('datalabels'))
+      ? { datalabels: { display: false } }
+      : {};
+
+  // ------- Render Chart -------
+  const chart = new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{
+        ...dataset,
+        borderWidth: 5,
+        hoverOffset: 0,
+        circumference: 180,
+        rotation: -90,
+        cutout: '70%'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        ...maybeDatalabelsOff,
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${(+ctx.raw).toFixed(1)}%`
+          }
+        }
+      }
+    },
+    plugins: [centerTextPlugin]
+  });
+
+  chart.metrics = {
+    domainName,
+    counts,
+    totalEligible,
+    details: []  // kept for API compatibility
+  };
+
+  canvas._chartInstance = chart;
+
+  return chart;
 }
 
 (async () => {
@@ -593,69 +574,71 @@ function computeImprovementStats({
 
 async function renderAllDomainsGauge({
   canvasId,
-  domainsDataUrl = 'scripts/domains_data.js',
-  updatesUrl = 'scripts/updated.json',
-  includeInsufficientInDenominator = false,
-
+  includeInsufficientInDenominator = true,
   improvingColor = '#00A857',
   noChangeColor = '#FF6200',
   worseningColor = '#db0000',
   insufficientColor = '#757575',
-  centerMode = 'stacked',
-  spacing = 0,
+
+  spacing = 2,
   borderColor = '#ffffff',
-  borderWidth = 5
-} = {}) {
-  if (!canvasId) throw new Error('canvasId is required');
+  centerMode = 'stacked'
+}) {
 
-  // 1) Load everything
-  await ensureDomainsData(domainsDataUrl);
-  const updates = await loadUpdates(updatesUrl);
+  // 1) Load the raw updated.json file
+  const updates = await loadUpdates('scripts/updated.json');
 
-  // 2) Merge all indicators into a pseudo-domain
-  const mergedIndicators = {};
-  for (const [domainName, domainObj] of Object.entries(window.domains_data || {})) {
-    const indicators = domainObj?.indicators || {};
-    for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
-      const mergedKey = `${domainName} :: ${indicatorName}`;
-      mergedIndicators[mergedKey] = indicatorObj;
-    }
+  // 2) Directly count performance categories from updated.json
+  const counts = {
+    improving: 0,
+    noChange: 0,
+    worsening: 0,
+    insufficient: 0
+  };
+
+  for (const indicator of Object.values(updates)) {
+    const perf = indicator.performance?.toLowerCase();
+
+    if (perf === 'improving') counts.improving++;
+    else if (perf === 'no change') counts.noChange++;
+    else if (perf === 'worsening') counts.worsening++;
+    else if (perf === 'insufficient data') counts.insufficient++;
   }
-  const fakeDomainsData = { __ALL__: { indicators: mergedIndicators } };
 
-  // 3) Compute stats for all indicators together
-  const { counts, totalEligible, details } = computeImprovementStats({
-    domainName: '__ALL__',
-    includeInsufficientInDenominator,
-    statusesToCount: ['improving'],
-    domainsData: fakeDomainsData,
-    updates
-  });
+  // Total indicators with actual performance status
+  const totalEligible =
+    counts.improving + counts.noChange + counts.worsening;
 
-  // 4) Percentages: choose denominator so 4 slices sum to 100%
+  // 3) Denominator for percentages
   const denom = includeInsufficientInDenominator
-    ? (totalEligible || 0) : ((totalEligible || 0) + (counts.insufficient || 0));
-    const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
-    
-    const improvingPct    = pct(counts.improving);
-    const noChangePct     = pct(counts.noChange);
-    const worseningPct    = pct(counts.worsening);
-    const insufficientPct = pct(counts.insufficient);
+    ? totalEligible
+    : totalEligible + counts.insufficient;
 
-  // 5) Build chart
+  const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
+
+  const improvingPct = pct(counts.improving);
+  const noChangePct = pct(counts.noChange);
+  const worseningPct = pct(counts.worsening);
+  const insufficientPct = pct(counts.insufficient);
+
+  // 4) Chart creation (kept identical to your logic)
   const canvas = document.getElementById(canvasId);
   if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
-  canvas.style.paddingTop = "20px"
+  canvas.style.paddingTop = '20px';
 
-  // Cleanup
-  if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
+  if (canvas._chartInstance?.destroy) {
     canvas._chartInstance.destroy();
   }
 
   const labels = ['Improving', 'No change', 'Worsening', 'Insufficient data'];
   const dataset = {
     data: [improvingPct, noChangePct, worseningPct, insufficientPct],
-    backgroundColor: [improvingColor, noChangeColor, worseningColor, insufficientColor]
+    backgroundColor: [
+      improvingColor,
+      noChangeColor,
+      worseningColor,
+      insufficientColor
+    ]
   };
 
   const centerTextPlugin = {
@@ -663,6 +646,7 @@ async function renderAllDomainsGauge({
     afterDraw(chart) {
       const meta = chart.getDatasetMeta(0);
       if (!meta?.data?.length) return;
+
       const arc = meta.data[0];
       const xC = arc.x;
       const yBase = arc.y - 50;
@@ -673,10 +657,10 @@ async function renderAllDomainsGauge({
       ctx.textBaseline = 'middle';
 
       if (centerMode === 'stacked') {
-        // Improving
         ctx.fillStyle = '#000000';
         ctx.font = 'bold 28px system-ui, -apple-system, Segoe UI, Roboto, Arial';
         ctx.fillText(`${counts.improving}/${denom}`, xC, yBase - 22);
+
         ctx.font = '18px system-ui, -apple-system, Segoe UI, Roboto, Arial';
         ctx.fillText('indicators are improving', xC, yBase - 2);
       }
@@ -685,71 +669,67 @@ async function renderAllDomainsGauge({
     }
   };
 
-  const maybeDatalabelsOff = (Chart.registry.plugins.get('datalabels'))
-    ? { datalabels: { display: false } }
-    : {};
+  const maybeDatalabelsOff =
+    Chart.registry.plugins.get('datalabels')
+      ? { datalabels: { display: false } }
+      : {};
 
   const chart = new Chart(canvas, {
     type: 'doughnut',
     data: {
       labels,
-      datasets: [{
-        ...dataset,
-        spacing,
-        borderColor,
-        borderWidth,
-        borderAlign: 'inner',
-        hoverOffset: 0,
-        circumference: 180,
-        rotation: -90,
-        cutout: '70%'
-      }]
+      datasets: [
+        {
+          ...dataset,
+          spacing,
+          borderColor,
+          borderWidth: 1,
+          borderAlign: 'inner',
+          hoverOffset: 0,
+          circumference: 180,
+          rotation: -90,
+          cutout: '70%'
+        }
+      ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
         ...maybeDatalabelsOff,
-        legend: { 
-          display: false 
-        },
+        legend: { display: false },
         tooltip: {
           callbacks: {
-            label: (ctx) => {
-              const valuePct = (+ctx.raw).toFixed(1) + '%';
-              return `${valuePct}`;
-            }
+            label: (ctx) => `${(+ctx.raw).toFixed(1)}%`
           }
         }
       },
-      layout: { 
-        padding: {
-          top: 0 
-        } 
-      }
+      layout: { padding: { top: 0 } }
     },
-
     plugins: [centerTextPlugin]
   });
 
   chart.metrics = {
-    domainName: '__ALL__',
     counts,
-    totalEligible,
-    details
+    totalEligible
   };
 
   canvas._chartInstance = chart;
-  document.getElementById("improving-count").innerText = chart.metrics.counts.improving + " indicators that are improving";
-  document.getElementById("no-change-count").innerText = chart.metrics.counts.noChange + " indicators that have seen no change";
-  document.getElementById("worsening-count").innerText = chart.metrics.counts.worsening + " indicators that are worsening";
-  document.getElementById("insufficient-count").innerText = chart.metrics.counts.insufficient + " indicators with insufficient data";
-  return chart;
 
+  // Update summary text
+  document.getElementById("improving-count").innerText =
+    `${counts.improving} indicators that are improving`;
+  document.getElementById("no-change-count").innerText =
+    `${counts.noChange} indicators that have seen no change`;
+  document.getElementById("worsening-count").innerText =
+    `${counts.worsening} indicators that are worsening`;
+  document.getElementById("insufficient-count").innerText =
+    `${counts.insufficient} indicators with insufficient data`;
+
+  return chart;
 }
 
+// Call it
 (async () => {
-  await renderAllDomainsGauge({
-    canvasId: 'all_domains_gauge',  
-  });
+  await renderAllDomainsGauge({ canvasId: 'all_domains_gauge' });
 })();
