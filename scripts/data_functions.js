@@ -477,9 +477,19 @@ async function createLineChart(d, e) {
    }
 
    var latest_update = domains_data[d].indicators[e].latest_update;
+   
+   var next_update = domains_data[d].indicators[e].next_update;
+
+   
 
    // Footnote on when data was last updated
    var updated_note = "Updated on " + Number(latest_update.split("-")[0]) + " " + getMonthName(latest_update.split("-")[1]) + " " + Number(latest_update.split("-")[2]);
+
+   if (next_update == "TBC") {
+      var next_update_note = "Next update to be confirmed";
+   } else {
+   var next_update_note = "Next update expected in " + next_update;
+   }
 
    // To plot points in School leavers attainment gap as individual points after 2018/19
    if (matrix == "INDSLATTGAPEQ") {
@@ -974,15 +984,26 @@ async function createLineChart(d, e) {
    chart_canvas.id = id + "-canvas";
    canvas_div.appendChild(chart_canvas);
 
+   all_dates_row= document.createElement("row");
+
    // Create a div for updated on date div
    date_div = document.createElement("div");
    date_div.classList.add("chart-date");
    date_div.innerHTML = updated_note;
+   all_dates_row.appendChild(date_div);
+
+   // Create a div for next update date
+   next_update_div = document.createElement("div");
+   next_update_div.innerHTML = next_update_note;
+   next_update_div.style.textAlign = "right";
+   next_update_div.classList.add("chart-date");
+   all_dates_row.appendChild(next_update_div);
+   
 
    // Place all divs in chart_div and place chart_div in document
    chart_div.appendChild(chart_title_div);
    chart_div.appendChild(canvas_row);
-   chart_div.appendChild(date_div);
+   chart_div.appendChild(all_dates_row);
    document.getElementById("line-chart-container").appendChild(chart_div);
 
    // Place chart in canvas
