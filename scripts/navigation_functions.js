@@ -1438,6 +1438,10 @@ expand_all.onclick = function() {
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
+    domains_intro.style.display = "none";
+    domains_title.style.display = "none";
+    domains_footer.style.display = "none";
+    recent_filter.style.display = "none";
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
