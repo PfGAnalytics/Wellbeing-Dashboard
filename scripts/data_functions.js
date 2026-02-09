@@ -476,8 +476,10 @@ async function createLineChart(d, e) {
       red_box_yHeight = ((max_value - base_value) / 2) + base_value;
    }
 
+   var latest_update = domains_data[d].indicators[e].latest_update;
+
    // Footnote on when data was last updated
-   var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
+   var updated_note = "Updated on " + Number(latest_update.split("-")[0]) + " " + getMonthName(latest_update.split("-")[1]) + " " + Number(latest_update.split("-")[2]);
 
    // To plot points in School leavers attainment gap as individual points after 2018/19
    if (matrix == "INDSLATTGAPEQ") {
@@ -2456,6 +2458,8 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     const unit = Object.values(Object.values(dimension)[0].category.unit)[0].label;
     const years = Object.values(dimension)[1].category.index;
     const groups = Object.values(dimension)[2].category.index;
+
+    console.log(result.updated);
 
     // Prepare map
     const map = L.map(main_container.id, 

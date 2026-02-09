@@ -356,7 +356,6 @@ async function renderDomainImprovementGauge({
 
   for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
 
-    // Preferred code lookup (same as old behavior)
     let code = null;
     for (const key of priority) {
       const candidate = indicatorObj?.data?.[key];
