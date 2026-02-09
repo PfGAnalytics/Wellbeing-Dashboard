@@ -1,27 +1,23 @@
 {
   "INDCHSCAA": {
-    "updated": "2025-05-08T9:30:00",
-    "performance": "improving"
+    "updated": "2025-05-08T9:30:00"
   },
   "INDCHSCLGD": {
-    "updated": "2025-05-08T9:30:00",
-    "performance": "improving"
+    "updated": "2025-05-08T9:30:00"
   },
   "INDCHSCEQ": {
     "updated": "2024-09-04T11:33:54",
     "performance": "improving"
   },
   "INDLIFESATYPLGD": {
-    "updated": "2025-05-08T9:30:00",
-    "performance": "worsening"
+    "updated": "2025-05-08T9:30:00"
   },
   "INDLIFESATYPEQ": {
     "updated": "2025-03-21T9:30:00",
     "performance": "worsening"
   },
   "INDSEYPLGD": {
-    "updated": "2025-05-08T9:30:00",
-    "performance": "worsening"
+    "updated": "2025-05-08T9:30:00"
   },
   "INDSEYPEQ": {
     "updated": "2025-03-21T9:30:00",
@@ -48,23 +44,21 @@
     "performance": "improving"
   },
   "INDOUTRECAA": {
-    "updated": "2025-08-12T12:34:41",
-    "performance": "no change"
+    "updated": "2025-08-12T12:34:41"
   },
   "INDOUTRECLGD": {
-    "updated": "2025-08-12T12:34:02",
-    "performance": "no change"
+    "updated": "2025-08-12T12:34:02"
   },
   "INDOUTRECEQ": {
     "updated": "2025-08-12T12:35:10",
-    "performance": "no change"
+    "performance": "worsening"
   },
   "INDRECWSTENI": {
-    "updated": "2025-02-24T9:30:00",
+    "updated": "2026-01-13T9:30:00",
     "performance": "no change"
   },
   "INDRECWSTELGD": {
-    "updated": "2025-04-29T9:30:00"
+    "updated": "2026-01-13T9:30:00"
   },
   "INDRENEWNI": {
     "updated": "2025-03-18T10:20:19",
@@ -75,7 +69,7 @@
     "performance": "no change"
   },
   "INDATPUBEQ": {
-    "updated": "2024-09-02T12:09:49",
+    "updated": "2026-01-09T9:30:00",
     "performance": "insufficient data"
   },
   "INDCULTIDEQ": {
@@ -83,16 +77,14 @@
     "performance": "worsening"
   },
   "INDINCDPLGD": {
-    "updated": "2025-05-20T9:30:00",
-    "performance": "no change"
+    "updated": "2025-05-20T9:30:00"
   },
   "INDINCDPEQ": {
     "updated": "2025-07-30T9:45:46",
     "performance": "no change"
   },
   "INDINCIEQLGD": {
-    "updated": "2025-05-20T9:30:00",
-    "performance": "no change"
+    "updated": "2025-05-20T9:30:00"
   },
   "INDINCIEQEQ": {
     "updated": "2025-07-30T9:45:07",
@@ -103,107 +95,93 @@
     "performance": "worsening"
   },
   "INDATWALKEQ": {
-    "updated": "2024-06-10T9:30:00",
+    "updated": "2026-01-09T9:30:00",
     "performance": "insufficient data"
   },
   "INDHLEFEQ": {
-    "updated": "2025-09-19T15:31:04",
+    "updated": "2026-01-14T9:30:00",
     "performance": "no change"
   },
   "INDHLEMEQ": {
-    "updated": "2025-09-19T15:31:32",
+    "updated": "2026-01-14T9:30:00",
     "performance": "no change"
   },
   "INDMHEALTHEQ": {
-    "updated": "2025-05-20T9:30:00",
+    "updated": "2026-01-23T15:56:07",
     "performance": "no change"
   },
   "INDPREVDTHAA": {
-    "updated": "2025-09-24T9:30:00",
-    "performance": "worsening"
+    "updated": "2025-09-24T9:30:00"
   },
   "INDPREVDTHLGD": {
-    "updated": "2025-09-24T9:30:00",
-    "performance": "worsening"
+    "updated": "2025-09-24T9:30:00"
   },
   "INDPREVDTHEQ": {
     "updated": "2025-09-24T9:30:00",
     "performance": "worsening"
   },
   "INDSPORTSLGD": {
-    "updated": "2025-05-08T9:30:00",
-    "performance": "no change"
+    "updated": "2025-05-08T9:30:00"
   },
   "INDSPORTSEQ": {
     "updated": "2025-01-30T9:30:00",
     "performance": "no change"
   },
   "INDARTCULLGD": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "improving"
+    "updated": "2025-04-29T9:30:00"
   },
   "INDARTCULEQ": {
     "updated": "2025-01-24T11:17:45",
     "performance": "improving"
   },
   "INDLIFESATAA": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "no change"
+    "updated": "2026-02-02T9:30:00"
   },
   "INDLIFESATLGD": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "no change"
+    "updated": "2026-02-02T9:30:00"
   },
   "INDLIFESATEQ": {
-    "updated": "2025-03-11T9:30:00",
+    "updated": "2026-02-02T9:30:00",
     "performance": "no change"
   },
   "INDSLATTGAPAA": {
-    "updated": "2025-08-14T9:30:00",
-    "performance": "insufficient data"
+    "updated": "2025-08-14T9:30:00"
   },
   "INDSLATTGAPLGD": {
-    "updated": "2025-08-14T9:30:00",
-    "performance": "insufficient data"
+    "updated": "2025-08-14T9:30:00"
   },
   "INDSLATTGAPEQ": {
     "updated": "2025-08-14T9:30:00",
     "performance": "insufficient data"
   },
   "INDSELFEFFAA": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "no change"
+    "updated": "2026-02-02T9:30:00"
   },
   "INDSELFEFFLGD": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "no change"
+    "updated": "2026-02-02T9:30:00"
   },
   "INDSELFEFFEQ": {
-    "updated": "2025-03-11T9:30:00",
-    "performance": "no change"
+    "updated": "2026-02-02T9:30:00",
+    "performance": "worsening"
   },
   "INDECONINACTAA": {
-    "updated": "2025-10-23T9:30:00",
-    "performance": "improving"
+    "updated": "2025-10-23T9:30:00"
   },
   "INDECONINACTLGD": {
-    "updated": "2025-10-23T9:30:00",
-    "performance": "improving"
+    "updated": "2025-10-23T9:30:00"
   },
   "INDECONINACTEQ": {
-    "updated": "2025-10-23T15:31:54",
+    "updated": "2025-11-27T15:01:24",
     "performance": "improving"
   },
   "INDEMPRATEAA": {
-    "updated": "2025-10-23T9:30:00",
-    "performance": "improving"
+    "updated": "2025-10-23T9:30:00"
   },
   "INDEMPRATELGD": {
-    "updated": "2025-10-23T9:30:00",
-    "performance": "improving"
+    "updated": "2025-10-23T9:30:00"
   },
   "INDEMPRATEEQ": {
-    "updated": "2025-10-23T16:42:06",
+    "updated": "2025-12-09T12:14:43",
     "performance": "improving"
   },
   "INDEXSALENI": {
@@ -214,8 +192,7 @@
     "updated": "2025-05-08T9:30:00"
   },
   "INDGOODJOBSLGD": {
-    "updated": "2025-05-08T9:30:00",
-    "performance": "insufficient data"
+    "updated": "2025-05-08T9:30:00"
   },
   "INDGOODJOBSEQ": {
     "updated": "2025-02-20T12:56:21",
@@ -230,28 +207,25 @@
     "performance": "improving"
   },
   "INDNICEINI": {
-    "updated": "2025-09-26T15:02:13",
+    "updated": "2026-01-19T11:13:06",
     "performance": "improving"
   },
   "INDRESDEVNI": {
-    "updated": "2025-01-30T9:30:00",
+    "updated": "2025-12-11T9:30:00",
     "performance": "worsening"
   },
   "INDSKILLSLGD": {
-    "updated": "2025-10-24T14:40:02",
-    "performance": "improving"
+    "updated": "2025-10-24T14:40:02"
   },
   "INDSKILLSEQ": {
     "updated": "2025-10-24T14:39:03",
     "performance": "improving"
   },
   "INDCRIMEAA": {
-    "updated": "2025-10-30T16:00:13",
-    "performance": "no change"
+    "updated": "2025-10-30T16:00:13"
   },
   "INDCRIMELGD": {
-    "updated": "2025-10-30T16:04:44",
-    "performance": "no change"
+    "updated": "2025-10-30T16:04:44"
   },
   "INDCRIMEEQ": {
     "updated": "2025-10-30T15:56:00",
@@ -278,55 +252,48 @@
     "performance": "no change"
   },
   "INDLONEAA": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "improving"
+    "updated": "2026-02-02T9:30:00"
   },
   "INDLONELGD": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "improving"
+    "updated": "2026-02-02T9:30:00"
   },
   "INDLONEEQ": {
-    "updated": "2025-03-11T15:01:47",
+    "updated": "2026-02-02T9:30:00",
     "performance": "improving"
   },
   "INDVOLLGD": {
-    "updated": "2025-10-31T15:38:46",
-    "performance": "no change"
+    "updated": "2025-10-31T15:38:46"
   },
   "INDVOLEQ": {
     "updated": "2025-10-31T15:36:47",
     "performance": "no change"
   },
   "INDSUITHOUSLGD": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "no change"
+    "updated": "2026-01-13T9:30:00"
   },
   "INDSUITHOUSEQ": {
-    "updated": "2025-10-08T14:37:50",
+    "updated": "2026-01-13T9:30:00",
     "performance": "no change"
   },
   "INDHOMELNLGD": {
-    "updated": "2025-08-12T12:32:55",
-    "performance": "worsening"
+    "updated": "2025-08-12T12:32:55"
   },
   "INDHOMELNEQ": {
     "updated": "2025-08-12T12:32:22",
     "performance": "worsening"
   },
   "INDHOUSCTLGD": {
-    "updated": "2025-07-10T10:23:10",
-    "performance": "no change"
+    "updated": "2025-07-10T10:23:10"
   },
   "INDHOUSCTEQ": {
     "updated": "2025-07-10T16:39:42",
     "performance": "no change"
   },
   "INDHOUSTRSLGD": {
-    "updated": "2025-04-29T9:30:00",
-    "performance": "worsening"
+    "updated": "2025-12-04T9:30:00"
   },
   "INDHOUSTRSEQ": {
-    "updated": "2025-02-11T11:36:04",
+    "updated": "2025-12-04T9:30:00",
     "performance": "worsening"
   },
   "INDCOMRELEQ": {
