@@ -1750,7 +1750,7 @@ tr {
         padding-left: 0 !important;
     }
 
-    #domains-grid-container, #improving-hexes.overall-container, #no-change-hexes.overall-container, #worsening-hexes.overall-container,
+    #improving-hexes.overall-container, #no-change-hexes.overall-container, #worsening-hexes.overall-container,
     #insufficient-hexes.overall-container, #map-container {
         display: block !important;
         margin-left: auto !important;
@@ -1801,6 +1801,20 @@ tr {
 
 #domain-info-container #clicked-desc.blue-label {
   display: flex !important;
+  }
+  
+  #pop-up-map, #pop-up-chart {
+    outline: 1px solid #000000;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+
+  #close-pop-up {
+    display: none !important;
+  }
+
+  .popup-download-btn {
+    font-size: 12pt;
   }
 }
 
