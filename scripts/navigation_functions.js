@@ -581,6 +581,7 @@ if (currentURL.includes("?domain=")) {
     domain_toggle.style.display = "none";
     domains_intro.style.display = "none";       // Hide the "domains-intro" div
     recent_updates.style.display = "none";
+    recent_filter.style.display = "none";
     h3_recent_updates.style.display = "none";
     indicator_intro.style.display = "block";    // Show the "indicator-intro" div
     hex_count_container.style.display = "none";
