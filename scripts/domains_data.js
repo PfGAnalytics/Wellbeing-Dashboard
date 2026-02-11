@@ -259,7 +259,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.7 per cent in 2019/20.",
+               no_change: "During 2024/25, half (51.0 per cent) of the household waste collected by NI councils was reused, recycled or composted. The household waste recycling rate increased from 27.7 per cent in 2006/07 to a high of 51.9 per cent in 2019/20.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -307,9 +307,9 @@ var domains_data = {
          },
          "Sustainable travel - public transport": {
             importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
-            base_year: null,
+            base_year: "2022",
+            ci: 1.4,
             AOS: true,
-            ci: 1.1,
             latest_update: "09-01-2026",
             next_update: "July 2026",
             data: {
@@ -321,9 +321,9 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "There were a number of significant changes to the survey methodology from 2020, due to the Covid-19 pandemic. In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 to 2023 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The base year for this indicator has been set to 2022.",
                worsened: "This commentary is a placeholder.",
-               insufficient: "There were a number of significant changes to the survey methodology from 2020, due to the COVID-19 pandemic.  In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 and 2021 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The comparison year for this indicator has been set to 2022."
+               insufficient: ""
             }
          },
        }
@@ -334,7 +334,7 @@ var domains_data = {
        indicators: {
          "Cultural identity": {
             importance: "Building and promoting respect for cultural identity helps support tackling sectarianism and therefore provides a foundation for good relations.",
-            base_year: "2019",
+            base_year: "2020",
             ci: 2.7,
             latest_update: "07-11-2025",
             next_update: "October 2026",
@@ -346,9 +346,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "This means that more adults in 2024 feel their cultural identity is respected by society than in 2020.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This means that fewer adults in 2023 feel their cultural identity is respected by society than in 2019.",
+               worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
@@ -422,9 +422,9 @@ var domains_data = {
        indicators: {
          "Active travel - walking and cycling": {
             importance: "Encouraging more active and sustainable ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
-            base_year: null,
+            base_year: "2022",
+            ci: 3.6,
             AOS: true,
-            ci: 2.4,
             latest_update: "09-01-2026",
             next_update: "July 2026",
             data: {
@@ -436,15 +436,15 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "This commentary is a placeholder.",
+               no_change: "There were a number of significant changes to the survey methodology from 2020, due to the Covid-19 pandemic. In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 to 2023 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The base year for this indicator has been set to 2022.",
                worsened: "This commentary is a placeholder.",
-               insufficient: "There were a number of significant changes to the survey methodology from 2020, due to the COVID-19 pandemic.  In addition to these changes, the impact of the pandemic and the resultant introduction of new public health regulations, guidance and advice may have also fundamentally changed peoples’ behaviour and attitudes.  While 2020 and 2021 results can be compared to each other, care should be taken in reaching any conclusions based on these data and comparisons to previous years. The comparison year for this indicator has been set to 2022."
+               insufficient: ""
             }
          },
          "Healthy life expectancy (females)": {
-            importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
-            base_year: "2017-19",
-            ci: 1.5,
+            importance: "Healthy life expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
+            base_year: "2018-20",
+            ci: 1.7,
             latest_update: "14-01-2026",
             next_update: "December 2026",
             data: {
@@ -456,15 +456,15 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "",
-               no_change: "There was no significant change in female healthy life expectancy between 2017-19 (61.0 years) and 2021-23 (61.4 years).",
-               worsened: "",
+               no_change: "",
+               worsened: "There was a significant decrease in female healthy life expectancy between 2018-20 (62.1 years) and 2022-24 (60.2 years).",
                insufficient: ""
             }
          },
          "Healthy life expectancy (males)": {
-            importance: "Healthy Life Expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
-            base_year: "2017-19",
-            ci: 1.6,
+            importance: "Healthy life expectancy gives an indication of the extent of good or very good health among the population by providing the average number of years that an individual might expect to live in 'good health' or 'very good health' from birth.",
+            base_year: "2018-20",
+            ci: 1.7,
             latest_update: "14-01-2026",
             next_update: "December 2026",
             data: {
@@ -476,7 +476,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "",
-               no_change: "There was no significant change in male healthy life expectancy between 2017-19 (59.2 years) and 2021-23 (60.3 years).",
+               no_change: "There was no significant change in male healthy life expectancy between 2018-20 (60.1 years) and 2022-24 (59.3 years).",
                worsened: "",
                insufficient: ""
             }
@@ -496,7 +496,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "",
-               no_change: "In 2023/24, around a fifth (19%) of respondents had a high GHQ12 score, which could indicate a mental health problem. The proportion of males and females with a high GHQ12 score is unchanged from 2019/20. Considering the longer term trend, the proportion scoring highly is at a similar level to 2010/11. There was a significant worsening during the pandemic however the latest findings suggest an overall return to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas. Further information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available online: <a href = 'https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2F2025-05%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK'>from this link. </a>",
+               no_change: "In 2023/24, around a fifth (19%) of respondents had a high GHQ12 score, which could indicate a mental health problem. The proportion of males and females with a high GHQ12 score is unchanged from 2019/20. Considering the longer term trend, the proportion scoring highly is at a similar level to 2010/11. There was a significant worsening during the pandemic however the latest findings suggest an overall return to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas. Further information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available online: <a href = 'https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2F2026-01%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK' target = '_blank'>from this link. </a>",
                worsened: "",
                insufficient: ""
             }
@@ -582,7 +582,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. Although estimates for life satisfaction in 2023/24 appear to be returning to pre-pandemic levels, the longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and also between people who are married or in a civil partnership compared with any other marital status. Of the 11 LGDs, Newry, Mourne & Down have the highest rates of life satisfaction for 2023/24.",
+               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend also shows no change in life satisfaction since reporting began in 2014/15. However, consistent gaps remain between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and also between people who are married or in a civil partnership compared with any other marital status. Of the 11 LGDs, Ards & North Down have the highest rates of life satisfaction for 2024/25.",
                worsened: "",
                insufficient: ""
             }
@@ -623,8 +623,8 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "",
-               no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without.",
-               worsened: "",
+               no_change: "",
+               worsened: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. Consistent gaps remain between males and females, the most and least deprived areas, and people with a disability compared with those without.",
                insufficient: ""
             }
          }
@@ -789,7 +789,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the second quarter of 2025, economic output in Northern Ireland increased by 2.0%, mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index'>from this link. </a>",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the third quarter of 2025, economic output in Northern Ireland increased by 1.0%,  mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -797,7 +797,7 @@ var domains_data = {
          },
          "Research and development": {
             importance: "Research and development (R&D) is an essential component of a strong and sustainable economy, investment in R&D helps drive increased innovation, leads to increased productivity and higher levels of economic growth.",
-            base_year: "2019",
+            base_year: "2020",
             AOS: true,
             ci: 1,
             latest_update: "11-12-2025",
@@ -812,7 +812,7 @@ var domains_data = {
             telling: {
                improved: "",
                no_change: "",
-               worsened: "There has been a 6.4% decrease in real terms between 2019 and 2023. There has been a real terms increase of 2.8% in GERD between 2022 and 2023. An improving trend is defined as anything more than a 0.1% increase on the 2019 GERD value; a worsening trend is defined as anything more than a 0.1% decrease on the 2019 GERD value.",
+               worsened: "There has been a 14.5% decrease in real terms between 2020 and 2024. There has been a real terms decrease of 3.1% in GERD between 2023 and 2024. An improving trend is defined as anything more than a 0.1% increase on the 2020 GERD value; a worsening trend is defined as anything more than a 0.1% decrease on the 2020 GERD value.",
                insufficient: ""
             }
          },
@@ -917,14 +917,14 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The figure of 2020/21 was the first year to reflect the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. While the impact of this backlog is still being reflected in the average time taken to complete cases, some improvement has been noted. The figure for 2024/25 (189 days) is lower than the figure for 2019/20 (193 days).",
+               no_change: "The figure for 2020/21 was the first year to reflect the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. While the impact of this backlog is still being reflected in the average time taken to complete cases, some improvement has been noted. The figure for 2024/25 (189 days) is lower than the figure for 2020/21 (193 days).",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Safe towns and city centres": {
             importance: "Town centres must be seen as places where people can feel safe in moving around, and where life choices are not inhibited by fears around safety. This is a key aspect of social and physical wellbeing for people living in or visiting towns and cities.",
-            base_year: "2019",
+            base_year: "2020",
             ci: 2.7,
             latest_update: "07-11-2025",
             next_update: "October 2026",
@@ -938,7 +938,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder",
-               worsened: "This means that fewer people aged 18+ see towns and city centres as safe and welcoming places for people of all walks of life than did in 2019.",
+               worsened: "This means that fewer people aged 18+ see towns and city centres as safe and welcoming places for people of all walks of life than did in 2020.",
                insufficient: ""
             }
          },
@@ -1002,7 +1002,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels in 2023/24. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, divorced or widowed, and also between people with a white ethnicity compared with any other ethnicity.",
+               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels since 2023/24. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, divorced or widowed, and also between people with a white ethnicity compared with any other ethnicity.",
                no_change: "",
                worsened: "",
                insufficient: ""
@@ -1049,8 +1049,8 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The proportion of households who report being very satisfied or fairly satisified with their house or flat has improved significantly during this time.",
-               no_change: "This commentary is a placeholder.",
+               improved: "This commentary is a placeholder",
+               no_change: "While the proportion of households who report being very satisfied or fairly satisified with their house or flat had improved in 2023/24, the level in 2024/25 is now similar to that in 2021/22.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -1098,7 +1098,7 @@ var domains_data = {
          },
          "Housing stress": {
             importance: "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2019/20",
+            base_year: "2020/21",
             AOS: true,
             ci: 0,
             latest_update: "10-02-2025",
@@ -1125,8 +1125,8 @@ var domains_data = {
       indicators: {
          "Community relations": {
             importance: "Perceptions of relations between Protestants and Catholics are an important part of public life in Northern Ireland and affect citizens' perceptions of peace and stability, which in turn affects mental wellbeing.",
-            base_year: "2019",
-            ci: 2.8,
+            base_year: "2020",
+            ci: 2.7,
             latest_update: "07-11-2025",
             next_update: "0ctober 2026",
             data: {
@@ -1137,16 +1137,16 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "This means that in 2023 approximately the same proportion of people aged 18+ think that relations between Protestants and Catholics are better now than they were five years ago as did in 2019.",
+               improved: "This means that in 2024 a higher proportion of people aged 18+ think that relations between Protestants and Catholics are better now than they were five years ago as did in 2020.",
+               no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Shared community": {
             importance: "Preference for mixed religion neighbourhoods is an important indicator of attitudes towards other communities, as well as an indicator of preference for a shared community, which in turn is an important aspect of social wellbeing in Northern Ireland.",
-            base_year: "2019",
-            ci: 2.4,
+            base_year: "2020",
+            ci: 2.3,
             latest_update: "07-11-2025",
             next_update: "October 2026",
             data: {
@@ -1159,7 +1159,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "This means that fewer people aged 18+ would prefer a mixed religion neighbourhood than did in 2019.",
+               worsened: "This means that fewer people aged 18+ would prefer a mixed religion neighbourhood than did in 2020.",
                insufficient: ""
             }
          },
