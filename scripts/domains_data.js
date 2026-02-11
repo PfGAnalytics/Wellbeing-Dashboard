@@ -799,6 +799,7 @@ var domains_data = {
             importance: "Research and development (R&D) is an essential component of a strong and sustainable economy, investment in R&D helps drive increased innovation, leads to increased productivity and higher levels of economic growth.",
             base_year: "2020",
             AOS: true,
+            ci: 1,
             latest_update: "11-12-2025",
             next_update: "November 2026",
             data: {
