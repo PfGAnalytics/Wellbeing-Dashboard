@@ -388,7 +388,7 @@ async function createLineChart(d, e) {
    } else if (indicator.data.NI == "INDAIRPOLNI") {
       y_axis_label = "Annual mean nitrogen dioxide concentration (μg/m³)"
    } else if (indicator.data.NI == "INDNICEINI") {
-      y_axis_label = "Index (base 2022=100)"
+      y_axis_label = "Index (base 2023=100)"
    } else if (y_axis_label == "Percentage") {
       y_axis_label = "%"
    }
@@ -2122,8 +2122,9 @@ async function renderPopup (d, e, eq_group) {
             notes_list_item = document.createElement("li");
             if (notes[j].indexOf(["[url="]) > -1) {      // Add hyperlinks to any url's found
                link = notes[j].slice(notes[j].indexOf("[url=") + "[url=".length);
+               link_text = link.slice(link.indexOf("]") + 1, link.indexOf("["));
                link = link.slice(0, link.indexOf("]")).replaceAll(". ", ".");
-               notes[j] = notes[j].slice(0, notes[j].indexOf("[url=")) + "<a href = '" + link + "' target = '_blank'>" + link + "</a>";
+               notes[j] = notes[j].slice(0, notes[j].indexOf("[url=")) + "<a href = '" + link + "' target = '_blank'>" + link_text + "</a>";
             }
             notes_list_item.innerHTML = notes[j];
             notes_list.appendChild(notes_list_item);
