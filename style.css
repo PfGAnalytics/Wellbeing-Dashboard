@@ -37,12 +37,25 @@ body {
 }
 
 #top-menu-items {
-  width: 100%;
+  width: 60%;
   display: flex;
   padding: 10px 0px 15px;
   justify-content: space-between;
   background-color: #142062;
-  max-width: 1500px
+  max-width: 1500px;
+}
+
+#top-menu-items-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px 15px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+#domains-btn, #about-btn {
+    width: 400px;
+    height: 100%;
 }
 
 #top-menu-exec-logo {
@@ -1434,6 +1447,8 @@ input:focus-visible {
   }
 
   #search-bar {
+    height: 50%;
+    width: 35%;
     display: flex;
     justify-content: center;
     background-color: #142062;
@@ -1473,6 +1488,8 @@ input:focus-visible {
 
 
   #search-box {
+    display: flex;
+    width: 100%;
     border: 3px solid #ffffff;
     border-radius: 25px;
     background-color: #ffffff;
