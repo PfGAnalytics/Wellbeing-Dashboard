@@ -1280,14 +1280,23 @@ input:focus-visible {
 
 @media (max-width: 1200px) {
     #chart-boxes.box-container {
-        min-width: 60% !important;
+        min-width: 70% !important;
         margin-top: 5% !important;
-        margin-left: 22% !important;
+        margin-left: 20% !important;
+        margin-right: 20% !important;
+        padding-right: 2% !important;
         font-size: 12pt;
     }
 
     #download-chart, #download-data {
-        font-size: 12pt;
+        font-size: 11pt;
+        width: 40% !important;
+    }
+
+    #download-buttons {
+        display: flex !important;
+        margin-left: 2% !important;
+        margin-right: 1% !important;
     }
 
     #ind-telling-row {
