@@ -3184,122 +3184,123 @@ const codeToInfoMap = (() => {
   return map;
 })();
 
-function normalizeDate(dateStr) {
-  return dateStr.replace(/T(\d):/, 'T0$1:');
-}
-   fetch('scripts/updated.json?nocache=' + Date.now())
-     .then(response => response.json())
-     .then(data => {
-       // Convert the new structure into an array of objects
-       const items = Object.entries(data).map(([dataset, details]) => {
-         const normalizedDate = normalizeDate(details.updated); // Keep your normalizeDate function
-         return {
-           dataset,
-           updated: new Date(normalizedDate),
-           performance: details.performance || 'unknown'
-         };
-       });
+      function parseLatestUpdate(dateStr) {
+        if (!dateStr || dateStr === "TBC") return null;
 
-       // Sort by updated date (most recent first)
-       items.sort((a, b) => b.updated - a.updated);
+        // Convert DD-MM-YYYY → YYYY-MM-DD for safe parsing
+        const parts = dateStr.split("-");
+        if (parts.length !== 3) return null;
 
-       const tbody = document.querySelector('#recent-table tbody');
-       
-       function renderFiltered(days) {
-         const now = new Date();
-         const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
-         
-         // Filter by window (keep valid dates only)
-         const filtered = items.filter(item => !isNaN(item.updated) && item.updated >= cutoff);
-
-         const seen = new Set();
-         const toRender = [];
-         
-         for (const item of filtered) {
-            const info = codeToInfoMap[item.dataset] || {};
-            const indicatorName = info.indicator || item.dataset || 'Unknown';
-            const domainName = info.domain || 'Unknown';
-            const key = `${domainName}||${indicatorName}`;
-            
-            if (!seen.has(key)) {
-               seen.add(key);
-               toRender.push({ ...item, indicatorName, domainName });
-            }
-         }
-
-         // Clear and render
-         tbody.innerHTML = '';
-         
-         // No updates
-         if (toRender.length === 0) {
-            const row = document.createElement('tr');
-            const cell = document.createElement('td');
-            cell.colSpan = 4;
-            cell.style.padding = '8px';
-            cell.textContent = `No updates in the last ${days} days.`;
-            row.appendChild(cell);
-            tbody.appendChild(row);
-            return;
-         }
-         
-         toRender.forEach(item => {
-            const row = document.createElement('tr');
-            
-            // Format date
-            const formattedDate = isNaN(item.updated) ? 'Not Available' : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
-            
-            // Indicator/domain lookup
-            const info = codeToInfoMap[item.dataset] || {};
-            const indicatorName = info.indicator || item.dataset || 'Unknown';
-            const domainName = info.domain || 'Unknown';
-            
-            // Indicator link
-            const urlIndicator = indicatorName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+');
-            const link = document.createElement('a');
-            link.href = `index.html?indicator=${urlIndicator}`;
-            link.textContent = indicatorName;
-
-            // Domain link
-            const domainLink = document.createElement('a');
-            domainLink.href = `index.html?domain=${domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
-            domainLink.textContent = domainName;
-
-            // Cells
-            const nameCell = document.createElement('td');
-            nameCell.style.border = '1px solid #ccc';
-            nameCell.style.padding = '8px';
-            nameCell.appendChild(link);
-
-            const domainCell = document.createElement('td');
-            domainCell.style.border = '1px solid #ccc';
-            domainCell.style.padding = '8px';
-            domainCell.appendChild(domainLink);
-            
-            const dateCell = document.createElement('td');
-            dateCell.style.border = '1px solid #ccc';
-            dateCell.style.padding = '8px';
-            dateCell.textContent = formattedDate;
-
-            // Append
-            row.appendChild(nameCell);
-            row.appendChild(domainCell);
-            row.appendChild(dateCell);
-            tbody.appendChild(row);
-         });
+        const [day, month, year] = parts;
+        return new Date(`${year}-${month}-${day}`);
       }
-      
-      // Initial render defaults to last 30 days
+
+      function buildItemsFromDomains(domains_data) {
+        const items = [];
+
+        for (const [domainName, domainObj] of Object.entries(domains_data)) {
+          for (const [indicatorName, indicatorObj] of Object.entries(domainObj.indicators)) {
+            const date = parseLatestUpdate(indicatorObj.latest_update);
+
+            items.push({
+              dataset: indicatorObj.data?.AA || indicatorName, // or whatever you prefer as dataset key
+              indicatorName,
+              domainName,
+              updated: date
+            });
+          }
+        }
+
+        // Sort by updated date (most recent first), ignoring nulls
+        items.sort((a, b) => (b.updated || 0) - (a.updated || 0));
+
+        return items;
+      }
+
+      const items = buildItemsFromDomains(domains_data);
+
+      const tbody = document.querySelector('#recent-table tbody');
+
+      function renderFiltered(days) {
+        const now = new Date();
+        const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+
+        const filtered = items.filter(item => item.updated && item.updated >= cutoff);
+
+        const seen = new Set();
+        const toRender = [];
+
+        for (const item of filtered) {
+          const key = `${item.domainName}||${item.indicatorName}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            toRender.push(item);
+          }
+        }
+
+        tbody.innerHTML = '';
+
+        if (toRender.length === 0) {
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          cell.colSpan = 4;
+          cell.style.padding = '8px';
+          cell.textContent = `No updates in the last ${days} days.`;
+          row.appendChild(cell);
+          tbody.appendChild(row);
+          return;
+        }
+
+        toRender.forEach(item => {
+          const row = document.createElement('tr');
+
+          const formattedDate = !item.updated
+            ? 'Not Available'
+            : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
+
+          const link = document.createElement('a');
+          const urlIndicator = item.indicatorName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+');
+          link.href = `index.html?indicator=${urlIndicator}`;
+          link.textContent = item.indicatorName;
+
+          const domainLink = document.createElement('a');
+          domainLink.href = `index.html?domain=${item.domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
+          domainLink.textContent = item.domainName;
+
+          const nameCell = document.createElement('td');
+          nameCell.style.border = '1px solid #ccc';
+          nameCell.style.padding = '8px';
+          nameCell.appendChild(link);
+
+          const domainCell = document.createElement('td');
+          domainCell.style.border = '1px solid #ccc';
+          domainCell.style.padding = '8px';
+          domainCell.appendChild(domainLink);
+
+          const dateCell = document.createElement('td');
+          dateCell.style.border = '1px solid #ccc';
+          dateCell.style.padding = '8px';
+          dateCell.textContent = formattedDate;
+
+          row.appendChild(nameCell);
+          row.appendChild(domainCell);
+          row.appendChild(dateCell);
+          tbody.appendChild(row);
+        });
+      }
+
+      // Default 30‑day render
       renderFiltered(30);
 
+      // Dropdown handler
       const recentSelect = document.getElementById('recent-window');
       if (recentSelect) {
-         recentSelect.addEventListener('change', function () {
-            const days = Number(this.value) || 30;
-            renderFiltered(days);
-         });
+        recentSelect.addEventListener('change', function () {
+          const days = Number(this.value) || 30;
+          renderFiltered(days);
+        });
       }
-   })
-   .catch(error => console.error('Error loading JSON:', error));
+
 
 function toTitleCase(str) {
 
