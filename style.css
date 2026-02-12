@@ -75,10 +75,7 @@ body {
     justify-content: center;
 }
 
-@media (max-width: 1110px) {
-    h1 {
-        font-size: 30px !important;
-    }
+@media (max-width: 1400px) {
     #dashboard-title {
         width: 50%;
     }
@@ -227,7 +224,8 @@ h3 {
 }
 
 .box-container {
-    width: 380px;     
+    width: 380px;  
+    margin-right: -20px;   
 }
 
 .grey-box {
@@ -828,19 +826,8 @@ footer {
 }
 
 #measure-info {
+    width: 55%;
     max-width: 700px;
-}
-
-@media (max-width: 992px) {
-    #measure-info {
-        max-width: 500px;
-    }
-}
-
-@media (max-width: 600px) {
-    #measure-info {
-        max-width: 100%;
-    }
 }
 
 #download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data  {
@@ -937,11 +924,12 @@ footer {
     text-align: center;
 }
 
- .chart-date {
+ .chart-date, .next-update {
     font-size: 10pt;
     padding-left: 25px;
     color: #666;
     width: fit-content;
+    margin-top: 10px;
  }
 
  .map-date {
@@ -1288,6 +1276,38 @@ input:focus-visible {
     background-color: #e8e8e8; 
     border-radius: 25px;
     padding: 15px;
+}
+
+@media (max-width: 1200px) {
+    #chart-boxes.box-container {
+        min-width: 60% !important;
+        margin-top: 5% !important;
+        margin-left: 22% !important;
+        font-size: 12pt;
+    }
+
+    #download-chart, #download-data {
+        font-size: 12pt;
+    }
+
+    #ind-telling-row {
+        margin-top: auto !important;
+    }
+
+    .blue-label {
+        margin-top: 20px;
+    }
+
+    .white-box, .grey-box {
+        max-width: fit-content;
+    }
+    .grey-box {
+        width: 98% !important;
+    }
+    
+    h1 {
+        font-size: 25pt;
+    }
 }
 
 #AA-link, #LGD-link, .eq-link {

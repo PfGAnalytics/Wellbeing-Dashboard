@@ -984,7 +984,8 @@ async function createLineChart(d, e) {
    chart_canvas.id = id + "-canvas";
    canvas_div.appendChild(chart_canvas);
 
-   all_dates_row= document.createElement("row");
+   all_dates_row = document.createElement("row");
+   all_dates_row.classList.add("dates-row");
 
    // Create a div for updated on date div
    date_div = document.createElement("div");
@@ -994,9 +995,9 @@ async function createLineChart(d, e) {
 
    // Create a div for next update date
    next_update_div = document.createElement("div");
+   next_update_div.classList.add("next-update");
    next_update_div.innerHTML = next_update_note;
    next_update_div.style.textAlign = "right";
-   next_update_div.classList.add("chart-date");
    all_dates_row.appendChild(next_update_div);
    
 
