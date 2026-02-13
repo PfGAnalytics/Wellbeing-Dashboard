@@ -75,7 +75,7 @@ body {
     justify-content: center;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
     #dashboard-title {
         width: 50%;
     }
@@ -97,6 +97,12 @@ body {
         border: 2px !important;
     }
 
+}
+
+@media (max-width: 1400px) {
+    #dashboard-title {
+        width: 50%;
+    }
 }
 
 h1 {
