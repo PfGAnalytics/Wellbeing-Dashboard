@@ -1048,8 +1048,6 @@ function sizeForMobile() {
         if (window.innerWidth < 1200) { // When width is less than 1200px:
             box_containers[i].style.marginTop = "10px";     // Top margin of 10px
             box_containers[i].style.width = "100%";         // Full width of page
-            box_containers[i].style.paddingLeft = "5%";     // 5% spacing on left
-            box_containers[i].style.paddingRight = "5%";    // 5% spacing on right
         } else {    // Greater than 1200px:
             box_containers[i].removeAttribute("style");     // Remove all above
         }

@@ -231,8 +231,7 @@ h3 {
 }
 
 .box-container {
-    width: 380px;  
-    margin-right: -20px;   
+    width: 380px; 
 }
 
 .grey-box {
@@ -1282,16 +1281,16 @@ input:focus-visible {
 #chart-boxes {
     background-color: #e8e8e8; 
     border-radius: 25px;
-    padding: 15px;
+    padding: 15px 15px 15px 0px;
 }
 
 @media (max-width: 1200px) {
     #chart-boxes.box-container {
         min-width: 70% !important;
         margin-top: 5% !important;
-        margin-left: 20% !important;
-        margin-right: 20% !important;
-        padding-right: 2% !important;
+        margin-left: 19% !important;
+        margin-right: 25% !important;
+        padding-right: 15px !important;
         font-size: 12pt;
     }
 
@@ -1324,6 +1323,15 @@ input:focus-visible {
     h1 {
         font-size: 25pt;
     }
+    #LGD-link {
+        padding-left: 120px;
+    }
+    #eq-col-1 {
+        padding-right: 30px;
+    }
+    #map-link {
+        padding-right: 0px;
+    }
 }
 
 #AA-link, #LGD-link, .eq-link {
@@ -1332,7 +1340,6 @@ input:focus-visible {
     cursor: pointer;
     margin-bottom: 10px;
     border: 0px;
-    padding: 0px;
     background-color: #e8e8e8;
 }
 
@@ -1344,6 +1351,10 @@ input:focus-visible {
 
 #eq-col-1, #eq-col-2 {
     width: 50%
+}
+
+#eq-col-1 {
+    padding-left: 30px;
 }
 
 #chart-link {
