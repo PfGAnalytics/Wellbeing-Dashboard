@@ -192,7 +192,7 @@ h3 {
 }
 
 #main-container {
-    max-width: 1200px;
+    width: 1200px;
 }
 
 #domains-grid-container {

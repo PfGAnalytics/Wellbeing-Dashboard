@@ -59,6 +59,7 @@ var change_info = document.getElementById("change-info");
 var loading_img = document.getElementById("loading-img");
 var loading_img_2 = document.getElementById("loading-img-2");
 var loading_img_3 = document.getElementById("loading-img-3");
+var loading_img_4 = document.getElementById("loading-img-4");
 var intro = document.getElementsByClassName("intro");
 var domains_footer = document.getElementById("domains-footer");
 var back_button = document.getElementById("back-button");
@@ -83,6 +84,7 @@ var by_mission = document.getElementById("by-mission");
 var by_mission_grid = document.getElementById("by-mission-grid");
 var back_to_start = document.getElementById("back-to-start");
 let performanceLoaded = false;
+let expandedDomainsLoaded = false;
 
 
 for (let i = 0; i< domain_count.length; i ++) {
@@ -431,21 +433,24 @@ function plotOverallHexes (change_type) {
             hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i]
         }
 
+
+
+
+
         hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row  
+
+         if (i == Object.keys(eval(change_type + "_indicator")).length - 1) {   // Once all hexagons are plotted:
+        document.getElementById('count-positive').textContent = Object.keys(improving_indicator).length;
+        document.getElementById('count-negative').textContent = Object.keys(worsening_indicator).length;
+        document.getElementById('count-insufficient').textContent = Object.keys(insufficient_indicator).length;
+        document.getElementById('count-neutral').textContent = Object.keys(no_change_indicator).length;
+        performanceLoaded = true;
+        }
+       
 
     }
 
-    loading_img.style.display = "none";
-
-    performanceLoaded = true;
-
-    document.getElementById('count-positive').textContent = Object.keys(improving_indicator).length;
-    document.getElementById('count-negative').textContent = Object.keys(worsening_indicator).length;
-    document.getElementById('count-insufficient').textContent = Object.keys(insufficient_indicator).length;
-    document.getElementById('count-neutral').textContent = Object.keys(no_change_indicator).length;
-
 }
-
 
 
 // Function to Write the "More data" sentence on indicator and map pages
@@ -511,13 +516,13 @@ for (let i = 0; i < domains.length; i ++) {
 // Top menu navigation:
 var currentURL = window.location.href;
 
-if (!currentURL.includes("?")) {
+if (!currentURL.includes("?") | currentURL.includes("?tab=domains")) {
     loading_img.style.display = "none";
     domains_scrn.style.display = "block";
     indicatorPerformance();
 }
 
-if (currentURL.includes("tab=")) {
+if (currentURL.includes("tab=about")) {
 
     currentTab = currentURL.slice(currentURL.indexOf("tab=") + "tab=".length);
 
@@ -547,6 +552,8 @@ if (currentURL.includes("tab=")) {
 
     if (currentTab == "about") {
         subpopTable();
+    } else {
+        indicatorPerformance();
     }
 
 }
@@ -920,25 +927,17 @@ removeAriaFromIcons = function() {
 }
 
 // Execute the following functions when window loads for first time:
-window.onload = function() {
-    dataPortalLive();  
-};
+window.addEventListener('load', () => {
+  dataPortalLive();
+  sizeForMobile();      // set widths for the initial layout too
+  mainContainerHeight();// keep the footer in the right place
+});
 
 // Execute the following functions anytime the window is resized:
 window.onresize = function() {
     sizeForMobile();                // Resize and re-position page elements (see below)
     mainContainerHeight();          // See above
 
-    if (window.location.search.includes("tab=overall")) {
-        plotOverallHexes("improving");  // Re-plot improving hexagons on Overall screen (see above)
-        plotOverallHexes("no_change");  // Re-plot no change hexagons Overall screen (see above)
-        plotOverallHexes("worsening");  // Re-plot worsening hexagons Overall screen (see above)
-        plotOverallHexes("insufficient");
-    }
-
-    if (window.location.search.includes("tab=domains")) {
-        plotExpandedDomains();
-    }
 }
 
 // Resizing for mobile
@@ -1431,6 +1430,7 @@ expand_all.onclick = function() {
     expand_all.classList.add("domain-toggle-selected");
     by_mission.classList.remove("domain-toggle-selected");
     by_performance.classList.remove("domain-toggle-selected");
+    loading_img_4.style.display = "flex";
 
     browse_grid.style.display = "none";
     expanded_domains.style.display = "block";
@@ -1440,7 +1440,7 @@ expand_all.onclick = function() {
     domains_intro.style.display = "none";
     domains_title.style.display = "none";
     domains_footer.style.display = "none";
-    recent_filter.style.display = "none";
+    recent_filter.style.display = "none"
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
@@ -1467,6 +1467,12 @@ by_mission.onclick = function() {
 
 by_performance.onclick = function() {
 
+    if (!performanceLoaded) {
+        loading_img.style.display = "flex";
+        document.getElementById('hex-class-count').style.display = "none";
+
+    }
+
     browse_domains.classList.remove("domain-toggle-selected");
     expand_all.classList.remove("domain-toggle-selected");
     by_mission.classList.remove("domain-toggle-selected");
@@ -1475,16 +1481,13 @@ by_performance.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "none";
-    hex_count_container.style.display = "flex";
+
     overall_screen.style.display = "block";
     domains_intro.style.display = "none";
     domains_title.style.display = "none";
     domains_footer.style.display = "none";
     recent_filter.style.display = "none";
 
-    if (!performanceLoaded) {
-        loading_img.style.display = "flex";
-    }
 
 
     document.getElementById("recent-updates").style.display = "none";
@@ -1546,24 +1549,8 @@ plotExpandedDomains = function() {
         row.classList.add("row");
         row.style.marginTop = "20px";
 
-
-    if (main_container.clientWidth > 1050) {
-        if (i % 2 == 0) {
             row.style.marginLeft = "18%";
             ind_space = (main_container.clientWidth / 100) * 70
-        } else {
-            row.style.marginLeft = "18%";
-            ind_space = (main_container.clientWidth / 100) * 65
-        }
-    } else {
-         if (i % 2 == 0) {
-            row.style.marginLeft = "11%";
-            ind_space = (main_container.clientWidth / 100) * 80
-        } else {
-            row.style.marginLeft = "11%";
-            ind_space = (main_container.clientWidth / 100) * 75
-        }
-    }
 
         ind_per_row = Math.floor((ind_space - 14) / 166);
 
@@ -1762,8 +1749,7 @@ plotExpandedDomains = function() {
 
             row_num = Math.ceil((j + 1) / ind_per_row);
             
-            document.getElementById("mission-" + i + "-row-" + row_num).appendChild(ind_hex_container);
-
+            document.getElementById("mission-" + i + "-row-" + row_num).appendChild(ind_hex_container)
 
 
         }
