@@ -805,6 +805,14 @@ footer {
     padding-bottom: 28px;
 }
 
+#map-container {
+    height: 500px;
+ }
+
+ #chart-title {
+    margin-top: 15px;
+ }
+
 #footer-container {
     width: 1200px;
 }
@@ -844,7 +852,7 @@ footer {
     max-width: 700px;
 }
 
-#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-pop-up-data  {
+#download-chart, #download-pop-up-chart, #download-data, #download-map, #download-map-data, #download-pop-up-data  {
     padding-bottom: 10px;
     font-size: 14pt;
     background-color: #142062;

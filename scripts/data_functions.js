@@ -2607,7 +2607,8 @@ async function drawPopupMap(d, e, type, main_container, loading) {
         const shapeMin = shapeNames[selectedData.indexOf(yearMin, selectedData)];
         const shapeMax = shapeNames[selectedData.indexOf(yearMax, selectedData)];
         
-        setAltTextMap(shapeMin, yearMin, shapeMax, yearMax);
+        setPopupSummary(shapeMin, yearMin, shapeMax, yearMax);
+        setSummaryMap(shapeMin, yearMin, shapeMax, yearMax);
 
         // Crop map to bounds
         map.fitBounds(window.popupShapes.getBounds());
@@ -2659,7 +2660,6 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     main_container.insertAdjacentElement("afterend", updatedDiv);
 }
 
-// Function to draw a map. This function is called when there are any changes to the dropdown menus on the map screen
 async function drawMap() {
 
    let currentDate = new Date().toISOString().split('T')[0];    
@@ -2677,6 +2677,23 @@ async function drawMap() {
       has_error = dp_result.hasOwnProperty("error");
    } catch (error) {
       has_error = true;
+   }
+
+   // Display the loading gif while this function runs
+   var map_load = document.getElementById("map-load");
+   map_load.style.display = "flex";
+   
+
+   // Hide map title during load
+   var map_title = document.getElementById("map-title");
+   map_title.style.color = "#fafafa";
+
+   // Target div with id "map-container"
+   var map_container = document.getElementById("map-container");
+
+   // Delete any map already inside map-container
+   while (map_container.firstChild) {
+       map_container.removeChild(map_container.firstChild);
    }
 
    var matrix = map_select_3.value;
@@ -2784,6 +2801,7 @@ async function drawMap() {
       map_div = document.createElement("div");
       map_div.id = matrix + "-map";
       map_div.classList.add("map");
+      map_container.appendChild(map_div);
 
       // Create a map
       var map = L.map(matrix + "-map",
@@ -2800,7 +2818,7 @@ async function drawMap() {
          L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
             maxZoom: 16
-         }).addTo(map); // Add a background map   
+         }).addTo(map); // Add a background map  
 
       window.latestMapResult = result;
       window.latestMapDataByYear = data_by_year;
@@ -2908,7 +2926,6 @@ async function drawMap() {
 
          // Obtain further info text from query
          var further_note = note[0].replaceAll("\n", "");
-         console.log(further_note)
 
          if (further_note.indexOf("Further information") != -1) {
             var further_string = "Further information";
@@ -3024,12 +3041,15 @@ async function drawMap() {
 
             legend_div.appendChild(legend_row_2);
 
+            map_container.appendChild(legend_div);
+
          }        
 
          min_value.innerHTML = range_min.toLocaleString("en-GB");       
          max_value.innerHTML = range_max.toLocaleString("en-GB");      
 
          chart_title = Object.values(dimension.STATISTIC.category.label)[0];
+         map_title.innerHTML = chart_title + " (" + selected_year + ")";
 
          var source_info_map = document.getElementById("source-info-map");
 
@@ -3093,8 +3113,13 @@ async function drawMap() {
       update_div = document.createElement("div");
       update_div.classList.add("map-date");
       update_div.innerHTML = updated_note;
+      map_container.appendChild(update_div);
 
    }
+
+  // Hide loading gif after map is generated
+  map_load.style.display = "none";
+  map_title.removeAttribute("style");
 
 }
 
@@ -3161,6 +3186,9 @@ async function dataPortalLive () {
    showCookieBanner();         // Cookie banner pop-up see "cookies_script.js"
    sizeForMobile();            // Resize and re-position page elements
    mainContainerHeight();      // See above
+   if (maps_scrn.style.display == "block") {
+      drawMap();
+   }
    removeAriaFromIcons();
 
 }
@@ -3355,7 +3383,7 @@ function handleRefreshPopup() {
     renderMapPopup(d, e, type);
   }
   
-  function setAltTextMap(shapeMin, yearMin, shapeMax, yearMax) {
+  function setPopupSummary(shapeMin, yearMin, shapeMax, yearMax) {
    const baseSentence = "A map of Northern Ireland";
    const yearEl = document.getElementById("popup-map-year-label");
    const labelEl = (y_label_div.textContent || '').trim();
