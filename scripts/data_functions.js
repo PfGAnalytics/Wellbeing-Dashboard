@@ -2608,7 +2608,6 @@ async function drawPopupMap(d, e, type, main_container, loading) {
         const shapeMax = shapeNames[selectedData.indexOf(yearMax, selectedData)];
         
         setPopupSummary(shapeMin, yearMin, shapeMax, yearMax);
-        setSummaryMap(shapeMin, yearMin, shapeMax, yearMax);
 
         // Crop map to bounds
         map.fitBounds(window.popupShapes.getBounds());
@@ -2832,6 +2831,9 @@ async function drawMap() {
 
          selected_data = data_by_year[selected_year];
 
+         const year_Min = Math.min(...selected_data);
+         const year_Max = Math.max(...selected_data);
+
          var range_min = Math.floor(Math.min(...all_values));
          var range_max = Math.ceil(Math.max(...all_values));
          
@@ -2920,6 +2922,17 @@ async function drawMap() {
                shapes = L.geoJSON(AA_map, {onEachFeature:enhanceLayer}).addTo(map);
          }      
 
+         const shapeNames = [];
+         shapes.eachLayer(l => {
+            const name = l.feature?.properties?.[area_var];
+            if (name) shapeNames.push(name);
+         });
+         
+         const shape_Min = shapeNames[selected_data.indexOf(year_Min, selected_data)];
+         const shape_Max = shapeNames[selected_data.indexOf(year_Max, selected_data)];
+
+         setMapSummary(year_Min, shape_Min, shape_Max, year_Max);
+
          // Further info and how do we measure this divs:
          var measure_info_map = document.getElementById("measure-info-map");
          var further_info_map = document.getElementById("further-info-map");
@@ -2992,6 +3005,8 @@ async function drawMap() {
          }      
 
          // Write content to info boxes
+         summary_map = setMapSummary(year_Min, shape_Min, shape_Max, year_Max)
+
          measure_info_map.innerHTML = measure_text;
 
          further_list = document.createElement("ol");
@@ -3050,6 +3065,8 @@ async function drawMap() {
 
          chart_title = Object.values(dimension.STATISTIC.category.label)[0];
          map_title.innerHTML = chart_title + " (" + selected_year + ")";
+
+         setMapSummary(year_Min, shape_Min, shape_Max, year_Max);
 
          var source_info_map = document.getElementById("source-info-map");
 
@@ -3453,4 +3470,41 @@ function setAltTextChart () {
    const altText = titleText ? `${baseSentence} ${bySentence} ${withNI}.` : `${baseSentence} ${bySentence} ${withNI}.`;
 
    pop_canvas.setAttribute("alt", altText);
+}
+
+function setMapSummary(year_Min, shape_Min, shape_Max, year_Max) {
+   let baseSentence = 'This map shows data for the year'
+   const mapYear = date_display.textContent;
+
+   if (mapYear.includes('-')) {
+      baseSentence = 'This map shows data for the years';
+   }
+
+   const lowestArea = shape_Min;
+   const lowestValue = year_Min;
+   const highestValue = year_Max;
+   const highestArea = shape_Max;
+   const mapTitle = (document.getElementById('map-title')?.textContent ?? '');
+
+   let summarySign = '%';
+   
+   if (mapTitle.includes('Average life satisfaction score')) {
+      summarySign = ' average life satisfaction score';
+   } else if (mapTitle.includes('death rate (per 100,000 population)')) {
+      summarySign = ' deaths per 100,000 population';
+   } else if (mapTitle.includes('Gap between the percentage of non-free school meal entitled')) {
+      summarySign = ' percentage points';
+   } else if (mapTitle.includes('Number of households')) {
+      summarySign = " households";
+   }
+
+   const summary = `${baseSentence} ${mapYear}. The lowest value was ${lowestArea} with ${lowestValue}${summarySign} and the highest value was ${highestArea} with ${highestValue}${summarySign}.`;
+   
+   const summaryBox = document.getElementById('summary-map');
+   if (summaryBox) {
+      summaryBox.textContent = summary;
+   }
+   
+   return summary;
+
 }
