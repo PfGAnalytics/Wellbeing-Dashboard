@@ -704,6 +704,94 @@ domain_title.onclick = function() {
 }
 
 // Page navigation when indicator is clicked
+if (currentURL.includes("?indicator=")) {
+
+    currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
+
+    let popup_clicked = null;
+
+    if (currentIndicator.includes("&")) {
+        if (currentIndicator.includes("popup")) {
+            popup_clicked = currentIndicator.slice(currentIndicator.indexOf("popup=") + "popup=".length)
+            popup_clicked = toTitleCase(popup_clicked.replaceAll("+", " "));
+        }
+        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("&"))
+    }
+    lookUpIndicator = "";
+    for (let i = 0; i < all_indicators.length; i ++) {
+        if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
+            lookUpIndicator = all_indicators[i]
+        }
+    }
+
+    title.textContent += " - " + lookUpIndicator;
+
+    lookUpDomain = "";
+    for (let i = 0; i < domains.length; i ++) {
+        
+        indicators = Object.keys(domains_data[domains[i]].indicators);
+
+        if (indicators.includes(lookUpIndicator)) {
+            lookUpDomain = domains[i];
+        }
+
+    }
+
+    domains_scrn.style.display = "none";    // Hide Domains screen
+    indicator_scrn.style.display = "block"; // Show the Indicator screen
+
+    createLineChart(lookUpDomain, lookUpIndicator);
+    generateIndicatorPage(lookUpDomain, lookUpIndicator);
+    
+    if (popup_clicked != null) {
+        const popupParam = new URLSearchParams(location.search).get("popup");
+        if (popupParam === "assembly area" || popupParam === "local government district"){
+            console.debug("Map popup requested; skipping chart popup.");
+        } else {
+            renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
+        }
+    }
+
+    for (let i = 0; i < button_rows.length; i ++) {
+        button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
+    }
+
+    // The "Previous Indicator" and "Next Indicator" buttons:
+    current_index = Object.keys(domains_data[lookUpDomain].indicators).indexOf(lookUpIndicator);  // A numeric index of the indicator currently in view
+
+    // "Previous indicator" button
+    // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
+    if (current_index != 0) {
+        previous_btn_2 = document.createElement("button");     // Div for previous indicator button
+        previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
+        previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        previous_btn_2.name = "indicator";
+        previous_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        previous_btn_2.innerHTML = '<img src = "img/backward-solid-full.svg" style = "width: 25px"> Previous indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1] +'</strong>';
+        button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
+    }    
+
+    // "Next indicator" button   
+    // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
+    if (current_index != Object.keys(domains_data[lookUpDomain].indicators).length - 1) {
+        next_btn_2 = document.createElement("button");     // Div for next indicator button
+        next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
+        next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
+        next_btn_2.name = "indicator";
+        next_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
+        next_btn_2.innerHTML = 'Next indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1] +'</strong> <img src = "img/forward-solid-full.svg" style = "width: 25px"> ';
+        button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
+    }
+
+    back_btn = document.createElement("button");
+    back_btn.classList.add("nav-btn");
+    back_btn.name = "domain";
+    back_btn.value = lookUpDomain.toLowerCase();
+    back_btn.innerHTML = '<img src = "img/arrow-turn-up-solid-full.svg" style = "width: 25px"> Back to <strong>' + lookUpDomain + '</strong> domain';
+    back_button.appendChild(back_btn);
+
+}
+
 // Enter Maps tab if URL has map=... or tab=maps
 if (currentURL.includes("map=") || currentURL.includes("tab=maps")) {
 
