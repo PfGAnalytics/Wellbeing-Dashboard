@@ -444,6 +444,7 @@ function plotOverallHexes (change_type) {
         document.getElementById('count-negative').textContent = Object.keys(worsening_indicator).length;
         document.getElementById('count-insufficient').textContent = Object.keys(insufficient_indicator).length;
         document.getElementById('count-neutral').textContent = Object.keys(no_change_indicator).length;
+        hex_count_container.style.display = "flex";
         performanceLoaded = true;
         }
        
@@ -1435,7 +1436,9 @@ expand_all.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "block";
     by_mission_grid.style.display = "none";
-    hex_count_container.style.display = "flex";
+     if (!performanceLoaded) {
+    hex_count_container.style.display = "none";
+    }
     overall_screen.style.display = "none";
     domains_intro.style.display = "none";
     domains_title.style.display = "none";
@@ -1457,8 +1460,15 @@ by_mission.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "block";
-    hex_count_container.style.display = "flex";
+     if (!performanceLoaded) {
+    hex_count_container.style.display = "none";
+    }
     overall_screen.style.display = "none";
+    overall_screen.style.display = "none";
+    domains_intro.style.display = "none";
+    domains_title.style.display = "none";
+    domains_footer.style.display = "none";
+    recent_filter.style.display = "none"
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
