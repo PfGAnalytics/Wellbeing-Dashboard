@@ -543,6 +543,7 @@ var currentURL = window.location.href;
 if (!currentURL.includes("?") | currentURL.includes("?tab=domains")) {
     loading_img.style.display = "none";
     domains_scrn.style.display = "block";
+    hex_count_container.style.display = "none";
     indicatorPerformance();
 }
 
@@ -703,152 +704,114 @@ domain_title.onclick = function() {
 }
 
 // Page navigation when indicator is clicked
-if (currentURL.includes("?indicator=")) {
+// Enter Maps tab if URL has map=... or tab=maps
+if (currentURL.includes("map=") || currentURL.includes("tab=maps")) {
 
-    currentIndicator = currentURL.slice(currentURL.indexOf("?indicator=") + "?indicator=".length);
+  // Toggle selected styles
+  domains_btn.classList.remove("selected-item");
+  domains_btn.firstChild.classList.remove("selected-icon");
+  maps_btn.classList.add("selected-item");
+  maps_btn.firstChild.classList.add("selected-icon");
 
-    let popup_clicked = null;
+  // --- Helpers ---
+  const getFirstOptionValue = (selectEl) => {
+    if (!selectEl || !selectEl.options || selectEl.options.length === 0) return "";
+    return selectEl.options[0].value;
+  };
 
-    if (currentIndicator.includes("&")) {
-        if (currentIndicator.includes("popup")) {
-            popup_clicked = currentIndicator.slice(currentIndicator.indexOf("popup=") + "popup=".length)
-            popup_clicked = toTitleCase(popup_clicked.replaceAll("+", " "));
+  const sanitizeMapFromURL = (url) => {
+    if (!url.includes("map=")) return "";
+    let m = url.slice(url.indexOf("map=") + "map=".length);
+    if (m.includes("#")) m = m.slice(0, m.indexOf("#"));
+    return m;
+  };
+
+  // Try parse map from URL
+  let currentMap = sanitizeMapFromURL(currentURL);
+  let currentDomain = "";
+  let currentIndicator = "";
+
+  // Switch to maps screen
+  domains_scrn.style.display = "none";
+  maps_scrn.style.display = "block";
+
+  // If a map is present in the URL, attempt to locate its domain/indicator
+  if (currentMap) {
+    outer: for (let i = 0; i < domains.length; i++) {
+      const indicators = Object.keys(domains_data[domains[i]].indicators || {});
+      for (let j = 0; j < indicators.length; j++) {
+        const meta = domains_data[domains[i]].indicators[indicators[j]];
+        const AA_data = meta?.data?.AA || "";
+        const LGD_data = meta?.data?.LGD || "";
+
+        if ((currentMap === AA_data && AA_data !== "") || (currentMap === LGD_data && LGD_data !== "")) {
+          currentDomain = domains[i];
+          currentIndicator = indicators[j];
+          break outer;
         }
-        currentIndicator = currentIndicator.slice(0, currentIndicator.indexOf("&"))
+      }
     }
+  }
 
-    lookUpIndicator = "";
-    for (let i = 0; i < all_indicators.length; i ++) {
-        if (currentIndicator == all_indicators[i].replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+")) {
-            lookUpIndicator = all_indicators[i]
-        }
+  // --- Apply defaults when any piece is missing ---
+  // 1) Domain
+  if (!currentDomain) {
+    // Default domain = first option in map_select_1
+    currentDomain = getFirstOptionValue(map_select_1);
+  }
+  map_select_1.value = currentDomain;
+
+  // 2) Populate and select Indicator (depends on domain)
+  updateMapSelect2(); // repopulates map_select_2 based on map_select_1
+  if (!currentIndicator) {
+    currentIndicator = getFirstOptionValue(map_select_2);
+  } else {
+    // If URL-indicator didn’t exist in the freshly populated list, fall back to first
+    const hasIndicator =
+      Array.from(map_select_2.options).some(opt => opt.value === currentIndicator);
+    if (!hasIndicator) {
+      currentIndicator = getFirstOptionValue(map_select_2);
     }
+  }
+  map_select_2.value = currentIndicator;
 
-    title.textContent += " - " + lookUpIndicator;
-
-    lookUpDomain = "";
-    for (let i = 0; i < domains.length; i ++) {
-        
-        indicators = Object.keys(domains_data[domains[i]].indicators);
-
-        if (indicators.includes(lookUpIndicator)) {
-            lookUpDomain = domains[i];
-        }
-
+  // 3) Populate and select Map (depends on indicator)
+  updateMapSelect3(); // repopulates map_select_3 based on domain+indicator
+  if (!currentMap) {
+    currentMap = getFirstOptionValue(map_select_3);
+  } else {
+    // If URL-map didn’t exist in the freshly populated list, fall back to first
+    const hasMap =
+      Array.from(map_select_3.options).some(opt => opt.value === currentMap);
+    if (!hasMap) {
+      currentMap = getFirstOptionValue(map_select_3);
     }
+  }
+  map_select_3.value = currentMap;
 
-    domains_scrn.style.display = "none";    // Hide Domains screen
-    indicator_scrn.style.display = "block"; // Show the Indicator screen
-
-    createLineChart(lookUpDomain, lookUpIndicator);
-    generateIndicatorPage(lookUpDomain, lookUpIndicator);
-    
-    if (popup_clicked != null) {
-        const popupParam = new URLSearchParams(location.search).get("popup");
-        if (popupParam === "assembly area" || popupParam === "local government district"){
-            console.debug("Map popup requested; skipping chart popup.");
-        } else {
-            renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
-        }
+  // Guard against async population races; reload if mismatch persists momentarily
+  setTimeout(function () {
+    if (map_select_3.value !== currentMap) {
+      // As a last resort, fall back to first option without reloading the full page
+      const first = getFirstOptionValue(map_select_3);
+      if (first) {
+        map_select_3.value = first;
+      } else {
+        // If still broken, reload to reset state
+        location.reload();
+      }
     }
+  }, 1);
 
-    for (let i = 0; i < button_rows.length; i ++) {
-        button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
-    }
-
-    // The "Previous Indicator" and "Next Indicator" buttons:
-    current_index = Object.keys(domains_data[lookUpDomain].indicators).indexOf(lookUpIndicator);  // A numeric index of the indicator currently in view
-
-    // "Previous indicator" button
-    // The button text and icon are generated (except when the indicator clicked on is the first indicator for that domain)
-    if (current_index != 0) {
-        previous_btn_2 = document.createElement("button");     // Div for previous indicator button
-        previous_btn_2.id = "previous-btn-2";               // Given the id "previous-btn-2"
-        previous_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
-        previous_btn_2.name = "indicator";
-        previous_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1].replace(/[^a-z ]/gi, '').toLowerCase();
-        previous_btn_2.innerHTML = '<img src = "img/backward-solid-full.svg" style = "width: 25px"> Previous indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index - 1] +'</strong>';
-        button_left.appendChild(previous_btn_2);    // Button is added to div "button-left"
-    }    
-
-    // "Next indicator" button   
-    // The button text and icon are generated (except when the indicator clicked on is the last indicator for that domain)
-    if (current_index != Object.keys(domains_data[lookUpDomain].indicators).length - 1) {
-        next_btn_2 = document.createElement("button");     // Div for next indicator button
-        next_btn_2.id = "next-btn-2";                   // Given the id "next-btn-2"
-        next_btn_2.classList.add("nav-btn");            // Given the class "nav-btn"
-        next_btn_2.name = "indicator";
-        next_btn_2.value = Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1].replace(/[^a-z ]/gi, '').toLowerCase();
-        next_btn_2.innerHTML = 'Next indicator: <strong>' + Object.keys(domains_data[lookUpDomain].indicators)[current_index + 1] +'</strong> <img src = "img/forward-solid-full.svg" style = "width: 25px"> ';
-        button_right.appendChild(next_btn_2);   // Button is added to div "button-right"
-    }
-
-    back_btn = document.createElement("button");
-    back_btn.classList.add("nav-btn");
-    back_btn.name = "domain";
-    back_btn.value = lookUpDomain.toLowerCase();
-    back_btn.innerHTML = '<img src = "img/arrow-turn-up-solid-full.svg" style = "width: 25px"> Back to <strong>' + lookUpDomain + '</strong> domain';
-    back_button.appendChild(back_btn);
-
-}
-
-if (currentURL.includes("map=")) {
-
-    domains_btn.classList.remove("selected-item");
-    domains_btn.firstChild.classList.remove("selected-icon");
-    maps_btn.classList.add("selected-item");
-    maps_btn.firstChild.classList.add("selected-icon");
-
-    currentMap = currentURL.slice(currentURL.indexOf("map=") + "map=".length);
-
-    if (currentMap.includes("#")) {
-        currentMap = currentMap.slice(0, currentMap.indexOf("#"))
-    }
-
-    domains_scrn.style.display = "none";
-    maps_scrn.style.display = "block";
-
-    // Find the domain and indicator name
-    for (let i = 0; i < domains.length; i ++) {
-
-        indicators = Object.keys(domains_data[domains[i]].indicators);
-
-        for (let j = 0; j < indicators.length; j ++) {
-
-            AA_data = domains_data[domains[i]].indicators[indicators[j]].data.AA;
-            LGD_data = domains_data[domains[i]].indicators[indicators[j]].data.LGD;
-
-            if (currentMap == AA_data && AA_data != "") {
-                currentDomain = domains[i];
-                currentIndicator = indicators[j];
-                break;
-            } else if (currentMap == LGD_data && LGD_data != "") {
-                currentDomain = domains[i];
-                currentIndicator = indicators[j];
-                break;
-            }
-            
-        }
-    }
-
-    map_select_1.value = currentDomain;
-    updateMapSelect2();
-    map_select_2.value = currentIndicator;
-    updateMapSelect3();
-    map_select_3.value = currentMap;
-
-    setTimeout(function() {
-        if (map_select_3.value != currentMap) {
-            location.reload();
-        }
-    }, 1)
-
-    if (currentMap.slice(-3) == "LGD") {
-        title.textContent += " - " + currentIndicator + " by Local Government District"
-    } else if (currentMap.slice(-2) == "AA") {
-        title.textContent += " - " + currentIndicator + " by Assembly Area"
-    }
-
+  // Update title
+  if (currentMap?.slice(-3) === "LGD") {
+    title.textContent += " - " + currentIndicator + " by Local Government District";
+  } else if (currentMap?.slice(-2) === "AA") {
+    title.textContent += " - " + currentIndicator + " by Assembly Area";
+  } else {
+    // Generic fallback if suffix not recognized
+    title.textContent += " - " + currentIndicator;
+  }
 }
 
 // Activate search bar:
