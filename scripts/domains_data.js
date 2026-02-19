@@ -659,8 +659,8 @@ var domains_data = {
          //    }
          // },
          "International reputation": {
-            importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation will affect people’s willingness to live, study, visit, do business with and invest in NI and this has a significant impact on our economy.",
-            base_year: "2020",
+            importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation affects people’s willingness to live, study, visit, do business with, and invest in NI, which has a significant impact on our economy.",
+            base_year: "2021",
             ci: 1,
             data: {
                NI: "INDINTREPNI",
@@ -670,9 +670,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Northern Ireland achieved a higher score on the Nation Brands Index, indicating an improved reputation internationally.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               improved: "",
+               no_change: "This suggests that international perceptions of Northern Ireland have remained broadly stable over that period.",
+               worsened: "",
                insufficient: ""
             }
          },
