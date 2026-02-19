@@ -732,3 +732,18 @@ async function renderAllDomainsGauge({
 (async () => {
   await renderAllDomainsGauge({ canvasId: 'all_domains_gauge' });
 })();
+
+
+const key = document.createElement('div');
+key.className = 'key-wrapper';
+
+key.innerHTML =
+  '<div class="key-title" style="margin-right: 8px;">Key:</div>' +
+  '<div class="key-items">' +
+    '<div class="key-item row key-text"><div class="key-square positive"><div class="key-hex-label positive"></div></div>Improving</div>' +
+    '<div class="key-item row key-text"><div class="key-square neutral"><div class="key-hex-label"></div></div>No Change</div>' +
+    '<div class="key-item row key-text"><div class="key-square negative"><div class="key-hex-label negative"></div></div>Worsening</div>' +
+    '<div class="key-item row key-text"><div class="key-square insufficient"><div class="key-hex-label insufficient"></div></div>Insufficient Data</div>' +
+  '</div>';
+
+document.getElementById('top-container').prepend(key);

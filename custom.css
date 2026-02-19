@@ -319,3 +319,60 @@ footer a:hover {
     margin-bottom: 15px;
     filter: brightness(0) invert(1);
 }
+
+.key-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px; 
+  flex-wrap: wrap;     
+  padding: 20px  
+}
+
+.key-title {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+
+.key-items {
+  display: flex;
+  align-items: center;
+  gap: 16px; 
+  flex-wrap: wrap;  
+    font-size: 12pt;
+}
+
+
+.key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; 
+  white-space: nowrap;
+  font: inherit;
+}
+
+
+
+.key-square {
+  width: 60px;
+  height: 40px;            /* Half the width */
+  background-color: #FF6200;
+  border-radius: 100px 100px 0 0;  /* Top-left & top-right rounded */
+  margin-bottom: 10px;
+}
+
+
+
+
+.key-square.positive {
+    background-color: #00A857;
+}
+
+.key-square.negative {
+    background-color: #db0000;
+}
+
+.key-square.insufficient {
+    background-color: #757575;
+}
