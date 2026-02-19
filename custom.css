@@ -234,10 +234,29 @@ footer a:hover {
     flex: 1 1 300px;
 }
 
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .card-header {
     color: #FFFFFF;
     background-color: #008675;
     border: 1px solid #000000;
+}
+
+.card-subheader {
+    color: #FFFFFF;
+    background-color: #142062;
+    border: 1px solid #000000;
+    padding: 0px 15px 0px 15px;
+    display: flex;
+    flex: 0 0 auto;
+    min-height: 4.5rem; 
+    align-items: center;
+
 }
 
 .row {
