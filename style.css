@@ -985,7 +985,7 @@ footer {
 
  .map {
     height: 450px;
-    width: 700px;
+    width: 730px;
     position: relative;
     z-index: 0
  }
@@ -1310,6 +1310,32 @@ input:focus-visible {
         font-size: 12pt;
     }
 
+     #map-boxes.box-container {
+        max-width: 50% !important;
+        margin-left: 25% !important;
+        margin-right: 25% !important;
+        padding-right: 15px !important;
+    }
+
+    #map-form {
+        display: flex;
+    }
+
+    #map-select-1, #map-select-2, #map-select-3 {
+        width: 20% !important;
+        margin-left: 1% !important;
+        justify-content: center;
+        height: max-content;
+    }
+
+    #map-label-1, #map-label-2, #map-label-3 {
+        margin-left: 2% !important; 
+    }
+
+    #measure-info-map {
+        min-width: 98% !important;
+    }
+
     #download-chart, #download-data {
         font-size: 11pt;
         width: 40% !important;
@@ -1333,7 +1359,7 @@ input:focus-visible {
         max-width: fit-content;
     }
     .grey-box {
-        width: 98% !important;
+        min-width: 98% !important;
     }
     
     h1 {
