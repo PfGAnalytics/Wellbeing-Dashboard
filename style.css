@@ -1303,7 +1303,7 @@ input:focus-visible {
 @media (max-width: 1200px) {
     #chart-boxes.box-container {
         min-width: 70% !important;
-        margin-top: 5% !important;
+        margin-top: 8% !important;
         margin-left: 19% !important;
         margin-right: 25% !important;
         padding-right: 15px !important;
