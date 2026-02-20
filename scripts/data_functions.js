@@ -2307,7 +2307,7 @@ async function renderMapPopup(d, e, type, data) {
       pop_up_map.appendChild(buttonsContainer);
       
 
-      downloadMapBtn.addEventListener("click", () => downloadMapImage(mapContainer));
+      downloadMapBtn.addEventListener("click", () => downloadPopUpMapImage(mapContainer));
 
       const indicator = domains_data[d].indicators[e];
 

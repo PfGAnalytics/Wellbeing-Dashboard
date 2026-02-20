@@ -2193,20 +2193,18 @@ const handleOnScroll = () => {
     }
 })();
 
-// Script to download map as an image
-
-
-(function downloadMapAsImage () {
+// Script to download map as an image (popups)
+(function downloadPopUpMapAsImage () {
   function getCaptureRoot() {
-    return document.getElementById('pop-up-map') || document.getElementById('popup-map-container');
+    return document.getElementById('popup-map-container');
   }
 
   function getMapTitleText() {
-    const titleEl = document.getElementById('popup-map-title') || document.getElementById('map-title');
+    const titleEl = document.getElementById('popup-map-title');
     return titleEl ? titleEl.textContent.trim() : ' ';
   }
   
-  function downloadMapImage(root) {
+  function downloadPopUpMapImage(root) {
     if (!root) {
         root = getCaptureRoot();
     }
@@ -2283,23 +2281,137 @@ const handleOnScroll = () => {
     svg.removeAttribute('height');
 }
 
- window.downloadMapImage = downloadMapImage;
-
-  function wireDownloadMapButton() {
-    const btn = document.getElementById('download-map');
-    if (!btn) return;
-    btn.onclick = downloadMapImage;
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', wireDownloadMapButton);
-  } else {
-    wireDownloadMapButton();
-  }
+ window.downloadPopUpMapImage = downloadPopUpMapImage;
 })();
 
+// Script to download normal maps as an image
+(function downloadMapAsImage() {
 
-(function downloadMapData() {
+  function getCaptureRoot() {
+    return document.getElementById('map-container');
+  }
+
+  function getMapTitleText() {
+    const titleEl = document.getElementById('map-title');
+    return titleEl ? titleEl.textContent.trim() : ' ';
+  }
+  
+  function getMapSelect() {
+    const mapSelect = document.getElementById('map-select-3');
+    if (!mapSelect) return '';
+    const txt = mapSelect.options[mapSelect.selectedIndex]?.textContent?.trim();
+    return txt ? ` by ${txt}` : '';
+  }
+
+
+  function downloadMapImage() {
+    const root = getCaptureRoot();
+
+    // Validate size
+    if (!root || root.offsetWidth === 0 || root.offsetHeight === 0) {
+      alert('Map is still loading, try again.');
+      return;
+    }
+
+    let rawTitle = getMapTitleText();
+
+let datePart = '';
+let baseTitle = rawTitle;
+
+const dateBracket = rawTitle.indexOf('(');
+if (dateBracket !== -1) {
+  baseTitle = rawTitle.substring(0, dateBracket).trim();
+  datePart = rawTitle.substring(dateBracket).trim();
+}
+
+// Build final title
+let titleText = baseTitle + getMapSelect();
+
+if (datePart) {
+  titleText += ' ' + datePart;
+}
+
+const updatedEl = document.querySelector('.map-date');
+const updatedText = updatedEl ? updatedEl.textContent.trim() : '';
+
+shiftGElements(145, 60);
+
+const svg = document.querySelector('svg');
+svg.setAttribute('height', 600);
+
+html2canvas(root, {
+    useCORS: true,
+    ignoreElements: el =>
+        el.id === 'download-map' || (el.classList && el.classList.contains('map-date')),
+    onclone: doc => {
+        const leg = doc.querySelector('.map-legend');
+        if (leg) leg.style.display = 'block';
+    },
+    scale: window.devicePixelRatio
+}).then(canvas => {
+    
+    const out = document.createElement('canvas');
+    const ctx = out.getContext('2d');
+
+    const titleH = 40;
+    const pad = 30;
+    const midWidth = 1200;
+
+    out.width = Math.max(canvas.width + pad * 2, midWidth);
+    out.height = canvas.height + pad * 2 + titleH;
+
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, out.width, out.height);
+
+    if (titleText) {
+        ctx.fillStyle = '#000';
+        ctx.font = '14pt Arial, sans-serif';
+        ctx.textBaseline = 'top';
+        const tw = ctx.measureText(titleText).width;
+        ctx.fillText(titleText, (out.width - tw) / 2, 10);
+      }
+
+      const dx = Math.round((out.width - canvas.width) / 2);
+      const dy = titleH;
+      ctx.drawImage(canvas, dx, dy);
+
+      if (updatedText) {
+        ctx.font = '12px Arial, sans-serif';
+        ctx.textBaseline = 'top';
+        const leftMargin = dx;
+        ctx.fillText(updatedText, leftMargin, dy + canvas.height - 10);
+      }
+
+      const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
+
+      const link = document.createElement('a');
+      link.download = fileName;
+      link.href = out.toDataURL('image/png');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
+      svg.removeAttribute('height');
+    });
+  }
+  
+  window.downloadMapImage = downloadMapImage;
+
+  function wireMapButton() {
+    const btn = document.getElementById('download-map');
+    if (!btn) return;
+    btn.onclick = () => downloadMapImage();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireMapButton);
+} else {
+    wireMapButton();
+}
+})();
+
+(function downloadPopUpMapData() {
     function handlePopupMapDownload(e) {
         if (e.target && e.target.classList.contains("popup-download-btn") && e.target.textContent.includes("CSV")) {
             const btn = e.target;
@@ -2334,6 +2446,63 @@ const handleOnScroll = () => {
 
 window.onscroll = handleOnScroll;
 
+(function downloadMapData() {
+  function getSelectValue(sel) {
+    if (!sel) return '';
+    const opt = sel.options[sel.selectedIndex];
+    return (sel.value || opt?.textContent || '').trim();
+  }
+
+  function getSelectLabel(sel) {
+    if (!sel) return '';
+    const opt = sel.options[sel.selectedIndex];
+    return (opt?.textContent || '').trim();
+  }
+
+  function handleMapDataDownload(e) {
+    const btn = e.target.closest('#download-map-data');
+    if (!btn) return;
+
+    const selectDomain    = document.getElementById('map-select-1');
+    const selectIndicator = document.getElementById('map-select-2');
+    const selectType      = document.getElementById('map-select-3');
+
+    const domain    = getSelectValue(selectDomain);
+    const indicator = getSelectValue(selectIndicator);
+    const typeLabel = getSelectLabel(selectType);
+
+    const typeMap = {
+      'Assembly Area': 'AA',
+      'AA': 'AA',
+      'Local Government District': 'LGD',
+      'LGD': 'LGD'
+    };
+
+    const type = typeMap[typeLabel];
+    if (!domain || !indicator || !type) {
+      alert('Missing domain, indicator, or type for map download.');
+      return;
+    }
+
+    const indicatorData = domains_data?.[domain]?.indicators?.[indicator]?.data;
+    if (!indicatorData) {
+      alert('No data found for this map indicator.');
+      return;
+    }
+
+    const indicatorCode = indicatorData[type];
+    if (!indicatorCode) {
+      alert(`No data available for ${type}.`);
+      return;
+    }
+
+    const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
+    window.location.href = downloadUrl;
+  }
+
+  document.addEventListener('click', handleMapDataDownload);
+
+})();
 
 function shiftGElements(dx, dy) {
   const gElements = document.querySelectorAll('g');
