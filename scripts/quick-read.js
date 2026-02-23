@@ -1,21 +1,8 @@
 var data;
 
 window.onload = function () {
-    // getData();
     showCookieBanner();
 }
-
-// async function getData() {
-
-//   try {
-//       const response = await fetch("data.json");
-//       const responseData = await response.json();
-//       data = responseData;
-//   } catch (error) {
-      
-//   }
-// }
-
 
 // copy to clipboard for use in share button function
 function copyToClipboard(text) {
@@ -55,8 +42,6 @@ function copyToClipboard(text) {
       });
     }
   })(this, this.document);
-
-  
   
   // sets inital font size for treemap dependent on screen size
   function inital_treemap_font() {
@@ -173,12 +158,6 @@ function copyToClipboard(text) {
       // overall_line_options.plugins.tooltip.bodyFont.size = 8;
     };
   }
-  
-  
-  
-  
-  
-  
   
   function setCookie(name, value, days) {
     var expires = "";
@@ -501,74 +480,392 @@ async function renderDomainImprovementGauge({
   return chart;
 }
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'thriving_children_gauge',
-    domainName: 'Thriving Children',
-  });
-})();
+async function renderSingleStatusGauge({
+    canvasId,
+    domainName,
+    status,                 // "improving" | "no change" | "worsening"
+    domainsDataUrl = 'scripts/domains_data.js',
+    updatesUrl = 'scripts/updated.json',
+    color = '#00A857',
+    centerTextOffsetY = 0,
+    centerMode = 'stacked'
+} = {}) {
+
+    await ensureDomainsData(domainsDataUrl);
+    const updates = await loadUpdates(updatesUrl);
+
+    const domain = window.domains_data?.[domainName];
+    if (!domain) throw new Error(`Domain '${domainName}' not found`);
+
+    const indicators = domain.indicators ?? {};
+
+    let improving = 0, noChange = 0, worsening = 0, insufficient = 0;
+
+    // lists for bullet points
+    let improvingList = [];
+    let noChangeList = [];
+    let worseningList = [];
+
+    const priority = ['EQ', 'NI', 'LGD', 'AA', 'LEV'];
+
+    for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
+
+        let code = null;
+
+        for (const key of priority) {
+            const candidate = indicatorObj?.data?.[key];
+            if (candidate && candidate.trim()) {
+                code = candidate.trim();
+                break;
+            }
+        }
+
+        let perf = 'insufficient data';
+        if (code && updates[code]) {
+            perf = updates[code].performance?.toLowerCase().trim() || 'insufficient data';
+        }
+
+        if (perf === 'improving') {
+            improving++;
+            improvingList.push(indicatorName);
+        }
+        else if (perf === 'no change') {
+            noChange++;
+            noChangeList.push(indicatorName);
+        }
+        else if (perf === 'worsening') {
+            worsening++;
+            worseningList.push(indicatorName);
+        }
+        else {
+            insufficient++;
+        }
+    }
+    const total = improving + noChange + worsening;
+
+    const chosenCount =
+        status === 'improving' ? improving :
+        status === 'no change' ? noChange :
+        worsening;
+
+    let pct = total > 0 ? (chosenCount / total) * 100 : 0;
+    pct = Math.max(0, Math.min(100, pct)); // clamp
+    const remainder = 100 - pct;
+
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) throw new Error(`No canvas with id '${canvasId}'`);
+    if (canvas._chartInstance?.destroy) canvas._chartInstance.destroy();
+
+    // Label for center text
+    const niceLabel =
+        status === "improving" ? "indicators improving" :
+        status === "no change" ? "indicators with no change" :
+        "indicators worsening";
+
+    const centerTextPlugin = {
+        id: `centerText_${canvasId}`,
+        afterDraw(chart) {
+            const meta = chart.getDatasetMeta(0);
+            if (!meta?.data?.length) return;
+
+            const arc = meta.data[0];
+            const ctx = chart.ctx;
+
+            const xC = arc.x;
+            const yBase = arc.y - 40 + centerTextOffsetY;
+
+            ctx.save();
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#000';
+
+            if (centerMode === "stacked") {
+                ctx.font = 'bold 26px system-ui, Segoe UI, Arial';
+                ctx.fillText(`${chosenCount}/${total}`, xC, yBase - 18);
+
+                ctx.font = '16px system-ui, Segoe UI, Arial';
+                ctx.fillText(niceLabel, xC, yBase + 4);
+            } else {
+                ctx.font = 'bold 24px system-ui, Segoe UI, Arial';
+                ctx.fillText(`${chosenCount}`, xC, yBase);
+            }
+
+            ctx.restore();
+        }
+    };
+
+    const chart = new Chart(canvas, {
+        type: 'doughnut',
+        data: {
+            labels: [status],
+            datasets: [{
+                data: [pct, remainder],
+                backgroundColor: [color, '#e6e6e6'],
+                borderWidth: 4,
+                circumference: 180,
+                rotation: -90,
+                cutout: '70%'
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false }, tooltip: { enabled: false } },
+            responsive: true,
+            maintainAspectRatio: false
+        },
+        plugins: [centerTextPlugin]
+    });
+
+    canvas._chartInstance = chart;
+
+    
+    const domainPrefixMap = {
+        'Thriving Children': 'tc',
+        'Cleaner Environment': 'ce',
+        'Equal Society' : 'es',
+        'Healthier Lives' : 'hl',
+        'Brighter Futures': 'bf',
+        'Stronger Economy' : 'se',
+        'Safer Communities' : 'sc', 
+        'Caring Society' : 'cs',
+        'Better Homes' : 'bh',
+        'Living Peacefully' : 'lp'
+    };
+
+    const prefix = domainPrefixMap[domainName]
+        || domainName.split(/\s+/).map(w => w[0]).join('').toLowerCase();
+
+    let targetClass =
+        status === 'improving' ? `${prefix}_improving_inds` :
+        status === 'no change' ? `${prefix}_nochange_inds` :
+        status === 'worsening' ? `${prefix}_worsening_inds` : null;
+
+    if (targetClass) {
+        const container = document.querySelector(`.${targetClass}`);
+        if (container) {
+            const list =
+                status === 'improving' ? improvingList :
+                status === 'no change' ? noChangeList :
+                worseningList;
+
+            container.innerHTML = list.length
+                ? `<ul>` + list.map(item => `<li>${item.replace(/_/g, ' ')}</li>`).join('') + `</ul>`
+                : `<p>No indicators in this category</p>`;
+        }
+    }
+
+    return chart;
+}
+
 
 (async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'cleaner_environment_gauge',
-    domainName: 'Cleaner Environment',
-  });
-})();
+    await renderSingleStatusGauge({
+        canvasId: 'tc_improving_gauge',
+        domainName: 'Thriving Children',
+        status: 'improving',
+        color: '#00A857'
+    });
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'equal_society_gauge',
-    domainName: 'Equal Society',
-  });
-})();
+    await renderSingleStatusGauge({
+        canvasId: 'tc_nochange_gauge',
+        domainName: 'Thriving Children',
+        status: 'no change',
+        color: '#FF6200'
+    });
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'healthier_lives_gauge',
-    domainName: 'Healthier Lives',
-  });
-})();
+    await renderSingleStatusGauge({
+        canvasId: 'tc_worsening_gauge',
+        domainName: 'Thriving Children',
+        status: 'worsening',
+        color: '#db0000'
+    });
+    await renderSingleStatusGauge({
+        canvasId: 'ce_improving_gauge',
+        domainName: 'Cleaner Environment',
+        status: 'improving',
+        color: '#00A857'
+    });
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'brighter_futures_gauge',
-    domainName: 'Brighter Futures',
-  });
-})();
+    await renderSingleStatusGauge({
+        canvasId: 'ce_nochange_gauge',
+        domainName: 'Cleaner Environment',
+        status: 'no change',
+        color: '#FF6200'
+    });
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'stronger_economy_gauge',
-    domainName: 'Stronger Economy',
-  });
-})();
+    await renderSingleStatusGauge({
+        canvasId: 'ce_worsening_gauge',
+        domainName: 'Cleaner Environment',
+        status: 'worsening',
+        color: '#db0000'
+    });
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'safer_communities_gauge',
-    domainName: 'Safer Communities',
-  });
-})();
+    await renderSingleStatusGauge({
+        canvasId: 'es_improving_gauge',
+        domainName: 'Equal Society',
+        status: 'improving',
+        color: '#00A857'
+    });
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'caring_society_gauge',
-    domainName: 'Caring Society',
-  });
-})();
+    await renderSingleStatusGauge({
+        canvasId: 'es_nochange_gauge',
+        domainName: 'Equal Society',
+        status: 'no change',
+        color: '#FF6200'
+    });
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'better_homes_gauge',
-    domainName: 'Better Homes',
-  });
-})();
+    await renderSingleStatusGauge({
+        canvasId: 'es_worsening_gauge',
+        domainName: 'Equal Society',
+        status: 'worsening',
+        color: '#db0000'
+    });
 
-(async () => {
-  const gauge = await renderDomainImprovementGauge({
-    canvasId: 'living_peacefully_gauge',
-    domainName: 'Living Peacefully',
-  });
+    await renderSingleStatusGauge({
+        canvasId: 'hl_improving_gauge',
+        domainName: 'Healthier Lives',
+        status: 'improving',
+        color: '#00A857'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'hl_nochange_gauge',
+        domainName: 'Healthier Lives',
+        status: 'no change',
+        color: '#FF6200'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'hl_worsening_gauge',
+        domainName: 'Healthier Lives',
+        status: 'worsening',
+        color: '#db0000'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'bf_improving_gauge',
+        domainName: 'Brighter Futures',
+        status: 'improving',
+        color: '#00A857'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'bf_nochange_gauge',
+        domainName: 'Brighter Futures',
+        status: 'no change',
+        color: '#FF6200'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'bf_worsening_gauge',
+        domainName: 'Brighter Futures',
+        status: 'worsening',
+        color: '#db0000'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'se_improving_gauge',
+        domainName: 'Stronger Economy',
+        status: 'improving',
+        color: '#00A857'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'se_nochange_gauge',
+        domainName: 'Stronger Economy',
+        status: 'no change',
+        color: '#FF6200'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'se_worsening_gauge',
+        domainName: 'Stronger Economy',
+        status: 'worsening',
+        color: '#db0000'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'sc_improving_gauge',
+        domainName: 'Safer Communities',
+        status: 'improving',
+        color: '#00A857'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'sc_nochange_gauge',
+        domainName: 'Safer Communities',
+        status: 'no change',
+        color: '#FF6200'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'sc_worsening_gauge',
+        domainName: 'Safer Communities',
+        status: 'worsening',
+        color: '#db0000'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'cs_improving_gauge',
+        domainName: 'Caring Society',
+        status: 'improving',
+        color: '#00A857'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'cs_nochange_gauge',
+        domainName: 'Caring Society',
+        status: 'no change',
+        color: '#FF6200'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'cs_worsening_gauge',
+        domainName: 'Caring Society',
+        status: 'worsening',
+        color: '#db0000'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'bh_improving_gauge',
+        domainName: 'Better Homes',
+        status: 'improving',
+        color: '#00A857'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'bh_nochange_gauge',
+        domainName: 'Better Homes',
+        status: 'no change',
+        color: '#FF6200'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'bh_worsening_gauge',
+        domainName: 'Better Homes',
+        status: 'worsening',
+        color: '#db0000'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'lp_improving_gauge',
+        domainName: 'Living Peacefully',
+        status: 'improving',
+        color: '#00A857'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'lp_nochange_gauge',
+        domainName: 'Living Peacefully',
+        status: 'no change',
+        color: '#FF6200'
+    });
+
+    await renderSingleStatusGauge({
+        canvasId: 'lp_worsening_gauge',
+        domainName: 'Living Peacefully',
+        status: 'worsening',
+        color: '#db0000'
+    });
 })();
 
 async function renderAllDomainsGauge({
@@ -732,7 +1029,6 @@ async function renderAllDomainsGauge({
 (async () => {
   await renderAllDomainsGauge({ canvasId: 'all_domains_gauge' });
 })();
-
 
 const key = document.createElement('div');
 key.className = 'key-wrapper';

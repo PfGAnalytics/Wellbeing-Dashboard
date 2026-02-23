@@ -88,6 +88,8 @@ h1 {
     margin-left: 0px;
     margin-right: 0px;
     align-items: center;
+    align-items: stretch;
+    justify-content: space-between;
 }
 
 .nisrafooter ul {
@@ -240,7 +242,6 @@ footer a:hover {
     flex-direction: column;
 }
 
-
 .card-header {
     color: #FFFFFF;
     background-color: #008675;
@@ -254,19 +255,8 @@ footer a:hover {
     padding: 0px 15px 0px 15px;
     display: flex;
     flex: 0 0 auto;
-    min-height: 4.5rem; 
+    min-height: 2.5rem; 
     align-items: center;
-
-}
-
-.row {
-    align-items: stretch;
-    justify-content: space-between;
-}
-
-.col-sm-6 {
-    width: 49%;
-    padding: 0px 0px 20px 0px;
 }
 
 .top-menu-item {
@@ -352,8 +342,6 @@ footer a:hover {
   font: inherit;
 }
 
-
-
 .key-square {
   width: 60px;
   height: 40px;            /* Half the width */
@@ -361,9 +349,6 @@ footer a:hover {
   border-radius: 100px 100px 0 0;  /* Top-left & top-right rounded */
   margin-bottom: 10px;
 }
-
-
-
 
 .key-square.positive {
     background-color: #00A857;
@@ -375,4 +360,25 @@ footer a:hover {
 
 .key-square.insufficient {
     background-color: #757575;
+}
+
+.gauge-row {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1260px !important;
+  min-height: 500px;
+  height: auto;
+  gap: 2%;
+}
+
+.gauge-box {
+    height: 300px;
+    width: 32%;
+}
+
+.gauge-canvas {
+  display: block;
+  width: 350px;
+  height: 220px;
+  box-sizing: border-box;
 }
