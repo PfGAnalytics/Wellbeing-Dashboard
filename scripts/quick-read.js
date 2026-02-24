@@ -562,37 +562,48 @@ async function renderSingleStatusGauge({
         status === "no change" ? "indicators with no change" :
         "indicators worsening";
 
-    const centerTextPlugin = {
-        id: `centerText_${canvasId}`,
-        afterDraw(chart) {
-            const meta = chart.getDatasetMeta(0);
-            if (!meta?.data?.length) return;
+            const centerTextPlugin = {
+    id: `centerText_${canvasId}`,
+    afterDraw(chart) {
+        const meta = chart.getDatasetMeta(0);
+        if (!meta?.data?.length) return;
 
-            const arc = meta.data[0];
-            const ctx = chart.ctx;
+        const arc = meta.data[0];
+        const ctx = chart.ctx;
 
-            const xC = arc.x;
-            const yBase = arc.y - 40 + centerTextOffsetY;
+        const { width } = chart.chartArea;
+        
+        // Base scaling
+        let scale = width / 300;
 
-            ctx.save();
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillStyle = '#000';
-
-            if (centerMode === "stacked") {
-                ctx.font = 'bold 26px system-ui, Segoe UI, Arial';
-                ctx.fillText(`${chosenCount}/${total}`, xC, yBase - 18);
-
-                ctx.font = '16px system-ui, Segoe UI, Arial';
-                ctx.fillText(niceLabel, xC, yBase + 4);
-            } else {
-                ctx.font = 'bold 24px system-ui, Segoe UI, Arial';
-                ctx.fillText(`${chosenCount}`, xC, yBase);
-            }
-
-            ctx.restore();
+        // 🔥 Extra shrink + downward shift for screens <= 767px
+        if (window.innerWidth <= 767) {
+            scale *= 0.75;     // shrink text more
         }
-    };
+
+        const xC = arc.x;
+        // Move text lower on small screens
+        const yBase = arc.y - (40 * scale) + centerTextOffsetY + (window.innerWidth <= 767 ? 8 : 0);
+
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#000';
+
+        if (centerMode === "stacked") {
+            ctx.font = `bold ${26 * scale}px system-ui, Segoe UI, Arial`;
+            ctx.fillText(`${chosenCount}/${total}`, xC, yBase - (18 * scale));
+
+            ctx.font = `${16 * scale}px system-ui, Segoe UI, Arial`;
+            ctx.fillText(niceLabel, xC, yBase + (4 * scale));
+        } else {
+            ctx.font = `bold ${24 * scale}px system-ui, Segoe UI, Arial`;
+            ctx.fillText(`${chosenCount}`, xC, yBase);
+        }
+
+        ctx.restore();
+    }
+};
 
     const chart = new Chart(canvas, {
         type: 'doughnut',
@@ -1078,31 +1089,48 @@ async function renderSingleAllDomainsGauge({
         status === "no change" ? "indicators with no change" :
         "indicators worsening";
 
-    const centerTextPlugin = {
-        id: `centerText_${canvasId}`,
-        afterDraw(chart) {
-            const meta = chart.getDatasetMeta(0);
-            if (!meta?.data?.length) return;
-            const arc = meta.data[0];
-            const ctx = chart.ctx;
+        const centerTextPlugin = {
+    id: `centerText_${canvasId}`,
+    afterDraw(chart) {
+        const meta = chart.getDatasetMeta(0);
+        if (!meta?.data?.length) return;
 
-            const xC = arc.x;
-            const yBase = arc.y - 40 + centerTextOffsetY;
+        const arc = meta.data[0];
+        const ctx = chart.ctx;
 
-            ctx.save();
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillStyle = "#000";
+        const { width } = chart.chartArea;
+        
+        // Base scaling
+        let scale = width / 300;
 
-            ctx.font = "bold 28px system-ui, Segoe UI, Arial";
-            ctx.fillText(`${chosenCount}/${total}`, xC, yBase - 18);
-
-            ctx.font = "16px system-ui, Segoe UI, Arial";
-            ctx.fillText(niceLabel, xC, yBase + 4);
-
-            ctx.restore();
+        // 🔥 Extra shrink + downward shift for screens <= 767px
+        if (window.innerWidth <= 767) {
+            scale *= 0.75;     // shrink text more
         }
-    };
+
+        const xC = arc.x;
+        // Move text lower on small screens
+        const yBase = arc.y - (40 * scale) + centerTextOffsetY + (window.innerWidth <= 767 ? 8 : 0);
+
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#000';
+
+        if (centerMode === "stacked") {
+            ctx.font = `bold ${26 * scale}px system-ui, Segoe UI, Arial`;
+            ctx.fillText(`${chosenCount}/${total}`, xC, yBase - (18 * scale));
+
+            ctx.font = `${16 * scale}px system-ui, Segoe UI, Arial`;
+            ctx.fillText(niceLabel, xC, yBase + (4 * scale));
+        } else {
+            ctx.font = `bold ${24 * scale}px system-ui, Segoe UI, Arial`;
+            ctx.fillText(`${chosenCount}`, xC, yBase);
+        }
+
+        ctx.restore();
+    }
+};
 
     const chart = new Chart(canvas, {
         type: "doughnut",
