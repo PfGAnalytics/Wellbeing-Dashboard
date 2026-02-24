@@ -68,37 +68,40 @@
   <main>
 
      <div id = "top-container" class="col-sm-12" style="padding-bottom:20px;">
-      <div id="domain-card" class="card h-100" style="width: 100%;">
+      <div id="domain-card" class="card h-100 all-domains-card" style="width: 100%;">
         <div class="card-header" style="padding-top:10px;">
           <div class="col">
             <h2 class="card-title">
-            <span style="font-size:20px; font-weight:700; line-height:1.1;">
-              All Domains Performance
-            </span>
-           </h2>
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                All Domains Performance
+              </span>
+            </h2>
           </div>
         </div>
         <div class="domain-card-body">
           <div class="row">
             <div class="col-sm-12">
-              <!-- chart - all domains -->
-              <div>
-                <canvas id="all_domains_gauge"></canvas>
+              <div class="all-domains-gauge-row" aria-label="All Domains performance gauges">
+                
+                <!-- Improving -->
+                 <div class="gauge-box">
+                  <canvas id="all_improving_gauge" class="gauge-canvas"></canvas>
+                </div>
+                
+                <!-- No change -->
+                 <div class="gauge-box">
+                  <canvas id="all_nochange_gauge" class="gauge-canvas"></canvas>
+                </div>
+                
+                <!-- Worsening -->
+                 <div class="gauge-box">
+                  <canvas id="all_worsening_gauge" class="gauge-canvas"></canvas>
+                </div>
               </div>
-              <!-- summary - all domains -->
-              <p style="padding-top:20px;">Across all domains, there are currently:</p>
-
-              <ul>
-                <li id = "improving-count"></li>
-                <li id = "no-change-count"></li>
-                <li id = "worsening-count"></li>
-                <li id = "insufficient-count"></li>
-              </ul>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
     <div class="row">
       <!-- beginning of thriving children -->
@@ -197,7 +200,6 @@
           </div>
         </div>
       </div>
-    </div>
       <!-- end of cleaner environment -->
 
       <!-- beginning equal society -->

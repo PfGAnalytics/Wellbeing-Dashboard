@@ -1026,9 +1026,128 @@ async function renderAllDomainsGauge({
 }
 
 // Call it
-(async () => {
-  await renderAllDomainsGauge({ canvasId: 'all_domains_gauge' });
-})();
+// (async () => {
+//   await renderAllDomainsGauge({ canvasId: 'all_domains_gauge' });
+// })();
+
+async function renderSingleAllDomainsGauge({
+    canvasId,
+    status,                   // "improving" | "no change" | "worsening"
+    color = '#00A857',
+    centerMode = 'stacked',
+    centerTextOffsetY = 0
+} = {}) {
+
+    const updates = await loadUpdates('scripts/updated.json');
+
+    let improving = 0, noChange = 0, worsening = 0, insufficient = 0;
+    let improvingList = [], noChangeList = [], worseningList = [];
+
+    // classify all indicators at top-level
+    for (const [indicatorName, indicatorObj] of Object.entries(updates)) {
+        const perf = indicatorObj.performance?.toLowerCase().trim() || "insufficient data";
+
+        if (perf === "improving") {
+            improving++; improvingList.push(indicatorName);
+        } else if (perf === "no change") {
+            noChange++; noChangeList.push(indicatorName);
+        } else if (perf === "worsening") {
+            worsening++; worseningList.push(indicatorName);
+        } else {
+            insufficient++;
+        }
+    }
+
+    const total = improving + noChange + worsening;
+
+    const chosenCount =
+        status === "improving" ? improving :
+        status === "no change" ? noChange :
+        worsening;
+
+    let pct = total > 0 ? (chosenCount / total) * 100 : 0;
+    pct = Math.max(0, Math.min(100, pct));
+    const remainder = 100 - pct;
+
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) throw new Error(`No canvas with id '${canvasId}'`);
+    if (canvas._chartInstance?.destroy) canvas._chartInstance.destroy();
+
+    const niceLabel =
+        status === "improving" ? "indicators improving" :
+        status === "no change" ? "indicators with no change" :
+        "indicators worsening";
+
+    const centerTextPlugin = {
+        id: `centerText_${canvasId}`,
+        afterDraw(chart) {
+            const meta = chart.getDatasetMeta(0);
+            if (!meta?.data?.length) return;
+            const arc = meta.data[0];
+            const ctx = chart.ctx;
+
+            const xC = arc.x;
+            const yBase = arc.y - 40 + centerTextOffsetY;
+
+            ctx.save();
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "#000";
+
+            ctx.font = "bold 28px system-ui, Segoe UI, Arial";
+            ctx.fillText(`${chosenCount}/${total}`, xC, yBase - 18);
+
+            ctx.font = "16px system-ui, Segoe UI, Arial";
+            ctx.fillText(niceLabel, xC, yBase + 4);
+
+            ctx.restore();
+        }
+    };
+
+    const chart = new Chart(canvas, {
+        type: "doughnut",
+        data: {
+            labels: [status],
+            datasets: [{
+                data: [pct, remainder],
+                backgroundColor: [color, "#e6e6e6"],
+                borderWidth: 4,
+                hoverOffset: 0,
+                circumference: 180,
+                rotation: -90,
+                cutout: "70%"
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: { enabled: false } }
+        },
+        plugins: [centerTextPlugin]
+    });
+
+    canvas._chartInstance = chart;
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await renderSingleAllDomainsGauge({
+        canvasId: "all_improving_gauge",
+        status: "improving",
+        color: "#00A857"
+    });
+
+    await renderSingleAllDomainsGauge({
+        canvasId: "all_nochange_gauge",
+        status: "no change",
+        color: "#FF6200"
+    });
+
+    await renderSingleAllDomainsGauge({
+        canvasId: "all_worsening_gauge",
+        status: "worsening",
+        color: "#db0000"
+    });
+});
 
 const key = document.createElement('div');
 key.className = 'key-wrapper';
@@ -1039,7 +1158,6 @@ key.innerHTML =
     '<div class="key-item row key-text"><div class="key-square positive"><div class="key-hex-label positive"></div></div>Improving</div>' +
     '<div class="key-item row key-text"><div class="key-square neutral"><div class="key-hex-label"></div></div>No Change</div>' +
     '<div class="key-item row key-text"><div class="key-square negative"><div class="key-hex-label negative"></div></div>Worsening</div>' +
-    '<div class="key-item row key-text"><div class="key-square insufficient"><div class="key-hex-label insufficient"></div></div>Insufficient Data</div>' +
   '</div>';
 
 document.getElementById('top-container').prepend(key);

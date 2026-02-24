@@ -371,6 +371,19 @@ footer a:hover {
   gap: 2%;
 }
 
+.all-domains-gauge-row {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1260px !important;
+  min-height: 300px;
+  height: auto;
+  gap: 2%;
+}
+
+.all-domains-card {
+    margin-bottom: 40px;
+}
+
 .gauge-box {
     height: 300px;
     width: 32%;
