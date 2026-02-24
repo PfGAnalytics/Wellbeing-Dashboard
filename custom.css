@@ -400,18 +400,6 @@ footer a:hover {
     h1 {
         font-size: 25pt;
     }
-
-    .gauge-row {
-        min-height: 375px;
-        display: flex;
-        flex-wrap: wrap;
-        max-width: 1260px !important;
-        gap: 2%;
-    }
-    
-    .gauge-box {
-        height: 175px;
-    }
 }
 
 @media (max-width: 992px) {
@@ -419,17 +407,13 @@ footer a:hover {
         width: 40%;
     }
 
-    h1 {
-        font-size: 20pt;
-    }
-
     #nav-aig-logo {
-        width: 90%;
+        width: 80%;
         height: 40%;
     }
 
     #nav-nie-logo {
-        width: 90%;
+        width: 80%;
     }
 
     .gauge-row {
@@ -439,34 +423,30 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
+    
+    .top-menu-item {
+        font-size: 13px;
+        padding: 6px 10px;
+        min-height: 36px;
+        max-width: 160px;
+    }
+    
+    .top-menu-logo {
+        width: 18px;
+        padding-top: 0;
+        margin-bottom: 4px;
+    }
 
     h1 {
-        font-size: 18pt;
+        font-size: 20pt;
     }
 
     #nav-aig-logo {
-        width: 90%;
-        height: 40%;
+        width: 80%;
+        height: 30%;
     }
 
     #nav-nie-logo {
         width: 90%;
-    }
-
-    .gauge-row {
-        min-height: 200px !important;
-    }
-
-    .gauge-box {
-        height: 120px;
-    }
-
-    .gauge-row {
-        font-size: small;
-    }
-    
-    .all-domains-card .domain-card-body .all-domains-gauge-row {
-        min-height: 0 !important;
-        height: auto !important;
     }
 }
