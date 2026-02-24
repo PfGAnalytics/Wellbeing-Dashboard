@@ -361,43 +361,34 @@ footer a:hover {
     background-color: #757575;
 }
 
-.gauge-row {
+.gauge-row, .all-domains-gauge-row {
   display: flex;
   flex-wrap: wrap;
   max-width: 1260px !important;
-  min-height: 500px;
-  height: auto;
+  min-height: 0 !important;
+  height: auto !important;
   gap: 2%;
+  align-items: stretch;
 }
 
-.all-domains-gauge-row {
+.gauge-box, .all-domains-gauge-box {
+  width: 32%;
+  height: auto !important;
+  min-height: 240px;
   display: flex;
-  flex-wrap: wrap;
-  max-width: 1260px !important;
-  min-height: 300px;
-  height: auto;
-  gap: 2%;
+  flex-direction: column;
+}
+
+.gauge-canvas {
+  width: 350px;
+  max-height: 220px !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex: 0 0 auto;
 }
 
 .all-domains-card {
     margin-bottom: 40px;
-}
-
-.gauge-box {
-    height: 300px;
-    width: 32%;
-}
-
-.all-domains-gauge-box {
-    height: 300px;
-    width: 32%;
-}
-
-.gauge-canvas {
-  display: block;
-  width: 350px;
-  height: 220px;
-  box-sizing: border-box;
 }
 
 @media (max-width: 1400px) {
