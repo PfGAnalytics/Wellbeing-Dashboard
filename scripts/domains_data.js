@@ -796,15 +796,15 @@ var domains_data = {
             base_year: "2021/22",
            ci: 1.3,
             data: {
-               NI: "INDPERSSAFENI",
-               AA: "",
-               LGD: "",
-               EQ: ""
+               NI: "",
+               AA: "INDPSAFEAA",
+               LGD: "INPSAFELGD",
+               EQ: "INDPSAFEEQ"
             },
            improvement: "decrease",
            telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Latest findings show the proportion, 5.7%, who felt very unsafe walking alone in their area after dark was the same as the 2021/22 figure, also 5.7%.",
+               no_change: "Latest findings show the proportion, 6%, who felt very unsafe walking alone in their area after dark was the same as the 2021/22 figure, also 6%.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
            }
@@ -850,15 +850,15 @@ var domains_data = {
             base_year: "2021/22",
              ci: 1.2,
              data: {
-                NI: "INDWORRYACNI",
-                AA: "",
-                LGD: "",
-               EQ: ""
+                NI: "",
+                AA: "INDWORACAA",
+                LGD: "INDWORACLGD",
+               EQ: "INDWORACEQ"
             },
            improvement: "decrease",
            telling: {
               improved: "This commentary is a placeholder.",
-                no_change: "Latest findings show the proportion, 5.2%, who felt very worried about becoming a victim of crime was similar to the 2021/22 figure, 4.9%.",
+                no_change: "Latest findings show the proportion, 5%, who felt very worried about becoming a victim of crime was similar to the 2021/22 figure, also 5%. ",
                 worsened: "This commentary is a placeholder.",
                 insufficient: ""
              }
