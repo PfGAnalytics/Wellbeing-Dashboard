@@ -1,0 +1,133 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDPSAFE",
+          "label": {
+            "INDPSAFE": "Percentage of people feeling very unsafe walking alone in their area after dark"
+          },
+          "unit": {
+            "INDPSAFE": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24"],
+          "label": {
+            "2018/19": "2018/19",
+            "2019/20": "2019/20",
+            "2020/21": "2020/21",
+            "2021/22": "2021/22",
+            "2022/23": "2022/23",
+            "2023/24": "2023/24"
+          }
+        },
+        "label": "Financial year"
+      },
+      "AA": {
+        "category": {
+          "index": ["N06000001", "N06000002", "N06000003", "N06000004", "N06000005", "N06000006", "N06000007", "N06000008", "N06000009", "N06000010", "N06000011", "N06000012", "N06000013", "N06000014", "N06000015", "N06000016", "N06000017", "N06000018"],
+          "label": {
+            "N06000001": "Belfast East",
+            "N06000002": "Belfast North",
+            "N06000003": "Belfast South",
+            "N06000004": "Belfast West",
+            "N06000005": "East Antrim",
+            "N06000006": "East Londonderry",
+            "N06000007": "Fermanagh and South Tyrone",
+            "N06000008": "Foyle",
+            "N06000009": "Lagan Valley",
+            "N06000010": "Mid Ulster",
+            "N06000011": "Newry and Armagh",
+            "N06000012": "North Antrim",
+            "N06000013": "North Down",
+            "N06000014": "South Antrim",
+            "N06000015": "South Down",
+            "N06000016": "Strangford",
+            "N06000017": "Upper Bann",
+            "N06000018": "West Tyrone"
+          }
+        },
+        "label": "Assembly Area"
+      }
+    },
+    "extension": {
+      "matrix": "INDPSAFEAA",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "AA": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 111,
+        "value": "Safer communities"
+      },
+      "product": {
+        "code": "PSAFE",
+        "value": "Personal safety"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPSAFEAA/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "AA"],
+    "label": "Indicator - Personal safety",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPSAFEAA/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPSAFEAA/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPSAFEAA/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDPSAFEAA/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Personal safety[/b] \r\n\r\n[b]How do we measure this?[/b] \r\nPercentage of people feeling very unsafe walking alone in their area after dark.\r\n\r\n[b]Source[/b] \r\nNorthern Ireland Safe Community Telephone Survey, Department of Justice\r\n[url=https://www.justice-ni.gov.uk/articles/findings-northern-ireland-safe-community-telephone-survey]https://www.justice-ni.gov.uk/articles/findings-northern-ireland-safe-community-telephone-survey[/url]\r\n\r\n[b]Impact of Covid-19[/b] \r\nThere was a change in survey mode from 2020/21 due to the pandemic and the method by which interviews were undertaken changed from face-to-face to telephone. This resulted in a break in the time series. Results for the four latest years, 2020/21 to 2023/24, are not directly comparable with previous sweeps. The change also reduced the sample size for the first two years, particularly in 2020/21.[b]\r\n\r\nFurther Information[/b] \r\n1. The Northern Ireland Safe Community Survey was previously known as the NI Crime Survey. Given the change in survey mode as a result of the pandemic, the survey years from 2020/21 are referenced as the Northern Ireland Safe Community Telephone Survey. \r\n2. Previously conducted on an ad hoc basis, the survey began operating on a continuous basis in January 2005. \r\n3. Results exclude don't knows and refusals.\r\n4. Figures for 2020/21 are not included as a result of the reduced sample size.\r\n5. Data are not available prior to 2018/19 as Assembly Area breakdown was not included in the data prior to this."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 6, 18],
+    "updated": "2026-02-25T11:40:23",
+    "value": [7.5, 7.7, 4.8, 13.8, 3.6, 7.8, 7.1, 11.1, 5.1, 10.6, 10.1, 4.4, 2.7, 4.8, 3.2, 8.3, 6.8, 10.3, 4.5, 10.4, 5.5, 8.8, 2.6, 8.1, 12.6, 5.1, 6.3, 8.9, 3.9, 5.6, 4.7, 4.3, 4.5, 6.1, 7.8, 6, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2.8, 12.2, 7, 8.4, 2.7, 7, 6.8, 6.5, 5.1, 6.5, 6.8, 3, 4.3, 5.1, 5.5, 3.5, 5.2, 3.5, 7, 13.7, 10.5, 9.7, 4.7, 6.4, 5.9, 6.4, 6, 8.3, 3.3, 6.6, 3.2, 4.2, 11.7, 2.4, 7.4, 5.8, 2.9, 8.5, 3.8, 18.6, 3.9, 5.7, 9.9, 1.9, 6.5, 2.9, 6.2, 6.6, 4.2, 3.7, 5.2, 3, 7.5, 5],
+    "version": "2.0"
+  },
+  "id": {}
+}
