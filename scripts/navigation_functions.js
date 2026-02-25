@@ -459,7 +459,9 @@ function plotOverallHexes (change_type) {
         document.getElementById('count-negative').textContent = Object.keys(worsening_indicator).length;
         document.getElementById('count-insufficient').textContent = Object.keys(insufficient_indicator).length;
         document.getElementById('count-neutral').textContent = Object.keys(no_change_indicator).length;
+        if (expand_all.classList.contains("domain-toggle-selected") || by_mission.classList.contains("domain-toggle-selected") || by_performance.classList.contains("domain-toggle-selected")) {
         hex_count_container.style.display = "flex";
+        }
         performanceLoaded = true;
         }
        
@@ -1692,9 +1694,7 @@ expand_all.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "block";
     by_mission_grid.style.display = "none";
-     if (!performanceLoaded) {
-    hex_count_container.style.display = "none";
-    }
+    hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
     domains_intro.style.display = "none";
     domains_title.style.display = "none";
@@ -1716,9 +1716,7 @@ by_mission.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "block";
-     if (!performanceLoaded) {
-    hex_count_container.style.display = "none";
-    }
+    hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
     overall_screen.style.display = "none";
     domains_intro.style.display = "none";
@@ -1747,7 +1745,7 @@ by_performance.onclick = function() {
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
     by_mission_grid.style.display = "none";
-
+    hex_count_container.style.display = "flex";
     overall_screen.style.display = "block";
     domains_intro.style.display = "none";
     domains_title.style.display = "none";
