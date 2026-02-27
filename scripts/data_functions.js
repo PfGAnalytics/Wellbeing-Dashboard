@@ -2482,8 +2482,6 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     const years = Object.values(dimension)[1].category.index;
     const groups = Object.values(dimension)[2].category.index;
 
-    console.log(result.updated);
-
     // Prepare map
     const map = L.map(main_container.id, 
       {zoomControl: false,

@@ -742,17 +742,26 @@ if (currentURL.includes("?indicator=")) {
     domains_scrn.style.display = "none";    // Hide Domains screen
     indicator_scrn.style.display = "block"; // Show the Indicator screen
 
-    createLineChart(lookUpDomain, lookUpIndicator);
-    generateIndicatorPage(lookUpDomain, lookUpIndicator);
+    // createLineChart(lookUpDomain, lookUpIndicator);
+    // generateIndicatorPage(lookUpDomain, lookUpIndicator);
+
+    (async () => {
+
+        await createLineChart(lookUpDomain, lookUpIndicator);
+        await generateIndicatorPage(lookUpDomain, lookUpIndicator);
     
     if (popup_clicked != null) {
+        
         const popupParam = new URLSearchParams(location.search).get("popup");
         if (popupParam === "assembly area" || popupParam === "local government district"){
             console.debug("Map popup requested; skipping chart popup.");
+            var popup_type = popupParam == "assembly area" ? "AA" : "LGD";
+            renderMapPopup(lookUpDomain, lookUpIndicator, popup_type)
         } else {
             renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
         }
     }
+    })();
 
     for (let i = 0; i < button_rows.length; i ++) {
         button_rows[i].style.display = "flex";          // Show all the divs with the class "button-row"
@@ -1493,25 +1502,14 @@ async function subpopTable() {
         aa = document.createElement("td");  // If AA data is present add a dot for "Assembly Area"
         if (domains_data[domain].indicators[all_indicators[i]].data.AA != "") {
             const indicatorSlug = all_indicators[i].replace(/[^a-z ]/gi, '').replaceAll(" ", "+").toLowerCase();
-            const popupType = "Assembly Area".toLowerCase().replace(/\s+/g, "+");
-
+            const popupType = "assembly+area";
+           
             const dotLink = document.createElement("a");
             dotLink.href = `?indicator=${indicatorSlug}&popup=${popupType}`;
             dotLink.className = "navy-dot-link";
-            
-            dotLink.onclick = function (event) {
-                // event.preventDefault();
-                console.log("Dot clicked:", popupType, "Domain:", domains, "Indicator:", all_indicators[i]);
-                console.log("link accessed:", location.pathname + location.search + `&popup=${popupType}`);
-                const popupURL = location.pathname + location.search + `&popup=${popupType}`;
-                // const popupURL = `${location.pathname}?indicator=${indicatorSlug}&popup=${popupType}`;
-                history.pushState({ popupOpen: true }, "", popupURL);
-                
-                // renderMapPopup(domain, all_indicators[i], "AA"); // For Assembly Area
-            };
+           
             const dotDiv = document.createElement("div");
             dotDiv.className = "navy-dot";
-            
             dotLink.appendChild(dotDiv);
             aa.appendChild(dotLink);
         }
@@ -1525,15 +1523,9 @@ async function subpopTable() {
             const dotLink = document.createElement("a");
             dotLink.href = `?indicator=${indicatorSlug}&popup=${popupType}`;
             dotLink.className = "navy-dot-link";
-            
-            dotLink.onclick = function (event) {
-                const popupURL = location.pathname + location.search + `&popup=${popupType}`;
-                history.pushState({ popupOpen: true }, "", popupURL);
-            };
 
             const dotDiv = document.createElement("div");
             dotDiv.className = "navy-dot";
-            
             dotLink.appendChild(dotDiv);
             lgd.appendChild(dotLink);
         }
