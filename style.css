@@ -206,7 +206,9 @@ h3 {
 .info-tab-btn {
   display: block;
   width: 100%;
-  background-color: transparent;
+  font-size: 14pt;
+  text-align: left;
+  background-color: #FFFFFF;
   color: #008675;
   border: 2px solid #008675;
   font-weight: 600;
@@ -217,6 +219,18 @@ h3 {
 
 #info-card-wrap {
     margin: 10%;
+}
+
+.info-chevron {
+  margin-left: 31%;
+  width: 20px;
+  height: 20px;
+  transition: transform .2s ease-in-out;
+}
+
+.info-tab-btn[aria-expanded="true"] .info-chevron {
+  transform: rotate(180deg);
+  filter: brightness(0) invert(1);
 }
 
 /* Restore the right border on the last tab */
@@ -271,11 +285,35 @@ h3 {
   box-shadow: none;
 }
 
-.info-card-wrap:has(.collapse.show) > #info-card, .info-card-wrap:has(.collapsing) > #info-card {
-    margin: 5%;
-    padding: 2%;
-    border: 2px solid #000000;
-    background-color: #FFFFFF;
+.info-card {
+  margin: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border: 2px solid #000;
+  background-color: #fff;
+  box-shadow: none;
+}
+
+#infoTitle {
+    font-size: 22pt;
+    color: #142062;
+}
+
+#infoCollapse.animating-height {
+    transition: height .35s ease;
+    overflow: hidden;
+}
+
+#infoCollapse .card-body {
+    transition: opacity .18s ease;
+}
+
+#infoCollapse .card-body.is-fading-out { 
+    opacity: 0; 
+}
+
+#infoCollapse .card-body.is-fading-in {
+    opacity: 1; 
 }
 
 #domains-grid-container {

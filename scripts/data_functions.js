@@ -3531,7 +3531,15 @@ function populateInfoBoxes(labels, content) {
             aria-expanded="false"
             aria-controls="infoCollapse"
           >
-            ${labels[i]}
+            <span class="info-tab-text">${labels[i]}</span>
+            <img
+              class="info-chevron"
+              src="img/chevron-down-solid-full.svg"
+              alt=""
+              aria-hidden="true"
+              width="20"
+              height="20"
+            />
           </button>
         </h2>
       </div>
@@ -3539,25 +3547,25 @@ function populateInfoBoxes(labels, content) {
   }
 
   info_boxes.innerHTML = `
-      <div class="col-12 col-xl-12 accordion py-4" id="infoAccordion">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-8 accordion py-4" id="infoAccordion">
         <div class="row g-3">
           ${buttons}
         </div>
 
         <div class="info-card-wrap">
-          <div id="info-card" class="card my-3">
-
-            <div id="infoCollapse" class="accordion-collapse collapse" data-active-index="">
-              <div class="accordion-body">
-                <h2 id="infoTitle" style="color:#00205B;"></h2>
+          <div id="infoCollapse" class="collapse" data-active-index="">
+            <div class="info-card card my-3">
+              <div class="card-body">
+                <div id="infoTitle"></div>
                 <div id="infoBody"></div>
               </div>
             </div>
-
           </div>
         </div>
 
       </div>
+    </div>
   `;
 
   // Hook up behaviour
@@ -3566,17 +3574,20 @@ function populateInfoBoxes(labels, content) {
   const bodyEl = document.getElementById("infoBody");
   const btns = info_boxes.querySelectorAll(".info-tab-btn");
 
-  // Bootstrap Collapse controller
-//   const bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+  const $collapse = window.jQuery('#infoCollapse');
 
+  $collapse.collapse({ toggle: false });
 
-const $el = window.jQuery(collapseEl);
-$el.collapse({ toggle: false });           // init without opening
-const bsCollapse = {
-  show: () => $el.collapse('show'),
-  hide: () => $el.collapse('hide'),
-};
+  const bsCollapse = {
+   show: () => $collapse.collapse('show'),
+   hide: () => $collapse.collapse('hide'),
+   toggle: () => $collapse.collapse('toggle'),
+  };
 
+  $collapse.on('show.bs.collapse',  () => { /* about to open */ });
+  $collapse.on('shown.bs.collapse', () => { /* fully open */ });
+  $collapse.on('hide.bs.collapse',  () => { /* about to close */ });
+  $collapse.on('hidden.bs.collapse',() => { /* fully closed */ });
 
   function setActiveButton(activeIdx) {
     btns.forEach((b, idx) => {
@@ -3591,6 +3602,59 @@ const bsCollapse = {
     bodyEl.innerHTML = content[idx];
     collapseEl.dataset.activeIndex = String(idx);
   }
+
+  let isSwapping = false;
+  function animateSwap(nextIdx) {
+   if (isSwapping) return;
+   isSwapping = true;
+
+   const el = collapseEl;
+   const body = el.querySelector('.card-body');
+
+   const startHeight = el.getBoundingClientRect().height;
+   el.style.height = `${startHeight}px`;
+   el.classList.add('animating-height');
+
+   body.classList.add('is-fading-out');
+
+   const FADE_OUT_MS = 120;
+   const HEIGHT_MS   = 350;
+
+   setTimeout(() => {
+      setContent(nextIdx);
+
+      void el.offsetHeight;
+
+      const endHeight = el.scrollHeight;
+
+      body.classList.remove('is-fading-out');
+      body.classList.add('is-fading-in');
+
+      if (startHeight !== endHeight) {
+         el.style.height = `${endHeight}px`;
+         
+         const onEnd = (evt) => {
+            if (evt.target !== el || evt.propertyName !== 'height') return;
+            el.style.height = '';
+            el.classList.remove('animating-height');
+            body.classList.remove('is-fading-in');
+            el.removeEventListener('transitionend', onEnd);
+            isSwapping = false;
+         };
+         el.addEventListener('transitionend', onEnd);
+      } else {
+
+        setTimeout(() => {
+         el.style.height = '';
+         el.classList.remove('animating-height');
+         body.classList.remove('is-fading-in');
+         isSwapping = false;
+      }, 
+      HEIGHT_MS / 2);
+   }
+}, 
+FADE_OUT_MS);
+}
 
   btns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -3614,9 +3678,8 @@ const bsCollapse = {
         return;
       }
 
-      // If open and clicking different header: NO animation, just swap content
-      setContent(idx);
       setActiveButton(idx);
+      animateSwap(idx);
     });
   });
 
