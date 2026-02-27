@@ -2431,7 +2431,7 @@ async function renderMapPopup(d, e, type, data) {
       pop_up_map.appendChild(popupNotesContainer);
 
       // Fetch data and draw map
-      await drawPopupMap(d, e, type, mapContainer, loading);
+      drawPopupMap(d, e, type, mapContainer, loading);
    }
 
    window.addEventListener("DOMContentLoaded", handleRefreshPopup);
