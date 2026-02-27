@@ -195,6 +195,89 @@ h3 {
     width: 1200px;
 }
 
+#infoAccordion .row {
+    margin: 0; 
+}
+
+#infoAccordion .row > .col { 
+    padding: 0; 
+}
+
+.info-tab-btn {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  color: #008675;
+  border: 2px solid #008675;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 0.9rem 1rem;
+  min-height: 3.25rem;
+}
+
+#info-card-wrap {
+    margin: 10%;
+}
+
+/* Restore the right border on the last tab */
+#infoAccordion .row > .col:last-child .info-tab-btn {
+  border-right-width: 2px;
+}
+
+/* Rounded ends only on the first and last buttons */
+#infoAccordion .row > .col:first-child  .info-tab-btn { 
+    border-top-left-radius: .5rem;  
+    border-bottom-left-radius: .5rem; 
+}
+
+#infoAccordion .row > .col:last-child   .info-tab-btn { 
+    border-top-right-radius: .5rem; 
+    border-bottom-right-radius: .5rem; 
+}
+
+/* Hover */
+.info-tab-btn:hover {
+  background-color: #00A85714;
+  color: #008675;
+}
+
+/* Active tab */
+.info-tab-btn:focus {
+  border: 2px solid #008675;
+}
+
+/* Active (open) tab */
+.info-tab-btn:not(.collapsed) {
+  background-color:  #008675;
+  color: #FFFFFF;
+}
+
+#infoAccordion { 
+    padding-top: .25rem; 
+    padding-bottom: 0; 
+}
+
+#info-wrap {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.info-card-wrap > #info-card{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.info-card-wrap:has(.collapse.show) > #info-card, .info-card-wrap:has(.collapsing) > #info-card {
+    margin: 5%;
+    padding: 2%;
+    border: 2px solid #000000;
+    background-color: #FFFFFF;
+}
+
 #domains-grid-container {
     width: 804px;
     margin-left: 25px;
