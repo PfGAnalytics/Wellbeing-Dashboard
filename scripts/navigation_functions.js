@@ -757,7 +757,6 @@ if (currentURL.includes("?indicator=")) {
             console.debug("Map popup requested; skipping chart popup.");
             var popup_type = popupParam == "assembly area" ? "AA" : "LGD";
             renderMapPopup(lookUpDomain, lookUpIndicator, popup_type);
-            drawPopupMap;
         } else {
             renderPopup(lookUpDomain, lookUpIndicator, popup_clicked);
         }
