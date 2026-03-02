@@ -1745,6 +1745,11 @@ input:focus-visible {
     box-shadow: 10px 10px 8px 2px #00000011;
   }
 
+  #pop-up-chart:focus,
+  #pop-up-chart:active {
+      outline: none;
+  }
+
   #pop-up-container {
     width: 80%;
     height: 500px;
