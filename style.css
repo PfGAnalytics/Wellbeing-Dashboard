@@ -222,7 +222,7 @@ h3 {
 }
 
 .info-chevron {
-  margin-left: 31%;
+  margin-left: 45%;
   width: 20px;
   height: 20px;
   transition: transform .2s ease-in-out;
@@ -272,9 +272,14 @@ h3 {
 }
 
 #info-wrap {
-    width: 100%;
+    display: flex;
+    justify-content: center;
     margin: 0;
     padding: 0;
+}
+
+#info-boxes {
+    width: 80%;
 }
 
 .info-card-wrap > #info-card{
@@ -495,6 +500,7 @@ padding-right: 10px;
 #domains-intro {
     margin-bottom: 15px;
     text-align: left;
+    justify-content: center;
 }
 
 .intro {
@@ -2082,6 +2088,7 @@ tr {
 
 #recent-table td {
     border: 1px solid black !important; 
+    background-color: #FFFFFF;
     padding: 8px;
 }
 
