@@ -1726,8 +1726,10 @@ input:focus-visible {
 
   #subpop-container {
     overflow: scroll;
+    overflow-x: hidden;
     max-width: 1200px;
   }
+
 
   .overall-text {
     margin-left: 10px;
