@@ -204,7 +204,9 @@ h3 {
 }
 
 .info-tab-btn {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   font-size: 14pt;
   text-align: left;
@@ -222,7 +224,6 @@ h3 {
 }
 
 .info-chevron {
-  margin-left: 45%;
   width: 20px;
   height: 20px;
   transition: transform .2s ease-in-out;
