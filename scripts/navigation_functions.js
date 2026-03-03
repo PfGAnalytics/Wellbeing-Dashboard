@@ -1487,6 +1487,7 @@ async function subpopTable() {
         indicator_name = document.createElement("td");      // Create a new cell, insert indicator name and link to indicator page
         indicator_name.innerHTML = "<a href = '?indicator=" + all_indicators[i].replace(/[^a-z ]/gi, '').replaceAll(" ", "+").toLowerCase() + "'>" + all_indicators[i] + "</a>";
         indicator_name.style.textAlign = "left";        // Align text left
+        indicator_name.style.width = "250px"
 
         // Make the cell horizontally sticky
         indicator_name.style.position = "sticky";
