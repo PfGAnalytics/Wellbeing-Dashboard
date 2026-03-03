@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "index": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
           "label": {
             "2016": "2016",
             "2017": "2017",
@@ -31,7 +31,8 @@
             "2021": "2021",
             "2022": "2022",
             "2023": "2023",
-            "2024": "2024"
+            "2024": "2024",
+            "2025": "2025"
           }
         },
         "label": "Year"
@@ -74,7 +75,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -104,15 +105,15 @@
       ]
     },
     "note": [
-      "[b]International reputation[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNorthern Ireland's score on the Nation Brands Index (NBI). The overall NBI score is out of 100, and is based on NI's scores for Exports, Governance, Culture, People, Tourism and Immigration and Investment.\r\n\r\n[b]Source\r\n[/b]The Anholt Nation Brands Index: Report for Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/nation-brands-index]https://www.executiveoffice-ni.gov.uk/topics/nation-brands-index[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThe Nation Brands Index survey methodology did not change during or after COVID-19.\r\n\r\n[b]Further information[/b]\r\n1. The overall NBI score is out of 100, and is an average of scores from six dimensions (Exports; Governance; Culture; People; Tourism; and Immigration and Investment)."
+      "[b]International reputation[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNorthern Ireland's score on the Nation Brands Index (NBI). The overall NBI score is out of 100 and is based on NI's scores for Exports, Governance, Culture, People, Tourism, and Immigration and Investment.\r\n\r\n[b]Source\r\n[/b]The Anholt Nation Brands Index: Report for Northern Ireland, The Executive Office\r\n[url=https://www.executiveoffice-ni.gov.uk/topics/nation-brands-index]https://www.executiveoffice-ni.gov.uk/topics/nation-brands-index[/url] \r\n\r\n[b]Impact of Covid-19[/b]\r\nThe Nation Brands Index survey methodology did not change during or after Covid-19.\r\n\r\n[b]Further information[/b]\r\n1. The overall NBI score is out of 100 and is an average of scores from six dimensions (Exports; Governance; Culture; People; Tourism; and Immigration and Investment)."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 9, 1],
-    "updated": "2024-12-12T15:14:38",
-    "value": [57.93, 59.01, 58.71, 59.38, 59.16, 61.27, 60.89, 61.62, 61.13],
+    "size": [1, 10, 1],
+    "updated": "2026-02-20T9:30:00",
+    "value": [57.93, 59.01, 58.71, 59.38, 59.16, 61.27, 60.89, 61.62, 61.13, 62.21],
     "version": "2.0"
   },
   "id": {}
