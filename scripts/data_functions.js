@@ -1539,7 +1539,7 @@ async function renderPopup (d, e, eq_group) {
       // Create a download button to download pop up chart
       const download_btn = document.createElement("button");
       download_btn.id = "download-pop-up-chart";
-      download_btn.textContent = "Download chart to image (PNG format)";
+      download_btn.textContent = "Download chart to PNG image";
       download_btn.classList.add("btn", "btn-primary");
 
       download_btn.onclick = function () {
