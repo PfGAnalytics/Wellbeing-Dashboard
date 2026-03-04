@@ -736,8 +736,8 @@ var domains_data = {
          //    }
          // },
          "International reputation": {
-            importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation will affect people’s willingness to live, study, visit, do business with and invest in NI and this has a significant impact on our economy.",
-            base_year: "2020",
+            importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation affects people’s willingness to live, study, visit, do business with, and invest in NI, which has a significant impact on our economy.",
+            base_year: "2021",
             ci: 1,
             latest_update: "12-12-2024",
             next_update: "January 2026",
@@ -749,9 +749,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Northern Ireland achieved a higher score on the Nation Brands Index, indicating an improved reputation internationally.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               improved: "",
+               no_change: "This suggests that international perceptions of Northern Ireland have remained broadly stable over that period.",
+               worsened: "",
                insufficient: ""
             }
          },
@@ -889,15 +889,15 @@ var domains_data = {
             latest_update: "29-10-2025",
             next_update: "March 2026",
             data: {
-               NI: "INDPERSSAFENI",
-               AA: "",
-               LGD: "",
-               EQ: ""
+               NI: "",
+               AA: "INDPSAFEAA",
+               LGD: "INDPSAFELGD",
+               EQ: "INDPSAFEEQ"
             },
            improvement: "decrease",
            telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Latest findings show the proportion, 5.7%, who felt very unsafe walking alone in their area after dark was the same as the 2021/22 figure, also 5.7%.",
+               no_change: "Latest findings show the proportion, 6%, who felt very unsafe walking alone in their area after dark was the same as the 2021/22 figure, also 6%.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
            }
@@ -949,15 +949,15 @@ var domains_data = {
             latest_update: "29-10-2025",
             next_update: "March 2026",
              data: {
-                NI: "INDWORRYACNI",
-                AA: "",
-                LGD: "",
-               EQ: ""
+                NI: "",
+                AA: "INDWORACAA",
+                LGD: "INDWORACLGD",
+               EQ: "INDWORACEQ"
             },
            improvement: "decrease",
            telling: {
               improved: "This commentary is a placeholder.",
-                no_change: "Latest findings show the proportion, 5.2%, who felt very worried about becoming a victim of crime was similar to the 2021/22 figure, 4.9%.",
+                no_change: "Latest findings show the proportion, 5%, who felt very worried about becoming a victim of crime was similar to the 2021/22 figure, also 5%. ",
                 worsened: "This commentary is a placeholder.",
                 insufficient: ""
              }
