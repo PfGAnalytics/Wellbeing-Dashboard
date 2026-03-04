@@ -9,12 +9,10 @@
     <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/FezVrasta/popper.js@v1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/js/bootstrap.min.js"></script>
-
-    <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script>
-
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js" integrity="sha512-Hn1w6YiiFw6p6S2lXv6yKeqTk0PLVzeCwWY9n32beuPjQ5HLcvz5l2QsP+KilEr1ws37rCTw3bZpvfvVIeTh0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -41,30 +39,36 @@
 
     <div id = "skip-link"><a href = "#main-container">Skip to main content</a></div>
 
-    <div id = "prototype">This prototype application is under development. It will be enhanced and updated as further wellbeing indicator data is released.</div>
+    <div id = "prototype" hidden>This prototype application is under development. It will be enhanced and updated as further wellbeing indicator data is released.</div>
     
     <div id = "top-container" role ="banner">
         <div id = "top-menu" class = "row">
             <img id = "top-menu-exec-logo" src = "img/Northern_Ireland_Executive_logo.svg" alt = "Northern Ireland Executive logo">
             <div id = "dashboard-title"><h1>PfG Wellbeing Framework</h1></div>
             <div role = "navigation">
-                <form id = "top-menu-items" class = "row">
-                    <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><i class = "fas fa-chart-line"></i> Domains</button>
-                    <button id = "overall-btn" class = "top-menu-item" name = "tab" value = "overall"><img id = "hex-icon" src = "img/three-hexagons.svg" alt = "Hexagons logo" style = "width: 20px;"> Overall</button>
-                    <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 20px;"> Maps</button>
-                    <button id = "help-btn" class = "top-menu-item" name = "tab" value = "help"><i class="fa-regular fa-address-book"></i> Notes</button>
-                </form>
-                <form id = "search-bar" autocomplete = "off">
+                <img id = "top-menu-aig-logo" src = "img/AIG-colour-blue-background.png" alt = "AIG logo">
+        </div>
+        </div>
+        <div id = "top-menu-items-row">
+        <form id = "top-menu-items">
+            <button id = "domains-btn" class = "top-menu-item selected-item" name = "tab" value = "domains"><img id = "home-icon" src="img/house-user-solid-full.svg" alt = "Home icon" style="width: 30px;"> Home</button>
+            <button id = "maps-btn" class = "top-menu-item" name = "tab" value = "maps"><img id = "ni-icon" src = "img/Northern_Ireland_outline.svg" alt = "Outline of Northern Ireland icon" style = "width: 30px;"> Maps</button>
+            <button id = "about-btn" class = "top-menu-item" name = "tab" value = "about"><img id ="about-icon" src="img/circle-question-regular-full.svg" alt ="About icon" style = "width: 30px;"> About</button>
+        </form>
+            <form id = "search-bar" autocomplete = "off">
                     <div id = "search-box">
                         <div class="autocomplete" style="width: 400px;">
                         <input id="search-text" type="text" name = "indicator" placeholder="Search by indicator name" aria-label = "enter-search-text">
                         </div>
-                        <button type = "button" id = "search-btn" class = "btn" aria-label = "Search"><i class="fa-solid fa-magnifying-glass" aria-label = "search-button"></i></button>
+                        <button type = "button" id = "search-btn" class = "btn" aria-label = "Search">
+                            <img id="search-button" src="img/magnifying-glass-solid-full.svg" alt = "Magnifying class search button">
+                        </button>
                     </div>
                 </form>
-            </div>
         </div>
     </div>    
+
+    
 
     <div class= "button-row" style = "display: none;">
         <form id = "back-button-container" class = "row">
@@ -83,24 +87,44 @@
         <div id = "main-container" role = "main">
 
             <div id = "domains-scrn" class = "screen">
-                <h2 id = "domains-title" style="width: 100%; text-align: center;">Doing What Matters Most</h2>
-                <img src = "img/AIG-colour2.png" style="width: 200px; float: right; margin-top: -42  px; margin-bottom: 20px;"> 
-                <div id = "domains-intro" class = "intro" style="clear:both">
-                    <P>Wellbeing is a combination of social, environmental, economic, and democratic factors which are essential for society to flourish. These factors align to our Missions of People, Planet, Prosperity and our cross-cutting commitment to Peace.</p>
-                    <p>Our Missions have been broken down across ten strategic domains of wellbeing supported by a selection of indicators, each of which is a high-quality official statistic. Each project and programme contained within the Programme for Government can be linked to a Mission.</p>
-                    <p>We will work across the Executive to understand why the indicators within these domains are improving, staying the same or getting worse and use this analysis to inform future iterations of the Programme for Government. </p>
-                    <p>To support this process, we have broken down as many indicators as possible by different demographic groups such as sex, age, marital status, religion, disability, ethnic group, sexual orientation, those with and without dependants, and political opinion. We have also provided geographic breakdowns to make sure that inequalities that exist between council areas, assembly areas, between urban and rural areas and areas of multiple deprivation are clear for all to see.</p>
-                </div>
                 <div id = "domain-toggle" class = "row" style = "justify-content: center;">
                     <div id = "browse-domains" class = "domain-toggle-btn domain-toggle-selected" tabindex="0">Browse Domains</div>
                     <div id = "expand-all" class = "domain-toggle-btn" tabindex="0">Expand all Domains</div>
                     <div id = "by-mission" class = "domain-toggle-btn" tabindex="0">View by Mission</div>
+                    <div id = "by-performance" class = "domain-toggle-btn" tabindex="0">View by Performance</div>
+                </div>
+                <div id = "hex-class-count" class="row key-text" style = "justify-content: center; display: none;">
+                    <div class="key-hex positive">
+                        <div class="key-hex-label positive">
+                             <img id="arrow-up" src="img/arrow-up-long-solid-full.svg">
+                        </div>
+                    </div>
+                    Improving:&nbsp;<strong><span id="count-positive" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex neutral">
+                        <div class="key-hex-label">
+                             <img id="arrow-across" src="img/arrow-right-long-solid-full.svg">
+                        </div>
+                    </div>
+                    No Change:&nbsp;<strong><span id="count-neutral" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex negative">
+                        <div class="key-hex-label negative">
+                             <img id="arrow-down" src="img/arrow-down-long-solid-full.svg">
+                        </div>
+                    </div>
+                    Worsening:&nbsp;<strong><span id="count-negative" style="padding-right: 10px"></span></strong>
+                    <div class="key-hex insufficient">
+                        <div class="key-hex-label insufficient"></div>
+                    </div>
+                    Insufficient Data:&nbsp;<strong><span id="count-insufficient"></span></strong>
                 </div>
                 <div id = "indicator-intro" class = "intro">
                     <p>This overview shows how well we are doing across the indicators that fall under the <span id = "domain-name"></span> domain. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts. Decisions on performance are made independently of Ministers.</p>
                 </div>
+
                 <div id = "browse-grid" class = "row">
-                    <div id = "click-to-see" class = "blue-label"><p style = "margin-bottom: 0px"><i class="fa-solid fa-arrow-pointer"></i> Click on a domain to see the indicators</p></div>
+                    <div id = "click-to-see" class = "blue-label"><p style = "margin-bottom: 0px">
+                         <img id="arrow-pointer" src="img/arrow-pointer-solid-full.svg">
+                        Click on a domain to see the indicators</p></div>
                     <form id = "domains-grid-container" style= "display: block;"></form>
                     <div id = "domain-info-container" style = "display: none;">
                         <div id = "loading-img-3">
@@ -115,17 +139,27 @@
                                     <div id = "clicked-desc" class = "blue-label" style = "width: 400px;"></div>
                                 </div>
                             </div>
+                            <div id="hex-class-count" class="intro" style="justify-items: center; padding-bottom: 10px; display: none">
+                            </div>
                             <div class = "row">
                                 <div id = "key">
                                     <div style = "margin-left: 8px;">Key:</div>
-                                    <div class = "row key-text"><div class = "key-hex positive"><div class = "key-hex-label positive"><i class = "fa-solid fa-arrow-up-long"></i></div></div>Improving</div>
-                                    <div class = "row key-text"><div class = "key-hex neutral"><div class = "key-hex-label"><i class = "fa-solid fa-arrow-right-long"></i></div></div>No Change</div>
-                                    <div class = "row key-text"><div class = "key-hex negative"><div class = "key-hex-label negative"><i class = "fa-solid fa-arrow-down-long"></i></div></div>Worsening</div>
+                                    <div class = "row key-text"><div class = "key-hex positive"><div class = "key-hex-label positive">
+                                         <img id="arrow-up" src="img/arrow-up-long-solid-full.svg">
+                                    </div></div>Improving</div>
+                                    <div class = "row key-text"><div class = "key-hex neutral"><div class = "key-hex-label">
+                                         <img id="arrow-across" src="img/arrow-right-long-solid-full.svg">
+                                    </div></div>No Change</div>
+                                    <div class = "row key-text"><div class = "key-hex negative"><div class = "key-hex-label negative">
+                                         <img id="arrow-down" src="img/arrow-down-long-solid-full.svg">
+                                    </div></div>Worsening</div>
                                     <div class = "row key-text"><div class = "key-hex insufficient"><div class = "key-hex-label insufficient"></div></div>Insufficient Data</div>
                                 </div>
                                 <form id = "indicator-hexes"></form>
                             </div>
-                            <div class = "blue-label" style = "width: 400px; margin-left: 165px; text-align: center; margin-top: 20px; margin-bottom: 20px;"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
+                            <div class = "blue-label" style = "width: 400px; margin-left: 165px; text-align: center; margin-top: 20px; margin-bottom: 20px;"><p style = "margin-bottom: 0px;">
+                                 <img id="arrow-pointer" src="img/arrow-pointer-solid-full.svg">
+                                Click on an indicator to see the data</p></div>
                         </div>
                     </div>
                 </div>
@@ -139,88 +173,115 @@
                         <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
                     </div>
                 </form>
+                <div id = "overall-scrn" class = "screen" style = "display: none;">
+                    <div id = "overall-intro" class = "intro">
+                        <p>This overview shows how well we are doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts. Decisions on performance are made independently of Ministers.</p>
+                    </div>
+                    <div id = "loading-img" style = "display: none">
+                        <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
+                    </div>
+                    <div id = "overall-hexes" style = "display: none">
+                        <div id = "overall-click">
+                            <div class = "blue-label" style = "width: 400px; text-align: center; margin-top: 1rem"><p style = "margin-bottom: 0px;">
+                                 <img id="arrow-pointer" src="img/arrow-pointer-solid-full.svg">
+                                Click on an indicator to see the data</p></div>
+                        </div>
+                        <div class = "label-container">
+                            <h3 id = "h3-improving" class = "overall-text"></h3>
+                        </div>
+                        <div class = "row">
+                            <form id = "improving-hexes" class = "overall-container"></form>
+                        </div>
+                        <div class = "separator"></div>
+                        <div class = "label-container">
+                            <h3 id = "h3-no-change" class = "overall-text"></h3>
+                        </div>
+                        <div class = "row">
+                            <form id = "no-change-hexes" class = "overall-container"></form>
+                        </div>
+                        <div class = "separator"></div>
+                        <div class = "label-container">
+                            <h3 id = "h3-worsening" class = "overall-text"></h3>
+                        </div>
+                        <div class = "row">
+                            <form id = "worsening-hexes" class = "overall-container"></form>
+                        </div>
+                        <div class = "separator"></div>
+                        <div class = "row">
+                            <div class = "label-container">
+                                    <h3 id = "h3-insufficient" class = "overall-text"></h3>
+                                </div>
+                            </div>
+                            <form id = "insufficient-hexes" class = "overall-container"></form>
+                        </div>
+                        <p style = "font-size: 12pt; margin-top: 1em;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">About</span> tab.</p>
+                    <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
+                </div>
+                <h2 id = "domains-title" style="width: 100%; text-align: center;">Doing What Matters Most</h2>
+                <div id = "domains-intro" class = "intro" style="clear:both">
+                    <div id="info-wrap">
+                        <div id="info-boxes"></div>
+                    </div>
+                </div>
+                <h3 id = "h3-recent-updates">Most recently updated indicator data</h3>
+                 <div id="recent-filter" style="margin-bottom: 8px;">
+                    <label for="recent-window" style="margin-right: 8px;">Show updates from last:</label>
+                    <select id="recent-window">
+                        <option value="30" selected>30 days</option>
+                        <option value="60">60 days</option>
+                        <option value="90">90 days</option>
+                    </select>
+                </div>
+                <div id="recent-updates">
+                        <table id="recent-table">
+                            <thead>
+                                <tr>
+                                    <th>Indicator</th>
+                                    <th>Domain</th>
+                                    <th>Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 <div id = "domains-footer" class = "intro">
-                    <p>For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link" tabindex =   "0">Notes</span>.</p>
+                    <p>For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link" tabindex =   "0">About</span> tab.</p>
                     <p>The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
                 </div>
             </div>
 
-            <div id = "overall-scrn" class = "screen" style = "display: none;">
-                <h2>Overall</h2>
-                <div id = "overall-intro" class = "intro">
-                    <p>This overview shows how well we are doing across all of the indicators. Performance is assessed as 'improving', 'no change' or 'worsening' based on the change between the baseline figure and the latest data point of an indicator. The assessment of performance is made objectively and impartially by a panel of senior analysts. Decisions on performance are made independently of Ministers.</p>
-                </div>
-                <div id = "loading-img">
-                    <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
-                </div>
-                <div id = "overall-hexes" style = "display: none">
-                    <div id = "overall-click">
-                        <div class = "blue-label" style = "width: 400px; text-align: center; margin-top: 1rem"><p style = "margin-bottom: 0px;"><i class="fa-solid fa-arrow-pointer"></i> Click on an indicator to see the data</p></div>
-                    </div>
-                    <div class = "row">
-                        <div class = "label-container">
-                            <div id = "improving-label" class = "overall-label">
-                                <i class = "fa-solid fa-arrow-up-long"></i>
-                                <p id = "p-improving" class = "overall-text"></p>
-                            </div>
-                        </div>
-                        <form id = "improving-hexes" class = "overall-container"></form>
-                    </div>
-                    <div class = "separator"></div>
-                    <div class = "row">
-                        <div class = "label-container">
-                            <div id = "no-change-label" class = "overall-label">
-                                <i class = "fa-solid fa-arrow-right-long"></i>
-                                <p id = "p-no-change" class = "overall-text"></p>
-                            </div>
-                        </div>
-                        <form id = "no-change-hexes" class = "overall-container"></form>
-                    </div>
-                    <div class = "separator"></div>
-                    <div class = "row">
-                        <div class = "label-container">
-                            <div id = "worsening-label" class = "overall-label">
-                                <i class="fa-solid fa-arrow-down-long"></i>
-                                <p id = "p-worsening" class = "overall-text"></p>
-                            </div>
-                        </div>
-                        <form id = "worsening-hexes" class = "overall-container"></form>
-                    </div>
-                    <div class = "separator"></div>
-                    <div class = "row">
-                        <div class = "label-container">
-                            <div id = "insufficient-label" class = "overall-label">
-                                <p id = "p-insufficient" class = "overall-text"></p>
-                            </div>
-                        </div>
-                        <form id = "insufficient-hexes" class = "overall-container"></form>
-                    </div>
-                    <p style = "font-size: 12pt; margin-top: 1em;">For more detail on the methods, sources and methodology used in this dashboard, please read our <span class = "user-guide-link">Notes</span>.</p>
-                <p style = "font-size: 12pt;">The data for this dashboard is hosted on the <a href = "https://data.nisra.gov.uk/" target = "_blank">NISRA Data Portal</a>.</p> 
-                </div>
-            </div>
 
-            <div id = "loading-img-2" style = "display: none">
-                <img src = "img/page-loading.gif" alt = "Northern Ireland Executive Loading Screen animation">
-            </div>
 
             <div id = "indicator-scrn" class = "screen" style = "display:none;">
-                <div class = "row">
+                <div class = "row" id = "title-row">
+                    <div class = "row" id = "dom-ind-title">
                     <div id = "domain-title" class = "blue-label"></div>
                     <h2 id = "indicator-title"></h2>
+                    </div>
+                    <div class = "row" id = "indicator-aos">
+                    <div id="ind-hex-container" style = "margin-right: 10px"></div>
+                    </div>
                 </div>
                 <div id = "indicator-content">
                     <div class = "row" style = "margin-top: 15px;">
                         <div class = "blue-label">How do we measure this?</div>
                         <div id = "measure-info"></div>
+                        <button id="share" alt="Share indicator page">Share page</button>
                     </div>
-                    <div class = "row" style = "align-items: start; margin-bottom: 40px;">
+                    <div class = "row" id = "main-ind-container" style = "margin-top: 20px; align-items: center; justify-content: space-between; margin-right: 35px">
                         <div id = "line-chart-container" alt = "A summary of this chart's findings can be found in the 'What is this indicator telling us?' box"></div>
-                        <div id = "chart-boxes" class = "box-container">
-                            <form id = "map-link"></form>                      
-                        </div>
+                        <div id = "chart-boxes" class = "box-container" style = "max-width: 358px">
+                            <form id = "map-link"></form>
+                            <div>
+                            <strong style = "padding: 33px"> Download:</strong>
+                            <div id = "download-buttons">
+                            <button id="download-chart" class="btn btn-primary" style= "margin-top: 10px">Chart to image (PNG format)</button>
+                            <button id="download-data" class="btn btn-primary">Data in CSV format</button>
+                            </div>
+                            </div>                  
+                        </div>                                     
                     </div>
-                    <div class = "row" style = "margin-top: 20px;">
+                    <div class = "row" id = "ind-telling-row" style = "margin-top: 60px;">
                         <div class = "blue-label" style = "min-width: 280px;">What is this indicator telling us?</div>
                         <div id = "change-info"></div>
                     </div>
@@ -228,22 +289,22 @@
                         <div class = "blue-label"  style = "min-width: 280px;">Why is this indicator important?</div>
                         <div id = "ind-important" class = "white-box"></div>
                     </div>
-                    <div class = "grey-box">
+                    <div class="grey-box">
                         <strong>Source:</strong>
-                        <div id = "source-info"></div>
+                        <div id="source-info"></div>
                         <strong>More data:</strong>
-                        <p id = "data-info"></p>
-                        <div id = "further-expander" tabindex="0">
-                            <strong>Further information</strong> <i style = "color: #142062" class="fa-solid fa-plus"></i> <span style = "font-size: 10pt; color: #142062">Click to expand</span>
-                        </div>
-                        <div id = "further-info"></div>
+                        <p id="data-info"></p>
                         <strong>Impact of Covid-19</strong><br>
-                        <div id = "covid-info"></div>
+                        <div id="covid-info"></div>
+                         <div id="further-information" tabindex="0">
+                            <strong>Further information</strong>
+                        </div>
+                        <div id="further-info"></div>
                     </div>
                 </div>
             </div>
 
-            <div id = "maps-scrn" class = "screen" style = "display: none;">
+                 <div id = "maps-scrn" class = "screen" style = "display: none;">
                 <h2>Mapping the indicators</h2>
                 <form id = "map-form">
                     <label for="map-select-1">Domain:</label>
@@ -270,10 +331,18 @@
                         <div id = "map-boxes" class = "box-container">
                             <form style = "margin-top: 15px; display: flex; justify-content: center;">
                                 <button id = "chart-link" name = "indicator">
+                                    <img id = "chart-line" src = "img/chart-line-solid-full.svg" style="width: 30px;">
                                     <i class = "fas fa-chart-line"></i> See trend data for this indicator<br>at Northern Ireland level
                                 </button>
                             </form>
+                            <strong style = "padding-left: 33px"> Download:</strong>
+                            <button id="download-map" class="btn btn-primary">Map to image (PNG format)</button>
+                            <button id="download-map-data" class="btn btn-primary">Data in CSV format</button>
                         </div>
+                    </div>
+                    <div class = "row" style = "margin-top: 20px;">
+                        <div class = "blue-label" style = "min-width: 280px;">What is this map telling us?</div>
+                        <div id = "summary-map" class = "white-box"></div>
                     </div>
                     <div class = "row" style = "margin-top: 20px;">
                         <div class = "blue-label" style = "min-width: 280px;">How do we measure this?</div>
@@ -283,29 +352,26 @@
                         <div class = "blue-label" style = "min-width: 280px;">Why is this indicator important?</div>
                         <div id = "ind-important-map" class = "white-box"></div>
                     </div>
-                    <div class = "grey-box">
+                    <div class="grey-box">
                         <strong>Source:</strong>
-                        <p id = "source-info-map"></p>
+                        <p id="source-info-map"></p>
                         <strong>More data:</strong>
-                        <p id = "data-info-map"></p>
-                        <div id = "further-expander-map" tabindex="0">
-                            <strong>Further information</strong> <i style = "color: #142062" class="fa-solid fa-plus"></i> <span style = "font-size: 10pt; color: #142062">Click to expand</span>
-                        </div>
-                        <div id = "further-info-map"></div>
+                        <p id="data-info-map"></p>
                         <strong>Impact of Covid-19</strong><br>
-                        <div id = "covid-info-map"></div>
+                        <div id="covid-info-map"></div>
+                        <strong>Further information</strong>
+                        <div id="further-info-map"></div>
                     </div>
                 </div>
             </div>
-
-            <div id = "help-scrn" class = "screen" style = "display: none;">
-                <h2>Notes</h2>
+            <div id = "about-scrn" class = "screen" style = "display: none;">
+                <h2>About</h2>
                 <p>Wellbeing is a combination of social, environmental, economic, and democratic factors which are essential for society to flourish. These factors align to our Missions of People, Planet, Prosperity and our cross-cutting commitment to Peace. Our Missions have been broken down across <span class="domain-count"></span> strategic domains of wellbeing. These domains describe our state of wellbeing as a society.</p>
                 <div id = "framework-container">
                     <div id = "framework-structure" class = "row"></div>
                 </div>
                 <p>Each domain is supported by a number of indicators taken from official statistics, and while indicators are included under a particular domain, it is expected that many indicators will inform aspects of wellbeing relevant to multiple domains, and wellbeing overall.  Each indicator will be updated as additional data becomes available, providing a snapshot of our state of wellbeing.</p>
-                <h3>Subpopulations available for each indicator</h3>
+                <h3 class="subpop-heading">Subpopulations available for each indicator</h3>
                 <div id = "subpop-container"></div>
                 <h3>Quality characteristics of the framework</h3>
                 <p>All of the indicators are composed of official statistics which adhere to the <a href = "https://code.statisticsauthority.gov.uk/" target = "_blank">Code of Practice for Statistics</a>.  The Code is based on three pillars - Trustworthiness, Quality and Value.  It outlines principles and practices to follow when producing statistics to ensure high quality, reliable outputs.</p>
@@ -342,9 +408,12 @@
                 </div> 
                 <div style="height: 170px; width: 120px; margin: 20px 0px 20px 60px;">
                 <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h3>
-                <i class="fa-brands fa-facebook-f"></i> <a href="https://www.facebook.com/nisra.gov.uk" target="_blank" rel="noopener noreferrer">Facebook</a><br> 
-                <i class="fa-brands fa-x-twitter"></i> <a href="https://twitter.com/NISRA" target="_blank" rel="noopener noreferrer">Twitter</a><br> 
-                <i class="fa-brands fa-youtube"></i> <a href="https://www.youtube.com/user/nisrastats" target="_blank" rel="noopener noreferrer">YouTube</a><br>
+                 <img id="facebook-logo" src="img/facebook-f-brands-solid-full.svg" style="filter: invert(1); width: 25px;">
+                <a href="https://www.facebook.com/nisra.gov.uk" target="_blank" rel="noopener noreferrer">Facebook</a><br> 
+                 <img id="x-logo" src="img/x-twitter-brands-solid-full.svg" style="filter: invert(1); width: 25px;">
+                <a href="https://x.com/NISRA" target="_blank" rel="noopener noreferrer">Twitter / X</a><br> 
+                 <img id="youtube-logo" src="img/youtube-brands-solid-full.svg" style="filter: invert(1); width: 25px;">
+                <a href="https://www.youtube.com/user/nisrastats" target="_blank" rel="noopener noreferrer">YouTube</a><br>
                 </div>
                 <div id = "nisra-logo-container">
                 <a href = "https://www.nisra.gov.uk/" target = "_blank"><img id = "footer-nisra-logo" src="img/nisra-logo.svg" alt = "NISRA logo. Clicking image takes user to NISRA website"></a>
