@@ -1539,7 +1539,7 @@ async function renderPopup (d, e, eq_group) {
       // Create a download button to download pop up chart
       const download_btn = document.createElement("button");
       download_btn.id = "download-pop-up-chart";
-      download_btn.textContent = "Download chart to PNG image";
+      download_btn.textContent = "Download chart as image (PNG format)";
       download_btn.classList.add("btn", "btn-primary");
 
       download_btn.onclick = function () {
@@ -1601,7 +1601,7 @@ async function renderPopup (d, e, eq_group) {
       // Create a download data button for pop-up chart
       const download_data_btn = document.createElement("button");
       download_data_btn.id = "download-pop-up-data";
-      download_data_btn.textContent = "Download data in CSV format";
+      download_data_btn.textContent = "Download data (in CSV format)";
       download_data_btn.classList.add("btn", "btn-primary");
 
       download_data_btn.onclick = function () {
@@ -2288,12 +2288,12 @@ async function renderMapPopup(d, e, type, data) {
       // Download Map button
       const downloadMapBtn = document.createElement("button");
       downloadMapBtn.id = "popup-download-map";
-      downloadMapBtn.textContent = "Download map to image (PNG format)";
+      downloadMapBtn.textContent = "Download map as image (PNG format)";
       downloadMapBtn.classList.add("popup-download-btn");
 
       // Download Data button
       const downloadDataBtn = document.createElement("button");
-      downloadDataBtn.textContent = "Download data in CSV format";
+      downloadDataBtn.textContent = "Download data (in CSV format)";
       downloadDataBtn.classList.add("popup-download-btn");
       
       // Attach domain, indicator, and type as data attributes

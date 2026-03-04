@@ -1005,8 +1005,9 @@ footer {
     height: 50px;
 }
 
-#download-pop-up-chart {
-    width: 280px !important;
+#download-pop-up-chart, #download-pop-up-data{
+    width: 330px !important;
+    font-size: 13pt;
 }
 
 #download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #share:hover {
