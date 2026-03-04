@@ -3692,13 +3692,11 @@ FADE_OUT_MS);
 }
 
  populateInfoBoxes(
-        ["Placeholder 1", "Placeholder 2", "Placeholder 3"],
+        ["What is the PfG Wellbeing Framework?", "How can we tell if wellbeing is improving in NI?"],
         [
         `<p>Wellbeing is a combination of social, environmental, economic, and democratic factors which are essential for society to flourish. These factors align to our Missions of People, Planet, Prosperity and our cross-cutting commitment to Peace.</p>
         <p>Our Missions have been broken down across ten strategic domains of wellbeing supported by a selection of indicators, each of which is a high-quality official statistic. Each project and programme contained within the Programme for Government can be linked to a Mission.`,
 
         `<p>We will work across the Executive to understand why the indicators within these domains are improving, staying the same or getting worse and use this analysis to inform future iterations of the Programme for Government.</p>`,
-
-        `<p>To support this process, we have broken down as many indicators as possible by different demographic groups such as sex, age, marital status, religion, disability, ethnic group, sexual orientation, those with and without dependants, and political opinion. We have also provided geographic breakdowns to make sure that inequalities that exist between council areas, assembly areas, between urban and rural areas and areas of multiple deprivation are clear for all to see.</p>`
         ]
     );

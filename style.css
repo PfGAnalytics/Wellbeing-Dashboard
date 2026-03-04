@@ -211,9 +211,9 @@ h3 {
   font-size: 14pt;
   text-align: left;
   background-color: #FFFFFF;
-  color: #008675;
-  border: 2px solid #008675;
-  font-weight: 600;
+  color: #142062;
+  border: 2px solid #142062;
+  font-weight: bold;
   line-height: 1.2;
   padding: 0.9rem 1rem;
   min-height: 3.25rem;
@@ -252,24 +252,28 @@ h3 {
 
 /* Hover */
 .info-tab-btn:hover {
-  background-color: #00A85714;
-  color: #008675;
+  background-color: #14206214;
+  color: #142062;
 }
 
 /* Active tab */
 .info-tab-btn:focus {
-  border: 2px solid #008675;
+  border: 2px solid #142062;
 }
 
 /* Active (open) tab */
 .info-tab-btn:not(.collapsed) {
-  background-color:  #008675;
+  background-color:  #142062;
   color: #FFFFFF;
 }
 
 #infoAccordion { 
     padding-top: .25rem; 
     padding-bottom: 0; 
+}
+
+.col.p-0 {
+    height: 70px;
 }
 
 #info-wrap {
