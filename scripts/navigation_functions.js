@@ -5,7 +5,6 @@ var button_container = document.getElementById("button-container");
 var button_left = document.getElementById("button-left");
 var button_right = document.getElementById("button-right");
 var domains_grid_container = document.getElementById("domains-grid-container");
-var domains_title = document.getElementById("domains-title");
 var domain_info = document.getElementById("domain-info");
 var clicked_hex = document.getElementById("clicked-hex");
 var domain_name_text = document.getElementById("domain-name");
@@ -627,7 +626,6 @@ if (currentURL.includes("?domain=")) {
     indicatorPerformance(dom = lookUpDomain);
 
     // Hide domains grid and display indicators
-    domains_title.style.display = "none";   // Hide the "domains-title" div
     domain_info_container.style.display = "flex";     // Show the "domain-info" div
     domains_grid_container.style.display = "none";  // Hide the domains grid
     click_to_see.style.display = "none";        // Hide the "click-to-see" div
@@ -1666,7 +1664,6 @@ browse_domains.onclick = function() {
     hex_count_container.style.display = "none";
     overall_screen.style.display = "none";
     domains_intro.style.display = "block";
-    domains_title.style.display = "block";
     domains_footer.style.display = "block";
     recent_filter.style.display = "block";
 
@@ -1690,7 +1687,6 @@ expand_all.onclick = function() {
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
     domains_intro.style.display = "none";
-    domains_title.style.display = "none";
     domains_footer.style.display = "none";
     recent_filter.style.display = "none"
 
@@ -1713,7 +1709,6 @@ by_mission.onclick = function() {
     overall_screen.style.display = "none";
     overall_screen.style.display = "none";
     domains_intro.style.display = "none";
-    domains_title.style.display = "none";
     domains_footer.style.display = "none";
     recent_filter.style.display = "none"
 
@@ -1741,7 +1736,6 @@ by_performance.onclick = function() {
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "block";
     domains_intro.style.display = "none";
-    domains_title.style.display = "none";
     domains_footer.style.display = "none";
     recent_filter.style.display = "none";
 
