@@ -36,7 +36,9 @@ eq_groups <- readLines("scripts/eqgroups.js") %>%
         str_replace_all("\\s+", "") %>%          # remove whitespace
         str_c('"', ., '"') %>%                   # wrap each item in quotes
         str_c(collapse = ",") %>%                # join into one string
-        str_replace_all('"', "%22"))   
+        str_replace_all('"', "%22"))
+
+updated <- list()
 
 # Loop through all matrices ####
 for (matrix in matrix_list) {
@@ -47,9 +49,57 @@ for (matrix in matrix_list) {
   
   json_data$result$note <- list(json_data$result$note)
   json_data$result$updated <- sub("\\..*", "", json_data$result$updated)
+
+  updated[[matrix]] <- list(updated = json_data$result$updated)
   
   if (!"error" %in% names(json_data)) {
     write_json(json_data, paste0("backup/", matrix, ".json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
+  }
+  
+  ## NI data sets ####
+  if (str_sub(matrix, -2) == "NI") {
+    matrix_line <- which(grepl(matrix, js_lines))
+    base_year_line <- max(setdiff(which(grepl("base_year", js_lines)), matrix_line:length(js_lines)))
+    ci_line <- max(setdiff(which(grepl("ci", js_lines)), matrix_line:length(js_lines)))
+    improvement_line <- min(setdiff(which(grepl("improvement", js_lines)), 1:matrix_line))
+    
+    base_year <- trimws(sub(",", "", gsub('"', "", sub("base_year:", "", js_lines[base_year_line]))))
+    ci <- trimws(sub(",", "", gsub('"', "", sub("ci:", "", js_lines[ci_line]))))
+    improvement <- trimws(sub(",", "", gsub('"', "", sub("improvement:", "", js_lines[improvement_line]))))
+    
+    if (base_year == "null") {
+      performance <- "insufficient data"
+    } else {
+      base_position <- which(json_data$result$dimension$`TLIST(A1)`$category$index == base_year)
+      base_value <- json_data$result$value[base_position]
+      current_value <- json_data$result$value[length(json_data$result$value)]
+      
+      if (grepl("c", ci)) {
+        ci_num <- as.numeric(sub("c", "", ci)) * (length(json_data$result$value) - base_position)
+      } else {
+        ci_num <- as.numeric(ci)
+      }
+      
+      performance <- if (improvement == "increase") {
+        if (current_value > base_value + ci_num) {
+          "improving"
+        } else if (current_value < base_value - ci_num) {
+          "worsening"
+        } else {
+          "no change"
+        }
+      } else {
+        if (current_value < base_value - ci_num) {
+          "improving"
+        } else if (current_value > base_value + ci_num) {
+          "worsening"
+        } else {
+          "no change"
+        }
+      }
+    }
+    
+    updated[[matrix]]$performance <- performance
   }
   
   # LGD data sets - create NI only line (if available)
@@ -74,6 +124,58 @@ for (matrix in matrix_list) {
       
       if (length(eq_data$result$value) > 0) {
         eq_data$result$note <- list(eq_data$result$note)
+        
+        matrix_line <- which(grepl(matrix, js_lines))
+        base_year_line <- max(setdiff(which(grepl("base_year", js_lines)), matrix_line:length(js_lines)))
+        ci_line <- max(setdiff(which(grepl("ci", js_lines)), matrix_line:length(js_lines)))
+        improvement_line <- min(setdiff(which(grepl("improvement", js_lines)), 1:matrix_line))
+        
+        base_year <- trimws(sub(",", "", gsub('"', "", sub("base_year:", "", js_lines[base_year_line]))))
+        ci <- trimws(sub(",", "", gsub('"', "", sub("ci:", "", js_lines[ci_line]))))
+        improvement <- trimws(sub(",", "", gsub('"', "", sub("improvement:", "", js_lines[improvement_line]))))
+        
+        if (base_year == "null") {
+          performance <- "insufficient data"
+        } else {
+          base_position <- which(eq_data$result$dimension$`TLIST(A1)`$category$index == base_year)
+          base_value <- eq_data$result$value[base_position]
+          current_value <- eq_data$result$value[length(eq_data$result$value)]
+          
+          if (grepl("c", ci)) {
+            ci_num <- as.numeric(sub("c", "", ci)) * (length(eq_data$result$value) - base_position)
+          } else {
+            ci_num <- as.numeric(ci)
+          }
+          
+          performance <- if (matrix == "INDOUTRECEQ") {
+              if (current_value > base_value) {
+                "improving"
+              } else if (current_value < base_value) {
+                "worsening"
+              } else {
+                "no change"
+              }
+          } else if (improvement == "increase") {
+            if (current_value > base_value + ci_num) {
+              "improving"
+            } else if (current_value < base_value - ci_num) {
+              "worsening"
+            } else {
+              "no change"
+            }
+          } else {
+            if (current_value < base_value - ci_num) {
+              "improving"
+            } else if (current_value > base_value + ci_num) {
+              "worsening"
+            } else {
+              "no change"
+            }
+          }
+        }
+        
+        updated[[matrix]]$performance <- performance
+        
         write_json(eq_data, paste0("backup/", matrix, "-NI-line.json"), pretty = TRUE, auto_unbox = TRUE, na = "null")
       }
       
@@ -127,3 +229,6 @@ if (!"error" %in% names(skills_data)) {
   skills_data$result$note <- list(skills_data$result$note)  
   write_json(skills_data, "backup/INDSKILLSLEV.json", pretty = TRUE, auto_unbox = TRUE, na = "null")
 }
+
+# Write out updated dates ####
+write_json(updated, "scripts/updated.json", pretty = TRUE, auto_unbox = TRUE, na = "null")
