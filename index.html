@@ -87,11 +87,17 @@
         <div id = "main-container" role = "main">
 
             <div id = "domains-scrn" class = "screen">
-                <div id = "domain-toggle" class = "row" style = "justify-content: center;">
-                    <div id = "browse-domains" class = "domain-toggle-btn domain-toggle-selected" tabindex="0">Browse Domains</div>
-                    <div id = "expand-all" class = "domain-toggle-btn" tabindex="0">Expand all Domains</div>
-                    <div id = "by-mission" class = "domain-toggle-btn" tabindex="0">View by Mission</div>
-                    <div id = "by-performance" class = "domain-toggle-btn" tabindex="0">View by Performance</div>
+                <div id = "domain-toggle" class = "row">
+                    <div class="view-quickread-tabs">
+                        <a href = "quick-read.html">
+                        <div id = "view-quickread" class = "domain-toggle-btn domain-toggle-selected" tabindex="0">View quick read</div></a>
+                    </div>
+                    <div class="domains-tabs">
+                        <div id = "browse-domains" class = "domain-toggle-btn domain-toggle-selected" tabindex="0">Browse Domains</div>
+                        <div id = "expand-all" class = "domain-toggle-btn" tabindex="0">Expand all Domains</div>
+                        <div id = "by-mission" class = "domain-toggle-btn" tabindex="0">View by Mission</div>
+                        <div id = "by-performance" class = "domain-toggle-btn" tabindex="0">View by Performance</div>
+                    </div>
                 </div>
                 <div id = "hex-class-count" class="row key-text" style = "justify-content: center; display: none;">
                     <div class="key-hex positive">

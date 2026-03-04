@@ -1885,6 +1885,31 @@ tr {
     outline: 2px solid #ff0000;
 }
 
+.domain-toggle-container {
+    display: flex;
+    justify-content: space-between; /* left + right areas */
+    width: 100%;
+    align-items: center;
+}
+
+.view-quickread-tab {
+    flex: 0 0 auto; /* size only as needed */
+}
+
+.domains-tabs {
+    display: flex;
+    margin-left: 5%;
+    flex: 1;         /* take remaining space */
+}
+
+#view-quickread {
+    background-color: #FFFFFF;
+    color: #142062;
+    border: solid 2px #142062;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 #warning-div {
     display: flex;
     height: 500px;
