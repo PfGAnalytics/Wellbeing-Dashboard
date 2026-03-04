@@ -237,13 +237,13 @@ async function indicatorPerformance (dom = null) {
 
 }
 
-let improvinghexDivHTML = '<div class = "row key-text performance" style = "background-color: #a1daa1; border: 2px solid; border-color: #00A857">Improving';
+let improvinghexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #a1daa1; border: 2px solid; border-color: #00A857">Improving';
 
-let nochangehexDivHTML = '<div class = "row key-text performance" style = "background-color: #FF9A5C; border: 2px solid; border-color: #FF6200 ">No change';
+let nochangehexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #FF9A5C; border: 2px solid; border-color: #FF6200 ">No change';
 
-let worseninghexDivHTML = '<div class = "row key-text performance" style = "background-color: #FF7A7A; border: 2px solid; border-color: #db0000">Worsening';
+let worseninghexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #FF7A7A; border: 2px solid; border-color: #db0000">Worsening';
 
-let insufficienthexDivHTML = '<div class = "row key-text performance" style = "background-color: #B0B0B0; border: 2px solid; border-color: #757575">Insufficient';
+let insufficienthexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #B0B0B0; border: 2px solid; border-color: #757575">Insufficient';
 
 
 // Function below uses the api to fetch the data and plots it in a line chart
