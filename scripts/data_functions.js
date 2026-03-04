@@ -3302,7 +3302,7 @@ const codeToInfoMap = (() => {
             : `${String(item.updated.getDate()).padStart(2, '0')} ${getMonthName(item.updated.getMonth() + 1)} ${item.updated.getFullYear()}`;
 
           const link = document.createElement('a');
-          const urlIndicator = item.indicatorName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+');
+          const urlIndicator = item.indicatorName.replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+");
           link.href = `index.html?indicator=${urlIndicator}`;
           link.textContent = item.indicatorName;
 
