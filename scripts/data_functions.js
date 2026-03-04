@@ -1185,11 +1185,11 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
 
     if (indicatorObj.AOS) {
 
-      source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. This is an Accredited Official Statistic.";
+      source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. <br>This is an Accredited Official Statistic.";
 
     } else {
 
-      source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. This is an Official Statistic.";
+      source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. <br>This is an Official Statistic.";
 
     }
    

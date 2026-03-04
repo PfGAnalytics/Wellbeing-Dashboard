@@ -378,6 +378,13 @@ h3 {
     margin-bottom: 20px;
 }
 
+.source-info-text {
+    margin-bottom: 20px;
+}
+
+#covid-info-map {
+    margin-bottom: 20px;
+}
 
 .hover-underline:hover {
     text-decoration: underline;
