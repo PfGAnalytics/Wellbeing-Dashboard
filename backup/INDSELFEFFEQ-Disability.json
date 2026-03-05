@@ -77,7 +77,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": false,
+      "exceptional": true,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -114,7 +114,7 @@
       "time": "TLIST(A1)"
     },
     "size": [1, 11, 2],
-    "updated": "2026-02-02T9:30:00.000Z",
+    "updated": "2026-03-05T14:42:05.220Z",
     "value": [42.6, 17.7, 37.1, 16.7, 38.2, 16, 36.3, 13.3, 36.8, 12.6, 36.6, 12.6, null, null, 34.7, 10.4, 36.7, 11.6, 36, 12.2, 35.7, 13.2],
     "version": "2.0"
   },
