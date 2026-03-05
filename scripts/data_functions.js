@@ -1866,13 +1866,6 @@ async function renderPopup (d, e, eq_group) {
             }
             year++;
       }
-
-      let chartInstance = null;
-
-      function buildChart(chartType) {
-         if (chartInstance) {
-            chartInstance.destroy();
-         }
       
       // Construct data object for chart.js bar chart
       var data = {
@@ -1889,6 +1882,9 @@ async function renderPopup (d, e, eq_group) {
          const dataset = {
             label: label,
             data: values[label].slice(first_year),
+            backgroundColor: [
+               colours[j % colours.length]
+            ]
          };
 
          if (label === "Northern Ireland") {
@@ -1900,21 +1896,16 @@ async function renderPopup (d, e, eq_group) {
             dataset.borderWidth = 3;
             dataset.pointStyle = 'circle';
             dataset.fill = false;
-         } else if (chartType === 'bar') {
+            dataset.hidden = true;
             dataset.backgroundColor = colours[j % colours.length];
-         } else if (chartType === 'line') {
-            dataset.borderColor = colours[j % colours.length];
-            dataset.pointBackgroundColor = colours[j % colours.length];
-            dataset.fill = false;
          }
-
          data.datasets.push(dataset);
       }
 
 
       // Chart configuration for chart.js
       const chart_config = {
-         type: chartType,
+         type: 'bar',
          data: data,
          options: {
             responsive: true,                   //  Allow resizing of canvas
@@ -1941,7 +1932,6 @@ async function renderPopup (d, e, eq_group) {
             },
             plugins: {
             legend: {
-            // position: "bottom",
                title: {
                   display: true,
                   text: "Click legend item to hide/show series in chart",
@@ -1959,9 +1949,7 @@ async function renderPopup (d, e, eq_group) {
                      font: {
                      family: "Arial, Helvetica, sans-serif",
                      size: 14
-                  },
-                  usePointStyle: chartType === 'line',
-                  pointStyle: chartType === 'line' ? 'circle' : 'rect'
+                  }
                }
             }
             }
@@ -2015,53 +2003,8 @@ async function renderPopup (d, e, eq_group) {
             }
          }]
       };
-      chartInstance = new Chart(pop_canvas, chart_config);      // Plot chart
-   }
 
-   // Create label
-   const chartTypeLabel = document.createElement("label");
-   chartTypeLabel.setAttribute("for", "chart-type-select");
-   chartTypeLabel.textContent = "Select chart type";
-   chartTypeLabel.classList.add("chart-label");
-
-   // Create drop down
-   const chartTypeSelect = document.createElement("select");
-   chartTypeSelect.id = "chart-type-select";
-   chartTypeSelect.classList.add("chart-dropdown")
-   chartTypeSelect.setAttribute("aria-label", "A dropdown that can be used to change the chart type. Use the up and down arrow keys to adjust the chart type.");
-
-   // Define chart options
-   const chartOptions = [
-      { value: "bar", text: "Bar chart" },
-      { value: "line", text: "Line chart" },
-   ];
-
-   chartOptions.forEach(optionData => {
-      const option = document.createElement("option");
-      option.value = optionData.value;
-      option.textContent = optionData.text;
-      chartTypeSelect.appendChild(option);
-   });
-
-   // Create a wrapper to hold label and dropdown together
-   const chartTypeWrapper = document.createElement("div");
-   chartTypeWrapper.classList.add("chart-dropdown-wrapper");
-   chartTypeWrapper.appendChild(chartTypeLabel);
-   chartTypeWrapper.appendChild(chartTypeSelect);
-
-   // Append only the dropdown to your container
-   pop_up_buttons.appendChild(chartTypeWrapper);
-
-   // Initial chart type
-   let currentChartType = chartTypeSelect.value;
-
-   // Event listener for dropdown change
-   chartTypeSelect.addEventListener("change", function () {
-      currentChartType = this.value;
-      buildChart(currentChartType);
-   });
-
-   buildChart(currentChartType);
+      new Chart(pop_canvas, chart_config);      // Plot chart
       
       note_text = result.note[0].replaceAll("[b] ", "[b]").replaceAll("\n", "");         
       
@@ -2136,7 +2079,7 @@ async function renderPopup (d, e, eq_group) {
       
       setAltTextChart(pop_up_title);
 
-}
+   }
 
 let mapContainer;
 
