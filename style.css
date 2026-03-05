@@ -20,7 +20,7 @@ body {
 #top-container {
     display: flex;
     align-items: center;
-    background-color: #142062 !important;
+    background-color: #00205b !important;
     width: 100%;
     flex-direction: column;
 }
@@ -41,7 +41,7 @@ body {
   display: flex;
   padding: 10px 0px 15px;
   justify-content: space-between;
-  background-color: #142062;
+  background-color: #00205b;;
   max-width: 1500px;
 }
 
@@ -78,7 +78,7 @@ body {
     padding-left: 20px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1230px) {
     #dashboard-title {
         width: 50%;
     }
@@ -99,7 +99,10 @@ body {
         height: 42px !important;
         border: 2px !important;
     }
-
+    #nisra-logo-container {
+        max-width: 200px !important;
+        width: 100%;
+    }
 }
 
 @media (max-width: 1400px) {
@@ -122,7 +125,7 @@ h1 {
     cursor: pointer;
     border-radius: 25px;
     border-width: 0px;
-    background-color: 	#142062;
+    background-color: #00205b;
     border: 2px solid #FFFFFF;
     flex: 1 1 50px;
     align-content: center;
@@ -143,13 +146,13 @@ h1 {
 }
 
 .top-menu-item.selected-item {
-    color: #142062;
+    color: #00205b;;
     background-color: white;  
 }
 
 .top-menu-item.selected-item:hover {
     color: white;
-    background-color: #142062;
+    background-color: #00205b;;
 }
 
 .top-menu-item.selected-item:hover i {
@@ -172,7 +175,10 @@ h1 {
 }
 
 #footer-nisra-logo {
-    width: 250px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-top: 4%;
     filter: brightness(0) invert(1);
 }
 
@@ -926,24 +932,55 @@ a.cookiesbarlink {
     overflow: hidden;
 }
 
-.cc-li {
-	flex-grow: 1;
-    flex-basis: auto;
-    margin: 0.25em 0;
-    padding: 0 1em;
-    text-align: center;
-    border-left: 1px solid #ccc;
-    font-size: 14pt;
-    list-style-type: none;
+footer a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #fff;
+  text-decoration-thickness: 2px;
+}
+
+.footer-links { 
+    list-style: none; 
+    padding-left: 0; 
+}
+
+.footer-links .list-inline-item { 
+    margin: 0 .5rem; 
+}
+
+/* More vertical spacing in vertical lists */
+footer ul.list-unstyled li { 
+    margin-bottom: 0.5rem; 
+}
+
+footer .list-inline-item img {
+    width: 43px;
+    height: 43px;
+}
+
+/* Social icon hover */
+footer .list-inline-item img, #footer-nisra-logo {
+  transition: box-shadow 0.2s ease, border 0.2s ease;
+}
+footer .list-inline-item img:hover, #footer-nisra-logo:hover {
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
 }
 
 footer {
-    color: #ffffff;
-    background-color: #142062;
     display: flex;
     justify-content: center;
     margin-top: 25px;
     padding-bottom: 28px;
+    background-color: #00205b;
+    color: #fff;
+    border-top: 4px solid #3878c5;
 }
 
 #map-container {
@@ -959,12 +996,8 @@ footer {
 }
 
 #nisra-logo-container {
-    height: 210px;
-    display:flex;
-    justify-content: flex-end;
-    align-items: center;
-    max-width: 1200px;
-    min-width: 250px;
+    max-width: 300px;
+    width: 100%;
 }
 
 #line-chart-container {
@@ -1287,7 +1320,7 @@ footer a:hover {
     color: #ffffff;
 }
 
-#prototype {
+#survey {
     color: #ffffff;
     background-color: #008675 !important;
     display: flex;
@@ -1297,6 +1330,14 @@ footer a:hover {
     justify-content: center;
     padding: 10px;
     font-weight: bold;
+}
+
+#survey a[target="_blank"]::after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="white" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>');
+  display: inline-block;
+  width: 14px;
+  height: 11px;
+  margin: 0 5px 0 5px;
 }
 
 #map-boxes {
@@ -1991,7 +2032,7 @@ tr {
         max-width: 100% !important;
     }
 
-    #back-to-start, #skip-link, #top-container, #top-menu, #dashboard-title, #prototype, #search-box, #back-button, #button-left, #button-right, .button-row, 
+    #back-to-start, #skip-link, #top-container, #top-menu, #dashboard-title, #survey, #search-box, #back-button, #button-left, #button-right, .button-row, 
     #loading-img, #loading-img-4, #loading-img-5, #loading-img-2, #cookie-banner, .chart-title, #top-menu-items, #footer-container, #search-bar, #nisra-logo-container, 
     .flex-list-footer, footer,  #chart-boxes, #click-to-see, #domain-toggle, #overall-click, #date-display, #map-label-4, input#map-select-4.slider, #chart-link,
     #download-pop-up-chart, #download-map, #download-pop-up-data, .box-container, 

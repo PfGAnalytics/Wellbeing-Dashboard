@@ -34,7 +34,7 @@ var key = document.getElementById("key");
 var top_menu = document.getElementById("top-menu");
 var footer = document.getElementsByTagName("footer")[0];
 var main_container = document.getElementById("main-container");
-var prototype = document.getElementById("prototype");
+var survey = document.getElementById("survey");
 var further_expander_map = document.getElementById("further-expander-map");
 var further_info_map = document.getElementById("further-info-map");
 var map_title = document.getElementById("map-title");
@@ -1074,7 +1074,7 @@ mainContainerHeight = function() {
     }
 
     // Determine the height for the main container by substracting header, footer, etc heights from the window height. Allowing 50px for top and bottom margins
-    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - prototype.clientHeight - button_height - 50;
+    var ideal_height = window.innerHeight - top_menu.clientHeight - footer.clientHeight - survey.clientHeight - button_height - 50;
 
     // Set a minimum height for the main container
     main_container.style.minHeight = ideal_height + "px";

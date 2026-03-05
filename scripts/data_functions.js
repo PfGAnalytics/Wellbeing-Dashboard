@@ -1453,7 +1453,7 @@ async function renderPopup (d, e, eq_group) {
 
 
       // This will position the pop-up to always be immediately below the Indicator title
-      pop_up_chart.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
+      pop_up_chart.style.marginTop = survey.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
 
       // Set the width of the pop-up box depending on screen size/type
       if (window.innerWidth < 1200) {
@@ -2098,7 +2098,7 @@ async function renderMapPopup(d, e, type, data) {
     pop_up_map.id = "pop-up-map";
     pop_up_map.setAttribute("tabindex", "-1");
 
-    pop_up_map.style.marginTop = prototype.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
+    pop_up_map.style.marginTop = survey.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
     
     if (window.innerWidth < 1200) {
          pop_up_map.style.width = window.innerWidth - 20 + "px";
