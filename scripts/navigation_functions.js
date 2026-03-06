@@ -2104,28 +2104,23 @@ const handleOnScroll = () => {
         }
 
         function wireDownloadButton() {
-            const btn = document.getElementById('download-chart');
-            if (!btn) return;
+            const dropdown = document.getElementById('download-buttons');
+            const toggleBtn = document.getElementById('download-dropdown');
+            const pngItem = dropdown ? dropdown.querySelector('.dropdown-menu a.dropdown-item[data-action="png"]') : null;
 
-            const dateDiv = document.querySelector('#line-chart-container .chart-date');
-            if (dateDiv && dateDiv.parentElement) {
-                let meta = dateDiv.parentElement.querySelector('.chart-meta');
-
-                if (!meta) {
-                    meta = document.createElement('div');
-                    meta.className = 'chart-meta';
-                    dateDiv.parentElement.insertBefore(meta, dateDiv.nextSibling);
-                }
-
-                if (dateDiv.parentElement !== meta)
-                    meta.appendChild(btn);
-            }
-
-            btn.onclick = function () { 
+            if (!pngItem) return;
+            
+            pngItem.addEventListener('click', function (e) {
+                e.preventDefault();
                 const canvas = getChartCanvas();
                 if (!canvas) return;
                 downloadChart(canvas);
-            };
+                
+                if (window.jQuery && window.jQuery.fn && window.jQuery.fn.dropdown && toggleBtn) {
+                    window.jQuery(toggleBtn).dropdown('hide');
+                }
+                if (toggleBtn) toggleBtn.blur();
+            });
         }
 
         if (document.readyState === 'loading') {
@@ -2143,33 +2138,38 @@ const handleOnScroll = () => {
 (function downloadChartData () {
 
     function wireDataDownloadButton() {
-        const btn = document.getElementById('download-data');
-        if (!btn) return;
+        const dropdown = document.getElementById('download-buttons');
+        const toggleBtn = document.getElementById('download-dropdown');
+        const csvItem = dropdown ? dropdown.querySelector('.dropdown-menu a.dropdown-item[data-action="csv"]') : null;
+        
+        if (csvItem) {
+            csvItem.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const domain    = document.getElementById('domain-title')?.textContent.trim();
+                const indicator = document.getElementById('indicator-title')?.textContent.trim();
+                if (!domain || !indicator) return;
 
-        btn.onclick = function () {
-            // Get current domain and indicator from the page
-            const domain = document.getElementById('domain-title')?.textContent.trim();
-            const indicator = document.getElementById('indicator-title')?.textContent.trim();
-            if (!domain || !indicator) return;
+                const indicatorData = window.domains_data?.[domain]?.indicators?.[indicator]?.data;
+                if (!indicatorData) return;
 
-            // Get the indicator data object
-            const indicatorData = domains_data[domain]?.indicators[indicator]?.data;
-            if (!indicatorData) return;
-
-            // Prioritise EQ, fallback to NI
-            const indicatorCode = indicatorData.EQ || indicatorData.NI;
-            if (!indicatorCode) {
-                alert('No downloadable data available for this indicator.');
-                return;
+                const indicatorCode = indicatorData.EQ || indicatorData.NI;
+                if (!indicatorCode) {
+                    alert('No downloadable data available for this indicator.');
+                    return;
+                }
+                
+                const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
+                window.location.href = downloadUrl;
+                
+                if (window.jQuery && window.jQuery.fn && window.jQuery.fn.dropdown && toggleBtn) {
+                    window.jQuery(toggleBtn).dropdown('hide');
+                }
+                if (toggleBtn) toggleBtn.blur();
+            });
+            return;
             }
-
-            // Build the download URL
-            const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
-
-            // Redirect to the URL
-            window.location.href = downloadUrl;
-        };
-    }
+        }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', wireDataDownloadButton);
@@ -2382,15 +2382,28 @@ html2canvas(root, {
   }
   
   window.downloadMapImage = downloadMapImage;
-
+  
   function wireMapButton() {
-    const btn = document.getElementById('download-map');
-    if (!btn) return;
-    btn.onclick = () => downloadMapImage();
+    const wrapper = document.getElementById('map-download-buttons');
+    const toggle = document.getElementById('map-download-dropdown');
+    if (!wrapper || !toggle) return;
+    
+    const pngItem = wrapper.querySelector('.dropdown-menu a.dropdown-item[data-action="png"]');
+    if (!pngItem) return;
+    
+    pngItem.addEventListener('click', function (e) {
+        e.preventDefault();
+        downloadMapImage();
+        
+        if (window.jQuery && window.jQuery.fn && window.jQuery.fn.dropdown) {
+            window.jQuery(toggle).dropdown('hide');
+        }
+        toggle.blur();
+    });
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', wireMapButton);
+     document.addEventListener('DOMContentLoaded', wireMapButton);
 } else {
     wireMapButton();
 }
@@ -2444,15 +2457,12 @@ window.onscroll = handleOnScroll;
     return (opt?.textContent || '').trim();
   }
 
-  function handleMapDataDownload(e) {
-    const btn = e.target.closest('#download-map-data');
-    if (!btn) return;
-
-    const selectDomain    = document.getElementById('map-select-1');
+  function runMapCsvDownload() {
+    const selectDomain = document.getElementById('map-select-1');
     const selectIndicator = document.getElementById('map-select-2');
-    const selectType      = document.getElementById('map-select-3');
+    const selectType = document.getElementById('map-select-3');
 
-    const domain    = getSelectValue(selectDomain);
+    const domain = getSelectValue(selectDomain);
     const indicator = getSelectValue(selectIndicator);
     const typeLabel = getSelectLabel(selectType);
 
@@ -2485,8 +2495,30 @@ window.onscroll = handleOnScroll;
     window.location.href = downloadUrl;
   }
 
-  document.addEventListener('click', handleMapDataDownload);
+  function wireMapDataDropdown() {
+    const wrapper = document.getElementById('map-download-buttons');
+    const toggle  = document.getElementById('map-download-dropdown');
+    if (!wrapper || !toggle) return;
 
+    const csvItem = wrapper.querySelector('.dropdown-menu a.dropdown-item[data-action="csv"]');
+    if (csvItem) {
+        csvItem.addEventListener('click', function (e) {
+        e.preventDefault();
+        runMapCsvDownload();
+
+        if (window.jQuery && window.jQuery.fn && window.jQuery.fn.dropdown) {
+          window.jQuery(toggle).dropdown('hide');
+        }
+        toggle.blur();
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireMapDataDropdown, { once: true });
+  } else {
+    wireMapDataDropdown();
+  }
 })();
 
 function shiftGElements(dx, dy) {

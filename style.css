@@ -1299,6 +1299,45 @@ footer {
     height: 50px;
 } 
 
+.popup-download-dropdown, #download-dropdown, #map-download-dropdown {
+    font-size: 14pt;
+    background-color: #142062;
+    border: none;
+    color: #ffffff;
+    border-radius: 25px;
+    text-align: center;
+    display: block;
+    margin: 10px auto 0 auto;
+    width: 100%;
+    height: 50px;
+}
+
+#download-dropdown, #map-download-dropdown {
+    width: 200px !important;
+}
+
+.popup-download-dropdown.btn-primary:active,
+.popup-download-dropdown.btn-primary:active:focus,
+.popup-download-dropdown.btn-primary:not(:disabled):not(.disabled).active,
+.popup-download-dropdown.btn-primary:not(:disabled):not(.disabled):active {
+  background-color: #142062;
+}
+
+.popup-download-dropdown.btn-primary:focus,
+.popup-download-dropdown.btn-primary.focus,
+.show > .popup-download-dropdown.btn-primary.dropdown-toggle:focus {
+  background-color: #142062;
+}
+
+.popup-download-dropdown:hover {
+    background-color: #69729B;
+}
+
+.dropdown.show .popup-download-dropdown,
+.popup-download-dropdown[aria-expanded="true"] {
+  background-color: #142062;
+}
+
 p.popup-map-notes, p.popup-map-summary {
     font-weight: bold;
     padding-top: 2%;

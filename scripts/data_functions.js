@@ -1383,7 +1383,6 @@ async function renderPopup (d, e, eq_group) {
    pop_up_buttons.id = "pop-up-buttons";                     // Give it a class
    pop_up_buttons.style.backgroundColor = "#F2F2F2";       // Set its background colour
 
-
       const previouslyFocused = document.activeElement;
 
       // Make popup focusable
@@ -1638,6 +1637,52 @@ async function renderPopup (d, e, eq_group) {
       pop_up_buttons.appendChild(download_data_btn);
 
       pop_up_chart.appendChild(pop_up_buttons);
+
+      const dropdownWrapper = document.createElement("div");
+      dropdownWrapper.className = "dropdown";
+
+      const dropdownID  = "popup-download-dropdown";
+
+      const dropdownButton = document.createElement("button");
+      dropdownButton.type = "button";
+      dropdownButton.id = dropdownID ;
+      dropdownButton.className = "btn btn-primary dropdown-toggle popup-download-dropdown";
+      dropdownButton.textContent = "Download";
+      dropdownButton.setAttribute("data-toggle", "dropdown");
+      dropdownButton.setAttribute("data-display", "static");
+      dropdownButton.setAttribute("aria-haspopup", "true");
+      dropdownButton.setAttribute("aria-expanded", "false");
+
+      const dropdownMenu  = document.createElement("ul");
+      dropdownMenu.className = "dropdown-menu";
+      dropdownMenu.setAttribute("aria-labelledby", dropdownID );
+      dropdownMenu.innerHTML = `
+      <li>
+         <a class="dropdown-item" href="" data-action="csv">data (in CSV format)</a>
+      </li>
+      <li>
+         <a class="dropdown-item" href="" data-action="png">chart (as image)</a>
+      </li>
+      `;
+
+      dropdownWrapper.appendChild(dropdownButton);
+      dropdownWrapper.appendChild(dropdownMenu);
+      pop_up_buttons.appendChild(dropdownWrapper);
+
+      download_btn.style.display = "none";
+      download_data_btn.style.display = "none";
+
+      dropdownMenu.addEventListener("click", (e) => {
+      const a = e.target.closest("a.dropdown-item");
+      if (!a) return;
+      e.preventDefault();
+
+      if (a.dataset.action === "png") {
+         download_btn.click();
+      } else if (a.dataset.action === "csv") {
+         download_data_btn.click();
+      }
+      });
 
       // Container for footnotes:
       note = document.createElement("div");
@@ -2227,7 +2272,7 @@ async function renderMapPopup(d, e, type, data) {
       // Buttons container
       const buttonsContainer = document.createElement("div");
       buttonsContainer.classList.add("popup-maps-buttons")
-      
+
       // Download Map button
       const downloadMapBtn = document.createElement("button");
       downloadMapBtn.id = "popup-download-map";
@@ -2244,14 +2289,60 @@ async function renderMapPopup(d, e, type, data) {
       downloadDataBtn.dataset.indicator = e;
       downloadDataBtn.dataset.type = type;
 
-      // Append buttons
+      pop_up_map.appendChild(buttonsContainer);
+      downloadMapBtn.addEventListener("click", () => downloadPopUpMapImage(mapContainer));
+      
       buttonsContainer.appendChild(downloadMapBtn);
       buttonsContainer.appendChild(downloadDataBtn);
+
+      const dropdownWrapper = document.createElement("div");
+      dropdownWrapper.className = "dropdown";
+
+      const dropdownID = "popup-download-dropdown";
+
+      // Toggle button
+      const dropdownButton = document.createElement("button");
+      dropdownButton.type = "button";
+      dropdownButton.id = dropdownID;
+      dropdownButton.className = "btn btn-primary dropdown-toggle popup-download-dropdown";
+      dropdownButton.textContent = "Download";
+      dropdownButton.setAttribute("data-toggle", "dropdown");
+      dropdownButton.setAttribute("data-display", "static");
+      dropdownButton.setAttribute("aria-haspopup", "true");
+      dropdownButton.setAttribute("aria-expanded", "false");
+
+      const dropdownMenu = document.createElement("ul");
+      dropdownMenu.className = "dropdown-menu";
+      dropdownMenu.setAttribute("aria-labelledby", dropdownID);
+      dropdownMenu.setAttribute('data-bs-auto-close', 'outside');
+      dropdownMenu.innerHTML = `
+      <li><a class="dropdown-item" href="" data-action="csv">data (in CSV format)</a></li>
+      <li><a class="dropdown-item" href="" data-action="png">map (as image)</a></li>`;
+
+      dropdownWrapper.appendChild(dropdownButton);
+      dropdownWrapper.appendChild(dropdownMenu);
+
+      buttonsContainer.appendChild(dropdownWrapper);
+
+      // Hide old buttons but use logic
+      downloadMapBtn.style.display = "none";
+      downloadDataBtn.style.display = "none";
+
       pop_up_map.appendChild(buttonsContainer);
+
+      dropdownMenu.addEventListener("click", (e) => {
+      const a = e.target.closest("a.dropdown-item");
+
+      if (!a) return;
+      e.preventDefault();
+      const action = a.dataset.action;
+      if (action === "png") {
+         downloadMapBtn.click();
+      } else if (action === "csv") {
+         downloadDataBtn.click();
+      }
+      });
       
-
-      downloadMapBtn.addEventListener("click", () => downloadPopUpMapImage(mapContainer));
-
       const indicator = domains_data[d].indicators[e];
 
       if (!indicator) {
@@ -2424,6 +2515,12 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     const unit = Object.values(Object.values(dimension)[0].category.unit)[0].label;
     const years = Object.values(dimension)[1].category.index;
     const groups = Object.values(dimension)[2].category.index;
+    
+    // Fresh container each time
+    if (main_container && main_container.classList.contains('leaflet-container')) {
+      const fresh = main_container.cloneNode(false);
+      main_container.parentNode.replaceChild(fresh, main_container);
+   }
 
     // Prepare map
     const map = L.map(main_container.id, 

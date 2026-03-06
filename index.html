@@ -280,14 +280,17 @@
                         <div id = "chart-boxes" class = "box-container" style = "max-width: 358px">
                             <form id = "map-link"></form>
                             <div>
-                            <strong style = "padding: 33px"> Download:</strong>
-                            <div id = "download-buttons">
-                            <button id="download-chart" class="btn btn-primary" style= "margin-top: 10px">Chart as image (PNG format)</button>
-                            <button id="download-data" class="btn btn-primary">Data (in CSV format)</button>
-                            </div>
-                            </div>                  
-                        </div>                                     
-                    </div>
+                                <div id="download-buttons" class="dropdown">
+                                    <button id="download-dropdown" class="btn btn-primary dropdown-toggle download-dropdown" type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                                        Download</button>
+                                        <ul class="dropdown-menu" aria-labelledby="download-dropdown">
+                                            <li><a class="dropdown-item" href="" data-action="csv">data (in CSV format)</a></li>
+                                            <li><a class="dropdown-item" href="" data-action="png">chart (as image)</a></li>
+                                        </ul>
+                                    </div>
+                                </div>                  
+                            </div>                                     
+                        </div>
                     <div class = "row" id = "ind-telling-row" style = "margin-top: 60px;">
                         <div class = "blue-label" style = "min-width: 280px;">What is this indicator telling us?</div>
                         <div id = "change-info"></div>
@@ -342,9 +345,15 @@
                                     <i class = "fas fa-chart-line"></i> See trend data for this indicator<br>at Northern Ireland level
                                 </button>
                             </form>
-                            <strong style = "padding-left: 33px"> Download:</strong>
-                            <button id="download-map" class="btn btn-primary">Map as image (PNG format)</button>
-                            <button id="download-map-data" class="btn btn-primary">Data (in CSV format)</button>
+                            <div id="map-download-buttons" class="dropdown">
+                                <button id="map-download-dropdown" class="btn btn-primary dropdown-toggle download-dropdown" type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                                    Download</button>
+                                    <ul class="dropdown-menu" aria-labelledby="map-download-dropdown">
+                                        <li><a class="dropdown-item" href="" data-action="csv">data (in CSV format)</a></li>
+                                        <li><a class="dropdown-item" href="" data-action="png">chart (as image)</a></li>
+                                    </ul>
+                                </div>
+                            </div>                  
                         </div>
                     </div>
                     <div class = "row" style = "margin-top: 20px;">
