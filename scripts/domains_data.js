@@ -479,8 +479,8 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2023/24, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19. For 2023/24, 2022/23 and 2021/22 gaps can be seen in participation in sport and physical activity between the people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for people living in urban and rural areas.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2024/25, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19. Between 2021/22 and 2024/25 there have been consistent gaps in participation in sports and physical activity between adults with a disability compared with those without, adults with dependants compared with those without and for people living in the least and most deprived areas.",
                insufficient: ""
             }
          }
