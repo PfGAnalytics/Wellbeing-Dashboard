@@ -115,7 +115,13 @@ async function indicatorPerformance (dom = null) {
             if (has_error) {
                api_url = `${config.backupURL}${matrix}.json`
             } else {
-               api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+               api_url = config.baseURL +
+                  "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" + 
+                  statistic + 
+                  "%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" +
+                  matrix +
+                  "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" +
+                  config.apiKey;
             }
          } else if (indicator.data.EQ != "") {
             var matrix = indicator.data.EQ;
@@ -123,7 +129,13 @@ async function indicatorPerformance (dom = null) {
             if (has_error) {
                api_url = `${config.backupURL}${matrix}-NI-line.json`
             } else {
-               api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22"+ matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+               api_url = config.baseURL +
+                  "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22,%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" +
+                  statistic + 
+                  "%22%5D%7D%7D,%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + 
+                  matrix +
+                   "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + 
+                   config.apiKey;
             }
          } else {
             var matrix = indicator.data.LGD;
@@ -131,9 +143,17 @@ async function indicatorPerformance (dom = null) {
             if (has_error) {
                api_url = `${config.backupURL}${matrix}-NI-line.json`
             } else {
-               api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22LGD2014%22%5D,%22dimension%22:%7B%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+               api_url = config.baseURL +
+                  "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22,%22LGD2014%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" +
+                  statistic + 
+                  "%22%5D%7D%7D,%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + 
+                  matrix +
+                   "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + 
+                   config.apiKey;
             }
          }
+
+         console.log(api_url)
 
          // The id the line chart canvas element will use
          var id = statistic + "-line";
@@ -279,7 +299,13 @@ async function createLineChart(d, e) {
       if (has_error) {
          api_url = `${config.backupURL}${matrix}.json`
       } else {
-         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+         api_url = config.baseURL +
+                  "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" + 
+                  statistic + 
+                  "%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" +
+                  matrix +
+                  "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" +
+                  config.apiKey;
       }
    } else if (indicator.data.EQ != "") {
       var matrix = indicator.data.EQ;
@@ -287,7 +313,13 @@ async function createLineChart(d, e) {
       if (has_error) {
          api_url = `${config.backupURL}${matrix}-NI-line.json`
       } else {
-         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22"+ matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+         api_url = config.baseURL +
+                  "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22,%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" +
+                  statistic + 
+                  "%22%5D%7D%7D,%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + 
+                  matrix +
+                   "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + 
+                   config.apiKey;
       }
    } else {
       var matrix = indicator.data.LGD;
@@ -295,9 +327,17 @@ async function createLineChart(d, e) {
       if (has_error) {
          api_url = `${config.backupURL}${matrix}-NI-line.json`
       } else {
-         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22LGD2014%22%5D,%22dimension%22:%7B%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+         api_url = config.baseURL +
+                  "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22,%22LGD2014%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" +
+                  statistic + 
+                  "%22%5D%7D%7D,%22LGD2014%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + 
+                  matrix +
+                   "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + 
+                   config.apiKey;
       }
    }
+
+   console.log(api_url)
 
    // The id the line chart canvas element will use
    var id = statistic + "-line";
@@ -1305,11 +1345,18 @@ async function getEqualityGroups(d, e) {
    }
 
    var matrix = domains_data[d].indicators[e].data.EQ;   // The matrix for the EQ dataset
+   const statistic = matrix.slice(0, -2);
 
    if (has_error) {
       var api_url = `${config.backupURL}${matrix}.json`;
    } else {
-      var api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+      var api_url = config.baseURL + 
+         "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" + 
+         statistic + 
+         "%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" +
+         matrix +
+         "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" +
+         config.apiKey;
    }   
 
    // Fetch data and store in object fetched_data
@@ -1719,6 +1766,7 @@ async function renderPopup (d, e, eq_group) {
       // Input to funciton in format queryURL('["x","y"]') to cover numeric indexes of all groups that should be included in query
 
       let matrix = domains_data[d].indicators[e].data.EQ;
+      const statistic = matrix.slice(0, -2);
 
       function queryURL(query) {
          const niCode = "N92000002";
@@ -1727,7 +1775,8 @@ async function renderPopup (d, e, eq_group) {
          }
          return (
             config.baseURL +
-            transformQuery('api.jsonrpc?data={"jsonrpc":"2.0","method":"PxStat.Data.Cube_API.ReadDataset","params":{"class":"query","id":["EQUALGROUPS"],"dimension":{"EQUALGROUPS":{"category":{"index":') +
+            transformQuery('api.jsonrpc?data={"jsonrpc":"2.0","method":"PxStat.Data.Cube_API.ReadDataset","params":{"class":"query","id":["STATISTIC","EQUALGROUPS"],"dimension":{"STATISTIC":{"category":{"index":["'+
+               statistic + '"]}},"EQUALGROUPS":{"category":{"index":') +
             transformQuery(JSON.stringify(query)) +
             transformQuery('}}},"extension":{"pivot":null,"codes":false,"language":{"code":"en"},"format":{"type":"JSON-stat","version":"2.0"},"matrix":"') +
             matrix +
@@ -1763,6 +1812,8 @@ async function renderPopup (d, e, eq_group) {
             chart_data_url = queryURL(eqgroups[eq_group]);
          }
       } 
+
+      console.log(chart_data_url)
 
       var result = null;   // Retry plotting chart if data portal link doesn't work first time
       while (result == null) {
@@ -2369,18 +2420,32 @@ async function renderMapPopup(d, e, type, data) {
       } catch (error) {
          has_error = true;
       }
+
+      let statistic;
+      if (type == "AA") {
+         statistic = matrix.slice(0, -2);
+      } else if (type == "LGD") {
+         statistic = matrix.slice(0, -3);
+      }
       
       // URL to query (pre-production)
       if (has_error) {
          api_url = `${config.backupURL}${matrix}.json`;
       } else {
-         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+         api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" + 
+                  statistic + 
+                  "%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + 
+                  matrix +
+                   "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + 
+                   config.apiKey;
       }
 
      // Fetch data and store in object fetched_data
      const response = await fetch(api_url);
      const fetched_data = await response.json();
      const {result} = fetched_data;
+
+
 
      let popup_further_note = String(result.note[0] || "").replaceAll("\n", "");
       
@@ -2498,7 +2563,7 @@ async function drawPopupMap(d, e, type, main_container, loading) {
    if (has_error) {
       api_url = `${config.backupURL}${matrix}.json`;
    } else {
-      api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+      api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
    }
 
      // Fetch data and store in object fetched_data
@@ -2735,11 +2800,23 @@ async function drawMap() {
 
    var matrix = map_select_3.value;
 
+   let statistic;
+   if (matrix.indexOf("AA") > -1) {
+      statistic = matrix.slice(0, -2);
+   } else if (matrix.indexOf("LGD") > -1) {
+      statistic = matrix.slice(0, -3);
+   }
+
    // URL to query (pre-production)
    if (has_error) {
       api_url = `${config.backupURL}${matrix}.json`;
    } else {
-      api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" + matrix + "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + config.apiKey;
+      api_url = config.baseURL + "api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22" + 
+                  statistic + 
+                  "%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22" +
+                   matrix +
+                   "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=" + 
+                   config.apiKey;
    }
 
   // Fetch data and store in object fetched_data
