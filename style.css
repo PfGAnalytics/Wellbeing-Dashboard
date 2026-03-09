@@ -33,24 +33,20 @@ body {
     justify-content: center;
     display: flex;
     flex-direction: row;
-    max-width: 1500px;
 }
 
 #top-menu-items {
   width: 60%;
   display: flex;
-  padding: 10px 0px 15px;
   justify-content: space-between;
-  background-color: #00205b;;
-  max-width: 1500px;
+  background-color: #00205b;
 }
 
 #top-menu-items-row {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0px 15px;
+    margin-top: 10px;
     width: 100%;
-    max-width: 1500px;
 }
 
 #domains-btn, #about-btn {
@@ -74,11 +70,10 @@ body {
     width: 66%;
     display: flex;
     justify-content: center;
-    white-space: pre-wrap;
-    padding-left: 20px;
+    margin-bottom: 0 !important;
 }
 
-@media (max-width: 1230px) {
+@media (max-width: 1180px) {
     #dashboard-title {
         width: 50%;
     }
@@ -88,20 +83,12 @@ body {
     #about-btn {
         width: 20%;   
     }
-    #search-bar {
-        height: 67px !important;
-        padding-top: 10px !important;
-        padding-bottom: 15px !important;
-        margin-top: 10px !important;
-        margin-bottom: 20px !important;
-    }
-    #search-box {
-        height: 42px !important;
-        border: 2px !important;
-    }
     #nisra-logo-container {
         max-width: 200px !important;
         width: 100%;
+    }
+    #search-text {
+        font-size: 12pt !important;
     }
 }
 
@@ -117,20 +104,16 @@ h1 {
 }
 
 .top-menu-item {
-    margin-left: 2%;
-    margin-right: 2%;
     color: white;
     font-size: 16pt;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 25px;
     border-width: 0px;
     background-color: #00205b;
     border: 2px solid #FFFFFF;
     flex: 1 1 50px;
     align-content: center;
     justify-content: center;
-    max-width: 350px;
 }
 
 .selected-item #home-icon {
@@ -1595,6 +1578,9 @@ input:focus-visible {
     #map-link {
         padding-right: 0px;
     }
+    #search-text {
+        font-size: smaller;
+    }
 }
 
 #AA-link, #LGD-link, .eq-link {
@@ -1758,13 +1744,10 @@ input:focus-visible {
 
   #search-bar {
     height: 40%;
-    width: 35%;
+    width: 40%;
     display: flex;
     justify-content: center;
     background-color: #142062;
-    padding-top: 10px;
-    padding-bottom: 15px;
-    padding-right: 20px;
   }
 
   .btn {
@@ -1781,17 +1764,17 @@ input:focus-visible {
 
   #search-text:focus {
     outline: none;
-    color: #142062;
+    color: #ffffff;
   }
   
   #search-text {
-    font-size: 14pt;
-    color: #142062;
+    font-size: 16pt;
+    color: #FFFFFF !important;
   }
 
   
   #search-text::placeholder {
-  color: #142062;
+  color: #FFFFFF;
   font-weight: bold;
   }
 
@@ -1799,16 +1782,16 @@ input:focus-visible {
   #search-box {
     display: flex;
     width: 100%;
-    border: 3px solid #ffffff;
-    border-radius: 25px;
-    background-color: #ffffff;
-    margin-left: 2%;
-    margin-right: 2%;
+    border-left: 2px solid #ffffff;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    background-color: #142062;
     height: 100%;
   }
 
   #search-button {
     width: 25px;
+    filter: brightness(0) invert(1);
   }
 
 
