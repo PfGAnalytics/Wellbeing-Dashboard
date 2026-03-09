@@ -265,7 +265,6 @@ let worseninghexDivHTML = '<div class="label-text" style="font-weight:bold; marg
 
 let insufficienthexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #B0B0B0; border: 2px solid; border-color: #757575">Insufficient';
 
-
 // Function below uses the api to fetch the data and plots it in a line chart
 // It also generates the baseline statement, the source information, the further information and how do we measure this
 // using information on the data portal. The two inputs to the function are a domain name "d" and indicator name "e"
@@ -336,8 +335,6 @@ async function createLineChart(d, e) {
                    config.apiKey;
       }
    }
-
-   console.log(api_url)
 
    // The id the line chart canvas element will use
    var id = statistic + "-line";
@@ -758,6 +755,99 @@ async function createLineChart(d, e) {
 
    var decimal_places = Math.max(...decimals);
 
+   let last_real_index = -1;
+   for (let i = data_series.length - 1; i >= 0; i--) {
+      if (data_series[i] != null) {
+         last_real_index = i;
+         break;
+      }
+   }
+   
+   const last_real_year  = years[last_real_index];
+   const recent_year_value = data_series[last_real_index];
+   
+   const baseIndex   = (base_position > -1 ? base_position : null);
+   const latestIndex = last_real_index;
+
+   // Draw labels for the comparison year and the most recent year
+   const pointLabelPlugin = {
+      id: "point_labels",
+      afterDatasetsDraw(chart, args, options) {
+         const { ctx } = chart;
+         if (!options) return;
+         
+         const {
+            baseIndex = null,
+            latestIndex = null,
+            format = (v) => String(v),
+            color = "#000",
+            font = "bold 15px sans-serif",
+            padding = 20,
+            maxOffset = 20
+         } = options;
+         
+         const computeOffset = (meta, idx) => {
+            const point = meta.data[idx];
+            if (!point) return { dx: 8, dy: -15 }; 
+
+            let dy = -padding;
+            let dx = 8;
+
+            const prev = meta.data[idx - 1]?.y;
+            const next = meta.data[idx + 1]?.y;
+            
+            if (next !== undefined && next < point.y) {
+               dy = padding;
+            }
+            
+            if (prev !== undefined && prev < point.y) {
+               dy = padding;
+            }
+            
+            const top = chart.chartArea.top;
+            const bottom = chart.chartArea.bottom;
+            
+            if (point.y + dy < top) {
+               dy = padding;
+            }
+            
+            if (point.y + dy > bottom) {
+               dy = -padding;
+            }
+            
+            dy = Math.max(-maxOffset, Math.min(maxOffset, dy));
+            return { dx, dy };
+         };
+         
+         const drawAt = (meta, dataArray, idx) => {
+            if (idx == null || idx < 0) return;
+            if (!meta?.data?.[idx]) return;
+
+            const raw = dataArray[idx];
+            if (raw == null) return;
+
+            const point = meta.data[idx];
+            const label = format(raw, idx);
+
+            const { dx, dy } = computeOffset(meta, idx);
+
+            ctx.save();
+            ctx.font = font;
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = color;
+            ctx.fillText(label, point.x + dx, point.y + dy);
+            ctx.restore();
+         };
+         
+         chart.data.datasets.forEach((ds, di) => {
+            const meta = chart.getDatasetMeta(di);
+            drawAt(meta, ds.data, baseIndex);
+            drawAt(meta, ds.data, latestIndex);
+         });
+      }
+   };
+
    // Chart configuration for charts with constant increasing/decreasing value:
    const chart_config = {
       type: 'line',
@@ -822,7 +912,11 @@ async function createLineChart(d, e) {
                },
                legend: {
                   display: false       // Legend turned off
-               }
+               },
+               point_labels: {
+                  baseIndex: baseIndex,
+                  latestIndex: latestIndex,
+            }
          },
          scales: {
             x: {
@@ -859,7 +953,7 @@ async function createLineChart(d, e) {
             mode: "index"
          }
       },
-      plugins: []
+      plugins: [pointLabelPlugin]
    };
 
    // Chart configuration for charts where improvement is year on year
@@ -901,6 +995,10 @@ async function createLineChart(d, e) {
                },
                legend: {
                   display: false
+               },
+               point_labels: {
+                  baseIndex: baseIndex,
+                  latestIndex: latestIndex,
                }
          },
          scales: {
@@ -939,7 +1037,8 @@ async function createLineChart(d, e) {
          }
          },
          plugins: [cumulative_top,
-                  cumulative_bottom]
+                  cumulative_bottom, 
+                  pointLabelPlugin]
    };
 
    // Chart configuration for charts where there is no base year to compare against
@@ -952,8 +1051,10 @@ async function createLineChart(d, e) {
          plugins: {
                legend: {
                   display: false       // Legend turned off
+               },
+               point_labels: {
+                  latestIndex: latestIndex
                }
-
          },
          scales: {
             x: {
@@ -990,7 +1091,7 @@ async function createLineChart(d, e) {
             mode: "index"
          }
       },
-      plugins: []
+      plugins: [pointLabelPlugin]
    };
 
    // Create a div to place all chart content in
