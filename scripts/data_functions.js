@@ -1689,50 +1689,110 @@ async function renderPopup (d, e, eq_group) {
       download_btn.textContent = "Download chart as image (PNG format)";
       download_btn.classList.add("btn", "btn-primary");
 
+      function wrapCanvasText(text, ctx, maxWidth) {
+         const words = text.split(" ");
+         const lines = [];
+         let current = "";
+
+         for (const w of words) {
+            const test = current ? current + " " + w : w;
+            if (ctx.measureText(test).width > maxWidth) {
+               if (current) lines.push(current);
+               current = w;
+            } else {
+               current = test;
+            }
+         }
+         if (current) lines.push(current);
+         return lines;
+         }
+
       download_btn.onclick = function () {
          const canvas = document.getElementById("pop-canvas");
          if (!canvas) return;
-         
+
          const chartInstance = Chart.getChart(canvas);
          if (!chartInstance) return;
+
+         function getYLabel() {
+            const el = document.querySelector('.y-label');
+            return el ? el.textContent.trim() : '';
+         }
          
-         // Temporarily remove legend title
-         const originalLegendTitle = chartInstance.options.plugins.legend.title.text;
-         chartInstance.options.plugins.legend.title.text = '';
+         const originalPlugins = chartInstance.config.plugins || [];
+         
+         chartInstance.config.plugins = originalPlugins.filter(p => !p.id);
+         
          chartInstance.update();
          
          requestAnimationFrame(() => {
             const titleEl = document.getElementById("pop-up-title");
             const titleText = titleEl ? titleEl.textContent.trim() : '';
-            const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
-            
-            // Use offsetWidth/offsetHeight to capture full rendered chart
+
+            const yLabel = getYLabel();
+            const yPadding = yLabel ? 50 : 0;
+
+            const fileName =
+                  (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
+
             const chartCanvas = chartInstance.canvas;
             const renderedWidth = chartCanvas.offsetWidth;
             const renderedHeight = chartCanvas.offsetHeight;
-            
+
             const outCanvas = document.createElement("canvas");
-            outCanvas.width = renderedWidth;
-            outCanvas.height = renderedHeight + 50;
             const ctx = outCanvas.getContext("2d");
-            
+
+            ctx.font = "16px Arial, sans-serif";
+            const titleSideMargin = 60;
+            const maxTitleWidth = renderedWidth + yPadding - titleSideMargin;
+
+            let titleLines = [];
+            if (titleText) {
+                  titleLines = wrapCanvasText(titleText, ctx, maxTitleWidth);
+            }
+
+            const titleLineHeight = 22;
+            const titleTop = 20;
+            const titleH = titleLines.length > 0 ? titleLines.length * titleLineHeight : 0;
+
+            outCanvas.width = renderedWidth + yPadding;
+            outCanvas.height = renderedHeight + titleTop + titleH + 30;
+
             ctx.fillStyle = "#fff";
             ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
-            
-            if (titleText) {
-               ctx.font = "bold 18px Arial";
-               ctx.fillStyle = "#000";
-               ctx.textAlign = "center";
-               ctx.fillText(titleText, outCanvas.width / 2, 20);
-            }
-            
-            // Draw chart with full rendered size
-            ctx.drawImage(chartCanvas, 0, 50, renderedWidth, renderedHeight);
-            
-            // Restore legend title
-            chartInstance.options.plugins.legend.title.text = originalLegendTitle;
+
+            if (titleLines.length > 0) {
+                  ctx.fillStyle = "#000";
+                  ctx.font = "16px Arial, sans-serif";
+                  ctx.textAlign = "center";
+                  ctx.textBaseline = "top";
+
+                  let yPos = titleTop;
+                  titleLines.forEach((line) => {
+                     ctx.fillText(line, outCanvas.width / 2, yPos);
+                     yPos += titleLineHeight;
+                  });
+               }
+
+            if (yLabel) {
+                  ctx.save();
+                  ctx.fillStyle = "#000";
+                  ctx.font = "14px Arial, sans-serif";
+                  ctx.textBaseline = "middle";
+
+                  ctx.translate(25, titleTop + titleH + renderedHeight / 2);
+                  ctx.rotate(-Math.PI / 2);
+                  ctx.fillText(yLabel, 0, 0);
+                  ctx.restore();
+               }
+               
+            const dx = yPadding;
+            const dy = titleTop + titleH;
+            ctx.drawImage(chartCanvas, dx, dy, renderedWidth, renderedHeight);
+
+            chartInstance.config.plugins = originalPlugins;
             chartInstance.update();
-            
+
             const link = document.createElement("a");
             link.download = fileName;
             link.href = outCanvas.toDataURL("image/png");

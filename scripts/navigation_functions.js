@@ -2014,6 +2014,7 @@ plotExpandedDomains = function() {
 let buttonVisibleOnPX = 200;
 back_to_start.classList.add("hidden");
 
+
 const goStart = () => {
     document.body.scrollIntoView();
 }
@@ -2046,9 +2047,32 @@ const handleOnScroll = () => {
                 titleText, labelLines: [] 
             };
         }
+        
+        function getYLabel() {
+            const el = document.querySelector('.y-label');
+            return el ? el.textContent.trim() : '';
+        }
 
+        function wrapCanvasText(text, ctx, maxWidth) {
+            const words = text.split(" ");
+            const lines = [];
+            let current = "";
+
+            for (const w of words) {
+                const test = current ? current + " " + w : w;
+                if (ctx.measureText(test).width > maxWidth) {
+                     if (current) lines.push(current);
+               current = w;
+            } else {
+               current = test;
+            }
+         }
+         if (current) lines.push(current);
+         return lines;
+         }
+        
         function downloadChart(chartOrCanvas) {
-            if(!chartOrCanvas) return;
+            if (!chartOrCanvas) return;
 
             const src = chartOrCanvas.canvas ? chartOrCanvas : chartOrCanvas;
             const width = src.width;
@@ -2057,39 +2081,73 @@ const handleOnScroll = () => {
             const topPadding = 80;
             const bottomPadding = 15;
 
+            const yLabel = getYLabel();
+            const yLabelPadding = yLabel ? 80 : 0;
+
             const out = document.createElement('canvas');
-            out.width = width;
-            out.height = height + topPadding + bottomPadding;
+            out.width = width + yLabelPadding;
             const ctx = out.getContext('2d');
 
             ctx.fillStyle = '#fff';
             ctx.fillRect(0, 0, out.width, out.height);
 
-            const sidePadding = 20;
-            const titleFont = 'bold 16px Arial, sans-serif';
-            const titleLH = 24;
-            const innerTopPad = 15;
+            const titleFont = '14px Arial, sans-serif';
 
-            const {
-                titleText
-            }
-            = getHeaderText();
-            let y = Math.max(innerTopPad, topPadding - titleLH - 5);
+            const { titleText } = getHeaderText();
+            let titleH = 0;
             
             if (titleText) {
-                ctx.fillStyle = 'black';
+                ctx.fillStyle = "black";
                 ctx.font = titleFont;
-                ctx.textBaseline = 'top';
+                ctx.textBaseline = "top";
+
+                const maxTitleWidth = out.width - 60;
+                const lines = wrapCanvasText(titleText, ctx, maxTitleWidth);
+
+                const lineHeight = 22;
+                let yPos = 10;
                 
-                const textWidth = ctx.measureText(titleText).width;
-                const x = (out.width - textWidth) / 2;
+                lines.forEach(line => {
+                    const textWidth = ctx.measureText(line).width;
+                    const x = (out.width - textWidth) / 2;
+                    ctx.fillText(line, x, yPos);
+                    yPos += lineHeight;
+                });
                 
-                ctx.fillText(titleText, x, y);
-                y += titleLH;
+                titleH = lines.length * lineHeight + 10;
+
+                out.height = height + titleH + bottomPadding + 20;
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(0, 0, out.width, out.height);
+
+                ctx.fillStyle = "black";
+                ctx.font = titleFont;
+                ctx.textAlign = "center";
+                ctx.textBaseline = "top";
+
+                yPos = 10;
+                lines.forEach(line => {
+                    ctx.fillText(line, out.width / 2, yPos);
+                    yPos += lineHeight;
+                });
             }
+            
+            if (yLabel) {
+                ctx.save();
+                ctx.fillStyle = 'black';
+                ctx.font = '14px Arial, sans-serif';
+                ctx.textBaseline = 'middle';
 
+                const labelX = yLabelPadding / 2;
+                const labelY = titleH + height / 2;
+                ctx.translate(labelX, labelY);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillText(yLabel, 0, 0);
 
-            ctx.drawImage(src, 0, topPadding);
+                ctx.restore();
+            }
+            
+            ctx.drawImage(src, yLabelPadding, titleH + 20);
 
             const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
             const link = document.createElement('a');
@@ -2098,7 +2156,6 @@ const handleOnScroll = () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-
         }
 
         function wireDownloadButton() {
@@ -2186,6 +2243,24 @@ const handleOnScroll = () => {
     const titleEl = document.getElementById('popup-map-title');
     return titleEl ? titleEl.textContent.trim() : ' ';
   }
+
+  function wrapCanvasText(text, ctx, maxWidth) {
+    const words = text.split(" ");
+    const lines = [];
+    let current = "";
+
+    for (const w of words) {
+        const test = current ? current + " " + w : w;
+        if (ctx.measureText(test).width > maxWidth) {
+            if (current) lines.push(current);
+            current = w;
+        } else {
+            current = test;
+        }
+    }
+    if (current) lines.push(current);
+    return lines;
+}
   
   function downloadPopUpMapImage(root) {
     if (!root) {
@@ -2222,26 +2297,48 @@ const handleOnScroll = () => {
         const out = document.createElement('canvas');
         const ctx = out.getContext('2d');
 
-        const titleH = 40;
         pad = 30;
         midWidth = 1200;
 
         out.width = Math.max(canvas.width + pad * 2, midWidth);
-        out.height = canvas.height + pad * 2 + titleH;
 
         ctx.fillStyle = '#fff';
         ctx.fillRect(0, 0, out.width, out.height);
-        
+
+        // Set font before measuring
+        ctx.font = "16px Arial, sans-serif";
+
+        const maxTitleWidth = out.width - 60;
+        let titleLines = [];
+
         if (titleText) {
-            ctx.fillStyle = '#000';
-            ctx.font = '14pt Arial, sans-serif';
-            ctx.textBaseline = 'top';
-            const tw = ctx.measureText(titleText).width;
-            ctx.fillText(titleText, (out.width - tw) / 2, 10);
+            titleLines = wrapCanvasText(titleText, ctx, maxTitleWidth);
+        }
+
+        const titleLineHeight = 22;
+        const titleTop = 10;
+        const titleH = titleLines.length > 0 ? (titleLines.length * titleLineHeight) : 0;
+
+        out.height = canvas.height + pad * 2 + titleH;
+
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, out.width, out.height);
+
+        if (titleLines.length > 0) {
+            ctx.fillStyle = "#000";
+            ctx.font = "16px Arial, sans-serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+
+            let yPos = titleTop;
+            titleLines.forEach(line => {
+                ctx.fillText(line, out.width / 2, yPos);
+                yPos += titleLineHeight;
+            });
         }
         
         const dx = Math.round((out.width - canvas.width) / 2);
-        const dy = titleH;
+        const dy = titleTop + titleH;
         ctx.drawImage(canvas, dx, dy);
         
         if (updatedText) {
@@ -2286,6 +2383,24 @@ const handleOnScroll = () => {
     return txt ? ` by ${txt}` : '';
   }
 
+  function wrapCanvasText(text, ctx, maxWidth) {
+    const words = text.split(" ");
+    const lines = [];
+    let current = "";
+
+    for (let w of words) {
+        const test = current ? current + " " + w : w;
+        if (ctx.measureText(test).width > maxWidth) {
+            lines.push(current);
+            current = w;
+        } else {
+            current = test;
+        }
+    }
+    if (current) lines.push(current);
+
+    return lines;
+}
 
   function downloadMapImage() {
     const root = getCaptureRoot();
@@ -2336,7 +2451,7 @@ html2canvas(root, {
     const out = document.createElement('canvas');
     const ctx = out.getContext('2d');
 
-    const titleH = 40;
+    let titleH = 40;
     const pad = 30;
     const midWidth = 1200;
 
@@ -2346,12 +2461,27 @@ html2canvas(root, {
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, out.width, out.height);
 
+
     if (titleText) {
         ctx.fillStyle = '#000';
         ctx.font = '14pt Arial, sans-serif';
         ctx.textBaseline = 'top';
+        
+        const maxTitleWidth = out.width - 60;
+        const lines = wrapCanvasText(titleText, ctx, maxTitleWidth);
+
+        const lineHeight = 22;
+        let yPos = 10;
+
+        lines.forEach(line => {
+            const tw = ctx.measureText(line).width;
+            ctx.fillText(line, (out.width - tw) / 2, yPos);
+            yPos += lineHeight;
+        });
+
+        titleH = lines.length * lineHeight + 10;
+
         const tw = ctx.measureText(titleText).width;
-        ctx.fillText(titleText, (out.width - tw) / 2, 10);
       }
 
       const dx = Math.round((out.width - canvas.width) / 2);
