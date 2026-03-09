@@ -2739,8 +2739,53 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     const dimension = result.dimension;
     const updated = result.updated;
     const unit = Object.values(Object.values(dimension)[0].category.unit)[0].label;
-    const years = Object.values(dimension)[1].category.index;
+    let years = Object.values(dimension)[1].category.index;
     const groups = Object.values(dimension)[2].category.index;
+
+    let num_groups = groups.length;
+
+    let data_series = value.slice();
+    
+    for (let i = 0; i < data_series.length; i ++) {
+      if (data_series[i] == "*") {
+         data_series[i] = null;
+      }
+   }
+   
+   let data_by_year = {};
+   
+   for (let i = 0; i < years.length; i ++) {
+      let data_for_year = data_series.slice(num_groups * i, num_groups * (i + 1));
+      let keep_year = false;
+      
+      for (let j = 0; j < data_for_year.length; j ++) {
+         if (data_for_year[j] != null && data_for_year[j] != "N/A") {
+            keep_year = true;
+            break;
+         }
+      }
+
+      if (keep_year == true) {
+         data_by_year[years[i]] = data_for_year;
+      }
+   }
+
+   years = Object.keys(data_by_year);
+
+   if (years.length === 0) {
+      main_container.innerHTML = "<p>No data is currently available for this indicator across all years.</p>";
+      return;
+   }
+
+   let all_values = [];
+   for (let i = 0; i < data_series.length; i ++) {
+      if (data_series[i] != null && data_series[i] != "N/A") {
+         all_values.push(data_series[i]);
+      }
+   }
+   const rangeMin = Math.floor(Math.min(...all_values));
+   const rangeMax = Math.ceil(Math.max(...all_values));
+   const rangeSpan = (rangeMax - rangeMin) || 1;
     
     // Fresh container each time
     if (main_container && main_container.classList.contains('leaflet-container')) {
@@ -2764,17 +2809,6 @@ async function drawPopupMap(d, e, type, main_container, loading) {
             attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
             maxZoom: 16
          }).addTo(map);
-
-    // Build data by year
-    const num_groups = groups.length;
-    const data_by_year = {};
-    for (let i = 0; i < years.length; i++) {
-        data_by_year[years[i]] = value.slice(num_groups * i, num_groups * (i + 1));
-    }
-    
-    const allValues = Object.values(data_by_year).flat().filter(v => v !== null);
-    const globalMin = Math.min(...allValues);
-    const globalMax = Math.max(...allValues);
     
     // Wrapper for year label and slider
     const sliderWrapper = document.createElement("div");
@@ -2834,17 +2868,16 @@ async function drawPopupMap(d, e, type, main_container, loading) {
 
       slider.setAttribute("aria-valuenow", selectedYear);
       slider.setAttribute("aria-valuetext", `${selectedYear}`);
-
       
-      const rangeMin = globalMin;
-      const rangeMax = globalMax;
+      const globalMinLocal = rangeMin;
+      const globalMaxLocal = rangeMax;
       const palette = indicator.improvement === "increase"
             ? ["#f7fcf5", "#c7e9c0", "#74c476", "#238b45", "#00441b"]
             : ["#fff5f0", "#fcbba1", "#fc9272", "#de2d26", "#a50f15"];
             
             function getColor(val) {
             if (val === null) return "#d3d3d3";
-            const ratio = (val - rangeMin) / (rangeMax - rangeMin);
+            const ratio = (val - globalMinLocal) / (globalMaxLocal - globalMinLocal);
             return palette[Math.min(4, Math.round(ratio * 4))];
         }
 
