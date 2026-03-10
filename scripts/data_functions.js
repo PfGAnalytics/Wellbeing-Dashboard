@@ -2218,8 +2218,8 @@ async function renderPopup (d, e, eq_group) {
             beforeDraw(chart) {
                const { ctx, chartArea: { top, left, width } } = chart;
                ctx.save();
-               ctx.fillStyle = '#142062'; // light grey background
-               ctx.strokeStyle = '#142062';
+               ctx.fillStyle = '#00205b'; // light grey background
+               ctx.strokeStyle = '#00205b';
 
                const labelCount = chart.legend.legendItems.length;
 
