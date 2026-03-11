@@ -994,7 +994,7 @@ footer {
 
 #share {
     font-size: 14pt;
-    background-color: #00205b;
+    background-color: #3878c5;
     border: none;
     color: #ffffff;
     text-align: center;
@@ -1030,8 +1030,8 @@ footer {
     font-size: 13pt;
 }
 
-#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #share:hover {
-    background-color: #69729B;
+#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #share:hover, #download-dropdown:hover, #map-download-dropdown:hover{
+    background-color: #325E8E;
 }
 
 .chart-dropdown {
@@ -1286,7 +1286,7 @@ footer {
 
 .popup-download-dropdown, #download-dropdown, #map-download-dropdown {
     font-size: 14pt;
-    background-color: #00205b;
+    background-color: #3878c5;
     border: none;
     color: #ffffff;
     border-radius: 25px;
@@ -1779,7 +1779,7 @@ input:focus-visible {
   color: #00205b;
   font-weight: bold;
   }
-  
+
   #search-box {
     display: flex;
     width: 100%;
