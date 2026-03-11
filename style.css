@@ -109,8 +109,8 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     border-width: 0px;
-    background-color: #00205b;
-    border: 2px solid #FFFFFF;
+    background-color: #008675;
+    border: 2px solid #00205B;
     flex: 1 1 50px;
     align-content: center;
     justify-content: center;
@@ -125,17 +125,19 @@ h1 {
 }
 
 .top-menu-item:hover {
-    background-color: #ffffff55;
+    background-color: #00867595;
 }
 
 .top-menu-item.selected-item {
-    color: #00205b;;
-    background-color: white;  
+    color: #00205b;
+    background-color: #F2F2F2;
+    border-left: none !important;
+    border-bottom: none !important;
 }
 
 .top-menu-item.selected-item:hover {
     color: white;
-    background-color: #00205b;;
+    background-color: #00867595;
 }
 
 .top-menu-item.selected-item:hover i {
@@ -1764,34 +1766,32 @@ input:focus-visible {
 
   #search-text:focus {
     outline: none;
-    color: #ffffff;
+    color: #00205b;
   }
   
   #search-text {
     font-size: 16pt;
-    color: #FFFFFF !important;
+    color: #00205b !important;
   }
 
   
   #search-text::placeholder {
-  color: #FFFFFF;
+  color: #00205b;
   font-weight: bold;
   }
-
-
+  
   #search-box {
     display: flex;
     width: 100%;
-    border-left: 2px solid #ffffff;
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
-    background-color: #00205b;
+    border-left: 2px solid #00205B;
+    border-top: 2px solid #00205B;
+    border-bottom: 2px solid #00205B;
+    background-color: #FFFFFF;
     height: 100%;
   }
 
   #search-button {
     width: 25px;
-    filter: brightness(0) invert(1);
   }
 
 
