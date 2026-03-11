@@ -24,6 +24,8 @@ var indicator_title = document.getElementById("indicator-title");
 var ind_important = document.getElementById("ind-important");
 var data_info = document.getElementById("data-info");
 var map_link = document.getElementById("map-link");
+var chart_boxes = document.getElementById("chart-boxes");
+var ind_container = document.getElementById("main-ind-container");
 var domains_btn = document.getElementById("domains-btn");
 var overall_btn = document.getElementById("overall-btn");
 var maps_btn = document.getElementById("maps-btn");
@@ -179,7 +181,8 @@ async function generateIndicatorPage(d, e) {
         }       
 
     } else {
-        map_link.style.display = "none"
+        chart_boxes.classList.add("d-none");
+        map_link.style.display = "none";
     }
 
     // When AA data is present generate a link to it

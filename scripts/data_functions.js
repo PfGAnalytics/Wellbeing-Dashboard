@@ -3688,6 +3688,7 @@ function sharePage() {
 }
 
 document.getElementById("share").addEventListener("click", sharePage);
+document.getElementById("share-map").addEventListener("click", sharePage);
 
 function handleRefreshPopup() {
   const params = new URLSearchParams(location.search);

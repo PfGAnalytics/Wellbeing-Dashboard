@@ -992,7 +992,7 @@ footer {
     justify-content: center;
 }
 
-#share {
+#share, #download-dropdown, #share-map {
     font-size: 14pt;
     background-color: #3878c5;
     border: none;
@@ -1001,9 +1001,14 @@ footer {
     border-radius: 25px;
     display: block;
     margin: 10px auto 10px auto;
-    width: 150px;
+    width: 200px !important;
     height: 48px;
     margin-right: 10px;
+}
+
+.share-download-buttons {
+    width: max-content;
+    margin-left: auto;
 }
 
 #measure-info {
@@ -1284,7 +1289,7 @@ footer {
     height: 50px;
 } 
 
-.popup-download-dropdown, #download-dropdown, #map-download-dropdown {
+.popup-download-dropdown, #map-download-dropdown {
     font-size: 14pt;
     background-color: #3878c5;
     border: none;
@@ -1305,13 +1310,13 @@ footer {
 .popup-download-dropdown.btn-primary:active:focus,
 .popup-download-dropdown.btn-primary:not(:disabled):not(.disabled).active,
 .popup-download-dropdown.btn-primary:not(:disabled):not(.disabled):active {
-  background-color: #00205b;
+  background-color: #3878c5;
 }
 
 .popup-download-dropdown.btn-primary:focus,
 .popup-download-dropdown.btn-primary.focus,
 .show > .popup-download-dropdown.btn-primary.dropdown-toggle:focus {
-  background-color: #00205b;
+  background-color: #3878c5;
 }
 
 .popup-download-dropdown:hover {
@@ -1320,7 +1325,7 @@ footer {
 
 .dropdown.show .popup-download-dropdown,
 .popup-download-dropdown[aria-expanded="true"] {
-  background-color: #00205b;
+  background-color: #3878c5;
 }
 
 p.popup-map-notes, p.popup-map-summary {
@@ -1365,7 +1370,8 @@ footer a:hover {
 }
 
 #map-boxes {
-    margin-left: 50px;
+    margin-left: 6.5%;
+    margin-top: 10%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -1582,6 +1588,10 @@ input:focus-visible {
     }
     #search-text {
         font-size: smaller;
+    }
+    #share, #download-dropdown {
+        font-size: smaller;
+        width: 180px !important;
     }
 }
 

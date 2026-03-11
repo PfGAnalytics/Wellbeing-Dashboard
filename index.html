@@ -272,22 +272,22 @@
                     <div class = "row" style = "margin-top: 15px;">
                         <div class = "blue-label">How do we measure this?</div>
                         <div id = "measure-info"></div>
+                        <div class = "share-download-buttons">
                         <button id="share" alt="Share indicator page">Share page</button>
-                    </div>
+                        <div id = "download-buttons" class = "dropdown">
+                            <button id="download-dropdown" class="btn btn-primary dropdown-toggle download-dropdown" type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                                Download</button>
+                                <ul class="dropdown-menu" aria-labelledby="download-dropdown">
+                                    <li><a class="dropdown-item" href="" data-action="csv">data (in CSV format)</a></li>
+                                    <li><a class="dropdown-item" href="" data-action="png">chart (as image)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>          
                     <div class = "row" id = "main-ind-container" style = "margin-top: 20px; align-items: center; justify-content: space-between; margin-right: 35px">
                         <div id = "line-chart-container" alt = "A summary of this chart's findings can be found in the 'What is this indicator telling us?' box"></div>
-                        <div id = "chart-boxes" class = "box-container" style = "max-width: 358px">
-                            <form id = "map-link"></form>
-                            <div>
-                                <div id="download-buttons" class="dropdown">
-                                    <button id="download-dropdown" class="btn btn-primary dropdown-toggle download-dropdown" type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-                                        Download</button>
-                                        <ul class="dropdown-menu" aria-labelledby="download-dropdown">
-                                            <li><a class="dropdown-item" href="" data-action="csv">data (in CSV format)</a></li>
-                                            <li><a class="dropdown-item" href="" data-action="png">chart (as image)</a></li>
-                                        </ul>
-                                    </div>
-                                </div>                  
+                        <div id = "chart-boxes" class = "box-container" style = "max-width: 358px;">
+                            <form id = "map-link"></form> 
                             </div>                                     
                         </div>
                     <div class = "row" id = "ind-telling-row" style = "margin-top: 60px;">
@@ -331,6 +331,7 @@
                                 <div id = "date-display"></div>
                                 <input id ="map-select-4" type="range" class="slider" id="myRange">
                             </div>
+                            <button id="share-map" type="button" alt="Share maps page">Share page</button>                        
                         </div>
                     </form>
                     <div id = "map-title"></div>
