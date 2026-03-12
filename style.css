@@ -1609,6 +1609,11 @@ input:focus-visible {
     padding-left: 30px;
 }
 
+#eq-col-2 {
+    padding-left: 20px;
+}
+
+
 #chart-link {
     text-align: center;
     color: #00205b;
