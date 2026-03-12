@@ -157,7 +157,15 @@ async function generateIndicatorPage(d, e) {
 
     domain_title.innerHTML = d;             // Place the domain name inside the "domain-title" div element
 
-    indicator_title.innerHTML = e;          // Place the indicator name inside the div element "indicator-title"
+    indicator_title.style.whiteSpace = "pre-line";
+
+    if (e === "Housing costs as a proportion of household income") {
+        indicator_title.textContent = e.replace("of ", "of\n");
+    } else {
+        indicator_title.textContent = e;
+     }
+
+          // Place the indicator name inside the div element "indicator-title"
     ind_important.innerHTML = domains_data[d].indicators[e].importance;   // Update the indicator importance div element
     
 
