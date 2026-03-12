@@ -153,8 +153,6 @@ async function indicatorPerformance (dom = null) {
             }
          }
 
-         console.log(api_url)
-
          // The id the line chart canvas element will use
          var id = statistic + "-line";
 
@@ -1986,8 +1984,6 @@ async function renderPopup (d, e, eq_group) {
          }
       } 
 
-      console.log(chart_data_url)
-
       var result = null;   // Retry plotting chart if data portal link doesn't work first time
       while (result == null) {
          const response = await fetch(chart_data_url);          // fetches the content of the url
@@ -3159,8 +3155,6 @@ async function drawMap() {
 
          const year_Max = Math.max(...selected_data);
 
-         console.log(year_Min);
-
          var range_min = Math.floor(Math.min(...all_values));
          var range_max = Math.ceil(Math.max(...all_values));
          
@@ -3179,16 +3173,17 @@ async function drawMap() {
 
          // Colour palettes for increasing/decreasing indicators
          if (domains_data[map_select_1.value].indicators[map_select_2.value].improvement == "increase") {
-            var palette = ["#f7fcf5", "#c7e9c0", "#74c476", "#238b45", "#00441b"];
+            var palette = ["#d6e0c8", "#9ecb92", "#5fa360", "#1b6c37", "#003214"
+];
          } else {
-            var palette = ["#fff5f0", "#fcbba1", "#fc9272", "#de2d26", "#a50f15"]
+            var palette = ["#e6d9d3", "#e29e80", "#e1725a", "#b2231e", "#7a0b10"]
          }
 
          // When called chooses a colour from above palette based on value of colours array
          function getColor(d) {
 
             if (d < 0) {
-               return "#d3d3d3";
+               return "#ffffff";
             } else {
                return palette[Math.round(d*4)];
             }
