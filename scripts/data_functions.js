@@ -2880,11 +2880,11 @@ async function drawPopupMap(d, e, type, main_container, loading) {
       const globalMinLocal = rangeMin;
       const globalMaxLocal = rangeMax;
       const palette = indicator.improvement === "increase"
-            ? ["#f7fcf5", "#c7e9c0", "#74c476", "#238b45", "#00441b"]
-            : ["#fff5f0", "#fcbba1", "#fc9272", "#de2d26", "#a50f15"];
+            ? ["#d6e0c8", "#9ecb92", "#5fa360", "#1b6c37", "#003214"]
+            : ["#e6d9d3", "#e29e80", "#e1725a", "#b2231e", "#7a0b10"];
             
             function getColor(val) {
-            if (val === null) return "#d3d3d3";
+            if (val === null) return "#ffffff";
             const ratio = (val - globalMinLocal) / (globalMaxLocal - globalMinLocal);
             return palette[Math.min(4, Math.round(ratio * 4))];
         }
