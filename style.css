@@ -993,10 +993,12 @@ footer {
 }
 
 #share, #download-dropdown, #share-map {
+    background-color: #FFFFFF;
+    color: #00205b;
+    border: solid 2px #00205b;
+    font-weight: bold;
+    cursor: pointer;
     font-size: 14pt;
-    background-color: #3878c5;
-    border: none;
-    color: #ffffff;
     text-align: center;
     border-radius: 25px;
     display: block;
@@ -1036,7 +1038,7 @@ footer {
 }
 
 #download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #share:hover, #share-map:hover, #download-dropdown:hover, #map-download-dropdown:hover{
-    background-color: #325E8E;
+   text-decoration: underline;
 }
 
 .chart-dropdown {
