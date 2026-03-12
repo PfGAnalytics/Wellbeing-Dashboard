@@ -1773,18 +1773,30 @@ async function renderPopup (d, e, eq_group) {
                      yPos += titleLineHeight;
                   });
                }
-
-            if (yLabel) {
+               
+               if (yLabel) {
                   ctx.save();
                   ctx.fillStyle = "#000";
-                  ctx.font = "14px Arial, sans-serif";
+                  ctx.font = "12px Arial, sans-serif";
+                  ctx.textAlign = "left";
                   ctx.textBaseline = "middle";
 
-                  ctx.translate(25, titleTop + titleH + renderedHeight / 2);
-                  ctx.rotate(-Math.PI / 2);
-                  ctx.fillText(yLabel, 0, 0);
+                  const words = yLabel.split(/\s+/).filter(Boolean);
+
+                  const lineHeight = 14;
+
+                  const blockHeight = words.length > 0 ? (words.length - 1) * lineHeight : 0;
+                  const centerY = titleTop + titleH + renderedHeight / 2;
+                  const startY = centerY - blockHeight / 2;
+
+                  const x = 10;
+
+                  words.forEach((word, i) => {
+                     ctx.fillText(word, x, startY + i * lineHeight);
+                  });
+
                   ctx.restore();
-               }
+            }
                
             const dx = yPadding;
             const dy = titleTop + titleH;

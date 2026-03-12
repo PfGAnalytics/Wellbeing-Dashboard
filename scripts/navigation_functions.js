@@ -2138,14 +2138,23 @@ const handleOnScroll = () => {
             if (yLabel) {
                 ctx.save();
                 ctx.fillStyle = 'black';
-                ctx.font = '14px Arial, sans-serif';
+                ctx.font = '12px Arial, sans-serif';
                 ctx.textBaseline = 'middle';
+
+                const words = yLabel.split(/\s+/).filter(Boolean);
+                const lineHeight = 14;
 
                 const labelX = yLabelPadding / 2;
                 const labelY = titleH + height / 2;
+
                 ctx.translate(labelX, labelY);
-                ctx.rotate(-Math.PI / 2);
-                ctx.fillText(yLabel, 0, 0);
+
+                const blockHeight = (words.length - 1) * lineHeight;
+                const startY = -blockHeight / 2;
+
+                words.forEach((word, i) => {
+                    ctx.fillText(word, 0, startY + i * lineHeight);
+                });
 
                 ctx.restore();
             }
