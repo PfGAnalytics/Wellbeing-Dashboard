@@ -782,7 +782,7 @@ async function createLineChart(d, e) {
             format = (v) => String(v),
             color = "#000",
             font = "bold 15px sans-serif",
-            padding = 20,
+            padding = 100,
             maxOffset = 20
          } = options;
          
@@ -791,7 +791,7 @@ async function createLineChart(d, e) {
             if (!point) return { dx: 8, dy: -15 }; 
 
             let dy = -padding;
-            let dx = 8;
+            let dx = -12;
 
             const prev = meta.data[idx - 1]?.y;
             const next = meta.data[idx + 1]?.y;
