@@ -2642,7 +2642,10 @@ async function renderMapPopup(d, e, type, data) {
          let link = popup_further_note.slice(popup_further_note.indexOf("[url"), popup_further_note.indexOf("[/url]") + "[/url]".length);
          let linked_text = link.slice(link.indexOf("]") + 1, link.indexOf("[/"));
          let url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
-         popup_further_note = popup_further_note.replace(link, `${url}${linked_text}</a>`);
+         popup_further_note = popup_further_note.replace(
+           link,
+           `<a href="${url}" target="_blank">${linked_text}</a>`
+         );
       }
 
       popup_further_note = popup_further_note.replaceAll("[i]", "<em>");
