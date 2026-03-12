@@ -2106,7 +2106,7 @@ const handleOnScroll = () => {
 
             const { titleText } = getHeaderText();
             let titleH = 0;
-            
+
             if (titleText) {
                 ctx.fillStyle = "black";
                 ctx.font = titleFont;
@@ -2116,18 +2116,29 @@ const handleOnScroll = () => {
                 const lines = wrapCanvasText(titleText, ctx, maxTitleWidth);
 
                 const lineHeight = 22;
-                let yPos = 10;
-                
-                lines.forEach(line => {
-                    const textWidth = ctx.measureText(line).width;
-                    const x = (out.width - textWidth) / 2;
-                    ctx.fillText(line, x, yPos);
-                    yPos += lineHeight;
-                });
-                
                 titleH = lines.length * lineHeight + 10;
 
-                out.height = height + titleH + bottomPadding + 20;
+                const summaryFont = '13px Arial, sans-serif';
+                const summarySideMargin = 110;
+                const maxSummaryWidth = out.width - (summarySideMargin * 2);
+
+                const summaryText = (typeof chartSummary === 'function') ? chartSummary() : '';
+                let summaryLines = [];
+                let summaryH = 0;
+
+                if (summaryText) {
+                    ctx.font = summaryFont;
+                    summaryLines = wrapCanvasText(summaryText, ctx, maxSummaryWidth);
+
+                    const summaryLineHeight = 18;
+                    summaryH = summaryLines.length * summaryLineHeight + 10;
+                }
+
+                const gapAboveChart = 20;
+                const gapAboveSummary = 20;
+
+                out.height = titleH + gapAboveChart + height + gapAboveSummary + summaryH + bottomPadding;
+
                 ctx.fillStyle = '#fff';
                 ctx.fillRect(0, 0, out.width, out.height);
 
@@ -2136,11 +2147,17 @@ const handleOnScroll = () => {
                 ctx.textAlign = "center";
                 ctx.textBaseline = "top";
 
-                yPos = 10;
+                let yPos = 10;
                 lines.forEach(line => {
                     ctx.fillText(line, out.width / 2, yPos);
                     yPos += lineHeight;
                 });
+
+                downloadChart._summaryLines = summaryLines;
+                downloadChart._summaryFont = summaryFont;
+                downloadChart._summaryLineHeight = 18;
+                downloadChart._summarySideMargin = summarySideMargin;
+                downloadChart._summaryH = summaryH;
             }
             
             if (yLabel) {
@@ -2168,6 +2185,21 @@ const handleOnScroll = () => {
             }
             
             ctx.drawImage(src, yLabelPadding, titleH + 20);
+            
+            if (downloadChart._summaryLines && downloadChart._summaryLines.length > 0) {
+                ctx.fillStyle = 'black';
+                ctx.font = downloadChart._summaryFont;
+                ctx.textAlign = "left";
+                ctx.textBaseline = "top";
+
+                let yPos = titleH + 20 + height + 20;
+                const xPos = downloadChart._summarySideMargin;
+
+                downloadChart._summaryLines.forEach(line => {
+                    ctx.fillText(line, xPos, yPos);
+                    yPos += downloadChart._summaryLineHeight;
+                });
+            }
 
             const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
             const link = document.createElement('a');

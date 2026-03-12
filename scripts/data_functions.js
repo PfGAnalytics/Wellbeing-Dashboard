@@ -263,6 +263,10 @@ let worseninghexDivHTML = '<div class="label-text" style="font-weight:bold; marg
 
 let insufficienthexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px; color: #00205b;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #B0B0B0; border: 2px solid; border-color: #757575">Insufficient';
 
+let comparison_year = null;
+let comparison_year_value = null;
+let latest_year = null;
+let latest_value = null;
 // Function below uses the api to fetch the data and plots it in a line chart
 // It also generates the baseline statement, the source information, the further information and how do we measure this
 // using information on the data portal. The two inputs to the function are a domain name "d" and indicator name "e"
@@ -760,91 +764,20 @@ async function createLineChart(d, e) {
          break;
       }
    }
-   
-   const last_real_year  = years[last_real_index];
-   const recent_year_value = data_series[last_real_index];
-   
-   const baseIndex   = (base_position > -1 ? base_position : null);
+
    const latestIndex = last_real_index;
+   latest_year = years[latestIndex];
+   latest_value = data_series[latestIndex];
 
-   // Draw labels for the comparison year and the most recent year
-   const pointLabelPlugin = {
-      id: "point_labels",
-      afterDatasetsDraw(chart, args, options) {
-         const { ctx } = chart;
-         if (!options) return;
-         
-         const {
-            baseIndex = null,
-            latestIndex = null,
-            format = (v) => String(v),
-            color = "#000",
-            font = "bold 15px sans-serif",
-            padding = 100,
-            maxOffset = 20
-         } = options;
-         
-         const computeOffset = (meta, idx) => {
-            const point = meta.data[idx];
-            if (!point) return { dx: 8, dy: -15 }; 
+   const baseIndex = (base_position > -1 ? base_position : null);
 
-            let dy = -padding;
-            let dx = -12;
+   comparison_year = null;
+   comparison_year_value = null;
 
-            const prev = meta.data[idx - 1]?.y;
-            const next = meta.data[idx + 1]?.y;
-            
-            if (next !== undefined && next < point.y) {
-               dy = padding;
-            }
-            
-            if (prev !== undefined && prev < point.y) {
-               dy = padding;
-            }
-            
-            const top = chart.chartArea.top;
-            const bottom = chart.chartArea.bottom;
-            
-            if (point.y + dy < top) {
-               dy = padding;
-            }
-            
-            if (point.y + dy > bottom) {
-               dy = -padding;
-            }
-            
-            dy = Math.max(-maxOffset, Math.min(maxOffset, dy));
-            return { dx, dy };
-         };
-         
-         const drawAt = (meta, dataArray, idx) => {
-            if (idx == null || idx < 0) return;
-            if (!meta?.data?.[idx]) return;
-
-            const raw = dataArray[idx];
-            if (raw == null) return;
-
-            const point = meta.data[idx];
-            const label = format(raw, idx);
-
-            const { dx, dy } = computeOffset(meta, idx);
-
-            ctx.save();
-            ctx.font = font;
-            ctx.textAlign = "left";
-            ctx.textBaseline = "middle";
-            ctx.fillStyle = color;
-            ctx.fillText(label, point.x + dx, point.y + dy);
-            ctx.restore();
-         };
-         
-         chart.data.datasets.forEach((ds, di) => {
-            const meta = chart.getDatasetMeta(di);
-            drawAt(meta, ds.data, baseIndex);
-            drawAt(meta, ds.data, latestIndex);
-         });
-      }
-   };
+   if (baseIndex != null) {
+      comparison_year = years[baseIndex];
+      comparison_year_value = data_series[baseIndex];
+   }
 
    // Chart configuration for charts with constant increasing/decreasing value:
    const chart_config = {
@@ -951,7 +884,7 @@ async function createLineChart(d, e) {
             mode: "index"
          }
       },
-      plugins: [pointLabelPlugin]
+      plugins: []
    };
 
    // Chart configuration for charts where improvement is year on year
@@ -1035,8 +968,7 @@ async function createLineChart(d, e) {
          }
          },
          plugins: [cumulative_top,
-                  cumulative_bottom, 
-                  pointLabelPlugin]
+                  cumulative_bottom]
    };
 
    // Chart configuration for charts where there is no base year to compare against
@@ -1089,7 +1021,7 @@ async function createLineChart(d, e) {
             mode: "index"
          }
       },
-      plugins: [pointLabelPlugin]
+      plugins: []
    };
 
    // Create a div to place all chart content in
@@ -1418,6 +1350,57 @@ document.getElementById("source-info").appendChild(source_info_div);
    document.getElementById("covid-info").innerHTML = covid_text;
   }
 
+}
+
+function getChartSummarySign(labelEl, titleEl) {
+    labelEl = (labelEl || "").trim();
+    titleEl = (titleEl || "").trim();
+
+    if (labelEl.includes('%')) {
+        return '%';
+    } else if (labelEl.includes('Average (mean) life satisfaction score')) {
+        return ' average life satisfaction score';
+    } else if (labelEl.includes('Percentage points')) {
+        return ' percentage points';
+    } else if (labelEl.includes('Annual mean nitrogen dioxide concentration (μg/m³)')) {
+        return ' μg/m³';
+    } else if (labelEl.includes('mg/l soluble reactive phosphorus (SRP)')) {
+        return ' mg/L';
+    } else if (labelEl.includes('MtCO₂e')) {
+        return ' MtCO₂e';
+    } else if (labelEl.includes('NBI score')) {
+        return ' NBI score';
+    } else if (labelEl.includes('Index')) {
+        return ' index points';
+    } else if (labelEl.includes('Number of Applicants')) {
+        return ' applicants';
+    } else if (labelEl.includes('Number')) {
+        return ' people';
+    }
+}
+
+function chartSummary() {
+    const yLabelDiv = document.querySelector('.y-label');
+    const titleDiv = document.querySelector('.chart-title');
+
+    const labelEl = yLabelDiv ? yLabelDiv.textContent : '';
+    const titleEl = titleDiv ? titleDiv.textContent : '';
+
+    const unit = getChartSummarySign(labelEl, titleEl);
+
+    if (comparison_year == null) {
+        return `The most recent value was ${latest_value}${unit} in ${latest_year}.`;
+    }
+
+    if (latest_value > comparison_year_value) {
+        return `The value increased from ${comparison_year_value}${unit} in the comparison year, ${comparison_year}, to ${latest_value}${unit} in ${latest_year}, the most recent year of data.`;
+    }
+
+    if (latest_value < comparison_year_value) {
+      return `The value decreased from ${comparison_year_value}${unit} in the comparison year, ${comparison_year}, to ${latest_value}${unit} in ${latest_year}, the most recent year of data.`;
+      }
+
+    return `The value remained unchanged at ${latest_value}${unit} between the comparison year, ${comparison_year}, and ${latest_year}, the most recent year of data.`;
 }
 
 let y_axis_label;
