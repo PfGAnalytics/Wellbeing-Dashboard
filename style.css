@@ -1037,7 +1037,7 @@ footer {
     font-size: 13pt;
 }
 
-#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #share:hover, #share-map:hover, #download-dropdown:hover, #map-download-dropdown:hover{
+#download-chart:hover, #download-pop-up-chart:hover, #download-data:hover, #download-map:hover, #download-pop-up-data:hover, #share:hover, #share-map:hover, #download-dropdown:hover, #map-download-dropdown:hover, #popup-download-dropdown:hover{
    text-decoration: underline;
 }
 
@@ -1278,20 +1278,7 @@ footer {
     margin-right: 20%;
 }
 
-.popup-download-btn  {
-    font-size: 14pt;
-    background-color: #00205b;
-    border: none;
-    color: #ffffff;
-    border-radius: 25px;
-    text-align: center;
-    display: block;
-    margin: 10px auto 0 auto;
-    width: 100%;
-    height: 50px;
-} 
-
-.popup-download-dropdown, #map-download-dropdown {
+#popup-download-dropdown, #map-download-dropdown {
     font-size: 14pt;
     background-color: #FFFFFF;
     color: #00205b;
@@ -1310,7 +1297,7 @@ footer {
     width: 200px !important;
 }
 
-.popup-download-dropdown.btn-primary:active,
+/* .popup-download-dropdown.btn-primary:active,
 .popup-download-dropdown.btn-primary:active:focus,
 .popup-download-dropdown.btn-primary:not(:disabled):not(.disabled).active,
 .popup-download-dropdown.btn-primary:not(:disabled):not(.disabled):active {
@@ -1330,7 +1317,7 @@ footer {
 .dropdown.show .popup-download-dropdown,
 .popup-download-dropdown[aria-expanded="true"] {
   background-color: #3878c5;
-}
+} */
 
 p.popup-map-notes, p.popup-map-summary {
     font-weight: bold;
