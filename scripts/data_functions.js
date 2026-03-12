@@ -3152,8 +3152,14 @@ async function drawMap() {
 
          selected_data = data_by_year[selected_year];
 
-         const year_Min = Math.min(...selected_data);
+
+         const nonZero = selected_data.filter(v => Number.isFinite(v) && v !== 0);
+
+         const year_Min = nonZero.length ? Math.min(...nonZero) : null;
+
          const year_Max = Math.max(...selected_data);
+
+         console.log(year_Min);
 
          var range_min = Math.floor(Math.min(...all_values));
          var range_max = Math.ceil(Math.max(...all_values));
