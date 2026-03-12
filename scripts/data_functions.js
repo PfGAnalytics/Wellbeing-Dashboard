@@ -2234,9 +2234,11 @@ async function renderPopup (d, e, eq_group) {
                const boxX = Math.round(left + 215);
                const boxY = Math.round(
                  top - (
-                   labelCount > 5 && Object.keys(values).some(key => key.includes("Quintile"))
-                     ? 88
-                     : 65
+                   Object.keys(values).some(key => key.toLowerCase().includes("occupation"))
+                     ? 135
+                     : Object.keys(values).some(key => key.includes("Quintile")) && labelCount > 5
+                       ? 88
+                       : 65
                  )
                );
                const boxWidth  = Math.round(width - 460);
