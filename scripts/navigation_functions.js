@@ -2484,10 +2484,13 @@ if (datePart) {
 const updatedEl = document.querySelector('.map-date');
 const updatedText = updatedEl ? updatedEl.textContent.trim() : '';
 
-shiftGElements(145, 60);
-
 const svg = document.querySelector('svg');
 svg.setAttribute('height', 600);
+
+shiftGElements(145, 60);
+
+
+
 
 html2canvas(root, {
     useCORS: true,
@@ -2512,6 +2515,9 @@ html2canvas(root, {
 
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, out.width, out.height);
+
+    
+
 
 
     if (titleText) {
@@ -2555,13 +2561,12 @@ html2canvas(root, {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
-      document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
-      svg.removeAttribute('height');
     });
+    document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
+    svg.removeAttribute('height');
   }
-  
   window.downloadMapImage = downloadMapImage;
+  
   
   function wireMapButton() {
     const wrapper = document.getElementById('map-download-buttons');
@@ -2720,5 +2725,6 @@ function shiftGElements(dx, dy) {
       // No existing translate
       g.setAttribute('transform', newTransform);
     }
+
   });
 }
