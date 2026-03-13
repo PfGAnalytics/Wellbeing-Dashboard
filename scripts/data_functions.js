@@ -1717,13 +1717,13 @@ async function renderPopup (d, e, eq_group) {
                   (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
 
             const chartCanvas = chartInstance.canvas;
-            const renderedWidth = chartCanvas.offsetWidth;
-            const renderedHeight = chartCanvas.offsetHeight;
+            const renderedWidth = chartCanvas.width;
+            const renderedHeight = chartCanvas.height;
 
             const outCanvas = document.createElement("canvas");
             const ctx = outCanvas.getContext("2d");
 
-            ctx.font = "16px Arial, sans-serif";
+            ctx.font = "12px Arial, sans-serif";
             const titleSideMargin = 60;
             const maxTitleWidth = renderedWidth + yPadding - titleSideMargin;
 
@@ -1744,7 +1744,7 @@ async function renderPopup (d, e, eq_group) {
 
             if (titleLines.length > 0) {
                   ctx.fillStyle = "#000";
-                  ctx.font = "16px Arial, sans-serif";
+                  ctx.font = "12px Arial, sans-serif";
                   ctx.textAlign = "center";
                   ctx.textBaseline = "top";
 
@@ -1758,7 +1758,7 @@ async function renderPopup (d, e, eq_group) {
                if (yLabel) {
                   ctx.save();
                   ctx.fillStyle = "#000";
-                  ctx.font = "12px Arial, sans-serif";
+                  ctx.font = "10px Arial, sans-serif";
                   ctx.textAlign = "left";
                   ctx.textBaseline = "middle";
 
@@ -1778,20 +1778,44 @@ async function renderPopup (d, e, eq_group) {
 
                   ctx.restore();
             }
-               
+            
             const dx = yPadding;
             const dy = titleTop + titleH;
             ctx.drawImage(chartCanvas, dx, dy, renderedWidth, renderedHeight);
 
-            chartInstance.config.plugins = originalPlugins;
-            chartInstance.update();
+            const logo = new Image();
+            logo.src = "img/nisra-only-colour.png";
 
-            const link = document.createElement("a");
-            link.download = fileName;
-            link.href = outCanvas.toDataURL("image/png");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            logo.onload = () => {
+               const logoHeight = 50;
+               const padding = 20;
+
+               const prev = document.createElement("canvas");
+               prev.width = outCanvas.width;
+               prev.height = outCanvas.height;
+               prev.getContext("2d").drawImage(outCanvas, 0, 0);
+
+               outCanvas.height = prev.height + logoHeight + padding;
+
+               ctx.fillStyle = "#fff";
+               ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
+               ctx.drawImage(prev, 0, 0);
+
+               const scale = logoHeight / logo.height;
+               const logoW = logo.width * scale;
+
+               const logoX = outCanvas.width - logoW - 5;
+               const logoY = prev.height - 5;
+
+               ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
+
+               const link = document.createElement("a");
+               link.download = fileName;
+               link.href = outCanvas.toDataURL("image/png");
+               document.body.appendChild(link);
+               link.click();
+               link.remove();
+            };
          });
       };
 

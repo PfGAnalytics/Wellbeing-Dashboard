@@ -2102,7 +2102,7 @@ const handleOnScroll = () => {
             ctx.fillStyle = '#fff';
             ctx.fillRect(0, 0, out.width, out.height);
 
-            const titleFont = '14px Arial, sans-serif';
+            const titleFont = '12px Arial, sans-serif';
 
             const { titleText } = getHeaderText();
             let titleH = 0;
@@ -2163,7 +2163,7 @@ const handleOnScroll = () => {
             if (yLabel) {
                 ctx.save();
                 ctx.fillStyle = 'black';
-                ctx.font = '12px Arial, sans-serif';
+                ctx.font = '10px Arial, sans-serif';
                 ctx.textBaseline = 'middle';
 
                 const words = yLabel.split(/\s+/).filter(Boolean);
@@ -2183,8 +2183,8 @@ const handleOnScroll = () => {
 
                 ctx.restore();
             }
-            
-            ctx.drawImage(src, yLabelPadding, titleH + 20);
+            const chartTop = titleH + 20;
+            ctx.drawImage(src, yLabelPadding, chartTop);
             
             if (downloadChart._summaryLines && downloadChart._summaryLines.length > 0) {
                 ctx.fillStyle = 'black';
@@ -2200,14 +2200,40 @@ const handleOnScroll = () => {
                     yPos += downloadChart._summaryLineHeight;
                 });
             }
+            
+            const logo = new Image();
+            logo.src = "img/nisra-only-colour.png";
 
-            const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
-            const link = document.createElement('a');
-            link.href = out.toDataURL('image/png');
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            logo.onload = () => {
+                const logoHeight = 50;
+                const padding = 20;
+
+                const prev = document.createElement("canvas");
+                prev.width = out.width;
+                prev.height = out.height;
+                prev.getContext("2d").drawImage(out, 0, 0);
+
+                out.height = prev.height + logoHeight + padding;
+
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(0, 0, out.width, out.height);
+                ctx.drawImage(prev, 0, 0);
+
+                const scale = logoHeight / logo.height;
+                const logoW = logo.width * scale;
+                const logoX = out.width - logoW - 5;
+                const logoY = prev.height - 5;
+
+                ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
+
+                const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
+                const link = document.createElement('a');
+                link.href = out.toDataURL('image/png');
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
         }
 
         function wireDownloadButton() {
@@ -2347,10 +2373,10 @@ const handleOnScroll = () => {
         scale: window.devicePixelRatio,
     }).then(canvas => {
         const out = document.createElement('canvas');
-        const ctx = out.getContext('2d');
+        let ctx = out.getContext('2d');
 
         pad = 30;
-        midWidth = 1200;
+        midWidth = canvas.width + 20;
 
         out.width = Math.max(canvas.width + pad * 2, midWidth);
 
@@ -2358,9 +2384,9 @@ const handleOnScroll = () => {
         ctx.fillRect(0, 0, out.width, out.height);
 
         // Set font before measuring
-        ctx.font = "16px Arial, sans-serif";
+        ctx.font = "12px Arial, sans-serif";
 
-        const maxTitleWidth = out.width - 60;
+        const maxTitleWidth = canvas.width - 60;
         let titleLines = [];
 
         if (titleText) {
@@ -2378,7 +2404,7 @@ const handleOnScroll = () => {
 
         if (titleLines.length > 0) {
             ctx.fillStyle = "#000";
-            ctx.font = "16px Arial, sans-serif";
+            ctx.font = "12px Arial, sans-serif";
             ctx.textAlign = "center";
             ctx.textBaseline = "top";
 
@@ -2394,19 +2420,50 @@ const handleOnScroll = () => {
         ctx.drawImage(canvas, dx, dy);
         
         if (updatedText) {
-            ctx.font = '12px Arial, sans-serif';
+            ctx.font = '10px Arial, sans-serif';
             ctx.textBaseline = 'top';
-            const leftMargin = dx;
-            ctx.fillText(updatedText, leftMargin, dy + canvas.height + 10);
+            const updatedX = dx + 55;
+            const updatedY = dy + canvas.height + 10;
+            ctx.fillText(updatedText, updatedX, updatedY);
         }
 
         const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
-        const link = document.createElement('a');
-        link.download = fileName;
-        link.href = out.toDataURL('image/png');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+
+        const logo = new Image();
+        logo.src = "img/nisra-only-colour.png";
+
+        logo.onload = () => {
+            
+            const logoHeight = 50;
+
+            const prev = document.createElement("canvas");
+            prev.width = out.width;
+            prev.height = out.height;
+            prev.getContext("2d").drawImage(out, 0, 0);
+
+            out.height = prev.height + logoHeight;
+
+            ctx = out.getContext("2d");
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 0, out.width, out.height);
+
+            ctx.drawImage(prev, 0, 0);
+
+            const scale = logoHeight / logo.height;
+            const logoW = logo.width * scale;
+
+            const logoX = out.width - logoW - 10;
+            const logoY = prev.height - 35;
+
+            ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
+
+            const link = document.createElement('a');
+            link.download = fileName;
+            link.href = out.toDataURL('image/png');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+      }
     });
 
     document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
@@ -2504,11 +2561,11 @@ html2canvas(root, {
 }).then(canvas => {
     
     const out = document.createElement('canvas');
-    const ctx = out.getContext('2d');
+    let  ctx = out.getContext('2d');
 
     let titleH = 40;
     const pad = 30;
-    const midWidth = 1200;
+    const midWidth = canvas.width + 20;
 
     out.width = Math.max(canvas.width + pad * 2, midWidth);
     out.height = canvas.height + pad * 2 + titleH;
@@ -2522,7 +2579,7 @@ html2canvas(root, {
 
     if (titleText) {
         ctx.fillStyle = '#000';
-        ctx.font = '14pt Arial, sans-serif';
+        ctx.font = '12px Arial, sans-serif';
         ctx.textBaseline = 'top';
         
         const maxTitleWidth = out.width - 60;
@@ -2547,24 +2604,53 @@ html2canvas(root, {
       ctx.drawImage(canvas, dx, dy);
 
       if (updatedText) {
-        ctx.font = '12px Arial, sans-serif';
+        ctx.font = '10px Arial, sans-serif';
         ctx.textBaseline = 'top';
         const leftMargin = dx;
-        ctx.fillText(updatedText, leftMargin, dy + canvas.height - 10);
+        const updatedY = dy + canvas.height;
+        ctx.fillText(updatedText, leftMargin, updatedY);
       }
 
       const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
 
-      const link = document.createElement('a');
-      link.download = fileName;
-      link.href = out.toDataURL('image/png');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
+      const logo = new Image();
+      logo.src = "img/nisra-only-colour.png";
+      
+      logo.onload = () => {
+        const logoHeight = 50;
+        const prev = document.createElement("canvas");
+        prev.width = out.width;
+        prev.height = out.height;
+        prev.getContext("2d").drawImage(out, 0, 0);
+
+        out.height = prev.height + logoHeight;
+
+        ctx = out.getContext("2d");
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, out.width, out.height);
+
+        ctx.drawImage(prev, 0, 0);
+
+        const scale = logoHeight / logo.height;
+        const logoW = logo.width * scale;
+
+        const logoX = out.width - logoW - 10;
+        const logoY = prev.height - 35;
+
+        ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
+
+        const link = document.createElement('a');
+        link.download = fileName;
+        link.href = out.toDataURL('image/png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+});
     document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
     svg.removeAttribute('height');
-  }
+}
+  
   window.downloadMapImage = downloadMapImage;
   
   
