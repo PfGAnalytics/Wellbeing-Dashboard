@@ -26,7 +26,11 @@
 //       importance: "A couple of sentences detailing the importance of this indicator",
 //       base_year: "The base year for measuring improvement on this indicator can be in YYYY, YYYY/YY or YYYY-YY format depending on how time series is defined for indicator"
 //                   "Set base year to null if there is insufficient data in order to measure improving/worsening"
+//       AOS: true/false,  
 //       ci: "The change interval for this interval. Can be a number or number followed by letter c if improvement cumulates year on year",
+//       latest_update: "dd-mm-yyyy",
+//       next_update: "dd-mm-yyyy",
+//       map_commentary: "Any manual commentary to be appended to end of map summary",
 //       data: {
 //          NI: "NI data portal matrix", (or blank "" if not available)
 //          AA: "AA data portal matrix", (or blank "" if not available)
