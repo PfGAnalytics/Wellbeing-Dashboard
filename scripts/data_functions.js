@@ -2899,8 +2899,8 @@ async function drawPopupMap(d, e, type, main_container, loading) {
         }).addTo(map);
         const shapeMin = shapeNames[selectedData.indexOf(yearMin, selectedData)];
         const shapeMax = shapeNames[selectedData.indexOf(yearMax, selectedData)];
-        
-        setPopupSummary(shapeMin, yearMin, shapeMax, yearMax);
+
+        setPopupSummary(shapeMin, yearMin, shapeMax, yearMax, indicator);
 
         // Crop map to bounds
         map.fitBounds(window.popupShapes.getBounds());
@@ -3711,7 +3711,7 @@ function handleRefreshPopup() {
     renderMapPopup(d, e, type);
   }
   
-  function setPopupSummary(shapeMin, yearMin, shapeMax, yearMax) {
+  function setPopupSummary(shapeMin, yearMin, shapeMax, yearMax, indicator) {
    const baseSentence = "A map of Northern Ireland";
    const yearEl = document.getElementById("popup-map-year-label");
    const labelEl = (y_label_div.textContent || '').trim();
@@ -3765,7 +3765,16 @@ function handleRefreshPopup() {
    const altText = titleText ? `${baseSentence} ${titleText} ${yearText} ${lowHighSentence}.` : `${baseSentence} ${yearText} ${lowHighSentence}.`;
    
    const summaryTextEl = document.querySelector(".popup-map-summary-text");
-   if (summaryTextEl) summaryTextEl.textContent = altText;
+
+   if (summaryTextEl) {
+     summaryTextEl.textContent = altText;
+
+     const commentary = indicator?.map_commentary;
+
+     if (commentary && commentary.trim() !== "") {
+       summaryTextEl.textContent += " " + commentary.trim();
+     }
+   }
 }
 
 function setAltTextChart () {
@@ -3809,7 +3818,16 @@ function setMapSummary(year_Min, shape_Min, shape_Max, year_Max) {
       summarySign = " households";
    }
 
-   const summary = `${baseSentence} ${mapYear}. The lowest value was ${lowestArea} with ${lowestValue}${summarySign} and the highest value was ${highestArea} with ${highestValue}${summarySign}.`;
+   const commentary =
+     window.domains_data?.[map_select_1.value]?.indicators?.[map_select_2.value]?.map_commentary;
+
+   // Build base summary
+   let summary = `${baseSentence} ${mapYear}. The lowest value was ${lowestArea} with ${lowestValue}${summarySign} and the highest value was ${highestArea} with ${highestValue}${summarySign}.`;
+
+   // Append commentary only if it exists and is not an empty string
+   if (commentary) {
+     summary += " " + commentary;
+   }
    
    const summaryBox = document.getElementById('summary-map');
    if (summaryBox) {

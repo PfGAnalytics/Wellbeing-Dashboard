@@ -58,6 +58,7 @@ var domains_data = {
             ci: "1c",
             latest_update: "04-03-2025",
             next_update: "TBC",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDCHSCAA",
@@ -78,6 +79,7 @@ var domains_data = {
             ci: 0.1,
             latest_update: "30-01-2025",
             next_update: "December 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -98,6 +100,7 @@ var domains_data = {
             ci: 2.6,
             latest_update: "30-01-2025",
             next_update: "December 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -118,6 +121,7 @@ var domains_data = {
             ci: 2.75,
             latest_update: "26-09-2025",
             next_update: "March 2026",
+            map_commentary: "",
             data: {
                NI: "INDSFGANI",
                AA: "",
@@ -146,6 +150,7 @@ var domains_data = {
             ci: 1,
             latest_update: "05-06-2025",
             next_update: "May 2026",
+            map_commentary: "",
             data: {
                NI: "INDAIRPOLNI",
                AA: "",
@@ -167,6 +172,7 @@ var domains_data = {
             ci: 1,
             latest_update: "05-06-2025",
             next_update: "May 2026",
+            map_commentary: "",
             data: {
                NI: "INDCOASTQNI", 
                AA: "",
@@ -187,6 +193,7 @@ var domains_data = {
             ci: 0,
             latest_update: "05-06-2025",
             next_update: "May 2026",
+            map_commentary: "",
             AOS: true,
             data: {
                NI: "INDCONDSTENI", 
@@ -208,6 +215,7 @@ var domains_data = {
             ci: "0.206c",
             latest_update: "10-07-2025",
             next_update: "June 2026",
+            map_commentary: "",
             data: {
                NI: "INDGREENHGNI",
                AA: "",
@@ -229,6 +237,7 @@ var domains_data = {
             ci: 0.1,
             latest_update: "09-06-2025",
             next_update: "May 2026",
+            map_commentary: "",
             data: {
                NI: "", 
                AA: "INDOUTRECAA",
@@ -250,6 +259,7 @@ var domains_data = {
             ci: "0.5c",
             latest_update: "13-01-2026",
             next_update: "November 2026",
+            map_commentary: "",
             data: {
                NI: "INDRECWSTENI",
                AA: "",
@@ -270,6 +280,7 @@ var domains_data = {
             ci: 0,
             latest_update: "18-03-2025",
             next_update: "March 2026",
+            map_commentary: "",
             data: {
                NI: "INDRENEWNI",
                AA: "",
@@ -291,6 +302,7 @@ var domains_data = {
             ci: 0.01,
             latest_update: "05-06-2025",
             next_update: "May 2026",
+            map_commentary: "",
             data: {
                NI: "INDRIVERQNI", 
                AA: "",
@@ -312,6 +324,7 @@ var domains_data = {
             AOS: true,
             latest_update: "09-01-2026",
             next_update: "July 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -338,6 +351,7 @@ var domains_data = {
             ci: 2.7,
             latest_update: "07-11-2025",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -359,6 +373,7 @@ var domains_data = {
             ci: 4,
             latest_update: "20-05-2025",
             next_update: "April 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -380,6 +395,7 @@ var domains_data = {
             ci: 4,
             latest_update: "20-05-2025",
             next_update: "April 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -400,6 +416,7 @@ var domains_data = {
             ci: 2.7,
             latest_update: "16-05-2024",
             next_update: "TBC",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -427,6 +444,7 @@ var domains_data = {
             AOS: true,
             latest_update: "09-01-2026",
             next_update: "July 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -447,6 +465,7 @@ var domains_data = {
             ci: 1.7,
             latest_update: "14-01-2026",
             next_update: "December 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -467,6 +486,7 @@ var domains_data = {
             ci: 1.7,
             latest_update: "14-01-2026",
             next_update: "December 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -487,6 +507,7 @@ var domains_data = {
             ci: 1.3,
             latest_update: "20-05-2025",
             next_update: "January 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -507,6 +528,7 @@ var domains_data = {
             ci: 4.8,
             latest_update: "24-09-2025",
             next_update: "March 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDPREVDTHAA",
@@ -527,6 +549,7 @@ var domains_data = {
             ci: 2,
             latest_update: "20-12-2024",
             next_update: "January 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -553,6 +576,7 @@ var domains_data = {
             ci: 2,
             latest_update: "20-12-2024",
             next_update: "December 2025",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -573,6 +597,7 @@ var domains_data = {
             ci: 0.11,
             latest_update: "11-03-2025",
             next_update: "January 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDLIFESATAA",
@@ -594,6 +619,7 @@ var domains_data = {
             ci: 4,
             latest_update: "31-07-2025",
             next_update: "June 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDSLATTGAPAA",
@@ -614,6 +640,7 @@ var domains_data = {
             ci: 2,
             latest_update: "11-03-2025",
             next_update: "January 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDSELFEFFAA",
@@ -641,6 +668,7 @@ var domains_data = {
             ci: 1.6,
             latest_update: "17-10-2025",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDECONINACTAA",
@@ -662,6 +690,7 @@ var domains_data = {
             ci: 1.8,
             latest_update: "17-10-2025",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDEMPRATEAA",
@@ -683,6 +712,7 @@ var domains_data = {
             ci: 0.7,
             latest_update: "23-12-2024",
             next_update: "March 2026",
+            map_commentary: "",
             data: {
                NI: "INDEXSALENI",
                AA: "",
@@ -703,6 +733,7 @@ var domains_data = {
             ci:1,
             latest_update: "11-02-2025",
             next_update: "February 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -741,6 +772,7 @@ var domains_data = {
             ci: 1,
             latest_update: "12-12-2024",
             next_update: "January 2026",
+            map_commentary: "",
             data: {
                NI: "INDINTREPNI",
                AA: "",
@@ -761,6 +793,7 @@ var domains_data = {
             ci: 0.1,
             latest_update: "04-07-2025",
             next_update: "June 2026",
+            map_commentary: "",
             data: {
                NI: "INDLABPRDTNI",
                AA: "",
@@ -781,6 +814,7 @@ var domains_data = {
             ci: 1,
             latest_update: "26-09-2025",
             next_update: "January 2026",
+            map_commentary: "",
             data: {
                NI: "INDNICEINI",
                AA: "",
@@ -802,6 +836,7 @@ var domains_data = {
             ci: 1,
             latest_update: "11-12-2025",
             next_update: "November 2026",
+            map_commentary: "",
             data: {
                NI: "INDRESDEVNI",
                AA: "",
@@ -823,6 +858,7 @@ var domains_data = {
             ci: 1.7,
             latest_update: "24-10-2025",
             next_update: "September 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -850,6 +886,7 @@ var domains_data = {
             ci: 1.1,
             latest_update: "29-10-2025",
             next_update: "March 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDCRIMEAA",
@@ -888,6 +925,7 @@ var domains_data = {
             ci: 1.3,
             latest_update: "29-10-2025",
             next_update: "March 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDPSAFEAA",
@@ -908,6 +946,7 @@ var domains_data = {
             ci: 5,
             latest_update: "07-10-2025",
             next_update: "September 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -928,6 +967,7 @@ var domains_data = {
             ci: 2.7,
             latest_update: "07-11-2025",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -948,6 +988,7 @@ var domains_data = {
             ci: 1.2,
             latest_update: "29-10-2025",
             next_update: "March 2026",
+            map_commentary: "",
              data: {
                 NI: "",
                 AA: "INDWORACAA",
@@ -974,6 +1015,7 @@ var domains_data = {
             ci: 1,
             latest_update: "10-06-2024",
             next_update: "TBC",
+            map_commentary: "",
             data: {
                NI: "INDADSCNI",
                AA: "",
@@ -994,6 +1036,7 @@ var domains_data = {
             ci: 2,
             latest_update: "11-03-2025",
             next_update: "January 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "INDLONEAA",
@@ -1014,6 +1057,7 @@ var domains_data = {
             ci: 2,
             latest_update: "31-10-2025",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -1041,6 +1085,7 @@ var domains_data = {
             ci: 2,
             latest_update: "13-01-2026",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -1061,6 +1106,7 @@ var domains_data = {
             ci: 0,
             latest_update: "10-08-2025",
             next_update: "June 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -1082,6 +1128,7 @@ var domains_data = {
             ci: 3,
             latest_update: "10-07-2025",
             next_update: "August 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -1103,6 +1150,7 @@ var domains_data = {
             ci: 0,
             latest_update: "10-02-2025",
             next_update: "November 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -1129,6 +1177,7 @@ var domains_data = {
             ci: 2.7,
             latest_update: "07-11-2025",
             next_update: "0ctober 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -1149,6 +1198,7 @@ var domains_data = {
             ci: 2.3,
             latest_update: "07-11-2025",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "",
                AA: "",
@@ -1169,6 +1219,7 @@ var domains_data = {
             ci: 3.9,
             latest_update: "28-10-2025",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "INDTRUSTMEDIANI",
                AA: "",
@@ -1189,6 +1240,7 @@ var domains_data = {
             ci: 3.8,
             latest_update: "28-10-2025",
             next_update: "October 2026",
+            map_commentary: "",
             data: {
                NI: "INDTRUSTASMBNI",
                AA: "",
