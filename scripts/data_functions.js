@@ -2241,6 +2241,9 @@ async function renderPopup (d, e, eq_group) {
                const boxX = Math.round(left + 215);
                const boxY = Math.round(
                  top - (
+                  Object.keys(values).some(key => key.toLowerCase().includes("banking and finance"))
+                  ? 112
+                  :
                    Object.keys(values).some(key => key.toLowerCase().includes("occupation"))
                      ? 135
                      : Object.keys(values).some(key => key.includes("Quintile")) && labelCount > 5
