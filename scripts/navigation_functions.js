@@ -723,7 +723,7 @@ if (currentURL.includes("?domain=")) {
     back_btn.classList.add("nav-btn");
     back_btn.name = "tab";
     back_btn.value = "domains";
-    back_btn.innerHTML = '<img src = "img/arrow-turn-up-solid-full.svg" style = "width: 25px"> Back to <strong>Domains</strong> grid';
+    back_btn.innerHTML = '<img src = "img/arrow-turn-up-solid-full.svg" style = "width: 25px"> Back to <strong>Home</strong>';
     back_button.appendChild(back_btn);
     
 }
