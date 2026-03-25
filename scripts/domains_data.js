@@ -606,8 +606,8 @@ var domains_data = {
          },
          "External sales rate": {
             importance: 'Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a "Trade and Investment Strategy for a 10x economy" in which they note "Trade can support the ambitions of our \'10X Economy\' across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become."',
-            base_year: "2019",
-            ci: 0.7,
+            base_year: "2020",
+            ci: 0.6,
             data: {
                NI: "INDEXSALENI",
                AA: "",
@@ -616,8 +616,8 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "There has been no statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",               
+               improved: "There has been a statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",
+               no_change: "This commentary is a placeholder.",               
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
