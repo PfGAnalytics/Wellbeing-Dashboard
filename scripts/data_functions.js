@@ -2897,7 +2897,7 @@ async function drawPopupMap(d, e, type, main_container, loading) {
       const globalMaxLocal = rangeMax;
       const palette = indicator.improvement === "increase"
             ? ["#d6e0c8", "#9ecb92", "#5fa360", "#1b6c37", "#003214"]
-            : ["#e6d9d3", "#e29e80", "#e1725a", "#b2231e", "#7a0b10"];
+            : ["#e6d9d3", "#d88989", "#cc4c48", "#b2231e", "#7a0b10"];
             
             function getColor(val) {
             if (val === null) {
@@ -3200,7 +3200,7 @@ async function drawMap() {
             var palette = ["#d6e0c8", "#9ecb92", "#5fa360", "#1b6c37", "#003214"
 ];
          } else {
-            var palette = ["#e6d9d3", "#e29e80", "#e1725a", "#b2231e", "#7a0b10"]
+            var palette = ["#e6d9d3", "#d88989", "#c93a3a", "#b2231e", "#7a0b10"]
          }
 
          // When called chooses a colour from above palette based on value of colours array
