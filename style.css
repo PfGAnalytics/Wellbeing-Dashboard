@@ -1640,14 +1640,9 @@ input:focus-visible {
     width: 50%
 }
 
-#eq-col-1 {
-    padding-left: 30px;
+#eq-col-1, #eq-col-2 {
+    padding-left: 15px;
 }
-
-#eq-col-2 {
-    padding-left: 20px;
-}
-
 
 #chart-link {
     text-align: center;
