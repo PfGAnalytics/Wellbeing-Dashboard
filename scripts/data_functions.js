@@ -3963,11 +3963,38 @@ function populateInfoBoxes(labels, content) {
     });
   }
 
-  function setContent(idx) {
+function setContent(idx) {
     titleEl.textContent = labels[idx];
-    bodyEl.innerHTML = content[idx];
+    let html = content[idx];
+    
+    if (idx === 0) {
+        // Insert after the second </p>
+        let parts = html.split("</p>");
+      
+        if (parts.length >= 3) {
+            parts[1] += '</p><div id="framework-placeholder"></div>';
+            html = parts.join("</p>");
+        }
+    }
+    
+    bodyEl.innerHTML = html;
     collapseEl.dataset.activeIndex = String(idx);
-  }
+
+    if (idx === 0) {
+        const original = document.getElementById("framework-container");  
+        const placeholder = document.getElementById("framework-placeholder");
+
+        if (original && placeholder) {
+            const clone = original.cloneNode(true);
+            clone.id = "framework-container-clone";
+            
+            placeholder.replaceWith(clone);
+
+            clone.style.marginTop = "1rem";
+            clone.style.width = "100%";
+        }
+    }
+}
 
   let isSwapping = false;
   function animateSwap(nextIdx) {

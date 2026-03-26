@@ -195,6 +195,42 @@ h3 {
     padding: 0; 
 }
 
+#infoBody #framework-container, #infoBody #framework-container-clone {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0% !important;
+    margin-left: 0% !important;
+}
+
+#infoBody #framework-container .row, #infoBody #framework-container-clone .row {
+    margin-top: 1% !important;
+}
+
+#infoBody .framework-column, #infoBody .framework_column {
+    width: 50%;
+    max-width: 450px;
+}
+
+#infoBody .hex {
+    width: 120px !important;
+    height: 120px !important;
+}
+
+#infoBody .hex-inner {
+    width: 110px !important;
+    height: 110px !important;
+    font-size: 12pt !important;
+}
+
+#infoBody .blue-label {
+    width: 60% !important;
+    font-size: 10pt !important;
+}
+
 .info-tab-btn {
   display: flex;
   justify-content: space-between;
