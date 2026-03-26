@@ -614,6 +614,32 @@ if (currentURL.includes("tab=about")) {
 
 }
 
+async function loadViews() {
+    if (currentURL.includes("?view=")) {
+        currentView = currentURL.slice(currentURL.indexOf("?view=") + "?view=".length);
+        
+        if (currentView == "expand-all") {
+            showExpandAll();
+            await indicatorPerformance();
+            plotExpandedDomains();
+        }
+        
+        if (currentView == "by-mission") {
+            showByMission();
+            await indicatorPerformance();
+            plotExpandedDomains();
+        }
+
+        if (currentView == "by-performance") {
+            showByPerformance();
+            await indicatorPerformance();
+            plotExpandedDomains();
+        }
+    }
+}
+
+loadViews();
+
 // Page navigation when a domain hexagon is clicked:
 if (currentURL.includes("?domain=")) {
 
@@ -697,7 +723,7 @@ if (currentURL.includes("?domain=")) {
     back_btn.classList.add("nav-btn");
     back_btn.name = "tab";
     back_btn.value = "domains";
-    back_btn.innerHTML = '<img src = "img/arrow-turn-up-solid-full.svg" style = "width: 25px"> Back to <strong>Domains</strong> grid';
+    back_btn.innerHTML = '<img src = "img/arrow-turn-up-solid-full.svg" style = "width: 25px"> Back to <strong>Home</strong>';
     back_button.appendChild(back_btn);
     
 }
@@ -1661,7 +1687,11 @@ no_change = document.getElementsByClassName("ind-hex neutral")
 insufficient = document.getElementsByClassName("ind-hex insufficient")
 
 browse_domains.onclick = function() {
+    browseDomains();
+    history.pushState({}, "", location.pathname);
+}
 
+function browseDomains() {
     browse_domains.classList.add("domain-toggle-selected");
     expand_all.classList.remove("domain-toggle-selected");
     by_mission.classList.remove("domain-toggle-selected");
@@ -1676,14 +1706,16 @@ browse_domains.onclick = function() {
     domains_footer.style.display = "block";
     recent_filter.style.display = "block";
 
-    
     document.getElementById("recent-updates").style.display = "block";
     document.getElementById("h3-recent-updates").style.display = "block";
-
 }
 
 expand_all.onclick = function() {
+    showExpandAll();
+    history.pushState({}, "", "?view=expand-all");
+}
 
+async function showExpandAll() {
     browse_domains.classList.remove("domain-toggle-selected");
     expand_all.classList.add("domain-toggle-selected");
     by_mission.classList.remove("domain-toggle-selected");
@@ -1701,11 +1733,14 @@ expand_all.onclick = function() {
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
-
 }
 
 by_mission.onclick = function() {
+    showByMission();
+    history.pushState({}, "", "?view=by-mission");
+}
 
+async function showByMission() {
     browse_domains.classList.remove("domain-toggle-selected");
     expand_all.classList.remove("domain-toggle-selected");
     by_mission.classList.add("domain-toggle-selected");
@@ -1723,11 +1758,15 @@ by_mission.onclick = function() {
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
-
 }
 
 by_performance.onclick = function() {
+    showByPerformance();
+    history.pushState({}, "", "?view=by-performance");
+}
 
+async function showByPerformance() {
+    
     if (!performanceLoaded) {
         loading_img.style.display = "flex";
         document.getElementById('hex-class-count').style.display = "none";
@@ -1748,15 +1787,11 @@ by_performance.onclick = function() {
     domains_footer.style.display = "none";
     recent_filter.style.display = "none";
 
-
-
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
-
-
 }
 
-plotExpandedDomains = function() {
+function plotExpandedDomains () {
 
     while (expanded_domains.firstChild) {
         expanded_domains.removeChild(expanded_domains.firstChild);

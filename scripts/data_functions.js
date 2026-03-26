@@ -2886,7 +2886,8 @@ async function drawPopupMap(d, e, type, main_container, loading) {
       yearLabel.textContent = `${selectedYear}`;
       const selectedData = data_by_year[selectedYear];
 
-      const yearMin = Math.min(...selectedData);
+      const nonZero = selectedData.filter(v => Number.isFinite(v) && v !== 0);
+      const yearMin = nonZero.length ? Math.min(...nonZero) : null;
       const yearMax = Math.max(...selectedData)
 
       slider.setAttribute("aria-valuenow", selectedYear);
@@ -2899,10 +2900,12 @@ async function drawPopupMap(d, e, type, main_container, loading) {
             : ["#e6d9d3", "#e29e80", "#e1725a", "#b2231e", "#7a0b10"];
             
             function getColor(val) {
-            if (val === null) return "#ffffff";
+            if (val === null) {
+               return "#ffffff";
+            }
             const ratio = (val - globalMinLocal) / (globalMaxLocal - globalMinLocal);
             return palette[Math.min(4, Math.round(ratio * 4))];
-        }
+         }
 
         if (window.popupShapes) {
             window.popupShapes.clearLayers();
@@ -3178,7 +3181,13 @@ async function drawMap() {
          // Create an array colours, where each value is between 0 and 1 depending on where it falls in the range of values
          colours = [];
          for (let i = 0; i < selected_data.length; i++) {
-            colours.push((selected_data[i] - range_min) / range);
+            const v = selected_data[i];
+
+            if (!Number.isFinite(v)) {
+               colours.push(null);
+            } else {
+               colours.push((selected_data[i] - range_min) / range);
+            }
          }
 
          if (map_select_2.value == "") {
@@ -3197,7 +3206,7 @@ async function drawMap() {
          // When called chooses a colour from above palette based on value of colours array
          function getColor(d) {
 
-            if (d < 0) {
+            if (d === null) {
                return "#ffffff";
             } else {
                return palette[Math.round(d*4)];
@@ -3954,11 +3963,38 @@ function populateInfoBoxes(labels, content) {
     });
   }
 
-  function setContent(idx) {
+function setContent(idx) {
     titleEl.textContent = labels[idx];
-    bodyEl.innerHTML = content[idx];
+    let html = content[idx];
+    
+    if (idx === 0) {
+        // Insert after the second </p>
+        let parts = html.split("</p>");
+      
+        if (parts.length >= 3) {
+            parts[1] += '</p><div id="framework-placeholder"></div>';
+            html = parts.join("</p>");
+        }
+    }
+    
+    bodyEl.innerHTML = html;
     collapseEl.dataset.activeIndex = String(idx);
-  }
+
+    if (idx === 0) {
+        const original = document.getElementById("framework-container");  
+        const placeholder = document.getElementById("framework-placeholder");
+
+        if (original && placeholder) {
+            const clone = original.cloneNode(true);
+            clone.id = "framework-container-clone";
+            
+            placeholder.replaceWith(clone);
+
+            clone.style.marginTop = "1rem";
+            clone.style.width = "100%";
+        }
+    }
+}
 
   let isSwapping = false;
   function animateSwap(nextIdx) {
