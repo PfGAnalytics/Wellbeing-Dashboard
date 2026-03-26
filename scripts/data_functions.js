@@ -2148,7 +2148,6 @@ async function renderPopup (d, e, eq_group) {
       // Colour palette for bar charts:
       colours = ["#3878c5", "#00205b", "#68a41e", "#732777", "#ce70d2", "#434700", "#a88f8f","#3b3b3b","#e64791", "#400b23"];
 
-
       for (let j = 0; j < Object.keys(values).length; j++) {
          const label = Object.keys(values)[j];
          const dataset = {
@@ -2159,21 +2158,33 @@ async function renderPopup (d, e, eq_group) {
             ]
          };
 
-         if (label === "Northern Ireland") {
-            // Always render NI as a line
-            dataset.type = 'line';
-            dataset.borderColor = "#3878c5";
-            dataset.pointBackgroundColor = "#3878c5";
-            dataset.backgroundColor = "#3878c5";
-            dataset.borderWidth = 3;
-            dataset.pointStyle = 'circle';
-            dataset.fill = false;
-            dataset.hidden = true;
-            dataset.backgroundColor = colours[j % colours.length];
-         }
-         data.datasets.push(dataset);
+      let shouldInclude = true;
+
+      if (label === "Northern Ireland") {
+
+          const niSetting = domains_data[lookUpDomain].indicators[lookUpIndicator].ni_line;
+
+          if (niSetting === true) {
+              // Render NI as a line
+              dataset.type = 'line';
+              dataset.borderColor = "#3878c5";
+              dataset.pointBackgroundColor = "#3878c5";
+              dataset.hidden = true;
+              dataset.backgroundColor = colours[j % colours.length];
+              dataset.borderWidth = 3;
+              dataset.pointStyle = 'circle';
+              dataset.fill = false;
+
+          } else {
+              // Completely exclude NI
+              shouldInclude = false;
+          }
       }
 
+      if (shouldInclude) {
+          data.datasets.push(dataset);
+      }
+   }
 
       // Chart configuration for chart.js
       const chart_config = {
