@@ -90,6 +90,12 @@ body {
     #search-text {
         font-size: 12pt !important;
     }
+    #domains-grid-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 90%;
+        max-width: 750px;
+    }
 }
 
 @media (max-width: 1400px) {
@@ -356,7 +362,6 @@ h3 {
 
 #domains-grid-container {
     width: 804px;
-    margin-left: 25px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -2000,7 +2005,7 @@ tr {
 
 .domains-tabs {
     display: flex;
-    margin-left: 5%;
+    margin-left: 6.5%;
     flex: 1;         /* take remaining space */
 }
 

@@ -1299,7 +1299,7 @@ function sizeForMobile() {
         line_chart_container.removeAttribute("style");      // Remove any style attributes set above for line chart container
         click_to_see.style.width = "150px";                 // Reset click-to-see width to 100px
         click_to_see.style.marginLeft = "0px"
-        domains_grid_container.style.marginLeft = "50px";   // Reset domains grid left margin to 50px
+        domains_grid_container.style.marginLeft = "6%";
         map_container.removeAttribute("style");             // Remove any style attributes set above for map container
         top_menu_items_div.removeAttribute("style");        // Remove any style attributes set above for top menu items div
         // dashboard_title.removeAttribute("style");           // Remove any style attributes set above dashboard title
