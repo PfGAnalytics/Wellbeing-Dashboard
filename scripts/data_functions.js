@@ -3999,12 +3999,32 @@ function setContent(idx) {
             clone.id = "framework-container-clone";
             
             placeholder.replaceWith(clone);
-
-            clone.style.marginTop = "1rem";
+            
+            clone.querySelectorAll('.hex-inner, .blue-label').forEach(hex => {
+               hex.addEventListener('click', function () {
+                  let domainName;
+                  
+                  if (this.classList.contains('blue-label')) {
+                     domainName = this.closest('.row').querySelector('.hex-inner').textContent.trim();
+                  } else {
+                     domainName = this.textContent.trim();
+                  }
+                  const domainParam = domainName.toLowerCase().replace(/\s+/g, '+');
+                  window.location.href = '?domain=' + domainParam;
+               });
+            });
+;
             clone.style.width = "100%";
-        }
-    }
-}
+            
+            const framework_rows = clone.querySelectorAll(".row");
+            framework_rows.forEach((framework_row, i) => {
+               if (i % 2 !== 1) {
+                  framework_row.style.marginLeft = "30px";
+               }
+            });
+         }
+      }
+   }
 
   let isSwapping = false;
   function animateSwap(nextIdx) {

@@ -206,35 +206,39 @@ h3 {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    width: 100% !important;
-    max-width: 100% !important;
     margin-right: 0% !important;
     margin-left: 0% !important;
 }
 
 #infoBody #framework-container .row, #infoBody #framework-container-clone .row {
-    margin-top: 1% !important;
+    margin-top: 2% !important;
+    margin-bottom: 2% !important;
 }
 
 #infoBody .framework-column, #infoBody .framework_column {
     width: 50%;
-    max-width: 450px;
+    max-width: 500px;
+}
+
+#framework-structure.row {
+    width: 100%;
+    justify-content: center;
 }
 
 #infoBody .hex {
-    width: 120px !important;
-    height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
 }
 
 #infoBody .hex-inner {
-    width: 110px !important;
-    height: 110px !important;
+    max-width: 110px !important;
+    max-height: 110px !important;
     font-size: 12pt !important;
 }
 
 #infoBody .blue-label {
-    width: 60% !important;
-    font-size: 10pt !important;
+    max-width: 300px !important;
+    font-size: 12pt !important;
 }
 
 .info-tab-btn {
@@ -312,13 +316,11 @@ h3 {
 
 #info-wrap {
     display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
+    margin: 0 3% 0;
 }
 
 #info-boxes {
-    width: 80%;
+    width: 100%;
 }
 
 .info-card-wrap > #info-card{

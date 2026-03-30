@@ -12,7 +12,6 @@ var hex_count_container = document.getElementById("hex-class-count");
 var click_to_see = document.getElementById("click-to-see");
 var clicked_desc = document.getElementById("clicked-desc");
 var indicator_hexes = document.getElementById("indicator-hexes");
-var domains_intro = document.getElementById("domains-intro");
 var indicator_intro = document.getElementById("indicator-intro");
 var button_rows = document.getElementsByClassName("button-row");
 var domains_scrn = document.getElementById("domains-scrn");
@@ -667,7 +666,6 @@ if (currentURL.includes("?domain=")) {
     domains_grid_container.style.display = "none";  // Hide the domains grid
     click_to_see.style.display = "none";        // Hide the "click-to-see" div
     domain_toggle.style.display = "none";
-    domains_intro.style.display = "none";       // Hide the "domains-intro" div
     recent_updates.style.display = "none";
     recent_filter.style.display = "none";
     h3_recent_updates.style.display = "none";
@@ -1702,7 +1700,6 @@ function browseDomains() {
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "none";
     overall_screen.style.display = "none";
-    domains_intro.style.display = "block";
     domains_footer.style.display = "block";
     recent_filter.style.display = "block";
 
@@ -1727,7 +1724,6 @@ async function showExpandAll() {
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
-    domains_intro.style.display = "none";
     domains_footer.style.display = "none";
     recent_filter.style.display = "none"
 
@@ -1752,7 +1748,6 @@ async function showByMission() {
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
     overall_screen.style.display = "none";
-    domains_intro.style.display = "none";
     domains_footer.style.display = "none";
     recent_filter.style.display = "none"
 
@@ -1783,7 +1778,6 @@ async function showByPerformance() {
     by_mission_grid.style.display = "none";
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "block";
-    domains_intro.style.display = "none";
     domains_footer.style.display = "none";
     recent_filter.style.display = "none";
 
