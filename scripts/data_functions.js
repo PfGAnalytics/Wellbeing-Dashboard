@@ -4016,18 +4016,31 @@ function setContent(idx) {
             ;
             clone.style.width = "100%";
             
-            const column = clone.querySelectorAll(".framework-column");
+
+         function updatePadding(clone) {
+            const columns = clone.querySelectorAll(".framework-column");
             const framework_rows = clone.querySelectorAll(".row");
-            framework_rows.forEach((framework_row, i) => {
+
+            framework_rows.forEach((row, i) => {
                if (i % 2 !== 1) {
-                  framework_row.style.marginLeft = "30px";
+                  row.style.marginLeft = "30px";
                }
-               column.forEach(col => {
-                  col.style.setProperty("padding-left", window.innerWidth < 1180 ? "180px" : "10px"
-                  );
-               });
+            });
+
+            columns.forEach(col => {
+               col.style.setProperty(
+                  "padding-left",
+                  window.innerWidth < 1180 ? "180px" : "10px"
+               );
             });
          }
+
+         // Call on initial load
+         updatePadding(clone);
+
+         // Call again on window resize
+         window.addEventListener("resize", () => updatePadding(clone));
+      }
       }
    }
 
