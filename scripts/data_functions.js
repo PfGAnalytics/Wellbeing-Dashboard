@@ -4013,14 +4013,19 @@ function setContent(idx) {
                   window.location.href = '?domain=' + domainParam;
                });
             });
-;
+            ;
             clone.style.width = "100%";
             
+            const column = clone.querySelectorAll(".framework-column");
             const framework_rows = clone.querySelectorAll(".row");
             framework_rows.forEach((framework_row, i) => {
                if (i % 2 !== 1) {
                   framework_row.style.marginLeft = "30px";
                }
+               column.forEach(col => {
+                  col.style.setProperty("padding-left", window.innerWidth < 1180 ? "180px" : "10px"
+                  );
+               });
             });
          }
       }

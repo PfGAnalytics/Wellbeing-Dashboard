@@ -96,6 +96,10 @@ body {
         width: 90%;
         max-width: 750px;
     }
+    #infoBody .framework-column {
+        width: 100% !important;
+        max-width: none !important;
+    }
 }
 
 @media (max-width: 1400px) {
@@ -215,7 +219,7 @@ h3 {
     margin-bottom: 2% !important;
 }
 
-#infoBody .framework-column, #infoBody .framework_column {
+#infoBody .framework-column{
     width: 50%;
     max-width: 500px;
 }

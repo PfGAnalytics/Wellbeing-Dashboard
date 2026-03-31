@@ -1392,7 +1392,7 @@ column_1 = document.createElement("div");
 column_2 = document.createElement("div");
 
 column_1.classList.add("framework-column");
-column_2.classList.add("framework_column");
+column_2.classList.add("framework-column");
 
 framework_structure.appendChild(column_1);
 framework_structure.appendChild(column_2);
