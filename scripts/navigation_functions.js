@@ -87,6 +87,7 @@ var grey_box = document.getElementsByClassName("grey-box");
 var skip_link = document.getElementById("skip-link");
 var browse_domains = document.getElementById("browse-domains");
 var expand_all = document.getElementById("expand-all");
+var expand_all_intro = document.getElementById("expand-all-intro");
 var by_performance = document.getElementById("by-performance");
 var overall_screen = document.getElementById("overall-scrn");
 var domain_toggle = document.getElementById("domain-toggle");
@@ -97,6 +98,7 @@ var recent_filter = document.getElementById("recent-filter");
 var expanded_domains = document.getElementById("expanded-domains");
 var by_mission = document.getElementById("by-mission");
 var by_mission_grid = document.getElementById("by-mission-grid");
+var by_mission_intro = document.getElementById("by-mission-intro");
 var back_to_start = document.getElementById("back-to-start");
 let performanceLoaded = false;
 let expandedDomainsLoaded = false;
@@ -1697,7 +1699,9 @@ function browseDomains() {
 
     browse_grid.style.display = "flex";
     expanded_domains.style.display = "none";
+    expand_all_intro.style.display = "none";
     by_mission_grid.style.display = "none";
+    by_mission_intro.style.display = "none";
     hex_count_container.style.display = "none";
     overall_screen.style.display = "none";
     domains_footer.style.display = "block";
@@ -1721,7 +1725,9 @@ async function showExpandAll() {
 
     browse_grid.style.display = "none";
     expanded_domains.style.display = "block";
+    expand_all_intro.style.display = "block";
     by_mission_grid.style.display = "none";
+    by_mission_intro.style.display = "none";
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
     domains_footer.style.display = "none";
@@ -1744,7 +1750,9 @@ async function showByMission() {
 
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
+    expand_all_intro.style.display = "none";
     by_mission_grid.style.display = "block";
+    by_mission_intro.style.display = "block";
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
     overall_screen.style.display = "none";
@@ -1775,7 +1783,9 @@ async function showByPerformance() {
 
     browse_grid.style.display = "none";
     expanded_domains.style.display = "none";
+    expand_all_intro.style.display = "none";
     by_mission_grid.style.display = "none";
+    by_mission_intro.style.display = "none";
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "block";
     domains_footer.style.display = "none";
