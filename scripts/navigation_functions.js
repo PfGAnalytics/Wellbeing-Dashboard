@@ -99,6 +99,7 @@ var expanded_domains = document.getElementById("expanded-domains");
 var by_mission = document.getElementById("by-mission");
 var by_mission_grid = document.getElementById("by-mission-grid");
 var by_mission_intro = document.getElementById("by-mission-intro");
+var info_accordions = document.getElementById("info-wrap");
 var back_to_start = document.getElementById("back-to-start");
 let performanceLoaded = false;
 let expandedDomainsLoaded = false;
@@ -672,6 +673,7 @@ if (currentURL.includes("?domain=")) {
     recent_filter.style.display = "none";
     h3_recent_updates.style.display = "none";
     indicator_intro.style.display = "block";    // Show the "indicator-intro" div
+    info_accordions.style.display = "none";
     hex_count_container.style.display = "none";
 
     var domain_name = lookUpDomain;    // Obtain domain name from hexagon text
@@ -1705,6 +1707,7 @@ function browseDomains() {
     hex_count_container.style.display = "none";
     overall_screen.style.display = "none";
     domains_footer.style.display = "block";
+    info_accordions.style.display = "block";
     recent_filter.style.display = "block";
 
     document.getElementById("recent-updates").style.display = "block";
@@ -1731,7 +1734,8 @@ async function showExpandAll() {
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "none";
     domains_footer.style.display = "none";
-    recent_filter.style.display = "none"
+    info_accordions.style.display = "block";
+    recent_filter.style.display = "none";
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
@@ -1757,7 +1761,8 @@ async function showByMission() {
     overall_screen.style.display = "none";
     overall_screen.style.display = "none";
     domains_footer.style.display = "none";
-    recent_filter.style.display = "none"
+    info_accordions.style.display = "block";
+    recent_filter.style.display = "none";
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
@@ -1789,6 +1794,7 @@ async function showByPerformance() {
     hex_count_container.style.display = "flex";
     overall_screen.style.display = "block";
     domains_footer.style.display = "none";
+    info_accordions.style.display = "block";
     recent_filter.style.display = "none";
 
     document.getElementById("recent-updates").style.display = "none";
