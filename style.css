@@ -2233,19 +2233,20 @@ tr {
 
 #recent-table tr {
     background-color: #f4f4f4;
-
 }
 
 #recent-table th {
     border: 1px solid black; 
     padding: 8px;
     text-align: left !important;
+    font-size: 14pt !important;
 }
 
 #recent-table td {
     border: 1px solid black !important; 
     background-color: #FFFFFF;
     padding: 8px;
+    font-size: 14pt !important;
 }
 
 
