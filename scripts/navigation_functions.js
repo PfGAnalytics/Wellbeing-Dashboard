@@ -2309,7 +2309,7 @@ const handleOnScroll = () => {
                 e.preventDefault();
                 
                 const domain    = document.getElementById('domain-title')?.textContent.trim();
-                const indicator = document.getElementById('indicator-title')?.textContent.trim();
+                const indicator = document.getElementById('indicator-title')?.textContent.trim().replace(/\s+/g, ' ');
                 if (!domain || !indicator) return;
 
                 const indicatorData = window.domains_data?.[domain]?.indicators?.[indicator]?.data;
