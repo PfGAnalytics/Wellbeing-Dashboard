@@ -1944,7 +1944,6 @@ function plotExpandedDomains () {
 
         hex = document.createElement("div");
         hex.classList.add("mission-hex");
-        hex.classList.add("shake-hex");
         hex.appendChild(hex_inner);
 
         row = document.createElement("div");
