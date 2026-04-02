@@ -1357,26 +1357,40 @@ function getChartSummarySign(labelEl, titleEl) {
     titleEl = (titleEl || "").trim();
 
     if (labelEl.includes('%')) {
-        return '%';
+      return '%';
     } else if (labelEl.includes('Average (mean) life satisfaction score')) {
-        return ' average life satisfaction score';
+      return ' average life satisfaction score';
     } else if (labelEl.includes('Percentage points')) {
-        return ' percentage points';
+      return ' percentage points';
     } else if (labelEl.includes('Annual mean nitrogen dioxide concentration (μg/m³)')) {
-        return ' μg/m³';
+      return ' μg/m³';
     } else if (labelEl.includes('mg/l soluble reactive phosphorus (SRP)')) {
-        return ' mg/L';
+      return ' mg/L';
     } else if (labelEl.includes('MtCO₂e')) {
-        return ' MtCO₂e';
+      return ' MtCO₂e';
     } else if (labelEl.includes('NBI score')) {
-        return ' NBI score';
+      return ' NBI score';
     } else if (labelEl.includes('Index')) {
-        return ' index points';
+      return ' index points';
     } else if (labelEl.includes('Number of Applicants')) {
-        return ' applicants';
-    } else if (labelEl.includes('Number')) {
-        return ' people';
-    }
+      return ' applicants';
+    } else if (labelEl.includes('Years')) {
+      return ' years';
+    } else if (labelEl.includes('Deaths')) {
+      return ' deaths';
+    } else if (labelEl.includes('Days')) {
+      return ' days';
+    } else if (titleEl.includes('Total General Expenditure on Research and Development (GERD)')) {
+      return ' Pounds Sterling (£), Millions';
+    } else if (titleEl.includes('Number of coastal water bodies in good ecological condition')) {
+      return ' water bodies';
+   } else if (titleEl.includes('satisfaction score')) {
+      return ' average life satisfaction score';
+   } else if (titleEl.includes('Number of households accepted by the Housing Executive as statutorily homeless')) {
+      return ' households';
+   } else if (labelEl.includes('Number')) {
+      return ' people';
+   }
 }
 
 function chartSummary() {
