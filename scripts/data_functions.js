@@ -3003,7 +3003,8 @@ async function drawPopupMap(d, e, type, main_container, loading) {
     const updatedDiv = document.createElement("div");
     updatedDiv.id = "popup-map-updated";
     updatedDiv.classList.add("popup-map-updated");
-    updatedDiv.textContent = `Updated on ${Number(updated.slice(8, 10))} ${getMonthName(updated.slice(5, 7))} ${updated.slice(0, 4)}`;
+    var latest_update = domains_data[d].indicators[e].latest_update;
+    updatedDiv.textContent = "Updated on " + Number(latest_update.split("-")[0]) + " " + getMonthName(latest_update.split("-")[1]) + " " + Number(latest_update.split("-")[2]);
     main_container.insertAdjacentElement("afterend", updatedDiv);
 }
 
@@ -3496,7 +3497,8 @@ async function drawMap() {
       }
 
       // Footnote on when data was last updated
-      var updated_note = "Updated on " + Number(updated.slice(8, 10)) + " " + getMonthName(updated.slice(5, 7)) + " " + updated.slice(0, 4);
+      var latest_update = domains_data[map_select_1.value].indicators[map_select_2.value].latest_update;
+      var updated_note = "Updated on " + Number(latest_update.split("-")[0]) + " " + getMonthName(latest_update.split("-")[1]) + " " + Number(latest_update.split("-")[2]);
 
       update_div = document.createElement("div");
       update_div.classList.add("map-date");
