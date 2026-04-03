@@ -1727,8 +1727,9 @@ async function renderPopup (d, e, eq_group) {
             const yLabel = getYLabel();
             const yPadding = yLabel ? 50 : 0;
 
-            const fileName =
-                  (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
+            const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
+            const eqGroup = (document.getElementById('pop-up-title').textContent.split(/by\s+/i)[1] || '').replace(/\s+/g, '-');
+            const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + 'by' + '-' + eqGroup.toLowerCase() : 'chart') + '.png';
 
             const chartCanvas = chartInstance.canvas;
             const renderedWidth = chartCanvas.width;

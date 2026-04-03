@@ -2270,7 +2270,9 @@ const handleOnScroll = () => {
 
                 ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
 
-                const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'chart') + '.png';
+                const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
+                const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-'): 'chart') + '.png';
+
                 const link = document.createElement('a');
                 link.href = out.toDataURL('image/png');
                 link.download = fileName;
@@ -2471,7 +2473,12 @@ const handleOnScroll = () => {
             ctx.fillText(updatedText, updatedX, updatedY);
         }
 
-        const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
+        const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
+        const geoType = (document.getElementById('popup-map-title').textContent.split(/by\s+/i)[1] || '').replace(/\./g, '');
+        const geoCode = geoType === "Local Government District" ? "lgd" : "aa";
+        const year = document.getElementById('popup-map-year-label').textContent.replace(/\//g, "-").replace(/\s+/g, "");
+
+        const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + geoCode + '-' + year : 'map') + '.png';
 
         const logo = new Image();
         logo.src = "img/nisra-only-colour.png";
@@ -2654,8 +2661,13 @@ html2canvas(root, {
         const updatedY = dy + canvas.height;
         ctx.fillText(updatedText, leftMargin, updatedY);
       }
+      
+      const indicatorTitle = document.getElementById('map-select-2').selectedOptions[0].text.trim().replace(/\s+/g, ' ');
+      const geoType = document.getElementById('map-select-3').selectedOptions[0].text.trim().replace(/\s+/g, ' ');
+      const geoCode = geoType === "Local Government District" ? "lgd" : "aa";
+      const year = document.getElementById("date-display").textContent.replace(/\//g, "-").replace(/\s+/g, "");
 
-      const fileName = (titleText ? titleText.toLowerCase().replaceAll(' ', '-') : 'map') + '.png';
+      const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + geoCode + '-' + year : 'map') + '.png';
 
       const logo = new Image();
       logo.src = "img/nisra-only-colour.png";
