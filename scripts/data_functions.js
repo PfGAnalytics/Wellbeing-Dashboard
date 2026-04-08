@@ -3459,9 +3459,18 @@ async function drawMap() {
          source_link = source_info.slice(source_info.indexOf("[url=") + 5);
          source_link = source_link.slice(0, source_link.indexOf("]"));
 
-         
+         const indicator = domains_data[map_select_1.value]
+           .indicators[map_select_2.value];
 
-         source_info_map.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>.";
+         source_info_map.innerHTML =
+           "This indicator is collected from <a href='" +
+           source_link +
+           "' target='_blank'>" +
+           source_name +
+           "</a>.<br>" +
+           (indicator.AOS === true
+             ? "This is an Accredited Official Statistic."
+             : "This is an Official Statistic.");
 
          // Covid text extract
          covid_text = note[0];
