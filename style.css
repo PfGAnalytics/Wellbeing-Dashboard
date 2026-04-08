@@ -792,7 +792,7 @@ padding-right: 10px;
     width: 700px;
 }
 
-#overall-click {
+#overall-click, #expand-all-click {
     display: flex;
     justify-content: center;
 }

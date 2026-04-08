@@ -101,6 +101,8 @@ var by_mission_grid = document.getElementById("by-mission-grid");
 var by_mission_intro = document.getElementById("by-mission-intro");
 var info_accordions = document.getElementById("info-wrap");
 var back_to_start = document.getElementById("back-to-start");
+var overall_click = document.getElementById("overall-click");
+var expand_all_click = document.getElementById("expand-all-click");
 let performanceLoaded = false;
 let expandedDomainsLoaded = false;
 
@@ -467,14 +469,19 @@ function plotOverallHexes (change_type) {
         hex_row.appendChild(hex_container);     // The hexagon is placed in the hexagon row  
 
          if (i == Object.keys(eval(change_type + "_indicator")).length - 1) {   // Once all hexagons are plotted:
-        document.getElementById('count-positive').textContent = Object.keys(improving_indicator).length;
-        document.getElementById('count-negative').textContent = Object.keys(worsening_indicator).length;
-        document.getElementById('count-insufficient').textContent = Object.keys(insufficient_indicator).length;
-        document.getElementById('count-neutral').textContent = Object.keys(no_change_indicator).length;
-        if (expand_all.classList.contains("domain-toggle-selected") || by_mission.classList.contains("domain-toggle-selected") || by_performance.classList.contains("domain-toggle-selected")) {
-        hex_count_container.style.display = "flex";
-        }
-        performanceLoaded = true;
+            const totalIndicators = Object.keys(improving_indicator).length + Object.keys(worsening_indicator).length + Object.keys(insufficient_indicator).length + Object.keys(no_change_indicator).length;
+
+            document.getElementById('count-positive').textContent = Object.keys(improving_indicator).length + "/" + totalIndicators;
+            document.getElementById('count-negative').textContent = Object.keys(worsening_indicator).length + "/" + totalIndicators;
+            document.getElementById('count-insufficient').textContent = Object.keys(insufficient_indicator).length + "/" + totalIndicators;
+            document.getElementById('count-neutral').textContent = Object.keys(no_change_indicator).length + "/" + totalIndicators;
+            
+            if (expand_all.classList.contains("domain-toggle-selected") || by_performance.classList.contains("domain-toggle-selected")) {
+                hex_count_container.style.display = "flex";
+            } else {
+                hex_count_container.style.display = "none";
+            }
+            performanceLoaded = true;
         }
        
 
@@ -1700,6 +1707,8 @@ function browseDomains() {
     by_performance.classList.remove("domain-toggle-selected");
 
     browse_grid.style.display = "flex";
+    overall_click.style.display = "none";
+    expand_all_click.style.display = "none";
     expanded_domains.style.display = "none";
     expand_all_intro.style.display = "none";
     by_mission_grid.style.display = "none";
@@ -1727,6 +1736,8 @@ async function showExpandAll() {
     loading_img_4.style.display = "flex";
 
     browse_grid.style.display = "none";
+    overall_click.style.display = "none";
+    expand_all_click.style.display = "flex";
     expanded_domains.style.display = "block";
     expand_all_intro.style.display = "block";
     by_mission_grid.style.display = "none";
@@ -1753,11 +1764,13 @@ async function showByMission() {
     by_performance.classList.remove("domain-toggle-selected");
 
     browse_grid.style.display = "none";
+    overall_click.style.display = "flex";
+    expand_all_click.style.display = "none";
     expanded_domains.style.display = "none";
     expand_all_intro.style.display = "none";
     by_mission_grid.style.display = "block";
     by_mission_intro.style.display = "block";
-    hex_count_container.style.display = "flex";
+    hex_count_container.style.display = "none";
     overall_screen.style.display = "none";
     overall_screen.style.display = "none";
     domains_footer.style.display = "none";
@@ -1787,6 +1800,8 @@ async function showByPerformance() {
     by_performance.classList.add("domain-toggle-selected");
 
     browse_grid.style.display = "none";
+    overall_click.style.display = "none";
+    expand_all_click.style.display = "none";
     expanded_domains.style.display = "none";
     expand_all_intro.style.display = "none";
     by_mission_grid.style.display = "none";
@@ -1799,6 +1814,78 @@ async function showByPerformance() {
 
     document.getElementById("recent-updates").style.display = "none";
     document.getElementById("h3-recent-updates").style.display = "none";
+}
+
+function getMissionStatusCounts(missionName) {
+    const totals = {
+        positive: 0,
+        neutral: 0,
+        negative: 0,
+        insufficient: 0,
+        total: 0
+    };
+
+    for (let d = 0; d < domains.length; d++) {
+        const domainName = domains[d];
+
+        // Only count indicators in this mission
+        if (domains_data[domainName].mission !== missionName) continue;
+
+        const indicators = Object.keys(domains_data[domainName].indicators);
+
+        for (let i = 0; i < indicators.length; i++) {
+            const ind = indicators[i];
+            totals.total++;
+
+            if (improving_indicator[ind]) {
+                totals.positive++;
+            } else if (no_change_indicator[ind]) {
+                totals.neutral++;
+            } else if (worsening_indicator[ind]) {
+                totals.negative++;
+            } else if (insufficient_indicator[ind]) {
+                totals.insufficient++;
+            }
+        }
+    }
+
+    return totals;
+}
+
+function buildMissionStatusRow(counts) {
+    const container = document.createElement("div");
+    container.classList.add("row", "key-text");
+    container.style.justifyContent = "center";
+    container.style.marginTop = "10px";
+
+    container.innerHTML =
+        `<div class="key-hex positive">
+            <div class="key-hex-label positive">
+                <img id = "arrow-up" src="img/arrow-up-long-solid-full.svg">
+            </div>
+        </div>
+        Improving:&nbsp;<strong>${counts.positive}/${counts.total}<span id="count-positive" style="padding-right: 10px"></span></strong>
+
+        <div class="key-hex neutral">
+            <div class="key-hex-label">
+                <img id = "arrow-across" src="img/arrow-right-long-solid-full.svg">
+            </div>
+        </div>
+        No Change:&nbsp;<strong>${counts.neutral}/${counts.total}<span id="count-neutral" style="padding-right: 10px"></span></strong>
+
+        <div class="key-hex negative">
+            <div class="key-hex-label negative">
+                <img id = "arrow-down" src="img/arrow-down-long-solid-full.svg">
+            </div>
+        </div>
+        Worsening:&nbsp;<strong>${counts.negative}/${counts.total}<span id="count-negative" style="padding-right: 10px"></span></strong>
+
+        <div class="key-hex insufficient">
+            <div class="key-hex-label insufficient"></div>
+        </div>
+        Insufficient Data:&nbsp;<strong>${counts.insufficient}/${counts.total}<span id="count-insufficient"></span></strong>`;
+
+    return container;
 }
 
 function plotExpandedDomains () {
@@ -1852,12 +1939,18 @@ function plotExpandedDomains () {
 
         row = document.createElement("div");
         row.classList.add("row");
-        row.style.marginTop = "20px";
+        row.style.marginTop = "0px";
 
             row.style.marginLeft = "18%";
             ind_space = (main_container.clientWidth / 100) * 70
 
-        ind_per_row = Math.floor((ind_space - 14) / 166);
+        // ind_per_row = Math.floor((ind_space - 14) / 166);
+        ind_per_row = 5;
+
+        if (window.innerWidth < 1200) {
+            ind_per_row = Math.floor((ind_space - 14) / 166);
+            row.style.marginLeft = "10.5%";
+        }
 
         inds = Object.keys(domains_data[domains[i]].indicators);
 
@@ -1970,7 +2063,6 @@ function plotExpandedDomains () {
         by_mission_grid.appendChild(row);
 
         if (i % 2 == 1) {
-            row.style.marginLeft = "100px";
             ind_space = main_container.clientWidth - 300;
         } else {
             ind_space = main_container.clientWidth - 200;
@@ -2011,9 +2103,21 @@ function plotExpandedDomains () {
             ind_rows.appendChild(ind_row);
         }
 
+        // Mission-specific status totals
+        const missionCounts = getMissionStatusCounts(missions[i]);
+        const missionStatusRow = buildMissionStatusRow(missionCounts);
+
         row.appendChild(ind_rows);
 
+        by_mission_grid.appendChild(missionStatusRow);
         by_mission_grid.appendChild(row);
+        
+        // Adding separators after missions
+        if (i !== missions.length - 1) {
+            separator = document.createElement("div");
+            separator.classList.add("separator");
+            by_mission_grid.appendChild(separator);
+        }
 
         for (let j = 0; j < inds.length; j ++) {
 
