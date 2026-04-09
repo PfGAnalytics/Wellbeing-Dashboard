@@ -2590,8 +2590,8 @@ const handleOnScroll = () => {
             const updatedY = dy + canvas.height + 10;
             ctx.fillText(updatedText, updatedX, updatedY);
 
-            const footer_gap = 10;
-            ctx.fillText('Reference: PfG Wellbeing Framework – www.northernireland.gov.uk/wellbeing', updatedX + 120, updatedY + footer_gap);
+            const footer_gap = 12;
+            ctx.fillText('Reference: PfG Wellbeing Framework – www.northernireland.gov.uk/wellbeing', updatedX + 119, updatedY + footer_gap);
         }
 
         const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
