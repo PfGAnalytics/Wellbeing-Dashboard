@@ -2267,7 +2267,7 @@ const handleOnScroll = () => {
                 titleH = lines.length * lineHeight + 10;
 
                 const summaryFont = '13px Arial, sans-serif';
-                const summarySideMargin = 110;
+                const summarySideMargin = 85;
                 const maxSummaryWidth = out.width - (summarySideMargin * 2);
 
                 const summaryText = (typeof chartSummary === 'function') ? chartSummary() : '';
@@ -2332,7 +2332,20 @@ const handleOnScroll = () => {
                 ctx.restore();
             }
             const chartTop = titleH + 20;
-            ctx.drawImage(src, yLabelPadding, chartTop);
+            const chartLeftOffset = 20;
+            ctx.drawImage(src, yLabelPadding - chartLeftOffset, chartTop);
+
+            const attributionText = 'Reference: PfG Wellbeing Framework: www.northernireland.gov.uk/wellbeing';
+
+            ctx.font = '10px Arial, sans-serif';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+
+            const attributionX = yLabelPadding + 5;
+            const attributionY = chartTop + height + 4;
+
+            ctx.fillText(attributionText, attributionX, attributionY);
             
             if (downloadChart._summaryLines && downloadChart._summaryLines.length > 0) {
                 ctx.fillStyle = 'black';
@@ -2528,6 +2541,7 @@ const handleOnScroll = () => {
         pad = 30;
         midWidth = canvas.width + 20;
 
+        const title_side_margin = 250;
         out.width = Math.max(canvas.width + pad * 2, midWidth);
 
         ctx.fillStyle = '#fff';
@@ -2536,7 +2550,7 @@ const handleOnScroll = () => {
         // Set font before measuring
         ctx.font = "12px Arial, sans-serif";
 
-        const maxTitleWidth = canvas.width - 60;
+        const maxTitleWidth = out.width - title_side_margin;
         let titleLines = [];
 
         if (titleText) {
@@ -2554,7 +2568,7 @@ const handleOnScroll = () => {
 
         if (titleLines.length > 0) {
             ctx.fillStyle = "#000";
-            ctx.font = "12px Arial, sans-serif";
+            ctx.font = "18px Arial, sans-serif";
             ctx.textAlign = "center";
             ctx.textBaseline = "top";
 
@@ -2575,6 +2589,9 @@ const handleOnScroll = () => {
             const updatedX = dx + 55;
             const updatedY = dy + canvas.height + 10;
             ctx.fillText(updatedText, updatedX, updatedY);
+
+            const footer_gap = 10;
+            ctx.fillText('Reference: PfG Wellbeing Framework – www.northernireland.gov.uk/wellbeing', updatedX + 120, updatedY + footer_gap);
         }
 
         const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
@@ -2608,7 +2625,7 @@ const handleOnScroll = () => {
             const logoW = logo.width * scale;
 
             const logoX = out.width - logoW - 10;
-            const logoY = prev.height - 35;
+            const logoY = prev.height - 15;
 
             ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
 
@@ -2720,7 +2737,10 @@ html2canvas(root, {
     const midWidth = canvas.width + 20;
 
     out.width = Math.max(canvas.width + pad * 2, midWidth);
-    out.height = canvas.height + pad * 2 + titleH;
+    const footerLineHeight = 12;
+    const footerLines = updatedText ? 2 : 0;
+    const footerH = footerLines * footerLineHeight + 6;
+    out.height = canvas.height + pad * 2 + titleH + footerH;
 
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, out.width, out.height);
@@ -2755,8 +2775,11 @@ html2canvas(root, {
         ctx.font = '10px Arial, sans-serif';
         ctx.textBaseline = 'top';
         const leftMargin = dx;
-        const updatedY = dy + canvas.height;
+        const updatedY = dy + canvas.height - 15;
         ctx.fillText(updatedText, leftMargin, updatedY);
+
+        const gap = 12;
+        ctx.fillText('Reference: PfG Wellbeing Framework: www.northernireland.gov.uk/wellbeing', leftMargin, updatedY + gap);
       }
       
       const indicatorTitle = document.getElementById('map-select-2').selectedOptions[0].text.trim().replace(/\s+/g, ' ');

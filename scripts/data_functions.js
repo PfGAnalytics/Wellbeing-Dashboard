@@ -1798,6 +1798,20 @@ async function renderPopup (d, e, eq_group) {
             const dy = titleTop + titleH;
             ctx.drawImage(chartCanvas, dx, dy, renderedWidth, renderedHeight);
 
+            const attributionText = 'Reference: PfG Wellbeing Framework: www.northernireland.gov.uk/wellbeing';
+
+            ctx.save();
+            ctx.font = '10px Arial, sans-serif';
+            ctx.fillStyle = '#000';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+
+            const attributionX = dx + 22;
+            const attributionY = dy + renderedHeight + 10;
+
+            ctx.fillText(attributionText, attributionX, attributionY);
+            ctx.restore();
+
             const logo = new Image();
             logo.src = "img/nisra-only-colour.png";
 
