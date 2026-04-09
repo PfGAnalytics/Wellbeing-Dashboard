@@ -2701,9 +2701,6 @@ svg.setAttribute('height', 600);
 
 shiftGElements(145, 60);
 
-
-
-
 html2canvas(root, {
     useCORS: true,
     ignoreElements: el =>
@@ -2719,7 +2716,7 @@ html2canvas(root, {
     let  ctx = out.getContext('2d');
 
     let titleH = 40;
-    const pad = 30;
+    const pad = 35;
     const midWidth = canvas.width + 20;
 
     out.width = Math.max(canvas.width + pad * 2, midWidth);
@@ -2728,13 +2725,9 @@ html2canvas(root, {
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, out.width, out.height);
 
-    
-
-
-
     if (titleText) {
         ctx.fillStyle = '#000';
-        ctx.font = '12px Arial, sans-serif';
+        ctx.font = '18px Arial, sans-serif';
         ctx.textBaseline = 'top';
         
         const maxTitleWidth = out.width - 60;
