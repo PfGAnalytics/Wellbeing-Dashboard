@@ -2250,7 +2250,7 @@ const handleOnScroll = () => {
             ctx.fillStyle = '#fff';
             ctx.fillRect(0, 0, out.width, out.height);
 
-            const titleFont = '12px Arial, sans-serif';
+            const titleFont = '18px Arial, sans-serif';
 
             const { titleText } = getHeaderText();
             let titleH = 0;
@@ -2311,7 +2311,7 @@ const handleOnScroll = () => {
             if (yLabel) {
                 ctx.save();
                 ctx.fillStyle = 'black';
-                ctx.font = '10px Arial, sans-serif';
+                ctx.font = '12px Arial, sans-serif';
                 ctx.textBaseline = 'middle';
 
                 const words = yLabel.split(/\s+/).filter(Boolean);

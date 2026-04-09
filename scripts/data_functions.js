@@ -1739,7 +1739,7 @@ async function renderPopup (d, e, eq_group) {
             const ctx = outCanvas.getContext("2d");
 
             ctx.font = "12px Arial, sans-serif";
-            const titleSideMargin = 60;
+            const titleSideMargin = 250;
             const maxTitleWidth = renderedWidth + yPadding - titleSideMargin;
 
             let titleLines = [];
@@ -1759,7 +1759,7 @@ async function renderPopup (d, e, eq_group) {
 
             if (titleLines.length > 0) {
                   ctx.fillStyle = "#000";
-                  ctx.font = "12px Arial, sans-serif";
+                  ctx.font = "18px Arial, sans-serif";
                   ctx.textAlign = "center";
                   ctx.textBaseline = "top";
 
@@ -1773,7 +1773,7 @@ async function renderPopup (d, e, eq_group) {
                if (yLabel) {
                   ctx.save();
                   ctx.fillStyle = "#000";
-                  ctx.font = "10px Arial, sans-serif";
+                  ctx.font = "12px Arial, sans-serif";
                   ctx.textAlign = "left";
                   ctx.textBaseline = "middle";
 
