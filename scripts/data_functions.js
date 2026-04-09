@@ -1710,7 +1710,10 @@ async function renderPopup (d, e, eq_group) {
          if (!chartInstance) return;
 
          function getYLabel() {
-            const el = document.querySelector('.y-label');
+            const popupChart = document.getElementById('pop-up-chart');
+            if (!popupChart) return '';
+
+            const el = popupChart.querySelector('.y-label');
             return el ? el.textContent.trim() : '';
          }
          
@@ -1794,7 +1797,8 @@ async function renderPopup (d, e, eq_group) {
                   ctx.restore();
             }
             
-            const dx = yPadding;
+            // const dx = yPadding;
+            const dx = Math.max(0, yPadding - 10);
             const dy = titleTop + titleH;
             ctx.drawImage(chartCanvas, dx, dy, renderedWidth, renderedHeight);
 
