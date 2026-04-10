@@ -106,7 +106,7 @@ var domains_data = {
             }
          },
          "Small for gestational age": {
-            importance: "Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
+            importance: "The small for gestational age indicator reports babies born with a birth weight less than the 10th percentile taking into account a number of maternal characteristics. Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
             base_year: "2019",
             ci: 2.75,
             data: {
@@ -118,7 +118,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "In 2023, the percentage point gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas was 5.9 compared with 6.4 in 2019. The change was not statistically significant. It is important to note however that data for 2023 does not contain full regional coverage, for a full explanation, see ‘further information’.",
+               no_change: "In 2023, the percentage point gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas was 6.1 compared with 6.4 in 2019. The change was not statistically significant.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -450,7 +450,7 @@ var domains_data = {
          },
          "Preventable deaths": {
             importance: "Preventable deaths relate to causes of deaths that could potentially be avoided by the public health interventions in the broadest sense.",
-            base_year: "2015-19",
+            base_year: "2016-20",
             ci: 4.8,
             data: {
                NI: "",
@@ -462,7 +462,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The preventable mortality rate increased by 8 deaths per 100,000 population from 169 deaths per 100,000 population in 2015-19 to 177 deaths per 100,000 population in 2019-23. The change was statistically significant.",
+               worsened: "The preventable mortality rate increased by 8 deaths per 100,000 population from 173 deaths per 100,000 population in 2016-20 to 181 deaths per 100,000 population in 2020-24. The change was statistically significant.",
                insufficient: ""
             }
          },
