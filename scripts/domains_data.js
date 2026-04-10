@@ -1264,8 +1264,8 @@ var domains_data = {
             data: {
                NI: "INDTRUSTMEDIANI",
                AA: "",
-               LGD: "",
-               EQ: ""
+               LGD: "INDTRUSTMEDIALGD",
+               EQ: "INDTRUSTMEDIAEQ"
             },
             improvement: "increase",
             telling: {
@@ -1286,8 +1286,8 @@ var domains_data = {
             data: {
                NI: "INDTRUSTASMBNI",
                AA: "",
-               LGD: "",
-               EQ: ""
+               LGD: "INDTRUSTASMBLGD",
+               EQ: "INDTRUSTASMBEQ"
             },
             improvement: "increase",
             telling: {
