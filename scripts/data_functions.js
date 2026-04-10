@@ -1934,15 +1934,16 @@ async function drawMap() {
          // Obtain further info text from query
          var further_note = note[0].replaceAll("\n", "");
 
-         if (further_note.indexOf("Further information") != -1) {
-            var further_string = "Further information";
-         } else if (further_note.indexOf("Further Information") != -1) {
+         if (further_note.indexOf("Further Information") != -1) {
             var further_string = "Further Information";
+         } else if (further_note.indexOf("Further information") != -1) {
+            var further_string = "Further information";
          } else if (further_note.indexOf("Notes:") != -1) {
             var further_string = "Notes:";
          } else {
             further_note = "Not available";
          }
+
 
          if (further_note != "Not available") {
             further_note = further_note.slice(further_note.indexOf(further_string) + further_string.length);
