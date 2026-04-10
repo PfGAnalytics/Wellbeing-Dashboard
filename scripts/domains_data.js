@@ -443,7 +443,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "",
-               no_change: "In 2023/24, around a fifth (19%) of respondents had a high GHQ12 score, which could indicate a mental health problem. The proportion of males and females with a high GHQ12 score is unchanged from 2019/20. Considering the longer term trend, the proportion scoring highly is at a similar level to 2010/11. There was a significant worsening during the pandemic however the latest findings suggest an overall return to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas. Further information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available online: <a href = 'https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2F2025-05%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK' target = '_blank'>from this link. </a>",
+               no_change: "In 2023/24, around a fifth (19%) of respondents had a high GHQ12 score, which could indicate a mental health problem. The proportion of males and females with a high GHQ12 score is unchanged from 2019/20. Considering the longer term trend, the proportion scoring highly is at a similar level to 2010/11. There was a significant worsening during the pandemic however the latest findings suggest an overall return to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas. Further information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available online: <a href = 'https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2F2026-01%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK' target = '_blank'>from this link. </a>",
                worsened: "",
                insufficient: ""
             }
@@ -479,8 +479,8 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2023/24, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19. For 2023/24, 2022/23 and 2021/22 gaps can be seen in participation in sport and physical activity between the people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for people living in urban and rural areas.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. While comparisons can be made between 2021/22 and 2024/25, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to Covid-19. Between 2021/22 and 2024/25 there have been consistent gaps in participation in sports and physical activity between adults with a disability compared with those without, adults with dependants compared with those without and for people living in the least and most deprived areas.",
                insufficient: ""
             }
          }
@@ -521,7 +521,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. Although estimates for life satisfaction in 2023/24 appear to be returning to pre-pandemic levels, the longer term trend shows no change in average life satisfaction. However, consistent gaps remain between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and also between people who are married or in a civil partnership compared with any other marital status. Of the 11 LGDs, Newry, Mourne & Down have the highest rates of life satisfaction for 2023/24.",
+               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend also shows no change in life satisfaction since reporting began in 2014/15. However, consistent gaps remain between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and also between people who are married or in a civil partnership compared with any other marital status. Of the 11 LGDs, Ards & North Down have the highest rates of life satisfaction for 2024/25.",
                worsened: "",
                insufficient: ""
             }
@@ -557,8 +557,8 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "",
-               no_change: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. However, consistent gaps remain between males and females, the most and least deprived areas, people with a disability compared with those without.",
-               worsened: "",
+               no_change: "",
+               worsened: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. Consistent gaps remain between males and females, the most and least deprived areas, and people with a disability compared with those without.",
                insufficient: ""
             }
          }
@@ -606,8 +606,8 @@ var domains_data = {
          },
          "External sales rate": {
             importance: 'Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a "Trade and Investment Strategy for a 10x economy" in which they note "Trade can support the ambitions of our \'10X Economy\' across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become."',
-            base_year: "2019",
-            ci: 0.7,
+            base_year: "2020",
+            ci: 0.6,
             data: {
                NI: "INDEXSALENI",
                AA: "",
@@ -616,16 +616,16 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "There has been no statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",               
+               improved: "There has been a statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",
+               no_change: "This commentary is a placeholder.",               
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Good jobs": {
-            importance: 'Providing all workers and their families with a decent and secure income is an important priority for the Department for the Economy.  Increasing the proportion of Good Jobs will be essential in helping to address pay gaps in society and delivering economic and social change.',
-            base_year: null,
-            ci:1,
+            importance: 'Providing all workers and their families with a decent and secure income is an important priority for the Department for the Economy.  Increasing the proportion of good jobs will be essential in helping to address pay gaps in society and delivering economic and social change.',
+            base_year: "2021",
+            ci:1.3,
             data: {
                NI: "",
                AA: "",
@@ -634,10 +634,10 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "",
+               improved: "The percentage of good jobs in Northern Ireland has increased from 66.9% in 2021 to 69.0% in 2025.",
                no_change: "",               
                worsened: "",
-               insufficient: "Criteria for reporting change are yet to be agreed for this indicator"
+               insufficient: ""
             }
          },   
          // "Local graduates in narrow STEM subjects": {
@@ -659,8 +659,8 @@ var domains_data = {
          //    }
          // },
          "International reputation": {
-            importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation will affect people’s willingness to live, study, visit, do business with and invest in NI and this has a significant impact on our economy.",
-            base_year: "2020",
+            importance: "It has become increasingly important to understand how Northern Ireland is viewed and thought about by other countries. Our international reputation affects people’s willingness to live, study, visit, do business with, and invest in NI, which has a significant impact on our economy.",
+            base_year: "2021",
             ci: 1,
             data: {
                NI: "INDINTREPNI",
@@ -670,9 +670,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Northern Ireland achieved a higher score on the Nation Brands Index, indicating an improved reputation internationally.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               improved: "",
+               no_change: "This suggests that international perceptions of Northern Ireland have remained broadly stable over that period.",
+               worsened: "",
                insufficient: ""
             }
          },
@@ -706,7 +706,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the third quarter of 2025, economic output in Northern Ireland increased by 1.0%,  mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2025 data is now at a series high. Over the fourth quarter of 2025, economic output in Northern Ireland increased by 0.2%,  mainly driven by increased activity in the Construction sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -796,15 +796,15 @@ var domains_data = {
             base_year: "2021/22",
            ci: 1.3,
             data: {
-               NI: "INDPERSSAFENI",
-               AA: "",
-               LGD: "",
-               EQ: ""
+               NI: "",
+               AA: "INDPSAFEAA",
+               LGD: "INDPSAFELGD",
+               EQ: "INDPSAFEEQ"
             },
            improvement: "decrease",
            telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Latest findings show the proportion, 5.7%, who felt very unsafe walking alone in their area after dark was the same as the 2021/22 figure, also 5.7%.",
+               no_change: "Latest findings show the proportion, 6%, who felt very unsafe walking alone in their area after dark was the same as the 2021/22 figure, also 6%.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
            }
@@ -850,15 +850,15 @@ var domains_data = {
             base_year: "2021/22",
              ci: 1.2,
              data: {
-                NI: "INDWORRYACNI",
-                AA: "",
-                LGD: "",
-               EQ: ""
+                NI: "",
+                AA: "INDWORACAA",
+                LGD: "INDWORACLGD",
+               EQ: "INDWORACEQ"
             },
            improvement: "decrease",
            telling: {
               improved: "This commentary is a placeholder.",
-                no_change: "Latest findings show the proportion, 5.2%, who felt very worried about becoming a victim of crime was similar to the 2021/22 figure, 4.9%.",
+                no_change: "Latest findings show the proportion, 5%, who felt very worried about becoming a victim of crime was similar to the 2021/22 figure, also 5%. ",
                 worsened: "This commentary is a placeholder.",
                 insufficient: ""
              }
@@ -899,7 +899,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels in 2023/24. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, divorced or widowed, and also between people with a white ethnicity compared with any other ethnicity.",
+               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels since 2023/24. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, divorced or widowed, and also between people with a white ethnicity compared with any other ethnicity.",
                no_change: "",
                worsened: "",
                insufficient: ""
