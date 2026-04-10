@@ -1,0 +1,131 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDTRUSTMEDIA",
+          "label": {
+            "INDTRUSTMEDIA": "Percentage who tend to trust the media, or trust it a great deal"
+          },
+          "unit": {
+            "INDTRUSTMEDIA": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "label": {
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023",
+            "2024": "2024"
+          }
+        },
+        "label": "Year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District"
+      }
+    },
+    "extension": {
+      "matrix": "INDTRUSTMEDIALGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 110,
+        "value": "Living peacefully"
+      },
+      "product": {
+        "code": "TIM",
+        "value": "Trust in the media"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": true,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTMEDIALGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Trust in the media",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTMEDIALGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTMEDIALGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTMEDIALGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTMEDIALGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Trust in the media[/b] \r\n\r\n[b]How do we measure this?[/b] \r\nPercentage of the population aged 16+ who said they tend to trust the media, or trust the media a great deal. For this indicator a higher figure is better. \r\n\r\n[b]Source[/b] \r\nPublic Awareness of and Trust in Official Statistics \r\n[url=https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos]https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nIn 2020, the data collection ran for an additional three months (October 2020 to March 2021) to achieve the required sample size. Data collection also changed from face-to-face to telephone interviewing for 2020 and 2021, with both data collection modes used from 2022. \r\n[b]\r\nFurther Information[/b] \r\n1. The Public Awareness and Trust in Official Statistics survey only ran in ‘even’ years prior to 2019. Results are not available for 2018, due to an irreparable issue with the source data. \r\n2. You can view and download confidence intervals on the [url=product/TIM]NISRA Data Portal[/url]. \r\n3. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 11, 11],
+    "updated": "2026-04-09T15:47:56",
+    "value": [null, 25, 28, null, null, null, null, null, null, null, 25.1, null, null, null, null, null, null, null, null, null, null, null, null, 29.4, 22.6, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 14, 27.2, 25, 12.1, 25.8, 28.9, 24.2, null, 24.2, 29.7, null, 33.4, 35.5, null, null, null, 36.6, null, null, null, 32, null, 28.5, 28, null, null, 37.7, 30.3, null, 47.7, 28, null, 49.7, 33.5, 36.4, 19.2, 25.7, 40.1, 30.1, 24.3, 55.3, 33.3, 37.4, null, 46.9, 29, 17.2, 39.4, null, 28.3, 23.5, 65.4, 43.4, null, null, 31.1, 28.5, 31.3, null, null, null, 29.8, null, null, 30],
+    "version": "2.0"
+  },
+  "id": {}
+}
