@@ -994,15 +994,16 @@ async function createLineChart(d, e) {
    var further_note = note[0].replaceAll("\n", "");
 
    // Looks for a heading within the note object key that might donate a "Further Information" paragraph:
-   if (further_note.indexOf("Further information") != -1) {
-      var further_string = "Further information";
-   } else if (further_note.indexOf("Further Information") != -1) {
+   if (further_note.indexOf("Further Information") != -1) {
       var further_string = "Further Information";
+   } else if (further_note.indexOf("Further information") != -1) {
+      var further_string = "Further information";
    } else if (further_note.indexOf("Notes:") != -1) {
       var further_string = "Notes:";
    } else {
       further_note = "Not available";
    }
+
 
    // The "Further Information" paragraph is then extracted from the larger text string:
    if (further_note != "Not available") {
