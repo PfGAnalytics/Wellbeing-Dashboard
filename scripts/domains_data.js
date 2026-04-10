@@ -1262,7 +1262,7 @@ var domains_data = {
             map_commentary: "",
             ni_line: true,
             data: {
-               NI: "INDTRUSTMEDIANI",
+               NI: "",
                AA: "",
                LGD: "INDTRUSTMEDIALGD",
                EQ: "INDTRUSTMEDIAEQ"
@@ -1284,7 +1284,7 @@ var domains_data = {
             map_commentary: "",
             ni_line: true,
             data: {
-               NI: "INDTRUSTASMBNI",
+               NI: "",
                AA: "",
                LGD: "INDTRUSTASMBLGD",
                EQ: "INDTRUSTASMBEQ"

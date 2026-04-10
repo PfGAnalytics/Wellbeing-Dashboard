@@ -1140,10 +1140,10 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
    var further_note = note[0].replaceAll("\n", "");
 
    // Looks for a heading within the note object key that might donate a "Further Information" paragraph:
-   if (further_note.indexOf("Further information") != -1) {
-      var further_string = "Further information";
-   } else if (further_note.indexOf("Further Information") != -1) {
+   if (further_note.indexOf("Further Information") != -1) {
       var further_string = "Further Information";
+   } else if (further_note.indexOf("Further information") != -1) {
+      var further_string = "Further information";
    } else if (further_note.indexOf("Notes:") != -1) {
       var further_string = "Notes:";
    } else {
@@ -1154,7 +1154,7 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
    if (further_note != "Not available") {
       further_note = further_note.slice(further_note.indexOf(further_string) + further_string.length);
       further_note = further_note.slice(further_note.indexOf("[/b]") + 4);
-      if (further_note.indexOf("[b]") != -1) {
+            if (further_note.indexOf("[b]") != -1) {
          further_note = further_note.slice(0, further_note.indexOf("[b]"))
       }
 
