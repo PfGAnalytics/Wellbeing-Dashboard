@@ -1302,7 +1302,7 @@ async function getEqualityGroups(d, e) {
          pop_up_title = document.createElement("div");      // Insert a div for chart title
          pop_up_title.id = "pop-up-title";                  // Give it id
          pop_up_title.textContent = document.getElementsByClassName("chart-title")[0].textContent + " by " + eq_groups[i];    // Take current chart title and add "by grouping" to end
-
+         
          pop_up_chart.appendChild(pop_up_title);   // Insert chart title into pop-up-chart div
 
          loading = document.createElement("img");     // create loading image element
@@ -1406,7 +1406,7 @@ async function getEqualityGroups(d, e) {
             const response = await fetch(chart_data_url);          // fetches the content of the url
             const fetched_data = await response.json();     // we tell it the data is in json format
             result = fetched_data.result;                  // and extract the result object key
-            
+ 
          }
 
         
@@ -1429,8 +1429,8 @@ async function getEqualityGroups(d, e) {
             }
          } else {
             groups = Object.values(result.dimension.STATISTIC.category.label)
-         }       
-
+         }      
+         
          values = {};   // Empty object
 
          if (eq_groups[i] == "Skills Level") {
@@ -1520,19 +1520,29 @@ async function getEqualityGroups(d, e) {
          }     
 
          // Determine first year that has data in it for particular sub-population
-         let first_year = [];
-         let year = 0;
+         const entries = Object.entries(values).filter(([k, arr]) => Array.isArray(arr));
 
-         while (first_year.length == 0) {
-            if (values[Object.keys(values)[0]][year] != null) {
-               first_year.push(year)
-            }
-            year = year + 1
+         // Find earliest year index where ANY series has a non-null value
+         const maxLen = Math.max(0, ...entries.map(([, arr]) => arr.length));
+
+         let firstYearIndex = -1;
+         for (let i = 0; i < maxLen; i++) {
+           if (entries.some(([, arr]) => arr[i] != null)) {
+             firstYearIndex = i;
+             break;
+           }
+         }
+
+         if (firstYearIndex === -1) {
+           loading.style.display = "none";
+           pop_up_container.style.display = "block";
+           pop_up_container.innerHTML = "<p style='padding:16px'>No data available for this breakdown.</p>";
+           return;
          }
 
          // Construct data object for chart.js bar chart
          var data = {
-            labels: years.slice(first_year),
+            labels: years.slice(firstYearIndex),
             datasets: []
          };         
 
@@ -1540,9 +1550,10 @@ async function getEqualityGroups(d, e) {
          colours = ["#12436D", "#28A197", "#801650", "#F46A25", "#3D3D3D", "#A285D1", "#0A4D46","#F66068","#472C4C"];
 
          for (let j = 0; j < Object.keys(values).length; j ++) {     // Loop through values and create each data series
+            const key = Object.keys(values)[j];  
             data.datasets.push({
                label: Object.keys(values)[j],
-               data: values[Object.keys(values)[j]].slice(first_year),
+               data:  values[key].slice(firstYearIndex),
                backgroundColor: [
                   colours[j % colours.length]
                ]
@@ -1588,8 +1599,8 @@ async function getEqualityGroups(d, e) {
           };
 
          new Chart(pop_canvas, chart_config);      // Plot chart
-         
-         note_text = result.note[0].replaceAll("[b] ", "[b]").replaceAll("\n", "");         
+
+         note_text = result.note[0].replaceAll("[b] ", "[b]").replaceAll("\n", "");            
          
          if (eq_groups[i] == "Skills Level") {
             heading_text = "[b]Further Information"
@@ -1946,10 +1957,10 @@ async function drawMap() {
          // Obtain further info text from query
          var further_note = note[0].replaceAll("\n", "");
 
-         if (further_note.indexOf("Further Information") != -1) {
-            var further_string = "Further Information";
-         } else if (further_note.indexOf("Further information") != -1) {
+         if (further_note.indexOf("Further information") != -1) {
             var further_string = "Further information";
+         } else if (further_note.indexOf("Further Information") != -1) {
+            var further_string = "Further Information";
          } else if (further_note.indexOf("Notes:") != -1) {
             var further_string = "Notes:";
          } else {
