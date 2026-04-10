@@ -1048,10 +1048,10 @@ var domains_data = {
             base_year: "2020",
             ci: 3.9,
             data: {
-               NI: "INDTRUSTMEDIANI",
+               NI: "",
                AA: "",
-               LGD: "",
-               EQ: ""
+               LGD: "INDTRUSTMEDIALGD",
+               EQ: "INDTRUSTMEDIAEQ"
             },
             improvement: "increase",
             telling: {
@@ -1066,10 +1066,10 @@ var domains_data = {
             base_year: "2020",
             ci: 3.8,
             data: {
-               NI: "INDTRUSTASMBNI",
+               NI: "",
                AA: "",
-               LGD: "",
-               EQ: ""
+               LGD: "INDTRUSTASMBLGD",
+               EQ: "INDTRUSTASMBEQ"
             },
             improvement: "increase",
             telling: {
