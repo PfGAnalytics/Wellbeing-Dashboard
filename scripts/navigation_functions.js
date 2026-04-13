@@ -2561,7 +2561,7 @@ const handleOnScroll = () => {
         const titleTop = 10;
         const titleH = titleLines.length > 0 ? (titleLines.length * titleLineHeight) : 0;
 
-        out.height = canvas.height + pad * 2 + titleH;
+        out.height = canvas.height + pad * 2 + titleH + 40;
 
         ctx.fillStyle = "#fff";
         ctx.fillRect(0, 0, out.width, out.height);
@@ -2582,16 +2582,35 @@ const handleOnScroll = () => {
         const dx = Math.round((out.width - canvas.width) / 2);
         const dy = titleTop + titleH;
         ctx.drawImage(canvas, dx, dy);
+
+        const summaryEl = document.querySelector('.popup-map-summary-text');
+        const summaryText = summaryEl ? summaryEl.textContent.trim() : '';
         
         if (updatedText) {
             ctx.font = '10px Arial, sans-serif';
             ctx.textBaseline = 'top';
-            const updatedX = dx + 55;
+            const updatedX = dx;
             const updatedY = dy + canvas.height + 10;
+            const footer_gap = 12;
+            ctx.textAlign = "left";
             ctx.fillText(updatedText, updatedX, updatedY);
 
-            const footer_gap = 12;
-            ctx.fillText('Reference: PfG Wellbeing Framework – www.northernireland.gov.uk/wellbeing', updatedX + 119, updatedY + footer_gap);
+            const referenceY = updatedY + footer_gap;
+            ctx.fillText('Reference: PfG Wellbeing Framework – www.northernireland.gov.uk/wellbeing', updatedX, referenceY);
+
+            if (summaryText) {
+                const summaryX = updatedX;
+                const summaryWidth = out.width - summaryX - 30;
+                const summaryLines = wrapCanvasText(summaryText, ctx, summaryWidth);
+
+                let summaryY = referenceY + footer_gap;
+                ctx.textAlign = "left";
+
+                summaryLines.forEach(line => {
+                    ctx.fillText(line, summaryX, summaryY);
+                    summaryY += 14;
+                })
+            }
         }
 
         const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
@@ -2739,7 +2758,8 @@ html2canvas(root, {
     out.width = Math.max(canvas.width + pad * 2, midWidth);
     const footerLineHeight = 12;
     const footerLines = updatedText ? 2 : 0;
-    const footerH = footerLines * footerLineHeight + 6;
+    let footerH = 0;
+    // let footerH = footerLines * footerLineHeight + 6;
     out.height = canvas.height + pad * 2 + titleH + footerH;
 
     ctx.fillStyle = '#fff';
@@ -2771,7 +2791,20 @@ html2canvas(root, {
       const dy = titleH;
       ctx.drawImage(canvas, dx, dy);
 
+      const summaryEl = document.getElementById('summary-map');
+      const summary = summaryEl ? summaryEl.textContent : '';
+      const measureEl = document.getElementById('measure-info-map');
+      const measure = measureEl ? measureEl.textContent : '';
+      const measureMatch = measure.match(/For this indicator a[^.]*\./g);
+      const measureFiltered = measureMatch ? measureMatch.join(' ') : '';
+
+      const summaryText = summary + ' ' + measureFiltered;
+      
+      let summaryLines = [];
+
       if (updatedText) {
+        footerH += footerLineHeight;
+        footerH += footerLineHeight;
         ctx.font = '10px Arial, sans-serif';
         ctx.textBaseline = 'top';
         const leftMargin = dx;
@@ -2781,6 +2814,22 @@ html2canvas(root, {
         const gap = 12;
         ctx.fillText('Reference: PfG Wellbeing Framework: www.northernireland.gov.uk/wellbeing', leftMargin, updatedY + gap);
       }
+      
+      if (summaryText) {
+        let y = dy + canvas.height + 10;
+        ctx.font = '10px Arial, sans-serif';
+        const footerRightPadding = 180;
+        const leftMargin = dx;
+        const summaryMaxWidth = out.width - leftMargin - footerRightPadding;
+        summaryLines = wrapCanvasText(summaryText, ctx, summaryMaxWidth);
+        footerH += summaryLines.length * footerLineHeight + 6;
+        
+        summaryLines.forEach(line => {
+            ctx.fillText(line, leftMargin, y);
+            y += footerLineHeight;
+        });
+    }
+
       
       const indicatorTitle = document.getElementById('map-select-2').selectedOptions[0].text.trim().replace(/\s+/g, ' ');
       const geoType = document.getElementById('map-select-3').selectedOptions[0].text.trim().replace(/\s+/g, ' ');

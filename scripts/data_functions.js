@@ -1409,19 +1409,15 @@ function chartSummary() {
 
     const unit = getChartSummarySign(labelEl, titleEl);
 
-    if (comparison_year == null) {
-        return `The most recent value was ${latest_value}${unit} in ${latest_year}.`;
-    }
+    const measureText = document.querySelector('#measure-info')?.textContent.trim();
+    const match = measureText.match(/For this indicator[^.]*/);
+    const measureInfo = match ? match[0].trim() : '';
 
-    if (latest_value > comparison_year_value) {
-        return `The value increased from ${comparison_year_value}${unit} in the comparison year, ${comparison_year}, to ${latest_value}${unit} in ${latest_year}, the most recent year of data.`;
-    }
+    const changeText = document.querySelector("#change-info")?.textContent.trim() || '';
+    const changeInfo = changeText.split('.').filter(Boolean)[0].trim();
+    console.log(changeInfo);
 
-    if (latest_value < comparison_year_value) {
-      return `The value decreased from ${comparison_year_value}${unit} in the comparison year, ${comparison_year}, to ${latest_value}${unit} in ${latest_year}, the most recent year of data.`;
-      }
-
-    return `The value remained unchanged at ${latest_value}${unit} between the comparison year, ${comparison_year}, and ${latest_year}, the most recent year of data.`;
+    return `The value was ${comparison_year_value}${unit} in the comparison year (${comparison_year}) and was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${measureInfo}. ${changeInfo}.`
 }
 
 let y_axis_label;
@@ -3821,6 +3817,9 @@ function handleRefreshPopup() {
    const yearEl = document.getElementById("popup-map-year-label");
    const labelEl = (y_label_div.textContent || '').trim();
    const titleEl = (chart_title_div.textContent || '').trim();
+   const measureText = document.querySelector('#measure-info')?.textContent?.trim() || '';
+   const match = measureText.match(/For this indicator a[^.]*\./i);
+   const measureInfo = match ? match[0].replace(/\.$/, '') : '';
 
    let summarySign;
 
@@ -3862,13 +3861,18 @@ function handleRefreshPopup() {
 
    const lowHighSentence = `The lowest value was ${shapeMin} with ${yearMin}${summarySign} and the highest value was ${shapeMax} with ${yearMax}${summarySign}`;
 
-   let titleText;
+   // let titleText;
 
    const currentYear = yearEl ? yearEl.textContent.trim() : "";
    const yearText = currentYear ? `for the year ${currentYear}.` : "";
-         
-   const altText = titleText ? `${baseSentence} ${titleText} ${yearText} ${lowHighSentence}.` : `${baseSentence} ${yearText} ${lowHighSentence}.`;
-   
+
+   let altText;
+   if (measureInfo) {
+      altText = `${baseSentence} ${yearText} ${lowHighSentence}. ${measureInfo}.`;
+   } else {
+      altText = `${baseSentence} ${yearText} ${lowHighSentence}.`;
+   }
+
    const summaryTextEl = document.querySelector(".popup-map-summary-text");
 
    if (summaryTextEl) {
