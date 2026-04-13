@@ -2059,6 +2059,12 @@ async function renderPopup (d, e, eq_group) {
 
       pop_up_title.textContent = result.dimension.STATISTIC.category.label[matrix.replace("EQ", "")] + " by " + eq_group;    // Take current chart title and add "by grouping" to end
       y_axis.textContent = result.dimension.STATISTIC.category.unit[matrix.replace("EQ", "")].label;
+      
+      const titleText = pop_up_title.textContent || "";
+      
+      if (titleText.startsWith("Average life satisfaction score (from 0 to 10)")) {
+         y_axis.textContent = "Average (mean) life satisfaction score";
+      }
 
       // After succesful fetch from data portal the loading image is removed and chart is displayed
       loading.style.display = "none";
