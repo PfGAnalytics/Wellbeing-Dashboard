@@ -1191,6 +1191,9 @@ document.getElementById("source-info").appendChild(source_info_div);
 
       linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
       url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+       if (url.includes("product") && !url.startsWith("https://data.nisra.gov.uk/")) {
+           url = "https://data.nisra.gov.uk/" + url;
+       }
 
       covid_text = covid_text.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
 
@@ -2136,6 +2139,9 @@ async function drawMap() {
          
                linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
                url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+                if (url.includes("product") && !url.startsWith("https://data.nisra.gov.uk/")) {
+                    url = "https://data.nisra.gov.uk/" + url;
+                }
          
                covid_text = covid_text.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
          
