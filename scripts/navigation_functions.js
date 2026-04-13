@@ -2243,6 +2243,9 @@ const handleOnScroll = () => {
             const yLabel = getYLabel();
             const yLabelPadding = yLabel ? 80 : 0;
 
+            const chartDateEl = document.querySelector('.chart-date');
+            const chartDate = chartDateEl ? chartDateEl.textContent.trim() : ''; 
+
             const out = document.createElement('canvas');
             out.width = width + yLabelPadding;
             const ctx = out.getContext('2d');
@@ -2345,7 +2348,14 @@ const handleOnScroll = () => {
             const attributionX = yLabelPadding + 5;
             const attributionY = chartTop + height + 4;
 
-            ctx.fillText(attributionText, attributionX, attributionY);
+            let footerY = attributionY;
+
+            if (chartDate) {
+               ctx.fillText(chartDate, attributionX, footerY);
+               footerY += 12;
+            }
+
+            ctx.fillText(attributionText, attributionX, attributionY + 12);
             
             if (downloadChart._summaryLines && downloadChart._summaryLines.length > 0) {
                 ctx.fillStyle = 'black';
@@ -2353,7 +2363,7 @@ const handleOnScroll = () => {
                 ctx.textAlign = "left";
                 ctx.textBaseline = "top";
 
-                let yPos = titleH + 20 + height + 20;
+                let yPos = titleH + height + 55;
                 const xPos = downloadChart._summarySideMargin;
 
                 downloadChart._summaryLines.forEach(line => {

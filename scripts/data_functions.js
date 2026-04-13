@@ -1417,7 +1417,11 @@ function chartSummary() {
     const changeInfo = changeText.split('.').filter(Boolean)[0].trim();
     console.log(changeInfo);
 
-    return `The value was ${comparison_year_value}${unit} in the comparison year (${comparison_year}) and was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${measureInfo}. ${changeInfo}.`
+    if (measureInfo) {
+      return `The value was ${comparison_year_value}${unit} in the comparison year (${comparison_year}) and was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${measureInfo}. ${changeInfo}.`
+    } else {
+      return `The value was ${comparison_year_value}${unit} in the comparison year (${comparison_year}) and was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${changeInfo}.`
+    }
 }
 
 let y_axis_label;
