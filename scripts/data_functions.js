@@ -1022,6 +1022,10 @@ async function createLineChart(d, e) {
          linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
          url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
 
+          if (url.includes("product") && !url.startsWith("https://data.nisra.gov.uk/")) {
+              url = "https://data.nisra.gov.uk/" + url;
+          }
+
          further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
 
       }      
