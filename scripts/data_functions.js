@@ -1760,7 +1760,7 @@ async function renderPopup (d, e, eq_group) {
             const ctx = outCanvas.getContext("2d");
 
             ctx.font = "12px Arial, sans-serif";
-            const titleSideMargin = 250;
+            const titleSideMargin = 300;
             const maxTitleWidth = renderedWidth + yPadding - titleSideMargin;
 
             let titleLines = [];
