@@ -1681,6 +1681,14 @@ async function renderPopup (d, e, eq_group) {
       pop_canvas.id = "pop-canvas";
       pop_up_container.appendChild(pop_canvas);
 
+      const original_chart_date = document.querySelector('.chart-date');
+      if (original_chart_date) {
+         const chart_date = original_chart_date.cloneNode(true);
+         chart_date.removeAttribute('id');
+         chart_date.classList.add('popup-chart-date');
+         pop_up_container.appendChild(chart_date);
+      }
+
       // Create a download button to download pop up chart
       const download_btn = document.createElement("button");
       download_btn.id = "download-pop-up-chart";
@@ -1733,6 +1741,9 @@ async function renderPopup (d, e, eq_group) {
             const yLabel = getYLabel();
             const yPadding = yLabel ? 50 : 0;
 
+            const chartDateEl = document.querySelector('.chart-date.popup-chart-date');
+            const chartDate = chartDateEl ? chartDateEl.textContent.trim() : '';
+
             const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
             const eqGroup = (document.getElementById('pop-up-title').textContent.split(/by\s+/i)[1] || '').replace(/\s+/g, '-');
             const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + 'by' + '-' + eqGroup.toLowerCase() : 'chart') + '.png';
@@ -1758,7 +1769,7 @@ async function renderPopup (d, e, eq_group) {
             const titleH = titleLines.length > 0 ? titleLines.length * titleLineHeight : 0;
 
             outCanvas.width = renderedWidth + yPadding;
-            outCanvas.height = renderedHeight + titleTop + titleH + 30;
+            outCanvas.height = renderedHeight + titleTop + titleH + 45;
 
             ctx.fillStyle = "#fff";
             ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
@@ -1816,7 +1827,14 @@ async function renderPopup (d, e, eq_group) {
             const attributionX = dx + 22;
             const attributionY = dy + renderedHeight + 10;
 
-            ctx.fillText(attributionText, attributionX, attributionY);
+            let footerY = attributionY;
+
+            if (chartDate) {
+               ctx.fillText(chartDate, attributionX, footerY);
+               footerY += 12;
+            }
+
+            ctx.fillText(attributionText, attributionX, attributionY + 12);
             ctx.restore();
 
             const logo = new Image();
