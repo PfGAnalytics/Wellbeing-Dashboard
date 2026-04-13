@@ -2318,6 +2318,9 @@ async function renderPopup (d, e, eq_group) {
                const boxX = Math.round(left + 215);
                const boxY = Math.round(
                  top - (
+                  Object.keys(values).some(key => key.toLowerCase().includes("at level 3 and above"))
+                  ? 89
+                  :
                   Object.keys(values).some(key => key.toLowerCase().includes("banking and finance"))
                   ? 112
                   :
