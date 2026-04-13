@@ -1901,12 +1901,14 @@ async function renderPopup (d, e, eq_group) {
             alert('Indicator data not available.');
             return;
          }
-         
-         // Prioritise EQ, fallback to NI
-         const indicatorCode = indicatorData.EQ || indicatorData.NI;
-         if (!indicatorCode) {
-            alert('No downloadable data available for this indicator.');
-            return;
+
+         let indicatorCode;
+         if (eq_group === "Skills Level" && indicatorData.LEV) {
+            indicatorCode = indicatorData.LEV;
+         } else if (indicatorData.EQ) {
+            indicatorCode = indicatorData.EQ;
+         } else if (indicatorData.NI) {
+            indicatorCode = indicatorData.NI;
          }
          
          // Build the download URL
