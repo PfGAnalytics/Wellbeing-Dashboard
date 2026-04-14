@@ -2624,7 +2624,8 @@ const handleOnScroll = () => {
         }
 
         const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
-        const geoType = (document.getElementById('popup-map-title').textContent.split(/by\s+/i)[1] || '').replace(/\./g, '');
+        const popupTitleText = document.getElementById('popup-map-title').textContent;
+        const geoType = (popupTitleText.split(/by\s+/i)[1] || '').replace(/\(.*?\)/g, '').replace(/\./g, '').trim();
         const geoCode = geoType === "Local Government District" ? "lgd" : "aa";
         const year = document.getElementById('popup-map-year-label').textContent.replace(/\//g, "-").replace(/\s+/g, "");
 

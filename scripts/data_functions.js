@@ -2557,9 +2557,11 @@ async function renderMapPopup(d, e, type, data) {
       }
 
       if (customTitle) {
-         mapTitle.textContent = `${customTitle} by ${fullType}.`;
+         mapTitle.textContent = `${customTitle} by ${fullType}`;
+         mapTitle.dataset.baseTitle = mapTitle.textContent;
       } else {
-         mapTitle.textContent = `${firstSentence} by ${fullType}.`;
+         mapTitle.textContent = `${firstSentence} by ${fullType}`;
+         mapTitle.dataset.baseTitle = mapTitle.textContent;
       }
 
       mapTitle.classList.add("popup-map-title");
@@ -2968,6 +2970,10 @@ async function drawPopupMap(d, e, type, main_container, loading) {
       const selectedYear = years[slider.value];
       yearLabel.textContent = `${selectedYear}`;
       const selectedData = data_by_year[selectedYear];
+
+      const titleEl = document.getElementById("popup-map-title");
+      const baseTitle = titleEl.dataset.baseTitle;
+      titleEl.textContent = `${baseTitle} (${selectedYear}).`;
 
       const nonZero = selectedData.filter(v => Number.isFinite(v) && v !== 0);
       const yearMin = nonZero.length ? Math.min(...nonZero) : null;
