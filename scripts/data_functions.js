@@ -1194,6 +1194,11 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
    
    notes = notes.filter(function (n) {return n != "" & n != " "})
 
+   // If there is no further information, do not show div
+   if (!notes || notes.length === 0 || further_note === "Not available") {
+      document.getElementById("further-information").style.display = "none";
+   } else {
+
    // Div element created for "Further information" and placed in html document:
    further_info_div = document.createElement("div");
    further_info_list = document.createElement("ol");
@@ -1208,7 +1213,7 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
    further_info_div.appendChild(further_info_list);
 
    document.getElementById("further-info").appendChild(further_info_div);
-
+}
 
   // The source info is pulled out of the note object
   source_info = note[0];
