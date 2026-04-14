@@ -382,6 +382,8 @@ async function createLineChart(d, e) {
       y_axis_label = "Index (base 2023=100)"
    } else if (y_axis_label == "Percentage") {
       y_axis_label = "%"
+   }  else if (indicator.data.EQ == "INDLIFESATYPEQ") {
+      y_axis_label = "Average (mean) life satisfaction score"
    }
 
    // The following calculations set the ideal heights for the y axis as well as the green and red boxes
