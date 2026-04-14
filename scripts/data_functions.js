@@ -3021,8 +3021,8 @@ async function drawPopupMap(d, e, type, main_container, loading) {
                 });
             }
         }).addTo(map);
-        const shapeMin = shapeNames[selectedData.indexOf(yearMin, selectedData)];
-        const shapeMax = shapeNames[selectedData.indexOf(yearMax, selectedData)];
+        const shapeMin = shapeNames.filter((_, i) => selectedData[i] === yearMin);
+        const shapeMax = shapeNames.filter((_, i) => selectedData[i] === yearMax);
 
         setPopupSummary(shapeMin, yearMin, shapeMax, yearMax, indicator);
 
@@ -3368,8 +3368,14 @@ async function drawMap() {
             if (name) shapeNames.push(name);
          });
          
-         const shape_Min = shapeNames[selected_data.indexOf(year_Min, selected_data)];
-         const shape_Max = shapeNames[selected_data.indexOf(year_Max, selected_data)];
+         // Find all areas with the lowest value
+         const all_shape_min = shapeNames.filter((_, i) => selected_data[i] === year_Min);
+         
+         // Find all areas with the highest value
+         const all_shape_max = shapeNames.filter((_, i) => selected_data[i] === year_Max);
+         
+         const shape_Min = all_shape_min;
+         const shape_Max = all_shape_max;
 
          setMapSummary(year_Min, shape_Min, shape_Max, year_Max);
 
@@ -3856,7 +3862,7 @@ function handleRefreshPopup() {
     renderMapPopup(d, e, type);
   }
   
-  function setPopupSummary(shapeMin, yearMin, shapeMax, yearMax, indicator) {
+  function setPopupSummary(shape_Min, year_Min, shape_Max, year_Max, indicator) {
    const baseSentence = "A map of Northern Ireland";
    const yearEl = document.getElementById("popup-map-year-label");
    const labelEl = (y_label_div.textContent || '').trim();
@@ -3864,6 +3870,21 @@ function handleRefreshPopup() {
    const measureText = document.querySelector('#measure-info')?.textContent?.trim() || '';
    const match = measureText.match(/For this indicator a[^.]*\./i);
    const measureInfo = match ? match[0].replace(/\.$/, '') : '';
+   
+   function formatAreaList(areas) {
+      if (!areas) return '';
+
+      // Normalise to array
+      const arr = Array.isArray(areas) ? areas : [areas];
+
+      if (arr.length === 1) return arr[0];
+      if (arr.length === 2) return `${arr[0]} and ${arr[1]}`;
+      return `${arr.slice(0, -1).join(', ')} and ${arr[arr.length - 1]}`;
+   }
+
+   function valueWording(areas) {
+      return Array.isArray(areas) && areas.length > 1 ? 'values were' : 'value was';
+   }
 
    let summarySign;
 
@@ -3903,7 +3924,13 @@ function handleRefreshPopup() {
       summarySign = ' coastal water bodies';
    }
 
-   const lowHighSentence = `The lowest value was ${shapeMin} with ${yearMin}${summarySign} and the highest value was ${shapeMax} with ${yearMax}${summarySign}`;
+   const lowestAreaText = formatAreaList(shape_Min);
+   const highestAreaText = formatAreaList(shape_Max);
+
+   const lowestWording = valueWording(shape_Min);
+   const highestWording = valueWording(shape_Max);
+
+   const lowHighSentence = `The lowest ${lowestWording} ${lowestAreaText} with ${year_Min}${summarySign} and the highest ${highestWording} ${highestAreaText} with ${year_Max}${summarySign}.`;
 
    // let titleText;
 
@@ -3912,9 +3939,9 @@ function handleRefreshPopup() {
 
    let altText;
    if (measureInfo) {
-      altText = `${baseSentence} ${yearText} ${lowHighSentence}. ${measureInfo}.`;
+      altText = `${baseSentence} ${yearText} ${lowHighSentence} ${measureInfo}.`;
    } else {
-      altText = `${baseSentence} ${yearText} ${lowHighSentence}.`;
+      altText = `${baseSentence} ${yearText} ${lowHighSentence}`;
    }
 
    const summaryTextEl = document.querySelector(".popup-map-summary-text");
@@ -3971,11 +3998,22 @@ function setMapSummary(year_Min, shape_Min, shape_Max, year_Max) {
       summarySign = " households";
    }
 
-   const commentary =
-     window.domains_data?.[map_select_1.value]?.indicators?.[map_select_2.value]?.map_commentary;
+   function formatAreaList(arr) {
+      if (arr.length === 0) return '';
+      if (arr.length === 1) return arr[0];
+      if (arr.length === 2) return `${arr[0]} and ${arr[1]}`;
+      return `${arr.slice(0, -1).join(', ')} and ${arr[arr.length - 1]}`;
+   }
+   
+   const lowestAreaText = formatAreaList(shape_Min);
+   const highestAreaText = formatAreaList(shape_Max);
 
-   // Build base summary
-   let summary = `${baseSentence} ${mapYear}. The lowest value was ${lowestArea} with ${lowestValue}${summarySign} and the highest value was ${highestArea} with ${highestValue}${summarySign}.`;
+   const lowestWording = shape_Min.length > 1 ? 'values were' : 'value was';
+   const highestWording = shape_Max.length > 1 ? 'values were' : 'value was';
+   
+   let summary = `${baseSentence} ${mapYear}. The lowest ${lowestWording} ${lowestAreaText} with ${lowestValue}${summarySign} and the highest ${highestWording} ${highestAreaText} with ${highestValue}${summarySign}.`;
+
+   const commentary = window.domains_data?.[map_select_1.value]?.indicators?.[map_select_2.value]?.map_commentary;
 
    // Append commentary only if it exists and is not an empty string
    if (commentary) {
