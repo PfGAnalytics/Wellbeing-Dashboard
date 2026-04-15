@@ -428,6 +428,8 @@ async function createLineChart(d, e) {
       y_axis_label = "Annual mean nitrogen dioxide concentration (μg/m³)"
    } else if (indicator.data.NI == "INDNICEINI") {
       y_axis_label = "Index (base 2023=100)"
+   } else if (indicator.data.EQ == "INDLIFESATYPEQ") {
+      y_axis_label = "Average (mean) life satisfaction score";
    } else if (y_axis_label == "Percentage") {
       y_axis_label = "%"
    }
