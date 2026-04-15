@@ -1750,7 +1750,8 @@ async function renderPopup (d, e, eq_group) {
             const titleText = titleEl ? titleEl.textContent.trim() : '';
 
             const yLabel = getYLabel();
-            const yPadding = yLabel ? 50 : 0;
+            const yPadding = yLabel ? 60 : 0;
+            const leftInset = yPadding + 10;
 
             const chartDateEl = document.querySelector('.chart-date.popup-chart-date');
             const chartDate = chartDateEl ? chartDateEl.textContent.trim() : '';
@@ -1779,7 +1780,7 @@ async function renderPopup (d, e, eq_group) {
             const titleTop = 20;
             const titleH = titleLines.length > 0 ? titleLines.length * titleLineHeight : 0;
 
-            outCanvas.width = renderedWidth + yPadding;
+            outCanvas.width = renderedWidth + leftInset;
             outCanvas.height = renderedHeight + titleTop + titleH + 45;
 
             ctx.fillStyle = "#fff";
@@ -1802,7 +1803,6 @@ async function renderPopup (d, e, eq_group) {
                   ctx.save();
                   ctx.fillStyle = "#000";
                   ctx.font = "12px Arial, sans-serif";
-                  ctx.textAlign = "left";
                   ctx.textBaseline = "middle";
 
                   const words = yLabel.split(/\s+/).filter(Boolean);
@@ -1813,7 +1813,7 @@ async function renderPopup (d, e, eq_group) {
                   const centerY = titleTop + titleH + renderedHeight / 2;
                   const startY = centerY - blockHeight / 2;
 
-                  const x = 10;
+                  const x = 40;
 
                   words.forEach((word, i) => {
                      ctx.fillText(word, x, startY + i * lineHeight);
@@ -1823,7 +1823,7 @@ async function renderPopup (d, e, eq_group) {
             }
             
             // const dx = yPadding;
-            const dx = Math.max(0, yPadding - 10);
+            const dx = leftInset;
             const dy = titleTop + titleH;
             ctx.drawImage(chartCanvas, dx, dy, renderedWidth, renderedHeight);
 

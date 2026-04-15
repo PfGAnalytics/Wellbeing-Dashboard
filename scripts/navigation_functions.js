@@ -2241,7 +2241,7 @@ const handleOnScroll = () => {
             const bottomPadding = 15;
 
             const yLabel = getYLabel();
-            const yLabelPadding = yLabel ? 80 : 0;
+            const yLabelPadding = yLabel ? 100 : 0;
 
             const chartDateEl = document.querySelector('.chart-date');
             const chartDate = chartDateEl ? chartDateEl.textContent.trim() : ''; 
@@ -2263,14 +2263,14 @@ const handleOnScroll = () => {
                 ctx.font = titleFont;
                 ctx.textBaseline = "top";
 
-                const maxTitleWidth = out.width - 60;
+                const maxTitleWidth = out.width - 20;
                 const lines = wrapCanvasText(titleText, ctx, maxTitleWidth);
 
                 const lineHeight = 22;
                 titleH = lines.length * lineHeight + 10;
 
                 const summaryFont = '13px Arial, sans-serif';
-                const summarySideMargin = 85;
+                const summarySideMargin = 105;
                 const maxSummaryWidth = out.width - (summarySideMargin * 2);
 
                 const summaryText = (typeof chartSummary === 'function') ? chartSummary() : '';
@@ -2320,7 +2320,7 @@ const handleOnScroll = () => {
                 const words = yLabel.split(/\s+/).filter(Boolean);
                 const lineHeight = 14;
 
-                const labelX = yLabelPadding / 2;
+                const labelX = yLabelPadding / 2 - 10;
                 const labelY = titleH + height / 2;
 
                 ctx.translate(labelX, labelY);
