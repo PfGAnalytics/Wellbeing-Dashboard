@@ -2081,6 +2081,7 @@ function plotExpandedDomains () {
         }
 
         inds = inds.flat();
+        inds.sort((a, b) => a.localeCompare(b));
 
         rows_required = Math.ceil(inds.length / ind_per_row);
 
