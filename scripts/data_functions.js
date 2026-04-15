@@ -1478,6 +1478,8 @@ async function getEqualityGroups(d, e) {
 
   var eq_groups = [];      // Empty array to be filled with groupings
 
+  // console.log(eq_groups)
+
   for (let i = 0; i < labels.length; i ++) {    // Loop through all labels
 
 
@@ -1495,6 +1497,18 @@ async function getEqualityGroups(d, e) {
 
          if (!eq_groups.includes(group) & group != "Northern Ireland") {
             eq_groups.push(group)         // If grouping isn't already in eq_groups array, then add it to the array
+         }
+
+         // Ordering "Age" to always come after "Sex"
+         if (eq_groups.includes("Sex") && eq_groups.includes("Age")) {
+            const sexEQ = eq_groups.indexOf("Sex");
+            const ageEQ = eq_groups.indexOf("Age");
+            
+            // Only move Age if it is not already immediately after Sex
+            if (ageEQ !== sexEQ + 1) {
+               eq_groups.splice(ageEQ, 1);          // remove Age
+               eq_groups.splice(sexEQ + 1, 0, "Age"); // insert after Sex
+            }
          }
   }
 
