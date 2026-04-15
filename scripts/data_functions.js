@@ -1907,15 +1907,19 @@ async function renderPopup (d, e, eq_group) {
       download_data_btn.textContent = "Download data (in CSV format)";
       download_data_btn.classList.add("btn", "btn-primary");
 
-      download_data_btn.onclick = function () {
-         // Get domain and indicator titles
-         const domain = document.getElementById('domain-title')?.textContent.trim();
-         const indicator = document.getElementById('indicator-title')?.textContent.trim();
-         if (!domain || !indicator) {
-            alert('Domain or indicator not found.');
-            return;
-         }
-         
+
+         download_data_btn.onclick = function () {
+           // Get domain and indicator titles
+           const domain = document.getElementById('domain-title')?.textContent.trim();
+           let indicator = document.getElementById('indicator-title')?.textContent.trim();
+
+           if (!domain || !indicator) {
+             alert('Domain or indicator not found.');
+             return;
+           }
+
+           indicator = indicator.replace(/\n/g, ' ');
+
          // Get indicator data object from domains_data
          const indicatorData = domains_data[domain]?.indicators[indicator]?.data;
          if (!indicatorData) {
