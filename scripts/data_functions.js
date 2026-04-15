@@ -2337,6 +2337,9 @@ async function renderPopup (d, e, eq_group) {
                   Object.keys(values).some(key => key.includes("Criminal Damage/ Public Order"))
                   ? 89
                   :
+                  Object.keys(values).some(key => key.includes("Cohabiting")) && labelCount > 6
+                  ? 89
+                  :
                   Object.keys(values).some(key => key.includes("Quintile")) && labelCount > 5
                        ? 88
                        : 65
