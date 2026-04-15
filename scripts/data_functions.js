@@ -2073,6 +2073,8 @@ async function renderPopup (d, e, eq_group) {
       
       if (titleText.startsWith("Average life satisfaction score (from 0 to 10)")) {
          y_axis.textContent = "Average (mean) life satisfaction score";
+      } else if (titleText.startsWith("Number of households in housing stress")) {
+         y_axis.textContent = "Number of Applicants";
       }
 
       // After succesful fetch from data portal the loading image is removed and chart is displayed
