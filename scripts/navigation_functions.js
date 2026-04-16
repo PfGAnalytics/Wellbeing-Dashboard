@@ -363,6 +363,7 @@ function generateHexagons (d) {
         }
     }
 
+    keyHexHover();
 
 }
 
@@ -451,6 +452,8 @@ function plotOverallHexes (change_type) {
             hex_label.classList.add("positive");                        // Hexagon label is given class "positive"
             hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><img src="img/arrow-up-long-solid-full.svg" style="width:30px; margin-top: 0.5em;">';
         } else if (change_type == "no_change") { // For no_change indicators:
+            hex.classList.add("neutral");
+            hex_label.classList.add("neutral");
             hex_label.innerHTML = Object.keys(eval(change_type + "_indicator"))[i] + '<br><img src="img/arrow-right-long-solid-full.svg" style="width:30px; margin-top: 0.5em;">';
         } else if (change_type == "worsening") {    // For worsening indicators:
             hex.classList.add("negative");                              // Hexagon is given class "negative"
@@ -1689,11 +1692,124 @@ if (document.getElementById("LGD-link")) {
     LGD_link.onmouseout = removeHighlight;
 }
 
-key_hexes = document.getElementsByClassName("key-hex");
-positive = document.getElementsByClassName("ind-hex positive");
-negative = document.getElementsByClassName("ind-hex negative");
-no_change = document.getElementsByClassName("ind-hex neutral")
-insufficient = document.getElementsByClassName("ind-hex insufficient")
+
+function keyHexHover() {
+    key_hexes = document.getElementsByClassName("key-hex");
+    positive = document.getElementsByClassName("ind-hex positive");
+    negative = document.getElementsByClassName("ind-hex negative");
+    insufficient = document.getElementsByClassName("ind-hex insufficient")
+    no_change = document.getElementsByClassName("ind-hex neutral")
+
+    for (let i = 0; i < key_hexes.length; i ++) {
+        key_hexes[i].onmouseover = function() {
+
+            hex_class = key_hexes[i].classList[1];
+            
+            if (hex_class == "positive") {
+                for (let j = 0; j < negative.length; j ++) {
+                    negative[j].parentElement.style.filter = "opacity(50%)";
+                }
+                for (let j = 0; j < no_change.length; j ++) {
+                    no_change[j].parentElement.style.filter = "opacity(50%)";
+                }
+                for (let j = 0; j < insufficient.length; j ++) {
+                    insufficient[j].parentElement.style.filter = "opacity(50%)";
+                }
+
+            } else if (hex_class == "negative") {
+                for (let j = 0; j < positive.length; j ++) {
+                    positive[j].parentElement.style.filter = "opacity(50%)";
+                }
+                for (let j = 0; j < no_change.length; j ++) {
+                    no_change[j].parentElement.style.filter = "opacity(50%)";
+                }
+                for (let j = 0; j < insufficient.length; j ++) {
+                    insufficient[j].parentElement.style.filter = "opacity(50%)";
+                }
+
+            } else if (hex_class == "insufficient") {
+                for (let j = 0; j < positive.length; j ++) {
+                    positive[j].parentElement.style.filter = "opacity(50%)";
+                }
+                for (let j = 0; j < negative.length; j ++) {
+                    negative[j].parentElement.style.filter = "opacity(50%)";
+                }
+                for (let j = 0; j < no_change.length; j ++) {
+                    no_change[j].parentElement.style.filter = "opacity(50%)";
+                }
+
+            } else  {
+                for (let j = 0; j < positive.length; j ++) {
+                    positive[j].parentElement.style.filter = "opacity(50%)";
+                }
+                for (let j = 0; j < negative.length; j ++) {
+                    negative[j].parentElement.style.filter = "opacity(50%)";
+                }
+                for (let j = 0; j < insufficient.length; j ++) {
+                    insufficient[j].parentElement.style.filter = "opacity(50%)";
+                }
+            }
+
+        }
+
+        key_hexes[i].onmouseout = function() {
+
+            hex_class = key_hexes[i].classList[1];
+
+            if (hex_class == "positive") {
+                for (let j = 0; j < negative.length; j ++) {
+                    negative[j].parentElement.removeAttribute("style");
+                }
+                
+                for (let j = 0; j < no_change.length; j ++) {
+                    no_change[j].parentElement.removeAttribute("style");
+                }
+
+                for (let j = 0; j < insufficient.length; j ++) {
+                    insufficient[j].parentElement.removeAttribute("style");
+                }
+
+            } else if (hex_class == "negative") {
+                for (let j = 0; j < positive.length; j ++) {
+                    positive[j].parentElement.removeAttribute("style");
+                }
+                
+                for (let j = 0; j < no_change.length; j ++) {
+                    no_change[j].parentElement.removeAttribute("style");
+                }
+
+                for (let j = 0; j < insufficient.length; j ++) {
+                    insufficient[j].parentElement.removeAttribute("style");
+                }
+
+            } else if (hex_class == "insufficient") {
+                for (let j = 0; j < positive.length; j ++) {
+                    positive[j].parentElement.removeAttribute("style");
+                }
+                
+                for (let j = 0; j < negative.length; j ++) {
+                    negative[j].parentElement.removeAttribute("style");
+                }
+
+                for (let j = 0; j < no_change.length; j ++) {
+                    no_change[j].parentElement.removeAttribute("style");
+                }
+            } else {
+                for (let j = 0; j < positive.length; j ++) {
+                    positive[j].parentElement.removeAttribute("style");
+                }
+                
+                for (let j = 0; j < negative.length; j ++) {
+                    negative[j].parentElement.removeAttribute("style");
+                }
+
+                for (let j = 0; j < insufficient.length; j ++) {
+                    insufficient[j].parentElement.removeAttribute("style");
+                }
+            }
+        }
+    }
+}
 
 browse_domains.onclick = function() {
     browseDomains();
@@ -2007,6 +2123,8 @@ function plotExpandedDomains () {
                 ind_hex_label.classList.add("insufficient");
                 ind_hex_label.innerHTML = inds[j];
             } else if (Object.keys(no_change_indicator).includes(inds[j])) {
+                ind_hex.classList.add("neutral");
+                ind_hex_label.classList.add("neutral");
                 ind_hex_label.innerHTML = inds[j] + '<br><img src = "img/arrow-right-long-solid-full.svg" style="margin-top: 0.5em; width: 30px;">';
             } else {
                 ind_hex_container.style.display = "none";
@@ -2143,6 +2261,8 @@ function plotExpandedDomains () {
                 ind_hex_label.classList.add("insufficient");
                 ind_hex_label.innerHTML = inds[j];
             } else if (Object.keys(no_change_indicator).includes(inds[j])) {
+                ind_hex.classList.add("neutral");
+                ind_hex_label.classList.add("neutral");
                 ind_hex_label.innerHTML = inds[j] + '<br><img src = "img/arrow-right-long-solid-full.svg" style="margin-top: 0.5em; width: 30px;">';
             } else {
                 ind_hex_container.style.display = "none";
@@ -2168,6 +2288,7 @@ function plotExpandedDomains () {
 
     }
 
+    keyHexHover();
 }
 
 // Scroll to top ribbon
