@@ -1689,6 +1689,7 @@ async function renderPopup (d, e, eq_group) {
       // Create div for y axis label that reads the y axis label content from the line chart:
       y_axis = document.createElement("div");
       y_axis.style.display = "none";
+      y_axis.style.color = "#000000"
       y_axis.classList.add("y-label");
 
       chart_row.appendChild(y_axis);
