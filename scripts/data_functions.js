@@ -1524,9 +1524,13 @@ async function getEqualityGroups(d, e) {
       eq_link.textContent = "• " + eq_groups[i];         // Populate link with name of grouping
       eq_link.tabIndex = "0";
 
-      eq_link.onclick = async function () {           // Add function to execute when link clicked:
-         window.location.search += `&popup=${eq_groups[i].toLowerCase().replaceAll(" ", "+")}`
-      }
+
+   eq_link.onclick = function () {
+      const params = new URLSearchParams(location.search);
+      params.set("popup", eq_groups[i].toLowerCase().replaceAll(" ", "+"));
+      window.location.search = "?" + params.toString(); // navigates (keeps indicator params)
+    }
+
 
      if (i < eq_groups.length / 2) {  // Separate links into two columns within grey box
          document.getElementById("eq-col-1").appendChild(eq_link);
@@ -2478,6 +2482,76 @@ let mapContainer;
 async function renderMapPopup(d, e, type, data) {
 
    const previouslyFocused = document.activeElement;
+
+
+   // If a chart popup is open, remove it (prevents both being open)
+     if (document.getElementById("pop-up-chart")) {
+       main_container.removeChild(document.getElementById("pop-up-chart"));
+     }
+
+
+   // If a chart popup is open, remove it so we don't have two popups
+    if (document.getElementById("pop-up-chart")) {
+      main_container.removeChild(document.getElementById("pop-up-chart"));
+    }
+   
+    // Map popup values MUST match handleRefreshPopup expectations
+    const popupValue =
+      type === "AA"  ? "assembly area" :
+      type === "LGD" ? "local government district" :
+      String(type).toLowerCase();
+   
+    // Persist context for refresh/re-open logic
+    try {
+      sessionStorage.setItem("popup_domain", d);
+      sessionStorage.setItem("popup_indicator", e);
+      sessionStorage.setItem("popup_measure_text", window.measure_text ?? "");
+      sessionStorage.setItem("popup_type", type);
+    } catch (_) {}
+   
+    // ---- CRITICAL BIT: ensure the *previous* history entry is the indicator page ----
+    const baseParams = new URLSearchParams(location.search);
+    baseParams.delete("popup");
+   
+    // Ensure indicator param exists (indicator routes are ?indicator=...) [1](https://nicsonline-my.sharepoint.com/personal/daniel_nelson-donaghy_nisra_gov_uk/Documents/Microsoft%20Copilot%20Chat%20Files/data_functions.js)
+    if (!baseParams.has("indicator")) {
+      const indicatorSlug = String(e)
+        .replace(/[^a-z ]/gi, "")
+        .toLowerCase()
+        .replaceAll(" ", "+"); // matches indicator link building [1](https://nicsonline-my.sharepoint.com/personal/daniel_nelson-donaghy_nisra_gov_uk/Documents/Microsoft%20Copilot%20Chat%20Files/data_functions.js)
+      baseParams.set("indicator", indicatorSlug);
+    }
+   
+    const baseURL = location.pathname + "?" + baseParams.toString();
+    // Make current entry the indicator URL (so Back from popup always returns here)
+    history.replaceState(null, "", baseURL);
+   
+    // Now push the popup state on top
+    const popupParams = new URLSearchParams(baseParams);
+    popupParams.set("popup", popupValue);
+    history.pushState(null, "", location.pathname + "?" + popupParams.toString());
+
+   
+     // Normalise popup value to match handleRefreshPopup() expectations
+   
+     // Persist context so refresh/link-sharing can rebuild the popup
+     try {
+       sessionStorage.setItem("popup_domain", d);
+       sessionStorage.setItem("popup_indicator", e);
+       sessionStorage.setItem("popup_measure_text", window.measure_text ?? "");
+       sessionStorage.setItem("popup_type", type);
+     } catch (_) {}
+   
+     // Push a new history entry for the popup (so Back returns to same indicator URL)
+     const openParams = new URLSearchParams(location.search);
+     if (openParams.get("popup") !== popupValue) {
+       openParams.set("popup", popupValue);
+       history.pushState(null, "", location.pathname + "?" + openParams.toString());
+     }
+   
+     // Back-button handler: close popup when navigating away from its URL state
+     let onPopState;
+
    
    // Remove existing popup
     if (document.getElementById("pop-up-map")) {
@@ -2542,16 +2616,24 @@ async function renderMapPopup(d, e, type, data) {
 
       let onEsc;
       
-      function closePopUp() {
+      function closePopUp(fromPopState = false) {
          indicator_scrn.style.filter = "opacity(100%)";
          main_container.removeChild(pop_up_map);
          previouslyFocused.focus();
          
-         const params = new URLSearchParams(location.search);
-         params.delete("popup");
-         history.replaceState(null, "", location.pathname + "?" + params.toString());
+
+         // If user clicked X / Esc, remove popup param from URL.
+            // If we got here via Back (popstate), URL is already correct.
+            if (!fromPopState) {
+              const params = new URLSearchParams(location.search);
+              params.delete("popup");
+              const qs = params.toString();
+              history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
+            }
+
 
          document.removeEventListener("keydown", onEsc);
+         window.removeEventListener("popstate", onPopState);
       };
 
       closeBtn.onclick = closePopUp;
@@ -2564,6 +2646,16 @@ async function renderMapPopup(d, e, type, data) {
       };
       
       document.addEventListener("keydown", onEsc);
+
+
+        onPopState = () => {
+          const p = new URLSearchParams(location.search);
+          if (p.get("popup") !== popupValue && document.getElementById("pop-up-map")) {
+            closePopUp(true);
+          }
+        };
+        window.addEventListener("popstate", onPopState);
+
 
       pop_up_map.appendChild(closeBtn);
 
