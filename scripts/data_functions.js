@@ -261,7 +261,7 @@ let nochangehexDivHTML = '<div class="label-text" style="font-weight:bold; margi
 
 let worseninghexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px; color: #00205b;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #FF7A7A; border: 2px solid; border-color: #db0000">Worsening';
 
-let insufficienthexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px; color: #00205b;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #B0B0B0; border: 2px solid; border-color: #757575">Insufficient';
+let insufficienthexDivHTML = '<div class="label-text" style="font-weight:bold; margin-right:10px; color: #00205b;">Performance:</div>' + '<div class = "row key-text performance" style = "background-color: #B0B0B0; border: 2px solid; border-color: #757575">Insufficient data';
 
 let comparison_year = null;
 let comparison_year_value = null;
