@@ -1528,7 +1528,7 @@ async function getEqualityGroups(d, e) {
    eq_link.onclick = function () {
       const params = new URLSearchParams(location.search);
       params.set("popup", eq_groups[i].toLowerCase().replaceAll(" ", "+"));
-      window.location.search = "?" + params.toString(); // navigates (keeps indicator params)
+      window.location.search += `&popup=${eq_groups[i].toLowerCase().replaceAll(" ", "+")}`
     }
 
 
