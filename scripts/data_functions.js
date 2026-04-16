@@ -1787,7 +1787,7 @@ async function renderPopup (d, e, eq_group) {
             const ctx = outCanvas.getContext("2d");
 
             ctx.font = "12px Arial, sans-serif";
-            const titleSideMargin = 300;
+            const titleSideMargin = 350;
             const maxTitleWidth = renderedWidth + yPadding - titleSideMargin;
 
             let titleLines = [];
@@ -1845,6 +1845,16 @@ async function renderPopup (d, e, eq_group) {
             const dx = leftInset;
             const dy = titleTop + titleH;
             ctx.drawImage(chartCanvas, dx, dy, renderedWidth, renderedHeight);
+
+            // Adding a white shape to cover the 'click legend item' on download
+            ctx.save();
+            ctx.fillStyle = "#ffffff";
+            
+            const maskY = titleTop + titleH;
+            const maskHeight = 25;
+            
+            ctx.fillRect(0, maskY, outCanvas.width, maskHeight);
+            ctx.restore();
 
             const attributionText = 'Reference: PfG Wellbeing Framework: www.northernireland.gov.uk/wellbeing';
 
