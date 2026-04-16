@@ -2108,6 +2108,10 @@ async function renderPopup (d, e, eq_group) {
          y_axis.textContent = "Average (mean) life satisfaction score";
       } else if (titleText.startsWith("Number of households in housing stress")) {
          y_axis.textContent = "Number of Applicants";
+      } else if (titleText.startsWith("Age standardised death rate (per 100,000 population) for causes considered preventable")) {
+         y_axis.textContent = "Deaths per 100,000 population";
+      } else if (titleText.startsWith("Gap between the percentage of non-free school meal entitled (non-FSME) school leavers")) {
+         y_axis.textContent = "Percentage points"
       }
 
       // After succesful fetch from data portal the loading image is removed and chart is displayed
