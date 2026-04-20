@@ -2720,7 +2720,7 @@ const handleOnScroll = () => {
         const titleTop = 10;
         const titleH = titleLines.length > 0 ? (titleLines.length * titleLineHeight) : 0;
 
-        out.height = canvas.height + pad * 2 + titleH + 80;
+        out.height = canvas.height + pad * 2 + titleH + 100;
 
         ctx.fillStyle = "#fff";
         ctx.fillRect(0, 0, out.width, out.height);
@@ -2756,7 +2756,7 @@ const handleOnScroll = () => {
             const lineHeight = 14;
 
             const baseX = dx;
-            let currentY = dy + canvas.height + 10;
+            let currentY = dy + canvas.height + 20;
 
             ctx.fillText(updatedText, baseX, currentY);
             currentY += footerGap;
