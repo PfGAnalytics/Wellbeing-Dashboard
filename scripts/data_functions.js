@@ -1397,7 +1397,7 @@ function getChartSummarySign(labelEl, titleEl) {
     } else if (titleEl.includes('Total General Expenditure on Research and Development (GERD)')) {
       return ' Pounds Sterling (£), Millions';
     } else if (titleEl.includes('Number of coastal water bodies in good ecological condition')) {
-      return ' water bodies';
+      return ' coastal water bodies';
    } else if (titleEl.includes('satisfaction score')) {
       return ' average life satisfaction score';
    } else if (titleEl.includes('Number of households accepted by the Housing Executive as statutorily homeless')) {
