@@ -2313,7 +2313,6 @@ const handleOnScroll = () => {
 }
 
 // Script to download chart as an image
-
     (function downloadChartAsImage () {
 
         function getChartCanvas() {
@@ -2393,7 +2392,7 @@ const handleOnScroll = () => {
 
                 const summaryFont = '13px Arial, sans-serif';
                 const summarySideMargin = 105;
-                const maxSummaryWidth = out.width - (summarySideMargin * 2);
+                const maxSummaryWidth = out.width - (summarySideMargin * 3);
 
                 const summaryText = (typeof chartSummary === 'function') ? chartSummary() : '';
                 let summaryLines = [];
@@ -2410,7 +2409,7 @@ const handleOnScroll = () => {
                 const gapAboveChart = 20;
                 const gapAboveSummary = 20;
 
-                out.height = titleH + gapAboveChart + height + gapAboveSummary + summaryH + bottomPadding;
+                out.height = titleH + gapAboveChart + height + gapAboveSummary + summaryH + bottomPadding + 40;
 
                 ctx.fillStyle = '#fff';
                 ctx.fillRect(0, 0, out.width, out.height);
@@ -2460,15 +2459,17 @@ const handleOnScroll = () => {
             const chartLeftOffset = 20;
             ctx.drawImage(src, yLabelPadding - chartLeftOffset, chartTop);
 
-            const attributionText = 'Reference: PfG Wellbeing Framework: www.northernireland.gov.uk/wellbeing';
+            const indicatorName = document.getElementById('indicator-title').textContent.replace(/\s+/g, ' ').trim();
+            const attributionText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
 
-            ctx.font = '10px Arial, sans-serif';
+            ctx.font = '12px Arial, sans-serif';
             ctx.fillStyle = 'black';
             ctx.textAlign = 'left';
             ctx.textBaseline = 'top';
 
-            const attributionX = yLabelPadding + 5;
+            const attributionX = yLabelPadding - 20;
             const attributionY = chartTop + height + 4;
+            const footerMaxWidth = out.width - 250;
 
             let footerY = attributionY;
 
@@ -2477,23 +2478,49 @@ const handleOnScroll = () => {
                footerY += 12;
             }
 
-            ctx.fillText(attributionText, attributionX, attributionY + 12);
-            
+            const logoHeight = 50;
+            const logoPadding = 15;
+            const logoGap = 20;
+
+            const logoY = chartTop + height - 70;
+            const logoX = out.width - (logoHeight * 2) - logoPadding;
+
+            let summaryEndY = chartTop + height + 20;
+
             if (downloadChart._summaryLines && downloadChart._summaryLines.length > 0) {
-                ctx.fillStyle = 'black';
-                ctx.font = downloadChart._summaryFont;
-                ctx.textAlign = "left";
-                ctx.textBaseline = "top";
+            ctx.fillStyle = 'black';
+            ctx.font = downloadChart._summaryFont;
+            ctx.textAlign = "left";
+            ctx.textBaseline = "top";
 
-                let yPos = titleH + height + 55;
-                const xPos = downloadChart._summarySideMargin;
+            let yPos = titleH + height + 55;
+            const xPos = attributionX;
 
-                downloadChart._summaryLines.forEach(line => {
-                    ctx.fillText(line, xPos, yPos);
-                    yPos += downloadChart._summaryLineHeight;
-                });
+            downloadChart._summaryLines.forEach(line => {
+                ctx.fillText(line, xPos, yPos);
+                yPos += downloadChart._summaryLineHeight;
+            });
+
+            summaryEndY = yPos;
             }
+
+            ctx.font = '12px Arial, sans-serif';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+
+            const referenceX = attributionX;
+            let referenceY = summaryEndY + 6;
+            const maxRefWidth = out.width - referenceX;
+            const referenceLineHeight = 16;
             
+            const referenceLines = wrapCanvasText(attributionText, ctx, maxRefWidth);
+
+            referenceLines.forEach(line => {
+                ctx.fillText(line, referenceX, referenceY);
+                referenceY += referenceLineHeight;
+            });
+
             const logo = new Image();
             logo.src = "img/nisra-only-colour.png";
 
@@ -2514,12 +2541,12 @@ const handleOnScroll = () => {
 
                 const scale = logoHeight / logo.height;
                 const logoW = logo.width * scale;
-                const logoX = out.width - logoW - 5;
-                const logoY = prev.height - 5;
+                const logoX = out.width - logoW - 15;
+                const logoY = prev.height - 105;
 
                 ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
 
-                const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
+                const indicatorTitle = indicatorName.replace(/\s+/g, '-');
                 const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-'): 'chart') + '.png';
 
                 const link = document.createElement('a');
@@ -2693,7 +2720,7 @@ const handleOnScroll = () => {
         const titleTop = 10;
         const titleH = titleLines.length > 0 ? (titleLines.length * titleLineHeight) : 0;
 
-        out.height = canvas.height + pad * 2 + titleH + 40;
+        out.height = canvas.height + pad * 2 + titleH + 80;
 
         ctx.fillStyle = "#fff";
         ctx.fillRect(0, 0, out.width, out.height);
@@ -2710,6 +2737,8 @@ const handleOnScroll = () => {
                 yPos += titleLineHeight;
             });
         }
+
+        const indicatorName = document.getElementById('indicator-title').textContent.replace(/\s+/g, ' ').trim();
         
         const dx = Math.round((out.width - canvas.width) / 2);
         const dy = titleTop + titleH;
@@ -2719,33 +2748,43 @@ const handleOnScroll = () => {
         const summaryText = summaryEl ? summaryEl.textContent.trim() : '';
         
         if (updatedText) {
-            ctx.font = '10px Arial, sans-serif';
+            ctx.font = '12px Arial, sans-serif';
             ctx.textBaseline = 'top';
-            const updatedX = dx;
-            const updatedY = dy + canvas.height + 10;
-            const footer_gap = 12;
             ctx.textAlign = "left";
-            ctx.fillText(updatedText, updatedX, updatedY);
 
-            const referenceY = updatedY + footer_gap;
-            ctx.fillText('Reference: PfG Wellbeing Framework – www.northernireland.gov.uk/wellbeing', updatedX, referenceY);
+            const footerGap = 12;
+            const lineHeight = 14;
+
+            const baseX = dx;
+            let currentY = dy + canvas.height + 10;
+
+            ctx.fillText(updatedText, baseX, currentY);
+            currentY += footerGap;
 
             if (summaryText) {
-                const summaryX = updatedX;
-                const summaryWidth = out.width - summaryX - 30;
+                const summaryWidth = out.width - baseX - 200;
                 const summaryLines = wrapCanvasText(summaryText, ctx, summaryWidth);
 
-                let summaryY = referenceY + footer_gap;
-                ctx.textAlign = "left";
-
+                currentY += 10;
                 summaryLines.forEach(line => {
-                    ctx.fillText(line, summaryX, summaryY);
-                    summaryY += 14;
-                })
+                    ctx.fillText(line, baseX, currentY);
+                    currentY += lineHeight;
+                });
+
+                currentY += footerGap;
             }
+
+            const referenceText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
+            const footerWidth = out.width - baseX - 50;
+            const referenceLines = wrapCanvasText(referenceText, ctx, footerWidth);
+
+            referenceLines.forEach(line => {
+                ctx.fillText(line, baseX, currentY);
+                currentY += lineHeight;
+            });
         }
 
-        const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
+        const indicatorTitle = indicatorName.replace(/\s+/g, '-');
         const popupTitleText = document.getElementById('popup-map-title').textContent;
         const geoType = (popupTitleText.split(/by\s+/i)[1] || '').replace(/\(.*?\)/g, '').replace(/\./g, '').trim();
         const geoCode = geoType === "Local Government District" ? "lgd" : "aa";
@@ -2777,7 +2816,7 @@ const handleOnScroll = () => {
             const logoW = logo.width * scale;
 
             const logoX = out.width - logoW - 10;
-            const logoY = prev.height - 15;
+            const logoY = prev.height - 105;
 
             ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
 
@@ -2889,11 +2928,10 @@ html2canvas(root, {
     const midWidth = canvas.width + 20;
 
     out.width = Math.max(canvas.width + pad * 2, midWidth);
-    const footerLineHeight = 12;
+    const footerLineHeight = 18;
     const footerLines = updatedText ? 2 : 0;
     let footerH = 0;
-    // let footerH = footerLines * footerLineHeight + 6;
-    out.height = canvas.height + pad * 2 + titleH + footerH;
+    out.height = canvas.height + pad * 2 + titleH + footerH + 30;
 
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, out.width, out.height);
@@ -2930,6 +2968,7 @@ html2canvas(root, {
       const measure = measureEl ? measureEl.textContent : '';
       const measureMatch = measure.match(/For this indicator a[^.]*\./g);
       const measureFiltered = measureMatch ? measureMatch.join(' ') : '';
+      const indicatorName = document.getElementById('map-select-2').selectedOptions[0].text.trim();
 
       const summaryText = summary + ' ' + measureFiltered;
       
@@ -2938,33 +2977,29 @@ html2canvas(root, {
       if (updatedText) {
         footerH += footerLineHeight;
         footerH += footerLineHeight;
-        ctx.font = '10px Arial, sans-serif';
+        ctx.font = '12px Arial, sans-serif';
         ctx.textBaseline = 'top';
         const leftMargin = dx;
-        const updatedY = dy + canvas.height - 15;
+        const updatedY = dy + canvas.height - 25;
         ctx.fillText(updatedText, leftMargin, updatedY);
-
-        const gap = 12;
-        ctx.fillText('Reference: PfG Wellbeing Framework: www.northernireland.gov.uk/wellbeing', leftMargin, updatedY + gap);
-      }
-      
+    }
+    
+    let summaryHeight = 0;
       if (summaryText) {
-        let y = dy + canvas.height + 10;
-        ctx.font = '10px Arial, sans-serif';
-        const footerRightPadding = 180;
+        let y = dy + canvas.height - 5;
+        ctx.font = '12px Arial, sans-serif';
+        const footerRightPadding = 250;
         const leftMargin = dx;
         const summaryMaxWidth = out.width - leftMargin - footerRightPadding;
         summaryLines = wrapCanvasText(summaryText, ctx, summaryMaxWidth);
-        footerH += summaryLines.length * footerLineHeight + 6;
+        footerH += summaryLines.length * footerLineHeight;
         
         summaryLines.forEach(line => {
             ctx.fillText(line, leftMargin, y);
             y += footerLineHeight;
         });
     }
-
-      
-      const indicatorTitle = document.getElementById('map-select-2').selectedOptions[0].text.trim().replace(/\s+/g, ' ');
+      const indicatorTitle = indicatorName.replace(/\s+/g, ' ');
       const geoType = document.getElementById('map-select-3').selectedOptions[0].text.trim().replace(/\s+/g, ' ');
       const geoCode = geoType === "Local Government District" ? "lgd" : "aa";
       const year = document.getElementById("date-display").textContent.replace(/\//g, "-").replace(/\s+/g, "");
@@ -2992,10 +3027,32 @@ html2canvas(root, {
         const scale = logoHeight / logo.height;
         const logoW = logo.width * scale;
 
-        const logoX = out.width - logoW - 10;
-        const logoY = prev.height - 35;
+        const mapBottom = dy + canvas.height;
+        const footerTop = mapBottom + 20;
+        const logoX = out.width - logoW - 35;
+        const logoY = footerTop - 20;
 
         ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
+
+        const referenceText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
+
+        ctx.font = '12px Arial, sans-serif';
+        ctx.textBaseline = 'top';
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#000';
+
+        const refX = dx;
+        let refY = logoY + logoHeight + 20;
+        const referenceMaxWidth = out.width - dx - 150;
+
+        const referenceLines = wrapCanvasText(referenceText, ctx, referenceMaxWidth);
+        
+        referenceLines.forEach(line => {
+            ctx.fillText(line, refX, refY);
+            refY += footerLineHeight;
+        });
+
+        ctx.textAlign = 'left';
 
         const link = document.createElement('a');
         link.download = fileName;

@@ -1422,7 +1422,6 @@ function chartSummary() {
 
     const changeText = document.querySelector("#change-info")?.textContent.trim() || '';
     const changeInfo = changeText.split('.').filter(Boolean)[0].trim();
-    console.log(changeInfo);
 
     if (measureInfo) {
       return `The value was ${comparison_year_value}${unit} in the comparison year (${comparison_year}) and was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${measureInfo}. ${changeInfo}.`
@@ -1800,7 +1799,7 @@ async function renderPopup (d, e, eq_group) {
             const titleH = titleLines.length > 0 ? titleLines.length * titleLineHeight : 0;
 
             outCanvas.width = renderedWidth + leftInset;
-            outCanvas.height = renderedHeight + titleTop + titleH + 45;
+            outCanvas.height = renderedHeight + titleTop + titleH + 70;
 
             ctx.fillStyle = "#fff";
             ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
@@ -1846,35 +1845,35 @@ async function renderPopup (d, e, eq_group) {
             const dy = titleTop + titleH;
             ctx.drawImage(chartCanvas, dx, dy, renderedWidth, renderedHeight);
 
-            // Adding a white shape to cover the 'click legend item' on download
-            ctx.save();
-            ctx.fillStyle = "#ffffff";
-            
-            const maskY = titleTop + titleH;
-            const maskHeight = 25;
-            
-            ctx.fillRect(0, maskY, outCanvas.width, maskHeight);
-            ctx.restore();
-
-            const attributionText = 'Reference: PfG Wellbeing Framework: www.northernireland.gov.uk/wellbeing';
+            const indicatorName = indicatorTitle.replace(/-/g, " ");
+            const attributionText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
 
             ctx.save();
-            ctx.font = '10px Arial, sans-serif';
+            ctx.font = '12px Arial, sans-serif';
             ctx.fillStyle = '#000';
             ctx.textAlign = 'left';
             ctx.textBaseline = 'top';
 
             const attributionX = dx + 22;
             const attributionY = dy + renderedHeight + 10;
+            const footerMaxWidth = renderedWidth - 200;
+
+            const attributionLines = wrapCanvasText(attributionText, ctx, footerMaxWidth)
 
             let footerY = attributionY;
 
             if (chartDate) {
                ctx.fillText(chartDate, attributionX, footerY);
-               footerY += 12;
+               footerY += 20;
             }
 
-            ctx.fillText(attributionText, attributionX, attributionY + 12);
+            const footerLineHeight = 16;
+
+            attributionLines.forEach(line => {
+               ctx.fillText(line, attributionX, footerY);
+               footerY += footerLineHeight;
+            })
+
             ctx.restore();
 
             const logo = new Image();
@@ -1899,7 +1898,7 @@ async function renderPopup (d, e, eq_group) {
                const logoW = logo.width * scale;
 
                const logoX = outCanvas.width - logoW - 5;
-               const logoY = prev.height - 5;
+               const logoY = prev.height - 50;
 
                ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
 
