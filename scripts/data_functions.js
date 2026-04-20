@@ -1146,8 +1146,8 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
       var further_string = "Further Information";
    } else if (further_note.indexOf("Further information") != -1) {
       var further_string = "Further information";
-   } else if (further_note.indexOf("Notes:") != -1) {
-      var further_string = "Notes:";
+   } else if (further_note.indexOf("Notes") != -1) {
+      var further_string = "Notes";
    } else {
       further_note = "Not available";
    }
@@ -2464,9 +2464,9 @@ async function renderPopup (d, e, eq_group) {
          notes = notes.filter(function (n) {return n != "" & n != " "})
 
          if (notes.length === 1) {
-            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Note:</p>`;
+            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Note</p>`;
          } else if (notes.length > 1) {
-            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Notes:</p>`;
+            note.innerHTML = `<p style='font-weight: bold; margin-bottom: 0px'>Notes</p>`;
          }
 
          let notes_list = document.createElement("ol");
@@ -2857,8 +2857,8 @@ async function renderMapPopup(d, e, type, data) {
          further_string = "Further information";
       } else if (popup_further_note.indexOf("Further Information") !== -1) {
          further_string = "Further Information";
-      } else if (popup_further_note.indexOf("Notes:") !== -1) {
-         further_string = "Notes:";
+      } else if (popup_further_note.indexOf("Notes") !== -1) {
+         further_string = "Notes";
       } else {
          popup_further_note = "Not available";
       }
@@ -2907,7 +2907,7 @@ async function renderMapPopup(d, e, type, data) {
       // Map summary
       const summaryHeading = document.createElement("p");
       summaryHeading.classList.add("popup-map-summary");
-      summaryHeading.textContent = "Summary:";
+      summaryHeading.textContent = "Summary";
       popupNotesContainer.appendChild(summaryHeading);
 
       // Summary text
@@ -2919,7 +2919,7 @@ async function renderMapPopup(d, e, type, data) {
       // Add heading
       const heading = document.createElement("p");
       heading.classList.add("popup-map-notes");
-      heading.textContent = "Further information:";
+      heading.textContent = "Further information";
       popupNotesContainer.appendChild(heading);
       
       // Create ordered list
@@ -3525,8 +3525,8 @@ async function drawMap() {
             var further_string = "Further information";
          } else if (further_note.indexOf("Further Information") != -1) {
             var further_string = "Further Information";
-         } else if (further_note.indexOf("Notes:") != -1) {
-            var further_string = "Notes:";
+         } else if (further_note.indexOf("Notes") != -1) {
+            var further_string = "Notes";
          } else {
             further_note = "Not available";
          }
