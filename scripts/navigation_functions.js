@@ -2398,6 +2398,8 @@ const handleOnScroll = () => {
                 let summaryLines = [];
                 let summaryH = 0;
 
+                console.log(summaryText)
+
                 if (summaryText) {
                     ctx.font = summaryFont;
                     summaryLines = wrapCanvasText(summaryText, ctx, maxSummaryWidth);
@@ -2727,7 +2729,7 @@ const handleOnScroll = () => {
 
         if (titleLines.length > 0) {
             ctx.fillStyle = "#000";
-            ctx.font = "18px Arial, sans-serif";
+            ctx.font = "18px Inter, sans-serif";
             ctx.textAlign = "center";
             ctx.textBaseline = "top";
 
