@@ -2702,8 +2702,13 @@ const handleOnScroll = () => {
         pad = 30;
         midWidth = canvas.width + 20;
 
+        
+        // out.width = Math.max(canvas.width + pad * 2, midWidth);
         const title_side_margin = 300;
-        out.width = Math.max(canvas.width + pad * 2, midWidth);
+
+        out.width = 950;
+        out.height = 840;
+            
 
         console.log(out.width);
 
