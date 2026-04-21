@@ -2555,12 +2555,6 @@ async function renderMapPopup(d, e, type, data) {
        sessionStorage.setItem("popup_type", type);
      } catch (_) {}
    
-     // Push a new history entry for the popup (so Back returns to same indicator URL)
-     const openParams = new URLSearchParams(location.search);
-     if (openParams.get("popup") !== popupValue) {
-       openParams.set("popup", popupValue);
-       history.pushState(null, "", location.pathname + "?" + openParams.toString());
-     }
    
      // Back-button handler: close popup when navigating away from its URL state
      let onPopState;
@@ -2629,27 +2623,23 @@ async function renderMapPopup(d, e, type, data) {
 
       let onEsc;
       
+
       function closePopUp(fromPopState = false) {
-         indicator_scrn.style.filter = "opacity(100%)";
-         main_container.removeChild(pop_up_map);
-         previouslyFocused.focus();
-         
+        indicator_scrn.style.filter = "opacity(100%)";
+        main_container.removeChild(pop_up_map);
+        previouslyFocused.focus();
 
-         // If user clicked X / Esc, remove popup param from URL.
-            // If we got here via Back (popstate), URL is already correct.
-            if (!fromPopState) {
-              const params = new URLSearchParams(location.search);
-              params.delete("popup");
-              const qs = params.toString();
-              history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
-            }
+        // If closed via X or Esc, return to the previous state
+        if (!fromPopState) {
+          history.back();
+        }
+
+        document.removeEventListener("keydown", onEsc);
+        window.removeEventListener("popstate", onPopState);
+      }
 
 
-         document.removeEventListener("keydown", onEsc);
-         window.removeEventListener("popstate", onPopState);
-      };
-
-      closeBtn.onclick = closePopUp;
+      closeBtn.onclick = () => history.back();
       
       onEsc = function (e) {
          if (e.key === "Escape" || e.key === "Esc") {
