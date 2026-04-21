@@ -2806,7 +2806,7 @@ const handleOnScroll = () => {
             currentY += footerGap;
 
             if (summaryText) {
-                const summaryWidth = out.width - baseX - 260;
+                const summaryWidth = out.width - baseX - 270;
                 const summaryLines = wrapCanvasText(summaryText, ctx, summaryWidth);
 
                 currentY += 10;
