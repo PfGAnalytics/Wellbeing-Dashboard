@@ -2702,8 +2702,10 @@ const handleOnScroll = () => {
         pad = 30;
         midWidth = canvas.width + 20;
 
-        const title_side_margin = 250;
+        const title_side_margin = 300;
         out.width = Math.max(canvas.width + pad * 2, midWidth);
+
+        console.log(out.width);
 
         ctx.fillStyle = '#fff';
         ctx.fillRect(0, 0, out.width, out.height);

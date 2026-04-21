@@ -709,7 +709,7 @@ padding-right: 10px;
     background-color: #FF9A5C;
     -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-    padding-left: 8px;
+    padding-left: 7.5px;
     padding-top: 3px;
     align-items: center;
     justify-content: center;
