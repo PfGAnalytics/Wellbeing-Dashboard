@@ -2704,7 +2704,7 @@ const handleOnScroll = () => {
         midWidth = canvas.width + 20;
 
         // out.width = Math.max(canvas.width + pad * 2, midWidth);
-        const title_side_margin = 450;
+        const title_side_margin = 300;
 
         out.width = 950;
         out.height = 704;
@@ -2735,7 +2735,7 @@ const handleOnScroll = () => {
 
         if (titleLines.length > 0) {
             ctx.fillStyle = "#000";
-            ctx.font = "18pt Arial, sans-serif";
+            ctx.font = "13.5pt Arial, sans-serif";
             ctx.textAlign = "center";
             ctx.textBaseline = "top";
 
