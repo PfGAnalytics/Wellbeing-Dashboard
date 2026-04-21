@@ -2779,7 +2779,7 @@ const handleOnScroll = () => {
             const logoW = logo.width * scale;
 
             const logoX = out.width - logoW - 100;
-            const logoY = prev.height - 105;
+            const logoY = prev.height - 40;
 
             ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
 
@@ -2800,7 +2800,7 @@ const handleOnScroll = () => {
             const lineHeight = 20;
 
             const baseX = dx;
-            let currentY = dy + canvas.height + 20;
+            let currentY = dy + canvas.height + 10;
 
             ctx.fillText(updatedText, baseX, currentY);
             currentY += footerGap;
@@ -2809,7 +2809,7 @@ const handleOnScroll = () => {
                 const summaryWidth = out.width - baseX - 270;
                 const summaryLines = wrapCanvasText(summaryText, ctx, summaryWidth);
 
-                currentY += 10;
+                currentY += 20;
                 summaryLines.forEach(line => {
                     ctx.fillText(line, baseX, currentY);
                     currentY += lineHeight;
@@ -2819,7 +2819,7 @@ const handleOnScroll = () => {
             }
 
             const referenceText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
-            const footerWidth = out.width - baseX - 100;
+            const footerWidth = out.width - baseX - 150;
             const referenceLines = wrapCanvasText(referenceText, ctx, footerWidth);
 
             referenceLines.forEach(line => {
