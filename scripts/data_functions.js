@@ -2308,6 +2308,7 @@ async function renderPopup (d, e, eq_group) {
                y: {
                beginAtZero: true,
                ticks: {
+                  color: "#000000",
                   minRotation: 0,
                   maxRotation: 0
                }
@@ -2319,6 +2320,7 @@ async function renderPopup (d, e, eq_group) {
                   tickWidth: 1
                },
                ticks: {
+                  color: "#000000",
                   minRotation: 0,
                   maxRotation: 0
                }
