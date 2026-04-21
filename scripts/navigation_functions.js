@@ -2694,7 +2694,8 @@ const handleOnScroll = () => {
             const leg = doc.querySelector('#pop-up-map, .popup-map-legend');
             if (leg) leg.style.display = 'block';
         },
-        scale: window.devicePixelRatio,
+        scale: 1,
+        // scale: window.devicePixelRatio,
     }).then(canvas => {
         const out = document.createElement('canvas');
         let ctx = out.getContext('2d');
@@ -2702,13 +2703,11 @@ const handleOnScroll = () => {
         pad = 30;
         midWidth = canvas.width + 20;
 
-        
         // out.width = Math.max(canvas.width + pad * 2, midWidth);
-        const title_side_margin = 300;
+        const title_side_margin = 450;
 
         out.width = 950;
-        out.height = 840;
-            
+        out.height = 704;
 
         console.log(out.width);
 
@@ -2716,7 +2715,7 @@ const handleOnScroll = () => {
         ctx.fillRect(0, 0, out.width, out.height);
 
         // Set font before measuring
-        ctx.font = "12px Arial, sans-serif";
+        ctx.font = "12pt Arial, sans-serif";
 
         const maxTitleWidth = out.width - title_side_margin;
         let titleLines = [];
@@ -2736,7 +2735,7 @@ const handleOnScroll = () => {
 
         if (titleLines.length > 0) {
             ctx.fillStyle = "#000";
-            ctx.font = "18px Inter, sans-serif";
+            ctx.font = "18pt Arial, sans-serif";
             ctx.textAlign = "center";
             ctx.textBaseline = "top";
 
@@ -2755,51 +2754,6 @@ const handleOnScroll = () => {
 
         const summaryEl = document.querySelector('.popup-map-summary-text');
         const summaryText = summaryEl ? summaryEl.textContent.trim() : '';
-        
-        if (updatedText) {
-            ctx.font = '12px Arial, sans-serif';
-            ctx.textBaseline = 'top';
-            ctx.textAlign = "left";
-
-            const footerGap = 12;
-            const lineHeight = 14;
-
-            const baseX = dx;
-            let currentY = dy + canvas.height + 20;
-
-            ctx.fillText(updatedText, baseX, currentY);
-            currentY += footerGap;
-
-            if (summaryText) {
-                const summaryWidth = out.width - baseX - 200;
-                const summaryLines = wrapCanvasText(summaryText, ctx, summaryWidth);
-
-                currentY += 10;
-                summaryLines.forEach(line => {
-                    ctx.fillText(line, baseX, currentY);
-                    currentY += lineHeight;
-                });
-
-                currentY += footerGap;
-            }
-
-            const referenceText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
-            const footerWidth = out.width - baseX - 50;
-            const referenceLines = wrapCanvasText(referenceText, ctx, footerWidth);
-
-            referenceLines.forEach(line => {
-                ctx.fillText(line, baseX, currentY);
-                currentY += lineHeight;
-            });
-        }
-
-        const indicatorTitle = indicatorName.replace(/\s+/g, '-');
-        const popupTitleText = document.getElementById('popup-map-title').textContent;
-        const geoType = (popupTitleText.split(/by\s+/i)[1] || '').replace(/\(.*?\)/g, '').replace(/\./g, '').trim();
-        const geoCode = geoType === "Local Government District" ? "lgd" : "aa";
-        const year = document.getElementById('popup-map-year-label').textContent.replace(/\//g, "-").replace(/\s+/g, "");
-
-        const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + geoCode + '-' + year : 'map') + '.png';
 
         const logo = new Image();
         logo.src = "img/nisra-only-colour.png";
@@ -2824,7 +2778,7 @@ const handleOnScroll = () => {
             const scale = logoHeight / logo.height;
             const logoW = logo.width * scale;
 
-            const logoX = out.width - logoW - 10;
+            const logoX = out.width - logoW - 100;
             const logoY = prev.height - 105;
 
             ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
@@ -2835,7 +2789,52 @@ const handleOnScroll = () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-      }
+        }
+        
+        if (updatedText) {
+            ctx.font = '12pt Arial, sans-serif';
+            ctx.textBaseline = 'top';
+            ctx.textAlign = "left";
+
+            const footerGap = 12;
+            const lineHeight = 20;
+
+            const baseX = dx;
+            let currentY = dy + canvas.height + 20;
+
+            ctx.fillText(updatedText, baseX, currentY);
+            currentY += footerGap;
+
+            if (summaryText) {
+                const summaryWidth = out.width - baseX - 260;
+                const summaryLines = wrapCanvasText(summaryText, ctx, summaryWidth);
+
+                currentY += 10;
+                summaryLines.forEach(line => {
+                    ctx.fillText(line, baseX, currentY);
+                    currentY += lineHeight;
+                });
+
+                currentY += footerGap;
+            }
+
+            const referenceText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
+            const footerWidth = out.width - baseX - 150;
+            const referenceLines = wrapCanvasText(referenceText, ctx, footerWidth);
+
+            referenceLines.forEach(line => {
+                ctx.fillText(line, baseX, currentY);
+                currentY += lineHeight;
+            });
+        }
+
+        const indicatorTitle = indicatorName.replace(/\s+/g, '-');
+        const popupTitleText = document.getElementById('popup-map-title').textContent;
+        const geoType = (popupTitleText.split(/by\s+/i)[1] || '').replace(/\(.*?\)/g, '').replace(/\./g, '').trim();
+        const geoCode = geoType === "Local Government District" ? "lgd" : "aa";
+        const year = document.getElementById('popup-map-year-label').textContent.replace(/\//g, "-").replace(/\s+/g, "");
+
+        const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + geoCode + '-' + year : 'map') + '.png';
     });
 
     document.querySelectorAll('g').forEach(g => g.removeAttribute('transform'));
