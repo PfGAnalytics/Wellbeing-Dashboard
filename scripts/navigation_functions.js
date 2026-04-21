@@ -2819,7 +2819,7 @@ const handleOnScroll = () => {
             }
 
             const referenceText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
-            const footerWidth = out.width - baseX - 150;
+            const footerWidth = out.width - baseX - 100;
             const referenceLines = wrapCanvasText(referenceText, ctx, footerWidth);
 
             referenceLines.forEach(line => {
