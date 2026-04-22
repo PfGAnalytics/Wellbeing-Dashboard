@@ -2925,7 +2925,7 @@ html2canvas(root, {
         const leg = doc.querySelector('.map-legend');
         if (leg) leg.style.display = 'block';
     },
-    scale: window.devicePixelRatio
+    scale: 1
 }).then(canvas => {
     
     const out = document.createElement('canvas');
@@ -2941,6 +2941,9 @@ html2canvas(root, {
     let footerH = 0;
     out.height = canvas.height + pad * 2 + titleH + footerH + 80;
 
+    out.width = 950;
+    out.height = 704;
+
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, out.width, out.height);
 
@@ -2949,7 +2952,7 @@ html2canvas(root, {
         ctx.font = '13.5pt Arial, sans-serif';
         ctx.textBaseline = 'top';
         
-        const maxTitleWidth = out.width - 60;
+        const maxTitleWidth = out.width - 200;
         const lines = wrapCanvasText(titleText, ctx, maxTitleWidth);
 
         const lineHeight = 22;
@@ -2988,7 +2991,7 @@ html2canvas(root, {
         ctx.font = '12pt Arial, sans-serif';
         ctx.textBaseline = 'top';
         const leftMargin = dx;
-        const updatedY = dy + canvas.height - 50;
+        const updatedY = dy + canvas.height - 40;
         ctx.fillText(updatedText, leftMargin, updatedY);
     }
     
@@ -3038,7 +3041,7 @@ html2canvas(root, {
         const mapBottom = dy + canvas.height;
         const footerTop = mapBottom + 20;
         const logoX = out.width - logoW - 35;
-        const logoY = footerTop - 20;
+        const logoY = footerTop + 50;
 
         ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
 
@@ -3050,7 +3053,7 @@ html2canvas(root, {
         ctx.fillStyle = '#000';
 
         const refX = dx;
-        let refY = logoY + logoHeight + 20;
+        let refY = logoY + logoHeight - 40;
         const referenceMaxWidth = out.width - dx - 150;
 
         const referenceLines = wrapCanvasText(referenceText, ctx, referenceMaxWidth);
