@@ -1769,7 +1769,7 @@ async function renderPopup (d, e, eq_group) {
 
             const yLabel = getYLabel();
             const yPadding = yLabel ? 60 : 0;
-            const leftInset = yPadding + 10;
+            const leftInset = yPadding + 50;
 
             const chartDateEl = document.querySelector('.chart-date.popup-chart-date');
             const chartDate = chartDateEl ? chartDateEl.textContent.trim() : '';
@@ -1779,15 +1779,15 @@ async function renderPopup (d, e, eq_group) {
             const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + 'by' + '-' + eqGroup.toLowerCase() : 'chart') + '.png';
 
             const chartCanvas = chartInstance.canvas;
-            const renderedWidth = chartCanvas.width;
-            const renderedHeight = chartCanvas.height;
+            const renderedWidth = chartInstance.width - 75;
+            const renderedHeight = chartInstance.height;
 
             const outCanvas = document.createElement("canvas");
             const ctx = outCanvas.getContext("2d");
 
-            ctx.font = "12px Arial, sans-serif";
-            const titleSideMargin = 350;
-            const maxTitleWidth = renderedWidth + yPadding - titleSideMargin;
+            ctx.font = "12pt Arial, sans-serif";
+            const titleSideMargin = 120;
+            const maxTitleWidth = renderedWidth - titleSideMargin;
 
             let titleLines = [];
             if (titleText) {
@@ -1798,29 +1798,30 @@ async function renderPopup (d, e, eq_group) {
             const titleTop = 20;
             const titleH = titleLines.length > 0 ? titleLines.length * titleLineHeight : 0;
 
-            outCanvas.width = renderedWidth + leftInset;
-            outCanvas.height = renderedHeight + titleTop + titleH + 70;
+            outCanvas.width = 950;
+            outCanvas.height = 704;
 
             ctx.fillStyle = "#fff";
             ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
 
             if (titleLines.length > 0) {
-                  ctx.fillStyle = "#000";
-                  ctx.font = "18px Arial, sans-serif";
-                  ctx.textAlign = "center";
-                  ctx.textBaseline = "top";
+               const titleCenterX = titleSideMargin / 2 + outCanvas.width / 2;
+               ctx.fillStyle = "#000";
+               ctx.font = "13.5pt Arial, sans-serif";
+               ctx.textAlign = "center";
+               ctx.textBaseline = "top";
 
-                  let yPos = titleTop;
-                  titleLines.forEach((line) => {
-                     ctx.fillText(line, outCanvas.width / 2, yPos);
-                     yPos += titleLineHeight;
-                  });
-               }
+               let yPos = titleTop;
+               titleLines.forEach((line) => {
+                  ctx.fillText(line, titleCenterX, yPos);
+                  yPos += titleLineHeight;
+               });
+            }
                
                if (yLabel) {
                   ctx.save();
                   ctx.fillStyle = "#000";
-                  ctx.font = "12px Arial, sans-serif";
+                  ctx.font = "12pt Arial, sans-serif";
                   ctx.textBaseline = "middle";
 
                   const words = yLabel.split(/\s+/).filter(Boolean);
@@ -1831,7 +1832,7 @@ async function renderPopup (d, e, eq_group) {
                   const centerY = titleTop + titleH + renderedHeight / 2;
                   const startY = centerY - blockHeight / 2;
 
-                  const x = 40;
+                  const x = 60;
 
                   words.forEach((word, i) => {
                      ctx.fillText(word, x, startY + i * lineHeight);
@@ -1849,7 +1850,7 @@ async function renderPopup (d, e, eq_group) {
             const attributionText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
 
             ctx.save();
-            ctx.font = '12px Arial, sans-serif';
+            ctx.font = '12pt Arial, sans-serif';
             ctx.fillStyle = '#000';
             ctx.textAlign = 'left';
             ctx.textBaseline = 'top';
@@ -1864,10 +1865,10 @@ async function renderPopup (d, e, eq_group) {
 
             if (chartDate) {
                ctx.fillText(chartDate, attributionX, footerY);
-               footerY += 20;
+               footerY += 30;
             }
 
-            const footerLineHeight = 16;
+            const footerLineHeight = 20;
 
             attributionLines.forEach(line => {
                ctx.fillText(line, attributionX, footerY);
@@ -1888,8 +1889,6 @@ async function renderPopup (d, e, eq_group) {
                prev.height = outCanvas.height;
                prev.getContext("2d").drawImage(outCanvas, 0, 0);
 
-               outCanvas.height = prev.height + logoHeight + padding;
-
                ctx.fillStyle = "#fff";
                ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
                ctx.drawImage(prev, 0, 0);
@@ -1897,8 +1896,8 @@ async function renderPopup (d, e, eq_group) {
                const scale = logoHeight / logo.height;
                const logoW = logo.width * scale;
 
-               const logoX = outCanvas.width - logoW - 5;
-               const logoY = prev.height - 50;
+               const logoX = outCanvas.width - logoW - 20;
+               const logoY = prev.height - 90;
 
                ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
 
