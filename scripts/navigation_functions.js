@@ -2728,7 +2728,7 @@ const handleOnScroll = () => {
         const titleTop = 10;
         const titleH = titleLines.length > 0 ? (titleLines.length * titleLineHeight) : 0;
 
-        out.height = canvas.height + pad * 2 + titleH + 100;
+        out.height = canvas.height + pad * 2 + titleH + 120;
 
         ctx.fillStyle = "#fff";
         ctx.fillRect(0, 0, out.width, out.height);
