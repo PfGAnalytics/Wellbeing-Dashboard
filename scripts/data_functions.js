@@ -1921,7 +1921,7 @@ async function renderPopup (d, e, eq_group) {
       download_data_btn.classList.add("btn", "btn-primary");
 
 
-         download_data_btn.onclick = function () {
+         download_data_btn.onclick = async function () {
            // Get domain and indicator titles
            const domain = document.getElementById('domain-title')?.textContent.trim();
            let indicator = document.getElementById('indicator-title')?.textContent.trim();
@@ -1951,11 +1951,57 @@ async function renderPopup (d, e, eq_group) {
          
          // Build the download URL
          const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
-         
-         // Redirect to the URL
-         window.location.href = downloadUrl;
+  
+         // Downloading data for the selected subpops
+         try {
+            const response = await fetch(downloadUrl);
+            const csvText = await response.text();
+            
+            const rows = csvText.trim().split(/\r?\n/).map(row =>
+               row.split(',').map(cell => cell.replace(/^\uFEFF/, '').replace(/^"|"$/g, '').trim()
+            ));
+
+            const header = rows[0];
+            const eqColIndex = header.findIndex( h => h.toLowerCase() === 'equality groups');
+            
+            if (eqColIndex === -1) {
+               alert('Equality Groups column not found in CSV.');
+               return;
+            }
+            
+            const filteredRows = rows.filter((row, i) => {
+               if (i === 0) return true;
+               const cell = row[eqColIndex];
+               if (!cell) return false;
+               return cell.toLowerCase().includes(eq_group.toLowerCase());
+            });
+
+            if (filteredRows.length === 1) {
+               alert('No matching data found for selected equality group.');
+               return;
+            }
+            
+            const filteredCsv = filteredRows.map(r => r.join(',')).join('\n');
+            const blob = new Blob([filteredCsv], {
+               type: 'text/csv;charset=utf-8;'
+            });
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${indicatorCode}_${eq_group.replace(/ /g, '_')}.csv`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            URL.revokeObjectURL(url);
+
+         } catch (err) {
+            console.error(err);
+            alert('Failed to download or filter the dataset.');
+         }
       };
-      
+               
       // Append the button to the pop-up chart
       pop_up_buttons.appendChild(download_data_btn);
 
