@@ -2939,14 +2939,14 @@ html2canvas(root, {
     const footerLineHeight = 18;
     const footerLines = updatedText ? 2 : 0;
     let footerH = 0;
-    out.height = canvas.height + pad * 2 + titleH + footerH + 30;
+    out.height = canvas.height + pad * 2 + titleH + footerH + 80;
 
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, out.width, out.height);
 
     if (titleText) {
         ctx.fillStyle = '#000';
-        ctx.font = '18px Arial, sans-serif';
+        ctx.font = '13.5pt Arial, sans-serif';
         ctx.textBaseline = 'top';
         
         const maxTitleWidth = out.width - 60;
@@ -2985,17 +2985,17 @@ html2canvas(root, {
       if (updatedText) {
         footerH += footerLineHeight;
         footerH += footerLineHeight;
-        ctx.font = '12px Arial, sans-serif';
+        ctx.font = '12pt Arial, sans-serif';
         ctx.textBaseline = 'top';
         const leftMargin = dx;
-        const updatedY = dy + canvas.height - 25;
+        const updatedY = dy + canvas.height - 50;
         ctx.fillText(updatedText, leftMargin, updatedY);
     }
     
     let summaryHeight = 0;
       if (summaryText) {
         let y = dy + canvas.height - 5;
-        ctx.font = '12px Arial, sans-serif';
+        ctx.font = '12pt Arial, sans-serif';
         const footerRightPadding = 250;
         const leftMargin = dx;
         const summaryMaxWidth = out.width - leftMargin - footerRightPadding;
@@ -3044,7 +3044,7 @@ html2canvas(root, {
 
         const referenceText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
 
-        ctx.font = '12px Arial, sans-serif';
+        ctx.font = '12pt Arial, sans-serif';
         ctx.textBaseline = 'top';
         ctx.textAlign = 'left';
         ctx.fillStyle = '#000';
