@@ -3040,7 +3040,7 @@ html2canvas(root, {
 
         const mapBottom = dy + canvas.height;
         const footerTop = mapBottom + 20;
-        const logoX = out.width - logoW - 35;
+        const logoX = out.width - logoW - 90;
         const logoY = footerTop + 50;
 
         ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
