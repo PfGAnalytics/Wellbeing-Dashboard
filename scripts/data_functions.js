@@ -1797,6 +1797,7 @@ async function renderPopup (d, e, eq_group) {
             const titleLineHeight = 22;
             const titleTop = 20;
             const titleH = titleLines.length > 0 ? titleLines.length * titleLineHeight : 0;
+            const titleBottom = titleTop + titleH;
 
             outCanvas.width = 950;
             outCanvas.height = 704;
@@ -1845,6 +1846,12 @@ async function renderPopup (d, e, eq_group) {
             const dx = leftInset;
             const dy = titleTop + titleH;
             ctx.drawImage(chartCanvas, dx, dy, renderedWidth, renderedHeight);
+
+            // Hide 'click legend item with a white shape
+            const maskTop = titleTop + titleH;
+            const maskHeight = 37;
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(leftInset, maskTop, renderedWidth, maskHeight);
 
             const indicatorName = indicatorTitle.replace(/-/g, " ");
             const attributionText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
