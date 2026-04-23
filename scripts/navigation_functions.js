@@ -3254,43 +3254,93 @@ window.onscroll = handleOnScroll;
     return (opt?.textContent || '').trim();
   }
 
-  function runMapCsvDownload() {
-    const selectDomain = document.getElementById('map-select-1');
-    const selectIndicator = document.getElementById('map-select-2');
-    const selectType = document.getElementById('map-select-3');
+async function runMapCsvDownload() {
+  const selectDomain = document.getElementById('map-select-1');
+  const selectIndicator = document.getElementById('map-select-2');
+  const selectType = document.getElementById('map-select-3');
 
-    const domain = getSelectValue(selectDomain);
-    const indicator = getSelectValue(selectIndicator);
-    const typeLabel = getSelectLabel(selectType);
+  const domain = getSelectValue(selectDomain);
+  const indicator = getSelectValue(selectIndicator);
+  const typeLabel = getSelectLabel(selectType);
 
-    const typeMap = {
-      'Assembly Area': 'AA',
-      'AA': 'AA',
-      'Local Government District': 'LGD',
-      'LGD': 'LGD'
-    };
+  const typeMap = {
+    'Assembly Area': 'AA',
+    'AA': 'AA',
+    'Local Government District': 'LGD',
+    'LGD': 'LGD'
+  };
 
-    const type = typeMap[typeLabel];
-    if (!domain || !indicator || !type) {
-      alert('Missing domain, indicator, or type for map download.');
-      return;
-    }
-
-    const indicatorData = domains_data?.[domain]?.indicators?.[indicator]?.data;
-    if (!indicatorData) {
-      alert('No data found for this map indicator.');
-      return;
-    }
-
-    const indicatorCode = indicatorData[type];
-    if (!indicatorCode) {
-      alert(`No data available for ${type}.`);
-      return;
-    }
-
-    const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
-    window.location.href = downloadUrl;
+  const type = typeMap[typeLabel];
+  if (!domain || !indicator || !type) {
+    alert('Missing domain, indicator, or type for map download.');
+    return;
   }
+
+  const indicatorData = domains_data?.[domain]?.indicators?.[indicator]?.data;
+  if (!indicatorData) {
+    alert('No data found for this map indicator.');
+    return;
+  }
+
+  const indicatorCode = indicatorData[type];
+  if (!indicatorCode) {
+    alert(`No data available for ${type}.`);
+    return;
+  }
+
+  const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
+
+ 
+  function csvEscape(value) {
+    if (value == null) return '';
+    const needsQuotes = /[",\n\r]/.test(value);
+    let text = String(value).replace(/"/g, '""');
+    return needsQuotes ? `"${text}"` : text;
+  }
+
+  try {
+    const response = await fetch(downloadUrl);
+    const csvText = await response.text();
+
+    const rows = parseCSV(csvText);
+    if (!rows || rows.length === 0) {
+      alert('Downloaded CSV is empty.');
+      return;
+    }
+
+    const header = rows[0];
+    const colsToDrop = ['statistic', 'tlist(a1)', 'equalgroups'];
+
+    const dropCols = header
+      .map((h, i) => (colsToDrop.includes(String(h).toLowerCase()) ? i : -1))
+      .filter(i => i !== -1);
+
+    const cleanedRows = rows.map(row =>
+      row.filter((_, i) => !dropCols.includes(i))
+    );
+
+    const cleanedCsv = cleanedRows
+      .map(row => row.map(csvEscape).join(','))
+      .join('\n');
+
+    const blob = new Blob([cleanedCsv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${indicatorCode}_${type}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+  } catch (err) {
+    console.error(err);
+    alert('Failed to download or process the dataset.');
+  }
+}
+
 
   function wireMapDataDropdown() {
     const wrapper = document.getElementById('map-download-buttons');
