@@ -3054,7 +3054,7 @@ html2canvas(root, {
 
         const refX = dx;
         let refY = logoY + logoHeight - 40;
-        const referenceMaxWidth = out.width - dx - 150;
+        const referenceMaxWidth = out.width - dx - 250;
 
         const referenceLines = wrapCanvasText(referenceText, ctx, referenceMaxWidth);
         
