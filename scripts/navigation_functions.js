@@ -3240,3 +3240,101 @@ function shiftGElements(dx, dy) {
 
   });
 }
+
+function renderMapsFromLocation() {
+  const url = window.location.href;
+  const params = new URLSearchParams(window.location.search);
+
+  // Only run this if we are (or should be) on the maps tab
+  const isMaps =
+    params.get("tab") === "maps" ||
+    params.has("map") ||
+    url.includes("tab=maps") ||
+    url.includes("map=");
+
+  if (!isMaps) return false;
+
+  // Ensure maps screen is visible (same idea as your maps init block)
+  domains_scrn.style.display = "none";
+  maps_scrn.style.display = "block";
+
+  // --- Read desired state from URL ---
+  // 1) Preferred: explicit params (if your form includes them)
+  let desiredDomain =
+    params.get("domain") ||
+    params.get("map_select_1") ||
+    params.get("map-select-1") ||
+    "";
+
+  let desiredIndicator =
+    params.get("indicator") ||
+    params.get("map_select_2") ||
+    params.get("map-select-2") ||
+    "";
+
+  let desiredMap =
+    params.get("map") ||
+    params.get("map_select_3") ||
+    params.get("map-select-3") ||
+    "";
+
+  // Helper
+  const firstVal = (sel) => (sel?.options?.length ? sel.options[0].value : "");
+
+  // If we *only* have map= (matrix), infer domain/indicator by scanning metadata
+  if (desiredMap && (!desiredDomain || !desiredIndicator)) {
+    outer: for (let i = 0; i < domains.length; i++) {
+      const indicators = Object.keys(domains_data[domains[i]].indicators || {});
+      for (let j = 0; j < indicators.length; j++) {
+        const meta = domains_data[domains[i]].indicators[indicators[j]];
+        const AA = meta?.data?.AA || "";
+        const LGD = meta?.data?.LGD || "";
+        if ((desiredMap === AA && AA) || (desiredMap === LGD && LGD)) {
+          desiredDomain = domains[i];
+          desiredIndicator = indicators[j];
+          break outer;
+        }
+      }
+    }
+  }
+
+  // --- Apply Domain safely ---
+  // If desiredDomain isn't a valid option, fall back to first
+  const hasDomain = desiredDomain &&
+    Array.from(map_select_1.options).some(o => o.value === desiredDomain);
+
+  map_select_1.value = hasDomain ? desiredDomain : firstVal(map_select_1);
+
+  // --- Populate + Apply Indicator ---
+  updateMapSelect2(); // depends on map_select_1.value 
+
+  const hasIndicator = desiredIndicator &&
+    Array.from(map_select_2.options).some(o => o.value === desiredIndicator);
+
+  map_select_2.value = hasIndicator ? desiredIndicator : firstVal(map_select_2);
+
+  // --- Populate + Apply Map/Geography ---
+  updateMapSelect3(); // depends on map_select_1 + map_select_2 
+
+  const hasMap = desiredMap &&
+    Array.from(map_select_3.options).some(o => o.value === desiredMap);
+
+  map_select_3.value = hasMap ? desiredMap : firstVal(map_select_3);
+
+  // IMPORTANT: Back/Forward does NOT trigger onchange → so redraw explicitly
+  Promise.resolve(drawMap()).catch(console.error);
+
+  return true;
+}
+
+
+// Back/Forward navigation updates URL but doesn't trigger onchange handlers 
+window.addEventListener("popstate", () => {
+  renderMapsFromLocation();
+});
+
+// Some browsers restore pages from bfcache on Back; pageshow catches that.
+window.addEventListener("pageshow", () => {
+  renderMapsFromLocation();
+});
+
