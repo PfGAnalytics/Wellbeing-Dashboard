@@ -2600,7 +2600,7 @@ const handleOnScroll = () => {
         const csvItem = dropdown ? dropdown.querySelector('.dropdown-menu a.dropdown-item[data-action="csv"]') : null;
         
         if (csvItem) {
-            csvItem.addEventListener('click', function (e) {
+            csvItem.addEventListener('click', async function (e) {
                 e.preventDefault();
                 
                 const domain    = document.getElementById('domain-title')?.textContent.trim();
@@ -2615,25 +2615,75 @@ const handleOnScroll = () => {
                     alert('No downloadable data available for this indicator.');
                     return;
                 }
-                
-                const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
-                window.location.href = downloadUrl;
-                
-                if (window.jQuery && window.jQuery.fn && window.jQuery.fn.dropdown && toggleBtn) {
-                    window.jQuery(toggleBtn).dropdown('hide');
-                }
-                if (toggleBtn) toggleBtn.blur();
-            });
-            return;
-            }
-        }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', wireDataDownloadButton);
-    } else {
-        wireDataDownloadButton();
-    }
-})();
+                const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
+
+                try {
+                    const response = await fetch(downloadUrl);
+                    const csvText = await response.text();
+
+                    const rows = parseCSV(csvText);
+
+                    const header = rows[0];
+                    const eqColIndex = header.findIndex(h => h.toLowerCase() === 'equality groups');
+
+                    if (eqColIndex === -1) {
+                        alert('Equality Groups column not found in CSV.');
+                        return;
+                    }
+
+                    const filteredRows = rows.filter((row, i) => {
+                        if (i === 0) return true;
+                        const cell = row[eqColIndex];
+                        return cell && cell.trim().toLowerCase() === 'northern ireland';
+                    });
+
+                    if (filteredRows.length === 1) {
+                        alert('No Northern Ireland data found.');
+                        return;
+                    }
+
+                    const colsToDrop = ['statistic', 'tlist(a1)', 'equalgroups'];
+
+                    const dropCols = filteredRows[0].map((h, i) => colsToDrop.includes(h.toLowerCase()) ? i : -1).filter(i => i !== -1);
+
+                    const cleanedRows = filteredRows.map(row => row.filter((_, i) => !dropCols.includes(i)));
+
+                    const csvOut = cleanedRows.map(row => row.map(csvEscape).join(',')).join('\n');
+
+                    const blob = new Blob([csvOut], {
+                        type: 'text/csv;charset=utf-8;'
+                    });
+
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `${indicatorCode}_NI.csv`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+
+                    } catch (err) {
+                        console.error(err);
+                        alert('Failed to download or filter the dataset.');
+                    }
+
+                    if (window.jQuery?.fn?.dropdown && toggleBtn) {
+                        window.jQuery(toggleBtn).dropdown('hide');
+                    }
+                    toggleBtn?.blur();
+                });
+
+                return;
+            }}
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', wireDataDownloadButton);
+            } else {
+                wireDataDownloadButton();
+            }
+        })();
 
 // Script to download map as an image (popups)
 (function downloadPopUpMapAsImage () {
@@ -3109,53 +3159,6 @@ if (document.readyState === 'loading') {
 })();
 
 (function downloadPopUpMapData() {
-
-function parseCSV(text) {
-    const rows = [];
-    let row = [];
-    let cell = '';
-    let inQuotes = false;
-
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      const nextChar = text[i + 1];
-
-      if (char === '"' && inQuotes && nextChar === '"') {
-        cell += '"';
-        i++;
-      } else if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === ',' && !inQuotes) {
-        row.push(cell);
-        cell = '';
-      } else if ((char === '\n' || char === '\r') && !inQuotes) {
-        if (cell || row.length) {
-          row.push(cell);
-          rows.push(row);
-        }
-        row = [];
-        cell = '';
-        if (char === '\r' && nextChar === '\n') i++;
-      } else {
-        cell += char;
-      }
-    }
-
-    if (cell || row.length) {
-      row.push(cell);
-      rows.push(row);
-    }
-
-    return rows.map(r => r.map(c => c.replace(/^\uFEFF/, '').trim()));
-  }
-
-  function csvEscape(value) {
-    if (value == null) return '';
-    const needsQuotes = /[",\n\r]/.test(value);
-    let text = String(value).replace(/"/g, '""');
-    return needsQuotes ? `"${text}"` : text;
-  }
-
   async function handlePopupMapDownload(e) {
     if (
       e.target &&

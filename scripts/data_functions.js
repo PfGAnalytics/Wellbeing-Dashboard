@@ -1541,6 +1541,56 @@ async function getEqualityGroups(d, e) {
 
 }
 
+         // Parser function to handle commas etc
+         function parseCSV(text) {
+            const rows = [];
+            let row = [];
+            let cell = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+               const char = text[i];
+               const nextChar = text[i + 1];
+
+               if (char === '"' && inQuotes && nextChar === '"') {
+                  cell += '"';
+                  i++;
+               } else if (char === '"') {
+                  inQuotes = !inQuotes;
+               } else if (char === ',' && !inQuotes) {
+                  row.push(cell);
+                  cell = '';
+               } else if ((char === '\n' || char === '\r') && !inQuotes) {
+                  if (cell || row.length) {
+                  row.push(cell);
+                  rows.push(row);
+                  }
+                  row = [];
+                  cell = '';
+                  if (char === '\r' && nextChar === '\n') i++;
+               } else {
+                  cell += char;
+               }
+            }
+
+            if (cell || row.length) {
+               row.push(cell);
+               rows.push(row);
+            }
+
+            return rows.map(r =>
+               r.map(c => c.replace(/^\uFEFF/, '').trim())
+            );
+         }
+
+         function csvEscape(value) {
+            if (value == null) return '';
+            const needsQuotes = /[",\n\r]/.test(value);
+            let text = String(value).replace(/"/g, '""');
+
+            return needsQuotes ? `"${text}"` : text;
+         }
+
 async function renderPopup (d, e, eq_group) {
 
    if (document.getElementById("pop-up-chart")) {
@@ -1958,57 +2008,6 @@ async function renderPopup (d, e, eq_group) {
          
          // Build the download URL
          const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
-         console.log(downloadUrl)
-
-         // Parser function to handle commas etc
-         function parseCSV(text) {
-            const rows = [];
-            let row = [];
-            let cell = '';
-            let inQuotes = false;
-
-            for (let i = 0; i < text.length; i++) {
-               const char = text[i];
-               const nextChar = text[i + 1];
-
-               if (char === '"' && inQuotes && nextChar === '"') {
-                  cell += '"';
-                  i++;
-               } else if (char === '"') {
-                  inQuotes = !inQuotes;
-               } else if (char === ',' && !inQuotes) {
-                  row.push(cell);
-                  cell = '';
-               } else if ((char === '\n' || char === '\r') && !inQuotes) {
-                  if (cell || row.length) {
-                  row.push(cell);
-                  rows.push(row);
-                  }
-                  row = [];
-                  cell = '';
-                  if (char === '\r' && nextChar === '\n') i++;
-               } else {
-                  cell += char;
-               }
-            }
-
-            if (cell || row.length) {
-               row.push(cell);
-               rows.push(row);
-            }
-
-            return rows.map(r =>
-               r.map(c => c.replace(/^\uFEFF/, '').trim())
-            );
-         }
-
-         function csvEscape(value) {
-            if (value == null) return '';
-            const needsQuotes = /[",\n\r]/.test(value);
-            let text = String(value).replace(/"/g, '""');
-
-            return needsQuotes ? `"${text}"` : text;
-         }
             
          // Downloading data for the selected subpops
          try {
