@@ -2831,7 +2831,9 @@ const handleOnScroll = () => {
         const indicatorTitle = indicatorName.replace(/\s+/g, '-');
         const popupTitleText = document.getElementById('popup-map-title').textContent;
         const geoType = (popupTitleText.split(/by\s+/i)[1] || '').replace(/\(.*?\)/g, '').replace(/\./g, '').trim();
-        const geoCode = geoType === "Local Government District" ? "lgd" : "aa";
+        const geoCode = geoType.toLowerCase().includes("local government district")
+          ? "lgd"
+          : "aa";
         const year = document.getElementById('popup-map-year-label').textContent.replace(/\//g, "-").replace(/\s+/g, "");
 
         const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + geoCode + '-' + year : 'map') + '.png';

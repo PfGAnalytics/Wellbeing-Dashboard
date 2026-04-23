@@ -2716,6 +2716,7 @@ async function renderMapPopup(d, e, type, data) {
 
       pop_up_map.appendChild(closeBtn);
 
+
       // After creating pop_up_map and before appending mapContainer
       const mapTitle = document.createElement("h2");
       mapTitle.id = "popup-map-title";
@@ -2731,10 +2732,28 @@ async function renderMapPopup(d, e, type, data) {
       }
 
       const cleanedMeasureText = measure_text.trim();
-      const firstSentence = cleanedMeasureText.split('.')[0]; // Take text before first '.'
+      const firstSentence = document.querySelector(".chart-title")?.textContent.trim();
       const fullType = getTypeFullName(type);
       
       let customTitle = null;
+
+      let rawTitle = firstSentence;
+
+      let datePart = '';
+      let baseTitle = rawTitle;
+
+      const dateBracket = rawTitle.indexOf('(');
+      if (dateBracket !== -1) {
+        baseTitle = rawTitle.substring(0, dateBracket).trim();
+        datePart = rawTitle.substring(dateBracket).trim();
+      }
+
+      // Build final title
+      let titleText = baseTitle + " by " + fullType;
+
+      if (datePart) {
+        titleText += ' ' + datePart;
+      }
 
       if (cleanedMeasureText.startsWith("The age standardised death rate for causes that are considered preventable")) {
          customTitle = "Age standardised death rate (per 100,000 population) for causes considered preventable";
@@ -2744,7 +2763,7 @@ async function renderMapPopup(d, e, type, data) {
          mapTitle.textContent = `${customTitle} by ${fullType}`;
          mapTitle.dataset.baseTitle = mapTitle.textContent;
       } else {
-         mapTitle.textContent = `${firstSentence} by ${fullType}`;
+         mapTitle.textContent = titleText;
          mapTitle.dataset.baseTitle = mapTitle.textContent;
       }
 
