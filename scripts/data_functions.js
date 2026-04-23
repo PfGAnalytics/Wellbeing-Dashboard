@@ -1958,19 +1958,68 @@ async function renderPopup (d, e, eq_group) {
          
          // Build the download URL
          const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
-  
+         console.log(downloadUrl)
+
+         // Parser function to handle commas etc
+         function parseCSV(text) {
+            const rows = [];
+            let row = [];
+            let cell = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+               const char = text[i];
+               const nextChar = text[i + 1];
+
+               if (char === '"' && inQuotes && nextChar === '"') {
+                  cell += '"';
+                  i++;
+               } else if (char === '"') {
+                  inQuotes = !inQuotes;
+               } else if (char === ',' && !inQuotes) {
+                  row.push(cell);
+                  cell = '';
+               } else if ((char === '\n' || char === '\r') && !inQuotes) {
+                  if (cell || row.length) {
+                  row.push(cell);
+                  rows.push(row);
+                  }
+                  row = [];
+                  cell = '';
+                  if (char === '\r' && nextChar === '\n') i++;
+               } else {
+                  cell += char;
+               }
+            }
+
+            if (cell || row.length) {
+               row.push(cell);
+               rows.push(row);
+            }
+
+            return rows.map(r =>
+               r.map(c => c.replace(/^\uFEFF/, '').trim())
+            );
+         }
+
+         function csvEscape(value) {
+            if (value == null) return '';
+            const needsQuotes = /[",\n\r]/.test(value);
+            let text = String(value).replace(/"/g, '""');
+
+            return needsQuotes ? `"${text}"` : text;
+         }
+            
          // Downloading data for the selected subpops
          try {
             const response = await fetch(downloadUrl);
             const csvText = await response.text();
             
-            const rows = csvText.trim().split(/\r?\n/).map(row =>
-               row.split(',').map(cell => cell.replace(/^\uFEFF/, '').replace(/^"|"$/g, '').trim()
-            ));
+            const rows = parseCSV(csvText);
 
             const header = rows[0];
             const eqColIndex = header.findIndex( h => h.toLowerCase() === 'equality groups');
-            
+
             if (eqColIndex === -1) {
                alert('Equality Groups column not found in CSV.');
                return;
@@ -1987,8 +2036,16 @@ async function renderPopup (d, e, eq_group) {
                alert('No matching data found for selected equality group.');
                return;
             }
+
+            const colsToDrop = ['statistic', 'tlist(a1)', 'equalgroups'];
+ 
+            const newHeader = filteredRows[0];
+           
+            const dropCols = newHeader.map((h, i) => colsToDrop.includes(h.toLowerCase()) ? i : -1).filter(i => i !== -1);
+           
+            const cleanedRows = filteredRows.map(row => row.filter((_, i) => !dropCols.includes(i)));
             
-            const filteredCsv = filteredRows.map(r => r.join(',')).join('\n');
+            const filteredCsv = cleanedRows.map(row => row.map(csvEscape).join(',')).join('\n');
             const blob = new Blob([filteredCsv], {
                type: 'text/csv;charset=utf-8;'
             });
