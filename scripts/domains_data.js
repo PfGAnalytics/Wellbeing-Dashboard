@@ -491,8 +491,8 @@ var domains_data = {
        mission: "People",
        indicators: {
          "Arts and cultural activities": {
-            importance: "This indicator provides the proportion of adults in Northern Ireland who engage with art and cultural activities.  There is a correlation between engagement in cultural activities and higher levels of personal wellbeing.",
-            base_year: "2021/22",
+            importance: "This indicator provides the proportion of adults in Northern Ireland who engage with art and cultural activities.  There is a correlation between engagement in arts/cultural activities and higher levels of personal wellbeing.",
+            base_year: "2022/23",
             ci: 2,
             data: {
                NI: "",
@@ -502,7 +502,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2023/24, it is important to note that engaging in arts/cultural activities in 2021/22 would have been impacted by closures due to COVID-19. In 2023/24, 2022/23 and 2021/22 gaps can be seen between males and females, people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for most and least deprived areas and urban and rural areas.",
+               improved: "The comparison year has been set to 2022/23 due to changes in the data collection method as a result of, and closures due to, Covid-19. While comparisons can be made between 2021/22 and 2024/25, it is important to note that engaging in arts/cultural activities in 2021/22 would have been impacted by closures due to Covid-19, hence a comparison year of 2022/23 has been selected. There have been consistent gaps between males and females, people with a disability compared with those without, people with dependants compared with those without and between adults living in the most and least deprived areas.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
