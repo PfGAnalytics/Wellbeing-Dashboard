@@ -2799,7 +2799,10 @@ async function renderMapPopup(d, e, type, data) {
       let datePart = '';
       let baseTitle = rawTitle;
 
-      const dateBracket = rawTitle.indexOf('(');
+
+      const match = rawTitle.match(/\(\d{2,}/);
+      const dateBracket = match ? match.index : -1;
+
       if (dateBracket !== -1) {
         baseTitle = rawTitle.substring(0, dateBracket).trim();
         datePart = rawTitle.substring(dateBracket).trim();
