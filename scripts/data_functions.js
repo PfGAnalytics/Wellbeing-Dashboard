@@ -1232,6 +1232,9 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
   source_info_div.id = matrix + "-source-info";
   source_info_div.classList.add("source-info-text");
 
+  var indicatorObj = domains_data[d].indicators[e]; // Full indicator object
+  var data = indicatorObj.data;
+
   if (num_links == 1) {
 
    if (source_info.indexOf("[b]") > -1) {
@@ -1262,9 +1265,6 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
       source_link = source_info.slice(source_info.indexOf("http"))
    }
 
-    var indicatorObj = domains_data[d].indicators[e]; // Full indicator object
-    var data = indicatorObj.data;
-
     if (indicatorObj.AOS) {
 
       source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. <br>This is an Accredited Official Statistic.";
@@ -1274,7 +1274,6 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
       source_info_div.innerHTML = "This indicator is collected from <a href='" + source_link + "' target='_blank'>" + source_name + "</a>. <br>This is an Official Statistic.";
 
     }
-   
    
 
 } else {
@@ -1304,7 +1303,13 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
    }
 
    source_info_div.innerHTML += ".";
-
+   
+   // To handle instances where there 3+ links in Source
+   if (indicatorObj.AOS) {
+      source_info_div.innerHTML += "<br>This is an Accredited Official Statistic.";
+   } else {
+      source_info_div.innerHTML += "<br>This is an Official Statistic.";
+   }
 }
 
 document.getElementById("source-info").appendChild(source_info_div);
