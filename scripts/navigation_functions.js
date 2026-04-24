@@ -2617,6 +2617,7 @@ const handleOnScroll = () => {
                 }
 
                 const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
+                console.log(downloadUrl)
 
                 try {
                     const response = await fetch(downloadUrl);
@@ -2624,26 +2625,33 @@ const handleOnScroll = () => {
 
                     const rows = parseCSV(csvText);
 
-                    const header = rows[0];
-                    const eqColIndex = header.findIndex(h => h.toLowerCase() === 'equality groups');
+                    const header = rows[0].map(h => h.trim());
+                    const headerLower = header.map(h => h.toLowerCase());
 
-                    if (eqColIndex === -1) {
-                        alert('Equality Groups column not found in CSV.');
-                        return;
+                    const eqColIndex = headerLower.indexOf('equality groups');
+                    const niColIndex = headerLower.indexOf('northern ireland');
+
+                    let filteredRows;
+
+                    if (eqColIndex !== -1) {
+                        filteredRows = rows.filter((row, i) => {
+                            if (i === 0) return true;
+                            const cell = row[eqColIndex];
+                            return cell && cell.trim().toLowerCase() === 'northern ireland';
+                        });
+                    
+                    } else if (niColIndex !== -1) {
+                        filteredRows = rows;
+                    } else {
+                        filteredRows = rows;
                     }
-
-                    const filteredRows = rows.filter((row, i) => {
-                        if (i === 0) return true;
-                        const cell = row[eqColIndex];
-                        return cell && cell.trim().toLowerCase() === 'northern ireland';
-                    });
-
+                    
                     if (filteredRows.length === 1) {
                         alert('No Northern Ireland data found.');
                         return;
                     }
 
-                    const colsToDrop = ['statistic', 'tlist(a1)', 'equalgroups'];
+                    const colsToDrop = ['statistic', 'ni', 'tlist(a1)', 'equalgroups', 'n92000002'];
 
                     const dropCols = filteredRows[0].map((h, i) => colsToDrop.includes(h.toLowerCase()) ? i : -1).filter(i => i !== -1);
 
@@ -2655,10 +2663,12 @@ const handleOnScroll = () => {
                         type: 'text/csv;charset=utf-8;'
                     });
 
+                    const IndCode = indicatorCode.replace(/(EQ|NI)$/, '');
+
                     const url = URL.createObjectURL(blob);
                     const link = document.createElement('a');
                     link.href = url;
-                    link.download = `${indicatorCode}_NI.csv`;
+                    link.download = `${IndCode}_NI.csv`;
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
