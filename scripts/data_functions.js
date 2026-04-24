@@ -1825,8 +1825,7 @@ async function renderPopup (d, e, eq_group) {
             const chartDate = chartDateEl ? chartDateEl.textContent.trim() : '';
 
             const indicatorTitle = document.getElementById('indicator-title').textContent.trim().replace(/\s+/g, '-');
-            const eqGroup = (document.getElementById('pop-up-title').textContent.split(/by\s+/i)[1] || '').replace(/\s+/g, '-');
-            const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-') + '-' + 'by' + '-' + eqGroup.toLowerCase() : 'chart') + '.png';
+            const eqGroup = (document.getElementById('pop-up-title').textContent.match(/.*\bby\s+(.+)$/i)?.[1] || '').replace(/\s+/g, '-');
 
             const chartCanvas = chartInstance.canvas;
             const renderedWidth = chartInstance.width - 75;
@@ -1903,9 +1902,10 @@ async function renderPopup (d, e, eq_group) {
             ctx.fillStyle = "#fff";
             ctx.fillRect(leftInset, maskTop, renderedWidth, maskHeight);
 
-            const indicatorName = indicatorTitle.replace(/-/g, " ");
+            const indicatorName = document.getElementById('indicator-title').textContent.replace(/\s+/g, ' ').trim();
             const attributionText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
 
+            const fileName = (indicatorName ? indicatorName.toLowerCase().replaceAll(' ', '-') + '-' + 'by' + '-' + eqGroup.toLowerCase() : 'chart') + '.png';
             ctx.save();
             ctx.font = '12pt Arial, sans-serif';
             ctx.fillStyle = '#000';
