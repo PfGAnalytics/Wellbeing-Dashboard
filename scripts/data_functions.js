@@ -2606,12 +2606,10 @@ async function renderMapPopup(d, e, type, data) {
 
    const previouslyFocused = document.activeElement;
 
-
    // If a chart popup is open, remove it (prevents both being open)
      if (document.getElementById("pop-up-chart")) {
        main_container.removeChild(document.getElementById("pop-up-chart"));
      }
-
 
    // If a chart popup is open, remove it so we don't have two popups
     if (document.getElementById("pop-up-chart")) {
@@ -2632,16 +2630,16 @@ async function renderMapPopup(d, e, type, data) {
       sessionStorage.setItem("popup_type", type);
     } catch (_) {}
    
-    // ---- CRITICAL BIT: ensure the *previous* history entry is the indicator page ----
+    // Ensure the previous history entry is the indicator page
     const baseParams = new URLSearchParams(location.search);
     baseParams.delete("popup");
    
-    // Ensure indicator param exists (indicator routes are ?indicator=...) [1](https://nicsonline-my.sharepoint.com/personal/daniel_nelson-donaghy_nisra_gov_uk/Documents/Microsoft%20Copilot%20Chat%20Files/data_functions.js)
+    // Ensure indicator param exists
     if (!baseParams.has("indicator")) {
       const indicatorSlug = String(e)
         .replace(/[^a-z ]/gi, "")
         .toLowerCase()
-        .replaceAll(" ", "+"); // matches indicator link building [1](https://nicsonline-my.sharepoint.com/personal/daniel_nelson-donaghy_nisra_gov_uk/Documents/Microsoft%20Copilot%20Chat%20Files/data_functions.js)
+        .replaceAll(" ", "+");
       baseParams.set("indicator", indicatorSlug);
     }
    
@@ -2656,7 +2654,6 @@ async function renderMapPopup(d, e, type, data) {
 
    
      // Normalise popup value to match handleRefreshPopup() expectations
-   
      // Persist context so refresh/link-sharing can rebuild the popup
      try {
        sessionStorage.setItem("popup_domain", d);
@@ -2668,7 +2665,6 @@ async function renderMapPopup(d, e, type, data) {
    
      // Back-button handler: close popup when navigating away from its URL state
      let onPopState;
-
    
    // Remove existing popup
     if (document.getElementById("pop-up-map")) {
@@ -2688,7 +2684,6 @@ async function renderMapPopup(d, e, type, data) {
       } else {
          pop_up_map.style.width = "1190px";
       }
-
 
       function trapFocus(container) {
           const focusableSelectors = `
@@ -2718,7 +2713,6 @@ async function renderMapPopup(d, e, type, data) {
           });
       }
 
-
       main_container.appendChild(pop_up_map);
       pop_up_map.focus();
       trapFocus(pop_up_map);
@@ -2732,7 +2726,6 @@ async function renderMapPopup(d, e, type, data) {
       closeBtn.innerHTML = '<img src="img/xmark-solid-full.svg" alt="Close" style="filter:invert(1);">';
 
       let onEsc;
-      
 
       function closePopUp(fromPopState = false) {
         indicator_scrn.style.filter = "opacity(100%)";
@@ -2748,7 +2741,6 @@ async function renderMapPopup(d, e, type, data) {
         window.removeEventListener("popstate", onPopState);
       }
 
-
       closeBtn.onclick = () => history.back();
       
       onEsc = function (e) {
@@ -2760,7 +2752,6 @@ async function renderMapPopup(d, e, type, data) {
       
       document.addEventListener("keydown", onEsc);
 
-
         onPopState = () => {
           const p = new URLSearchParams(location.search);
           if (p.get("popup") !== popupValue && document.getElementById("pop-up-map")) {
@@ -2771,7 +2762,6 @@ async function renderMapPopup(d, e, type, data) {
 
 
       pop_up_map.appendChild(closeBtn);
-
 
       // After creating pop_up_map and before appending mapContainer
       const mapTitle = document.createElement("h2");
@@ -2797,7 +2787,6 @@ async function renderMapPopup(d, e, type, data) {
 
       let datePart = '';
       let baseTitle = rawTitle;
-
 
       const match = rawTitle.match(/\(\d{2,}/);
       const dateBracket = match ? match.index : -1;
@@ -2969,8 +2958,6 @@ async function renderMapPopup(d, e, type, data) {
      const response = await fetch(api_url);
      const fetched_data = await response.json();
      const {result} = fetched_data;
-
-
 
      let popup_further_note = String(result.note[0] || "").replaceAll("\n", "");
       
