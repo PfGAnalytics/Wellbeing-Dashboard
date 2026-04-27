@@ -2028,12 +2028,28 @@ async function renderPopup (d, e, eq_group) {
                alert('Equality Groups column not found in CSV.');
                return;
             }
+
             
             const filteredRows = rows.filter((row, i) => {
                if (i === 0) return true;
                const cell = row[eqColIndex];
                if (!cell) return false;
-               return cell.toLowerCase().includes(eq_group.toLowerCase());
+
+
+               const escapedGroup = eq_group.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+               let pattern;
+
+               if (eq_group.toLowerCase() === "work pattern") {
+                 pattern = `^${escapedGroup}(?!\\s+by\\s+sex)($|\\s)`;
+               } else {
+                 pattern = `^${escapedGroup}($|\\s)`;
+               }
+
+               const regex = new RegExp(pattern, "i");
+               return regex.test(cell.trim());
+
+
             });
 
             if (filteredRows.length === 1) {
