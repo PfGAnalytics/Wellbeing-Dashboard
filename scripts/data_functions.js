@@ -2010,6 +2010,7 @@ async function renderPopup (d, e, eq_group) {
          } else if (indicatorData.NI) {
             indicatorCode = indicatorData.NI;
          }
+
          
          // Build the download URL
          const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
@@ -2024,40 +2025,44 @@ async function renderPopup (d, e, eq_group) {
             const header = rows[0];
             const eqColIndex = header.findIndex( h => h.toLowerCase() === 'equality groups');
 
-            if (eqColIndex === -1) {
-               alert('Equality Groups column not found in CSV.');
-               return;
+
+            if (eqColIndex === -1 && indicatorCode !== 'INDSKILLSLEV') {
+                alert('Equality Groups column not found in CSV.');
+                return;
             }
 
             
-            const filteredRows = rows.filter((row, i) => {
-               if (i === 0) return true;
-               const cell = row[eqColIndex];
-               if (!cell) return false;
 
+            const filteredRows =
+              indicatorCode === "INDSKILLSLEV"
+                ? rows
+                : rows.filter((row, i) => {
+                    if (i === 0) return true;
 
-               const escapedGroup = eq_group.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+                    const cell = row[eqColIndex];
+                    if (!cell) return false;
 
-               let pattern;
+                    const escapedGroup = eq_group.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-               if (eq_group.toLowerCase() === "work pattern") {
-                 pattern = `^${escapedGroup}(?!\\s+by\\s+sex)($|\\s)`;
-               } else {
-                 pattern = `^${escapedGroup}($|\\s)`;
-               }
+                    let pattern;
 
-               const regex = new RegExp(pattern, "i");
-               return regex.test(cell.trim());
+                    if (eq_group.toLowerCase() === "work pattern") {
+                      pattern = `^${escapedGroup}(?!\\s+by\\s+sex)($|\\s)`;
+                    } else {
+                      pattern = `^${escapedGroup}($|\\s)`;
+                    }
 
+                    const regex = new RegExp(pattern, "i");
+                    return regex.test(cell.trim());
+                  });
 
-            });
 
             if (filteredRows.length === 1) {
                alert('No matching data found for selected equality group.');
                return;
             }
 
-            const colsToDrop = ['statistic', 'tlist(a1)', 'equalgroups'];
+            const colsToDrop = ['statistic', 'tlist(a1)', 'equalgroups', "lev"];
  
             const newHeader = filteredRows[0];
            
