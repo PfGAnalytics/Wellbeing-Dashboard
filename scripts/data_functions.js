@@ -2393,15 +2393,25 @@ async function renderPopup (d, e, eq_group) {
       // Colour palette for bar charts:
       colours = ["#3878c5", "#00205b", "#68a41e", "#732777", "#ce70d2", "#434700", "#a88f8f","#3b3b3b","#e64791", "#400b23"];
 
+
       for (let j = 0; j < Object.keys(values).length; j++) {
          const label = Object.keys(values)[j];
+         console.log(label);
+
+         // Offset colour index if Skills Level
+         const colourIndex =
+            eq_group === "Skills Level"
+               ? (j + 1) % colours.length
+               : j % colours.length;
+
          const dataset = {
             label: label,
             data: values[label].slice(first_year),
             backgroundColor: [
-               colours[j % colours.length]
+               colours[colourIndex]
             ]
-         };
+         }
+
 
       let shouldInclude = true;
 
