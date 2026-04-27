@@ -2394,11 +2394,30 @@ const handleOnScroll = () => {
                 const summarySideMargin = 105;
                 const maxSummaryWidth = out.width - (summarySideMargin * 3);
 
-                const summaryText = (typeof chartSummary === 'function') ? chartSummary() : '';
+                let summaryText = (typeof chartSummary === 'function') ? chartSummary() : '';
                 let summaryLines = [];
                 let summaryH = 0;
 
-                console.log(summaryText)
+
+
+
+                if (/pounds\s+sterling/i.test(yLabel)) {
+                  const regex = /(\d+(?:\.\d+)?)\s*Pounds Sterling \(£\), Millions/g;
+
+                  summaryText = summaryText.replace(regex, (match, numberStr) => {
+                    const number = Number(numberStr);
+                    const formattedNumber = number.toLocaleString("en-GB");
+                    return `£${formattedNumber} million (m)`;
+                  });
+                }
+
+                // Replace "value" with "total expenditure on R&D"
+                // if titleText contains "research and development" (case-insensitive)
+                if (/research\s+and\s+development/i.test(titleText)) {
+                  summaryText = summaryText.replace(/\bvalue\b/gi, "total expenditure on R&D");
+                }
+
+
 
                 if (summaryText) {
                     ctx.font = summaryFont;
