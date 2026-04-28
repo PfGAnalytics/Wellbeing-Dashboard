@@ -1829,6 +1829,10 @@ input:focus-visible {
   font-weight: bold;
   }
 
+  #search-textautocomplete-list {
+    z-index: 2000
+  }
+
   #search-box {
     display: flex;
     width: 100%;

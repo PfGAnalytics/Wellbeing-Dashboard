@@ -1611,6 +1611,7 @@ async function renderPopup (d, e, eq_group) {
    pop_up_chart = document.createElement("div");         // Create a div to hold the pop-up
    pop_up_chart.id = "pop-up-chart";                     // Give it a class
    pop_up_chart.style.backgroundColor = "#F2F2F2";       // Set its background colour
+   pop_up_chart.style.zIndex = "1000";
 
    pop_up_buttons = document.createElement("div");         // Create a div to hold the pop-up
    pop_up_buttons.id = "pop-up-buttons";                     // Give it a class
@@ -2716,6 +2717,7 @@ async function renderMapPopup(d, e, type, data) {
     const pop_up_map = document.createElement("div");
     pop_up_map.id = "pop-up-map";
     pop_up_map.setAttribute("tabindex", "-1");
+   pop_up_map.style.zIndex = "1000";
 
     pop_up_map.style.marginTop = survey.clientHeight + top_container.clientHeight + button_rows[0].clientHeight + button_rows[1].clientHeight + document.getElementById("ind-hex-container").clientHeight + "px";
     
