@@ -2315,299 +2315,383 @@ const handleOnScroll = () => {
 // Script to download chart as an image
     (function downloadChartAsImage () {
 
-        function getChartCanvas() {
-            const canvas = document.querySelector('#line-chart-container canvas[id$="-canvas"]');
-            return canvas || null;
+      // ✅ Fixed export resolution (independent of browser zoom)
+      const EXPORT = {
+        dpr: 2 // 1 = smaller/less sharp, 2 = crisp, 3 = very large files
+      };
+
+      function getChartCanvas() {
+        const canvas = document.querySelector('#line-chart-container canvas[id$="-canvas"]');
+        return canvas || null;
+      }
+
+      function getHeaderText() {
+        const titleEl = document.querySelector('.chart-title');
+        const titleText = titleEl ? titleEl.textContent.trim() : '';
+        return { titleText, labelLines: [] };
+      }
+
+      function getYLabel() {
+        const el = document.querySelector('.y-label');
+        return el ? el.textContent.trim() : '';
+      }
+
+      function wrapCanvasText(text, ctx, maxWidth) {
+        const words = text.split(" ");
+        const lines = [];
+        let current = "";
+
+        for (const w of words) {
+          const test = current ? current + " " + w : w;
+          if (ctx.measureText(test).width > maxWidth) {
+            if (current) lines.push(current);
+            current = w;
+          } else {
+            current = test;
+          }
         }
+        if (current) lines.push(current);
+        return lines;
+      }
 
-        function getHeaderText() {
-            const titleEl = document.querySelector('.chart-title');
-            const titleText = titleEl ? titleEl.textContent.trim() : '';
-            return {
-                titleText, labelLines: [] 
-            };
+    async function downloadChart(chartOrCanvas) {
+      if (!chartOrCanvas) return;
+
+      // --- Config: fixed export pixel density (independent of zoom) ---
+      const EXPORT_DPR = 2; // 2 = crisp; 3 = very crisp but larger files
+
+      // Accept either a Chart.js chart instance or a canvas element
+      const srcCanvas = chartOrCanvas && chartOrCanvas.canvas ? chartOrCanvas.canvas : chartOrCanvas;
+      if (!srcCanvas || typeof srcCanvas.getBoundingClientRect !== "function") return;
+
+      // Use CSS pixel size as the stable "layout" size (not backing-store pixels)
+      const rect = srcCanvas.getBoundingClientRect();
+      const cssChartW = Math.max(1, Math.round(rect.width));
+      const cssChartH = Math.max(1, Math.round(rect.height));
+
+      // Attempt to get a Chart.js chart instance (for hi-res re-render before export)
+      const chart =
+        (chartOrCanvas && chartOrCanvas.canvas && chartOrCanvas.options && typeof chartOrCanvas.update === "function")
+          ? chartOrCanvas
+          : (window.Chart && typeof window.Chart.getChart === "function" ? window.Chart.getChart(srcCanvas) : null);
+
+      // Helper: wait for the browser to paint (ensures the canvas backing store is updated)
+      const nextPaint = () => new Promise(res => requestAnimationFrame(() => requestAnimationFrame(res)));
+
+      // Helper: load logo
+      const loadImage = (src) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = () => resolve(null);
+          img.src = src;
+        });
+
+      // Helper: run export with chart temporarily forced to fixed DPR (prevents blur at zoomed-out levels)
+      const runWithHiResChart = async (fn) => {
+        if (!chart || !chart.options) return fn();
+
+        const originalDpr = chart.options.devicePixelRatio;
+        const originalAnim = chart.options.animation;
+
+        try {
+          // Disable animation for a stable export frame
+          chart.options.animation = false;
+
+          // Force chart backing-store DPR to fixed export DPR
+          chart.options.devicePixelRatio = EXPORT_DPR;
+
+          // Ensure chart renders at the same CSS size you see on screen
+          if (typeof chart.resize === "function") chart.resize(cssChartW, cssChartH);
+          chart.update("none");
+
+          await nextPaint();
+          return await fn();
+        } finally {
+          // Restore original chart settings
+          chart.options.devicePixelRatio = originalDpr;
+          chart.options.animation = originalAnim;
+
+          if (typeof chart.resize === "function") chart.resize(cssChartW, cssChartH);
+          chart.update("none");
         }
-        
-        function getYLabel() {
-            const el = document.querySelector('.y-label');
-            return el ? el.textContent.trim() : '';
-        }
+      };
 
-        function wrapCanvasText(text, ctx, maxWidth) {
-            const words = text.split(" ");
-            const lines = [];
-            let current = "";
+      return runWithHiResChart(async () => {
+        // --------- Your existing layout logic (in CSS px) ----------
+        const yLabel = getYLabel();
+        const yLabelPadding = yLabel ? 100 : 0;
 
-            for (const w of words) {
-                const test = current ? current + " " + w : w;
-                if (ctx.measureText(test).width > maxWidth) {
-                     if (current) lines.push(current);
-               current = w;
-            } else {
-               current = test;
-            }
-         }
-         if (current) lines.push(current);
-         return lines;
-         }
-        
-        function downloadChart(chartOrCanvas) {
-            if (!chartOrCanvas) return;
+        const chartDateEl = document.querySelector(".chart-date");
+        const chartDate = chartDateEl ? chartDateEl.textContent.trim() : "";
 
-            const src = chartOrCanvas.canvas ? chartOrCanvas : chartOrCanvas;
-            const width = src.width;
-            const height = src.height;
+        const { titleText } = getHeaderText();
 
-            const topPadding = 80;
-            const bottomPadding = 15;
+        const titleFont = "18px Arial, sans-serif";
+        const summaryFont = "12pt Arial, sans-serif";
 
-            const yLabel = getYLabel();
-            const yLabelPadding = yLabel ? 100 : 0;
+        const gapAboveChart = 20;
+        const gapAboveSummary = 25;
+        const bottomPadding = 15;
 
-            const chartDateEl = document.querySelector('.chart-date');
-            const chartDate = chartDateEl ? chartDateEl.textContent.trim() : ''; 
+        const cssOutW = cssChartW + yLabelPadding;
 
-            const out = document.createElement('canvas');
-            out.width = width + yLabelPadding;
-            const ctx = out.getContext('2d');
+        // Create output canvas with fixed pixel density
+        const out = document.createElement("canvas");
+        out.width = Math.round(cssOutW * EXPORT_DPR);
+        out.height = Math.round(10 * EXPORT_DPR); // temporary; we'll resize after measuring
+        let ctx = out.getContext("2d");
 
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(0, 0, out.width, out.height);
+        // Draw in CSS coordinate system (stable)
+        ctx.setTransform(EXPORT_DPR, 0, 0, EXPORT_DPR, 0, 0);
 
-            const titleFont = '18px Arial, sans-serif';
+        // --- Measure title and summary ---
+        let titleH = 0;
+        let titleLines = [];
+        let summaryLines = [];
+        let summaryH = 0;
 
-            const { titleText } = getHeaderText();
-            let titleH = 0;
+        if (titleText) {
+          ctx.font = titleFont;
+          ctx.textBaseline = "top";
 
-            if (titleText) {
-                ctx.fillStyle = "black";
-                ctx.font = titleFont;
-                ctx.textBaseline = "top";
+          const maxTitleWidth = cssOutW - 20;
+          titleLines = wrapCanvasText(titleText, ctx, maxTitleWidth);
 
-                const maxTitleWidth = out.width - 20;
-                const lines = wrapCanvasText(titleText, ctx, maxTitleWidth);
+          const titleLineHeight = 22;
+          titleH = titleLines.length * titleLineHeight + 10;
 
-                const lineHeight = 22;
-                titleH = lines.length * lineHeight + 10;
+          // Summary rules (your existing logic)
+          const summarySideMargin = 105;
+          const maxSummaryWidth = cssOutW - (summarySideMargin * 3);
 
-                const summaryFont = '13px Arial, sans-serif';
-                const summarySideMargin = 105;
-                const maxSummaryWidth = out.width - (summarySideMargin * 3);
+          let summaryText = (typeof chartSummary === "function") ? chartSummary() : "";
 
-                let summaryText = (typeof chartSummary === 'function') ? chartSummary() : '';
-                let summaryLines = [];
-                let summaryH = 0;
-
-
-
-
-                if (/pounds\s+sterling/i.test(yLabel)) {
-                  const regex = /(\d+(?:\.\d+)?)\s*Pounds Sterling \(£\), Millions/g;
-
-                  summaryText = summaryText.replace(regex, (match, numberStr) => {
-                    const number = Number(numberStr);
-                    const formattedNumber = number.toLocaleString("en-GB");
-                    return `£${formattedNumber} million (m)`;
-                  });
-                }
-
-                // Replace "value" with "total expenditure on R&D"
-                // if titleText contains "research and development"
-                if (/research\s+and\s+development/i.test(titleText)) {
-                  summaryText = summaryText.replace(/\bvalue\b/gi, "total expenditure on R&D");
-                }
-
-
-
-                if (summaryText) {
-                    ctx.font = summaryFont;
-                    summaryLines = wrapCanvasText(summaryText, ctx, maxSummaryWidth);
-
-                    const summaryLineHeight = 18;
-                    summaryH = summaryLines.length * summaryLineHeight + 10;
-                }
-
-                const gapAboveChart = 20;
-                const gapAboveSummary = 20;
-
-                out.height = titleH + gapAboveChart + height + gapAboveSummary + summaryH + bottomPadding + 40;
-
-                ctx.fillStyle = '#fff';
-                ctx.fillRect(0, 0, out.width, out.height);
-
-                ctx.fillStyle = "black";
-                ctx.font = titleFont;
-                ctx.textAlign = "center";
-                ctx.textBaseline = "top";
-
-                let yPos = 10;
-                lines.forEach(line => {
-                    ctx.fillText(line, out.width / 2, yPos);
-                    yPos += lineHeight;
-                });
-
-                downloadChart._summaryLines = summaryLines;
-                downloadChart._summaryFont = summaryFont;
-                downloadChart._summaryLineHeight = 18;
-                downloadChart._summarySideMargin = summarySideMargin;
-                downloadChart._summaryH = summaryH;
-            }
-            
-            if (yLabel) {
-                ctx.save();
-                ctx.fillStyle = 'black';
-                ctx.font = '12px Arial, sans-serif';
-                ctx.textBaseline = 'middle';
-
-                const words = yLabel.split(/\s+/).filter(Boolean);
-                const lineHeight = 14;
-
-                const labelX = yLabelPadding / 2 - 10;
-                const labelY = titleH + height / 2;
-
-                ctx.translate(labelX, labelY);
-
-                const blockHeight = (words.length - 1) * lineHeight;
-                const startY = -blockHeight / 2;
-
-                words.forEach((word, i) => {
-                    ctx.fillText(word, 0, startY + i * lineHeight);
-                });
-
-                ctx.restore();
-            }
-            const chartTop = titleH + 20;
-            const chartLeftOffset = 20;
-            ctx.drawImage(src, yLabelPadding - chartLeftOffset, chartTop);
-
-            const indicatorName = document.getElementById('indicator-title').textContent.replace(/\s+/g, ' ').trim();
-            const attributionText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
-
-            ctx.font = '12px Arial, sans-serif';
-            ctx.fillStyle = 'black';
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'top';
-
-            const attributionX = yLabelPadding - 20;
-            const attributionY = chartTop + height + 4;
-            const footerMaxWidth = out.width - 250;
-
-            let footerY = attributionY;
-
-            if (chartDate) {
-               ctx.fillText(chartDate, attributionX, footerY);
-               footerY += 12;
-            }
-
-            const logoHeight = 50;
-            const logoPadding = 15;
-            const logoGap = 20;
-
-            const logoY = chartTop + height - 70;
-            const logoX = out.width - (logoHeight * 2) - logoPadding;
-
-            let summaryEndY = chartTop + height + 20;
-
-            if (downloadChart._summaryLines && downloadChart._summaryLines.length > 0) {
-            ctx.fillStyle = 'black';
-            ctx.font = downloadChart._summaryFont;
-            ctx.textAlign = "left";
-            ctx.textBaseline = "top";
-
-            let yPos = titleH + height + 55;
-            const xPos = attributionX;
-
-            downloadChart._summaryLines.forEach(line => {
-                ctx.fillText(line, xPos, yPos);
-                yPos += downloadChart._summaryLineHeight;
+          if (/pounds\s+sterling/i.test(yLabel)) {
+            const regex = /(\d+(?:\.\d+)?)\s*Pounds Sterling \(£\), Millions/g;
+            summaryText = summaryText.replace(regex, (match, numberStr) => {
+              const number = Number(numberStr);
+              const formattedNumber = number.toLocaleString("en-GB");
+              return `£${formattedNumber} million (m)`;
             });
+          }
 
-            summaryEndY = yPos;
-            }
+          if (/research\s+and\s+development/i.test(titleText)) {
+            summaryText = summaryText.replace(/\bvalue\b/gi, "total expenditure on R&D");
+          }
 
-            ctx.font = '12px Arial, sans-serif';
-            ctx.fillStyle = 'black';
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'top';
+          if (summaryText) {
+            ctx.font = summaryFont;
+            summaryLines = wrapCanvasText(summaryText, ctx, maxSummaryWidth);
 
-            const referenceX = attributionX;
-            let referenceY = summaryEndY + 6;
-            const maxRefWidth = out.width - 250;
-            const referenceLineHeight = 16;
-            
-            const referenceLines = wrapCanvasText(attributionText, ctx, maxRefWidth);
-
-            referenceLines.forEach(line => {
-                ctx.fillText(line, referenceX, referenceY);
-                referenceY += referenceLineHeight;
-            });
-
-            const logo = new Image();
-            logo.src = "img/nisra-only-colour.png";
-
-            logo.onload = () => {
-                const logoHeight = 50;
-                const padding = 20;
-
-                const prev = document.createElement("canvas");
-                prev.width = out.width;
-                prev.height = out.height;
-                prev.getContext("2d").drawImage(out, 0, 0);
-
-                out.height = prev.height + logoHeight + padding;
-
-                ctx.fillStyle = "#fff";
-                ctx.fillRect(0, 0, out.width, out.height);
-                ctx.drawImage(prev, 0, 0);
-
-                const scale = logoHeight / logo.height;
-                const logoW = logo.width * scale;
-                const logoX = out.width - logoW - 15;
-                const logoY = prev.height - 60;
-
-                ctx.drawImage(logo, logoX, logoY, logoW, logoHeight);
-
-                const indicatorTitle = indicatorName.replace(/\s+/g, '-');
-                const fileName = (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(' ', '-'): 'chart') + '.png';
-
-                const link = document.createElement('a');
-                link.href = out.toDataURL('image/png');
-                link.download = fileName;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            };
+            const summaryLineHeight = 18;
+            summaryH = summaryLines.length * summaryLineHeight + 10;
+          }
         }
 
-        function wireDownloadButton() {
-            const dropdown = document.getElementById('download-buttons');
-            const toggleBtn = document.getElementById('download-dropdown');
-            const pngItem = dropdown ? dropdown.querySelector('.dropdown-menu a.dropdown-item[data-action="png"]') : null;
+        // Final height in CSS px
+        const cssOutH = titleH + gapAboveChart + cssChartH + gapAboveSummary + summaryH + bottomPadding + 40;
 
-            if (!pngItem) return;
-            
-            pngItem.addEventListener('click', function (e) {
-                e.preventDefault();
-                const canvas = getChartCanvas();
-                if (!canvas) return;
-                downloadChart(canvas);
-                
-                if (window.jQuery && window.jQuery.fn && window.jQuery.fn.dropdown && toggleBtn) {
-                    window.jQuery(toggleBtn).dropdown('hide');
-                }
-                if (toggleBtn) toggleBtn.blur();
-            });
+        // Resize output canvas to final size (resets ctx)
+        out.height = Math.round(cssOutH * EXPORT_DPR);
+        ctx = out.getContext("2d");
+        ctx.setTransform(EXPORT_DPR, 0, 0, EXPORT_DPR, 0, 0);
+
+        // Background
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, cssOutW, cssOutH);
+
+        // Title
+        if (titleText && titleLines.length) {
+          ctx.fillStyle = "#000";
+          ctx.font = titleFont;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "top";
+
+          const titleLineHeight = 22;
+          let yPos = 10;
+          titleLines.forEach(line => {
+            ctx.fillText(line, cssOutW / 2, yPos);
+            yPos += titleLineHeight;
+          });
         }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', wireDownloadButton);
-        } else {
-            wireDownloadButton();
+        // Y label (your original approach)
+        if (yLabel) {
+          ctx.save();
+          ctx.fillStyle = "black";
+          ctx.font = "12pt Arial, sans-serif";
+          ctx.textBaseline = "middle";
+
+          const words = yLabel.split(/\s+/).filter(Boolean);
+          const lineHeight = 14;
+
+          const labelX = yLabelPadding / 2 - 10;
+          const labelY = titleH + cssChartH / 2;
+
+          ctx.translate(labelX, labelY);
+
+          const blockHeight = (words.length - 1) * lineHeight;
+          const startY = -blockHeight / 2;
+
+          words.forEach((word, i) => {
+            ctx.fillText(word, 0, startY + i * lineHeight);
+          });
+
+          ctx.restore();
         }
 
-        window.downloadChart = downloadChart;
-        window._wireDownloadButton = wireDownloadButton;
+        // Draw the chart canvas into output at stable CSS size
+        const chartTop = titleH + 20;
+        const chartLeftOffset = 20;
+
+        // Use full source backing store as source rectangle
+        ctx.drawImage(
+          srcCanvas,
+          0, 0, srcCanvas.width, srcCanvas.height,
+          yLabelPadding - chartLeftOffset, chartTop, cssChartW, cssChartH
+        );
+
+        // Attribution + date + summary + reference
+        const indicatorName = document
+          .getElementById("indicator-title")
+          .textContent.replace(/\s+/g, " ")
+          .trim();
+
+        const attributionText =
+          `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
+
+        ctx.font = "12pt Arial, sans-serif";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+
+        const attributionX = yLabelPadding - 20;
+        const attributionY = chartTop + cssChartH + 4;
+
+        let footerY = attributionY;
+
+        if (chartDate) {
+          ctx.fillText(chartDate, attributionX, footerY);
+          footerY += 12;
+        }
+
+        // Summary
+        let summaryEndY = chartTop + cssChartH + 20;
+        if (summaryLines && summaryLines.length > 0) {
+          ctx.fillStyle = "black";
+          ctx.font = summaryFont;
+          ctx.textAlign = "left";
+          ctx.textBaseline = "top";
+
+          const summaryLineHeight = 18;
+          let yPos = titleH + cssChartH + 55;
+          const xPos = attributionX;
+
+          summaryLines.forEach(line => {
+            ctx.fillText(line, xPos, yPos);
+            yPos += summaryLineHeight;
+          });
+
+          summaryEndY = yPos;
+        }
+
+        // Reference wrap
+        ctx.font = "12pt Arial, sans-serif";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+
+        const referenceX = attributionX;
+        let referenceY = summaryEndY + 15;
+        const maxRefWidth = cssOutW - 300;
+        const referenceLineHeight = 16;
+
+        const referenceLines = wrapCanvasText(attributionText, ctx, maxRefWidth);
+        referenceLines.forEach(line => {
+          ctx.fillText(line, referenceX, referenceY);
+          referenceY += referenceLineHeight;
+        });
+
+        // --------- Logo + download (deterministic) ----------
+        const logo = await loadImage("img/nisra-only-colour.png");
+
+        if (logo) {
+          const logoHeightCss = 50;
+          const paddingCss = 20;
+          const extraCssH = logoHeightCss + paddingCss;
+
+          // Copy current output into a pixel-perfect buffer
+          const prev = document.createElement("canvas");
+          prev.width = out.width;
+          prev.height = out.height;
+          prev.getContext("2d").drawImage(out, 0, 0);
+
+          // Extend output height in pixels
+          const newHeightPx = prev.height + Math.round(extraCssH * EXPORT_DPR);
+          out.height = newHeightPx;
+
+          // Redraw: first in pixel space, then switch back to CSS space
+          const ctx2 = out.getContext("2d");
+          ctx2.setTransform(1, 0, 0, 1, 0, 0);
+          ctx2.fillStyle = "#fff";
+          ctx2.fillRect(0, 0, out.width, out.height);
+          ctx2.drawImage(prev, 0, 0);
+
+          // Now draw logo in CSS coordinates
+          ctx2.setTransform(EXPORT_DPR, 0, 0, EXPORT_DPR, 0, 0);
+
+          const scale = logoHeightCss / logo.height;
+          const logoWCss = logo.width * scale;
+          const logoXCss = cssOutW - logoWCss - 15;
+          const logoYCss = cssOutH - 60;
+
+          ctx2.drawImage(logo, logoXCss, logoYCss, logoWCss, logoHeightCss);
+        }
+
+        const indicatorTitle = indicatorName.replace(/\s+/g, "-");
+        const fileName =
+          (indicatorTitle ? indicatorTitle.toLowerCase().replaceAll(" ", "-") : "chart") + ".png";
+
+        const link = document.createElement("a");
+        link.href = out.toDataURL("image/png");
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    }
+
+      function wireDownloadButton() {
+        const dropdown = document.getElementById('download-buttons');
+        const toggleBtn = document.getElementById('download-dropdown');
+        const pngItem = dropdown ? dropdown.querySelector('.dropdown-menu a.dropdown-item[data-action="png"]') : null;
+
+        if (!pngItem) return;
+
+        pngItem.addEventListener('click', function (e) {
+          e.preventDefault();
+          const canvas = getChartCanvas();
+          if (!canvas) return;
+          downloadChart(canvas);
+
+          if (window.jQuery && window.jQuery.fn && window.jQuery.fn.dropdown && toggleBtn) {
+            window.jQuery(toggleBtn).dropdown('hide');
+          }
+          if (toggleBtn) toggleBtn.blur();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wireDownloadButton);
+      } else {
+        wireDownloadButton();
+      }
+
+      window.downloadChart = downloadChart;
+      window._wireDownloadButton = wireDownloadButton;
     })();
+
 
     // Script to download chart data
     
@@ -2764,18 +2848,60 @@ const handleOnScroll = () => {
 
     svg.setAttribute('height', 600);
 
-    html2canvas(root, {
-        useCORS: true,
-        ignoreElements: el =>
+
+        const EXPORT = { width: 720, scale: 1
+        };
+
+        html2canvas(root, {
+          useCORS: true,
+
+          // ✅ Fixed scale so zoom doesn't change output resolution
+          scale: EXPORT.scale,
+
+          // ✅ Force a consistent virtual viewport for layout
+          windowWidth: EXPORT.width,
+          windowHeight: 2000,           // large enough; real height handled after render
+          scrollX: 0,
+          scrollY: 0,
+
+          ignoreElements: el =>
             el.id === 'popup-download-map' ||
-        (el.classList && el.classList.contains('popup-map-updated')),
-        onclone: doc => {
+            (el.classList && el.classList.contains('popup-map-updated')),
+
+          onclone: (doc) => {
+            // Show legend in clone if needed
             const leg = doc.querySelector('#pop-up-map, .popup-map-legend');
             if (leg) leg.style.display = 'block';
-        },
-        scale: 1,
-        // scale: window.devicePixelRatio,
-    }).then(canvas => {
+
+            // ✅ Add an export class to disable responsive rules in your CSS (recommended)
+            doc.documentElement.classList.add('export-mode');
+
+            // ✅ Freeze base font sizing to prevent zoom-related reflow surprises
+            doc.documentElement.style.fontSize = '16px';
+
+            // ✅ Force the capture root to a fixed width so line wrapping is stable
+            const rootClone = doc.getElementById('popup-map-container');
+            if (rootClone) {
+              rootClone.style.width = EXPORT.width + 'px';
+              rootClone.style.maxWidth = EXPORT.width + 'px';
+              rootClone.style.minWidth = EXPORT.width + 'px';
+              rootClone.style.margin = '0';
+            }
+
+            // ✅ If your popup uses flex/grid based on viewport width, this helps
+            doc.body.style.width = EXPORT.width + 'px';
+            doc.body.style.margin = '0';
+
+            // ✅ If your SVG is responsive, lock its size in the clone
+            const svg = doc.querySelector('svg');
+            if (svg) {
+              svg.setAttribute('width', '800');   // choose consistent numbers for your map
+              svg.setAttribute('height', '600');
+              svg.style.width = '800px';
+              svg.style.height = '600px';
+            }
+          }
+        }).then(canvas => {
         const out = document.createElement('canvas');
         let ctx = out.getContext('2d');
 
@@ -2898,7 +3024,7 @@ const handleOnScroll = () => {
             }
 
             const referenceText = `Reference: ${indicatorName}, PfG Wellbeing Framework, www.northernireland.gov.uk/wellbeing`;
-            const footerWidth = out.width - baseX - 200;
+            const footerWidth = out.width - baseX - 250;
             const referenceLines = wrapCanvasText(referenceText, ctx, footerWidth);
 
             referenceLines.forEach(line => {
@@ -2927,6 +3053,13 @@ const handleOnScroll = () => {
 
 // Script to download normal maps as an image
 (function downloadMapAsImage() {
+
+
+const EXPORT = {
+  width: 720,   // CSS px target layout width for capture
+  scale: 1      // fixed raster scale (use 2 for crisp output)
+};
+
 
   function getCaptureRoot() {
     return document.getElementById('map-container');
@@ -2998,17 +3131,62 @@ svg.setAttribute('height', 600);
 
 shiftGElements(145, 60);
 
-html2canvas(root, {
-    useCORS: true,
-    ignoreElements: el =>
-        el.id === 'download-map' || (el.classList && el.classList.contains('map-date')),
-    onclone: doc => {
+
+    html2canvas(root, {
+      useCORS: true,
+
+      // ✅ Fixed raster scale (zoom won't change output resolution)
+      scale: EXPORT.scale,
+
+      // ✅ Fix the virtual viewport used for layout (prevents responsive breakpoints shifting)
+      windowWidth: EXPORT.width,
+      windowHeight: 2000,  // big enough; doesn't have to be exact
+      scrollX: 0,
+      scrollY: 0,
+
+      ignoreElements: el =>
+        el.id === 'download-map' ||
+        (el.classList && el.classList.contains('map-date')),
+
+      onclone: (doc) => {
+        // show legend in clone
         const leg = doc.querySelector('.map-legend');
         if (leg) leg.style.display = 'block';
-    },
-    scale: 1
-}).then(canvas => {
-    
+
+        // ✅ Add export mode class so you can override responsive CSS rules (recommended)
+        doc.documentElement.classList.add('export-mode');
+
+        // ✅ Freeze font size to avoid zoom-induced reflow differences
+        doc.documentElement.style.fontSize = '16px';
+
+        // ✅ Force the capture root to a stable width so wrapping is identical
+        const rootClone = doc.getElementById('map-container');
+        if (rootClone) {
+          rootClone.style.width = EXPORT.width + 'px';
+          rootClone.style.maxWidth = EXPORT.width + 'px';
+          rootClone.style.minWidth = EXPORT.width + 'px';
+          rootClone.style.margin = '0';
+        }
+
+        // ✅ Also constrain body to prevent layout from “expanding” differently
+        doc.body.style.width = EXPORT.width + 'px';
+        doc.body.style.margin = '0';
+
+        // ✅ If your SVG is responsive, lock its size in the clone
+        const svgClone = doc.querySelector('svg');
+        if (svgClone) {
+          svgClone.setAttribute('height', '600');
+          // optionally lock width too if needed:
+          // svgClone.setAttribute('width', '800');
+          // svgClone.style.width = '800px';
+          svgClone.style.height = '600px';
+        }
+
+        // NOTE: If shiftGElements() changes the SVG transforms, ideally replicate that here
+        // on the cloned SVG rather than on the live DOM.
+      }
+    }).then(canvas => {
+ 
     const out = document.createElement('canvas');
     let  ctx = out.getContext('2d');
 

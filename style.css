@@ -2281,3 +2281,19 @@ tr {
 .row.key-text.performance {
     width: fit-content
 }
+
+
+.export-mode #popup-map-container {
+  width: 950px !important;
+}
+
+/* If you have responsive legend/columns, pin them */
+.export-mode .popup-map-legend {
+  display: block !important;
+}
+
+/* Optional: prevent text auto-resize or strange wrapping */
+.export-mode * {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
