@@ -2412,7 +2412,7 @@ const handleOnScroll = () => {
                 }
 
                 // Replace "value" with "total expenditure on R&D"
-                // if titleText contains "research and development" (case-insensitive)
+                // if titleText contains "research and development"
                 if (/research\s+and\s+development/i.test(titleText)) {
                   summaryText = summaryText.replace(/\bvalue\b/gi, "total expenditure on R&D");
                 }

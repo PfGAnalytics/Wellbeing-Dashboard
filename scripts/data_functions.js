@@ -1428,10 +1428,14 @@ function chartSummary() {
     const changeText = document.querySelector("#change-info")?.textContent.trim() || '';
     const changeInfo = changeText.split('.').filter(Boolean)[0].trim();
 
-    if (measureInfo) {
+    if (measureInfo && comparison_year_value !== null) {
       return `The value was ${comparison_year_value}${unit} in the comparison year (${comparison_year}) and was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${measureInfo}. ${changeInfo}.`
-    } else {
+    } else if (!measureInfo && comparison_year_value !== null){
       return `The value was ${comparison_year_value}${unit} in the comparison year (${comparison_year}) and was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${changeInfo}.`
+    } else if (measureInfo && comparison_year_value == null) {
+      return `The value was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${measureInfo}. ${changeInfo}.`
+    } else if (!measureInfo && comparison_year_value == null) {
+      return `The value was ${latest_value}${unit} in the most recent year of data (${latest_year}). ${changeInfo}.`
     }
 }
 
@@ -4253,11 +4257,11 @@ function setAltTextChart () {
 }
 
 function setMapSummary(year_Min, shape_Min, shape_Max, year_Max) {
-   let baseSentence = 'This map shows data for the year'
+   let baseSentence = 'A map of Northern Ireland for the year'
    const mapYear = date_display.textContent;
 
    if (mapYear.includes('-')) {
-      baseSentence = 'This map shows data for the years';
+      baseSentence = 'A map of Northern Ireland for the years';
    }
 
    const lowestArea = shape_Min;
