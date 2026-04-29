@@ -2479,10 +2479,8 @@ const handleOnScroll = () => {
         const { canvas: exportCanvas, destroy } = await renderOffscreenChart(cssChartW, cssChartH, EXPORT_DPR);
 
         try {
-
-        // --------- Your existing layout logic (in CSS px) ----------
         const yLabel = getYLabel();
-        const yLabelPadding = yLabel ? 100 : 0;
+        const yLabelPadding = yLabel ? 130 : 0;
 
         const chartDateEl = document.querySelector(".chart-date");
         const chartDate = chartDateEl ? chartDateEl.textContent.trim() : "";
@@ -2584,6 +2582,7 @@ const handleOnScroll = () => {
           ctx.fillStyle = "black";
           ctx.font = "12pt Arial, sans-serif";
           ctx.textBaseline = "middle";
+          console.log(ctx);
 
           const words = yLabel.split(/\s+/).filter(Boolean);
           const lineHeight = 14;
