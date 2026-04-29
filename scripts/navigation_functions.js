@@ -2280,10 +2280,7 @@ function plotExpandedDomains () {
             
             document.getElementById("mission-" + i + "-row-" + row_num).appendChild(ind_hex_container)
 
-
         }
-
-
 
 
     }
@@ -2315,10 +2312,14 @@ const handleOnScroll = () => {
 // Script to download chart as an image
     (function downloadChartAsImage () {
 
-      // ✅ Fixed export resolution (independent of browser zoom)
-      const EXPORT = {
-        dpr: 2 // 1 = smaller/less sharp, 2 = crisp, 3 = very large files
-      };
+
+    const EXPORT = {
+      width: 720,
+      height: null,   
+      dpr: 2,        
+      canvasScale: 1     
+    };
+
 
       function getChartCanvas() {
         const canvas = document.querySelector('#line-chart-container canvas[id$="-canvas"]');
@@ -2357,17 +2358,27 @@ const handleOnScroll = () => {
     async function downloadChart(chartOrCanvas) {
       if (!chartOrCanvas) return;
 
-      // --- Config: fixed export pixel density (independent of zoom) ---
-      const EXPORT_DPR = 2; // 2 = crisp; 3 = very crisp but larger files
+      const EXPORT_DPR = EXPORT.dpr;
 
       // Accept either a Chart.js chart instance or a canvas element
       const srcCanvas = chartOrCanvas && chartOrCanvas.canvas ? chartOrCanvas.canvas : chartOrCanvas;
       if (!srcCanvas || typeof srcCanvas.getBoundingClientRect !== "function") return;
 
       // Use CSS pixel size as the stable "layout" size (not backing-store pixels)
-      const rect = srcCanvas.getBoundingClientRect();
-      const cssChartW = Math.max(1, Math.round(rect.width));
-      const cssChartH = Math.max(1, Math.round(rect.height));
+
+    const rect = srcCanvas.getBoundingClientRect();
+
+    // Save *current* on-screen size so we can restore afterwards
+    const origCssChartW = Math.max(1, Math.round(rect.width));
+    const origCssChartH = Math.max(1, Math.round(rect.height));
+
+    // Export size is fixed (like the maps)
+    const aspect = rect.width ? (rect.height / rect.width) : (origCssChartH / origCssChartW);
+    const cssChartW = EXPORT.width;
+    const cssChartH = Math.max(
+      1,
+      Math.round(EXPORT.height || (EXPORT.width * (aspect || 0.5625)))
+    );
 
       // Attempt to get a Chart.js chart instance (for hi-res re-render before export)
       const chart =
@@ -2387,37 +2398,88 @@ const handleOnScroll = () => {
           img.src = src;
         });
 
-      // Helper: run export with chart temporarily forced to fixed DPR (prevents blur at zoomed-out levels)
-      const runWithHiResChart = async (fn) => {
-        if (!chart || !chart.options) return fn();
+            async function renderOffscreenChart(exportW, exportH, exportDpr) {
+              // Find the live chart instance (if available)
+              const liveChart =
+                (chartOrCanvas && chartOrCanvas.canvas && chartOrCanvas.options && typeof chartOrCanvas.update === "function")
+                  ? chartOrCanvas
+                  : (window.Chart && typeof window.Chart.getChart === "function" ? window.Chart.getChart(srcCanvas) : null);
 
-        const originalDpr = chart.options.devicePixelRatio;
-        const originalAnim = chart.options.animation;
+              if (!liveChart) return { canvas: srcCanvas, destroy: () => {} };
 
-        try {
-          // Disable animation for a stable export frame
-          chart.options.animation = false;
+              // Create an offscreen canvas (not displayed)
+              const off = document.createElement("canvas");
+              off.width  = Math.round(exportW * exportDpr);
+              off.height = Math.round(exportH * exportDpr);
+              off.style.width  = exportW + "px";
+              off.style.height = exportH + "px";
+              off.style.position = "fixed";
+              off.style.left = "-10000px";
+              off.style.top = "0";
+              off.style.pointerEvents = "none";
+              off.style.opacity = "0";
+              document.body.appendChild(off);
 
-          // Force chart backing-store DPR to fixed export DPR
-          chart.options.devicePixelRatio = EXPORT_DPR;
+              // Copy config (shallow) and override the few bits we need
+              const exportOptions = {
+                ...(liveChart.config.options || {}),
+                responsive: false,
+                maintainAspectRatio: false,
+                animation: false,
+                devicePixelRatio: exportDpr
+              };
 
-          // Ensure chart renders at the same CSS size you see on screen
-          if (typeof chart.resize === "function") chart.resize(cssChartW, cssChartH);
-          chart.update("none");
+              // Create a new chart instance offscreen
+              const exportChart = new window.Chart(off.getContext("2d"), {
+                type: liveChart.config.type,
+                data: liveChart.config.data,       // OK: we aren't mutating data
+                options: exportOptions,
+                plugins: liveChart.config.plugins
+              });
 
-          await nextPaint();
-          return await fn();
-        } finally {
-          // Restore original chart settings
-          chart.options.devicePixelRatio = originalDpr;
-          chart.options.animation = originalAnim;
+              // Force correct sizing & render
+              if (typeof exportChart.resize === "function") exportChart.resize(exportW, exportH);
+              exportChart.update("none");
 
-          if (typeof chart.resize === "function") chart.resize(cssChartW, cssChartH);
-          chart.update("none");
+              // Wait 2 RAFs to ensure the canvas backing store is updated
+              await new Promise(res => requestAnimationFrame(() => requestAnimationFrame(res)));
+
+              return {
+                canvas: off,
+                destroy: () => {
+                  try { exportChart.destroy(); } catch (e) {}
+                  try { off.remove(); } catch (e) {}
+                }
+              };
+            }
+
+            const runWithHiResChart = async (fn) => {
+              if (!chart || !chart.options) return fn(null);
+
+              const originalDpr = chart.options.devicePixelRatio;
+              const originalAnim = chart.options.animation;
+
+              try {
+                chart.options.animation = false;
+                chart.options.devicePixelRatio = EXPORT_DPR;
+
+                chart.update("none");
+                await nextPaint();
+
+                return await fn(chartBitmap);
+              } finally {
+                chart.options.devicePixelRatio = originalDpr;
+                chart.options.animation = originalAnim;
+
+            chart.update("none");
+
         }
       };
 
-      return runWithHiResChart(async () => {
+        const { canvas: exportCanvas, destroy } = await renderOffscreenChart(cssChartW, cssChartH, EXPORT_DPR);
+
+        try {
+
         // --------- Your existing layout logic (in CSS px) ----------
         const yLabel = getYLabel();
         const yLabelPadding = yLabel ? 100 : 0;
@@ -2545,14 +2607,14 @@ const handleOnScroll = () => {
         const chartTop = titleH + 20;
         const chartLeftOffset = 20;
 
-        // Use full source backing store as source rectangle
+
         ctx.drawImage(
-          srcCanvas,
-          0, 0, srcCanvas.width, srcCanvas.height,
+          exportCanvas,
+          0, 0, exportCanvas.width, exportCanvas.height,
           yLabelPadding - chartLeftOffset, chartTop, cssChartW, cssChartH
         );
 
-        // Attribution + date + summary + reference
+
         const indicatorName = document
           .getElementById("indicator-title")
           .textContent.replace(/\s+/g, " ")
@@ -2613,7 +2675,6 @@ const handleOnScroll = () => {
           referenceY += referenceLineHeight;
         });
 
-        // --------- Logo + download (deterministic) ----------
         const logo = await loadImage("img/nisra-only-colour.png");
 
         if (logo) {
@@ -2621,24 +2682,20 @@ const handleOnScroll = () => {
           const paddingCss = 20;
           const extraCssH = logoHeightCss + paddingCss;
 
-          // Copy current output into a pixel-perfect buffer
           const prev = document.createElement("canvas");
           prev.width = out.width;
           prev.height = out.height;
           prev.getContext("2d").drawImage(out, 0, 0);
 
-          // Extend output height in pixels
           const newHeightPx = prev.height + Math.round(extraCssH * EXPORT_DPR);
           out.height = newHeightPx;
 
-          // Redraw: first in pixel space, then switch back to CSS space
           const ctx2 = out.getContext("2d");
           ctx2.setTransform(1, 0, 0, 1, 0, 0);
           ctx2.fillStyle = "#fff";
           ctx2.fillRect(0, 0, out.width, out.height);
           ctx2.drawImage(prev, 0, 0);
 
-          // Now draw logo in CSS coordinates
           ctx2.setTransform(EXPORT_DPR, 0, 0, EXPORT_DPR, 0, 0);
 
           const scale = logoHeightCss / logo.height;
@@ -2659,7 +2716,11 @@ const handleOnScroll = () => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-      });
+        
+
+    } finally {
+      destroy();
+    }
     }
 
       function wireDownloadButton() {
