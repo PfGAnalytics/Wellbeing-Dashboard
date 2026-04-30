@@ -4149,6 +4149,8 @@ function handleRefreshPopup() {
   }
   
   function setPopupSummary(shape_Min, year_Min, shape_Max, year_Max, indicator) {
+
+   
    const baseSentence = "A map of Northern Ireland";
    const yearEl = document.getElementById("popup-map-year-label");
    const labelEl = (y_label_div.textContent || '').trim();
@@ -4221,7 +4223,14 @@ function handleRefreshPopup() {
    // let titleText;
 
    const currentYear = yearEl ? yearEl.textContent.trim() : "";
-   const yearText = currentYear ? `for the year ${currentYear}.` : "";
+
+   let yearText = ""
+
+   if (currentYear.includes('-')) {
+      yearText = currentYear ? `for the years ${currentYear}.` : "";
+   } else {
+      yearText = currentYear ? `for the year ${currentYear}.` : "";
+   }
 
    let altText;
    if (measureInfo) {
