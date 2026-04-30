@@ -40,15 +40,10 @@
       },
       "EQUALGROUPS": {
         "category": {
-          "index": ["3", "4", "69", "70", "71", "7", "8"],
+          "index": ["1", "2"],
           "label": {
-            "3": "Age 16-24",
-            "4": "Age 25-34",
-            "69": "Age 35-44",
-            "70": "Age 45-54",
-            "71": "Age 55-64",
-            "7": "Age 65-75",
-            "8": "Age 75+"
+            "1": "Sex - Male",
+            "2": "Sex - Female"
           }
         },
         "label": "Equality Groups"
@@ -118,9 +113,9 @@
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 11, 7],
+    "size": [1, 11, 2],
     "updated": "2026-04-14T10:34:40.643Z",
-    "value": [null, 38.7, 29.6, 30.8, 31.1, 29, 32, null, null, null, null, null, null, null, null, 30.7, 32.9, 26.6, 33.5, 30.4, 40.7, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 15.7, 20.3, 26.8, 19.5, 25.6, 32.2, null, 24.4, 24.2, 31.5, 25.7, 29.6, 40.8, null, 21.9, 32, 31.5, 23.2, 29.1, 32.3, null, 21.7, 18.4, 17.7, 18, 22, 27.8, null, 22.4, 24.2, 21.9, 22.5, 20.3, 22.7, null, 32.6, 23.9, 29.1, 24.1, 30.8, 39.6],
+    "value": [31.7, 35.1, null, null, 30.5, 35.7, null, null, null, null, 20.6, 24.6, 28.3, 30.2, 31, 29.2, 18.8, 22.3, 25.2, 22.4, 29.3, 30.9],
     "version": "2.0"
   },
   "id": {}

@@ -40,15 +40,10 @@
       },
       "EQUALGROUPS": {
         "category": {
-          "index": ["3", "4", "69", "70", "71", "7", "8"],
+          "index": ["21", "22"],
           "label": {
-            "3": "Age 16-24",
-            "4": "Age 25-34",
-            "69": "Age 35-44",
-            "70": "Age 45-54",
-            "71": "Age 55-64",
-            "7": "Age 65-75",
-            "8": "Age 75+"
+            "21": "Ethnic group - White",
+            "22": "Ethnic group - Other"
           }
         },
         "label": "Equality Groups"
@@ -118,9 +113,9 @@
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 11, 7],
+    "size": [1, 11, 2],
     "updated": "2026-04-14T10:34:11.733Z",
-    "value": [null, 21.9, 29.9, 29.9, 29.1, 31.9, 31.5, null, null, null, null, null, null, null, null, 18.8, 22, 28.3, 23.2, 37.3, 38.5, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 20.7, 21.1, 22.8, 28, 28, 37, null, 23.3, 30.5, 34.4, 37.3, 37.5, 39.7, null, 26.7, 23.5, 36.1, 30.7, 36.1, 44.4, null, 32.9, 32.5, 32, 34.8, 37.7, 44.8, null, 34.7, 31.8, 37.7, 34.3, 33.4, 39.5, null, 26.4, 27.7, 28.6, 26.3, 39.7, 46.7],
+    "value": [28.8, null, null, null, 26.5, null, null, null, null, null, 23.7, null, 32.3, null, 31.7, null, 35.1, null, 36.5, null, 29.5, null],
     "version": "2.0"
   },
   "id": {}
