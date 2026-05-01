@@ -2511,7 +2511,12 @@ async function renderPopup (d, e, eq_group) {
 
                const labelCount = chart.legend.legendItems.length;
 
-               const boxX = Math.round(left + 215);
+               console.log(pop_up_title.textContent.includes("housing stress"));
+
+
+               const boxX = Math.round(
+                 left + (pop_up_title.textContent.includes("housing stress") ? 203 : 215)
+               );
                const boxY = Math.round(
                  top - (
                   Object.keys(values).some(key => key.toLowerCase().includes("at level 3 and above"))
@@ -2534,7 +2539,11 @@ async function renderPopup (d, e, eq_group) {
                        : 65
                  )
                );
-               const boxWidth  = Math.round(width - 460);
+
+               const boxWidth = Math.round(
+                 width - (pop_up_title.textContent.includes("housing stress") ? 450 : 460)
+               );
+
                const boxHeight = 33;
 
                // Clamp radius to avoid overlapping curves
