@@ -3264,7 +3264,7 @@ async function drawPopupMap(d, e, type, main_container, loading) {
 
       const titleEl = document.getElementById("popup-map-title");
       const baseTitle = titleEl.dataset.baseTitle;
-      titleEl.textContent = `${baseTitle} (${selectedYear}).`;
+      titleEl.textContent = `${baseTitle} (${selectedYear})`;
 
       const nonZero = selectedData.filter(v => Number.isFinite(v) && v !== 0);
       const yearMin = nonZero.length ? Math.min(...nonZero) : null;
