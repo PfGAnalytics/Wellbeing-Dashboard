@@ -35,6 +35,9 @@
     - [How do we change colours of chart, maps, boxes?](#how-do-we-change-colours-of-chart-maps-boxes)
     - [How do we change chart styles?](#how-do-we-change-chart-styles)
     - [How do we move hexagons from between the improving/worsening/no change sections on the Overall page?](#how-do-we-move-hexagons-from-between-the-improvingworseningno-change-sections-on-the-overall-page)
+    - [How do we update the accordion boxes on home page and how to include hyperlink functionality if needed?](#how-do-we-update-the-accordion-boxes-on-home-page-and-how-to-include-hyperlink-functionality-if-needed)
+    - [How does the Performance icon work?](#how-does-the-performance-icon-work)
+    - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
     - [The process of updating GitHub when we make changes?](#the-process-of-updating-github-when-we-make-changes)
     - [What's the process for publishing the dashboard?](#whats-the-process-for-publishing-the-dashboard)
@@ -315,6 +318,106 @@ The `indicatorPerformace()` function in the [`data_functions.js`](scripts/data_f
 The `plotOverallHexes()` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script then plots the hexagons on the Overall based on the results of `indicatorPerformace()`.
 
 The `indicatorPerformance()` function obtains the data values for each indicator from the Data Portal. It then uses the properties `base_year`, `ci` and `improvement` for each indicator found in [`domains_data.js`](scripts/domains_data.js) to determine performance. There is more information on how each of these properties should be defined in the annotations in this script.
+
+### How do we update the accordion boxes on home page and how to include hyperlink functionality if needed?
+Updating the 'populateInfoBoxes' in the [`data_functions.js`](scripts/data_functions.js) script. This function takes two arrays:
+- An array of accordion titles/questions
+- A matching array of text wrapped in (`<p>`) tags containing the accordion content/answers
+
+#### Adding hyperlinks to accordions
+Hyperlink functionality can be added within the accordions by using (`<a>`) tags.
+
+To add a hyperlink:
+- Use an `<a>` tag with a valid `href`
+- Include `target="_blank"` to open the link in a new browser tab
+- Provide the link between the opening and closing `<a>` tags
+
+For example, the current accordion hyperlink is defined as:
+
+```
+<a href="https://datavis.nisra.gov.uk/executiveofficeni/technical_report.xlsx" target="_blank">
+  Technical Report
+</a>
+```
+
+### How does the Performance icon work?
+The Performance icon is **generated automatically**.
+
+Performance is calculated dynamically within the `createLineChart()` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+#### How the Performance status is determined
+- Performance is assessed by comparing the most recent data point with the defined `base_year`
+- Based on this, a `base_statement` is generated
+
+#### How the Performance icon is selected
+Four predefined Performance icon HTML blocks are defined in the [`data_functions.js`](scripts/data_functions.js) script.
+- improvinghexDivHTML
+- nochangehexDivHTML
+- worseninghexDivHTML
+- insufficienthexDivHTML
+
+After the `base_statement` is created, its text content is checked for keywords (e.g. *improved*, *worsened*, *no real change*, *insufficient*). The matching Performance icon is then selected and injected into the page automatically.
+
+### How does the captions on charts/maps downloads work?
+#### Charts
+Chart summaries are injected only at the point of download.
+
+Chart captions are generated using the `chartSummary()` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+This function constructs a summary sentence using:
+- `labelEl` - the Y-axis label of the indicator's line chart
+- `titleEl` - the indicator's line chart title
+- `unit` - derived from `labelEl` and `titleEl` using the `getChartSummarySign()` function which determines the appropriate unit of measurement
+- `measureText` - the indicator's measure text
+- `match` - checks if 'For this indicator' exists within `measureText`
+- `measureInfo` - if `match` is found inside `measureText`, the sentence is injected. If not, an empty string is returned
+- `comparison_year_value` and `comparison_year` - the indicator value and year used as the baseline for performance comparison, where available
+- `latest_value` and `latest_year` - the most recent data point and associated year for the indicator
+- `changeText` - the indicator's change text, taken from the `#change-info`element
+- `changeInfo` - used to extract the first sentence from `changeText` (e.g. *Things have improved since...*)
+
+The chart summaries are injected using the following logic within the `downloadChartAsImage()` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script:
+
+```
+let summaryText = (typeof chartSummary === "function") ? chartSummary() : "";
+```
+
+#### Map screen
+Map screens' summaries are injected only at the point of download.
+
+Map screens' captions are generated inside the `downloadMapAsImage()` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script, using:
+
+- `summaryEl` - selects the HTML element ('summary-map') containing the indicator's summary text
+- `summary` - extracts the text content inside `summaryEl`
+- `measureEl` – selects the HTML element (`#measure-info-map`) containing the indicator’s measure text for maps
+- `measure` – extracts the full text content from `measureEl`
+- `measureMatch` - checks if 'For this indicator a' exists within `measure`
+- `measureFiltered` - if `measureMatch` is found inside `measure`, the sentence is injected. If not, an empty string is returned
+
+The Map screens' summaries are injected using the following logic:
+
+```
+const summaryText = summary + ' ' + measureFiltered;
+```
+
+#### Map popups
+Unlike map screens and chart downloads (where summaries are injected only at the point of download), map popups summaries are shown on screen.
+
+Map pop-ups captions are generated using the `setPopupSummary()` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+This function constructs a summary sentence using:
+- `base_sentence` - "A map of Northern Ireland"
+- `yearEl` - the map year label displayed above the slider
+- `labelEl` - the Y-axis label of the indicator's line chart, used to later create `summarySign`
+- `titleEl` - the indicator's line chart title
+- `measureText` - the indicator's measure text
+- `match` - checks if 'For this indicator a' exists within `measureText`
+- 'measureInfo' - if `match` is found inside `measureText`, the sentence is injected. If not, an empty string is returned
+- `lowHighSentence` - dynamically constructed sentence describing:
+  - The area(s) with the lowest value
+  - The area(s) with the highest value
+  - The corresponding values and units
+    This sentence adapts automatically for singular or multiple areas using functions `formatAreaList()` and `valueWording()`
 
 ### What parts of the script do we need to update if we move to the live data portal?
 Updating the `baseURL` value in the [`config.js`](scripts/config.js) script to read from the live data portal will point all data portal queries to the new location.
