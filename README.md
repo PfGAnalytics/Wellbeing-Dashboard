@@ -342,7 +342,7 @@ For example, the current accordion hyperlink is defined as:
 </a>
 ```
 
-### How do we fix the title on charts/maps download when it gets cut off
+### How do we fix the title on charts/maps download when it gets cut off?
 Titles on downloaded charts and maps are rendered into a fixed‑size image canvas during export.
 
 Across charts and maps, the same general approach is used:
@@ -371,7 +371,7 @@ If a title is still being cut off or requires more space, these values can be ad
   
 Changing these values will directly affect how much horizontal and vertical space is allocated to titles during export and can be used to prevent clipping for longer titles.
 
-### How do we fix the Y-axis on charts download when it overspills
+### How do we fix the Y-axis on charts download when it overspills?
 Y-axis on downloaded charts are rendered during export.
 
 Across indicator screen charts and chart popup downloads, the same general approach is used:
