@@ -1908,7 +1908,7 @@ async function renderPopup (d, e, eq_group) {
 
             // Hide 'click legend item with a white shape
             const maskTop = titleTop + titleH;
-            const maskHeight = 37;
+            const maskHeight = 50;
             ctx.fillStyle = "#fff";
             ctx.fillRect(leftInset, maskTop, renderedWidth, maskHeight);
 
@@ -2451,6 +2451,11 @@ async function renderPopup (d, e, eq_group) {
          type: 'bar',
          data: data,
          options: {
+            layout: {
+                padding: {
+                  top: 50
+                }
+              },
             responsive: true,                   //  Allow resizing of canvas
             maintainAspectRatio: false,         // Any aspect ratio
             scales: {
@@ -2478,7 +2483,7 @@ async function renderPopup (d, e, eq_group) {
             plugins: {
             legend: {
                title: {
-                  display: true,
+                  display: false,
                   text: "Click legend item to hide/show series in chart",
                   color: "#ffffff",
                   font: {
@@ -2501,74 +2506,37 @@ async function renderPopup (d, e, eq_group) {
          },
          
          plugins: [{
-            id: 'legendBackground',
+           id: 'legendBackground',
 
             beforeDraw(chart) {
-               const { ctx, chartArea: { top, left, width } } = chart;
-               ctx.save();
-               ctx.fillStyle = '#00205b'; // light grey background
-               ctx.strokeStyle = '#00205b';
+              const { ctx, chartArea } = chart;
 
-               const labelCount = chart.legend.legendItems.length;
+              const centerX = (chartArea.left + chartArea.right) / 2;
+              const centerY = (chartArea.top + chartArea.bottom) / 2;
 
-               console.log(pop_up_title.textContent.includes("housing stress"));
+              // Load once
+              if (!this.img) {
+                this.img = new Image();
+                this.img.src = "img/navy-oval.png";
+                this.loaded = false;
 
+                this.img.onload = () => {
+                  this.loaded = true;
+                  chart.draw();
+                };
 
-               const boxX = Math.round(
-                 left + (pop_up_title.textContent.includes("housing stress") ? 203 : 215)
-               );
-               const boxY = Math.round(
-                 top - (
-                  Object.keys(values).some(key => key.toLowerCase().includes("at level 3 and above"))
-                  ? 89
-                  :
-                  Object.keys(values).some(key => key.toLowerCase().includes("banking and finance"))
-                  ? 112
-                  :
-                   Object.keys(values).some(key => key.toLowerCase().includes("occupation"))
-                     ? 135
-                     : 
-                  Object.keys(values).some(key => key.includes("Criminal Damage/ Public Order"))
-                  ? 89
-                  :
-                  Object.keys(values).some(key => key.includes("Cohabiting")) && labelCount > 6
-                  ? 89
-                  :
-                  Object.keys(values).some(key => key.includes("Quintile")) && labelCount > 5
-                       ? 88
-                       : 65
-                 )
-               );
+                return;
+              }
 
-               const boxWidth = Math.round(
-                 width - (pop_up_title.textContent.includes("housing stress") ? 450 : 460)
-               );
+              if (!this.loaded) return;
 
-               const boxHeight = 33;
+              const width = 475;
+              const height = 295;
 
-               // Clamp radius to avoid overlapping curves
-               const radiusRaw = 20;
-               const r = Math.min(radiusRaw, boxWidth / 2, boxHeight / 2);
+              const x = centerX - width / 2;
+              const y = centerY - height - 105;
 
-               // Improve stroke appearance
-               ctx.lineJoin = 'round';
-               ctx.lineCap  = 'round';
-
-               ctx.beginPath();
-               ctx.moveTo(boxX + r, boxY);
-               ctx.lineTo(boxX + boxWidth - r, boxY);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + r);
-               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - r);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - r, boxY + boxHeight);
-               ctx.lineTo(boxX + r, boxY + boxHeight);
-               ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - r);
-               ctx.lineTo(boxX, boxY + r);
-               ctx.quadraticCurveTo(boxX, boxY, boxX + r, boxY);
-               ctx.closePath();
-
-               ctx.fill();      // Fill with grey background
-               ctx.stroke();    // Optional border
-
+              ctx.drawImage(this.img, x, y, width, height);
             }
          }]
       };

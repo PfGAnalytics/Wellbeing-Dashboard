@@ -2974,8 +2974,6 @@ const handleOnScroll = () => {
         out.width = 950;
         out.height = 704;
 
-        console.log(out.width);
-
         ctx.fillStyle = '#fff';
         ctx.fillRect(0, 0, out.width, out.height);
 
