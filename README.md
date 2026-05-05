@@ -36,6 +36,8 @@
     - [How do we change chart styles?](#how-do-we-change-chart-styles)
     - [How do we move hexagons from between the improving/worsening/no change sections on the Overall page?](#how-do-we-move-hexagons-from-between-the-improvingworseningno-change-sections-on-the-overall-page)
     - [How do we update the accordion boxes on home page and how to include hyperlink functionality if needed?](#how-do-we-update-the-accordion-boxes-on-home-page-and-how-to-include-hyperlink-functionality-if-needed)
+    - [How do we fix the title on charts/maps download when it gets cut off?](#how-do-we-fix-the-title-on-chartsmaps-download-when-it-gets-cut-off)
+    - [How do we fix the Y-axis on charts download when it overspills?](how-do-we-fix-the-yaxis-on-charts-download-when-it-overspills)
     - [How does the Performance icon work?](#how-does-the-performance-icon-work)
     - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
@@ -339,6 +341,46 @@ For example, the current accordion hyperlink is defined as:
   Technical Report
 </a>
 ```
+
+### How do we fix the title on charts/maps download when it gets cut off
+Titles on downloaded charts and maps are rendered into a fixed‑size image canvas during export.
+
+Across charts and maps, the same general approach is used:
+- A maximum title width is enforced so text does not exceed the image width (`maxTitleWidth`)
+- The `titleText` is wrapped onto multiple lines using the `wrapCanvasText()`function once it reaches the `maxTitleWidth`
+- The total title height is calculated dynamically based on the number of wrapped lines to ensure enough vertical space is reserved
+
+#### Making adjustments
+If a title is still being cut off or requires more space, these values can be adjusted directly in the relevant download functions within the [`navigation_functions.js`](scripts/navigation_functions.js) script:
+
+- **Indicator screen charts**  
+  Adjust values inside the `downloadChartAsImage()` function  
+  (e.g. `maxTitleWidth` or `titleLineHeight`)
+
+- **Map screen downloads**  
+  Adjust values inside the `downloadMapAsImage()` function  
+   (e.g. `maxTitleWidth` or `lineHeight`)
+
+- **Map popup downloads**  
+  Adjust values inside the `downloadPopUpMapImage()` function  
+   (e.g. `maxTitleWidth` or `titleLineHeight`)
+
+- **Chart popup downloads**
+  Adjust values inside the `download_btn.onclick` function inside `renderPopUp()` within the [`data_functions.js`](scripts/data_functions.js) script
+  (e.g. `maxTitleWidth` or `titleLineHeight`)
+  
+Changing these values will directly affect how much horizontal and vertical space is allocated to titles during export and can be used to prevent clipping for longer titles.
+
+### How do we fix the Y-axis on charts download when it overspills
+Y-axis on downloaded charts are rendered during export.
+
+Across indicator screen charts and chart popup downloads, the same general approach is used:
+- Y-axis label is extracted using the `getYLabel` function and stored in `yLabel`
+- `yPadding` is applied to allow horizontal space for the `yLabel`
+- `leftInset` allows for additional space to the left of the `yLabel`
+- `lineHeight` is set to 14, ensuring enough vertical spacing between each line of the `yLabel`
+
+Changing these values will directly affect how much horizontal and vertical space is allocated to y-axis labels during export and can be used to prevent clipping for longer labels.
 
 ### How does the Performance icon work?
 The Performance icon is **generated automatically**.
