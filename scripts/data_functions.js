@@ -2519,6 +2519,8 @@ async function renderPopup (d, e, eq_group) {
               .join("")
               .length;
 
+            console.log(totalChars);
+
               const centerX = (chartArea.left + chartArea.right) / 2;
               const centerY = (chartArea.top + chartArea.bottom) / 2;
 
@@ -2546,10 +2548,10 @@ async function renderPopup (d, e, eq_group) {
               let y = centerY - height - 105;
               
               if (totalChars > 300) {
-               y = centerY - height - 150 
+               y = centerY - height - 140 
               } else if (totalChars > 200) {
                y = centerY - height - 125 
-              } else if (totalChars > 70) {
+              } else if (totalChars > 77) {
                y = centerY - height - 115
               }
 
