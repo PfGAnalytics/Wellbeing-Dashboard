@@ -2511,6 +2511,17 @@ async function renderPopup (d, e, eq_group) {
             beforeDraw(chart) {
               const { ctx, chartArea } = chart;
 
+            // const labelCount = chart.legend.legendItems.length;
+
+
+            const totalChars = chart.legend.legendItems
+              .map(item => item.text)
+              .join("")
+              .length;
+
+            console.log(totalChars);
+
+
               const centerX = (chartArea.left + chartArea.right) / 2;
               const centerY = (chartArea.top + chartArea.bottom) / 2;
 
@@ -2534,7 +2545,16 @@ async function renderPopup (d, e, eq_group) {
               const height = 295;
 
               const x = centerX - width / 2;
-              const y = centerY - height - 105;
+
+              let y = centerY - height - 105;
+              
+              if (totalChars > 300) {
+               y = centerY - height - 150 
+              } else if (totalChars > 200) {
+               y = centerY - height - 125 
+              } else if (totalChars > 70) {
+               y = centerY - height - 115
+              }
 
               ctx.drawImage(this.img, x, y, width, height);
             }
