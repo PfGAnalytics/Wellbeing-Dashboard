@@ -2551,7 +2551,7 @@ async function renderPopup (d, e, eq_group) {
                y = centerY - height - 140 
               } else if (totalChars > 200) {
                y = centerY - height - 125 
-              } else if (totalChars > 77) {
+              } else if (totalChars > 85) {
                y = centerY - height - 115
               }
 
