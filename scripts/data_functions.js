@@ -2239,17 +2239,40 @@ async function renderPopup (d, e, eq_group) {
 
       pop_up_title.textContent = result.dimension.STATISTIC.category.label[matrix.replace("EQ", "")] + " by " + eq_group;    // Take current chart title and add "by grouping" to end
       y_axis.textContent = result.dimension.STATISTIC.category.unit[matrix.replace("EQ", "")].label;
+
+
+      console.log(y_axis.textContent);
       
       const titleText = pop_up_title.textContent || "";
-      
-      if (titleText.startsWith("Average life satisfaction score (from 0 to 10)")) {
-         y_axis.textContent = "Average (mean) life satisfaction score";
-      } else if (titleText.startsWith("Number of households in housing stress")) {
-         y_axis.textContent = "Number of Applicants";
-      } else if (titleText.startsWith("Age standardised death rate (per 100,000 population) for causes considered preventable")) {
-         y_axis.textContent = "Deaths per 100,000 population";
-      } else if (titleText.startsWith("Gap between the percentage of non-free school meal entitled (non-FSME) school leavers")) {
+
+       if (domains_data[d].indicators[e].data.NI == "INDINTREPNI") {
+         y_axis.textContent = "NBI score (out of 100)";
+      } else if (domains_data[d].indicators[e].data.EQ == "INDLIFESATEQ") {
+         y_axis.textContent = "Average (mean) life satisfaction score"
+      } else if (domains_data[d].indicators[e].data.NI == "INDLCREENI") {
+         y_axis.textContent = "FTE employment"
+      } else if (domains_data[d].indicators[e].data.EQ == "INDPREVDTHEQ") {
+         y_axis.textContent = "Deaths per 100,000 population"
+      } else if (domains_data[d].indicators[e].data.NI == "INDSFGANI") {
          y_axis.textContent = "Percentage points"
+      } else if (domains_data[d].indicators[e].data.EQ == "INDSLATTGAPEQ") {
+         y_axis.textContent = "Percentage points"
+      }  else if (domains_data[d].indicators[e].data.NI == "INDHOMELNNI") {
+         y_axis.textContent = "Number of households"
+      } else if (domains_data[d].indicators[e].data.EQ == "INDHOUSTRSEQ") {
+         y_axis.textContent = "Number of Applicants"
+      } else if (domains_data[d].indicators[e].data.NI == "INDRIVERQNI") {
+         y_axis.textContent = "mg/l soluble reactive phosphorus (SRP)"
+      } else if (domains_data[d].indicators[e].data.NI == "INDGREENHGNI") {
+         y_axis.textContent = "MtCO₂e"
+      } else if (domains_data[d].indicators[e].data.NI == "INDAIRPOLNI") {
+         y_axis.textContent = "Annual mean nitrogen dioxide concentration (μg/m³)"
+      } else if (domains_data[d].indicators[e].data.NI == "INDNICEINI") {
+         y_axis.textContent = "Index (base 2023=100)"
+      } else if (domains_data[d].indicators[e].data.EQ == "INDLIFESATYPEQ") {
+         y_axis.textContent = "Average (mean) life satisfaction score";
+      } else if (y_axis.textContent == "Percentage") {
+         y_axis.textContent = "%"
       }
 
       // After succesful fetch from data portal the loading image is removed and chart is displayed
@@ -2518,8 +2541,6 @@ async function renderPopup (d, e, eq_group) {
               .map(item => item.text)
               .join("")
               .length;
-
-            console.log(totalChars);
 
               const centerX = (chartArea.left + chartArea.right) / 2;
               const centerY = (chartArea.top + chartArea.bottom) / 2;
