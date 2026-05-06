@@ -2239,9 +2239,6 @@ async function renderPopup (d, e, eq_group) {
 
       pop_up_title.textContent = result.dimension.STATISTIC.category.label[matrix.replace("EQ", "")] + " by " + eq_group;    // Take current chart title and add "by grouping" to end
       y_axis.textContent = result.dimension.STATISTIC.category.unit[matrix.replace("EQ", "")].label;
-
-
-      console.log(y_axis.textContent);
       
       const titleText = pop_up_title.textContent || "";
 
