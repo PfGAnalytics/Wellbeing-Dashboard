@@ -39,6 +39,7 @@
     - [How do we fix the title on charts/maps download when it gets cut off?](#how-do-we-fix-the-title-on-chartsmaps-download-when-it-gets-cut-off)
     - [How do we fix the Y-axis on charts download when it overspills?](#how-do-we-fix-the-yaxis-on-charts-download-when-it-overspills)
     - [How does the Performance icon work?](#how-does-the-performance-icon-work)
+    - [How do we update the map screen and the map popups' summary text?](#how-do-we-update-the-map-screen-and-the-map-popups-summary-text)
     - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
     - [The process of updating GitHub when we make changes?](#the-process-of-updating-github-when-we-make-changes)
@@ -405,7 +406,63 @@ Four predefined Performance icon HTML blocks are defined in the [`data_functions
 
 After the `base_statement` is created, its text content is checked for keywords (e.g. *improved*, *worsened*, *no real change*, *insufficient*). The matching Performance icon is then selected and injected into the page automatically.
 
-### How do the captions on charts/maps downloads work?
+### How do we update the map screen and the map popups' summary text?
+#### Map screen
+Map screen-up captions are generated using the `setMapSummary()` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+This function constructs a summary sentence using:
+- `base_sentence` - the fixed introductory text *“A map of Northern Ireland for the year”*. If the selected map year is a range (i.e. contains a hyphen), this is automatically updated to *“A map of Northern Ireland for the years”*.
+- `mapYear` - extracts the text content inside JS element `date_display`
+- `summarySign` - the corresponding units for the caption
+- `lowestAreaText` - a formatted list of area(s) with the lowest value
+- `highestAreaText` - a formatted list of area(s) with the highest value
+- `lowestWording` - automatically set to **“value was”** or **“values were”**, depending on whether one or multiple lowest areas exist
+- `highestWording` - automatically set to **“value was”** or **“values were”**, depending on whether one or multiple highest areas exist
+
+A caption is then assigned to `summary`, using the following logic:
+
+```
+let summary = `${baseSentence} ${mapYear}. The lowest ${lowestWording} ${lowestAreaText} with ${lowestValue}${summarySign} and the highest ${highestWording} ${highestAreaText} with ${highestValue}${summarySign}.`;
+```
+
+#### Map popups
+Map pop-up captions are generated using the `setPopupSummary()` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+This function constructs a summary sentence using:
+- `base_sentence` - the fixed introductory text: "A map of Northern Ireland"
+- `yearEl` - the HTML element containing the map year label displayed above the slider
+- `labelEl` - the HTML element containing the Y-axis label of the indicator's line chart, used to later create `summarySign`
+- `titleEl` - the HTML element containing the indicator's line chart title
+- `measureText` - the indicator's measure text
+- `match` - checks if 'For this indicator a' exists within `measureText`
+- `measureInfo` - if `match` is found inside `measureText`, the sentence is injected. If not, an empty string is returned
+- `lowHighSentence` - dynamically constructed sentence describing:
+  - The area(s) with the lowest value (`lowestAreaText`)
+  - The area(s) with the highest value (`highestAreaText`)
+  - The corresponding values and units (`summarySign`)
+    This sentence adapts automatically for singular or multiple areas using functions `formatAreaList()` and `valueWording()`
+- `yearText` - uses the extracted text inside `yearEl` and constructs a sentence
+
+A caption is then assigned to `altText`, using the following logic:
+
+```
+   let altText;
+   if (measureInfo) {
+      altText = `${baseSentence} ${yearText} ${lowHighSentence} ${measureInfo}.`;
+   } else {
+      altText = `${baseSentence} ${yearText} ${lowHighSentence}`;
+   }
+```
+
+Then, the text is assigned to an HTML element (`.popup-map-summary-text`)
+
+#### Optional additional commentary
+Both map screen and map pop‑up captions can optionally include additional manual commentary defined in the `map_commentary` property within the scripts/domains_data.js script.
+
+- If `map_commentary` contains text, this commentary is appended to the automatically generated map caption for both map screens and map pop‑ups.
+- If `map_commentary` is an empty string (the default), no additional commentary is added and only the automatically generated caption is displayed.
+
+### How does the captions on charts/maps downloads work?
 #### Charts
 Chart summaries are injected only at the point of download.
 
@@ -450,21 +507,10 @@ const summaryText = summary + ' ' + measureFiltered;
 #### Map popups
 Unlike map screens and chart downloads (where summaries are injected only at the point of download), map popups summaries are shown on screen.
 
-Map pop-ups captions are generated using the `setPopupSummary()` function in the [`data_functions.js`](scripts/data_functions.js) script.
+Map pop-ups' captions are inserted into the downloads within the `downloadPopUpMapAsImage()` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script, using:
 
-This function constructs a summary sentence using:
-- `base_sentence` - "A map of Northern Ireland"
-- `yearEl` - the map year label displayed above the slider
-- `labelEl` - the Y-axis label of the indicator's line chart, used to later create `summarySign`
-- `titleEl` - the indicator's line chart title
-- `measureText` - the indicator's measure text
-- `match` - checks if 'For this indicator a' exists within `measureText`
-- 'measureInfo' - if `match` is found inside `measureText`, the sentence is injected. If not, an empty string is returned
-- `lowHighSentence` - dynamically constructed sentence describing:
-  - The area(s) with the lowest value
-  - The area(s) with the highest value
-  - The corresponding values and units
-    This sentence adapts automatically for singular or multiple areas using functions `formatAreaList()` and `valueWording()`
+- `summaryEl` - selects the HTML element for the existing summary ('.popup-map-summary-text')
+- `summaryText` - extracts the text content inside `summaryEl`
 
 ### Do the last updated dates all pull from the same place?
 
