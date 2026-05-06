@@ -43,6 +43,7 @@
     - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
     - [The process of updating GitHub when we make changes?](#the-process-of-updating-github-when-we-make-changes)
+    - [What's the process for accessing the internal reporting status of indicators?](#whats-the-process-for-accessing-the-internal-reporting-status-of-indicators)
     - [What's the process for publishing the dashboard?](#whats-the-process-for-publishing-the-dashboard)
   - [:question: Links](#question-links)
 
@@ -527,6 +528,22 @@ Updating the `tableURL` value in this script will ensure that all links in the "
 
 ### The process of updating GitHub when we make changes?
 See [Process for updating code](#process-for-updating-code).
+
+### What's the process for accessing the internal reporting status of indicators?
+Internal reporting on the status of indicators is generated automatically using a scheduled GitHub actions workflow.
+
+The workflow is defined in:
+- `.github/workflows/monthly-performance-summary.yml`
+
+The workflow:
+- **Runs on the first day of every month at 12:00am**
+- Executes the R script `scripts/indicator-performance-table.R`
+- Pulls the latest indicator data
+- Writes the output to `backup/indicator-performance-summary.RDS`
+- Commits any updates back to the repo with the commit message **“Data updated”** from the **PfGAnalytics** GitHub account
+
+#### How do we make changes to the information being pulled?
+If any changes are required, they should be make directly in `scripts/indicator-performance-table.R`
 
 ### What's the process for publishing the dashboard?
 See [Datavis hosting :computer:](#datavis-hosting-computer).
