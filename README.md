@@ -547,7 +547,7 @@ The workflow:
 - Commits any updates back to the repo with the commit message **“Data updated”** from the **PfGAnalytics** GitHub account
 
 #### How do we make changes to the information being pulled?
-If any changes are required, they should be make directly in `scripts/indicator-performance-table.R`
+If any changes are required, they should be make directly in `scripts/indicator-performance-table.R`, using the in-line comments as a guide
 
 ### What's the process for publishing the dashboard?
 See [Datavis hosting :computer:](#datavis-hosting-computer).
