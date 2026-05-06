@@ -1908,7 +1908,7 @@ async function renderPopup (d, e, eq_group) {
 
             // Hide 'click legend item with a white shape
             const maskTop = titleTop + titleH;
-            const maskHeight = 50;
+            const maskHeight = 55;
             ctx.fillStyle = "#fff";
             ctx.fillRect(leftInset, maskTop, renderedWidth, maskHeight);
 
