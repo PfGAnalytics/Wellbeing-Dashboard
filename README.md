@@ -321,6 +321,10 @@ The `plotOverallHexes()` function in the [`navigation_functions.js`](scripts/nav
 
 The `indicatorPerformance()` function obtains the data values for each indicator from the Data Portal. It then uses the properties `base_year`, `ci` and `improvement` for each indicator found in [`domains_data.js`](scripts/domains_data.js) to determine performance. There is more information on how each of these properties should be defined in the annotations in this script.
 
+### How do we set up data downloads for new indicators and subpopulations?
+
+There is no additional process other than the process for adding a new indicator. Data downloads are automatically rendered so long as the indicator is on the dashboard and the subpopulation is listed in `eq_groups.js`.
+
 ### How do we update the accordion boxes on home page and how to include hyperlink functionality if needed?
 Updating the 'populateInfoBoxes' in the [`data_functions.js`](scripts/data_functions.js) script. This function takes two arrays:
 - An array of accordion titles/questions
@@ -401,7 +405,7 @@ Four predefined Performance icon HTML blocks are defined in the [`data_functions
 
 After the `base_statement` is created, its text content is checked for keywords (e.g. *improved*, *worsened*, *no real change*, *insufficient*). The matching Performance icon is then selected and injected into the page automatically.
 
-### How does the captions on charts/maps downloads work?
+### How do the captions on charts/maps downloads work?
 #### Charts
 Chart summaries are injected only at the point of download.
 
@@ -461,6 +465,10 @@ This function constructs a summary sentence using:
   - The area(s) with the highest value
   - The corresponding values and units
     This sentence adapts automatically for singular or multiple areas using functions `formatAreaList()` and `valueWording()`
+
+### Do the last updated dates all pull from the same place?
+
+Yes. Updating the `latest_update` value for a given indicator in `domains_data.js` will update it everywhere in the dashboard. The same is true of `next_update`.
 
 ### What parts of the script do we need to update if we move to the live data portal?
 Updating the `baseURL` value in the [`config.js`](scripts/config.js) script to read from the live data portal will point all data portal queries to the new location.
