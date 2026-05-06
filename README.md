@@ -111,10 +111,10 @@ The diagram below shows how the functionality behind this dashboard renders all 
 
 ### :information_source: Indicator sources
 
-The diagram below depicts the _Children's social care_ indicator page with the source of each page of information on it highlighted. To change or update any piece of information below (for any indicator) refer to this diagram:
+The diagram below depicts the _Economic inactivity_ indicator page with the source of each page of information on it highlighted. To change or update any piece of information below (for any indicator) refer to this diagram:
 
 <div style="width: 100%; margin-bottom: 20px">
-  <img src="img/indicator-sources-refresh.svg" style="width: 100%;" alt="Click to see the source">
+  <img src="img/indicator-sources.svg" style="width: 100%;" alt="Click to see the source">
 </div>
 
 a. __Domain title__ This comes from the _domain_ name found in [`domains_data.js`](scripts/domains_data.js)
@@ -125,9 +125,9 @@ c. __How do we measure this?__ This is taken from the _notes_ object from the NI
 
 d. __Chart title__ This is the value of the _label_ object taken from the result of the NISRA Data Portal query.
 
-e. __Links to maps__ These links are generated if AA or LGD data are listed in [`domains_data.js`](scripts/domains_data.js)
+e. __Source__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Notes__ are extracted. The preferred format for source information is: `Title of publication http://link.to.publication`
 
-f. __Pop-up charts for Equality Groups__ These links are generated depending on the category values of the _EQUALGROUPS_ variable on the NISRA Data Portal.
+f. __More data__ This sentence is outputted based on the values present under the _data_ object within each indicator in [`domains_data.js`](scripts/domains_data.js)
 
 g. __y axis label__ This is the value of the _unit_ object taken from the result of the NISRA Data Portal query.
 
@@ -135,27 +135,23 @@ h. __data points__ These are obtained from the _value_ object in the result of t
 
 i. __The real change interval__ This is the value of the _ci_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
 
-j. __x axis values__ These are obtained from the _TLIST(A1)_ object in the result of the NISRA Data Portal query.
+j. __Further information__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Further information__ are extracted.
 
-k. __Last updated date__  This is obtained from the _latest_update_ object in the result of the NISRA Data Portal query.
+k. __x axis values__ These are obtained from the _TLIST(A1)_ object in the result of the NISRA Data Portal query.
 
-l. __Next update date__  This is obtained from the _next_update_ object in the result of the NISRA Data Portal query.
+l. __Last updated date__  This is obtained from the _updated_ object in the result of the NISRA Data Portal query.
 
 m. __Things have improved/not changed/worsened__ This part of the sentence is outputted based on the results of the NISRA Data Portal Query.
 
-n. __Comparison year__ This is obtained from the _base_year_ value for the particular indicator found in [`domains_data.js`](scripts/domains_data.js). When there is insufficient data available to determine real change set _base_year_ should be set to `null`.
+n. __Baseline year__ This is obtained from the _base_year_ value for the particular indicator found in [`domains_data.js`](scripts/domains_data.js). When there is insufficient data available to determine real change set _base_year_ should be set to `null`.
 
 o. __Statement on performance__ This is output as one of the four values (_improved_, _no_change_, _worsened_ or _insufficient_) found under the _telling_ object for the particular indicator in [`domains_data.js`](scripts/domains_data.js) 
 
 p. __Why is this indicator important?__ This is the value of the _importance_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
 
-q. __Source__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Notes__ are extracted. The preferred format for source information is: `Title of publication http://link.to.publication`
+q. __Links to maps__ These links are generated if AA or LGD data are listed in [`domains_data.js`](scripts/domains_data.js)
 
-r. __Official stat__ This sentence is outputted based on the value present under the _AOS_ object within each indicator in [`domains_data.js`](scripts/domains_data.js)
-
-s. __More data__ This sentence is outputted based on the values present under the _data_ object within each indicator in [`domains_data.js`](scripts/domains_data.js)
-
-t. __Further information__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Further information__ are extracted.
+r. __Pop-up charts for Equality Groups__ These links are generated depending on the category values of the _EQUALGROUPS_ variable on the NISRA Data Portal.
 
 #### Updating an indicator
 
