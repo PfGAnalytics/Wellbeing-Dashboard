@@ -521,6 +521,10 @@ Map pop-ups' captions are inserted into the downloads within the `downloadPopUpM
 
 Yes. Updating the `latest_update` value for a given indicator in `domains_data.js` will update it everywhere in the dashboard. The same is true of `next_update`.
 
+### Will the same logic automatically apply for new indicators when they're added?
+
+Yes. The only thing that would need updated is [`domains_data.js`](scripts/domains_data.js), as described in the process for adding new indicators - there are some new fields there as a result of the changes, but everything else is handled by the scripts.
+
 ### What parts of the script do we need to update if we move to the live data portal?
 Updating the `baseURL` value in the [`config.js`](scripts/config.js) script to read from the live data portal will point all data portal queries to the new location.
 
