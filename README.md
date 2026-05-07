@@ -39,7 +39,7 @@
     - [How do we fix the title on charts/maps download when it gets cut off?](#how-do-we-fix-the-title-on-chartsmaps-download-when-it-gets-cut-off)
     - [How do we fix the Y-axis on charts download when it overspills?](#how-do-we-fix-the-yaxis-on-charts-download-when-it-overspills)
     - [How does the Performance icon work?](#how-does-the-performance-icon-work)
-    - [How do we update the map screen and the map popups' summary text?](#how-do-we-update-the-map-screen-and-the-map-popups-summary-text)
+    - [How do we update the map screen and the map pop-ups' summary text?](#how-do-we-update-the-map-screen-and-the-map-popups-summary-text)
     - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
     - [How do we reorder subpopulations on the indicator screen?](how-do-we-reorder-subpopulations-on-the-indicator-screen)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
@@ -376,11 +376,11 @@ If a title is still being cut off or requires more space, these values can be ad
   Adjust values inside the `downloadMapAsImage()` function  
    (e.g. `maxTitleWidth` or `lineHeight`)
 
-- **Map popup downloads**  
+- **Map pop-up downloads**  
   Adjust values inside the `downloadPopUpMapImage()` function  
    (e.g. `maxTitleWidth` or `titleLineHeight`)
 
-- **Chart popup downloads**
+- **Chart pop-up downloads**
 
   Adjust values inside the `download_btn.onclick` function inside `renderPopUp()` within the [`data_functions.js`](scripts/data_functions.js) script
   (e.g. `maxTitleWidth` or `titleLineHeight`)
@@ -390,7 +390,7 @@ Changing these values will directly affect how much horizontal and vertical spac
 ### How do we fix the Y-axis on charts download when it overspills?
 Y-axis on downloaded charts are rendered during export.
 
-Across indicator screen charts and chart popup downloads, the same general approach is used:
+Across indicator screen charts and chart pop-up downloads, the same general approach is used:
 - Y-axis label is extracted using the `getYLabel` function and stored in `yLabel`
 - `yPadding` is applied to allow horizontal space for the `yLabel`
 - `leftInset` allows for additional space to the left of the `yLabel`
@@ -416,7 +416,7 @@ Four predefined Performance icon HTML blocks are defined in the [`data_functions
 
 After the `base_statement` is created, its text content is checked for keywords (e.g. *improved*, *worsened*, *no real change*, *insufficient*). The matching Performance icon is then selected and injected into the page automatically.
 
-### How do we update the map screen and the map popups' summary text?
+### How do we update the map screen and the map pop-ups' summary text?
 #### Map screen
 Map screen-up captions are generated using the `setMapSummary()` function in the [`data_functions.js`](scripts/data_functions.js) script.
 
@@ -514,8 +514,8 @@ The Map screens' summaries are injected using the following logic:
 const summaryText = summary + ' ' + measureFiltered;
 ```
 
-#### Map popups
-Unlike map screens and chart downloads (where summaries are injected only at the point of download), map popups summaries are shown on screen.
+#### Map pop-ups
+Unlike map screens and chart downloads (where summaries are injected only at the point of download), map pop-ups summaries are shown on screen.
 
 Map pop-ups' captions are inserted into the downloads within the `downloadPopUpMapAsImage()` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script, using:
 
