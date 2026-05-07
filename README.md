@@ -73,8 +73,11 @@ Documentation to outline the structure and processes needed to create or modify 
 | `cookies_script.js` | JavaScript functionality for cookies |
 | `config.js` | Setup script used to declare which data portal (pre-production or public) to read from |
 | `ni_map.js` | JavaScript used to display NI LGD and Assembly Area maps |
+| `eq_groups.js` | JavaScript used to associating subpopulations with indicators |
 | `maps` | Folder containing original shape files for maps |
-| `datavis prep base64.R` | R script used to prepare the files for upload to the DataVis server |
+| `datavis-prep-automated.R` | R script used to prepare the files for upload to the DataVis server |
+| `back-up-data-portal.R` | R script that automatically backs up the latest data on the data portal |
+| `indicator-performance-table.R` | R script used to generate an Excel file containing internal reporting on the status of indicators |
 | `*.svg, *.gif` | Logos, icons and placeholder images |
 
 ### Data Input
