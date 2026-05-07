@@ -39,8 +39,9 @@
     - [How do we fix the title on charts/maps download when it gets cut off?](#how-do-we-fix-the-title-on-chartsmaps-download-when-it-gets-cut-off)
     - [How do we fix the Y-axis on charts download when it overspills?](#how-do-we-fix-the-yaxis-on-charts-download-when-it-overspills)
     - [How does the Performance icon work?](#how-does-the-performance-icon-work)
-    - [How do we update the map screen and the map popups' summary text?](#how-do-we-update-the-map-screen-and-the-map-popups-summary-text)
+    - [How do we update the map screen and the map pop-ups' summary text?](#how-do-we-update-the-map-screen-and-the-map-popups-summary-text)
     - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
+    - [How do we reorder subpopulations on the indicator screen?](how-do-we-reorder-subpopulations-on-the-indicator-screen)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
     - [The process of updating GitHub when we make changes?](#the-process-of-updating-github-when-we-make-changes)
     - [What's the process for accessing the internal reporting status of indicators?](#whats-the-process-for-accessing-the-internal-reporting-status-of-indicators)
@@ -118,10 +119,10 @@ The diagram below shows how the functionality behind this dashboard renders all 
 
 ### :information_source: Indicator sources
 
-The diagram below depicts the _Economic inactivity_ indicator page with the source of each page of information on it highlighted. To change or update any piece of information below (for any indicator) refer to this diagram:
+The diagram below depicts the _Children's social care_ indicator page with the source of each page of information on it highlighted. To change or update any piece of information below (for any indicator) refer to this diagram:
 
 <div style="width: 100%; margin-bottom: 20px">
-  <img src="img/indicator-sources.svg" style="width: 100%;" alt="Click to see the source">
+  <img src="img/indicator-sources-refresh.svg" style="width: 100%;" alt="Click to see the source">
 </div>
 
 a. __Domain title__ This comes from the _domain_ name found in [`domains_data.js`](scripts/domains_data.js)
@@ -132,9 +133,9 @@ c. __How do we measure this?__ This is taken from the _notes_ object from the NI
 
 d. __Chart title__ This is the value of the _label_ object taken from the result of the NISRA Data Portal query.
 
-e. __Source__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Notes__ are extracted. The preferred format for source information is: `Title of publication http://link.to.publication`
+e. __Links to maps__ These links are generated if AA or LGD data are listed in [`domains_data.js`](scripts/domains_data.js)
 
-f. __More data__ This sentence is outputted based on the values present under the _data_ object within each indicator in [`domains_data.js`](scripts/domains_data.js)
+f. __Pop-up charts for Equality Groups__ These links are generated depending on the category values of the _EQUALGROUPS_ variable on the NISRA Data Portal.
 
 g. __y axis label__ This is the value of the _unit_ object taken from the result of the NISRA Data Portal query.
 
@@ -142,23 +143,27 @@ h. __data points__ These are obtained from the _value_ object in the result of t
 
 i. __The real change interval__ This is the value of the _ci_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
 
-j. __Further information__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Further information__ are extracted.
+j. __x axis values__ These are obtained from the _TLIST(A1)_ object in the result of the NISRA Data Portal query.
 
-k. __x axis values__ These are obtained from the _TLIST(A1)_ object in the result of the NISRA Data Portal query.
+k. __Last updated date__  This is obtained from the _latest_update_ object in the result of the NISRA Data Portal query.
 
-l. __Last updated date__  This is obtained from the _updated_ object in the result of the NISRA Data Portal query.
+l. __Next update date__  This is obtained from the _next_update_ object in the result of the NISRA Data Portal query.
 
 m. __Things have improved/not changed/worsened__ This part of the sentence is outputted based on the results of the NISRA Data Portal Query.
 
-n. __Baseline year__ This is obtained from the _base_year_ value for the particular indicator found in [`domains_data.js`](scripts/domains_data.js). When there is insufficient data available to determine real change set _base_year_ should be set to `null`.
+n. __Comparison year__ This is obtained from the _base_year_ value for the particular indicator found in [`domains_data.js`](scripts/domains_data.js). When there is insufficient data available to determine real change set _base_year_ should be set to `null`.
 
 o. __Statement on performance__ This is output as one of the four values (_improved_, _no_change_, _worsened_ or _insufficient_) found under the _telling_ object for the particular indicator in [`domains_data.js`](scripts/domains_data.js) 
 
 p. __Why is this indicator important?__ This is the value of the _importance_ object for the particular indicator found in [`domains_data.js`](scripts/domains_data.js)
 
-q. __Links to maps__ These links are generated if AA or LGD data are listed in [`domains_data.js`](scripts/domains_data.js)
+q. __Source__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Notes__ are extracted. The preferred format for source information is: `Title of publication http://link.to.publication`
 
-r. __Pop-up charts for Equality Groups__ These links are generated depending on the category values of the _EQUALGROUPS_ variable on the NISRA Data Portal.
+r. __Official stat__ This sentence is outputted based on the value present under the _AOS_ object within each indicator in [`domains_data.js`](scripts/domains_data.js)
+
+s. __More data__ This sentence is outputted based on the values present under the _data_ object within each indicator in [`domains_data.js`](scripts/domains_data.js)
+
+t. __Further information__ This is taken from the _notes_ object from the NISRA Data Portal query. The contents of the paragraph labelled __Further information__ are extracted.
 
 #### Updating an indicator
 
@@ -371,11 +376,11 @@ If a title is still being cut off or requires more space, these values can be ad
   Adjust values inside the `downloadMapAsImage()` function  
    (e.g. `maxTitleWidth` or `lineHeight`)
 
-- **Map popup downloads**  
+- **Map pop-up downloads**  
   Adjust values inside the `downloadPopUpMapImage()` function  
    (e.g. `maxTitleWidth` or `titleLineHeight`)
 
-- **Chart popup downloads**
+- **Chart pop-up downloads**
 
   Adjust values inside the `download_btn.onclick` function inside `renderPopUp()` within the [`data_functions.js`](scripts/data_functions.js) script
   (e.g. `maxTitleWidth` or `titleLineHeight`)
@@ -385,7 +390,7 @@ Changing these values will directly affect how much horizontal and vertical spac
 ### How do we fix the Y-axis on charts download when it overspills?
 Y-axis on downloaded charts are rendered during export.
 
-Across indicator screen charts and chart popup downloads, the same general approach is used:
+Across indicator screen charts and chart pop-up downloads, the same general approach is used:
 - Y-axis label is extracted using the `getYLabel` function and stored in `yLabel`
 - `yPadding` is applied to allow horizontal space for the `yLabel`
 - `leftInset` allows for additional space to the left of the `yLabel`
@@ -411,7 +416,7 @@ Four predefined Performance icon HTML blocks are defined in the [`data_functions
 
 After the `base_statement` is created, its text content is checked for keywords (e.g. *improved*, *worsened*, *no real change*, *insufficient*). The matching Performance icon is then selected and injected into the page automatically.
 
-### How do we update the map screen and the map popups' summary text?
+### How do we update the map screen and the map pop-ups' summary text?
 #### Map screen
 Map screen-up captions are generated using the `setMapSummary()` function in the [`data_functions.js`](scripts/data_functions.js) script.
 
@@ -509,8 +514,8 @@ The Map screens' summaries are injected using the following logic:
 const summaryText = summary + ' ' + measureFiltered;
 ```
 
-#### Map popups
-Unlike map screens and chart downloads (where summaries are injected only at the point of download), map popups summaries are shown on screen.
+#### Map pop-ups
+Unlike map screens and chart downloads (where summaries are injected only at the point of download), map pop-ups summaries are shown on screen.
 
 Map pop-ups' captions are inserted into the downloads within the `downloadPopUpMapAsImage()` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script, using:
 
@@ -520,6 +525,29 @@ Map pop-ups' captions are inserted into the downloads within the `downloadPopUpM
 ### Do the last updated dates all pull from the same place?
 
 Yes. Updating the `latest_update` value for a given indicator in `domains_data.js` will update it everywhere in the dashboard. The same is true of `next_update`.
+
+### Will the same logic automatically apply for new indicators when they're added?
+
+Yes. The only thing that would need updated is [`domains_data.js`](scripts/domains_data.js), as described in the process for adding new indicators - there are some new fields there as a result of the changes, but everything else is handled by the scripts.
+
+### How do we reorder subpopulations on the indicator screen?
+Subpopulations ordering is handled in the `getEqualityGroups()` function within the [`data_functions.js`](scripts/data_functions.js) script.
+
+Any required ordering rules are enforced after the empty `eq_groups` array has been defined. For example, logic has been added to ensure that the **"Age"** subpop always appears immediately after **"Sex"**. If further ordering changes are required, they should be implemented in the `getEqualityGroups()` function using similar logic, for example:
+
+```
+         // Ordering "Age" to always come after "Sex"
+         if (eq_groups.includes("Sex") && eq_groups.includes("Age")) {
+            const sexEQ = eq_groups.indexOf("Sex");
+            const ageEQ = eq_groups.indexOf("Age");
+            
+            // Only move Age if it is not already immediately after Sex
+            if (ageEQ !== sexEQ + 1) {
+               eq_groups.splice(ageEQ, 1);          // remove Age
+               eq_groups.splice(sexEQ + 1, 0, "Age"); // insert after Sex
+            }
+         }
+```
 
 ### What parts of the script do we need to update if we move to the live data portal?
 Updating the `baseURL` value in the [`config.js`](scripts/config.js) script to read from the live data portal will point all data portal queries to the new location.
@@ -543,7 +571,7 @@ The workflow:
 - Commits any updates back to the repo with the commit message **“Data updated”** from the **PfGAnalytics** GitHub account
 
 #### How do we make changes to the information being pulled?
-If any changes are required, they should be make directly in `scripts/indicator-performance-table.R`
+If any changes are required, they should be make directly in `scripts/indicator-performance-table.R`, using the in-line comments as a guide
 
 ### What's the process for publishing the dashboard?
 See [Datavis hosting :computer:](#datavis-hosting-computer).
