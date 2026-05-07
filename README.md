@@ -429,7 +429,7 @@ This can all be changed in the main [`index.html`](index.html) script. The logos
 
 ### How do we change colours of chart, maps, boxes?
  * For chart colours, see the `chart_config` definition inside the `createLineChart()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [Chart.js documentation](https://www.chartjs.org/docs/latest/) on ways to make changes.
- * For eqaulity group bar charts, see the `colours` definition inside the `getEqualityGroups()` function in the [`data_functions.js`](scripts/data_functions.js) script.
+ * For equality group bar charts, see the `colours` definition inside the `getEqualityGroups()` function in the [`data_functions.js`](scripts/data_functions.js) script.
  * For map colours, see the `drawMap()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [leaflet.js documentation](https://leafletjs.com/reference.html) on how to customise maps.
  * For boxes, see the [`style.css`](style.css) stylesheet. Find the corresponding id or class of the page element you wish to change and change the `background-color` property.
 
@@ -497,8 +497,7 @@ If a title is still being cut off or requires more space, these values can be ad
   Adjust values inside the `downloadPopUpMapImage()` function  
    (e.g. `maxTitleWidth` or `titleLineHeight`)
 
-- **Chart pop-up downloads**
-
+- **Chart pop-up downloads**  
   Adjust values inside the `download_btn.onclick` function inside `renderPopUp()` within the [`data_functions.js`](scripts/data_functions.js) script
   (e.g. `maxTitleWidth` or `titleLineHeight`)
   
