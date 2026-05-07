@@ -398,6 +398,10 @@ Across indicator screen charts and chart pop-up downloads, the same general appr
 
 Changing these values will directly affect how much horizontal and vertical space is allocated to y-axis labels during export and can be used to prevent clipping for longer labels.
 
+### How do we fix the data download buttons if data is not downloading?
+
+The data downloads are controlled by a few functions: `downloadChartData()` for the main charts, `downloadMapData()` for the maps tab, `renderPopup()` for the subpopulation charts and `renderMapPopup()` for map popups. We have built as much contingency into these functions as possible, but these are relatively complex functions and the reasons they could potentially fail are too various to exhaustively list here. Please refer to the Troubleshooting Javascript section above for general guidance on how to error trace and troubleshoot Javascript files.
+
 ### How does the Performance icon work?
 The Performance icon is **generated automatically**.
 
