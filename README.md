@@ -100,7 +100,7 @@ The [`domains_data.js`](scripts/domains_data.js) script is an additional 'input'
 
 ### Software Checklist
 
-- Visual Studio Code (with "Live Server" Extension)
+- Visual Studio Code (with "Live Server" Extension) 
 - R Studio
 - Git for Windows
  
@@ -205,7 +205,7 @@ Commentary on indicator trends should be added to the [`domains_data.js`](script
 3. Make any changes to the code.
 4. Save changes, Stage changes, Commit changes and then Push changes to Github.
 5. Open R Studio by double clicking the `scripts.Rproj` file (using Windows Explorer not Visual Studio Code)
-6. Run the script `datavis prep base64.R` (Press <kbd>Ctrl</kbd>+<kbd>A</kbd> followed by <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) to embed JavaScript files, images and css stylesheets in the [`index.html`](scripts/index.html) file.
+6. Run the script `datavis-prep-automated.R` (Press <kbd>Ctrl</kbd>+<kbd>A</kbd> followed by <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) to embed JavaScript files, images and css stylesheets in the [`index.html`](scripts/index.html) file.
 7. This will automatically render a __new copy__ of `index.html` in a sub-folder named `dashboard-to-upload`. Upload __this copy__ of `index.html` to the Datavis server to the same location where it was previously hosted. 
 
 ### Testing phase :mortar_board:
