@@ -84,7 +84,7 @@ Documentation to outline the structure and processes needed to create or modify 
 
 Data for the dashboard is directly linked to data available for each indicator stored in the 'Programme for Government' folder on the NISRA Data Portal. The relevant datasets on NISRA Data Portal are linked to the dashboard using an API query. The dashboard will automatically update as data is updated on the NISRA Data Portal provided it is uploaded using the same naming conventions.
 
-The [`domains_data.js`](scripts/domains_data.js) script is an additional 'input' which contains additional domain/indiactor information. 
+The [`domains_data.js`](scripts/domains_data.js) script is an additional 'input' which contains additional domain/indicator information. 
 
 ### Code structure
 
@@ -94,7 +94,7 @@ The [`domains_data.js`](scripts/domains_data.js) script is an additional 'input'
 | Body | Header and branding, cookie banner, top menu, overall screen, domains screen, indicator screen, maps screen, user guide, footer |
 | Domains Screen | Hexagons for showing the high level domains, clicking a domain shows the indicators for that domain |
 | Indicator Screen | Chart.js line chart for each indicator alongside additional information |
-| Map Screen | Maps to display indicator data, dropdown menu to swicth between indicators |
+| Map Screen | Maps to display indicator data, dropdown menu to switch between indicators |
 | About Screen | Background information on the indicators and their framework |
 | Footer | Standard NISRA footer |
 
@@ -229,7 +229,7 @@ When modifications have been made (new data or otherwise), carry out a systemati
 - Chart isn't appearing
   - This is likely an issue with the live fetch from Data Portal. Open your browsers Dev Tools and check the Console for warnings. Try refreshing the page. If the problem persists, try increasing the wait time in the _setTimeout()_ functions found in [`navigation_functions.js`](scripts/navigation_functions.js) script.
 - Source information, Further information or How we measure this not appearing on indicator page
-  - Check the "notes" text for that indicator on the Data Portal. Heading should read "Source" "How do we measure this" or "Futher information" and be spelled correctly for _createLineChart()_ and _drawMap()_ functions to pick them up and display them.
+  - Check the "notes" text for that indicator on the Data Portal. Heading should read "Source" "How do we measure this" or "Further information" and be spelled correctly for _createLineChart()_ and _drawMap()_ functions to pick them up and display them.
 
 ### Troubleshooting Javascript
 If something on the dashboard is not behaving as expected, the steps below will help identify common JavaScript issues. 
@@ -248,8 +248,8 @@ To access Developer Tools:
    - Useful for layout issues and verifying structure
   
 2. Console tab:
-   - Displays logs, errors, and warning
-   - In the event of an error message, the Console tab will show the file name where the error occured, the line number and the function involved
+   - Displays logs, errors, and warnings
+   - In the event of an error message, the Console tab will show the file name where the error occurred, the line number and the function involved
    - Useful for viewing error messages and testing output values using `console.log()`. Help on using logs can be found [here](#using-consolelog)
   
 3. Network tab:
@@ -516,13 +516,13 @@ Changing these values will directly affect how much horizontal and vertical spac
 
 ### How do we fix the navy oval on the subpopulation charts if it displays incorrectly?
 
-Since we altered the navy oval to simply be a png sourced from the img folder, this process is far simpler than it once was. In `renderPopup()`, there is a section that starts with ```const chart_config = {```. Again under this section, there is a portion that begins ```beforeDraw(chart)```. The values to control the navy oval are here - ```const width =```, ```const height =```, ```const x =``` and ```let y =``` control the width, height, horizontal position and vertical postion respectively. If altering width and height, do so in a way that maintains the current or a similar ratio, otherwise the image will appear stretched or squashed. 
+Since we altered the navy oval to simply be a png sourced from the img folder, this process is far simpler than it once was. In `renderPopup()`, there is a section that starts with ```const chart_config = {```. Again under this section, there is a portion that begins ```beforeDraw(chart)```. The values to control the navy oval are here - ```const width =```, ```const height =```, ```const x =``` and ```let y =``` control the width, height, horizontal position and vertical position respectively. If altering width and height, do so in a way that maintains the current or a similar ratio, otherwise the image will appear stretched or squashed. 
 
 This section also contains an if statement (starting ```if totalChars > 300```) - this looks at the number of characters in the legend and adjusts the position of the navy oval accordingly. It may be necessary to add new else ifs to this statement, or adjust the boundaries at which the positions are changed if legend contents change significantly.
 
 #### If the navy oval appears in the downloads
 
-The disapperance of the navy oval in the downloaded images is a little bit of visual trickery - it's actually just covered by a white rectangle! Therefore, if a little bit of the navy oval appears in a download, you just need to adjust the white rectangle to cover it properly. Position is controlled by ```const maskTop``` and vertical height by ```const maskHeight```. If there is a lot of variation between indicators it may be necessary to add an if statement in the same way as the navy oval is positioned, but so far adjusting the vertical height has been sufficient.
+The disappearance of the navy oval in the downloaded images is a little bit of visual trickery - it's actually just covered by a white rectangle! Therefore, if a little bit of the navy oval appears in a download, you just need to adjust the white rectangle to cover it properly. Position is controlled by ```const maskTop``` and vertical height by ```const maskHeight```. If there is a lot of variation between indicators it may be necessary to add an if statement in the same way as the navy oval is positioned, but so far adjusting the vertical height has been sufficient.
 
 ### How do we fix broken data downloads?
 If data downloads are not working as expected, first refer to the [Troubleshooting Javascript](#troubleshooting-javascript) section for general debugging steps.
@@ -714,7 +714,7 @@ The workflow:
 - Commits any updates back to the repo with the commit message **“Data updated”** from the **PfGAnalytics** GitHub account
 
 #### How do we make changes to the information being pulled?
-If any changes are required, they should be make directly in `scripts/indicator-performance-table.R`, using the in-line comments as a guide
+If any changes are required, they should be made directly in `scripts/indicator-performance-table.R`, using the in-line comments as a guide
 
 ### What's the process for publishing the dashboard?
 See [Datavis hosting :computer:](#datavis-hosting-computer).
