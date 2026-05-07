@@ -408,10 +408,6 @@ This section also contains an if statement (starting ```if totalChars > 300```) 
 
 The disapperance of the navy oval in the downloaded images is a little bit of visual trickery - it's actually just covered by a white rectangle! Therefore, if a little bit of the navy oval appears in a download, you just need to adjust the white rectangle to cover it properly. Position is controlled by ```const maskTop``` and vertical height by ```const maskHeight```. If there is a lot of variation between indicators it may be necessary to add an if statement in the same way as the navy oval is positioned, but so far adjusting the vertical height has been sufficient.
 
-### How do we fix the data download buttons if data is not downloading, or does not include the correct subpop categories?
-
-The data downloads are controlled by a few functions: `downloadChartData()` for the main charts, `downloadMapData()` for the maps tab, `renderPopup()` for the subpopulation charts and `renderMapPopup()` for map popups. We have built as much contingency into these functions as possible, but these are relatively complex functions and the reasons they could potentially fail are too various to exhaustively list here. Please refer to the Troubleshooting Javascript section above for general guidance on how to error trace and troubleshoot Javascript files.
-
 ### How does the Performance icon work?
 The Performance icon is **generated automatically**.
 
