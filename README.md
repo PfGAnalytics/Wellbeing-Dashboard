@@ -41,6 +41,7 @@
     - [How does the Performance icon work?](#how-does-the-performance-icon-work)
     - [How do we update the map screen and the map popups' summary text?](#how-do-we-update-the-map-screen-and-the-map-popups-summary-text)
     - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
+    - [How do we reorder subpopulations on the indicator screen?](how-do-we-reorder-subpopulations-on-the-indicator-screen)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
     - [The process of updating GitHub when we make changes?](#the-process-of-updating-github-when-we-make-changes)
     - [What's the process for accessing the internal reporting status of indicators?](#whats-the-process-for-accessing-the-internal-reporting-status-of-indicators)
@@ -528,6 +529,25 @@ Yes. Updating the `latest_update` value for a given indicator in `domains_data.j
 ### Will the same logic automatically apply for new indicators when they're added?
 
 Yes. The only thing that would need updated is [`domains_data.js`](scripts/domains_data.js), as described in the process for adding new indicators - there are some new fields there as a result of the changes, but everything else is handled by the scripts.
+
+### How do we reorder subpopulations on the indicator screen?
+Subpopulations ordering is handled in the `getEqualityGroups()` function within the [`data_functions.js`](scripts/data_functions.js) script.
+
+Any required ordering rules are enforced after the empty `eq_groups` array has been defined. For example, logic has been added to ensure that the **"Age"** subpop always appears immediately after **"Sex"**. If further ordering changes are required, they should be implemented in the `getEqualityGroups()` function using similar logic, for example:
+
+```
+         // Ordering "Age" to always come after "Sex"
+         if (eq_groups.includes("Sex") && eq_groups.includes("Age")) {
+            const sexEQ = eq_groups.indexOf("Sex");
+            const ageEQ = eq_groups.indexOf("Age");
+            
+            // Only move Age if it is not already immediately after Sex
+            if (ageEQ !== sexEQ + 1) {
+               eq_groups.splice(ageEQ, 1);          // remove Age
+               eq_groups.splice(sexEQ + 1, 0, "Age"); // insert after Sex
+            }
+         }
+```
 
 ### What parts of the script do we need to update if we move to the live data portal?
 Updating the `baseURL` value in the [`config.js`](scripts/config.js) script to read from the live data portal will point all data portal queries to the new location.
