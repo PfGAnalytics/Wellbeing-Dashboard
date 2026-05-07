@@ -2539,6 +2539,8 @@ async function renderPopup (d, e, eq_group) {
               .join("")
               .length;
 
+              console.log(totalChars);
+
               const centerX = (chartArea.left + chartArea.right) / 2;
               const centerY = (chartArea.top + chartArea.bottom) / 2;
 
@@ -2569,9 +2571,9 @@ async function renderPopup (d, e, eq_group) {
                y = centerY - height - 140 
               } else if (totalChars > 200) {
                y = centerY - height - 125 
-              } else if (totalChars > 85) {
+              } else if (totalChars > 80) {
                y = centerY - height - 115
-              }
+              } 
 
               ctx.drawImage(this.img, x, y, width, height);
             }
