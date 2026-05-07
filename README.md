@@ -38,6 +38,8 @@
     - [How do we update the accordion boxes on home page and how to include hyperlink functionality if needed?](#how-do-we-update-the-accordion-boxes-on-home-page-and-how-to-include-hyperlink-functionality-if-needed)
     - [How do we fix the title on charts/maps download when it gets cut off?](#how-do-we-fix-the-title-on-chartsmaps-download-when-it-gets-cut-off)
     - [How do we fix the Y-axis on charts download when it overspills?](#how-do-we-fix-the-yaxis-on-charts-download-when-it-overspills)
+    - [How do we fix the navy oval on the subpopulation charts if it displays incorrectly?](#how-do-we-fix-the-navy-oval-on-the-subpopulation-charts)
+    - [How do we fix broken data downloads?](#how-do-we-fix-broken-data-downloads)
     - [How does the Performance icon work?](#how-does-the-performance-icon-work)
     - [How do we update the map screen and the map pop-ups' summary text?](#how-do-we-update-the-map-screen-and-the-map-popups-summary-text)
     - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
@@ -220,6 +222,113 @@ When modifications have been made (new data or otherwise), carry out a systemati
   - This is likely an issue with the live fetch from Data Portal. Open your browsers Dev Tools and check the Console for warnings. Try refreshing the page. If the problem persists, try increasing the wait time in the _setTimeout()_ functions found in [`navigation_functions.js`](scripts/navigation_functions.js) script.
 - Source information, Further information or How we measure this not appearing on indicator page
   - Check the "notes" text for that indicator on the Data Portal. Heading should read "Source" "How do we measure this" or "Futher information" and be spelled correctly for _createLineChart()_ and _drawMap()_ functions to pick them up and display them.
+
+### Troubleshooting Javascript
+If something on the dashboard is not behaving as expected, the steps below will help identify common JavaScript issues. 
+
+#### Opening Developer Tools
+Modern browsers provide built-in Developer Tools which can help diagnose JavaScript issues.
+
+To access Developer Tools:
+- Right-click anywhere on the dashboard
+- Select _Inspect_
+
+##### Overview of Developer Tools
+1. Elements tab:
+   - Shows the HTML structure (DOM)
+   - Allows inspection and editing of HTML and CSS
+   - Useful for layout issues and verifying structure
+  
+2. Console tab:
+   - Displays logs, errors, and warning
+   - In the event of an error message, the Console tab will show the file name where the error occured, the line number and the function involved
+   - Useful for viewing error messages and testing output values using `console.log()`. Help on using logs can be found [here](#using-consolelog)
+  
+3. Network tab:
+   - Shows all network requests (API calls, images, scripts etc)
+   - Useful for checking if resources are loading correctly. Help on interpreting HTTP status codes can be found [here](https://www.w3schools.com/tools/tool_http_status.php)
+  
+##### Using console.log()
+console.log() is the simplest way to understand what the JavaScript code is doing by printing information to the Console tab in Developer Tools. The most useful things a console.log() can do are:
+
+- Checking whether a variable exists
+- Seeing what data a variable contains
+- Confirming whether a section of code is being reached
+
+Where a console.log() is placed is important as:
+- Putting it inside a function shows what happens when that function runs
+- Placing it inside a loop or condition shows how values change as the code executes
+- Placing it at the top of a function confirms whether the function is being executed at all
+
+###### Example: inspecting subpopulations
+In the example below, console.log(eq_groups) is placed inside the `getEqualityGroups` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+```
+console.log(eq_groups);
+
+for (let i = 0; i < labels.length; i++) {
+
+  let group;
+  if (labels[i].includes("-")) {
+    group = labels[i].slice(0, labels[i].indexOf("-")).trim();
+  } else {
+    group = labels[i].trim();
+  }
+
+  if (group.includes("Age")) {
+    group = "Age";
+  }
+
+  if (!eq_groups.includes(group) && group !== "Northern Ireland") {
+    eq_groups.push(group);
+  }
+
+  // Ordering "Age" to always come after "Sex"
+  if (eq_groups.includes("Sex") && eq_groups.includes("Age")) {
+    const sexEQ = eq_groups.indexOf("Sex");
+    const ageEQ = eq_groups.indexOf("Age");
+
+    if (ageEQ !== sexEQ + 1) {
+      eq_groups.splice(ageEQ, 1);
+      eq_groups.splice(sexEQ + 1, 0, "Age");
+    }
+  }
+}
+```
+
+This means that when viewing the _Children's social care_, the log outputs the following in the Console tab:
+
+```
+0: "Sex"
+1: "Religion"
+2: "Dependants"
+3: "Disability"
+4: "Deprivation"
+5: "Urban Rural"
+length: 6
+```
+
+This confirms:
+- The `eq_groups` variable exists
+- The function is running as expected
+- Which subpopulations are associated with the indicator
+- The order they are processed
+
+###### Example: checking if a function is running
+To confirm that a function is being executed at all, add a simple log at the very top of the function. For example:
+
+```
+async function getEqualityGroups(d, e) {
+   console.log("getEqualityGroups() is running");
+```
+
+After navigating to the Console tab, the log outputs:
+
+```
+getEqualityGroups() is running
+```
+
+This confirms that the function is being executed as expected. This is often the quickest way to diagnose why a feature is not behaving as expected.
 
 ## Frequently Asked Questions
 
@@ -407,6 +516,23 @@ This section also contains an if statement (starting ```if totalChars > 300```) 
 #### If the navy oval appears in the downloads
 
 The disapperance of the navy oval in the downloaded images is a little bit of visual trickery - it's actually just covered by a white rectangle! Therefore, if a little bit of the navy oval appears in a download, you just need to adjust the white rectangle to cover it properly. Position is controlled by ```const maskTop``` and vertical height by ```const maskHeight```. If there is a lot of variation between indicators it may be necessary to add an if statement in the same way as the navy oval is positioned, but so far adjusting the vertical height has been sufficient.
+
+### How do we fix broken data downloads?
+If data downloads are not working as expected, first refer to the [Troubleshooting Javascript](#troubleshooting-javascript) section for general debugging steps.
+
+If further investigation is needed, check the relevant download logic below depending on where the issue occurs:
+
+#### Indicator screen data downloads
+- `downloadChartData` in the [`navigation_functions.js`](scripts/navigation_functions.js) script.
+
+#### Subpopulation popup data
+- `download_data_btn.onclick` handler inside the `renderPopup` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+#### Map popup data
+- `downloadPopUpMapData` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script.
+
+#### Map screen data
+- `downloadMapData` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script.
 
 ### How does the Performance icon work?
 The Performance icon is **generated automatically**.
