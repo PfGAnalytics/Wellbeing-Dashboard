@@ -498,7 +498,7 @@ If a title is still being cut off or requires more space, these values can be ad
    (e.g. `maxTitleWidth` or `titleLineHeight`)
 
 - **Chart pop-up downloads**  
-  Adjust values inside the `download_btn.onclick` function inside `renderPopUp()` within the [`data_functions.js`](scripts/data_functions.js) script
+  Adjust values inside the `download_btn.onclick` function inside `renderPopUp()` within the [`data_functions.js`](scripts/data_functions.js) script  
   (e.g. `maxTitleWidth` or `titleLineHeight`)
   
 Changing these values will directly affect how much horizontal and vertical space is allocated to titles during export and can be used to prevent clipping for longer titles.
