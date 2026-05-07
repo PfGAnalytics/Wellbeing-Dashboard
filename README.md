@@ -398,7 +398,17 @@ Across indicator screen charts and chart pop-up downloads, the same general appr
 
 Changing these values will directly affect how much horizontal and vertical space is allocated to y-axis labels during export and can be used to prevent clipping for longer labels.
 
-### How do we fix the data download buttons if data is not downloading?
+### How do we fix the navy oval on the subpopulation charts if it displays incorrectly?
+
+Since we altered the navy oval to simply be a png sourced from the img folder, this process is far simpler than it once was. In `renderPopup()`, there is a section that starts with ```const chart_config = {```. Again under this section, there is a portion that begins ```beforeDraw(chart)```. The values to control the navy oval are here - ```const width =```, ```const height =```, ```const x =``` and ```let y =``` control the width, height, horizontal position and vertical postion respectively. If altering width and height, do so in a way that maintains the current or a similar ratio, otherwise the image will appear stretched or squashed. 
+
+This section also contains an if statement (starting ```if totalChars > 300```) - this looks at the number of characters in the legend and adjusts the position of the navy oval accordingly. It may be necessary to add new else ifs to this statement, or adjust the boundaries at which the positions are changed if legend contents change significantly.
+
+#### If the navy oval appears in the downloads
+
+The disapperance of the navy oval in the downloaded images is a little bit of visual trickery - it's actually just covered by a white rectangle! Therefore, if a little bit of the navy oval appears in a download, you just need to adjust the white rectangle to cover it properly. Position is controlled by ```const maskTop``` and vertical height by ```const maskHeight```. If there is a lot of variation between indicators it may be necessary to add an if statement in the same way as the navy oval is positioned, but so far adjusting the vertical height has been sufficient.
+
+### How do we fix the data download buttons if data is not downloading, or does not include the correct subpop categories?
 
 The data downloads are controlled by a few functions: `downloadChartData()` for the main charts, `downloadMapData()` for the maps tab, `renderPopup()` for the subpopulation charts and `renderMapPopup()` for map popups. We have built as much contingency into these functions as possible, but these are relatively complex functions and the reasons they could potentially fail are too various to exhaustively list here. Please refer to the Troubleshooting Javascript section above for general guidance on how to error trace and troubleshoot Javascript files.
 
