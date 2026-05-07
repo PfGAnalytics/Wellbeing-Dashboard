@@ -439,11 +439,11 @@ The `indicatorPerformance()` function obtains the data values for each indicator
 
 ### How do we set up data downloads for new indicators and subpopulations?
 
-There is no additional process other than the process for adding a new indicator. Data downloads are automatically rendered so long as the indicator is on the dashboard and the subpopulation is listed in `eq_groups.js`.
+There is no additional process other than the process for adding a new indicator. Data downloads are automatically rendered so long as the indicator is on the dashboard and the subpopulation is listed in  [`eq_groups.js`](eq_groups.js).
 
 ### How do we alter the Y axis label if it doesn't display the same thing on the subpopulation charts as on the NI chart?
 
-This is handled by the two functions that populate the subpopulation and NI charts; `renderPopup()` and `createLineChart()` respectively. In `renderPopup()`, an object called `y_axis.textContent` extracts the label dimension from the data pulled from the data portal; in `createLineChart()`, the same job is done by an object called `y_axis_label`. Immediately below where both objects are declared, there is an if statement which alters the label for specific indicators. These if statements are currently identical, but if one is altered without altering the other, the contents of the y axis labels on the two charts for that indicator will be different. Simply add another line to the if statement to alter the y axis label on one or both charts for a given indicator if desired.
+This is handled by the two functions that populate the subpopulation and NI charts; `renderPopup()` and `createLineChart()` respectively, both contained within the [`data_functions.js`](scripts/data_functions.js) script. In `renderPopup()`, an object called `y_axis.textContent` extracts the label dimension from the data pulled from the data portal; in `createLineChart()`, the same job is done by an object called `y_axis_label`. Immediately below where both objects are declared, there is an if statement which alters the label for specific indicators. These if statements are currently identical, but if one is altered without altering the other, the contents of the y axis labels on the two charts for that indicator will be different. Simply add another line to the if statement to alter the y axis label on one or both charts for a given indicator if desired.
 
 ### How do we update the accordion boxes on home page and how to include hyperlink functionality if needed?
 Updating the 'populateInfoBoxes' in the [`data_functions.js`](scripts/data_functions.js) script. This function takes two arrays:
