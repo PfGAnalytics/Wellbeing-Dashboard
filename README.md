@@ -11,18 +11,22 @@
     - [Code structure](#code-structure)
     - [Software Checklist](#software-checklist)
       - [Git set up](#git-set-up)
-  - [:arrows\_clockwise: Processes](#arrows_clockwise-processes)
+  - [:arrows_clockwise: Processes](#arrows_clockwise-processes)
     - [Process Diagram](#process-diagram)
-    - [:information\_source: Indicator sources](#information_source-indicator-sources)
+    - [:information_source: Indicator sources](#information_source-indicator-sources)
       - [Updating an indicator](#updating-an-indicator)
       - [Adding a new indicator/domain](#adding-a-new-indicatordomain)
     - [Link with Data Portal](#link-with-data-portal)
-    - [Update the dashboard with any commentary on trends :chart\_with\_upwards\_trend:](#update-the-dashboard-with-any-commentary-on-trends-chart_with_upwards_trend)
+    - [Update the dashboard with any commentary on trends :chart_with_upwards_trend:](#update-the-dashboard-with-any-commentary-on-trends-chart_with_upwards_trend)
     - [Process for updating code](#process-for-updating-code)
-    - [Testing phase :mortar\_board:](#testing-phase-mortar_board)
+    - [Testing phase :mortar_board:](#testing-phase-mortar_board)
     - [Datavis hosting :computer:](#datavis-hosting-computer)
-    - ['Live' check :sun\_with\_face:](#live-check-sun_with_face)
+    - ['Live' check :sun_with_face:](#live-check-sun_with_face)
   - [:warning: Troubleshooting](#warning-troubleshooting)
+    - [Troubleshooting Javascript](#troubleshooting-javascript)
+      - [Opening Developer Tools](#opening-developer-tools)
+      - [Overview of Developer Tools](#overview-of-developer-tools)
+      - [Using console.log()](#using-consolelog)
   - [Frequently Asked Questions](#frequently-asked-questions)
     - [How do we add an indicator?](#how-do-we-add-an-indicator)
     - [How do we add a domain?](#how-do-we-add-a-domain)
@@ -35,13 +39,17 @@
     - [How do we change colours of chart, maps, boxes?](#how-do-we-change-colours-of-chart-maps-boxes)
     - [How do we change chart styles?](#how-do-we-change-chart-styles)
     - [How do we move hexagons from between the improving/worsening/no change sections on the Overall page?](#how-do-we-move-hexagons-from-between-the-improvingworseningno-change-sections-on-the-overall-page)
+    - [How do we set up data downloads for new indicators and subpopulations?](#how-do-we-set-up-data-downloads-for-new-indicators-and-subpopulations)
+    - [How do we alter the Y axis label if it doesn't display the same thing on the subpopulation charts as on the NI chart?](#how-do-we-alter-the-y-axis-label-if-it-doesnt-display-the-same-thing-on-the-subpopulation-charts-as-on-the-ni-chart)
     - [How do we update the accordion boxes on home page and how to include hyperlink functionality if needed?](#how-do-we-update-the-accordion-boxes-on-home-page-and-how-to-include-hyperlink-functionality-if-needed)
     - [How do we fix the title on charts/maps download when it gets cut off?](#how-do-we-fix-the-title-on-chartsmaps-download-when-it-gets-cut-off)
-    - [How do we fix the Y-axis on charts download when it overspills?](#how-do-we-fix-the-yaxis-on-charts-download-when-it-overspills)
+    - [How do we fix the Y-axis on charts download when it overspills?](#how-do-we-fix-the-y-axis-on-charts-download-when-it-overspills)
+    - [How do we fix the navy oval on the subpopulation charts if it displays incorrectly?](#how-do-we-fix-the-navy-oval-on-the-subpopulation-charts-if-it-displays-incorrectly)
+    - [How do we fix broken data downloads?](#how-do-we-fix-broken-data-downloads)
     - [How does the Performance icon work?](#how-does-the-performance-icon-work)
-    - [How do we update the map screen and the map pop-ups' summary text?](#how-do-we-update-the-map-screen-and-the-map-popups-summary-text)
+    - [How do we update the map screen and the map pop-ups' summary text?](#how-do-we-update-the-map-screen-and-the-map-pop-ups-summary-text)
     - [How does the captions on charts/maps downloads work?](#how-does-the-captions-on-chartsmaps-downloads-work)
-    - [How do we reorder subpopulations on the indicator screen?](how-do-we-reorder-subpopulations-on-the-indicator-screen)
+    - [How do we reorder subpopulations on the indicator screen?](#how-do-we-reorder-subpopulations-on-the-indicator-screen)
     - [What parts of the script do we need to update if we move to the live data portal?](#what-parts-of-the-script-do-we-need-to-update-if-we-move-to-the-live-data-portal)
     - [The process of updating GitHub when we make changes?](#the-process-of-updating-github-when-we-make-changes)
     - [What's the process for accessing the internal reporting status of indicators?](#whats-the-process-for-accessing-the-internal-reporting-status-of-indicators)
@@ -65,15 +73,18 @@ Documentation to outline the structure and processes needed to create or modify 
 | `cookies_script.js` | JavaScript functionality for cookies |
 | `config.js` | Setup script used to declare which data portal (pre-production or public) to read from |
 | `ni_map.js` | JavaScript used to display NI LGD and Assembly Area maps |
+| `eq_groups.js` | JavaScript used to associating subpopulations with indicators |
 | `maps` | Folder containing original shape files for maps |
-| `datavis prep base64.R` | R script used to prepare the files for upload to the DataVis server |
+| `datavis-prep-automated.R` | R script used to prepare the files for upload to the DataVis server |
+| `back-up-data-portal.R` | R script that automatically backs up the latest data on the data portal |
+| `indicator-performance-table.R` | R script used to generate an Excel file containing internal reporting on the status of indicators |
 | `*.svg, *.gif` | Logos, icons and placeholder images |
 
 ### Data Input
 
 Data for the dashboard is directly linked to data available for each indicator stored in the 'Programme for Government' folder on the NISRA Data Portal. The relevant datasets on NISRA Data Portal are linked to the dashboard using an API query. The dashboard will automatically update as data is updated on the NISRA Data Portal provided it is uploaded using the same naming conventions.
 
-The [`domains_data.js`](scripts/domains_data.js) script is an additional 'input' which contains additional domain/indiactor information. 
+The [`domains_data.js`](scripts/domains_data.js) script is an additional 'input' which contains additional domain/indicator information. 
 
 ### Code structure
 
@@ -82,15 +93,14 @@ The [`domains_data.js`](scripts/domains_data.js) script is an additional 'input'
 | Head | Page title, import css and js dependencies, Google Analytics code and header |
 | Body | Header and branding, cookie banner, top menu, overall screen, domains screen, indicator screen, maps screen, user guide, footer |
 | Domains Screen | Hexagons for showing the high level domains, clicking a domain shows the indicators for that domain |
-| Overall Screen | Hexagons generated for each indicator and categorised as 'improving', 'no change' or 'worsening' based on the data |
 | Indicator Screen | Chart.js line chart for each indicator alongside additional information |
-| Map Screen | Maps to display indicator data, dropdown menu to swicth between indicators |
-| User Guide | Background information on the indicators and their framework |
+| Map Screen | Maps to display indicator data, dropdown menu to switch between indicators |
+| About Screen | Background information on the indicators and their framework |
 | Footer | Standard NISRA footer |
 
 ### Software Checklist
 
-- Visual Studio Code (with "Live Server" Extension)
+- Visual Studio Code (with "Live Server" Extension) 
 - R Studio
 - Git for Windows
  
@@ -195,7 +205,7 @@ Commentary on indicator trends should be added to the [`domains_data.js`](script
 3. Make any changes to the code.
 4. Save changes, Stage changes, Commit changes and then Push changes to Github.
 5. Open R Studio by double clicking the `scripts.Rproj` file (using Windows Explorer not Visual Studio Code)
-6. Run the script `datavis prep base64.R` (Press <kbd>Ctrl</kbd>+<kbd>A</kbd> followed by <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) to embed JavaScript files, images and css stylesheets in the [`index.html`](scripts/index.html) file.
+6. Run the script `datavis-prep-automated.R` (Press <kbd>Ctrl</kbd>+<kbd>A</kbd> followed by <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) to embed JavaScript files, images and css stylesheets in the [`index.html`](scripts/index.html) file.
 7. This will automatically render a __new copy__ of `index.html` in a sub-folder named `dashboard-to-upload`. Upload __this copy__ of `index.html` to the Datavis server to the same location where it was previously hosted. 
 
 ### Testing phase :mortar_board:
@@ -219,7 +229,114 @@ When modifications have been made (new data or otherwise), carry out a systemati
 - Chart isn't appearing
   - This is likely an issue with the live fetch from Data Portal. Open your browsers Dev Tools and check the Console for warnings. Try refreshing the page. If the problem persists, try increasing the wait time in the _setTimeout()_ functions found in [`navigation_functions.js`](scripts/navigation_functions.js) script.
 - Source information, Further information or How we measure this not appearing on indicator page
-  - Check the "notes" text for that indicator on the Data Portal. Heading should read "Source" "How do we measure this" or "Futher information" and be spelled correctly for _createLineChart()_ and _drawMap()_ functions to pick them up and display them.
+  - Check the "notes" text for that indicator on the Data Portal. Heading should read "Source" "How do we measure this" or "Further information" and be spelled correctly for _createLineChart()_ and _drawMap()_ functions to pick them up and display them.
+
+### Troubleshooting Javascript
+If something on the dashboard is not behaving as expected, the steps below will help identify common JavaScript issues. 
+
+#### Opening Developer Tools
+Modern browsers provide built-in Developer Tools which can help diagnose JavaScript issues.
+
+To access Developer Tools:
+- Right-click anywhere on the dashboard
+- Select _Inspect_
+
+##### Overview of Developer Tools
+1. Elements tab:
+   - Shows the HTML structure (DOM)
+   - Allows inspection and editing of HTML and CSS
+   - Useful for layout issues and verifying structure
+  
+2. Console tab:
+   - Displays logs, errors, and warnings
+   - In the event of an error message, the Console tab will show the file name where the error occurred, the line number and the function involved
+   - Useful for viewing error messages and testing output values using `console.log()`. Help on using logs can be found [here](#using-consolelog)
+  
+3. Network tab:
+   - Shows all network requests (API calls, images, scripts etc)
+   - Useful for checking if resources are loading correctly. Help on interpreting HTTP status codes can be found [here](https://www.w3schools.com/tools/tool_http_status.php)
+  
+##### Using console.log()
+console.log() is the simplest way to understand what the JavaScript code is doing by printing information to the Console tab in Developer Tools. The most useful things a console.log() can do are:
+
+- Checking whether a variable exists
+- Seeing what data a variable contains
+- Confirming whether a section of code is being reached
+
+Where a console.log() is placed is important as:
+- Putting it inside a function shows what happens when that function runs
+- Placing it inside a loop or condition shows how values change as the code executes
+- Placing it at the top of a function confirms whether the function is being executed at all
+
+###### Example: inspecting subpopulations
+In the example below, console.log(eq_groups) is placed inside the `getEqualityGroups` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+```
+console.log(eq_groups);
+
+for (let i = 0; i < labels.length; i++) {
+
+  let group;
+  if (labels[i].includes("-")) {
+    group = labels[i].slice(0, labels[i].indexOf("-")).trim();
+  } else {
+    group = labels[i].trim();
+  }
+
+  if (group.includes("Age")) {
+    group = "Age";
+  }
+
+  if (!eq_groups.includes(group) && group !== "Northern Ireland") {
+    eq_groups.push(group);
+  }
+
+  // Ordering "Age" to always come after "Sex"
+  if (eq_groups.includes("Sex") && eq_groups.includes("Age")) {
+    const sexEQ = eq_groups.indexOf("Sex");
+    const ageEQ = eq_groups.indexOf("Age");
+
+    if (ageEQ !== sexEQ + 1) {
+      eq_groups.splice(ageEQ, 1);
+      eq_groups.splice(sexEQ + 1, 0, "Age");
+    }
+  }
+}
+```
+
+This means that when viewing the _Children's social care_, the log outputs the following in the Console tab:
+
+```
+0: "Sex"
+1: "Religion"
+2: "Dependants"
+3: "Disability"
+4: "Deprivation"
+5: "Urban Rural"
+length: 6
+```
+
+This confirms:
+- The `eq_groups` variable exists
+- The function is running as expected
+- Which subpopulations are associated with the indicator
+- The order they are processed
+
+###### Example: checking if a function is running
+To confirm that a function is being executed at all, add a simple log at the very top of the function. For example:
+
+```
+async function getEqualityGroups(d, e) {
+   console.log("getEqualityGroups() is running");
+```
+
+After navigating to the Console tab, the log outputs:
+
+```
+getEqualityGroups() is running
+```
+
+This confirms that the function is being executed as expected. This is often the quickest way to diagnose why a feature is not behaving as expected.
 
 ## Frequently Asked Questions
 
@@ -312,7 +429,7 @@ This can all be changed in the main [`index.html`](index.html) script. The logos
 
 ### How do we change colours of chart, maps, boxes?
  * For chart colours, see the `chart_config` definition inside the `createLineChart()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [Chart.js documentation](https://www.chartjs.org/docs/latest/) on ways to make changes.
- * For eqaulity group bar charts, see the `colours` definition inside the `getEqualityGroups()` function in the [`data_functions.js`](scripts/data_functions.js) script.
+ * For equality group bar charts, see the `colours` definition inside the `getEqualityGroups()` function in the [`data_functions.js`](scripts/data_functions.js) script.
  * For map colours, see the `drawMap()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [leaflet.js documentation](https://leafletjs.com/reference.html) on how to customise maps.
  * For boxes, see the [`style.css`](style.css) stylesheet. Find the corresponding id or class of the page element you wish to change and change the `background-color` property.
 
@@ -330,11 +447,11 @@ The `indicatorPerformance()` function obtains the data values for each indicator
 
 ### How do we set up data downloads for new indicators and subpopulations?
 
-There is no additional process other than the process for adding a new indicator. Data downloads are automatically rendered so long as the indicator is on the dashboard and the subpopulation is listed in `eq_groups.js`.
+There is no additional process other than the process for adding a new indicator. Data downloads are automatically rendered so long as the indicator is on the dashboard and the subpopulation is listed in  [`eq_groups.js`](eq_groups.js).
 
 ### How do we alter the Y axis label if it doesn't display the same thing on the subpopulation charts as on the NI chart?
 
-This is handled by the two functions that populate the subpopulation and NI charts; `renderPopup()` and `createLineChart()` respectively. In `renderPopup()`, an object called `y_axis.textContent` extracts the label dimension from the data pulled from the data portal; in `createLineChart()`, the same job is done by an object called `y_axis_label`. Immediately below where both objects are declared, there is an if statement which alters the label for specific indicators. These if statements are currently identical, but if one is altered without altering the other, the contents of the y axis labels on the two charts for that indicator will be different. Simply add another line to the if statement to alter the y axis label on one or both charts for a given indicator if desired.
+This is handled by the two functions that populate the subpopulation and NI charts; `renderPopup()` and `createLineChart()` respectively, both contained within the [`data_functions.js`](scripts/data_functions.js) script. In `renderPopup()`, an object called `y_axis.textContent` extracts the label dimension from the data pulled from the data portal; in `createLineChart()`, the same job is done by an object called `y_axis_label`. Immediately below where both objects are declared, there is an if statement which alters the label for specific indicators. These if statements are currently identical, but if one is altered without altering the other, the contents of the y axis labels on the two charts for that indicator will be different. Simply add another line to the if statement to alter the y axis label on one or both charts for a given indicator if desired.
 
 ### How do we update the accordion boxes on home page and how to include hyperlink functionality if needed?
 Updating the 'populateInfoBoxes' in the [`data_functions.js`](scripts/data_functions.js) script. This function takes two arrays:
@@ -380,9 +497,8 @@ If a title is still being cut off or requires more space, these values can be ad
   Adjust values inside the `downloadPopUpMapImage()` function  
    (e.g. `maxTitleWidth` or `titleLineHeight`)
 
-- **Chart pop-up downloads**
-
-  Adjust values inside the `download_btn.onclick` function inside `renderPopUp()` within the [`data_functions.js`](scripts/data_functions.js) script
+- **Chart pop-up downloads**  
+  Adjust values inside the `download_btn.onclick` function inside `renderPopUp()` within the [`data_functions.js`](scripts/data_functions.js) script  
   (e.g. `maxTitleWidth` or `titleLineHeight`)
   
 Changing these values will directly affect how much horizontal and vertical space is allocated to titles during export and can be used to prevent clipping for longer titles.
@@ -397,6 +513,33 @@ Across indicator screen charts and chart pop-up downloads, the same general appr
 - `lineHeight` is set to 14, ensuring enough vertical spacing between each line of the `yLabel`
 
 Changing these values will directly affect how much horizontal and vertical space is allocated to y-axis labels during export and can be used to prevent clipping for longer labels.
+
+### How do we fix the navy oval on the subpopulation charts if it displays incorrectly?
+
+Since we altered the navy oval to simply be a png sourced from the img folder, this process is far simpler than it once was. In `renderPopup()`, there is a section that starts with ```const chart_config = {```. Again under this section, there is a portion that begins ```beforeDraw(chart)```. The values to control the navy oval are here - ```const width =```, ```const height =```, ```const x =``` and ```let y =``` control the width, height, horizontal position and vertical position respectively. If altering width and height, do so in a way that maintains the current or a similar ratio, otherwise the image will appear stretched or squashed. 
+
+This section also contains an if statement (starting ```if totalChars > 300```) - this looks at the number of characters in the legend and adjusts the position of the navy oval accordingly. It may be necessary to add new else ifs to this statement, or adjust the boundaries at which the positions are changed if legend contents change significantly.
+
+#### If the navy oval appears in the downloads
+
+The disappearance of the navy oval in the downloaded images is a little bit of visual trickery - it's actually just covered by a white rectangle! Therefore, if a little bit of the navy oval appears in a download, you just need to adjust the white rectangle to cover it properly. Position is controlled by ```const maskTop``` and vertical height by ```const maskHeight```. If there is a lot of variation between indicators it may be necessary to add an if statement in the same way as the navy oval is positioned, but so far adjusting the vertical height has been sufficient.
+
+### How do we fix broken data downloads?
+If data downloads are not working as expected, first refer to the [Troubleshooting Javascript](#troubleshooting-javascript) section for general debugging steps.
+
+If further investigation is needed, check the relevant download logic below depending on where the issue occurs:
+
+#### Indicator screen data downloads
+- `downloadChartData` in the [`navigation_functions.js`](scripts/navigation_functions.js) script.
+
+#### Subpopulation popup data
+- `download_data_btn.onclick` handler inside the `renderPopup` function in the [`data_functions.js`](scripts/data_functions.js) script.
+
+#### Map popup data
+- `downloadPopUpMapData` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script.
+
+#### Map screen data
+- `downloadMapData` function in the [`navigation_functions.js`](scripts/navigation_functions.js) script.
 
 ### How does the Performance icon work?
 The Performance icon is **generated automatically**.
@@ -571,7 +714,7 @@ The workflow:
 - Commits any updates back to the repo with the commit message **“Data updated”** from the **PfGAnalytics** GitHub account
 
 #### How do we make changes to the information being pulled?
-If any changes are required, they should be make directly in `scripts/indicator-performance-table.R`, using the in-line comments as a guide
+If any changes are required, they should be made directly in `scripts/indicator-performance-table.R`, using the in-line comments as a guide
 
 ### What's the process for publishing the dashboard?
 See [Datavis hosting :computer:](#datavis-hosting-computer).
