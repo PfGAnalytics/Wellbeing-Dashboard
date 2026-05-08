@@ -2539,9 +2539,6 @@ async function renderPopup (d, e, eq_group) {
               .join("")
               .length;
 
-              console.log(totalChars);
-            console.log(chart.legend.legendItems.length);
-
               const centerX = (chartArea.left + chartArea.right) / 2;
               const centerY = (chartArea.top + chartArea.bottom) / 2;
 
