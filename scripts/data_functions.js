@@ -2569,7 +2569,7 @@ async function renderPopup (d, e, eq_group) {
                y = centerY - height - 140 
               } else if (totalChars > 200) {
                y = centerY - height - 125 
-              } else if (totalChars > 80 & chart.legend.legendItems.length > 6) {
+              } else if (totalChars > 80 & chart.legend.legendItems.length >= 6) {
                y = centerY - height - 115
               }
 
