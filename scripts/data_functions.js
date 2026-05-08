@@ -1486,8 +1486,6 @@ async function getEqualityGroups(d, e) {
 
   var eq_groups = [];      // Empty array to be filled with groupings
 
-  // console.log(eq_groups)
-
   for (let i = 0; i < labels.length; i ++) {    // Loop through all labels
 
 
@@ -2421,7 +2419,6 @@ async function renderPopup (d, e, eq_group) {
 
       for (let j = 0; j < Object.keys(values).length; j++) {
          const label = Object.keys(values)[j];
-         console.log(label);
 
          // Offset colour index if Skills Level
          const colourIndex =
@@ -2571,6 +2568,12 @@ async function renderPopup (d, e, eq_group) {
                y = centerY - height - 125 
               } else if (totalChars > 80 & chart.legend.legendItems.length >= 6) {
                y = centerY - height - 115
+              }
+
+              if (totalChars > 80 & totalChars < 200) {
+               console.log("Check indicator")
+              } else {
+               console.log("No need to check")
               }
 
               ctx.drawImage(this.img, x, y, width, height);
