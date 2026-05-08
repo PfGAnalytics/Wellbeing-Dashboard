@@ -2540,6 +2540,7 @@ async function renderPopup (d, e, eq_group) {
               .length;
 
               console.log(totalChars);
+            console.log(chart.legend.legendItems.length);
 
               const centerX = (chartArea.left + chartArea.right) / 2;
               const centerY = (chartArea.top + chartArea.bottom) / 2;
@@ -2571,9 +2572,9 @@ async function renderPopup (d, e, eq_group) {
                y = centerY - height - 140 
               } else if (totalChars > 200) {
                y = centerY - height - 125 
-              } else if (totalChars > 80) {
+              } else if (totalChars > 80 & chart.legend.legendItems.length > 6) {
                y = centerY - height - 115
-              } 
+              }
 
               ctx.drawImage(this.img, x, y, width, height);
             }
