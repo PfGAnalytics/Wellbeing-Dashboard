@@ -2536,6 +2536,8 @@ async function renderPopup (d, e, eq_group) {
               .join("")
               .length;
 
+              console.log(totalChars);
+
               const centerX = (chartArea.left + chartArea.right) / 2;
               const centerY = (chartArea.top + chartArea.bottom) / 2;
 
@@ -2568,7 +2570,9 @@ async function renderPopup (d, e, eq_group) {
                y = centerY - height - 125 
               } else if (totalChars > 80 & chart.legend.legendItems.length >= 6) {
                y = centerY - height - 115
-              }
+              } else if (totalChars > 160 & chart.legend.legendItems.length <= 2) {
+               y = centerY - height - 115
+              } 
 
               if (totalChars > 80 & totalChars < 200) {
                console.log("Check indicator")
