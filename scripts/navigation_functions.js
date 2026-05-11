@@ -2582,7 +2582,6 @@ const handleOnScroll = () => {
           ctx.fillStyle = "black";
           ctx.font = "12pt Arial, sans-serif";
           ctx.textBaseline = "middle";
-          console.log(ctx);
 
           const words = yLabel.split(/\s+/).filter(Boolean);
           const lineHeight = 14;
@@ -2780,7 +2779,6 @@ const handleOnScroll = () => {
                 }
 
                 const downloadUrl = `https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/${indicatorCode}/CSV/1.0/`;
-                console.log(downloadUrl)
 
                 try {
                     const response = await fetch(downloadUrl);
