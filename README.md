@@ -427,6 +427,10 @@ Referring to the [question above](#how-do-we-add-a-new-page-eg-notes), there are
 ### How do we change branding, logos, etc.?
 This can all be changed in the main [`index.html`](index.html) script. The logos are sourced from the project's [img](img) folder. The main titles, logos etc are located in the `top-container` div and the footer is in the `<footer>` element.
 
+#### How do we update the NISRA logo to the new one once it goes live?
+
+Just add the new logo to the [img](img) folder, delete the old one, and ensure the new one has the same name as the old one had. That's it! Make sure to change this for any logo you want updated as there are multiple versions - for example, ```nisra-only-colour.png``` is currently used in the downloaded images, but ```nisra-only-white.svg``` is used in the footer.
+
 ### How do we change colours of chart, maps, boxes?
  * For chart colours, see the `chart_config` definition inside the `createLineChart()` function in the [`data_functions.js`](scripts/data_functions.js) script. See [Chart.js documentation](https://www.chartjs.org/docs/latest/) on ways to make changes.
  * For equality group bar charts, see the `colours` definition inside the `getEqualityGroups()` function in the [`data_functions.js`](scripts/data_functions.js) script.
