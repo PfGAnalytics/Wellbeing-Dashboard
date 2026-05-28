@@ -879,23 +879,176 @@ async function renderSingleStatusGauge({
     });
 })();
 
-async function renderAllDomainsGauge({
-  canvasId,
-  includeInsufficientInDenominator = true,
-  improvingColor = '#00A857',
-  noChangeColor = '#FF6200',
-  worseningColor = '#db0000',
-  insufficientColor = '#757575',
+// async function renderAllDomainsGauge({
+//   canvasId,
+//   includeInsufficientInDenominator = true,
+//   improvingColor = '#00A857',
+//   noChangeColor = '#FF6200',
+//   worseningColor = '#db0000',
+//   insufficientColor = '#757575',
 
-  spacing = 2,
-  borderColor = '#ffffff',
-  centerMode = 'stacked'
-}) {
+//   spacing = 2,
+//   borderColor = '#ffffff',
+//   centerMode = 'stacked'
+// }) {
 
-  // 1) Load the raw updated.json file
+//   // 1) Load the raw updated.json file
+//   const updates = await loadUpdates('scripts/updated.json');
+
+//   // 2) Directly count performance categories from updated.json
+//   const counts = {
+//     improving: 0,
+//     noChange: 0,
+//     worsening: 0,
+//     insufficient: 0
+//   };
+
+//   for (const indicator of Object.values(updates)) {
+//     const perf = indicator.performance?.toLowerCase();
+
+//     if (perf === 'improving') counts.improving++;
+//     else if (perf === 'no change') counts.noChange++;
+//     else if (perf === 'worsening') counts.worsening++;
+//     else if (perf === 'insufficient data') counts.insufficient++;
+//   }
+
+//   // Total indicators with actual performance status
+//   const totalEligible =
+//     counts.improving + counts.noChange + counts.worsening;
+
+//   // 3) Denominator for percentages
+//   const denom = includeInsufficientInDenominator
+//     ? totalEligible
+//     : totalEligible + counts.insufficient;
+
+//   const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
+
+//   const improvingPct = pct(counts.improving);
+//   const noChangePct = pct(counts.noChange);
+//   const worseningPct = pct(counts.worsening);
+//   const insufficientPct = pct(counts.insufficient);
+
+//   // 4) Chart creation (kept identical to your logic)
+//   const canvas = document.getElementById(canvasId);
+//   if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
+//   canvas.style.paddingTop = '20px';
+
+//   if (canvas._chartInstance?.destroy) {
+//     canvas._chartInstance.destroy();
+//   }
+
+//   const labels = ['Improving', 'No change', 'Worsening', 'Insufficient data'];
+//   const dataset = {
+//     data: [improvingPct, noChangePct, worseningPct, insufficientPct],
+//     backgroundColor: [
+//       improvingColor,
+//       noChangeColor,
+//       worseningColor,
+//       insufficientColor
+//     ]
+//   };
+
+//   const centerTextPlugin = {
+//     id: `centerText_${canvasId}`,
+//     afterDraw(chart) {
+//       const meta = chart.getDatasetMeta(0);
+//       if (!meta?.data?.length) return;
+
+//       const arc = meta.data[0];
+//       const xC = arc.x;
+//       const yBase = arc.y - 50;
+
+//       const ctx = chart.ctx;
+//       ctx.save();
+//       ctx.textAlign = 'center';
+//       ctx.textBaseline = 'middle';
+
+//       if (centerMode === 'stacked') {
+//         ctx.fillStyle = '#000000';
+//         ctx.font = 'bold 28px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+//         ctx.fillText(`${counts.improving}/${denom}`, xC, yBase - 22);
+
+//         ctx.font = '18px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+//         ctx.fillText('indicators are improving', xC, yBase - 2);
+//       }
+
+//       ctx.restore();
+//     }
+//   };
+
+//   const maybeDatalabelsOff =
+//     Chart.registry.plugins.get('datalabels')
+//       ? { datalabels: { display: false } }
+//       : {};
+
+//   const chart = new Chart(canvas, {
+//     type: 'doughnut',
+//     data: {
+//       labels,
+//       datasets: [
+//         {
+//           ...dataset,
+//           spacing,
+//           borderColor,
+//           borderWidth: 1,
+//           borderAlign: 'inner',
+//           hoverOffset: 0,
+//           circumference: 180,
+//           rotation: -90,
+//           cutout: '70%'
+//         }
+//       ]
+//     },
+//     options: {
+//       responsive: true,
+//       maintainAspectRatio: false,
+//       plugins: {
+//         ...maybeDatalabelsOff,
+//         legend: { display: false },
+//         tooltip: {
+//           callbacks: {
+//             label: (ctx) => `${(+ctx.raw).toFixed(1)}%`
+//           }
+//         }
+//       },
+//       layout: { padding: { top: 0 } }
+//     },
+//     plugins: [centerTextPlugin]
+//   });
+
+//   chart.metrics = {
+//     counts,
+//     totalEligible
+//   };
+
+//   canvas._chartInstance = chart;
+
+//   // Update summary text
+//   document.getElementById("improving-count").innerText =
+//     `${counts.improving} indicators that are improving`;
+//   document.getElementById("no-change-count").innerText =
+//     `${counts.noChange} indicators that have seen no change`;
+//   document.getElementById("worsening-count").innerText =
+//     `${counts.worsening} indicators that are worsening`;
+//   document.getElementById("insufficient-count").innerText =
+//     `${counts.insufficient} indicators with insufficient data`;
+
+//   return chart;
+// }
+
+// Call it
+// (async () => {
+//   await renderAllDomainsGauge({ canvasId: 'all_domains_gauge' });
+// })();
+
+async function getIndicatorCounts({
+  includeInsufficientInDenominator = true
+} = {}) {
+
+  // Load data
   const updates = await loadUpdates('scripts/updated.json');
 
-  // 2) Directly count performance categories from updated.json
+  // Count categories
   const counts = {
     improving: 0,
     noChange: 0,
@@ -912,134 +1065,53 @@ async function renderAllDomainsGauge({
     else if (perf === 'insufficient data') counts.insufficient++;
   }
 
-  // Total indicators with actual performance status
   const totalEligible =
     counts.improving + counts.noChange + counts.worsening;
 
-  // 3) Denominator for percentages
   const denom = includeInsufficientInDenominator
     ? totalEligible
     : totalEligible + counts.insufficient;
 
   const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
 
-  const improvingPct = pct(counts.improving);
-  const noChangePct = pct(counts.noChange);
-  const worseningPct = pct(counts.worsening);
-  const insufficientPct = pct(counts.insufficient);
-
-  // 4) Chart creation (kept identical to your logic)
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) throw new Error(`No canvas found with id '${canvasId}'`);
-  canvas.style.paddingTop = '20px';
-
-  if (canvas._chartInstance?.destroy) {
-    canvas._chartInstance.destroy();
-  }
-
-  const labels = ['Improving', 'No change', 'Worsening', 'Insufficient data'];
-  const dataset = {
-    data: [improvingPct, noChangePct, worseningPct, insufficientPct],
-    backgroundColor: [
-      improvingColor,
-      noChangeColor,
-      worseningColor,
-      insufficientColor
-    ]
+  const text = {
+    improving: `${counts.improving} indicators were improving`,
+    noChange: `${counts.noChange} were not changing`,
+    worsening: `${counts.worsening} were getting worse`,
+    insufficient: `${counts.insufficient} did not have enough data to report on`
   };
 
-  const centerTextPlugin = {
-    id: `centerText_${canvasId}`,
-    afterDraw(chart) {
-      const meta = chart.getDatasetMeta(0);
-      if (!meta?.data?.length) return;
 
-      const arc = meta.data[0];
-      const xC = arc.x;
-      const yBase = arc.y - 50;
-
-      const ctx = chart.ctx;
-      ctx.save();
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      if (centerMode === 'stacked') {
-        ctx.fillStyle = '#000000';
-        ctx.font = 'bold 28px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-        ctx.fillText(`${counts.improving}/${denom}`, xC, yBase - 22);
-
-        ctx.font = '18px system-ui, -apple-system, Segoe UI, Roboto, Arial';
-        ctx.fillText('indicators are improving', xC, yBase - 2);
-      }
-
-      ctx.restore();
-    }
-  };
-
-  const maybeDatalabelsOff =
-    Chart.registry.plugins.get('datalabels')
-      ? { datalabels: { display: false } }
-      : {};
-
-  const chart = new Chart(canvas, {
-    type: 'doughnut',
-    data: {
-      labels,
-      datasets: [
-        {
-          ...dataset,
-          spacing,
-          borderColor,
-          borderWidth: 1,
-          borderAlign: 'inner',
-          hoverOffset: 0,
-          circumference: 180,
-          rotation: -90,
-          cutout: '70%'
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        ...maybeDatalabelsOff,
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => `${(+ctx.raw).toFixed(1)}%`
-          }
-        }
-      },
-      layout: { padding: { top: 0 } }
-    },
-    plugins: [centerTextPlugin]
-  });
-
-  chart.metrics = {
+  return {
     counts,
-    totalEligible
+    percentages: {
+      improving: pct(counts.improving),
+      noChange: pct(counts.noChange),
+      worsening: pct(counts.worsening),
+      insufficient: pct(counts.insufficient)
+    },
+    text
   };
-
-  canvas._chartInstance = chart;
-
-  // Update summary text
-  document.getElementById("improving-count").innerText =
-    `${counts.improving} indicators that are improving`;
-  document.getElementById("no-change-count").innerText =
-    `${counts.noChange} indicators that have seen no change`;
-  document.getElementById("worsening-count").innerText =
-    `${counts.worsening} indicators that are worsening`;
-  document.getElementById("insufficient-count").innerText =
-    `${counts.insufficient} indicators with insufficient data`;
-
-  return chart;
 }
 
-// Call it
-// (async () => {
-//   await renderAllDomainsGauge({ canvasId: 'all_domains_gauge' });
-// })();
+
+getIndicatorCounts().then(result => {
+  document.getElementById("improving-text").innerText = result.text.improving;
+});
+
+getIndicatorCounts().then(result => {
+  document.getElementById("nochange-text").innerText = result.text.noChange;
+});
+
+getIndicatorCounts().then(result => {
+  document.getElementById("worsening-text").innerText = result.text.worsening;
+});
+
+getIndicatorCounts().then(result => {
+  document.getElementById("insufficient-text").innerText = result.text.insufficient;
+});
+
+
 
 async function renderSingleAllDomainsGauge({
     canvasId,
@@ -1180,12 +1252,56 @@ document.addEventListener('DOMContentLoaded', async () => {
 const key = document.createElement('div');
 key.className = 'key-wrapper';
 
-key.innerHTML =
-  '<div class="key-title" style="margin-right: 8px;">Key:</div>' +
-  '<div class="key-items">' +
-    '<div class="key-item row key-text"><div class="key-square positive"><div class="key-hex-label positive"></div></div>Improving</div>' +
-    '<div class="key-item row key-text"><div class="key-square neutral"><div class="key-hex-label"></div></div>No Change</div>' +
-    '<div class="key-item row key-text"><div class="key-square negative"><div class="key-hex-label negative"></div></div>Worsening</div>' +
-  '</div>';
+// key.innerHTML =
+//   '<div class="key-title" style="margin-right: 8px;">Key:</div>' +
+//   '<div class="key-items">' +
+//     '<div class="key-item row key-text"><div class="key-square positive"><div class="key-hex-label positive"></div></div>Improving</div>' +
+//     '<div class="key-item row key-text"><div class="key-square neutral"><div class="key-hex-label"></div></div>No Change</div>' +
+//     '<div class="key-item row key-text"><div class="key-square negative"><div class="key-hex-label negative"></div></div>Worsening</div>' +
+//   '</div>';
 
 document.getElementById('top-container').prepend(key);
+
+class KeyHex extends HTMLElement {
+  connectedCallback() {
+    const type = this.getAttribute("type") || "positive";
+
+    const config = {
+      positive: {
+        class: "positive",
+        icon: "img/arrow-up-long-solid-full.svg",
+        iconId: "arrow-up"
+      },
+      negative: {
+        class: "negative",
+        icon: "img/arrow-down-long-solid-full.svg",
+        iconId: "arrow-down"
+      },
+      neutral: {
+        class: "neutral",
+        icon: "img/arrow-right-long-solid-full.svg",
+        iconId: "arrow-across"
+      },
+      insufficient: {
+        class: "insufficient",
+        icon: null
+      }
+    };
+
+    const { class: cls, icon, iconId } = config[type] || config.positive;
+
+    this.innerHTML = `
+      <div class="key-hex ${cls}">
+        <div class="key-hex-label ${type !== "neutral" ? cls : ""}">
+          ${
+            icon
+              ? `<img id="${iconId}" src="${icon}" alt="${type}" />`
+              : ""
+          }
+        </div>
+      </div>
+    `;
+  }
+}
+
+customElements.define("key-hex", KeyHex);
