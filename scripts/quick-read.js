@@ -1250,3 +1250,33 @@ class KeyHexLarge extends HTMLElement {
 }
 
 customElements.define("key-hex-large", KeyHexLarge);
+
+
+fetch('scripts/updated.json')
+.then(res => res.json())
+.then(data => {
+  const latestDate = Object.values(data)
+    .reduce((a, b) => a.updated > b.updated ? a : b)
+    .updated;
+
+  const fixedDate = latestDate.replace(/T(\d):/, 'T0$1:');
+
+  const readableDate = new Date(fixedDate).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+
+  document.getElementById('last-updated').textContent = readableDate;
+});
+
+
+
+
+
+
+
+
+
+
+
