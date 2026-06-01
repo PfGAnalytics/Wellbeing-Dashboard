@@ -645,6 +645,18 @@ async function renderSingleStatusGauge({
       worseningSentence = "There are no indicators getting worse.";
     }
 
+
+    let insufficientSentence;
+
+    if (insufficient > 1) {
+      insufficientSentence = `${insufficient} have insufficient data:`;
+    } else if (insufficient === 1) {
+      insufficientSentence = `${insufficient} has insufficient data:`;
+    } else if (insufficient === 0) {
+      insufficientSentence = "There are no indicators with insufficient data.";
+    }
+
+
     const listTargets = [
         {
             className: `${prefix}_improving_inds`,
@@ -663,8 +675,14 @@ async function renderSingleStatusGauge({
             items: worseningList,
             emptyText: '',
             comment: `${worseningSentence}`
+        },
+      {
+              className: `${prefix}_insufficient_inds`,
+              items: insufficientList,
+              emptyText: '',
+              comment: `${insufficientSentence}`
+          }
 
-        }
     ];
 
 
@@ -757,8 +775,7 @@ async function renderSingleStatusGauge({
     await renderSingleStatusGauge({
         canvasId: 'lp_improving_gauge',
         domainName: 'Living Peacefully',
-        status: 'improving',
-        color: '#00A857'
+       includeInsufficient: true
     });
 
 })();
