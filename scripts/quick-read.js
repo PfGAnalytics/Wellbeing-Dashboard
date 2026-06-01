@@ -613,25 +613,56 @@ async function renderSingleStatusGauge({
     const prefix = domainPrefixMap[domainName]
         || domainName.split(/\s+/).map(w => w[0]).join('').toLowerCase();
 
+    
+
+    let improvingSentence;
+
+    if (improving > 1) {
+      improvingSentence = `${improving} are improving:`;
+    } else if (improving === 1) {
+      improvingSentence = `${improving} is improving:`;
+    } else if (improving === 0) {
+      improvingSentence = "No indicators are improving.";
+    }
+
+    let noChangeSentence;
+
+    if (noChange > 1) {
+      noChangeSentence = `${noChange} are not changing:`;
+    } else if (noChange == 1) {
+      noChangeSentence = `${noChange} is not changing:`;
+    } else if (noChange === 0) {
+      noChangeSentence = "There are no indicators showing no change.";
+    }
+
+     let worseningSentence;
+
+    if (worsening > 1) {
+      worseningSentence = `${worsening} are getting worse:`;
+    } else if (worsening === 1) {
+      worseningSentence = `${worsening} is getting worse:`;
+    } else if (worsening === 0) {
+      worseningSentence = "There are no indicators getting worse.";
+    }
 
     const listTargets = [
         {
             className: `${prefix}_improving_inds`,
             items: improvingList,
-            emptyText: 'No indicators improving',
-            comment: `${improving} is improving:`
+            emptyText: '',
+            comment: `${improvingSentence}`
         },
         {
             className: `${prefix}_nochange_inds`,
             items: noChangeList,
-            emptyText: 'No indicators with no change',
-            comment: `${noChange} is not changing:`
+            emptyText: '',
+            comment: `${noChangeSentence}`
         },
         {
             className: `${prefix}_worsening_inds`,
             items: worseningList,
-            emptyText: 'No indicators worsening',
-            comment: `${worsening} are getting worse:`
+            emptyText: '',
+            comment: `${worseningSentence}`
 
         }
     ];

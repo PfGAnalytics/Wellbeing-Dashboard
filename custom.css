@@ -70,8 +70,6 @@ a.cookiesbarlink {
 
 .nav-tint {
     background-color: #142062;
-    margin-top: 12px;
-    border-radius: 10px;
 }
 
 h1 {
@@ -90,6 +88,8 @@ h1 {
     align-items: center;
     align-items: stretch;
     justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .nisrafooter ul {
@@ -174,6 +174,18 @@ footer a:hover {
     filter: brightness(0) invert(1);
 }
 
+.container {
+    width: 100%;
+    margin: 0px;
+    max-width: 100%;
+    padding: 0px
+}
+
+#main {
+    width: 100%;
+    margin: 0px
+}
+
 #back-to-start {
     opacity: 1;
     transition: opacity 0.5s, visibility 0.5s;
@@ -243,19 +255,34 @@ footer a:hover {
 
 .card-header {
     color: #FFFFFF;
-    background-color: #008675;
-    border: 1px solid #000000;
+    background-color: #3878C5;
+    border-bottom: 0px;
+    border-top: 1px solid #142062;
+    border-left: 1px solid #142062;
+    border-right: 1px solid #142062;
+    align-items: stretch;
+}
+
+.card-title {
+    padding-left: 0px
+}
+
+.list-comment {
+    padding-left: 0px
 }
 
 .card-subheader {
     color: #FFFFFF;
-    background-color: #142062;
-    border: 1px solid #000000;
+    background-color: #3878C5;
+    border-bottom: 0px solid #142062;
+    border-left: 1px solid #142062;
+    border-right: 1px solid #142062;
     padding: 0px 15px 0px 15px;
     display: flex;
+    flex-direction: column;
     flex: 0 0 auto;
-    min-height: 2.5rem; 
-    align-items: center;
+    min-height: 70px; 
+    align-items: stretch;
 }
 
 .top-menu-item {
@@ -298,8 +325,32 @@ footer a:hover {
     filter: brightness(0) invert(1);
 }
 
-.p {
-    margin: 0px 0px 0px 0px;
+p {
+    padding-left: 25px;
+}
+
+h2 {
+    padding-left: 25px
+}
+
+ul {
+    padding-left: 60px
+}
+
+#improving-text {
+    padding-left: 0px
+}
+
+#nochange-text {
+    padding-left: 0px
+}
+
+#worsening-text {
+    padding-left: 0px
+}
+
+#insufficient-text {
+    padding-left: 0px
 }
 
 .top-menu-logo {
@@ -598,6 +649,112 @@ footer a:hover {
   grid-template-columns: auto 1fr;
   align-items: center;
   column-gap: 8px;
+  padding-left: 20px;
 }
 
 
+ .nisrafooter ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    font-size: 14pt;
+    font-weight:700;
+}
+
+
+.nisrafooter li {
+    margin-right: 18px;
+    display: inline-block;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.nisrafooter a {
+    color: #FFFFFF !important;
+}
+
+.cc-li a {
+    color: #FFFFFF !important;
+}
+
+.flex-list-footer {
+    position: relative;
+    margin: 20px 0em 0em 0em; /* T R B L */
+    display:block;
+    overflow: hidden;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #fff;
+  text-decoration-thickness: 2px;
+}
+
+.footer-links { 
+    list-style: none; 
+    padding-left: 0; 
+}
+
+.footer-links .list-inline-item { 
+    margin: 0 .5rem; 
+}
+
+/* More vertical spacing in vertical lists */
+footer ul.list-unstyled li { 
+    margin-bottom: 0.5rem; 
+}
+
+footer .list-inline-item img {
+    width: 43px;
+    height: 43px;
+}
+
+/* Social icon hover */
+footer .list-inline-item img, #footer-nisra-logo {
+  transition: box-shadow 0.2s ease, border 0.2s ease;
+}
+footer .list-inline-item img:hover, #footer-nisra-logo:hover {
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    padding-bottom: 28px;
+    background-color: #00205b;
+    color: #fff;
+    border-top: 4px solid #3878c5;
+}
+
+#survey {
+    color: #ffffff;
+    background-color: #008675 !important;
+    display: flex;
+    font-size: 14pt;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+#survey a[target="_blank"]::after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="white" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>');
+  display: inline-block;
+  width: 14px;
+  height: 11px;
+  margin: 0 5px 0 5px;
+}
