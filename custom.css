@@ -70,7 +70,9 @@ a.cookiesbarlink {
 
 .nav-tint {
     background-color: #142062;
+    width: 100%;
 }
+
 
 h1 {
     color: white;
@@ -80,6 +82,10 @@ h1 {
 #header-row {
     background-color: #142062;
     border-radius: 10px;
+}
+
+header {
+    width: 100%;
 }
 
 .row {
@@ -178,11 +184,12 @@ footer a:hover {
     width: 100%;
     margin: 0px;
     max-width: 100%;
-    padding: 0px
+    padding: 0px;
+    justify-items: center;
 }
 
-#main {
-    width: 100%;
+main {
+    width: 95%;
     margin: 0px
 }
 
@@ -215,17 +222,18 @@ footer a:hover {
 }
 
 #nav-nie-logo {
-    padding-top: 10px;
+    padding-top: 15px;
     margin-bottom: 0px;
     filter: brightness(0) invert(1);
     aspect-ratio: initial;
-    height: 75px;
+    min-width: 80px;
 }
 
 #nav-aig-logo {
     align-content: flex-end;
     aspect-ratio: initial;
     height: 75px;
+    margin-top: 10px;
 }
 
 #quick-read-title {
@@ -238,13 +246,18 @@ footer a:hover {
 .button-row {
   display: flex;
   justify-content: center;
-  gap: 90px;
+  gap: 70px;
   margin-right: 10px;
 }
 
-.domain-card-body {
-    border: 1px solid #000000;
+.domain-card {
+    border: 1px solid #142062;
     flex: 1 1 300px;
+}
+
+
+button {
+    min-width: 200px;
 }
 
 
@@ -256,11 +269,8 @@ footer a:hover {
 .card-header {
     color: #FFFFFF;
     background-color: #3878C5;
-    border-bottom: 0px;
-    border-top: 1px solid #142062;
-    border-left: 1px solid #142062;
-    border-right: 1px solid #142062;
     align-items: stretch;
+    border-bottom: 0px;
 }
 
 .card-title {
@@ -274,14 +284,11 @@ footer a:hover {
 .card-subheader {
     color: #FFFFFF;
     background-color: #3878C5;
-    border-bottom: 0px solid #142062;
-    border-left: 1px solid #142062;
-    border-right: 1px solid #142062;
     padding: 0px 15px 0px 15px;
     display: flex;
     flex-direction: column;
     flex: 0 0 auto;
-    min-height: 70px; 
+    min-height: 85px; 
     align-items: stretch;
 }
 
@@ -420,6 +427,7 @@ ul {
   height: auto !important;
   gap: 2%;
   align-content: center;
+  margin-top: 15px;
 }
 
 .gauge-box, .all-domains-gauge-box {
@@ -459,9 +467,19 @@ ul {
         width: 40%;
     }
 
+    .button-row {
+        margin-right: 0px;
+    }
+
+    button {
+        min-width: 150px;
+    }
+
     #nav-aig-logo {
-        width: 80%;
-        height: 40%;
+        /* width: 80%;
+        height: 40%; */
+        aspect-ratio: initial;
+        margin-top: 20px;
     }
 
     #nav-nie-logo {
@@ -482,7 +500,6 @@ ul {
         min-height: 36px;
         max-width: 160px;
     }
-    
     .top-menu-logo {
         width: 18px;
         padding-top: 0;
@@ -494,12 +511,21 @@ ul {
     }
 
     #nav-aig-logo {
-        width: 80%;
-        height: 30%;
+        aspect-ratio: initial;
+        height: 35px;
+        padding-left: 15%;
     }
 
     #nav-nie-logo {
-        width: 90%;
+        aspect-ratio: initial;
+        max-height: 100px;
+        min-height: 80px;
+        padding-top: 2%;
+        margin-right: 17%
+    }
+
+    button {
+        min-width: 150px;
     }
 }
 
@@ -737,6 +763,7 @@ footer {
     background-color: #00205b;
     color: #fff;
     border-top: 4px solid #3878c5;
+    width: 100%;
 }
 
 #survey {
@@ -750,6 +777,12 @@ footer {
     padding: 10px;
     font-weight: bold;
 }
+
+
+.no-wrap {
+  white-space: nowrap;
+}
+
 
 #survey a[target="_blank"]::after {
   content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="white" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>');
