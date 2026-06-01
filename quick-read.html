@@ -125,7 +125,7 @@
 
 
 
-     <div id = "top-container" class="col-sm-12" style="padding-bottom:20px;">
+     <!-- <div id = "top-container" class="col-sm-6" style="padding-bottom:20px;">
       <div id="domain-card" class="card h-100 all-domains-card" style="width: 100%;">
         <div class="card-header" style="padding-top:10px;">
           <div class="col">
@@ -141,17 +141,17 @@
             <div class="col-sm-12">
               <div class="all-domains-gauge-row" aria-label="All Domains performance gauges">
                 
-                <!-- Improving -->
+        
                  <div class="all-domains-gauge-box">
                   <canvas id="all_improving_gauge" class="gauge-canvas"></canvas>
                 </div>
                 
-                <!-- No change -->
+
                  <div class="all-domains-gauge-box">
                   <canvas id="all_nochange_gauge" class="gauge-canvas"></canvas>
                 </div>
                 
-                <!-- Worsening -->
+
                  <div class="all-domains-gauge-box">
                   <canvas id="all_worsening_gauge" class="gauge-canvas"></canvas>
                 </div>
@@ -160,100 +160,98 @@
           </div>
         </div>
       </div>
-      </div>
+      </div> -->
 
     <div class="row">
       <!-- beginning of thriving children -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div id="domain-card" class="card h-100" style="width: 100%;">
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Thriving Children
-              </span>
-             </h2>
-              </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  Our children and young people have the best start in life
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Thriving Children
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                Our children and young people have the best start in life
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                <!-- Thriving Children gauges -->
-                 <div class="gauge-row" aria-label="Thriving Children performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="tc_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="tc_improving_inds">
-                    </div>
-                  </div>
-                  
-                  <div class="gauge-box">
-                    <canvas id="tc_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="tc_nochange_inds">
-                    </div>
-                  </div>
-                  
-                  <div class="gauge-box">
-                    <canvas id="tc_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="tc_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Thriving Children performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="tc_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="tc_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="tc_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="tc_worsening_inds"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
       <!-- end of thriving children -->
 
-      <div class="row">
       <!-- beginning of cleaner environment -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div id="domain-card" class="card h-100" style="width: 100%;">
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Cleaner Environment
-              </span>
-             </h2>
-              </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  We live and work sustainably - protecting, improving and enjoying the environment
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Cleaner Environment
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                We live and work sustainably - protecting, improving and enjoying the environment
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                <!-- cleaner environment gauges -->
-                 <div class="gauge-row" aria-label="Cleaner Environment performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="ce_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="ce_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="ce_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="ce_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="ce_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="ce_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Cleaner Environment performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="ce_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="ce_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="ce_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="ce_worsening_inds"></div>
               </div>
             </div>
           </div>
@@ -261,141 +259,143 @@
       </div>
       <!-- end of cleaner environment -->
 
-      <!-- beginning equal society -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div class="card h-100" style="width: 100%;">
+      <!-- beginning of equal society -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Equal Society
-              </span>
-             </h2>
-          </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  We have an equal and inclusive society where everyone is valued and treated with respect
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Equal Society
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                We have an equal and inclusive society where everyone is valued and treated with respect
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                <!-- equal society gauges -->
-                <div class="gauge-row" aria-label="Equal Society performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="es_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="es_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="es_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="es_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="es_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="es_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Equal Society performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="es_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="es_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="es_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="es_worsening_inds"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- end of equal society-->
+      <!-- end of equal society -->
 
       <!-- beginning of healthier lives -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div class="card h-100" style="width: 100%;">
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                 Healthier Lives
-              </span>
-             </h2>
-          </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  We all enjoy long, healthy active lives
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Healthier Lives
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                We all enjoy long, healthy active lives
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                    <!-- healthier lives gauges -->
-                <div class="gauge-row" aria-label="Healthier Lives performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="hl_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="hl_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="hl_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="hl_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="hl_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="hl_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Healthier Lives performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="hl_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="hl_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="hl_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="hl_worsening_inds"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- end of healthier lives-->
-
+      <!-- end of healthier lives -->
 
       <!-- beginning of brighter futures -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div class="card h-100" style="width: 100%;">
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Brighter Futures<span class="dfc_current_year_value"></span>
-              </span>
-             </h2>
-          </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  Everyone can reach their potential
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Brighter Futures<span class="dfc_current_year_value"></span>
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                Everyone can reach their potential
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                    <!-- brighter futures gauges -->
-                <div class="gauge-row" aria-label="Healthier Lives performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="bf_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="bf_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="bf_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="bf_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="bf_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="bf_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Brighter Futures performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="bf_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="bf_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="bf_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="bf_worsening_inds"></div>
               </div>
             </div>
           </div>
@@ -403,47 +403,47 @@
       </div>
       <!-- end of brighter futures -->
 
-
-      <!-- beginning stronger economy -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div class="card h-100" style="width: 100%;">
+      <!-- beginning of stronger economy -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Stronger Economy<span class="dfe_current_year_value"></span>
-              </span>
-             </h2>
-          </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  Our economy is globally competitive, regionally balanced and carbon-neutral
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Stronger Economy<span class="dfe_current_year_value"></span>
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                Our economy is globally competitive, regionally balanced and carbon-neutral
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                    <!-- stronger economy gauges -->
-                <div class="gauge-row" aria-label="Healthier Lives performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="se_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="se_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="se_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="se_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="se_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="se_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Stronger Economy performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="se_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="se_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="se_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="se_worsening_inds"></div>
               </div>
             </div>
           </div>
@@ -451,47 +451,47 @@
       </div>
       <!-- end of stronger economy -->
 
-
       <!-- beginning of safer communities -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div class="card h-100" style="width: 100%;">
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Safer Communities<span class="daera_current_year_value"></span>
-              </span>
-             </h2>
-          </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  Everyone feels safe, we all protect the law and each other
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Safer Communities<span class="daera_current_year_value"></span>
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                Everyone feels safe, we all protect the law and each other
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                    <!-- safer communities gauges -->
-                <div class="gauge-row" aria-label="Safer Communities performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="sc_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="sc_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="sc_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="sc_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="sc_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="sc_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Safer Communities performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="sc_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="sc_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="sc_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="sc_worsening_inds"></div>
               </div>
             </div>
           </div>
@@ -499,48 +499,47 @@
       </div>
       <!-- end of safer communities -->
 
-
-
       <!-- beginning of caring society -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div class="card h-100" style="width: 100%;">
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Caring Society<span class="dof_current_year_value"></span>
-              </span>
-             </h2>
-          </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  We have a caring society that supports people throughout their lives
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Caring Society<span class="dof_current_year_value"></span>
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                We have a caring society that supports people throughout their lives
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                    <!-- caring society gauges -->
-                <div class="gauge-row" aria-label="Caring Society performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="cs_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="cs_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="cs_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="cs_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="cs_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="cs_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Caring Society performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="cs_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="cs_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="cs_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="cs_worsening_inds"></div>
               </div>
             </div>
           </div>
@@ -548,46 +547,47 @@
       </div>
       <!-- end of caring society -->
 
-                  <!-- beginning of better homes -->
-                  <div class="col-sm-12" style="padding-bottom:20px;">
-                    <div class="card h-100" style="width: 100%;">
-                      <div class="card-header" style="padding-top:10px;">
-                        <div class="col">
-                          <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Better Homes<span class="teo_current_year_value"></span>
+      <!-- beginning of better homes -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Better Homes<span class="teo_current_year_value"></span>
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                Everyone has access to good quality, affordable and sustainable homes that are appropriate for their needs
               </span>
-             </h2>
-                      </div>
-                          </div>
-                          <div class = "card-subheader">
-                          <h3 class="card-subtitle">
-                            <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                              Everyone has access to good quality, affordable and sustainable homes that are appropriate for their needs
-                            </span>
-                           </h3>
-                      </div>
-                      <div class="domain-card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                    <!-- better homes gauges -->
-                <div class="gauge-row" aria-label="Better Homes performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="bh_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="bh_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="bh_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="bh_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="bh_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="bh_worsening_inds">
-                    </div>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Better Homes performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="bh_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="bh_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="bh_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="bh_worsening_inds"></div>
               </div>
             </div>
           </div>
@@ -595,57 +595,54 @@
       </div>
       <!-- end of better homes -->
 
-                   <!-- beginning of living peacefully -->
-      <div class="col-sm-12" style="padding-bottom:20px;">
-        <div class="card h-100" style="width: 100%;">
+      <!-- beginning of living peacefully -->
+      <div class="col-sm-6" style="padding-bottom:20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
           <div class="card-header" style="padding-top:10px;">
             <div class="col">
               <h2 class="card-title">
-              <span style="font-size:20px; font-weight:700; line-height:1.1;">
-                Living Peacefully<span class="dof_current_year_value"></span>
-              </span>
-             </h2>
-          </div>
-              </div>
-              <div class = "card-subheader">
-              <h3 class="card-subtitle">
-                <span style="font-size:16px; font-weight: 500; line-height:1.1;">
-                  We have a lasting peace, ensuring a stable and harmonious society for all
+                <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                  Living Peacefully<span class="dof_current_year_value"></span>
                 </span>
-               </h3>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:16px; font-weight:500; line-height:1.1;">
+                We have a lasting peace, ensuring a stable and harmonious society for all
+              </span>
+            </h3>
           </div>
           <div class="domain-card-body">
+            <!-- full-width gauge -->
             <div class="row">
               <div class="col-sm-12">
-                    <!-- living peacefully gauges -->
-                <div class="gauge-row" aria-label="Living Peacefully performance gauges">
-                  <div class="gauge-box">
-                    <canvas id="lp_improving_gauge" class="gauge-canvas"></canvas>
-                    <div class="lp_improving_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="lp_nochange_gauge" class="gauge-canvas"></canvas>
-                    <div class="lp_nochange_inds">
-                    </div>
-                  </div>
-                  <div class="gauge-box">
-                    <canvas id="lp_worsening_gauge" class="gauge-canvas"></canvas>
-                    <div class="lp_worsening_inds">
-                    </div>
+                <div class="gauge-row gauge-row--single" aria-label="Living Peacefully performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="lp_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="lp_improving_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="lp_nochange_inds"></div>
+              </div>
+              <div class="col-sm-4">
+                <div class="lp_worsening_inds"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
       <!-- end of living peacefully -->
     </div>
-  </div>
-  </div>
-  </div>
 
   </main>
   <footer>

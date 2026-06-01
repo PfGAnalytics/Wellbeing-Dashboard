@@ -483,12 +483,11 @@ async function renderDomainImprovementGauge({
 async function renderSingleStatusGauge({
     canvasId,
     domainName,
-    status,                 // "improving" | "no change" | "worsening"
+    status, // retained for backward compatibility; no longer used for the visual
     domainsDataUrl = 'scripts/domains_data.js',
     updatesUrl = 'scripts/updated.json',
-    color = '#00A857',
-    centerTextOffsetY = 0,
-    centerMode = 'stacked'
+    includeInsufficient = false,
+    hexOrder = ['improving', 'no change', 'worsening',  'insufficient data']
 } = {}) {
 
     await ensureDomainsData(domainsDataUrl);
@@ -501,15 +500,15 @@ async function renderSingleStatusGauge({
 
     let improving = 0, noChange = 0, worsening = 0, insufficient = 0;
 
-    // lists for bullet points
+    // Lists for bullet points
     let improvingList = [];
     let noChangeList = [];
     let worseningList = [];
+    let insufficientList = [];
 
     const priority = ['EQ', 'NI', 'LGD', 'AA', 'LEV'];
 
     for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
-
         let code = null;
 
         for (const key of priority) {
@@ -528,334 +527,201 @@ async function renderSingleStatusGauge({
         if (perf === 'improving') {
             improving++;
             improvingList.push(indicatorName);
-        }
-        else if (perf === 'no change') {
+        } else if (perf === 'no change') {
             noChange++;
             noChangeList.push(indicatorName);
-        }
-        else if (perf === 'worsening') {
+        } else if (perf === 'worsening') {
             worsening++;
             worseningList.push(indicatorName);
-        }
-        else {
+        } else {
             insufficient++;
+            insufficientList.push(indicatorName);
         }
     }
-    const total = improving + noChange + worsening;
 
-    const chosenCount =
-        status === 'improving' ? improving :
-        status === 'no change' ? noChange :
-        worsening;
-
-    let pct = total > 0 ? (chosenCount / total) * 100 : 0;
-    pct = Math.max(0, Math.min(100, pct)); // clamp
-    const remainder = 100 - pct;
-
+    // Same anchor element as before
     const canvas = document.getElementById(canvasId);
     if (!canvas) throw new Error(`No canvas with id '${canvasId}'`);
-    if (canvas._chartInstance?.destroy) canvas._chartInstance.destroy();
 
-    // Label for center text
-    const niceLabel =
-        status === "improving" ? "indicators improving" :
-        status === "no change" ? "indicators with no change" :
-        "indicators worsening";
-
-            const centerTextPlugin = {
-    id: `centerText_${canvasId}`,
-    afterDraw(chart) {
-        const meta = chart.getDatasetMeta(0);
-        if (!meta?.data?.length) return;
-
-        const arc = meta.data[0];
-        const ctx = chart.ctx;
-
-        const { width } = chart.chartArea;
-        
-        // Base scaling
-        let scale = width / 300;
-
-        // 🔥 Extra shrink + downward shift for screens <= 767px
-        if (window.innerWidth <= 767) {
-            scale *= 0.75;     // shrink text more
-        }
-
-        const xC = arc.x;
-        // Move text lower on small screens
-        const yBase = arc.y - (40 * scale) + centerTextOffsetY + (window.innerWidth <= 767 ? 8 : 0);
-
-        ctx.save();
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#000';
-
-        if (centerMode === "stacked") {
-            ctx.font = `bold ${26 * scale}px system-ui, Segoe UI, Arial`;
-            ctx.fillText(`${chosenCount}/${total}`, xC, yBase - (18 * scale));
-
-            ctx.font = `${16 * scale}px system-ui, Segoe UI, Arial`;
-            ctx.fillText(niceLabel, xC, yBase + (4 * scale));
-        } else {
-            ctx.font = `bold ${24 * scale}px system-ui, Segoe UI, Arial`;
-            ctx.fillText(`${chosenCount}`, xC, yBase);
-        }
-
-        ctx.restore();
+    // Destroy old chart if one exists
+    if (canvas._chartInstance?.destroy) {
+        canvas._chartInstance.destroy();
+        canvas._chartInstance = null;
     }
-};
 
-    const chart = new Chart(canvas, {
-        type: 'doughnut',
-        data: {
-            labels: [status],
-            datasets: [{
-                data: [pct, remainder],
-                backgroundColor: [color, '#e6e6e6'],
-                borderWidth: 4,
-                circumference: 180,
-                rotation: -90,
-                cutout: '70%'
-            }]
-        },
-        options: {
-            plugins: { legend: { display: false }, tooltip: { enabled: false } },
-            responsive: true,
-            maintainAspectRatio: false
-        },
-        plugins: [centerTextPlugin]
-    });
+    // Hide old canvas (since we can't place HTML inside it)
+    canvas.style.display = 'none';
 
-    canvas._chartInstance = chart;
+    // Create or reuse a tally container in the same location
+    let tallyContainer = document.getElementById(`${canvasId}__hexTally`);
+    if (!tallyContainer) {
+        tallyContainer = document.createElement('div');
+        tallyContainer.id = `${canvasId}__hexTally`;
+        tallyContainer.className = 'hex-tally-container';
+        canvas.insertAdjacentElement('afterend', tallyContainer);
+    }
 
-    
+    // Build the hex item sequence
+    const statusToType = {
+        'improving': 'positive',
+        'worsening': 'negative',
+        'no change': 'neutral',
+        'insufficient data': 'insufficient'
+    };
+
+    const counts = {
+        'improving': improving,
+        'worsening': worsening,
+        'no change': noChange,
+        'insufficient data': insufficient
+    };
+
+    const effectiveOrder = includeInsufficient
+        ? hexOrder
+        : hexOrder.filter(x => x !== 'insufficient data');
+
+    const hexMarkup = effectiveOrder.flatMap(statusKey => {
+        const count = counts[statusKey] || 0;
+        const type = statusToType[statusKey];
+        return Array.from({ length: count }, () => `<key-hex-large type="${type}"></key-hex-large>`);
+    }).join('');
+
+    tallyContainer.innerHTML = hexMarkup || `<p>No indicators with usable status</p>`;
+
+    // Inline layout styling so it works immediately
+    tallyContainer.style.display = 'flex';
+    tallyContainer.style.flexWrap = 'wrap';
+    tallyContainer.style.gap = '0.5rem';
+    tallyContainer.style.alignItems = 'center';
+    tallyContainer.style.justifyContent = 'center';
+    tallyContainer.style.width = '100%';
+
+    // Update bullet-point containers for all status groups
     const domainPrefixMap = {
         'Thriving Children': 'tc',
         'Cleaner Environment': 'ce',
-        'Equal Society' : 'es',
-        'Healthier Lives' : 'hl',
+        'Equal Society': 'es',
+        'Healthier Lives': 'hl',
         'Brighter Futures': 'bf',
-        'Stronger Economy' : 'se',
-        'Safer Communities' : 'sc', 
-        'Caring Society' : 'cs',
-        'Better Homes' : 'bh',
-        'Living Peacefully' : 'lp'
+        'Stronger Economy': 'se',
+        'Safer Communities': 'sc',
+        'Caring Society': 'cs',
+        'Better Homes': 'bh',
+        'Living Peacefully': 'lp'
     };
 
     const prefix = domainPrefixMap[domainName]
         || domainName.split(/\s+/).map(w => w[0]).join('').toLowerCase();
 
-    let targetClass =
-        status === 'improving' ? `${prefix}_improving_inds` :
-        status === 'no change' ? `${prefix}_nochange_inds` :
-        status === 'worsening' ? `${prefix}_worsening_inds` : null;
 
-    if (targetClass) {
-        const container = document.querySelector(`.${targetClass}`);
-        if (container) {
-            const list =
-                status === 'improving' ? improvingList :
-                status === 'no change' ? noChangeList :
-                worseningList;
+    const listTargets = [
+        {
+            className: `${prefix}_improving_inds`,
+            items: improvingList,
+            emptyText: 'No indicators improving',
+            comment: `${improving} is improving:`
+        },
+        {
+            className: `${prefix}_nochange_inds`,
+            items: noChangeList,
+            emptyText: 'No indicators with no change',
+            comment: `${noChange} is not changing:`
+        },
+        {
+            className: `${prefix}_worsening_inds`,
+            items: worseningList,
+            emptyText: 'No indicators worsening',
+            comment: `${worsening} are getting worse:`
 
-            container.innerHTML = list.length
-                ? `<ul>` + list.map(item => `<li>${item.replace(/_/g, ' ')}</li>`).join('') + `</ul>`
-                : `<p>No indicators in this category</p>`;
         }
-    }
+    ];
 
-    return chart;
+
+
+    listTargets.forEach(({ className, items, emptyText, comment }) => {
+        const container = document.querySelector(`.${className}`);
+        if (!container) return;
+
+        container.innerHTML = items.length
+            ? `<p class="list-comment">${comment}</p>
+               <ul>${items.map(item => `<li>${item.replace(/_/g, ' ')}</li>`).join('')}</ul>`
+            : `<p class="list-comment">${comment}</p>
+               <p>${emptyText}</p>`;
+    });
+
+    return {
+        domainName,
+        improving,
+        worsening,
+        noChange,
+        insufficient,
+        element: tallyContainer
+    };
 }
+
 
 
 (async () => {
     await renderSingleStatusGauge({
         canvasId: 'tc_improving_gauge',
         domainName: 'Thriving Children',
-        status: 'improving',
-        color: '#00A857'
+      includeInsufficient: true
     });
 
-    await renderSingleStatusGauge({
-        canvasId: 'tc_nochange_gauge',
-        domainName: 'Thriving Children',
-        status: 'no change',
-        color: '#FF6200'
-    });
 
-    await renderSingleStatusGauge({
-        canvasId: 'tc_worsening_gauge',
-        domainName: 'Thriving Children',
-        status: 'worsening',
-        color: '#db0000'
-    });
     await renderSingleStatusGauge({
         canvasId: 'ce_improving_gauge',
         domainName: 'Cleaner Environment',
-        status: 'improving',
-        color: '#00A857'
+      includeInsufficient: true
     });
 
-    await renderSingleStatusGauge({
-        canvasId: 'ce_nochange_gauge',
-        domainName: 'Cleaner Environment',
-        status: 'no change',
-        color: '#FF6200'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'ce_worsening_gauge',
-        domainName: 'Cleaner Environment',
-        status: 'worsening',
-        color: '#db0000'
-    });
 
     await renderSingleStatusGauge({
         canvasId: 'es_improving_gauge',
         domainName: 'Equal Society',
-        status: 'improving',
-        color: '#00A857'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'es_nochange_gauge',
-        domainName: 'Equal Society',
-        status: 'no change',
-        color: '#FF6200'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'es_worsening_gauge',
-        domainName: 'Equal Society',
-        status: 'worsening',
-        color: '#db0000'
+      includeInsufficient: true
     });
 
     await renderSingleStatusGauge({
         canvasId: 'hl_improving_gauge',
         domainName: 'Healthier Lives',
-        status: 'improving',
-        color: '#00A857'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'hl_nochange_gauge',
-        domainName: 'Healthier Lives',
-        status: 'no change',
-        color: '#FF6200'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'hl_worsening_gauge',
-        domainName: 'Healthier Lives',
-        status: 'worsening',
-        color: '#db0000'
+      includeInsufficient: true
     });
 
     await renderSingleStatusGauge({
         canvasId: 'bf_improving_gauge',
         domainName: 'Brighter Futures',
-        status: 'improving',
-        color: '#00A857'
+      includeInsufficient: true
     });
 
-    await renderSingleStatusGauge({
-        canvasId: 'bf_nochange_gauge',
-        domainName: 'Brighter Futures',
-        status: 'no change',
-        color: '#FF6200'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'bf_worsening_gauge',
-        domainName: 'Brighter Futures',
-        status: 'worsening',
-        color: '#db0000'
-    });
 
     await renderSingleStatusGauge({
         canvasId: 'se_improving_gauge',
         domainName: 'Stronger Economy',
-        status: 'improving',
-        color: '#00A857'
+      includeInsufficient: true
     });
 
-    await renderSingleStatusGauge({
-        canvasId: 'se_nochange_gauge',
-        domainName: 'Stronger Economy',
-        status: 'no change',
-        color: '#FF6200'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'se_worsening_gauge',
-        domainName: 'Stronger Economy',
-        status: 'worsening',
-        color: '#db0000'
-    });
 
     await renderSingleStatusGauge({
         canvasId: 'sc_improving_gauge',
         domainName: 'Safer Communities',
-        status: 'improving',
-        color: '#00A857'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'sc_nochange_gauge',
-        domainName: 'Safer Communities',
-        status: 'no change',
-        color: '#FF6200'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'sc_worsening_gauge',
-        domainName: 'Safer Communities',
-        status: 'worsening',
-        color: '#db0000'
+      includeInsufficient: true
     });
 
     await renderSingleStatusGauge({
         canvasId: 'cs_improving_gauge',
         domainName: 'Caring Society',
-        status: 'improving',
-        color: '#00A857'
+      includeInsufficient: true
     });
 
-    await renderSingleStatusGauge({
-        canvasId: 'cs_nochange_gauge',
-        domainName: 'Caring Society',
-        status: 'no change',
-        color: '#FF6200'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'cs_worsening_gauge',
-        domainName: 'Caring Society',
-        status: 'worsening',
-        color: '#db0000'
-    });
 
     await renderSingleStatusGauge({
         canvasId: 'bh_improving_gauge',
         domainName: 'Better Homes',
-        status: 'improving',
-        color: '#00A857'
+      includeInsufficient: true
     });
 
-    await renderSingleStatusGauge({
-        canvasId: 'bh_nochange_gauge',
-        domainName: 'Better Homes',
-        status: 'no change',
-        color: '#FF6200'
-    });
 
-    await renderSingleStatusGauge({
-        canvasId: 'bh_worsening_gauge',
-        domainName: 'Better Homes',
-        status: 'worsening',
-        color: '#db0000'
-    });
 
     await renderSingleStatusGauge({
         canvasId: 'lp_improving_gauge',
@@ -864,19 +730,6 @@ async function renderSingleStatusGauge({
         color: '#00A857'
     });
 
-    await renderSingleStatusGauge({
-        canvasId: 'lp_nochange_gauge',
-        domainName: 'Living Peacefully',
-        status: 'no change',
-        color: '#FF6200'
-    });
-
-    await renderSingleStatusGauge({
-        canvasId: 'lp_worsening_gauge',
-        domainName: 'Living Peacefully',
-        status: 'worsening',
-        color: '#db0000'
-    });
 })();
 
 // async function renderAllDomainsGauge({
@@ -1113,144 +966,144 @@ getIndicatorCounts().then(result => {
 
 
 
-async function renderSingleAllDomainsGauge({
-    canvasId,
-    status,                   // "improving" | "no change" | "worsening"
-    color = '#00A857',
-    centerMode = 'stacked',
-    centerTextOffsetY = 0
-} = {}) {
+// async function renderSingleAllDomainsGauge({
+//     canvasId,
+//     status,                   // "improving" | "no change" | "worsening"
+//     color = '#00A857',
+//     centerMode = 'stacked',
+//     centerTextOffsetY = 0
+// } = {}) {
 
-    const updates = await loadUpdates('scripts/updated.json');
+//     const updates = await loadUpdates('scripts/updated.json');
 
-    let improving = 0, noChange = 0, worsening = 0, insufficient = 0;
-    let improvingList = [], noChangeList = [], worseningList = [];
+//     let improving = 0, noChange = 0, worsening = 0, insufficient = 0;
+//     let improvingList = [], noChangeList = [], worseningList = [];
 
-    // classify all indicators at top-level
-    for (const [indicatorName, indicatorObj] of Object.entries(updates)) {
-        const perf = indicatorObj.performance?.toLowerCase().trim() || "insufficient data";
+//     // classify all indicators at top-level
+//     for (const [indicatorName, indicatorObj] of Object.entries(updates)) {
+//         const perf = indicatorObj.performance?.toLowerCase().trim() || "insufficient data";
 
-        if (perf === "improving") {
-            improving++; improvingList.push(indicatorName);
-        } else if (perf === "no change") {
-            noChange++; noChangeList.push(indicatorName);
-        } else if (perf === "worsening") {
-            worsening++; worseningList.push(indicatorName);
-        } else {
-            insufficient++;
-        }
-    }
+//         if (perf === "improving") {
+//             improving++; improvingList.push(indicatorName);
+//         } else if (perf === "no change") {
+//             noChange++; noChangeList.push(indicatorName);
+//         } else if (perf === "worsening") {
+//             worsening++; worseningList.push(indicatorName);
+//         } else {
+//             insufficient++;
+//         }
+//     }
 
-    const total = improving + noChange + worsening;
+//     const total = improving + noChange + worsening;
 
-    const chosenCount =
-        status === "improving" ? improving :
-        status === "no change" ? noChange :
-        worsening;
+//     const chosenCount =
+//         status === "improving" ? improving :
+//         status === "no change" ? noChange :
+//         worsening;
 
-    let pct = total > 0 ? (chosenCount / total) * 100 : 0;
-    pct = Math.max(0, Math.min(100, pct));
-    const remainder = 100 - pct;
+//     let pct = total > 0 ? (chosenCount / total) * 100 : 0;
+//     pct = Math.max(0, Math.min(100, pct));
+//     const remainder = 100 - pct;
 
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) throw new Error(`No canvas with id '${canvasId}'`);
-    if (canvas._chartInstance?.destroy) canvas._chartInstance.destroy();
+//     const canvas = document.getElementById(canvasId);
+//     if (!canvas) throw new Error(`No canvas with id '${canvasId}'`);
+//     if (canvas._chartInstance?.destroy) canvas._chartInstance.destroy();
 
-    const niceLabel =
-        status === "improving" ? "indicators improving" :
-        status === "no change" ? "indicators with no change" :
-        "indicators worsening";
+//     const niceLabel =
+//         status === "improving" ? "indicators improving" :
+//         status === "no change" ? "indicators with no change" :
+//         "indicators worsening";
 
-        const centerTextPlugin = {
-    id: `centerText_${canvasId}`,
-    afterDraw(chart) {
-        const meta = chart.getDatasetMeta(0);
-        if (!meta?.data?.length) return;
+//         const centerTextPlugin = {
+//     id: `centerText_${canvasId}`,
+//     afterDraw(chart) {
+//         const meta = chart.getDatasetMeta(0);
+//         if (!meta?.data?.length) return;
 
-        const arc = meta.data[0];
-        const ctx = chart.ctx;
+//         const arc = meta.data[0];
+//         const ctx = chart.ctx;
 
-        const { width } = chart.chartArea;
+//         const { width } = chart.chartArea;
         
-        // Base scaling
-        let scale = width / 300;
+//         // Base scaling
+//         let scale = width / 300;
 
-        // 🔥 Extra shrink + downward shift for screens <= 767px
-        if (window.innerWidth <= 767) {
-            scale *= 0.75;     // shrink text more
-        }
+//         // 🔥 Extra shrink + downward shift for screens <= 767px
+//         if (window.innerWidth <= 767) {
+//             scale *= 0.75;     // shrink text more
+//         }
 
-        const xC = arc.x;
-        // Move text lower on small screens
-        const yBase = arc.y - (40 * scale) + centerTextOffsetY + (window.innerWidth <= 767 ? 8 : 0);
+//         const xC = arc.x;
+//         // Move text lower on small screens
+//         const yBase = arc.y - (40 * scale) + centerTextOffsetY + (window.innerWidth <= 767 ? 8 : 0);
 
-        ctx.save();
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#000';
+//         ctx.save();
+//         ctx.textAlign = 'center';
+//         ctx.textBaseline = 'middle';
+//         ctx.fillStyle = '#000';
 
-        if (centerMode === "stacked") {
-            ctx.font = `bold ${26 * scale}px system-ui, Segoe UI, Arial`;
-            ctx.fillText(`${chosenCount}/${total}`, xC, yBase - (18 * scale));
+//         if (centerMode === "stacked") {
+//             ctx.font = `bold ${26 * scale}px system-ui, Segoe UI, Arial`;
+//             ctx.fillText(`${chosenCount}/${total}`, xC, yBase - (18 * scale));
 
-            ctx.font = `${16 * scale}px system-ui, Segoe UI, Arial`;
-            ctx.fillText(niceLabel, xC, yBase + (4 * scale));
-        } else {
-            ctx.font = `bold ${24 * scale}px system-ui, Segoe UI, Arial`;
-            ctx.fillText(`${chosenCount}`, xC, yBase);
-        }
+//             ctx.font = `${16 * scale}px system-ui, Segoe UI, Arial`;
+//             ctx.fillText(niceLabel, xC, yBase + (4 * scale));
+//         } else {
+//             ctx.font = `bold ${24 * scale}px system-ui, Segoe UI, Arial`;
+//             ctx.fillText(`${chosenCount}`, xC, yBase);
+//         }
 
-        ctx.restore();
-    }
-};
+//         ctx.restore();
+//     }
+// };
 
-    const chart = new Chart(canvas, {
-        type: "doughnut",
-        data: {
-            labels: [status],
-            datasets: [{
-                data: [pct, remainder],
-                backgroundColor: [color, "#e6e6e6"],
-                borderWidth: 4,
-                hoverOffset: 0,
-                circumference: 180,
-                rotation: -90,
-                cutout: "70%"
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false }, tooltip: { enabled: false } }
-        },
-        plugins: [centerTextPlugin]
-    });
+//     const chart = new Chart(canvas, {
+//         type: "doughnut",
+//         data: {
+//             labels: [status],
+//             datasets: [{
+//                 data: [pct, remainder],
+//                 backgroundColor: [color, "#e6e6e6"],
+//                 borderWidth: 4,
+//                 hoverOffset: 0,
+//                 circumference: 180,
+//                 rotation: -90,
+//                 cutout: "70%"
+//             }]
+//         },
+//         options: {
+//             responsive: true,
+//             maintainAspectRatio: false,
+//             plugins: { legend: { display: false }, tooltip: { enabled: false } }
+//         },
+//         plugins: [centerTextPlugin]
+//     });
 
-    canvas._chartInstance = chart;
-}
+//     canvas._chartInstance = chart;
+// }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await renderSingleAllDomainsGauge({
-        canvasId: "all_improving_gauge",
-        status: "improving",
-        color: "#00A857"
-    });
+// document.addEventListener('DOMContentLoaded', async () => {
+//     await renderSingleAllDomainsGauge({
+//         canvasId: "all_improving_gauge",
+//         status: "improving",
+//         color: "#00A857"
+//     });
 
-    await renderSingleAllDomainsGauge({
-        canvasId: "all_nochange_gauge",
-        status: "no change",
-        color: "#FF6200"
-    });
+//     await renderSingleAllDomainsGauge({
+//         canvasId: "all_nochange_gauge",
+//         status: "no change",
+//         color: "#FF6200"
+//     });
 
-    await renderSingleAllDomainsGauge({
-        canvasId: "all_worsening_gauge",
-        status: "worsening",
-        color: "#db0000"
-    });
-});
+//     await renderSingleAllDomainsGauge({
+//         canvasId: "all_worsening_gauge",
+//         status: "worsening",
+//         color: "#db0000"
+//     });
+// });
 
-const key = document.createElement('div');
-key.className = 'key-wrapper';
+// const key = document.createElement('div');
+// key.className = 'key-wrapper';
 
 // key.innerHTML =
 //   '<div class="key-title" style="margin-right: 8px;">Key:</div>' +
@@ -1260,7 +1113,7 @@ key.className = 'key-wrapper';
 //     '<div class="key-item row key-text"><div class="key-square negative"><div class="key-hex-label negative"></div></div>Worsening</div>' +
 //   '</div>';
 
-document.getElementById('top-container').prepend(key);
+// document.getElementById('top-container').prepend(key);
 
 class KeyHex extends HTMLElement {
   connectedCallback() {
@@ -1305,3 +1158,47 @@ class KeyHex extends HTMLElement {
 }
 
 customElements.define("key-hex", KeyHex);
+
+class KeyHexLarge extends HTMLElement {
+  connectedCallback() {
+    const type = this.getAttribute("type") || "positive";
+
+    const config = {
+      positive: {
+        class: "positive",
+        icon: "img/arrow-up-long-solid-full.svg",
+        iconId: "arrow-up-large"
+      },
+      negative: {
+        class: "negative",
+        icon: "img/arrow-down-long-solid-full.svg",
+        iconId: "arrow-down-large"
+      },
+      neutral: {
+        class: "neutral",
+        icon: "img/arrow-right-long-solid-full.svg",
+        iconId: "arrow-across-large"
+      },
+      insufficient: {
+        class: "insufficient",
+        icon: null
+      }
+    };
+
+    const { class: cls, icon, iconId } = config[type] || config.positive;
+
+    this.innerHTML = `
+      <div class="key-hex-large ${cls}">
+        <div class="key-hex-large-label ${type !== "neutral" ? cls : ""}">
+          ${
+            icon
+              ? `<img id="${iconId}" src="${icon}" alt="${type}" />`
+              : ""
+          }
+        </div>
+      </div>
+    `;
+  }
+}
+
+customElements.define("key-hex-large", KeyHexLarge);

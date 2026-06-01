@@ -368,15 +368,16 @@ footer a:hover {
   min-height: 0 !important;
   height: auto !important;
   gap: 2%;
-  align-items: stretch;
+  align-content: center;
 }
 
 .gauge-box, .all-domains-gauge-box {
-  width: 32%;
+  width: 100%;
   height: auto !important;
   min-height: 240px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .gauge-canvas {
@@ -501,14 +502,6 @@ footer a:hover {
     justify-content: center;
 }
 
-.key-hex-label.large {
-    width: 130px;
-    height: 130px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
 
 .key-hex-label.positive {
     background-color: #a1daa1;
@@ -524,6 +517,60 @@ footer a:hover {
     background-color: #B0B0B0;
 }
 
+.key-hex-large {
+    height: 100px;
+    width: 100px;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background-color: #FF6200;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
+
+.key-hex-large.positive {
+    background-color: #00A857;
+}
+
+.key-hex-large.negative {
+    background-color: #db0000;
+}
+
+.key-hex-large.insufficient {
+    background-color: #757575;
+}
+
+.key-hex-large-label {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    background-color: #FF9A5C;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    /* padding-left: 7.5px; */
+    /* padding-right: 10px; */
+    padding-top: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+.key-hex-large-label.positive {
+    background-color: #a1daa1;
+    padding-left: 13px;
+}
+
+.key-hex-large-label.negative {
+    background-color: #FF7A7A;
+    padding-left: 13px;
+}
+
+.key-hex-large-label.insufficient {
+    background-color: #B0B0B0;
+}
+
 #arrow-down, #arrow-up {
     margin-left: -5px;
     max-height: 25px;
@@ -532,6 +579,18 @@ footer a:hover {
 #arrow-across {
     margin-left: 5px;
     max-height: 30px;
+}
+
+#arrow-down-large, #arrow-up-large {
+    margin-left: -2px;
+    margin-top: 5px;
+    max-height: 60px;
+}
+
+#arrow-across-large {
+    margin-left: 8px;
+    margin-top: 5px;
+    max-height: 60px;
 }
 
 .hex-row {
