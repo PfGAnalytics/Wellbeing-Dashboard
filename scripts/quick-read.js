@@ -483,20 +483,21 @@ async function renderDomainImprovementGauge({
 async function renderSingleStatusGauge({
     canvasId,
     domainName,
-    status, // retained for backward compatibility; no longer used for the visual
-    domainsDataUrl = 'scripts/domains_data.js',
-    updatesUrl = 'scripts/updated.json',
+    status, // retained for backward compatibility; still unused for the visual
+    domainsDataUrl = 'scripts/domains_data.js', // retained for backward compatibility; no longer needed
+    updatesUrl = 'scripts/performance.json',
     includeInsufficient = false,
-    hexOrder = ['improving', 'no change', 'worsening',  'insufficient data']
+    hexOrder = ['improving', 'no change', 'worsening', 'insufficient data']
 } = {}) {
 
-    await ensureDomainsData(domainsDataUrl);
-    const updates = await loadUpdates(updatesUrl);
+    // Load the new performance file directly
+    const performanceData = await loadUpdates(updatesUrl);
 
-    const domain = window.domains_data?.[domainName];
-    if (!domain) throw new Error(`Domain '${domainName}' not found`);
-
-    const indicators = domain.indicators ?? {};
+    // Get the domain from performance.json
+    const domainIndicators = performanceData?.[domainName];
+    if (!domainIndicators) {
+        throw new Error(`Domain '${domainName}' not found`);
+    }
 
     let improving = 0, noChange = 0, worsening = 0, insufficient = 0;
 
@@ -506,23 +507,21 @@ async function renderSingleStatusGauge({
     let worseningList = [];
     let insufficientList = [];
 
-    const priority = ['EQ', 'NI', 'LGD', 'AA', 'LEV'];
+    // Normalise the new file's status values to the labels used elsewhere in your UI
+    const normaliseStatus = (value) => {
+        const perf = String(value || '').toLowerCase().trim();
 
-    for (const [indicatorName, indicatorObj] of Object.entries(indicators)) {
-        let code = null;
+        if (perf === 'improved') return 'improving';
+        if (perf === 'no_change') return 'no change';
+        if (perf === 'worsened') return 'worsening';
+        if (perf === 'insufficient_data') return 'insufficient data';
 
-        for (const key of priority) {
-            const candidate = indicatorObj?.data?.[key];
-            if (candidate && candidate.trim()) {
-                code = candidate.trim();
-                break;
-            }
-        }
+        return 'insufficient data';
+    };
 
-        let perf = 'insufficient data';
-        if (code && updates[code]) {
-            perf = updates[code].performance?.toLowerCase().trim() || 'insufficient data';
-        }
+    // Loop directly through indicators in the selected domain
+    for (const [indicatorName, rawStatus] of Object.entries(domainIndicators)) {
+        const perf = normaliseStatus(rawStatus);
 
         if (perf === 'improving') {
             improving++;
@@ -583,7 +582,10 @@ async function renderSingleStatusGauge({
     const hexMarkup = effectiveOrder.flatMap(statusKey => {
         const count = counts[statusKey] || 0;
         const type = statusToType[statusKey];
-        return Array.from({ length: count }, () => `<key-hex-large type="${type}"></key-hex-large>`);
+        return Array.from(
+            { length: count },
+            () => `<key-hex-large type="${type}"></key-hex-large>`
+        );
     }).join('');
 
     tallyContainer.innerHTML = hexMarkup || `<p>No indicators with usable status</p>`;
@@ -613,79 +615,68 @@ async function renderSingleStatusGauge({
     const prefix = domainPrefixMap[domainName]
         || domainName.split(/\s+/).map(w => w[0]).join('').toLowerCase();
 
-    
-
     let improvingSentence;
-
     if (improving > 1) {
-      improvingSentence = `${improving} are improving:`;
+        improvingSentence = `${improving} are improving:`;
     } else if (improving === 1) {
-      improvingSentence = `${improving} is improving:`;
-    } else if (improving === 0) {
-      improvingSentence = "No indicators are improving.";
+        improvingSentence = `${improving} is improving:`;
+    } else {
+        improvingSentence = "No indicators are improving.";
     }
 
     let noChangeSentence;
-
     if (noChange > 1) {
-      noChangeSentence = `${noChange} are not changing:`;
-    } else if (noChange == 1) {
-      noChangeSentence = `${noChange} is not changing:`;
-    } else if (noChange === 0) {
-      noChangeSentence = "There are no indicators showing no change.";
+        noChangeSentence = `${noChange} are not changing:`;
+    } else if (noChange === 1) {
+        noChangeSentence = `${noChange} is not changing:`;
+    } else {
+        noChangeSentence = "There are no indicators showing no change.";
     }
 
-     let worseningSentence;
-
+    let worseningSentence;
     if (worsening > 1) {
-      worseningSentence = `${worsening} are getting worse:`;
+        worseningSentence = `${worsening} are getting worse:`;
     } else if (worsening === 1) {
-      worseningSentence = `${worsening} is getting worse:`;
-    } else if (worsening === 0) {
-      worseningSentence = "There are no indicators getting worse.";
+        worseningSentence = `${worsening} is getting worse:`;
+    } else {
+        worseningSentence = "There are no indicators getting worse.";
     }
-
 
     let insufficientSentence;
-
     if (insufficient > 1) {
-      insufficientSentence = `${insufficient} have insufficient data:`;
+        insufficientSentence = `${insufficient} have insufficient data:`;
     } else if (insufficient === 1) {
-      insufficientSentence = `${insufficient} has insufficient data:`;
-    } else if (insufficient === 0) {
-      insufficientSentence = "There are no indicators with insufficient data.";
+        insufficientSentence = `${insufficient} has insufficient data:`;
+    } else {
+        insufficientSentence = "There are no indicators with insufficient data.";
     }
-
 
     const listTargets = [
         {
             className: `${prefix}_improving_inds`,
             items: improvingList,
             emptyText: '',
-            comment: `${improvingSentence}`
+            comment: improvingSentence
         },
         {
             className: `${prefix}_nochange_inds`,
             items: noChangeList,
             emptyText: '',
-            comment: `${noChangeSentence}`
+            comment: noChangeSentence
         },
         {
             className: `${prefix}_worsening_inds`,
             items: worseningList,
             emptyText: '',
-            comment: `${worseningSentence}`
+            comment: worseningSentence
         },
-      {
-              className: `${prefix}_insufficient_inds`,
-              items: insufficientList,
-              emptyText: '',
-              comment: `${insufficientSentence}`
-          }
-
+        {
+            className: `${prefix}_insufficient_inds`,
+            items: insufficientList,
+            emptyText: '',
+            comment: insufficientSentence
+        }
     ];
-
-
 
     listTargets.forEach(({ className, items, emptyText, comment }) => {
         const container = document.querySelector(`.${className}`);
@@ -945,11 +936,8 @@ async function renderSingleStatusGauge({
 async function getIndicatorCounts({
   includeInsufficientInDenominator = true
 } = {}) {
+  const performance = await loadUpdates('scripts/performance.json');
 
-  // Load data
-  const updates = await loadUpdates('scripts/updated.json');
-
-  // Count categories
   const counts = {
     improving: 0,
     noChange: 0,
@@ -957,31 +945,33 @@ async function getIndicatorCounts({
     insufficient: 0
   };
 
-  for (const indicator of Object.values(updates)) {
-    const perf = indicator.performance?.toLowerCase();
-
-    if (perf === 'improving') counts.improving++;
-    else if (perf === 'no change') counts.noChange++;
-    else if (perf === 'worsening') counts.worsening++;
-    else if (perf === 'insufficient data') counts.insufficient++;
+  for (const indicators of Object.values(performance)) {
+    for (const status of Object.values(indicators)) {
+      switch (String(status).toLowerCase()) {
+        case 'improved':
+          counts.improving++;
+          break;
+        case 'no_change':
+          counts.noChange++;
+          break;
+        case 'worsened':
+          counts.worsening++;
+          break;
+        case 'insufficient_data':
+          counts.insufficient++;
+          break;
+      }
+    }
   }
 
   const totalEligible =
     counts.improving + counts.noChange + counts.worsening;
 
   const denom = includeInsufficientInDenominator
-    ? totalEligible
-    : totalEligible + counts.insufficient;
+    ? totalEligible + counts.insufficient
+    : totalEligible;
 
   const pct = (n) => (denom > 0 ? (n / denom) * 100 : 0);
-
-  const text = {
-    improving: `${counts.improving} indicators were improving`,
-    noChange: `${counts.noChange} were not changing`,
-    worsening: `${counts.worsening} were getting worse`,
-    insufficient: `${counts.insufficient} did not have enough data to report on`
-  };
-
 
   return {
     counts,
@@ -991,27 +981,21 @@ async function getIndicatorCounts({
       worsening: pct(counts.worsening),
       insufficient: pct(counts.insufficient)
     },
-    text
+    text: {
+      improving: `${counts.improving} indicators were improving`,
+      noChange: `${counts.noChange} were not changing`,
+      worsening: `${counts.worsening} were getting worse`,
+      insufficient: `${counts.insufficient} did not have enough data to report on`
+    }
   };
 }
 
-
 getIndicatorCounts().then(result => {
   document.getElementById("improving-text").innerText = result.text.improving;
-});
-
-getIndicatorCounts().then(result => {
   document.getElementById("nochange-text").innerText = result.text.noChange;
-});
-
-getIndicatorCounts().then(result => {
   document.getElementById("worsening-text").innerText = result.text.worsening;
-});
-
-getIndicatorCounts().then(result => {
   document.getElementById("insufficient-text").innerText = result.text.insufficient;
 });
-
 
 
 // async function renderSingleAllDomainsGauge({
