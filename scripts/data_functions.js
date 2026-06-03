@@ -1486,8 +1486,6 @@ async function getEqualityGroups(d, e) {
 
   var eq_groups = [];      // Empty array to be filled with groupings
 
-  // console.log(eq_groups)
-
   for (let i = 0; i < labels.length; i ++) {    // Loop through all labels
 
 
@@ -1908,7 +1906,7 @@ async function renderPopup (d, e, eq_group) {
 
             // Hide 'click legend item with a white shape
             const maskTop = titleTop + titleH;
-            const maskHeight = 37;
+            const maskHeight = 60;
             ctx.fillStyle = "#fff";
             ctx.fillRect(leftInset, maskTop, renderedWidth, maskHeight);
 
@@ -2241,15 +2239,35 @@ async function renderPopup (d, e, eq_group) {
       y_axis.textContent = result.dimension.STATISTIC.category.unit[matrix.replace("EQ", "")].label;
       
       const titleText = pop_up_title.textContent || "";
-      
-      if (titleText.startsWith("Average life satisfaction score (from 0 to 10)")) {
-         y_axis.textContent = "Average (mean) life satisfaction score";
-      } else if (titleText.startsWith("Number of households in housing stress")) {
-         y_axis.textContent = "Number of Applicants";
-      } else if (titleText.startsWith("Age standardised death rate (per 100,000 population) for causes considered preventable")) {
-         y_axis.textContent = "Deaths per 100,000 population";
-      } else if (titleText.startsWith("Gap between the percentage of non-free school meal entitled (non-FSME) school leavers")) {
+
+       if (domains_data[d].indicators[e].data.NI == "INDINTREPNI") {
+         y_axis.textContent = "NBI score (out of 100)";
+      } else if (domains_data[d].indicators[e].data.EQ == "INDLIFESATEQ") {
+         y_axis.textContent = "Average (mean) life satisfaction score"
+      } else if (domains_data[d].indicators[e].data.NI == "INDLCREENI") {
+         y_axis.textContent = "FTE employment"
+      } else if (domains_data[d].indicators[e].data.EQ == "INDPREVDTHEQ") {
+         y_axis.textContent = "Deaths per 100,000 population"
+      } else if (domains_data[d].indicators[e].data.NI == "INDSFGANI") {
          y_axis.textContent = "Percentage points"
+      } else if (domains_data[d].indicators[e].data.EQ == "INDSLATTGAPEQ") {
+         y_axis.textContent = "Percentage points"
+      }  else if (domains_data[d].indicators[e].data.NI == "INDHOMELNNI") {
+         y_axis.textContent = "Number of households"
+      } else if (domains_data[d].indicators[e].data.EQ == "INDHOUSTRSEQ") {
+         y_axis.textContent = "Number of Applicants"
+      } else if (domains_data[d].indicators[e].data.NI == "INDRIVERQNI") {
+         y_axis.textContent = "mg/l soluble reactive phosphorus (SRP)"
+      } else if (domains_data[d].indicators[e].data.NI == "INDGREENHGNI") {
+         y_axis.textContent = "MtCO₂e"
+      } else if (domains_data[d].indicators[e].data.NI == "INDAIRPOLNI") {
+         y_axis.textContent = "Annual mean nitrogen dioxide concentration (μg/m³)"
+      } else if (domains_data[d].indicators[e].data.NI == "INDNICEINI") {
+         y_axis.textContent = "Index (base 2023=100)"
+      } else if (domains_data[d].indicators[e].data.EQ == "INDLIFESATYPEQ") {
+         y_axis.textContent = "Average (mean) life satisfaction score";
+      } else if (y_axis.textContent == "Percentage") {
+         y_axis.textContent = "%"
       }
 
       // After succesful fetch from data portal the loading image is removed and chart is displayed
@@ -2401,7 +2419,6 @@ async function renderPopup (d, e, eq_group) {
 
       for (let j = 0; j < Object.keys(values).length; j++) {
          const label = Object.keys(values)[j];
-         console.log(label);
 
          // Offset colour index if Skills Level
          const colourIndex =
@@ -2451,6 +2468,11 @@ async function renderPopup (d, e, eq_group) {
          type: 'bar',
          data: data,
          options: {
+            layout: {
+                padding: {
+                  top: 50
+                }
+              },
             responsive: true,                   //  Allow resizing of canvas
             maintainAspectRatio: false,         // Any aspect ratio
             scales: {
@@ -2478,7 +2500,7 @@ async function renderPopup (d, e, eq_group) {
             plugins: {
             legend: {
                title: {
-                  display: true,
+                  display: false,
                   text: "Click legend item to hide/show series in chart",
                   color: "#ffffff",
                   font: {
@@ -2501,65 +2523,56 @@ async function renderPopup (d, e, eq_group) {
          },
          
          plugins: [{
-            id: 'legendBackground',
+           id: 'legendBackground',
 
             beforeDraw(chart) {
-               const { ctx, chartArea: { top, left, width } } = chart;
-               ctx.save();
-               ctx.fillStyle = '#00205b'; // light grey background
-               ctx.strokeStyle = '#00205b';
+              const { ctx, chartArea } = chart;
 
-               const labelCount = chart.legend.legendItems.length;
+            // const labelCount = chart.legend.legendItems.length;
 
-               const boxX = Math.round(left + 215);
-               const boxY = Math.round(
-                 top - (
-                  Object.keys(values).some(key => key.toLowerCase().includes("at level 3 and above"))
-                  ? 89
-                  :
-                  Object.keys(values).some(key => key.toLowerCase().includes("banking and finance"))
-                  ? 112
-                  :
-                   Object.keys(values).some(key => key.toLowerCase().includes("occupation"))
-                     ? 135
-                     : 
-                  Object.keys(values).some(key => key.includes("Criminal Damage/ Public Order"))
-                  ? 89
-                  :
-                  Object.keys(values).some(key => key.includes("Cohabiting")) && labelCount > 6
-                  ? 89
-                  :
-                  Object.keys(values).some(key => key.includes("Quintile")) && labelCount > 5
-                       ? 88
-                       : 65
-                 )
-               );
-               const boxWidth  = Math.round(width - 460);
-               const boxHeight = 33;
 
-               // Clamp radius to avoid overlapping curves
-               const radiusRaw = 20;
-               const r = Math.min(radiusRaw, boxWidth / 2, boxHeight / 2);
+            const totalChars = chart.legend.legendItems
+              .map(item => item.text)
+              .join("")
+              .length;
 
-               // Improve stroke appearance
-               ctx.lineJoin = 'round';
-               ctx.lineCap  = 'round';
+              const centerX = (chartArea.left + chartArea.right) / 2;
+              const centerY = (chartArea.top + chartArea.bottom) / 2;
 
-               ctx.beginPath();
-               ctx.moveTo(boxX + r, boxY);
-               ctx.lineTo(boxX + boxWidth - r, boxY);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY, boxX + boxWidth, boxY + r);
-               ctx.lineTo(boxX + boxWidth, boxY + boxHeight - r);
-               ctx.quadraticCurveTo(boxX + boxWidth, boxY + boxHeight, boxX + boxWidth - r, boxY + boxHeight);
-               ctx.lineTo(boxX + r, boxY + boxHeight);
-               ctx.quadraticCurveTo(boxX, boxY + boxHeight, boxX, boxY + boxHeight - r);
-               ctx.lineTo(boxX, boxY + r);
-               ctx.quadraticCurveTo(boxX, boxY, boxX + r, boxY);
-               ctx.closePath();
+              // Load once
+              if (!this.img) {
+                this.img = new Image();
+                this.img.src = "img/navy-oval.png";
+                this.loaded = false;
 
-               ctx.fill();      // Fill with grey background
-               ctx.stroke();    // Optional border
+                this.img.onload = () => {
+                  this.loaded = true;
+                  chart.draw();
+                };
 
+                return;
+              }
+
+              if (!this.loaded) return;
+
+              const width = 475;
+              const height = 295;
+
+              const x = centerX - width / 2;
+
+              let y = centerY - height - 105;
+              
+              if (totalChars > 300) {
+               y = centerY - height - 140 
+              } else if (totalChars > 200) {
+               y = centerY - height - 125 
+              } else if (totalChars > 80 & chart.legend.legendItems.length >= 6) {
+               y = centerY - height - 115
+              } else if (totalChars > 160 & chart.legend.legendItems.length <= 2) {
+               y = centerY - height - 115
+              } 
+
+              ctx.drawImage(this.img, x, y, width, height);
             }
          }]
       };
@@ -3264,7 +3277,7 @@ async function drawPopupMap(d, e, type, main_container, loading) {
 
       const titleEl = document.getElementById("popup-map-title");
       const baseTitle = titleEl.dataset.baseTitle;
-      titleEl.textContent = `${baseTitle} (${selectedYear}).`;
+      titleEl.textContent = `${baseTitle} (${selectedYear})`;
 
       const nonZero = selectedData.filter(v => Number.isFinite(v) && v !== 0);
       const yearMin = nonZero.length ? Math.min(...nonZero) : null;
@@ -4149,6 +4162,8 @@ function handleRefreshPopup() {
   }
   
   function setPopupSummary(shape_Min, year_Min, shape_Max, year_Max, indicator) {
+
+   
    const baseSentence = "A map of Northern Ireland";
    const yearEl = document.getElementById("popup-map-year-label");
    const labelEl = (y_label_div.textContent || '').trim();
@@ -4221,7 +4236,14 @@ function handleRefreshPopup() {
    // let titleText;
 
    const currentYear = yearEl ? yearEl.textContent.trim() : "";
-   const yearText = currentYear ? `for the year ${currentYear}.` : "";
+
+   let yearText = ""
+
+   if (currentYear.includes('-')) {
+      yearText = currentYear ? `for the years ${currentYear}.` : "";
+   } else {
+      yearText = currentYear ? `for the year ${currentYear}.` : "";
+   }
 
    let altText;
    if (measureInfo) {

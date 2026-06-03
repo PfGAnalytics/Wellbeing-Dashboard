@@ -15,8 +15,12 @@ js_code <- paste(js_code, collapse = "\n")
 ctx <- V8::v8()
 ctx$eval(js_code)
 
+# Extract all information from domains_data
 domains_data <- ctx$get("domains_data")
 
+# Create a data frame to store the following variables. 
+# To add a variable from domains_data, add a new column and data type here and then populate it later where rows are appended to 'summary'
+# To remove a variable, remove it here and from the bind_rows() further down
 summary <- data.frame(
   date = as.Date(character()),
   domain = character(),
@@ -104,6 +108,9 @@ for (domain in domains) {
       
     }
     
+    # Add or remove variables here
+    # If you add a new variable to 'summary' above, you must do it here also
+    # If a variable is added to 'summary' above, but not here, the script will fail
     summary <- bind_rows(
       summary,
       data.frame(date = today(),
@@ -135,6 +142,7 @@ for (domain in names(domains_data)) {
 write_json(summary_list, "scripts/performance.json", auto_unbox = TRUE, pretty = TRUE)
 
 
+# Combine latest results with historical data to keep a running record
 
 summary_history <- readRDS("backup/indicator-performance-summary.RDS") %>% 
   filter(date != today()) %>% 
@@ -142,6 +150,7 @@ summary_history <- readRDS("backup/indicator-performance-summary.RDS") %>%
 
 saveRDS(summary_history, file = "backup/indicator-performance-summary.RDS")
 
+# Create an excel version of the data
 wb <- createWorkbook()
 
 addWorksheet(wb, "indicator-performance")
