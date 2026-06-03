@@ -47,11 +47,20 @@ for (domain in domains) {
     improvement <- ind_obj$improvement
     
     if (ind_obj$data$NI != "") {
-      json_data <- jsonlite::fromJSON(txt = paste0("https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%5D,%22dimension%22:%7B%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22", 
-                                                   ind_obj$data$NI, "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=", apiKey))
+      statistic <- substr(ind_obj$data$NI, 1 , nchar(ind_obj$data$NI) - 2)
+      json_data <- jsonlite::fromJSON(txt = paste0("https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22",
+                                                   statistic,
+                                                   "%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22",
+                                                   ind_obj$data$NI,
+                                                   "%22%7D,%22version%22:%222.0%22%7D%7D"))
     } else {
-      json_data <- jsonlite::fromJSON(txt = paste0("https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22",
-                                                   ind_obj$data$EQ, "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=", apiKey))
+      statistic <- substr(ind_obj$data$EQ, 1 , nchar(ind_obj$data$EQ) - 2)
+      json_data <- jsonlite::fromJSON(txt = paste0("https://ws-data.nisra.gov.uk/public/api.jsonrpc?data=%7B%22jsonrpc%22:%222.0%22,%22method%22:%22PxStat.Data.Cube_API.ReadDataset%22,%22params%22:%7B%22class%22:%22query%22,%22id%22:%5B%22STATISTIC%22,%22EQUALGROUPS%22%5D,%22dimension%22:%7B%22STATISTIC%22:%7B%22category%22:%7B%22index%22:%5B%22",
+                                                   statistic,
+                                                   "%22%5D%7D%7D,%22EQUALGROUPS%22:%7B%22category%22:%7B%22index%22:%5B%22N92000002%22%5D%7D%7D%7D,%22extension%22:%7B%22pivot%22:null,%22codes%22:false,%22language%22:%7B%22code%22:%22en%22%7D,%22format%22:%7B%22type%22:%22JSON-stat%22,%22version%22:%222.0%22%7D,%22matrix%22:%22",
+                                                   ind_obj$data$EQ,
+                                                   "%22%7D,%22version%22:%222.0%22%7D%7D&apiKey=",
+                                                   apiKey))
     }
     
     ni_data <- data.frame(
@@ -112,6 +121,18 @@ for (domain in domains) {
   }
   
 }
+
+summary_list <- list()
+
+for (domain in names(domains_data)) {
+  summary_list[[domain]] <- list()
+  for (indicator in names(domains_data[[domain]]$indicators)) {
+    summary_list[[domain]][[indicator]] <- summary$performance[summary$indicator == indicator]
+  }
+}
+
+
+write_json(summary_list, "scripts/performance.json", auto_unbox = TRUE, pretty = TRUE)
 
 
 
