@@ -142,6 +142,15 @@ for (domain in names(domains_data)) {
 write_json(summary_list, "scripts/performance.json", auto_unbox = TRUE, pretty = TRUE)
 
 
+write_json(
+  list(last_run = format(Sys.time(), "%Y-%m-%dT%H:%M:%S")),
+  "scripts/performance-meta.json",
+  auto_unbox = TRUE,
+  pretty = TRUE
+)
+
+
+
 # Combine latest results with historical data to keep a running record
 
 summary_history <- readRDS("backup/indicator-performance-summary.RDS") %>% 
