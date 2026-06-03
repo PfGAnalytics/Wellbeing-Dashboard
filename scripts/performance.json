@@ -10,7 +10,7 @@
     "Coastal water condition": "no_change",
     "Condition of protected sites": "worsened",
     "Greenhouse gas emissions": "improved",
-    "Outdoor recreation": "no_change",
+    "Outdoor recreation": "worsened",
     "Recycled waste": "no_change",
     "Renewable electricity": "worsened",
     "River water quality": "no_change",
@@ -28,7 +28,7 @@
     "Healthy life expectancy (males)": "no_change",
     "Mental health": "improved",
     "Preventable deaths": "worsened",
-    "Sport and physical activity": "no_change"
+    "Sport and physical activity": "worsened"
   },
   "Brighter Futures": {
     "Arts and cultural activities": "improved",

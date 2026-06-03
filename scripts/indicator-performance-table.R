@@ -94,11 +94,11 @@ for (domain in domains) {
         ci_n <- ci_value * n_years
       }
       
-      performance <- if ((latest_year_value > comparison_year_value + ci_n & improvement == "increase")
-                         | (latest_year_value < comparison_year_value - ci_n & improvement == "decrease")) {
+      performance <- if ((latest_year_value >= comparison_year_value + ci_n & improvement == "increase")
+                         | (latest_year_value <= comparison_year_value - ci_n & improvement == "decrease")) {
         "improved"
-      } else if ((latest_year_value < comparison_year_value - ci_n & improvement == "increase")
-                 | (latest_year_value > comparison_year_value + ci_n & improvement == "decrease")) {
+      } else if ((latest_year_value <= comparison_year_value - ci_n & improvement == "increase")
+                 | (latest_year_value >= comparison_year_value + ci_n & improvement == "decrease")) {
         "worsened"
       } else {
         "no_change"
