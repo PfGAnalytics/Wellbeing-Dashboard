@@ -800,3 +800,8 @@ footer {
   height: 11px;
   margin: 0 5px 0 5px;
 }
+
+#aig-footer-logo {
+    aspect-ratio: initial;
+    width: 200px;
+}
