@@ -166,6 +166,12 @@ footer {
     min-width: 250px;
 }
 
+#nisra-header-logo {
+    aspect-ratio: initial;
+    width: 200px;
+    margin: 20px 0px 0px 50%;
+}
+
 footer a {
     color: #ffffff;
     text-decoration: none !important;
@@ -222,8 +228,9 @@ main {
 }
 
 #nav-nie-logo {
-    padding-top: 15px;
+    padding-top: 20px;
     margin-bottom: 0px;
+    margin-right: 45%;
     filter: brightness(0) invert(1);
     aspect-ratio: initial;
     min-width: 80px;
