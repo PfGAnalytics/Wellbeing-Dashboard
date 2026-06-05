@@ -184,6 +184,7 @@ footer a:hover {
 #footer-nisra-logo {
     width: 250px;
     filter: brightness(0) invert(1);
+    display: none;
 }
 
 .container {
@@ -806,6 +807,10 @@ footer {
     width: 200px;
 }
 
+ .col-sm-2 {
+    margin-right: 40px
+  }
+
 
 @media print {
   @page {
@@ -815,6 +820,11 @@ footer {
 
   #nisra-header-logo {
     margin-left: 0px
+  }
+
+  .col-sm-2 {
+    margin-top: 40px;
+    margin-right: 95px
   }
 
   body {
