@@ -805,3 +805,69 @@ footer {
     aspect-ratio: initial;
     width: 200px;
 }
+
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  #nisra-header-logo {
+    margin-left: 0px
+  }
+
+  body {
+    background: #ffffff !important;
+    margin: 0 !important;
+  }
+
+  /* Hide UI controls that should not appear in the PDF */
+  .button-row,
+  #back-to-start,
+  #cookie-banner,
+  #survey {
+    display: none !important;
+  }
+
+  /* Keep colours where possible */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Avoid awkward page breaks inside cards / sections */
+  .domain-card,
+  .card,
+  .card-header,
+  .card-subheader,
+  .gauge-row,
+  .hex-row,
+  .full-width-banner,
+  footer,
+  header {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  main {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .container,
+  .row {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: underline;
+  }
+  
+  
+
+  /* Optional: make footer start on a fresh page if needed */
+  /* footer { page-break-before: always; } */
+}

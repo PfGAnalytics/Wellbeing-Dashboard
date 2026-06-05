@@ -1249,7 +1249,32 @@ fetch('scripts/performance-meta.json')
     document.getElementById('last-updated').textContent = readableDate;
   });
 
+function downloadPageAsPDF() {
+  // Give the browser a print-friendly state before opening the dialog
+  document.body.classList.add("pdf-print-mode");
 
+  // Wait a tick so styles apply before print dialog opens
+  setTimeout(() => {
+    window.print();
+
+    // Remove print mode afterwards
+    setTimeout(() => {
+      document.body.classList.remove("pdf-print-mode");
+    }, 500);
+  }, 100);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const downloadBtn = document.getElementById("download");
+  if (!downloadBtn) return;
+
+  downloadBtn.addEventListener("click", downloadPageAsPDF);
+});
+
+// Clean up if browser fires afterprint
+window.addEventListener("afterprint", function () {
+  document.body.classList.remove("pdf-print-mode");
+});
 
 
 
