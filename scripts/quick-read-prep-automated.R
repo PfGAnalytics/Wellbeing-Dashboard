@@ -123,28 +123,8 @@ suppressWarnings({  # Turn off warnings
     fixed = TRUE
   )
   
-  # Replace any direct JSON path references in HTML
-  index <- gsub(
-    "scripts/performance.json",
-    perf_data_url,
-    index,
-    fixed = TRUE
-  )
+
   
-  index <- gsub(
-    "scripts/performance-meta.json",
-    perf_meta_data_url,
-    index,
-    fixed = TRUE
-  )
-  
-  # Optional backward compatibility in HTML too
-  index <- gsub(
-    "scripts/updated.json",
-    perf_data_url,
-    index,
-    fixed = TRUE
-  )
   
   # Embed SVGs in HTML
   for (svg in SVGs) {
