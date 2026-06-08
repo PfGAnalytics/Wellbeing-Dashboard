@@ -57,14 +57,14 @@ suppressWarnings({  # Turn off warnings
   # ---- Embed new JSON data sources ----
   
   # performance.json
-  perf_path <- "scripts/performance.json"
-  perf_b64 <- base64encode(readBin(perf_path, "raw", file.info(perf_path)$size))
-  perf_data_url <- paste0("data:application/json;base64,", perf_b64)
+  # perf_path <- "scripts/performance.json"
+  # perf_b64 <- base64encode(readBin(perf_path, "raw", file.info(perf_path)$size))
+  # perf_data_url <- paste0("data:application/json;base64,", perf_b64)
   
-  # performance-meta.json
-  perf_meta_path <- "scripts/performance-meta.json"
-  perf_meta_b64 <- base64encode(readBin(perf_meta_path, "raw", file.info(perf_meta_path)$size))
-  perf_meta_data_url <- paste0("data:application/json;base64,", perf_meta_b64)
+  # # performance-meta.json
+  # perf_meta_path <- "scripts/performance-meta.json"
+  # perf_meta_b64 <- base64encode(readBin(perf_meta_path, "raw", file.info(perf_meta_path)$size))
+  # perf_meta_data_url <- paste0("data:application/json;base64,", perf_meta_b64)
   
   # domains_data.js
   domains_path <- "scripts/domains_data.js"
@@ -78,19 +78,19 @@ suppressWarnings({  # Turn off warnings
   js_code <- readLines(quick_js, warn = FALSE)
   
   # Replace new JSON references in JS
-  js_code <- gsub(
-    "scripts/performance.json",
-    perf_data_url,
-    js_code,
-    fixed = TRUE
-  )
+  # js_code <- gsub(
+  #   "scripts/performance.json",
+  #   perf_data_url,
+  #   js_code,
+  #   fixed = TRUE
+  # )
   
-  js_code <- gsub(
-    "scripts/performance-meta.json",
-    perf_meta_data_url,
-    js_code,
-    fixed = TRUE
-  )
+  # js_code <- gsub(
+  #   "scripts/performance-meta.json",
+  #   perf_meta_data_url,
+  #   js_code,
+  #   fixed = TRUE
+  # )
   
   # Replace domains_data.js reference in JS
   js_code <- gsub(

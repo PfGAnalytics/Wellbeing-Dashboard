@@ -156,7 +156,7 @@ footer {
     width: 1200px;
 }
 
-#nisra-logo-container {
+/* #nisra-logo-container {
     height: 210px;
     display: flex;
     flex: 0 1 550px;
@@ -164,13 +164,12 @@ footer {
     align-items: center;
     max-width: 1200px;
     min-width: 250px;
-}
+} */
 
-#nisra-header-logo {
+/* #nisra-header-logo {
     aspect-ratio: initial;
-    width: 200px;
-    margin: 20px 0px 0px 50%;
-}
+    max-width: 75%;
+} */
 
 footer a {
     color: #ffffff;
@@ -197,6 +196,7 @@ footer a:hover {
 
 main {
     max-width: 1200px;
+    width: 100%;
     margin: 0px
 }
 
@@ -229,9 +229,9 @@ main {
 }
 
 #nav-nie-logo {
-    padding-top: 20px;
+    /* padding-top: 20px; */
     margin-bottom: 0px;
-    margin-right: 45%;
+    /* margin-right: 45%; */
     filter: brightness(0) invert(1);
     aspect-ratio: initial;
     min-width: 80px;
@@ -245,7 +245,7 @@ main {
 }
 
 #quick-read-title {
-    width: 720px;
+    /* width: 720px; */
     display: flex;
     justify-content: center;
     padding-top: 20px;
@@ -463,9 +463,9 @@ ul {
 
 @media (max-width: 1400px) {
 
-    #quick-read-title {
+    /* #quick-read-title {
         width: 40%;
-    }
+    } */
 
     h1 {
         font-size: 25pt;
@@ -473,9 +473,9 @@ ul {
 }
 
 @media (max-width: 992px) {
-    #quick-read-title {
+    /* #quick-read-title {
         width: 40%;
-    }
+    } */
 
     .button-row {
         margin-right: 0px;
@@ -492,9 +492,6 @@ ul {
         margin-top: 20px;
     }
 
-    #nav-nie-logo {
-        width: 80%;
-    }
 
     .gauge-row {
         font-size: smaller;
@@ -503,12 +500,13 @@ ul {
 }
 
 @media (max-width: 768px) {
+
     
     .top-menu-item {
         font-size: 13px;
         padding: 6px 10px;
         min-height: 36px;
-        max-width: 160px;
+        /* max-width: 160px; */
     }
     .top-menu-logo {
         width: 18px;
@@ -520,7 +518,15 @@ ul {
         font-size: 20pt;
     }
 
-    #nav-aig-logo {
+    .col-8 {
+        margin-left: 10%
+    }
+
+    #aig-footer-logo {
+        margin-left: 25%
+    }
+
+    /* #nav-aig-logo {
         aspect-ratio: initial;
         height: 35px;
         padding-left: 15%;
@@ -532,11 +538,19 @@ ul {
         min-height: 80px;
         padding-top: 2%;
         margin-right: 17%
-    }
+    } */
 
     button {
         min-width: 150px;
     }
+}
+
+.col-8 {
+    margin-left: 20px
+}
+
+.tint-row {
+    align-items: space-between;
 }
 
 
@@ -810,6 +824,36 @@ footer {
  .col-sm-2 {
     margin-right: 40px
   }
+
+
+#nisra-header-logo {
+    max-height: 50px;
+    margin-top: 15px;
+    margin-left: 20%
+}
+
+@media (max-width: 992px) {
+#nisra-header-logo {
+    margin-left: 2%;
+    height: 30px;
+    margin-bottom: 10px;
+ }
+ #nav-nie-logo {
+    height: 35px;
+    margin-left: 25%
+ }   
+ .top-menu-item {
+    min-width: 130px;
+ }
+ .button-row {
+    justify-content: center;
+    padding-left: 15px;
+ }
+
+ main {
+    padding-right: 15px;
+ }
+}
 
 
 @media print {
