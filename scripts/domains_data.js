@@ -240,7 +240,7 @@ var domains_data = {
          },
          "Renewable electricity": {
             importance: "The decarbonisation of electricity generation contributes to the reduction of greenhouse gas emissions, to enhancing energy security of supply and affordability in addition to the wider contribution to the economy of the associated developments.",
-            base_year: "2020",
+            base_year: "2021",
             ci: 0,
             data: {
                NI: "INDRENEWNI",
@@ -250,9 +250,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "Generation of renewable electricity as a proportion of gross final electricity consumption rose from 42% in 2021 to 47% in 2025, with an average of 46% over the 5 year period 2021-2025. Between 2021 and 2025, electricity consumption fell by approximately 8%, while renewable generation only increased by around 3% in the same time period.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The growth in the proportion of electricity consumption that is renewably generated from 17.3% in 2013 to 49.2% in 2020 has not been sustained in recent years and has averaged 46.2% between 2020 and 2024.",
+               worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
