@@ -7,11 +7,11 @@
         "category": {
           "index": "INDRENEW",
           "label": {
-            "INDRENEW": "The proportion of electricity consumption that is renewably generated"
+            "INDRENEW": "Renewable generation as a proportion of Gross Final Electricity Consumption (GFEC)"
           },
           "unit": {
             "INDRENEW": {
-              "decimals": 1,
+              "decimals": 0,
               "label": "%",
               "position": "end"
             }
@@ -21,20 +21,16 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "index": ["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
           "label": {
-            "2013": "2013",
-            "2014": "2014",
-            "2015": "2015",
-            "2016": "2016",
-            "2017": "2017",
             "2018": "2018",
             "2019": "2019",
             "2020": "2020",
             "2021": "2021",
             "2022": "2022",
             "2023": "2023",
-            "2024": "2024"
+            "2024": "2024",
+            "2025": "2025"
           }
         },
         "label": "Year"
@@ -107,15 +103,15 @@
       ]
     },
     "note": [
-      "[b]Renewable electricity[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nThe proportion of electricity consumption that is renewably generated.\r\n\r\n[b]Source[/b]\r\nElectricity Consumption and Renewable Generation Statistics, Department for the Economy\r\n[url=https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics]https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19."
+      "[b]Renewable electricity[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nMeasures renewable generation as a proportion of Gross Final Electricity Consumption (GFEC). For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nElectricity Consumption and Renewable Generation Statistics, Department for the Economy\r\n[url=https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics]https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19.\r\n\r\n[b]Further information[/b] \r\n1. The proportion is calculated using a 12 month rolling average.\r\n2. Renewable generation includes all metered and own use renewable generation as the numerator. Gross Final Electricity Consumption includes all metered and own use renewable and non-renewable generation plus imports minus exports as the denominator.\r\n3. The [url=https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics]publication[/url] also provides further analysis on monthly values and proportions for renewable generation, non-renewable generation, imports and exports.\r\n4. Further detail is available in the “Technical and Background Notes” section of the [url=https://www.economy-ni.gov.uk/articles/electricity-consumption-and-renewable-generation-statistics]report[/url].\r\n5. Change in methodology from measuring renewable generation as a % of metered electricity consumption to a % of Gross Final Electricity Consumption (GFEC). The new measure was first published in March 2026 and more information can be found at the following link: [url=https://www.economy-ni.gov.uk/publications/data-and-measurement-development-user-engagement-electricity-consumption-and-renewable-generation-statistics]https://www.economy-ni.gov.uk/publications/data-and-measurement-development-user-engagement-electricity-consumption-and-renewable-generation-statistics[/url]"
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 12, 1],
-    "updated": "2025-03-18T10:20:19",
-    "value": [17.3, 19, 25.4, 25.4, 34.7, 40.7, 43.7, 49.2, 41.3, 51, 45.8, 43.5],
+    "size": [1, 8, 1],
+    "updated": "2026-06-10T9:30:00",
+    "value": [41, 44, 48, 42, 50, 47, 44, 47],
     "version": "2.0"
   },
   "id": {}
