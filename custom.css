@@ -70,7 +70,11 @@ a.cookiesbarlink {
 
 .nav-tint {
     background-color: #142062;
-    width: 100%;
+}
+
+.tint-row {
+    max-width: 1200px;
+    display: block;
 }
 
 
@@ -166,10 +170,14 @@ footer {
     min-width: 250px;
 } */
 
-/* #nisra-header-logo {
-    aspect-ratio: initial;
-    max-width: 75%;
-} */
+
+#nisra-header-logo {
+  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
+  height: auto;
+}
+
 
 footer a {
     color: #ffffff;
@@ -187,7 +195,7 @@ footer a:hover {
 }
 
 .container {
-    width: 100%;
+    max-width: 100%;
     margin: 0px;
     max-width: 100%;
     padding: 0px;
@@ -344,14 +352,17 @@ button {
 
 p {
     padding-left: 25px;
+    padding-right: 10px
 }
 
 h2 {
     padding-left: 25px;
+    padding-right: 10px
 }
 
 ul {
-    padding-left: 60px
+    padding-left: 60px;
+    padding-right: 10px
 }
 
 #improving-text {
@@ -470,12 +481,45 @@ ul {
     h1 {
         font-size: 25pt;
     }
+
+    #nav-nie-logo {
+        margin-left: 0%;
+
+    }
+}
+
+@media (max-width: 1200px) {
+
+    /* #quick-read-title {
+        width: 40%;
+    } */
+
+    h1 {
+        font-size: 25pt;
+    }
+
+    #nisra-header-logo {
+        margin-left: 20%
+    }
+
+     #nav-nie-logo {
+        margin-left: 35%
+    }
+
 }
 
 @media (max-width: 992px) {
     /* #quick-read-title {
         width: 40%;
     } */
+
+     #nisra-header-logo {
+        margin-left: 20%
+    }
+
+     #nav-nie-logo {
+        padding-left: 17%
+    }
 
     .button-row {
         margin-right: 0px;
@@ -485,17 +529,11 @@ ul {
         min-width: 150px;
     }
 
-    #nav-aig-logo {
-        /* width: 80%;
-        height: 40%; */
-        aspect-ratio: initial;
-        margin-top: 20px;
-    }
-
 
     .gauge-row {
         font-size: smaller;
     }
+
 
 }
 
@@ -526,19 +564,14 @@ ul {
         margin-left: 25%
     }
 
-    /* #nav-aig-logo {
-        aspect-ratio: initial;
-        height: 35px;
-        padding-left: 15%;
+    #nie-header-logo {
+        margin-left: -10%;
     }
 
-    #nav-nie-logo {
-        aspect-ratio: initial;
-        max-height: 100px;
-        min-height: 80px;
-        padding-top: 2%;
-        margin-right: 17%
-    } */
+    #nisra-header-logo {
+        margin-left: -10%;
+    }
+
 
     button {
         min-width: 150px;
@@ -546,7 +579,7 @@ ul {
 }
 
 .col-8 {
-    margin-left: 20px
+    margin-left: 0px
 }
 
 .tint-row {
@@ -829,30 +862,34 @@ footer {
 #nisra-header-logo {
     max-height: 50px;
     margin-top: 15px;
-    margin-left: 20%
+    /* margin-left: 20%; */
 }
 
 @media (max-width: 992px) {
+
 #nisra-header-logo {
-    margin-left: 2%;
     height: 30px;
     margin-bottom: 10px;
  }
+
  #nav-nie-logo {
     height: 35px;
-    margin-left: 25%
+    margin-left: 10%
  }   
+
  .top-menu-item {
-    min-width: 130px;
+    min-width: 110px;
  }
+
  .button-row {
     justify-content: center;
     padding-left: 15px;
  }
 
- main {
+ /* main {
     padding-right: 15px;
- }
+ } */
+ 
 }
 
 
