@@ -142,7 +142,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "In 2024, the mean nitrogen dioxide level was 25.9μg/m3. NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic. From 2021 to 2024, emission levels have remained at a similar concentration.",
+               improved: "In 2025, the mean nitrogen dioxide level was 27.2μg/m3. NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic. From 2021 to 2024, emission levels have remained at a similar concentration with an increase to  27.2μg/m3 recorded in the most recent year.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -161,8 +161,8 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2024. High nutrient (dissolved inorganic nitrogen) levels were responsible for 10 of the 12 water bodies failing to achieve good condition.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "Ten water bodies (40 per cent) have been assessed at good or better ecological status in 2025. Excessive levels of nutrients were responsible for 40 per cent of water bodies not achieving good ecological status. Specific pollutants such as the pesticide permethrin are also elements responsible for water bodies failing to achieve good ecological status. All of the water bodies that failed to achieve good status were either transitional (estuarine) waters or coastal sea loughs suggesting catchment-based point and diffuse inputs to these waters.",
                insufficient: ""
             }
          },
@@ -180,7 +180,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder",
                no_change: "This commentary is a placeholder",
-               worsened: "In 2024/25 54.3 per cent of features within protected sites were in favourable condition which is lower than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
+               worsened: "In 2025/26 52.0 per cent of features within protected sites were in favourable condition which is lower than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time. It should be noted that NIEA has commenced a programme of more detailed Common Standards Monitoring for terrestrial species features which continued into 2025/26. Reporting on some species feature assemblages or groups is now more closely aligned to the niche habitat requirements of those species groups. These changes are in line with Common Standards Monitoring recommendations and has resulted in the number of reported features increasing.",
                insufficient: ""
             }
          },
@@ -216,7 +216,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The indicator shows that the percentage of households with accessible natural space within 400 metres has decreased since the comparision year 2023. 47.8 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2025.",
+               worsened: "The indicator shows that the percentage of households with accessible natural space within 400 metres has decreased since the comparision year 2023. 48.0 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2026.",
                insufficient: ""
             }
          },
