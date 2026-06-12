@@ -86,7 +86,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -116,14 +116,14 @@
       ]
     },
     "note": [
-      "[b]Trust in the NI Assembly[/b] \r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of the population aged 16+ who said they tend to trust the Northern Ireland Assembly, or trust it a great deal. For this indicator a higher figure is better. \r\n\r\n[b]Source[/b] \r\nPublic Awareness of and Trust in Official Statistics \r\n[url=https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos]https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nIn 2020, the data collection ran for an additional three months (October 2020 to March 2021) to achieve the required sample size. Data collection also changed from face-to-face to telephone interviewing for 2020 and 2021, with both data collection modes used from 2022. \r\n\r\n[b]Further Information[/b] \r\n1. In 2019 and 2023, respondents were asked whether they trusted elected bodies, such as the NI Assembly or the UK Parliament as the NI Assembly was suspended at this time. \r\n2. The Public Awareness and Trust in Official Statistics survey only ran in ‘even’ years prior to 2019. Results are not available for 2018, due to an irreparable issue with the source data.\r\n3. You can view and download confidence intervals on the [url=product/TINIA]NISRA Data Portal[/url].\r\n4. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
+      "[b]Trust in the NI Assembly[/b] \r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of the population aged 16+ who said they tend to trust the Northern Ireland Assembly, or trust it a great deal. For this indicator a higher figure is better. \r\n\r\n[b]Source[/b] \r\nPublic Awareness of and Trust in Official Statistics \r\n[url=https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos]https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nIn 2020, the data collection ran for an additional three months (October 2020 to March 2021) to achieve the required sample size. Data collection also changed from face-to-face to telephone interviewing for 2020 and 2021, with both data collection modes used from 2022. \r\n\r\n[b]Further Information[/b] \r\n1. Data for 2025 is currently available at Northern Ireland level only. Subpopulation data for this indicator is expected to be available by autumn 2026.\r\n2. In 2019 and 2023, respondents were asked whether they trusted elected bodies, such as the NI Assembly or the UK Parliament as the NI Assembly was suspended at this time. \r\n3. The Public Awareness and Trust in Official Statistics survey only ran in ‘even’ years prior to 2019. Results are not available for 2018, due to an irreparable issue with the source data.\r\n4.The percentages for this indicator are estimated based on a sample of the population and so will have some uncertainty. As the sample size increases, the uncertainty decreases. When calculating the bounds for ‘improving’ and ‘worsening’ in the PfG indicator dashboard the sample sizes for the latest available year (2025) and the comparison year (2021) have been used. This means that we are 95% confident that the trend is ‘worsening’ or ‘improving’ compared to 2021 if the value for 2025 falls in these regions.\r\n5. You can view and download confidence intervals on the [url=product/TINIA]NISRA Data Portal[/url].\r\n6. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
     "size": [1, 11, 11],
-    "updated": "2026-04-09T15:47:28",
+    "updated": "2026-06-12T9:30:00",
     "value": [null, 39.6, 29.6, null, null, null, null, null, null, null, 25.6, null, null, null, null, null, null, null, null, null, null, null, null, 33.7, 36.8, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 20.7, 17.2, 19.4, 19.8, 23.8, 21.1, 22.9, null, 25.2, 24.9, null, 38.7, 25.3, null, null, null, 27.3, null, null, null, 27.4, null, 26.5, 32.6, null, null, 42.5, 34.1, null, 41.8, 21.4, null, 33, 22.4, 13.9, 13.5, 13, 34.4, 15.2, 27.4, 17.5, 23.7, 19.6, null, 44.5, 18.1, 16.5, 18, null, 15.4, 26.8, 22.9, 26.4, null, null, 34.9, 19, 26, null, null, null, 37.9, null, null, 26.6],
     "version": "2.0"
   },

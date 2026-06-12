@@ -7,7 +7,7 @@
         "category": {
           "index": "INDCOASTQ",
           "label": {
-            "INDCOASTQ": "Number of coastal water bodies in good ecological condition"
+            "INDCOASTQ": "Number of coastal water bodies in good ecological status"
           },
           "unit": {
             "INDCOASTQ": {
@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "index": ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
           "label": {
             "2015": "2015",
             "2016": "2016",
@@ -32,7 +32,8 @@
             "2021": "2021",
             "2022": "2022",
             "2023": "2023",
-            "2024": "2024"
+            "2024": "2024",
+            "2025": "2025"
           }
         },
         "label": "Year"
@@ -105,15 +106,15 @@
       ]
     },
     "note": [
-      "[b]Coastal water condition[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of coastal water bodies in good ecological condition\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]Due to restrictions imposed as a result of the Covid-19 pandemic, some condition monitoring was impacted during 2020.\r\n\r\n[b]Further information[/b]\r\n1. The assessment does not include chemical pollutants."
+      "[b]Coastal water condition[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of coastal water bodies in good ecological status. For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19\r\n[/b]Due to restrictions imposed as a result of the Covid-19 pandemic, some condition monitoring was impacted during 2020.\r\n\r\n[b]Further information[/b]\r\n1. Note that this indicator has been revised in May 2026 to measure ecological status as opposed to ecological condition and cannot be compared to the previous information published on the PfG Wellbeing Framework Dashboard.\r\n2. This revised indicator is based on monitoring data for a variety of biotic (e.g. flora and fauna) and abiotic (e.g. dissolved oxygen, nutrients, specific pollutants) components.\r\n3. The indicator now aligns with the Water Framework Directive (WFD) definitions for ecological status and includes specific pollutants in the assessment of good status."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 10, 1],
-    "updated": "2025-06-05T9:30:00",
-    "value": [12, 11, 14, 13, 13, 14, 13, 13, 13, 13],
+    "size": [1, 11, 1],
+    "updated": "2026-06-12T9:30:00",
+    "value": [9, 8, 10, 10, 13, 12, 10, 10, 10, 10, 10],
     "version": "2.0"
   },
   "id": {}

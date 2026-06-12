@@ -21,11 +21,12 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2023", "2024", "2025"],
+          "index": ["2023", "2024", "2025", "2026"],
           "label": {
             "2023": "2023",
             "2024": "2024",
-            "2025": "2025"
+            "2025": "2025",
+            "2026": "2026"
           }
         },
         "label": "Year"
@@ -75,7 +76,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": true,
+      "exceptional": false,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -105,15 +106,15 @@
       ]
     },
     "note": [
-      "[b]Outdoor recreation[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of households with accessible natural space within 400 metres. The indicator includes accessible natural space spanning two hectares or more, as well as off-road trails throughout Northern Ireland. It encompasses natural spaces accessible to the public with permission from the landowners, including urban and rural parks, forests, beaches, and off-road trails.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDuring the Covid-19 pandemic people relied on outdoor physical activities for their daily exercise. This highlighted the need for safe, high quality, accessible and welcoming natural spaces and places.\r\n\r\n[b]Further information[/b]\r\n1. Includes accessible natural space over two hectares and off-road routes, such as urban and country parks, forests, beaches and walking trails."
+      "[b]Outdoor recreation[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of households with accessible natural space within 400 metres. The indicator includes accessible natural space spanning two hectares or more, as well as off-road trails throughout Northern Ireland. It encompasses natural spaces accessible to the public with permission from the landowners, including urban and rural parks, forests, beaches, and off-road trails. For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDuring the Covid-19 pandemic people relied on outdoor physical activities for their daily exercise. This highlighted the need for safe, high quality, accessible and welcoming natural spaces and places.\r\n\r\n[b]Further information[/b]\r\n1. Includes accessible natural space over two hectares and off-road routes, such as urban and country parks, forests, beaches and walking trails.\r\n2. Please note that as the GreenspaceNI Map has gone through further refinements and upgrades to data accuracy, the entire time series has been revised."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 3, 8],
-    "updated": "2025-08-12T12:35:10",
-    "value": [47.9, 64.6, 52.7, 37.8, 38, 45.8, 63.1, 19.2, 47.9, 64.6, 52.8, 37.7, 37.9, 45.7, 63, 19.3, 47.8, 64.6, 52.7, 37.7, 37.8, 45.6, 62.9, 19.3],
+    "size": [1, 4, 8],
+    "updated": "2026-06-12T9:30:00",
+    "value": [48.2, 65, 52.8, 38.7, 38.5, 45.5, 63.3, 19.7, 48.1, 65, 52.7, 38.6, 38.4, 45.4, 63.2, 19.6, 48, 64.9, 52.6, 38.5, 38.2, 45.3, 63.1, 19.6, 48, 65.1, 52.5, 38.6, 38.3, 45.1, 63, 19.8],
     "version": "2.0"
   },
   "id": {}
