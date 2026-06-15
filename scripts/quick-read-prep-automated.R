@@ -56,16 +56,6 @@ suppressWarnings({  # Turn off warnings
   
   # ---- Embed new JSON data sources ----
   
-  # performance.json
-  # perf_path <- "scripts/performance.json"
-  # perf_b64 <- base64encode(readBin(perf_path, "raw", file.info(perf_path)$size))
-  # perf_data_url <- paste0("data:application/json;base64,", perf_b64)
-  
-  # # performance-meta.json
-  # perf_meta_path <- "scripts/performance-meta.json"
-  # perf_meta_b64 <- base64encode(readBin(perf_meta_path, "raw", file.info(perf_meta_path)$size))
-  # perf_meta_data_url <- paste0("data:application/json;base64,", perf_meta_b64)
-  
   # domains_data.js
   domains_path <- "scripts/domains_data.js"
   domains_b64 <- base64encode(readBin(domains_path, "raw", file.info(domains_path)$size))
@@ -77,21 +67,6 @@ suppressWarnings({  # Turn off warnings
   # Read JS so we can replace any file path references with embedded data URLs
   js_code <- readLines(quick_js, warn = FALSE)
   
-  # Replace new JSON references in JS
-  # js_code <- gsub(
-  #   "scripts/performance.json",
-  #   perf_data_url,
-  #   js_code,
-  #   fixed = TRUE
-  # )
-  
-  # js_code <- gsub(
-  #   "scripts/performance-meta.json",
-  #   perf_meta_data_url,
-  #   js_code,
-  #   fixed = TRUE
-  # )
-  
   # Replace domains_data.js reference in JS
   js_code <- gsub(
     "scripts/domains_data.js",
@@ -100,14 +75,6 @@ suppressWarnings({  # Turn off warnings
     fixed = TRUE
   )
   
-  # Optional backward compatibility:
-  # if any old reference to updated.json still exists, replace it with performance.json
-  js_code <- gsub(
-    "scripts/updated.json",
-    perf_data_url,
-    js_code,
-    fixed = TRUE
-  )
   
   cat(js_code, file = quick_js, sep = "\n")
   
@@ -122,8 +89,6 @@ suppressWarnings({  # Turn off warnings
     index,
     fixed = TRUE
   )
-  
-
   
   
   # Embed SVGs in HTML

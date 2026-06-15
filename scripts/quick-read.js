@@ -538,29 +538,6 @@ async function renderSingleStatusGauge({
         }
     }
 
-    // Same anchor element as before
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) throw new Error(`No canvas with id '${canvasId}'`);
-
-    // Destroy old chart if one exists
-    if (canvas._chartInstance?.destroy) {
-        canvas._chartInstance.destroy();
-        canvas._chartInstance = null;
-    }
-
-    // Hide old canvas (since we can't place HTML inside it)
-    canvas.style.display = 'none';
-
-    // Create or reuse a tally container in the same location
-    let tallyContainer = document.getElementById(`${canvasId}__hexTally`);
-    if (!tallyContainer) {
-        tallyContainer = document.createElement('div');
-        tallyContainer.id = `${canvasId}__hexTally`;
-        tallyContainer.className = 'hex-tally-container';
-        canvas.insertAdjacentElement('afterend', tallyContainer);
-    }
-
-    // Build the hex item sequence
     const statusToType = {
         'improving': 'positive',
         'worsening': 'negative',
@@ -574,6 +551,57 @@ async function renderSingleStatusGauge({
         'no change': noChange,
         'insufficient data': insufficient
     };
+
+    const totalIndicators = Object.values(counts).reduce((sum, val) => sum + val, 0);
+
+    // Same anchor element as before
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) throw new Error(`No canvas with id '${canvasId}'`);
+
+    // Destroy old chart if one exists
+    if (canvas._chartInstance?.destroy) {
+        canvas._chartInstance.destroy();
+        canvas._chartInstance = null;
+    }
+
+    // Hide old canvas (since we can't place HTML inside it)
+    canvas.style.display = 'none';
+
+    // Create a wrapper to hold BOTH summary + hex grid
+    let wrapper = document.getElementById(`${canvasId}__wrapper`);
+
+    if (!wrapper) {
+        wrapper = document.createElement('div');
+        wrapper.id = `${canvasId}__wrapper`;
+        wrapper.className = 'hex-wrapper';
+
+        canvas.insertAdjacentElement('afterend', wrapper);
+    }
+
+    // Create or reuse summary
+    let summaryEl = document.getElementById(`${canvasId}__summary`);
+    if (!summaryEl) {
+        summaryEl = document.createElement('p');
+        summaryEl.id = `${canvasId}__summary`;
+        summaryEl.className = 'hex-summary';
+        wrapper.appendChild(summaryEl);
+    }
+
+    // Create or reuse tally container
+    let tallyContainer = document.getElementById(`${canvasId}__hexTally`);
+    if (!tallyContainer) {
+        tallyContainer = document.createElement('div');
+        tallyContainer.id = `${canvasId}__hexTally`;
+        tallyContainer.className = 'hex-tally-container';
+        wrapper.appendChild(tallyContainer);
+    }
+
+    summaryEl.textContent = `There are ${totalIndicators} indicator${totalIndicators === 1 ? '' : 's'} in this domain.`;
+
+    summaryEl.style.padding = "0px";
+
+    // Build the hex item sequence
+
 
     const effectiveOrder = includeInsufficient
         ? hexOrder
@@ -590,12 +618,20 @@ async function renderSingleStatusGauge({
 
     tallyContainer.innerHTML = hexMarkup || `<p>No indicators with usable status</p>`;
 
-    // Inline layout styling so it works immediately
-    tallyContainer.style.display = 'flex';
-    tallyContainer.style.flexWrap = 'wrap';
-    tallyContainer.style.gap = '0.5rem';
-    tallyContainer.style.alignItems = 'center';
+    const MAX_PER_ROW = 5;
+
+    // total number of hexes
+    const totalHex = effectiveOrder.reduce((sum, key) => sum + (counts[key] || 0), 0);
+
+    // compute required rows based on max 5 per row
+    const rows = Math.ceil(totalHex / MAX_PER_ROW);
+
+    tallyContainer.style.display = 'grid';
+    tallyContainer.style.gridAutoFlow = 'column';
+    tallyContainer.style.gridTemplateColumns = `repeat(${MAX_PER_ROW}, auto)`;
+    tallyContainer.style.gridTemplateRows = `repeat(${rows}, auto)`;
     tallyContainer.style.justifyContent = 'center';
+    tallyContainer.style.alignItems = 'center';
     tallyContainer.style.width = '100%';
 
     // Update bullet-point containers for all status groups
@@ -650,6 +686,9 @@ async function renderSingleStatusGauge({
     } else {
         insufficientSentence = "There are no indicators with insufficient data.";
     }
+
+    const currentHeight = tallyContainer.offsetHeight;
+    tallyContainer.style.height = `${currentHeight + 10}px`;
 
     const listTargets = [
         {
@@ -1154,17 +1193,17 @@ class KeyHex extends HTMLElement {
     const config = {
       positive: {
         class: "positive",
-        icon: "img/arrow-up-long-solid-full.svg",
+        icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20640%22%3E%3C!--!Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A%2F%2Ffontawesome.com%20License%20-%20https%3A%2F%2Ffontawesome.com%2Flicense%2Ffree%20Copyright%202026%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M342.6%2041.4C330.1%2028.9%20309.8%2028.9%20297.3%2041.4L169.3%20169.4C156.8%20181.9%20156.8%20202.2%20169.3%20214.7C181.8%20227.2%20202.1%20227.2%20214.6%20214.7L288%20141.3L288%20576C288%20593.7%20302.3%20608%20320%20608C337.7%20608%20352%20593.7%20352%20576L352%20141.3L425.4%20214.7C437.9%20227.2%20458.2%20227.2%20470.7%20214.7C483.2%20202.2%20483.2%20181.9%20470.7%20169.4L342.7%2041.4z%22%2F%3E%3C%2Fsvg%3E",
         iconId: "arrow-up"
       },
       negative: {
         class: "negative",
-        icon: "img/arrow-down-long-solid-full.svg",
+        icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20640%22%3E%3C!--!Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A%2F%2Ffontawesome.com%20License%20-%20https%3A%2F%2Ffontawesome.com%2Flicense%2Ffree%20Copyright%202026%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M297.4%20598.6C309.9%20611.1%20330.2%20611.1%20342.7%20598.6L470.7%20470.6C483.2%20458.1%20483.2%20437.8%20470.7%20425.3C458.2%20412.8%20437.9%20412.8%20425.4%20425.3L352%20498.7L352%2064C352%2046.3%20337.7%2032%20320%2032C302.3%2032%20288%2046.3%20288%2064L288%20498.7L214.6%20425.3C202.1%20412.8%20181.8%20412.8%20169.3%20425.3C156.8%20437.8%20156.8%20458.1%20169.3%20470.6L297.3%20598.6z%22%2F%3E%3C%2Fsvg%3E",
         iconId: "arrow-down"
       },
       neutral: {
         class: "neutral",
-        icon: "img/arrow-right-long-solid-full.svg",
+        icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20640%22%3E%3C!--!Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A%2F%2Ffontawesome.com%20License%20-%20https%3A%2F%2Ffontawesome.com%2Flicense%2Ffree%20Copyright%202026%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M598.6%20342.6C611.1%20330.1%20611.1%20309.8%20598.6%20297.3L470.6%20169.3C458.1%20156.8%20437.8%20156.8%20425.3%20169.3C412.8%20181.8%20412.8%20202.1%20425.3%20214.6L498.7%20288L64%20288C46.3%20288%2032%20302.3%2032%20320C32%20337.7%2046.3%20352%2064%20352L498.7%20352L425.3%20425.4C412.8%20437.9%20412.8%20458.2%20425.3%20470.7C437.8%20483.2%20458.1%20483.2%20470.6%20470.7L598.6%20342.7z%22%2F%3E%3C%2Fsvg%3E",
         iconId: "arrow-across"
       },
       insufficient: {
@@ -1198,17 +1237,17 @@ class KeyHexLarge extends HTMLElement {
     const config = {
       positive: {
         class: "positive",
-        icon: "img/arrow-up-long-solid-full.svg",
+        icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20640%22%3E%3C!--!Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A%2F%2Ffontawesome.com%20License%20-%20https%3A%2F%2Ffontawesome.com%2Flicense%2Ffree%20Copyright%202026%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M342.6%2041.4C330.1%2028.9%20309.8%2028.9%20297.3%2041.4L169.3%20169.4C156.8%20181.9%20156.8%20202.2%20169.3%20214.7C181.8%20227.2%20202.1%20227.2%20214.6%20214.7L288%20141.3L288%20576C288%20593.7%20302.3%20608%20320%20608C337.7%20608%20352%20593.7%20352%20576L352%20141.3L425.4%20214.7C437.9%20227.2%20458.2%20227.2%20470.7%20214.7C483.2%20202.2%20483.2%20181.9%20470.7%20169.4L342.7%2041.4z%22%2F%3E%3C%2Fsvg%3E",
         iconId: "arrow-up-large"
       },
       negative: {
         class: "negative",
-        icon: "img/arrow-down-long-solid-full.svg",
+        icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20640%22%3E%3C!--!Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A%2F%2Ffontawesome.com%20License%20-%20https%3A%2F%2Ffontawesome.com%2Flicense%2Ffree%20Copyright%202026%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M297.4%20598.6C309.9%20611.1%20330.2%20611.1%20342.7%20598.6L470.7%20470.6C483.2%20458.1%20483.2%20437.8%20470.7%20425.3C458.2%20412.8%20437.9%20412.8%20425.4%20425.3L352%20498.7L352%2064C352%2046.3%20337.7%2032%20320%2032C302.3%2032%20288%2046.3%20288%2064L288%20498.7L214.6%20425.3C202.1%20412.8%20181.8%20412.8%20169.3%20425.3C156.8%20437.8%20156.8%20458.1%20169.3%20470.6L297.3%20598.6z%22%2F%3E%3C%2Fsvg%3E",
         iconId: "arrow-down-large"
       },
       neutral: {
         class: "neutral",
-        icon: "img/arrow-right-long-solid-full.svg",
+        icon: "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20640%22%3E%3C!--!Font%20Awesome%20Free%207.1.0%20by%20%40fontawesome%20-%20https%3A%2F%2Ffontawesome.com%20License%20-%20https%3A%2F%2Ffontawesome.com%2Flicense%2Ffree%20Copyright%202026%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M598.6%20342.6C611.1%20330.1%20611.1%20309.8%20598.6%20297.3L470.6%20169.3C458.1%20156.8%20437.8%20156.8%20425.3%20169.3C412.8%20181.8%20412.8%20202.1%20425.3%20214.6L498.7%20288L64%20288C46.3%20288%2032%20302.3%2032%20320C32%20337.7%2046.3%20352%2064%20352L498.7%20352L425.3%20425.4C412.8%20437.9%20412.8%20458.2%20425.3%20470.7C437.8%20483.2%20458.1%20483.2%20470.6%20470.7L598.6%20342.7z%22%2F%3E%3C%2Fsvg%3E",
         iconId: "arrow-across-large"
       },
       insufficient: {

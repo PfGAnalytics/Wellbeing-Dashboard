@@ -286,7 +286,7 @@ button {
 
 .card-header {
     color: #FFFFFF;
-    background-color: #3878C5;
+    background-color: #008675;
     align-items: stretch;
     border-bottom: 0px;
 }
@@ -301,7 +301,7 @@ button {
 
 .card-subheader {
     color: #FFFFFF;
-    background-color: #3878C5;
+    background-color: #008675;
     padding: 0px 15px 0px 15px;
     display: flex;
     flex-direction: column;
@@ -352,7 +352,8 @@ button {
 
 p {
     padding-left: 25px;
-    padding-right: 10px
+    padding-right: 10px; 
+    font-size: 19px
 }
 
 h2 {
@@ -454,7 +455,7 @@ ul {
 .gauge-box, .all-domains-gauge-box {
   width: 100%;
   height: auto !important;
-  min-height: 240px;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -661,8 +662,6 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5px;
-    margin-right: 5px;
   }
 
 .key-hex-large.positive {
@@ -858,6 +857,9 @@ footer {
     margin-right: 40px
   }
 
+  .gauge-box {
+    justify-content: start;
+  }
 
 #nisra-header-logo {
     max-height: 50px;
