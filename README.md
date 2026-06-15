@@ -79,7 +79,8 @@ Documentation to outline the structure and processes needed to create or modify 
 | `ni_map.js` | JavaScript used to display NI LGD and Assembly Area maps |
 | `eq_groups.js` | JavaScript used to associating subpopulations with indicators |
 | `maps` | Folder containing original shape files for maps |
-| `datavis-prep-automated.R` | R script used to prepare the files for upload to the DataVis server |
+| `datavis-prep-automated.R` | R script used to prepare the dashboard for upload to the DataVis server |
+| `quick-read-prep-automated.R` | R script used to prepare the quick read for upload to the DataVis server |
 | `back-up-data-portal.R` | R script that automatically backs up the latest data on the data portal |
 | `indicator-performance-table.R` | R script used to generate an Excel file containing internal reporting on the status of indicators. This is also used as the data source for the quick read |
 | `*.svg, *.gif` | Logos, icons and placeholder images |
