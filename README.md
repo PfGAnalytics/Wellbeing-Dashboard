@@ -208,7 +208,7 @@ Commentary on indicator trends should be added to the [`domains_data.js`](script
 3. Make any changes to the code.
 4. Save changes, Stage changes, Commit changes and then Push changes to Github.
 5. Open R Studio by double clicking the `scripts.Rproj` file (using Windows Explorer not Visual Studio Code)
-6. Run the script `datavis-prep-automated.R` (Press <kbd>Ctrl</kbd>+<kbd>A</kbd> followed by <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) to embed JavaScript files, images and css stylesheets in the [`index.html`](scripts/index.html) file.
+6. Run the script `datavis-prep-automated.R` (Press <kbd>Ctrl</kbd>+<kbd>A</kbd> followed by <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) to embed JavaScript files, images and css stylesheets in the [`index.html`](index.html) file.
 7. This will automatically render a __new copy__ of `index.html` in a sub-folder named `dashboard-to-upload`. Upload __this copy__ of `index.html` to the Datavis server to the same location where it was previously hosted. 
 
 ### Testing phase :mortar_board:
@@ -227,6 +227,14 @@ When modifications have been made (new data or otherwise), carry out a systemati
 ### 'Live' check :sun_with_face:
 1. Once the dashboard has gone live, re-run the 'Testing phase' actions from above to ensure they have translated to the DataVis platform
 2. Perform checks on mobile devices as necessary to ensure functionality and accessibility
+
+## Quick read
+
+As described in the file structure, there are HTML, Javascript and CSS files for the quick read ([`quick-read.html`](quick-read.html), [`quick-read.js`](scripts/quick-read.js) and [`custom.css`](custom.css) respectively), as well as an R script for creating a self-contained version of the HTML file ([`quick-read-prep-automated.R`](scripts/quick-read-prep-automated.R)).
+
+The data source for the quick read is [`indicator-performance-table.xlsx`](indicator-performance-table.xlsx), which is updated by [`indicator-performance-table.R`](scripts/indicator-performance-table.R); this runs at the same time as the [`back-up-data-portal.R`](scripts/back-up-data-portal.R) script.
+
+A self-contained version of the HTML file can be created by running the [`quick-read-prep-automated.R`](scripts/quick-read-prep-automated.R) script, in the same way as [`datavis-prep-automated.R`](scripts/datavis-prep-automated.R) is used for the main dashboard. The resultant self-contained HTML will be saved to the same [`dashboard-to-upload`](dashboard-to-upload) folder.
 
 ## :warning: Troubleshooting
 - Chart isn't appearing
