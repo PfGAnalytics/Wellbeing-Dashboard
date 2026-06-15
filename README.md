@@ -66,10 +66,13 @@ Documentation to outline the structure and processes needed to create or modify 
 | File | Purpose  |
 | --- | --- |
 | `index.html` | The dashboard main page |
+| `quick-read.html` | The quick read main page|
 | `style.css` | Pre-defined styling for the dashboards - colours, fonts, sizing, spacing etc. |
+| `custom.css` | Pre-defined styling for the quick read - colours, fonts, sizing, spacing etc. |
 | `domains_data.js` | Additional indicator information |
 | `data_functions.js` | JavaScript functionality used for reading data from the Data Portal |
 | `navigation_functions.js` | JavaScript functionality used for navigation throughout dashboard |
+| `quick-read.js` | JavaScript functionality used to populate the quck read |
 | `cookies_script.js` | JavaScript functionality for cookies |
 | `config.js` | Setup script used to declare which data portal (pre-production or public) to read from |
 | `ni_map.js` | JavaScript used to display NI LGD and Assembly Area maps |
@@ -77,7 +80,7 @@ Documentation to outline the structure and processes needed to create or modify 
 | `maps` | Folder containing original shape files for maps |
 | `datavis-prep-automated.R` | R script used to prepare the files for upload to the DataVis server |
 | `back-up-data-portal.R` | R script that automatically backs up the latest data on the data portal |
-| `indicator-performance-table.R` | R script used to generate an Excel file containing internal reporting on the status of indicators |
+| `indicator-performance-table.R` | R script used to generate an Excel file containing internal reporting on the status of indicators. This is also used as the data source for the quick read |
 | `*.svg, *.gif` | Logos, icons and placeholder images |
 
 ### Data Input
