@@ -22,6 +22,7 @@
     - [Testing phase :mortar_board:](#testing-phase-mortar_board)
     - [Datavis hosting :computer:](#datavis-hosting-computer)
     - ['Live' check :sun_with_face:](#live-check-sun_with_face)
+  - [Quick read](#quick-read)
   - [:warning: Troubleshooting](#warning-troubleshooting)
     - [Troubleshooting Javascript](#troubleshooting-javascript)
       - [Opening Developer Tools](#opening-developer-tools)
