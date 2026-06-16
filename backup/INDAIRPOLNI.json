@@ -7,12 +7,12 @@
         "category": {
           "index": "INDAIRPOL",
           "label": {
-            "INDAIRPOL": "Annual mean urban traffic levels of nitrogen dioxide as measured by micorograms per cubic metre (?g/m3)"
+            "INDAIRPOL": "Annual mean urban traffic levels of nitrogen dioxide as measured by micrograms per cubic metre (?g/m3)"
           },
           "unit": {
             "INDAIRPOL": {
               "decimals": 1,
-              "label": "Micorograms per cubic metre  (?g/m3).",
+              "label": "Micrograms per cubic metre  (?g/m3).",
               "position": "end"
             }
           }
@@ -80,7 +80,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": false,
+      "exceptional": true,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -117,7 +117,7 @@
       "time": "TLIST(A1)"
     },
     "size": [1, 15, 1],
-    "updated": "2026-06-12T9:30:00",
+    "updated": "2026-06-16T14:23:29",
     "value": [37.7, 38.7, 36.6, 35.6, 33.1, 35.5, 33.4, 33.5, 31.4, 24.3, 26.3, 26.9, 26.7, 25.9, 27.2],
     "version": "2.0"
   },
