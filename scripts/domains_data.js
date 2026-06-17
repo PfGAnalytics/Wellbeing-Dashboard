@@ -187,7 +187,7 @@ var domains_data = {
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
             base_year: "2019",
-            ci: "0.206c",
+            ci: "0.216c",
             data: {
                NI: "INDGREENHGNI",
                AA: "",
@@ -196,7 +196,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "In 2023, the downward trend, in GHG emissions, continued to reflect the downward trend that was experienced in 2022.",
+               improved: "In 2024, greenhouse gas emissions remained at the same level as 2023, following the reductions seen in previous years, and continue to be below base year levels.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
