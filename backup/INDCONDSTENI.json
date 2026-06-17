@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24", "2024/25"],
+          "index": ["2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24", "2024/25", "2025/26"],
           "label": {
             "2016/17": "2016/17",
             "2017/18": "2017/18",
@@ -31,7 +31,8 @@
             "2021/22": "2021/22",
             "2022/23": "2022/23",
             "2023/24": "2023/24",
-            "2024/25": "2024/25"
+            "2024/25": "2024/25",
+            "2025/26": "2025/26"
           }
         },
         "label": "Financial year"
@@ -104,15 +105,15 @@
       ]
     },
     "note": [
-      "[b]Condition of protected sites[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of features within protected sites in favourable condition.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, condition monitoring was impacted during 2020.\r\n\r\n[b]Further information[/b]\r\n1. Includes both terrestrial and marine protected sites."
+      "[b]Condition of protected sites[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of features within protected sites in favourable condition. For this indicator a higher figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, condition monitoring was impacted during 2020.\r\n\r\n[b]Further information[/b]\r\n1. Includes both terrestrial and marine protected sites."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 9, 1],
-    "updated": "2025-06-05T9:30:00",
-    "value": [54.3, 55.2, 53.9, 54.8, 55, 54.7, 54.9, 55.1, 54.3],
+    "size": [1, 10, 1],
+    "updated": "2026-06-12T9:30:00",
+    "value": [54.3, 55.2, 53.9, 54.8, 55, 54.7, 54.9, 55.1, 54.3, 52],
     "version": "2.0"
   },
   "id": {}

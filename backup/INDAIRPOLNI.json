@@ -7,12 +7,12 @@
         "category": {
           "index": "INDAIRPOL",
           "label": {
-            "INDAIRPOL": "Annual mean roadside levels of nitrogen dioxide as measured by micorograms per cubic metre (μg/m3)"
+            "INDAIRPOL": "Annual mean urban traffic levels of nitrogen dioxide as measured by micrograms per cubic metre (?g/m3)"
           },
           "unit": {
             "INDAIRPOL": {
               "decimals": 1,
-              "label": "Micorograms per cubic metre (μg/m3)",
+              "label": "Micrograms per cubic metre  (?g/m3).",
               "position": "end"
             }
           }
@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "index": ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
           "label": {
             "2011": "2011",
             "2012": "2012",
@@ -36,7 +36,8 @@
             "2021": "2021",
             "2022": "2022",
             "2023": "2023",
-            "2024": "2024"
+            "2024": "2024",
+            "2025": "2025"
           }
         },
         "label": "Year"
@@ -79,7 +80,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": false,
+      "exceptional": true,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -109,15 +110,15 @@
       ]
     },
     "note": [
-      "[b]Air pollution \r\n\r\nHow do we measure this?[/b]\r\nAnnual mean roadside levels of nitrogen dioxide as measured by micrograms per cubic metre (μg/m3).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection and maintenance of air monitoring stations was negatively impacted during covid-19 restrictions.\r\n\r\n[b]Further Information[/b]\r\n1. The annual mean nitrogen dioxide concentration is the mean of measures taken at ten roadside/kerbside sites: Armagh Lonsdale Road, Belfast Newtownards Road, Belfast Ormeau Road, Belfast Stockman's Lane, Belfast Westlink Roden Street, Castlereagh Dundonald, Derry Dale's Corner, Downpatrick Roadside, Newtownabbey Antrim Road, North Down Holywood A2."
+      "[b]Air pollution \r\n\r\nHow do we measure this?[/b]\r\nAnnual mean urban traffic levels of nitrogen dioxide as measured by micrograms per cubic metre (μg/m3). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nData collection and maintenance of air monitoring stations was negatively impacted during covid-19 restrictions.\r\n\r\n[b]Further Information[/b]\r\n1. The annual mean nitrogen dioxide concentration is the mean of measures taken at ten urban traffic sites: Armagh Lonsdale Road, Belfast Newtownards Road, Belfast Ormeau Road, Belfast Stockman's Lane, Belfast Westlink Roden Street, Castlereagh Dundonald, Derry Dale's Corner, Downpatrick Roadside, Newtownabbey Antrim Road, North Down Holywood A2.\r\n2. Ormeau road site closed on 13 May 2025 due to development close to monitoring station. DAERA are working with Belfast City Council to relocate to a new site."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 14, 1],
-    "updated": "2025-06-05T9:30:00",
-    "value": [37.7, 38.7, 36.7, 35.6, 33.1, 35.5, 33.4, 33.5, 31.4, 24.3, 26.3, 26.9, 26.7, 25.9],
+    "size": [1, 15, 1],
+    "updated": "2026-06-16T14:23:29",
+    "value": [37.7, 38.7, 36.6, 35.6, 33.1, 35.5, 33.4, 33.5, 31.4, 24.3, 26.3, 26.9, 26.7, 25.9, 27.2],
     "version": "2.0"
   },
   "id": {}

@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "index": ["2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
           "label": {
             "2004": "2004",
             "2005": "2005",
@@ -43,7 +43,8 @@
             "2021": "2021",
             "2022": "2022",
             "2023": "2023",
-            "2024": "2024"
+            "2024": "2024",
+            "2025": "2025"
           }
         },
         "label": "Year"
@@ -116,15 +117,15 @@
       ]
     },
     "note": [
-      "[b]River water quality\r\n[/b]\r\n[b]How do we measure this?[/b]\r\nLevels of nutrients in our rivers as measured by soluble reactive phosphorus (mg/l).\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, river monitoring was affected with samples not taken in April and May and limited numbers taken in March and December of 2020.\r\n\r\n[b]Further information[/b]\r\n1. Soluble Reactive Phosphorus is measured at 93 surveillance rivers."
+      "[b]River water quality\r\n[/b]\r\n[b]How do we measure this?[/b]\r\nLevels of nutrients in our rivers as measured by soluble reactive phosphorus (mg/l). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Environment Statistics Report, Department of Agriculture, Environment and Rural Affairs\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report]https://www.daera-ni.gov.uk/articles/northern-ireland-environmental-statistics-report[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nDue to restrictions imposed as a result of the Covid-19 pandemic, river monitoring was affected with samples not taken in April and May and limited numbers taken in March and December of 2020.\r\n\r\n[b]Further information[/b]\r\n1. Soluble Reactive Phosphorus is measured at 93 surveillance rivers."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 21, 1],
-    "updated": "2025-06-05T9:30:00",
-    "value": [0.076, 0.083, 0.07, 0.066, 0.063, 0.049, 0.052, 0.058, 0.047, 0.053, 0.064, 0.059, 0.067, 0.066, 0.068, 0.063, 0.067, 0.071, 0.073, 0.062, 0.065],
+    "size": [1, 22, 1],
+    "updated": "2026-06-12T9:30:00",
+    "value": [0.076, 0.083, 0.07, 0.066, 0.063, 0.049, 0.052, 0.058, 0.047, 0.053, 0.064, 0.059, 0.067, 0.066, 0.068, 0.063, 0.067, 0.071, 0.073, 0.062, 0.065, 0.07],
     "version": "2.0"
   },
   "id": {}
