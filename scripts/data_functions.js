@@ -269,7 +269,7 @@ let latest_year = null;
 let latest_value = null;
 // Function below uses the api to fetch the data and plots it in a line chart
 // It also generates the baseline statement, the source information, the further information and how do we measure this
-// using information on the data portal. The two inputs to the function are a domain name "d" and indicator name "e"
+// using information on thes data portal. The two inputs to the function are a domain name "d" and indicator name "e"
 // The function is called inside a loop below which runs over all indicators to create all charts as the page loads
 async function createLineChart(d, e) {
 
@@ -432,6 +432,8 @@ async function createLineChart(d, e) {
       y_axis_label = "Average (mean) life satisfaction score";
    } else if (y_axis_label == "Percentage") {
       y_axis_label = "%"
+   }  else if (indicator.data.EQ == "INDLIFESATYPEQ") {
+      y_axis_label = "Average (mean) life satisfaction score"
    }
 
    // The following calculations set the ideal heights for the y axis as well as the green and red boxes
@@ -1151,6 +1153,7 @@ document.getElementById("ind-hex-container").innerHTML = hexDivHTML;
    } else {
       further_note = "Not available";
    }
+
 
    // The "Further Information" paragraph is then extracted from the larger text string:
    if (further_note != "Not available") {
@@ -3695,6 +3698,7 @@ async function drawMap() {
             further_note = "Not available";
          }
 
+
          if (further_note != "Not available") {
             further_note = further_note.slice(further_note.indexOf(further_string) + further_string.length);
             further_note = further_note.slice(further_note.indexOf("[/b]") + 4);
@@ -3709,9 +3713,11 @@ async function drawMap() {
       
                linked_text = link.slice(link.indexOf("]" ) + 1, link.indexOf("[/"));
                url = link.slice(link.indexOf("=") + 1, link.indexOf("]"));
+
                 if (url.includes("product") && !url.startsWith("https://data.nisra.gov.uk/")) {
                     url = "https://data.nisra.gov.uk/" + url;
                 }
+      
                further_note = further_note.replace(link, "<a href = '" + url + "' target = '_blank'>" + linked_text + "</a>")
       
             } 

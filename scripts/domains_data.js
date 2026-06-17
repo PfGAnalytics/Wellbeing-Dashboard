@@ -123,7 +123,7 @@ var domains_data = {
             }
          },
          "Small for gestational age": {
-            importance: "Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
+            importance: "The small for gestational age indicator reports babies born with a birth weight less than the 10th percentile taking into account a number of maternal characteristics. Birth weight that is not within normal ranges has a strong association with poor health outcomes in infancy, childhood and across the whole life course.",
             base_year: "2019",
             ci: 2.75,
             latest_update: "26-09-2025",
@@ -138,7 +138,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "In 2023, the percentage point gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas was 5.9 compared with 6.4 in 2019. The change was not statistically significant. It is important to note however that data for 2023 does not contain full regional coverage, for a full explanation, see ‘further information’.",
+               no_change: "In 2023, the percentage point gap between the percentage of babies found to be small for gestational age for those living in the most and least deprived areas was 6.1 compared with 6.4 in 2019. The change was not statistically significant.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -166,7 +166,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "In 2024, the mean nitrogen dioxide level was 25.9μg/m3. NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic. From 2021 to 2024, emission levels have remained at a similar concentration.",
+               improved: "In 2025, the mean nitrogen dioxide level was 27.2μg/m3. NO2 levels have shown a gradual reducing trend from 2011 to 2019. Emission dipped in 2020 to 24.3μg/m3 coinciding with restrictions implemented in response to the Covid-19 pandemic. From 2021 to 2024, emission levels have remained at a similar concentration with an increase to  27.2μg/m3 recorded in the most recent year.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -189,8 +189,8 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Thirteen water bodies (52 per cent) have been assessed at good or better ecological condition in 2024. High nutrient (dissolved inorganic nitrogen) levels were responsible for 10 of the 12 water bodies failing to achieve good condition.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "Ten water bodies (40 per cent) have been assessed at good or better ecological status in 2025. Excessive levels of nutrients were responsible for 40 per cent of water bodies not achieving good ecological status. Specific pollutants such as the pesticide permethrin are also elements responsible for water bodies failing to achieve good ecological status. All of the water bodies that failed to achieve good status were either transitional (estuarine) waters or coastal sea loughs suggesting catchment-based point and diffuse inputs to these waters.",
                insufficient: ""
             }
          },
@@ -212,14 +212,14 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder",
                no_change: "This commentary is a placeholder",
-               worsened: "In 2024/25 54.3 per cent of features within protected sites were in favourable condition which is lower than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time.",
+               worsened: "In 2025/26 52.0 per cent of features within protected sites were in favourable condition which is lower than the 54.8 per cent in favourable condition in 2019/20. Restoring features that are currently in unfavourable condition to favourable condition can take a long time. It should be noted that NIEA has commenced a programme of more detailed Common Standards Monitoring for terrestrial species features which continued into 2025/26. Reporting on some species feature assemblages or groups is now more closely aligned to the niche habitat requirements of those species groups. These changes are in line with Common Standards Monitoring recommendations and has resulted in the number of reported features increasing.",
                insufficient: ""
             }
          },
          "Greenhouse gas emissions": {
             importance: "Greenhouse gases are a key driver of climate change.  The continuation of climate changes will have adverse impacts on the nature of our summers and winters.  As such, these changes in weather patterns, along with rising sea levels will have bring risks to Northern Ireland’s ecosystem, economy and to its community as whole.",
             base_year: "2019",
-            ci: "0.206c",
+            ci: "0.216c",
             latest_update: "10-07-2025",
             next_update: "June 2026",
             map_commentary: "",
@@ -231,7 +231,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "In 2023, the downward trend, in GHG emissions, continued to reflect the downward trend that was experienced in 2022.",
+               improved: "In 2024, greenhouse gas emissions remained at the same level as 2023, following the reductions seen in previous years, and continue to be below base year levels.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -256,7 +256,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The indicator shows that the percentage of households with accessible natural space within 400 metres has decreased since the comparision year 2023. 47.8 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2025.",
+               worsened: "The indicator shows that the percentage of households with accessible natural space within 400 metres has decreased since the comparision year 2023. 48.0 per cent of households are within 400m of greenspace >2ha, and off-road trails in 2026.",
                insufficient: ""
             }
          },
@@ -284,7 +284,7 @@ var domains_data = {
          },
          "Renewable electricity": {
             importance: "The decarbonisation of electricity generation contributes to the reduction of greenhouse gas emissions, to enhancing energy security of supply and affordability in addition to the wider contribution to the economy of the associated developments.",
-            base_year: "2020",
+            base_year: "2021",
             ci: 0,
             latest_update: "18-03-2025",
             next_update: "March 2026",
@@ -297,9 +297,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
+               improved: "Generation of renewable electricity as a proportion of gross final electricity consumption rose from 42% in 2021 to 47% in 2025, with an average of 46% over the 5 year period 2021-2025. Between 2021 and 2025, electricity consumption fell by approximately 8%, while renewable generation only increased by around 3% in the same time period.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The growth in the proportion of electricity consumption that is renewably generated from 17.3% in 2013 to 49.2% in 2020 has not been sustained in recent years and has averaged 46.2% between 2020 and 2024.",
+               worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
@@ -320,7 +320,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained almost the same with 0.065 mg/l reported in 2024 compared to 0.063 mg/l reported in 2019. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
+               no_change: "Levels of soluble reactive phosphorus (SRP) in the 93 Surveillance Rivers have remained similar with 0.07 mg/l reported in 2025 compared to 0.063 mg/l reported in 2019. Over the longer term, levels of soluble reactive phosphorus in the 93 Surveillance Rivers have increased from the low of 0.047 mg/l reported in 2012.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -519,8 +519,8 @@ var domains_data = {
          },
          "Mental health": {
             importance: "GHQ-12 is a measure of current mental health among the population. Poor mental health while not only affecting social circumstances such as employment, family relationships and community participation can also be a key factor in determining physical wellbeing as well.",
-            base_year: "2019/20",
-            ci: 1.3,
+            base_year: "2021/22",
+            ci: 1.4,
             latest_update: "20-05-2025",
             next_update: "January 2026",
             map_commentary: "",
@@ -533,15 +533,15 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "",
-               no_change: "In 2023/24, around a fifth (19%) of respondents had a high GHQ12 score, which could indicate a mental health problem. The proportion of males and females with a high GHQ12 score is unchanged from 2019/20. Considering the longer term trend, the proportion scoring highly is at a similar level to 2010/11. There was a significant worsening during the pandemic however the latest findings suggest an overall return to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas. Further information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available online: <a href = 'https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2F2026-01%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK' target = '_blank'>from this link. </a>",
+               improved: "In 2024/25, 18% of respondents had a high GHQ12 score, which could indicate a mental health problem, compared with 21% in 2021/22. The proportion of males (15%) with a high GHQ12 score is similar to 2021/22, while for females it fell from 25% in 2021/22 to 20% in 2024/25.  Considering the longer term trend, the proportion scoring highly is down from 20% in 2010/11. There was a significant worsening during the pandemic, however findings have returned to pre-pandemic levels. There are differences between subgroups of the population and a consistent gap remains between the most and least deprived areas. Further information on how to interpret the survey estimates and detail on the sample size and confidence intervals is available online: <a href = 'https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.health-ni.gov.uk%2Fsites%2Fdefault%2Ffiles%2F2026-05%2Fghq12-pfg-tables-hsni.xlsx&wdOrigin=BROWSELINK' target = '_blank'>from this link. </a>",
+               no_change: "",
                worsened: "",
                insufficient: ""
             }
          },
          "Preventable deaths": {
             importance: "Preventable deaths relate to causes of deaths that could potentially be avoided by the public health interventions in the broadest sense.",
-            base_year: "2015-19",
+            base_year: "2016-20",
             ci: 4.8,
             latest_update: "24-09-2025",
             next_update: "March 2026",
@@ -557,7 +557,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "The preventable mortality rate increased by 8 deaths per 100,000 population from 169 deaths per 100,000 population in 2015-19 to 177 deaths per 100,000 population in 2019-23. The change was statistically significant.",
+               worsened: "The preventable mortality rate increased by 8 deaths per 100,000 population from 173 deaths per 100,000 population in 2016-20 to 181 deaths per 100,000 population in 2020-24. The change was statistically significant.",
                insufficient: ""
             }
          },
@@ -578,8 +578,8 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2023/24, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to COVID-19. For 2023/24, 2022/23 and 2021/22 gaps can be seen in participation in sport and physical activity between the people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for people living in urban and rural areas.",
-               worsened: "This commentary is a placeholder.",
+               no_change: "This commentary is a placeholder.",
+               worsened: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. While comparisons can be made between 2021/22 and 2024/25, it is important to note that participation in sport and physical activity in 2021/22 would have been impacted by closures due to Covid-19. Between 2021/22 and 2024/25 there have been consistent gaps in participation in sports and physical activity between adults with a disability compared with those without, adults with dependants compared with those without and for people living in the least and most deprived areas.",
                insufficient: ""
             }
          }
@@ -590,8 +590,8 @@ var domains_data = {
        mission: "People",
        indicators: {
          "Arts and cultural activities": {
-            importance: "This indicator provides the proportion of adults in Northern Ireland who engage with art and cultural activities.  There is a correlation between engagement in cultural activities and higher levels of personal wellbeing.",
-            base_year: "2021/22",
+            importance: "This indicator provides the proportion of adults in Northern Ireland who engage with art and cultural activities.  There is a correlation between engagement in arts/cultural activities and higher levels of personal wellbeing.",
+            base_year: "2022/23",
             ci: 2,
             latest_update: "20-12-2024",
             next_update: "December 2025",
@@ -605,7 +605,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of COVID-19. While comparisons can be made between 2021/22 and 2023/24, it is important to note that engaging in arts/cultural activities in 2021/22 would have been impacted by closures due to COVID-19. In 2023/24, 2022/23 and 2021/22 gaps can be seen between males and females, people with a disability compared with those without and people with dependants compared with those without. Gaps also exist for most and least deprived areas and urban and rural areas.",
+               improved: "The comparison year has been set to 2022/23 due to changes in the data collection method as a result of, and closures due to, Covid-19. While comparisons can be made between 2021/22 and 2024/25, it is important to note that engaging in arts/cultural activities in 2021/22 would have been impacted by closures due to Covid-19, hence a comparison year of 2022/23 has been selected. There have been consistent gaps between males and females, people with a disability compared with those without, people with dependants compared with those without and between adults living in the most and least deprived areas.",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -732,9 +732,9 @@ var domains_data = {
          },
          "External sales rate": {
             importance: 'Exports are a major driver of our economy. It is generally accepted that that businesses that export are more productive, create more jobs, and pay higher wages. DFE has developed a "Trade and Investment Strategy for a 10x economy" in which they note "Trade can support the ambitions of our \'10X Economy\' across the board: inclusive, green growth; diffusion of technology and innovation; and increased competitiveness. That is because trade is an engine of growth, without which the ability of our economy to grow would be constrained by its relatively small domestic market. Put simply, the more we trade the more competitive and prosperous we become."',
-            base_year: "2019",
+            base_year: "2020",
             AOS: true,
-            ci: 0.7,
+            ci: 0.6,
             latest_update: "23-12-2024",
             next_update: "March 2026",
             map_commentary: "",
@@ -746,16 +746,16 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "There has been no statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",               
+               improved: "There has been a statistically significant change in the proportion of survey eligible businesses that sell outside Northern Ireland.",
+               no_change: "This commentary is a placeholder.",               
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Good jobs": {
-            importance: 'Providing all workers and their families with a decent and secure income is an important priority for the Department for the Economy.  Increasing the proportion of Good Jobs will be essential in helping to address pay gaps in society and delivering economic and social change.',
-            base_year: null,
-            ci:1,
+            importance: 'Providing all workers and their families with a decent and secure income is an important priority for the Department for the Economy.  Increasing the proportion of good jobs will be essential in helping to address pay gaps in society and delivering economic and social change.',
+            base_year: "2021",
+            ci: 1.3,
             latest_update: "11-02-2025",
             next_update: "February 2026",
             map_commentary: "",
@@ -768,10 +768,10 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "",
+               improved: "The percentage of good jobs in Northern Ireland has increased from 66.9% in 2021 to 69.0% in 2025.",
                no_change: "",               
                worsened: "",
-               insufficient: "Criteria for reporting change are yet to be agreed for this indicator"
+               insufficient: ""
             }
          },   
          // "Local graduates in narrow STEM subjects": {
@@ -849,7 +849,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2024 data is now at a series high. Over the third quarter of 2025, economic output in Northern Ireland increased by 1.0%,  mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2025 data is now at a series high. Over the fourth quarter of 2025, economic output in Northern Ireland increased by 0.2%,  mainly driven by increased activity in the Construction sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -1255,8 +1255,8 @@ var domains_data = {
          },
          "Trust in the media": {
             importance: "Integrity of the media is important in ensuring that people can access reliable information about matters of public interest that impact them. Trust in the media contributes to democratic wellbeing which can impact directly on personal wellbeing.",
-            base_year: "2020",
-            ci: 3.9,
+            base_year: "2021",
+            ci: 4,
             latest_update: "28-10-2025",
             next_update: "October 2026",
             map_commentary: "",
@@ -1270,14 +1270,14 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "However, trust in the media was lower in 2024, than in 2022 and 2023.",
+               no_change: "However, trust in the media was lower in 2025 than in 2022 and 2023. It was similar to 2024.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
          },
          "Trust in the NI Assembly": {
             importance: "Trust in elected representatives is central to a functioning, democratic society.  Lack of trust in elected representatives can discourage people from democratic participation and people can feel as though they do not have a voice in decisions that affect them.  This in turn can influence wellbeing.",
-            base_year: "2020",
+            base_year: "2021",
             ci: 3.8,
             latest_update: "28-10-2025",
             next_update: "October 2026",
@@ -1292,7 +1292,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "However, trust in the NI Assembly was higher in 2024 than in 2022 and 2023.",
+               no_change: "However, trust in the NI Assembly was higher in 2025 than in 2022 and 2023. It was similar to 2024.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
