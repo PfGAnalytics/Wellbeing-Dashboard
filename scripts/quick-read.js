@@ -684,7 +684,7 @@ async function renderSingleStatusGauge({
     } else if (insufficient === 1) {
         insufficientSentence = `${insufficient} has insufficient data:`;
     } else {
-        insufficientSentence = "There are no indicators with insufficient data.";
+        insufficientSentence = "";
     }
 
     const currentHeight = tallyContainer.offsetHeight;
