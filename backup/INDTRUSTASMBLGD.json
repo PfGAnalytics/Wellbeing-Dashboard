@@ -1,0 +1,131 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "class": "dataset",
+    "dimension": {
+      "STATISTIC": {
+        "category": {
+          "index": "INDTRUSTASMB",
+          "label": {
+            "INDTRUSTASMB": "Percentage who tend to trust the NI Assembly, or trust it a great deal"
+          },
+          "unit": {
+            "INDTRUSTASMB": {
+              "decimals": 1,
+              "label": "%",
+              "position": "end"
+            }
+          }
+        },
+        "label": "Statistic"
+      },
+      "TLIST(A1)": {
+        "category": {
+          "index": ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+          "label": {
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023",
+            "2024": "2024"
+          }
+        },
+        "label": "Year"
+      },
+      "LGD2014": {
+        "category": {
+          "index": ["N09000001", "N09000002", "N09000003", "N09000004", "N09000005", "N09000006", "N09000007", "N09000008", "N09000009", "N09000010", "N09000011"],
+          "label": {
+            "N09000001": "Antrim and Newtownabbey",
+            "N09000002": "Armagh City, Banbridge and Craigavon",
+            "N09000003": "Belfast",
+            "N09000004": "Causeway Coast and Glens",
+            "N09000005": "Derry City and Strabane",
+            "N09000006": "Fermanagh and Omagh",
+            "N09000007": "Lisburn and Castlereagh",
+            "N09000008": "Mid and East Antrim",
+            "N09000009": "Mid Ulster",
+            "N09000010": "Newry, Mourne and Down",
+            "N09000011": "Ards and North Down"
+          }
+        },
+        "label": "Local Government District"
+      }
+    },
+    "extension": {
+      "matrix": "INDTRUSTASMBLGD",
+      "language": {
+        "code": "en",
+        "name": "English"
+      },
+      "elimination": {
+        "LGD2014": {}
+      },
+      "contact": {
+        "name": "PfG Analytics, The Executive Office",
+        "email": "pfganalytics@executiveoffice-ni.gov.uk",
+        "phone": "+44 (0)28 90522402"
+      },
+      "subject": {
+        "code": 110,
+        "value": "Living peacefully"
+      },
+      "product": {
+        "code": "TINIA",
+        "value": "Trust in the NI Assembly"
+      },
+      "official": true,
+      "copyright": {
+        "name": "Crown Copyright",
+        "code": "NISRA",
+        "href": "https://www.nisra.gov.uk/crown-copyright"
+      },
+      "exceptional": false,
+      "reservation": false,
+      "archive": false,
+      "experimental": false,
+      "analytical": false
+    },
+    "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBLGD/PX/2013/en",
+    "id": ["STATISTIC", "TLIST(A1)", "LGD2014"],
+    "label": "Indicator - Trust in the NI Assembly",
+    "link": {
+      "alternate": [
+        {
+          "type": "text/csv",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBLGD/CSV/1.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBLGD/JSON-stat/2.0/en"
+        },
+        {
+          "type": "application/json",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBLGD/JSON-stat/1.0/en"
+        },
+        {
+          "type": "application/base64",
+          "href": "https://ws-data.nisra.gov.uk/public/api.restful/PxStat.Data.Cube_API.ReadDataset/INDTRUSTASMBLGD/XLSX/2007/en"
+        }
+      ]
+    },
+    "note": [
+      "[b]Trust in the NI Assembly[/b] \r\n\r\n[b]How do we measure this?[/b]\r\nPercentage of the population aged 16+ who said they tend to trust the Northern Ireland Assembly, or trust it a great deal. For this indicator a higher figure is better. \r\n\r\n[b]Source[/b] \r\nPublic Awareness of and Trust in Official Statistics \r\n[url=https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos]https://www.nisra.gov.uk/statistics/government/public-awareness-and-confidence-trust-official-statistics-pcos[/url] \r\n\r\n[b]Impact of Covid-19[/b] \r\nIn 2020, the data collection ran for an additional three months (October 2020 to March 2021) to achieve the required sample size. Data collection also changed from face-to-face to telephone interviewing for 2020 and 2021, with both data collection modes used from 2022. \r\n\r\n[b]Further Information[/b] \r\n1. Data for 2025 is currently available at Northern Ireland level only. Subpopulation data for this indicator is expected to be available by autumn 2026.\r\n2. In 2019 and 2023, respondents were asked whether they trusted elected bodies, such as the NI Assembly or the UK Parliament as the NI Assembly was suspended at this time. \r\n3. The Public Awareness and Trust in Official Statistics survey only ran in ‘even’ years prior to 2019. Results are not available for 2018, due to an irreparable issue with the source data.\r\n4.The percentages for this indicator are estimated based on a sample of the population and so will have some uncertainty. As the sample size increases, the uncertainty decreases. When calculating the bounds for ‘improving’ and ‘worsening’ in the PfG indicator dashboard the sample sizes for the latest available year (2025) and the comparison year (2021) have been used. This means that we are 95% confident that the trend is ‘worsening’ or ‘improving’ compared to 2021 if the value for 2025 falls in these regions.\r\n5. You can view and download confidence intervals on the [url=product/TINIA]NISRA Data Portal[/url].\r\n6. Some figures have been suppressed due to small sample sizes (less than 100 respondents)."
+    ],
+    "role": {
+      "metric": "STATISTIC",
+      "time": "TLIST(A1)"
+    },
+    "size": [1, 11, 11],
+    "updated": "2026-06-12T9:30:00",
+    "value": [null, 39.6, 29.6, null, null, null, null, null, null, null, 25.6, null, null, null, null, null, null, null, null, null, null, null, null, 33.7, 36.8, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 20.7, 17.2, 19.4, 19.8, 23.8, 21.1, 22.9, null, 25.2, 24.9, null, 38.7, 25.3, null, null, null, 27.3, null, null, null, 27.4, null, 26.5, 32.6, null, null, 42.5, 34.1, null, 41.8, 21.4, null, 33, 22.4, 13.9, 13.5, 13, 34.4, 15.2, 27.4, 17.5, 23.7, 19.6, null, 44.5, 18.1, 16.5, 18, null, 15.4, 26.8, 22.9, 26.4, null, null, 34.9, 19, 26, null, null, null, 37.9, null, null, 26.6],
+    "version": "2.0"
+  },
+  "id": {}
+}
