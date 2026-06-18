@@ -1059,7 +1059,7 @@ async function createLineChart(d, e) {
    chart_canvas.id = id + "-canvas";
    canvas_div.appendChild(chart_canvas);
 
-   all_dates_row = document.createElement("row");
+   all_dates_row = document.createElement("div");
    all_dates_row.classList.add("dates-row");
 
    // Create a div for updated on date div
@@ -1079,8 +1079,9 @@ async function createLineChart(d, e) {
    // Place all divs in chart_div and place chart_div in document
    chart_div.appendChild(chart_title_div);
    chart_div.appendChild(canvas_row);
-   chart_div.appendChild(all_dates_row);
+   
    document.getElementById("line-chart-container").appendChild(chart_div);
+   document.getElementById("line-chart-container").appendChild(all_dates_row);
 
    // Place chart in canvas
    if (indicator.base_year == null) {

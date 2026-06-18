@@ -1039,6 +1039,7 @@ footer {
     height: 553px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 #share, #download-dropdown, #share-map {
@@ -2059,6 +2060,7 @@ tr {
     position: fixed;
     z-index: 99;
     right: 0px;
+    -webkit-user-select: none;
     user-select: none;
     bottom: 0px;
     color: #ffffff;
