@@ -1021,10 +1021,6 @@ footer {
     height: 500px;
  }
 
- #chart-title {
-    margin-top: 15px;
- }
-
 #footer-container {
     width: 1200px;
 }
@@ -1197,6 +1193,7 @@ footer {
  .chart-title {
     width: 100%;
     text-align: center;
+    margin-top: 30px;
  }
 
  .map {
