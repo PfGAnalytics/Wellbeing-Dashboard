@@ -94,7 +94,7 @@
         "code": "NISRA",
         "href": "https://www.nisra.gov.uk/crown-copyright"
       },
-      "exceptional": false,
+      "exceptional": true,
       "reservation": false,
       "archive": false,
       "experimental": false,
@@ -124,14 +124,14 @@
       ]
     },
     "note": [
-      "[b]Greenhouse gas emissions[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNet greenhouse gas emissions as measured by million tonnes carbon dioxide equivalents (MTCO2e). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-greenhouse-gas-inventory]Northern Ireland Greenhouse Gas Inventory[/url], Department of Agriculture, Environment and Rural Affairs\r\n\r\n[b]Impact of Covid-19[/b]\r\nIn 2024, emissions remained unchanged from 2023, with increases in domestic transport and agriculture, reflecting factors such as continued recovery in travel demand and increased fertiliser use. These were offset by reductions in electricity supply, largely due to the removal of coal-fired power generation. Emissions in 2024 (18.4 MtCO2e) remain below those reported in 2020 (19.7 MtCO2e).\r\n\r\n[b]Further Information[/b]\r\n1. Figures are provided in Million tonnes Carbon Dioxide equivalents (MtCO2e).\r\n2. Confidence intervals are only available for the most recent published year of data.\r\n3. UK GHG Base Years are 1990 for carbon dioxide, methane and nitrous oxide; 1995 for fluorinated gases (NF3, HFCs, PFCs and SF6).\r\n4. The NI estimate for the UK GHG Base Year is 26.0 MtCO2e.\r\n5. The entire data series is revised each year.\r\n6. There was a major revision to the GHG inventory in 2019 to better represent peatland emissions. This resulted in an upward shift in overall emissions recorded from 1990-2019 to that previously recorded.\r\n7. Data have been revised to represent GWPs as outlined in IPCC Fifth Assessment Report."
+      "[b]Greenhouse gas emissions[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNet greenhouse gas emissions as measured by million tonnes carbon dioxide equivalents (MtCO2e). For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\n[url=https://www.daera-ni.gov.uk/articles/northern-ireland-greenhouse-gas-inventory]Northern Ireland Greenhouse Gas Inventory[/url], Department of Agriculture, Environment and Rural Affairs\r\n\r\n[b]Impact of Covid-19[/b]\r\nIn 2024, emissions remained unchanged from 2023, with increases in domestic transport and agriculture, reflecting factors such as continued recovery in travel demand and increased fertiliser use. These were offset by reductions in electricity supply, largely due to the removal of coal-fired power generation. Emissions in 2024 (18.4 MtCO2e) remain below those reported in 2020 (19.7 MtCO2e).\r\n\r\n[b]Further Information[/b]\r\n1. Figures are provided in Million tonnes Carbon Dioxide equivalents (MtCO2e).\r\n2. Confidence intervals are only available for the most recent published year of data.\r\n3. UK GHG Base Years are 1990 for carbon dioxide, methane and nitrous oxide; 1995 for fluorinated gases (NF3, HFCs, PFCs and SF6).\r\n4. The NI estimate for the UK GHG Base Year is 26.0 MtCO2e.\r\n5. The entire data series is revised each year.\r\n6. There was a major revision to the GHG inventory in 2019 to better represent peatland emissions. This resulted in an upward shift in overall emissions recorded from 1990-2019 to that previously recorded.\r\n7. Data have been revised to represent GWPs as outlined in IPCC Fifth Assessment Report."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
     "size": [1, 29, 1],
-    "updated": "2026-06-18T9:30:00",
+    "updated": "2026-06-18T14:53:21",
     "value": [26, 26.2, 25.8, 26.2, 25.8, 26.1, 23.9, 24.1, 24, 25.2, 25.6, 24.4, 24, 22.1, 22.7, 21.8, 22.1, 22.3, 21.5, 21.9, 22, 21.3, 21, 20.6, 19.7, 20.2, 19.3, 18.4, 18.4],
     "version": "2.0"
   },
