@@ -912,7 +912,7 @@ var domains_data = {
             base_year: "2021/22",
             ci: 1.1,
             latest_update: "29-10-2025",
-            next_update: "TBC",
+            next_update: "Summer 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -952,7 +952,7 @@ var domains_data = {
             base_year: "2021/22",
             ci: 1.3,
             latest_update: "29-10-2025",
-            next_update: "TBC",
+            next_update: "Summer 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1018,7 +1018,7 @@ var domains_data = {
             base_year: "2021/22",
             ci: 1.2,
             latest_update: "29-10-2025",
-            next_update: "TBC",
+            next_update: "Summer 2026",
             map_commentary: "",
             ni_line: true,
              data: {
