@@ -331,7 +331,7 @@ var domains_data = {
             ci: 1.4,
             AOS: true,
             latest_update: "09-01-2026",
-            next_update: "July 2026",
+            next_update: "Summer 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -456,7 +456,7 @@ var domains_data = {
             ci: 3.6,
             AOS: true,
             latest_update: "09-01-2026",
-            next_update: "July 2026",
+            next_update: "Summer 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -639,7 +639,7 @@ var domains_data = {
             AOS: true,
             ci: 4,
             latest_update: "31-07-2025",
-            next_update: "June 2026",
+            next_update: "Summer 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -818,7 +818,7 @@ var domains_data = {
             base_year: "2019",
             ci: 0.1,
             latest_update: "04-07-2025",
-            next_update: "June 2026",
+            next_update: "Summer 2026",
             map_commentary: "",
             data: {
                NI: "INDLABPRDTNI",
@@ -839,7 +839,7 @@ var domains_data = {
             base_year: "2021",
             ci: 1,
             latest_update: "27-03-2026",
-            next_update: "June 2026",
+            next_update: "Summer 2026",
             map_commentary: "",
             data: {
                NI: "INDNICEINI",
@@ -1140,7 +1140,7 @@ var domains_data = {
             base_year: "2021/22",
             ci: 0,
             latest_update: "10-08-2025",
-            next_update: "June 2026",
+            next_update: "Summer 2026",
             map_commentary: "",
             ni_line: false,
             data: {
