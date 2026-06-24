@@ -1024,7 +1024,7 @@ async function getIndicatorCounts({
       improving: `${counts.improving} indicators were improving`,
       noChange: `${counts.noChange} were not changing`,
       worsening: `${counts.worsening} were getting worse`,
-      insufficient: `${counts.insufficient} did not have enough data to report on`
+      insufficient: `${counts.insufficient} did not have enough data to report on change`
     }
   };
 }
