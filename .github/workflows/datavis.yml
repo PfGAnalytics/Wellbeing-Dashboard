@@ -18,15 +18,19 @@ jobs:
             any::httpuv
 
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Run data portal backup
+      - name: Dashboard to self-contained html
         run: Rscript -e 'source("scripts/datavis-prep-automated.R")'
+
+      - name: Quickread to self-contained html
+        run: Rscript -e 'source("scripts/quick-read-prep-automated.R")'
 
       - name: Commit results
         run: |
           git config --local user.email " "
           git config --local user.name "PfGAnalytics"
           git add dashboard-to-upload/pfg_wellbeing_dashboard.html
+          git add dashboard-to-upload/quick-read.html
           git commit -m 'HTML output created' || echo "No changes to commit"
           git push origin || echo "No changes to commit"

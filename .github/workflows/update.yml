@@ -38,7 +38,8 @@ jobs:
           git config --local user.email " "
           git config --local user.name "PfGAnalytics"
           git add backup
-          git add 'scripts/updated.json'
+          git add 'scripts/performance.json'
+          git add 'scripts/performance-meta.json'
           git add 'indicator-performance-table.xlsx'
           git commit -m 'Data updated' || echo "No changes to commit"
           git push origin || echo "No changes to commit"

@@ -153,36 +153,47 @@ write_json(
 
 # Combine latest results with historical data to keep a running record
 
+
 summary_history <- readRDS("backup/indicator-performance-summary.RDS") %>% 
-  filter(date != today()) %>% 
-  bind_rows(summary)
+  filter(date != today())
 
-saveRDS(summary_history, file = "backup/indicator-performance-summary.RDS")
+if (day(today()) == 1) {
+  
+  summary_history <- summary_history %>% 
+    bind_rows(summary)
+  
+  saveRDS(summary_history, file = "backup/indicator-performance-summary.RDS")
+  
+  # Create an excel version of the data
+  wb <- createWorkbook()
+  
+  addWorksheet(wb, "indicator-performance")
+  
+  writeDataTable(wb,
+                 "indicator-performance",
+                 summary_history)
+  
+  addStyle(wb,
+           "indicator-performance",
+           cols = 1,
+           rows = 1:nrow(summary_history) + 1,
+           style = createStyle(numFmt = "dd/mm/yyyy"))
+  
+  addStyle(wb,
+           "indicator-performance",
+           cols = 4:8,
+           rows = 1:nrow(summary_history) + 1,
+           style = createStyle(halign = "right"),
+           gridExpand = TRUE)
+  
+  setColWidths(wb, "indicator-performance", c(2, 3, 10), c(20, 50, 255))
+  
+  saveWorkbook(wb, "indicator-performance-table.xlsx", overwrite = TRUE)
+  # openXL("indicator-performance-table.xlsx")
+  
+}
 
-# Create an excel version of the data
-wb <- createWorkbook()
 
-addWorksheet(wb, "indicator-performance")
 
-writeDataTable(wb,
-               "indicator-performance",
-               summary_history)
 
-addStyle(wb,
-         "indicator-performance",
-         cols = 1,
-         rows = 1:nrow(summary_history) + 1,
-         style = createStyle(numFmt = "dd/mm/yyyy"))
-
-addStyle(wb,
-         "indicator-performance",
-         cols = 4:8,
-         rows = 1:nrow(summary_history) + 1,
-         style = createStyle(halign = "right"),
-         gridExpand = TRUE)
-
-setColWidths(wb, "indicator-performance", c(2, 3, 10), c(20, 50, 255))
-
-saveWorkbook(wb, "indicator-performance-table.xlsx", overwrite = TRUE)
-# openXL("indicator-performance-table.xlsx")
 
