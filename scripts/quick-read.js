@@ -680,9 +680,9 @@ async function renderSingleStatusGauge({
 
     let insufficientSentence;
     if (insufficient > 1) {
-        insufficientSentence = `${insufficient} have insufficient data:`;
+        insufficientSentence = `${insufficient} did not have enough data to report on change:`;
     } else if (insufficient === 1) {
-        insufficientSentence = `${insufficient} has insufficient data:`;
+        insufficientSentence = `${insufficient} did not have enough data to report on change:`;
     } else {
         insufficientSentence = "";
     }
