@@ -1,5 +1,7 @@
 on:
    workflow_dispatch:
+   push:
+     branches: main
    schedule:
      - cron: "30 8,9,16,17 * * 1-5"
 
