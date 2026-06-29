@@ -485,7 +485,7 @@ async function renderSingleStatusGauge({
     domainName,
     status, // retained for backward compatibility; still unused for the visual
     domainsDataUrl = 'scripts/domains_data.js', // retained for backward compatibility; no longer needed
-    updatesUrl = 'https://raw.githubusercontent.com/PfGAnalytics/Wellbeing-Dashboard/refs/heads/dev/scripts/performance.json',
+    updatesUrl = 'https://raw.githubusercontent.com/PfGAnalytics/Wellbeing-Dashboard/refs/heads/main/scripts/performance.json',
     includeInsufficient = false,
     hexOrder = ['improving', 'no change', 'worsening', 'insufficient data']
 } = {}) {
@@ -975,7 +975,7 @@ async function renderSingleStatusGauge({
 async function getIndicatorCounts({
   includeInsufficientInDenominator = true
 } = {}) {
-  const performance = await loadUpdates('https://raw.githubusercontent.com/PfGAnalytics/Wellbeing-Dashboard/refs/heads/dev/scripts/performance.json');
+  const performance = await loadUpdates('https://raw.githubusercontent.com/PfGAnalytics/Wellbeing-Dashboard/refs/heads/main/scripts/performance.json');
 
   const counts = {
     improving: 0,
@@ -1276,7 +1276,7 @@ customElements.define("key-hex-large", KeyHexLarge);
 
 
 
-fetch('https://raw.githubusercontent.com/PfGAnalytics/Wellbeing-Dashboard/refs/heads/dev/scripts/performance-meta.json')
+fetch('https://raw.githubusercontent.com/PfGAnalytics/Wellbeing-Dashboard/refs/heads/main/scripts/performance-meta.json')
   .then(res => res.json())
   .then(data => {
     const readableDate = new Date(data.last_run).toLocaleDateString('en-GB', {
