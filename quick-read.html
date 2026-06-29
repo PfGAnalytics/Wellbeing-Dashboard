@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+
+<!-- metadata section for the document - not shown -->
+
+<head>
+
+  <!-- title for the document, used for tab name, bookmarks etc -->
+  <title>Wellbeing Framework quick read</title>
+  <link rel="icon" type="image" href="img/Northern_Ireland_Executive_icon.svg">
+
+  <!-- description for the document - will show on search engines -->
+  <meta name="description"
+    content="This page has been created to give a simple overview of how the Northern Ireland Executive (NI Government) spends the money that it has been given">
+  <!-- use a specified set of characters for text -->
+  <meta charset="utf-8">
+  <!-- tells the browser that this page has been made with mobile usage in mind -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="https://www.nisra.gov.uk/sites/nisra.gov.uk/themes/nisra_theme/favicon.ico"
+    type="image/vnd.microsoft.icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="custom.css" rel="stylesheet">
+
+  <!-- scripts to import JavaScript libraries -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <script src = "scripts/config.js"></script>
+
+</head>
+
+<body onresize="responsiveFonts()">
+
+  <div id = "back-to-start" role = "region" on:click=goStart>
+      <a id = "back-to-start-link" href="#" tabindex="0">
+          Back to top
+          <img src = "img/cd-top-arrow.svg" style = "margin-bottom: 2px;">
+      </a>
+  </div>
+
+  <div id = "cookie-banner" role = "cookies-information"></div>
+  <div class="container">
+
+
+
+
+
+
+  <div class="container">
+    <div id="survey"
+         class="d-flex flex-column flex-sm-row justify-content-center text-center text-sm-start">
+
+      <span class="me-sm-1">
+        We welcome feedback from
+      </span>
+
+      <span>
+        users through our 
+        <a href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Society_wellbeing_quick_read"
+           style="color: #ffffff !important; text-decoration: underline;"
+           target="_blank" rel="noopener noreferrer">
+          short survey
+        </a>
+      </span>
+
+    </div>
+  </div>
+
+
+
+
+
+
+  <header class="mb-3">
+    <div class="nav-tint">
+      <div class="container" style="padding-bottom: 5px;">
+        <div class="row tint-row col-8" style="justify-content: space-between">
+           <div class="col-12 col-xl-3" style = "padding-top: 15px"><a target="_blank" rel="noopener noreferrer"><img src="img/Northern_Ireland_Executive_logo.svg" class="img-fluid" id="nav-nie-logo" alt="Northern Ireland Executive logo"></a></div>
+           <div class= "col-12 col-xl-6" id="quick-read-title"><h1><b>Wellbeing Framework quick read</b></h1></div>
+           <div class="col-12 col-xl-3 justify-content-center justify-content-xl-end"><a target="_blank" rel="noopener noreferrer"><img src="img/nisra-only-white.svg" class= "img-fluid px-5" id="nisra-header-logo"alt="NISRA logo"></a></div>
+        </div>
+        </div>
+        </div>
+
+      
+
+  </header>
+
+  <main>
+
+    <div class="button-row">
+      <button id = "home-btn" class = "top-menu-item"  onclick="window.location.href='index.html'">
+         <img class="top-menu-logo" src="img/house-user-solid-full.svg">
+         Home</button>
+      <button id="share" class="top-menu-item" type="share" alt="Share this page">
+         <img class="top-menu-logo" src="img/share-solid-full.svg">
+        Share</button>
+      <button id="download" class="top-menu-item" type="button" aria-label="Download this page as PDF" data-html2canvas-ignore="true">
+        <img class="top-menu-logo" src="img/download.png" alt="">
+        Download
+      </button>
+
+    </div>
+
+    <h2>Why do we have a wellbeing framework?</h2>
+    <p class = "mb-1">The government has set out its plan for running the country up to 2027.  This is called the Programme for Government (PfG).  The Wellbeing Framework sits alongside this plan.</p>
+    <p class = "mb-1">The framework acts like a health check for us as a society. It helps show how life is going in Northern Ireland. It looks at facts and figures about our community, environment and economy. These are important to allow our society to flourish.</p>
+
+    <h2>Key factors for wellbeing</h2>
+    <p class = "mb-1">The framework looks at different areas of wellbeing called 'domains'. Improving these domains helps us all to lead healthy, safe and fulfilling lives.</p>
+    <h2>What can the domains tell us?</h2>
+    <p class = "mb-1">Each domain of wellbeing has some indicators that we can measure. By looking at these indicators and domains, we can:</p>
+    <ul>
+      <li>see how Northern Ireland is doing across different areas of life</li>
+      <li>track progress over time, so we can see if things are getting better</li>
+      <li>highlight areas that need more work to improve people’s lives</li>
+      <li>provide evidence to support decision making in government</li>
+      </ul>
+      <p class = "mt-1">This document tells you how well we are doing for each of the domains. It uses trusted facts and figures.</p>
+
+    <div class = "full-width-banner">Overall performance</div>
+    <p class = "mt-3">There are 52 indicators in the wellbeing framework. The latest data (as at <span id="last-updated"></span>) showed:</p>
+
+
+
+
+    <div class="hex-row">
+      <key-hex type="positive"></key-hex>
+      <p class = "mb-0" id="improving-text"></p>
+    </div>
+
+    <div class="hex-row">
+      <key-hex type="neutral"></key-hex>
+      <p class = "mb-0" id="nochange-text"></p>
+    </div>
+    
+    <div class="hex-row">
+      <key-hex type="negative"></key-hex>
+      <p class = "mb-0" id="worsening-text"></p>
+    </div>
+
+
+
+    <div class="hex-row">
+      <key-hex type="insufficient"></key-hex>
+      <p class = "mb-0" id="insufficient-text"></p>
+    </div>
+
+
+
+
+     <!-- <div id = "top-container" class="col-sm-6" style="padding-bottom:20px;">
+      <div id="domain-card" class="card h-100 all-domains-card" style="width: 100%;">
+        <div class="card-header" style="padding-top:10px;">
+          <div class="col">
+            <h2 class="card-title">
+              <span style="font-size:20px; font-weight:700; line-height:1.1;">
+                All Domains Performance
+              </span>
+            </h2>
+          </div>
+        </div>
+        <div class="domain-card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="all-domains-gauge-row" aria-label="All Domains performance gauges">
+                
+        
+                 <div class="all-domains-gauge-box">
+                  <canvas id="all_improving_gauge" class="gauge-canvas"></canvas>
+                </div>
+                
+
+                 <div class="all-domains-gauge-box">
+                  <canvas id="all_nochange_gauge" class="gauge-canvas"></canvas>
+                </div>
+                
+
+                 <div class="all-domains-gauge-box">
+                  <canvas id="all_worsening_gauge" class="gauge-canvas"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div> -->
+
+    <div class="row">
+      <!-- beginning of thriving children -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-left: 10px; padding-top: 20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Thriving Children
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                Our children and young people have the best start in life
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Thriving Children performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="tc_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="tc_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="tc_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="tc_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="tc_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of thriving children -->
+
+      <!-- beginning of cleaner environment -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-right: 10px; padding-top: 20px;">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Cleaner Environment
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                We live and work sustainably - protecting, improving and enjoying the environment
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Cleaner Environment performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="ce_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="ce_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="ce_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="ce_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="ce_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of cleaner environment -->
+
+      <!-- beginning of equal society -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-left: 10px">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Equal Society
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                We have an equal and inclusive society where everyone is valued and treated with respect
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Equal Society performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="es_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="es_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="es_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="es_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="es_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of equal society -->
+
+      <!-- beginning of healthier lives -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-right: 10px">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Healthier Lives
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                We all enjoy long, healthy active lives
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Healthier Lives performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="hl_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="hl_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="hl_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="hl_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="hl_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of healthier lives -->
+
+      <!-- beginning of brighter futures -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-left: 10px">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Brighter Futures<span class="dfc_current_year_value"></span>
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                Everyone can reach their potential
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Brighter Futures performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="bf_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="bf_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="bf_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="bf_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="bf_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of brighter futures -->
+
+      <!-- beginning of stronger economy -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-right: 10px">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Stronger Economy<span class="dfe_current_year_value"></span>
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                Our economy is globally competitive, regionally balanced and carbon-neutral
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Stronger Economy performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="se_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="se_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="se_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="se_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="se_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of stronger economy -->
+
+      <!-- beginning of safer communities -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-left: 10px">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Safer Communities<span class="daera_current_year_value"></span>
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                Everyone feels safe, we all protect the law and each other
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Safer Communities performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="sc_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="sc_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="sc_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="sc_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="sc_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of safer communities -->
+
+      <!-- beginning of caring society -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-right: 10px">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Caring Society<span class="dof_current_year_value"></span>
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                We have a caring society that supports people throughout their lives
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Caring Society performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="cs_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="cs_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="cs_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="cs_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="cs_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of caring society -->
+
+      <!-- beginning of better homes -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-left: 10px">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Better Homes<span class="teo_current_year_value"></span>
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                Everyone has access to good quality, affordable and sustainable homes that are appropriate for their needs
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Better Homes performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="bh_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="bh_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="bh_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="bh_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="bh_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of better homes -->
+
+      <!-- beginning of living peacefully -->
+      <div class="col-sm-6" style="padding-bottom:20px; padding-right: 10px">
+        <div class="domain-card card h-100" style="width: 100%;">
+          <div class="card-header" style="padding-top:10px;">
+            <div class="col">
+              <h2 class="card-title">
+                <span style="font-size:22px; font-weight:700; line-height:1.1;">
+                  Living Peacefully<span class="dof_current_year_value"></span>
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="card-subheader">
+            <h3 class="card-subtitle">
+              <span style="font-size:20px; font-weight:500; line-height:1.1;">
+                We have a lasting peace, ensuring a stable and harmonious society for all
+              </span>
+            </h3>
+          </div>
+          <div class="domain-card-body">
+            <!-- full-width gauge -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="gauge-row gauge-row--single" aria-label="Living Peacefully performance gauge">
+                  <div class="gauge-box gauge-box--full">
+                    <canvas id="lp_improving_gauge" class="gauge-canvas gauge-canvas--full"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- bullet points back in 3 columns -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="lp_improving_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="lp_nochange_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="lp_worsening_inds"></div>
+              </div>
+              <div class="col-sm-12">
+                <div class="lp_insufficient_inds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end of living peacefully -->
+    </div>
+
+    <div class = "full-width-banner">Further information</div>
+    <p class = "mt-3" style = "padding-left: 5px">More information is available on the Programme for Government Wellbeing Framework.</p>
+    <div class = "row">
+    <ul class = "col-8">
+      <li> You can visit the
+        <a href="https://datavis.nisra.gov.uk/executiveofficeni/pfg_wellbeing_dashboard.html" target="_blank" rel="noopener noreferrer">
+          PfG Wellbeing Framework dashboard</a>  for more information. It has more detail on the indicators, what they are telling us and why they are important.
+      </li>
+      <li>
+        <a href="https://www.northernireland.gov.uk/publications/programme-government-2024-2027-our-plan-doing-what-matters-most-documents" target="_blank" rel="noopener noreferrer">
+          The Programme for Government</a> is available for everyone to read
+      </li>
+      
+      <li>
+        <a href="https://www.northernireland.gov.uk/publications/programme-government-annual-report-2025-2026" target="_blank" rel="noopener noreferrer">
+          The PfG Annual Report</a> provides a clear overview of the progress made on the goals of the government's plan.
+      </li>
+    </ul>
+    <div class="col-sm-2"><a target="_blank" rel="noopener noreferrer"><img src="img/AIG-colour2.png" id="aig-footer-logo" alt="AIG logo"></a></div>
+    </div>
+  </main>
+       <footer>
+              <div id="footer-container" role = "contentinfo">
+                  <!-- 4 column section -->
+                   <div class="row mb-3" style="margin-top: 20px;">
+                      <div class="col-6 col-md-3" style="height: 170px;">
+                          <h3 class="h5" style="font-weight: 700; font-size: 18px; color: #ffffff">Data Tools</h3>
+                          <ul class="list-unstyled">
+                              <li><a href="https://explore.nisra.gov.uk/local-stats/">Local Statistics Explorer</a></li>
+                              <li><a href="https://data.nisra.gov.uk">Data Portal</a></li>
+                              <li><a href="https://build.nisra.gov.uk/en/">Census Flexible Table Builder</a></li>
+                          </ul>
+                      </div>
+                
+                      <div class="col-6 col-md-3" style="height: 170px;">
+                          <h3 class="h5" style="font-weight: 700; font-size: 18px; color: #ffffff">Corporate</h3>
+                          <ul class="list-unstyled">
+                              <li><a href="https://www.nisra.gov.uk/">NISRA Website</a></li>
+                              <li><a href="https://www.nisra.gov.uk/about-us/careers">Careers</a></li>
+                              <li><a href="https://www.nisra.gov.uk/contact">Contact</a></li>
+                          </ul>
+                      </div>
+                
+                      <div class="col-6 col-md-3" style=" height: 170px;">
+                          <h3 class="h5" style="font-weight: 700; font-size: 18px; color: #ffffff;">Follow</h3>
+                          <ul class="list-inline">
+                              <li class="list-inline-item">
+                                  <a href="https://www.facebook.com/nisra.gov.uk">
+                                      <img id="facebook-logo" src="img/facebook-brands-solid-full.svg" title="Facebook" role="img" />
+                                  </a>
+                              </li>
+                              <li class="list-inline-item">
+                                  <a href="https://x.com/NISRA/">
+                                      <img id="x-logo" src="img/x-twitter-brands-solid-full.svg" title="Twitter/X" role="img" />
+                                  </a>
+                              </li>
+                              <li class="list-inline-item">
+                                  <a href="https://www.youtube.com/user/nisrastats">
+                                      <img id="youtube-logo" src="img/youtube-brands-solid-full.svg" title="YouTube" role="img" />
+                                  </a>
+                              </li>
+                              <li class="list-inline-item">
+                                  <a href="https://www.linkedin.com/company/northern-ireland-statistics-and-research-agency/">
+                                      <img id="linkedin-logo" src="img/linkedin-in-brands-solid-full.svg" title="LinkedIn" role="img" />
+                                  </a>
+                              </li>
+                              <li class="list-inline-item">
+                                  <a href="https://www.instagram.com/nisra.gov.uk/">
+                                      <img id="instragram-logo" src="img/instagram-brands-solid-full.svg" title="Instagram" role="img" />
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                
+                      <div class = "col-6 col-md-3">
+                          <div id = "nisra-logo-container" style="height: 170px;">
+                              <a href = "https://www.nisra.gov.uk/">
+                                  <img id = "footer-nisra-logo" src = "img/nisra-only-white.svg" style="justify-content: center" title ="NISRA" role ="img" />
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+            
+                  <!-- Horizontal list with separators -->
+                   <ul class="list-inline footer-links text-center mb-2">
+                      <li class="list-inline-item"><a href="https://www.nisra.gov.uk/crown-copyright">© Crown Copyright</a></li>
+                      <li class="list-inline-item">|</li>
+                      <li class="list-inline-item"><a href="https://www.nisra.gov.uk/terms-and-conditions">Terms and conditions</a></li>
+                      <li class="list-inline-item">|</li>
+                      <li class="list-inline-item"><a href="https://www.nisra.gov.uk/cookies">Cookies</a></li>
+                      <li class="list-inline-item">|</li>
+                      <li class="list-inline-item"><a href="https://www.nisra.gov.uk/nisra-privacy-notice">Privacy</a></li>
+                      <li class="list-inline-item">|</li>
+                      <li class="list-inline-item"><a href="https://datavis.nisra.gov.uk/dissemination/accessibility-statement-visualisations.html">Accessibility Statement</a></li>
+                  </ul>
+              </div>
+          </div>
+      </footer>
+
+      <script type="text/javascript" src="scripts/quick-read.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script type="text/javascript" src="scripts/quick-read.js"></script>
+
+
+
+</body>
+
+
+
+</html>
+
+<!-- charts and functions  -->
+
+<script>
+
+  // chart text defaults before resize
+  // if(window.outerWidth > 700) {
+  //   Chart.defaults.font.size = 16;
+  //   overall_y_label.style.fontSize = "15px";
+  // };
+  if (window.outerWidth <= 700 && window.outerWidth > 600) {
+    Chart.defaults.font.size = 14;
+  };
+  if (window.outerWidth <= 600 && window.outerWidth > 450) {
+    Chart.defaults.font.size = 12;
+
+  };
+  if (window.outerWidth < 450) {
+    Chart.defaults.font.size = 8;
+  };
+
+  // register datalabels plugin for chart js
+  // Chart.register(ChartDataLabels);
+  // set datalables global defaults if needed
+  // Chart.defaults.set('plugins.datalabels', {
+  // });
+
+
+  // 4) Render the gauge and keep the returned Chart instance in a variable.
+
+  
+  
+
+</script>
+
+<script type="text/javascript" src="scripts/cookies_script.js"></script>

@@ -1,5 +1,7 @@
 on:
    workflow_dispatch:
+   push:
+     branches: main
    schedule:
      - cron: "30 8,9,16,17 * * 1-5"
 
@@ -18,17 +20,26 @@ jobs:
             any::jsonlite
             any::stringr
             any::purrr
+            any::openxlsx
+            any::lubridate
+            any::V8
 
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Run data portal backup
         run: Rscript -e 'source("scripts/back-up-data-portal.R")'
+
+      - name: Run Indicator Summary
+        run: Rscript -e 'source("scripts/indicator-performance-table.R")'
 
       - name: Commit results
         run: |
           git config --local user.email " "
           git config --local user.name "PfGAnalytics"
           git add backup
+          git add 'scripts/performance.json'
+          git add 'scripts/performance-meta.json'
+          git add 'indicator-performance-table.xlsx'
           git commit -m 'Data updated' || echo "No changes to commit"
           git push origin || echo "No changes to commit"

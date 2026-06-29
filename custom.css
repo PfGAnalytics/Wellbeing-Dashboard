@@ -1,0 +1,966 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14pt;
+    background-color: #F2F2F2;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+}
+
+#cookie-banner {
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color:#142062;
+	color:#FFF;
+	padding: 10px;
+	text-align: left;
+    display: none;
+}
+
+.cookies-infobar {
+    color: #fff;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    text-align: left;
+}
+
+.cookies-infobar.cookies-infobar_accepted {
+    display: none;
+}
+
+.cookies-infobar_wrapper {
+    margin: 10px;
+}
+
+.cookies-infobar a {
+    color: inherit;
+}
+
+.cookies-infobar_btn {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #0f8243;
+  text-decoration: none;
+  color: #fff;
+  text-transform: none;
+  font-size: 1.2em;
+}
+
+a.cookies-infobar_btn, a.cookies-infobar_btn_reject {
+	color: #fff !important;
+}
+
+a.cookiesbarlink {
+    color: #2990FF;
+}
+
+.cookies-infobar_btn_reject {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #6d6e72;
+  text-decoration: none;
+  border-radius: 3px;
+  color: #fff;
+  text-transform: none;
+  font-size: 1.2em;
+}
+
+.nav-tint {
+    background-color: #142062;
+}
+
+.tint-row {
+    max-width: 1200px;
+    display: block;
+}
+
+
+h1 {
+    color: white;
+    font-size: 28pt;
+}
+
+#header-row {
+    background-color: #142062;
+    border-radius: 10px;
+}
+
+header {
+    width: 100%;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    align-items: center;
+    align-items: stretch;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nisrafooter ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    font-size: 14pt;
+    font-weight:700;
+}
+
+.nisrafooter li {
+    margin-right: 18px;
+    display: inline-block;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.nisrafooter a {
+    color: #FFFFFF !important;
+}
+
+.cc-li a {
+    color: #FFFFFF !important;
+}
+
+.flex-list-footer {
+    position: relative;
+    margin: 20px 0em 0em 0em; /* T R B L */
+    display:block;
+    overflow: hidden;
+}
+
+.cc-li {
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: 0.25em 0;
+    padding: 0 1em;
+    text-align: center;
+    border-left: 1px solid #ccc;
+    font-size: 14pt;
+    list-style-type: none;
+}
+
+footer {
+    color: #ffffff;
+    background-color: #142062;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    padding-bottom: 28px;
+}
+
+#footer-container {
+    width: 1200px;
+}
+
+/* #nisra-logo-container {
+    height: 210px;
+    display: flex;
+    flex: 0 1 550px;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 1200px;
+    min-width: 250px;
+} */
+
+
+#nisra-header-logo {
+  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
+  height: auto;
+}
+
+
+footer a {
+    color: #ffffff;
+    text-decoration: none !important;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+#footer-nisra-logo {
+    width: 250px;
+    filter: brightness(0) invert(1);
+    display: none;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0px;
+    max-width: 100%;
+    padding: 0px;
+    justify-items: center;
+}
+
+main {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0px
+}
+
+#back-to-start {
+    opacity: 1;
+    transition: opacity 0.5s, visibility 0.5s;
+    position: fixed;
+    z-index: 99;
+    right: 0px;
+    user-select: none;
+    bottom: 0px;
+    color: #ffffff;
+    background-color: #142062;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: auto;
+}
+
+#back-to-start a {
+    color:#ffffff
+}
+
+#back-to-start.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#nav-nie-logo {
+    /* padding-top: 20px; */
+    margin-bottom: 0px;
+    /* margin-right: 45%; */
+    filter: brightness(0) invert(1);
+    aspect-ratio: initial;
+    min-width: 80px;
+}
+
+#nav-aig-logo {
+    align-content: flex-end;
+    aspect-ratio: initial;
+    height: 75px;
+    margin-top: 10px;
+}
+
+#quick-read-title {
+    /* width: 720px; */
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: right;
+  gap: 15px;
+  margin-right: 10px;
+  border: 0px;
+  border-color: white;
+}
+
+.domain-card {
+    border: 1px solid #142062;
+    flex: 1 1 300px;
+}
+
+
+button {
+    min-width: 160px;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    color: #FFFFFF;
+    background-color: #008675;
+    align-items: stretch;
+    border-bottom: 0px;
+}
+
+.card-title {
+    padding-left: 0px
+}
+
+.list-comment {
+    padding-left: 0px
+}
+
+.card-subheader {
+    color: #FFFFFF;
+    background-color: #008675;
+    padding: 0px 15px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    min-height: 85px; 
+    align-items: stretch;
+}
+
+.top-menu-item {
+    margin-bottom: 12px;
+    padding-bottom: 45px;
+    color: white;
+    font-size: 16pt;
+    font-weight: bold;
+    cursor: pointer;
+    /* border-radius: 25px; */
+    border-width: 0px;
+    background-color: 	#142062;
+    border: 2px solid #FFFFFF;
+    flex: 1 1 50px;
+    align-content: center;
+    justify-content: center;
+    max-width: 70px;
+    max-height: 40px;
+}
+
+.top-menu-item:hover {
+    background-color: #3878C5;
+}
+
+.top-menu-item.selected-item {
+    color: #142062;
+    background-color: white;  
+}
+
+.top-menu-item.selected-item:hover {
+    color: white;
+    background-color: #142062;
+}
+
+.top-menu-item.selected-item:hover i {
+    filter: brightness(0) invert(1);
+}
+
+.top-menu-item.selected-item:hover img {
+    filter: brightness(0) invert(1);
+}
+
+p {
+    padding-left: 25px;
+    padding-right: 10px; 
+    font-size: 19px
+}
+
+h2 {
+    padding-left: 25px;
+    padding-right: 10px
+}
+
+ul {
+    padding-left: 60px;
+    padding-right: 10px
+}
+
+#improving-text {
+    padding: 0px
+}
+
+#nochange-text {
+    padding: 0px
+}
+
+#worsening-text {
+    padding: 0px
+}
+
+#insufficient-text {
+    padding: 0px
+}
+
+.top-menu-logo {
+    width: 25px;
+    padding-top: 10px;
+    margin-bottom: 15px;
+    filter: brightness(0) invert(1);
+}
+
+.key-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px; 
+  flex-wrap: wrap;     
+  padding: 20px  
+}
+
+.key-title {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+
+.key-items {
+  display: flex;
+  align-items: center;
+  gap: 16px; 
+  flex-wrap: wrap;  
+    font-size: 12pt;
+}
+
+
+.key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; 
+  white-space: nowrap;
+  font: inherit;
+}
+
+.key-square {
+  width: 60px;
+  height: 40px;            /* Half the width */
+  background-color: #FF6200;
+  border-radius: 100px 100px 0 0;  /* Top-left & top-right rounded */
+  margin-bottom: 10px;
+}
+
+.key-square.positive {
+    background-color: #00A857;
+}
+
+.key-square.negative {
+    background-color: #db0000;
+}
+
+.key-square.insufficient {
+    background-color: #757575;
+}
+
+.gauge-row, .all-domains-gauge-row {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1260px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  gap: 2%;
+  align-content: center;
+  margin-top: 15px;
+}
+
+.gauge-box, .all-domains-gauge-box {
+  width: 100%;
+  height: auto !important;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gauge-canvas {
+  width: 350px;
+  max-height: 220px !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+
+.all-domains-card {
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1400px) {
+
+    /* #quick-read-title {
+        width: 40%;
+    } */
+
+    h1 {
+        font-size: 25pt;
+    }
+
+    #nav-nie-logo {
+        margin-left: 0%;
+
+    }
+}
+
+@media (max-width: 1200px) {
+
+    /* #quick-read-title {
+        width: 40%;
+    } */
+
+    h1 {
+        font-size: 25pt;
+    }
+
+    #nisra-header-logo {
+        margin-left: 20%
+    }
+
+     #nav-nie-logo {
+        margin-left: 35%
+    }
+
+}
+
+@media (max-width: 992px) {
+    /* #quick-read-title {
+        width: 40%;
+    } */
+
+     #nisra-header-logo {
+        margin-left: 20%
+    }
+
+     #nav-nie-logo {
+        padding-left: 15%
+    }
+
+    .button-row {
+        margin-right: 0px;
+    }
+
+    button {
+        min-width: 150px;
+    }
+
+
+    .gauge-row {
+        font-size: smaller;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+
+    
+    .top-menu-item {
+        font-size: 13px;
+        padding: 6px 10px;
+        min-height: 36px;
+        /* max-width: 160px; */
+    }
+    .top-menu-logo {
+        width: 18px;
+        padding-top: 0;
+        margin-bottom: 4px;
+    }
+
+    h1 {
+        font-size: 20pt;
+    }
+
+    .col-8 {
+        margin-left: 10%
+    }
+
+    #aig-footer-logo {
+        margin-left: 25%
+    }
+
+    #nie-header-logo {
+        margin-left: -10%;
+    }
+
+    #nisra-header-logo {
+        margin-left: -15%;
+    }
+
+
+    button {
+        min-width: 150px;
+    }
+}
+
+.col-8 {
+    margin-left: 0px
+}
+
+.tint-row {
+    align-items: space-between;
+}
+
+
+.full-width-banner {
+      width: 100%;
+      background-color: #142062;
+      color: white;
+      font-size: 20pt;
+      padding: 5px;
+      text-align: center;
+    }
+
+.key-hex {
+    height: 50px;
+    width: 50px;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background-color: #FF6200;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
+
+.key-hex.positive {
+    background-color: #00A857;
+}
+
+.key-hex.negative {
+    background-color: #db0000;
+}
+
+.key-hex.insufficient {
+    background-color: #757575;
+}
+
+.key-hex-label {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #FF9A5C;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    /* padding-left: 7.5px; */
+    /* padding-right: 10px; */
+    padding-top: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.key-hex-label.positive {
+    background-color: #a1daa1;
+    padding-left: 13px;
+}
+
+.key-hex-label.negative {
+    background-color: #FF7A7A;
+    padding-left: 13px;
+}
+
+.key-hex-label.insufficient {
+    background-color: #B0B0B0;
+}
+
+.key-hex-large {
+    height: 70px;
+    width: 70px;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background-color: #FF6200;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.key-hex-large.positive {
+    background-color: #00A857;
+}
+
+.key-hex-large.negative {
+    background-color: #db0000;
+}
+
+.key-hex-large.insufficient {
+    background-color: #757575;
+}
+
+.key-hex-large-label {
+    position: absolute;
+    height: 55px;
+    width: 55px;
+    background-color: #FF9A5C;
+    -webkit-clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    /* padding-left: 7.5px; */
+    /* padding-right: 10px; */
+    padding-top: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+.key-hex-large-label.positive {
+    background-color: #a1daa1;
+    padding-left: 13px;
+}
+
+.key-hex-large-label.negative {
+    background-color: #FF7A7A;
+    padding-left: 13px;
+}
+
+.key-hex-large-label.insufficient {
+    background-color: #B0B0B0;
+}
+
+#arrow-down, #arrow-up {
+    margin-left: -5px;
+    max-height: 25px;
+}
+
+#arrow-across {
+    margin-left: 5px;
+    max-height: 30px;
+}
+
+#arrow-down-large, #arrow-up-large {
+    margin-left: -8px;
+    margin-top: 0px;
+    max-height: 45px;
+}
+
+#arrow-across-large {
+    margin-left: 5px;
+    margin-top: 0px;
+    max-height: 45px;
+}
+
+.hex-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 8px;
+  padding-left: 20px;
+}
+
+
+ .nisrafooter ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    font-size: 14pt;
+    font-weight:700;
+}
+
+
+.nisrafooter li {
+    margin-right: 18px;
+    display: inline-block;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.nisrafooter a {
+    color: #FFFFFF !important;
+}
+
+.cc-li a {
+    color: #FFFFFF !important;
+}
+
+.flex-list-footer {
+    position: relative;
+    margin: 20px 0em 0em 0em; /* T R B L */
+    display:block;
+    overflow: hidden;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #fff;
+  text-decoration-thickness: 2px;
+}
+
+.footer-links { 
+    list-style: none; 
+    padding-left: 0; 
+}
+
+.footer-links .list-inline-item { 
+    margin: 0 .5rem; 
+}
+
+/* More vertical spacing in vertical lists */
+footer ul.list-unstyled li { 
+    margin-bottom: 0.5rem; 
+}
+
+footer .list-inline-item img {
+    width: 43px;
+    height: 43px;
+}
+
+/* Social icon hover */
+footer .list-inline-item img, #footer-nisra-logo {
+  transition: box-shadow 0.2s ease, border 0.2s ease;
+}
+footer .list-inline-item img:hover, #footer-nisra-logo:hover {
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    padding-bottom: 28px;
+    background-color: #00205b;
+    color: #fff;
+    border-top: 4px solid #3878c5;
+    width: 100%;
+}
+
+#survey {
+    color: #ffffff;
+    background-color: #008675 !important;
+    display: flex;
+    font-size: 14pt;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+
+#survey a[target="_blank"]::after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11"><g fill="none" stroke="white" stroke-width="1"><path d="M0 3h2V0h12v8h-2v3H0zm13-2H3v6h10zM2 4H1v4h1zm-1 6h10V8H1z"/></g></svg>');
+  display: inline-block;
+  width: 14px;
+  height: 11px;
+  margin: 0 5px 0 5px;
+}
+
+#aig-footer-logo {
+    aspect-ratio: initial;
+    width: 200px;
+}
+
+ .col-sm-2 {
+    margin-right: 40px
+  }
+
+  .gauge-box {
+    justify-content: start;
+  }
+
+#nisra-header-logo {
+    max-height: 50px;
+    margin-top: 15px;
+    /* margin-left: 20%; */
+}
+
+@media (max-width: 992px) {
+
+#nisra-header-logo {
+    height: 30px;
+    margin-bottom: 10px;
+ }
+
+ #nav-nie-logo {
+    height: 35px;
+    margin-left: 10%
+ }   
+
+ .top-menu-item {
+    min-width: 110px;
+ }
+
+ .button-row {
+    justify-content: center;
+    padding-left: 15px;
+ }
+
+ /* main {
+    padding-right: 15px;
+ } */
+ 
+}
+
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  #nisra-header-logo {
+    margin-left: 0px
+  }
+
+  .col-sm-2 {
+    margin-top: 40px;
+    margin-right: 95px
+  }
+
+  body {
+    background: #ffffff !important;
+    margin: 0 !important;
+  }
+
+  /* Hide UI controls that should not appear in the PDF */
+  .button-row,
+  #back-to-start,
+  #cookie-banner,
+  #survey {
+    display: none !important;
+  }
+
+  /* Keep colours where possible */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Avoid awkward page breaks inside cards / sections */
+  .domain-card,
+  .card,
+  .card-header,
+  .card-subheader,
+  .gauge-row,
+  .hex-row,
+  .full-width-banner,
+  footer,
+  header {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  main {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .container,
+  .row {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: underline;
+  }
+  
+  
+
+  /* Optional: make footer start on a fresh page if needed */
+  /* footer { page-break-before: always; } */
+}

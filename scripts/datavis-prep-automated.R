@@ -34,6 +34,18 @@ suppressWarnings({ # Turn off warnings
     
   }
   
+  # Fix image paths in data_functions.js by converting svg images to xml
+  for (svg in SVGs) {
+    fixedData <- gsub(paste0("img/", svg),
+                     paste0("data:image/svg+xml,",
+                            readLines(paste0("img/", svg)) %>%
+                              paste(collapse = " ") %>%
+                              encodeURIComponent()),
+                     fixedData,
+                     fixed = TRUE)
+    
+  }
+  
   # Embed gif in navigation_functions.js
   fixedNav <- gsub("img/page-loading.gif",
                     paste0("data:image/gif;base64,", base64encode("img/page-loading.gif")),

@@ -1,0 +1,74 @@
+{
+  "Thriving Children": {
+    "Children's social care": "improved",
+    "Life satisfaction among young people": "worsened",
+    "Self-efficacy among young people": "worsened",
+    "Small for gestational age": "no_change"
+  },
+  "Cleaner Environment": {
+    "Air pollution": "improved",
+    "Coastal water condition": "worsened",
+    "Condition of protected sites": "worsened",
+    "Greenhouse gas emissions": "improved",
+    "Outdoor recreation": "worsened",
+    "Recycled waste": "no_change",
+    "Renewable electricity": "improved",
+    "River water quality": "no_change",
+    "Sustainable travel - public transport": "no_change"
+  },
+  "Equal Society": {
+    "Cultural identity": "improved",
+    "Income deprivation": "no_change",
+    "Income inequality": "no_change",
+    "Respect": "worsened"
+  },
+  "Healthier Lives": {
+    "Active travel - walking and cycling": "no_change",
+    "Healthy life expectancy (females)": "worsened",
+    "Healthy life expectancy (males)": "no_change",
+    "Mental health": "improved",
+    "Preventable deaths": "worsened",
+    "Sport and physical activity": "worsened"
+  },
+  "Brighter Futures": {
+    "Arts and cultural activities": "improved",
+    "Life satisfaction": "no_change",
+    "School leavers attainment gap": "insufficient_data",
+    "Self-efficacy": "worsened"
+  },
+  "Stronger Economy": {
+    "Economic inactivity": "improved",
+    "Employment rate": "improved",
+    "External sales rate": "improved",
+    "Good jobs": "improved",
+    "International reputation": "no_change",
+    "Labour productivity": "improved",
+    "Northern Ireland Composite Economic Index": "improved",
+    "Research and development": "worsened",
+    "Skills": "improved"
+  },
+  "Safer Communities": {
+    "Crime prevalence rate": "no_change",
+    "Personal safety": "no_change",
+    "Processing times for criminal cases": "no_change",
+    "Safe towns and city centres": "worsened",
+    "Worry about crime": "no_change"
+  },
+  "Caring Society": {
+    "Adult social care": "no_change",
+    "Loneliness": "improved",
+    "Volunteering": "no_change"
+  },
+  "Better Homes": {
+    "Availability of suitable housing": "no_change",
+    "Homelessness": "worsened",
+    "Housing costs as a proportion of household income": "no_change",
+    "Housing stress": "worsened"
+  },
+  "Living Peacefully": {
+    "Community relations": "improved",
+    "Shared community": "worsened",
+    "Trust in the media": "no_change",
+    "Trust in the NI Assembly": "no_change"
+  }
+}
