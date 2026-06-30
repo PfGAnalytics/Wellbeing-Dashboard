@@ -1,4 +1,3 @@
-
 library("magrittr")
 library("base64enc")
 library("httpuv")
@@ -55,6 +54,7 @@ suppressWarnings({ # Turn off warnings
     )
   }
 
+  # and png images to base64
   for (png in png_list) {
     fixed_data <- gsub(
       paste0("img/", png),
@@ -63,6 +63,19 @@ suppressWarnings({ # Turn off warnings
         base64encode(paste0("img/", png))
       ),
       fixed_data,
+      fixed = TRUE
+    )
+  }
+
+  # Fix images in navigation_functions.js by converting png images to base64
+  for (png in png_list) {
+    fixed_nav <- gsub(
+      paste0("img/", png),
+      paste0(
+        "data:image/png;base64,",
+        base64encode(paste0("img/", png))
+      ),
+      fixed_nav,
       fixed = TRUE
     )
   }
