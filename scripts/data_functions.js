@@ -2442,25 +2442,65 @@ async function renderPopup (d, e, eq_group) {
       let shouldInclude = true;
 
       if (label === "Northern Ireland") {
+  const niSetting = domains_data[lookUpDomain].indicators[lookUpIndicator].ni_line;
 
-          const niSetting = domains_data[lookUpDomain].indicators[lookUpIndicator].ni_line;
+  if (e === "School leavers attainment gap") {
+    const splitIndex = years.indexOf("2018/19");
 
-          if (niSetting === true) {
-              // Render NI as a line
-              dataset.type = 'line';
-              dataset.borderColor = "#3878c5";
-              dataset.pointBackgroundColor = "#3878c5";
-              dataset.hidden = true;
-              dataset.backgroundColor = colours[j % colours.length];
-              dataset.borderWidth = 3;
-              dataset.pointStyle = 'circle';
-              dataset.fill = false;
+    // Line from index 0 to 2018/19
+      const niLineDataset = {
+      ...dataset,
+      label: "Northern Ireland",
+      niGroup: true,
+      type: "line",
+      data: dataset.data.map((value, index) =>
+         index <= splitIndex ? value : null
+      ),
+      borderColor: "#3878c5",
+      pointBackgroundColor: "#3878c5",
+      backgroundColor: "#3878c5",
+      borderWidth: 3,
+      pointStyle: "circle",
+      fill: false,
+      hidden: true,
+      spanGaps: false
+      };
 
-          } else {
-              // Completely exclude NI
-              shouldInclude = false;
-          }
-      }
+      // Points after 2018/19
+      const niPointDataset = {
+      ...dataset,
+      label: "",          // no legend entry
+      niGroup: true,
+      type: "scatter",
+      data: dataset.data.map((value, index) =>
+         index > splitIndex ? value : null
+      ),
+      borderColor: "#3878c5",
+      pointBackgroundColor: "#3878c5",
+      backgroundColor: "#3878c5",
+      pointStyle: "circle",
+      pointRadius: 4,
+      showLine: false,
+      hidden: true
+      };
+
+      data.datasets.push(niLineDataset);
+      data.datasets.push(niPointDataset);
+
+      shouldInclude = false;
+  } else if (niSetting === true) {
+    dataset.type = "line";
+    dataset.borderColor = "#3878c5";
+    dataset.pointBackgroundColor = "#3878c5";
+    dataset.hidden = true;
+    dataset.backgroundColor = colours[j % colours.length];
+    dataset.borderWidth = 3;
+    dataset.pointStyle = "circle";
+    dataset.fill = false;
+  } else {
+    shouldInclude = false;
+  }
+}
 
       if (shouldInclude) {
           data.datasets.push(dataset);
@@ -2503,26 +2543,47 @@ async function renderPopup (d, e, eq_group) {
             },
             plugins: {
             legend: {
-               title: {
-                  display: false,
-                  text: "Click legend item to hide/show series in chart",
-                  color: "#ffffff",
-                  font: {
-                     family: "Arial, Helvetica, sans-serif",
-                     size: 18
-               },
-               padding: {
-                  top: 10
-               }
-            },
-               labels: {
-                  color: "#212529",
-                     font: {
-                     family: "Arial, Helvetica, sans-serif",
-                     size: 14
-                  }
-               }
+   title: {
+      display: false,
+      text: "Click legend item to hide/show series in chart",
+      color: "#ffffff",
+      font: {
+         family: "Arial, Helvetica, sans-serif",
+         size: 18
+      },
+      padding: {
+         top: 10
+      }
+   },
+   labels: {
+      color: "#212529",
+      font: {
+         family: "Arial, Helvetica, sans-serif",
+         size: 14
+      },
+      filter: function (legendItem, chartData) {
+         return legendItem.text !== "";
+      }
+   },
+   onClick: function (event, legendItem, legend) {
+      const chart = legend.chart;
+      const clickedDataset = chart.data.datasets[legendItem.datasetIndex];
+
+      if (clickedDataset.niGroup) {
+         const visible = chart.isDatasetVisible(legendItem.datasetIndex);
+
+         chart.data.datasets.forEach((ds, index) => {
+            if (ds.niGroup) {
+               chart.setDatasetVisibility(index, !visible);
             }
+         });
+
+         chart.update();
+      } else {
+         Chart.defaults.plugins.legend.onClick(event, legendItem, legend);
+      }
+   }
+}
             }
          },
          
