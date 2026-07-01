@@ -3,23 +3,23 @@ library("base64enc")
 library("httpuv")
 
 # Folder to store uploads in
-uploadDir <- "dashboard-to-upload/"
+upload_dir <- "dashboard-to-upload/"
 
 # List all svg files in img folder
-SVGs <- list.files("img", pattern = "*.svg")
+svg_list <- list.files("img", pattern = "*.svg")
 
 # List all png files in img folder
-PNGs <- list.files("img", pattern = "*.png")
+png_list <- list.files("img", pattern = "*.png")
 
 suppressWarnings({  # Turn off warnings
-  
-  # Read in quick-read.js as "originalJS" and take copy of it "fixedJS"
-  originalJS <- readLines("scripts/quick-read.js", warn = FALSE)
-  fixedJS <- originalJS
-  
+
+  # Read in quick-read.js as "original_js" and take copy of it "fixed_js"
+  original_js <- readLines("scripts/quick-read.js", warn = FALSE)
+  fixed_js <- original_js
+
   # Fix image paths in quick-read.js by converting svg images to xml
-  for (svg in SVGs) {
-    fixedJS <- gsub(
+  for (svg in svg_list) {
+    fixed_js <- gsub(
       paste0("img/", svg),
       paste0(
         "data:image/svg+xml,",
@@ -27,25 +27,33 @@ suppressWarnings({  # Turn off warnings
           paste(collapse = " ") %>%
           encodeURIComponent()
       ),
-      fixedJS,
+      fixed_js,
       fixed = TRUE
     )
   }
-  
+
   # Embed gif in quick-read.js
-  fixedJS <- gsub(
+  fixed_js <- gsub(
     "img/page-loading.gif",
     paste0("data:image/gif;base64,", base64encode("img/page-loading.gif")),
-    fixedJS,
+    fixed_js,
     fixed = TRUE
   )
-  
+
   # Write out temporary inlined quick-read.js
-  writeLines(fixedJS, "scripts/quick-read.js")
-  
+  writeLines(fixed_js, "scripts/quick-read.js")
+
   # Convert html to character vector
   index <- readLines("quick-read.html", warn = FALSE)
-  
+
+  # remove reference to index.html
+  index <- gsub(
+    "index.html",
+    "pfg_wellbeing_dashboard.html",
+    index,
+    fixed = TRUE
+  )
+
   # Embed css in html
   index <- gsub(
     "custom.css",
@@ -53,20 +61,22 @@ suppressWarnings({  # Turn off warnings
     index,
     fixed = TRUE
   )
-  
+
   # ---- Embed new JSON data sources ----
-  
+
   # domains_data.js
   domains_path <- "scripts/domains_data.js"
-  domains_b64 <- base64encode(readBin(domains_path, "raw", file.info(domains_path)$size))
+  domains_b64 <- base64encode(
+    readBin(domains_path, "raw", file.info(domains_path)$size)
+  )
   domains_data_url <- paste0("data:text/javascript;base64,", domains_b64)
-  
+
   # Path to main JS
   quick_js <- "scripts/quick-read.js"
-  
+
   # Read JS so we can replace any file path references with embedded data URLs
   js_code <- readLines(quick_js, warn = FALSE)
-  
+
   # Replace domains_data.js reference in JS
   js_code <- gsub(
     "scripts/domains_data.js",
@@ -74,10 +84,10 @@ suppressWarnings({  # Turn off warnings
     js_code,
     fixed = TRUE
   )
-  
-  
+
+
   cat(js_code, file = quick_js, sep = "\n")
-  
+
   # Embed quick-read.js itself into the HTML
   index <- gsub(
     paste0('<script type="text/javascript" src="', quick_js, '"></script>'),
@@ -89,10 +99,10 @@ suppressWarnings({  # Turn off warnings
     index,
     fixed = TRUE
   )
-  
-  
-  # Embed SVGs in HTML
-  for (svg in SVGs) {
+
+
+  # Embed svg_list in HTML
+  for (svg in svg_list) {
     index <- gsub(
       paste0("img/", svg),
       paste0(
@@ -105,9 +115,9 @@ suppressWarnings({  # Turn off warnings
       fixed = TRUE
     )
   }
-  
-  # Embed PNGs in HTML
-  for (png in PNGs) {
+
+  # Embed png_list in HTML
+  for (png in png_list) {
     index <- gsub(
       paste0("img/", png),
       paste0("data:image/png;base64,", base64encode(paste0("img/", png))),
@@ -115,11 +125,11 @@ suppressWarnings({  # Turn off warnings
       fixed = TRUE
     )
   }
-  
+
   # Write out new self-contained html file
-  writeLines(index, paste0(uploadDir, "quick-read.html"))
-  
+  writeLines(index, paste0(upload_dir, "quick-read.html"))
+
   # Restore quick-read.js to its original state
-  writeLines(originalJS, "scripts/quick-read.js")
-  
+  writeLines(original_js, "scripts/quick-read.js")
+
 })
