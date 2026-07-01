@@ -4133,11 +4133,11 @@ const codeToInfoMap = (() => {
 
           const link = document.createElement('a');
           const urlIndicator = item.indicatorName.replace(/[^a-z ]/gi, '').toLowerCase().replaceAll(" ", "+");
-          link.href = `index.html?indicator=${urlIndicator}`;
+          link.href = `?indicator=${urlIndicator}`;
           link.textContent = item.indicatorName;
 
           const domainLink = document.createElement('a');
-          domainLink.href = `index.html?domain=${item.domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
+          domainLink.href = `?domain=${item.domainName.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '+')}`;
           domainLink.textContent = item.domainName;
 
           const nameCell = document.createElement('td');
