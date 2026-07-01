@@ -394,7 +394,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Over the last ten years, the proportion of individuals in absolute poverty (BHC) generally decreased slowly from a high of 21% in 2013/14 to a low of 12% in 2020/21 before increasing to the current position of 15% in 2023/24.",
+               no_change: "Over the last ten years, the proportion of individuals in absolute poverty (BHC) generally decreased slowly from a high of 21% in 2013/14 to a low of 12% in 2020/21 before increasing to the current position of 15% in 2023/24. Due to the ongoing transformation work to the Family Resources Survey (FRS) these figures remain subject to revision and may change in future releases. Further information on this transformation work is available https://www.communities-ni.gov.uk/topics/family-resources-survey-and-poverty-analysis",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -417,7 +417,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Over the last ten years, the proportion of individuals in relative poverty (BHC) has fluctuated between a high of 22% in 2014/15 and lows of 16% in 2017/18 and 2021/22.",
+               no_change: "Over the last ten years, the proportion of individuals in relative poverty (BHC) has fluctuated between a high of 22% in 2014/15 and lows of 16% in 2017/18 and 2021/22. Due to the ongoing transformation work to the Family Resources Survey (FRS) these figures remain subject to revision and may change in future releases. Further information on this transformation work is available https://www.communities-ni.gov.uk/topics/family-resources-survey-and-poverty-analysis",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
@@ -1175,7 +1175,7 @@ var domains_data = {
             improvement: "decrease",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population.",
+               no_change: "Over the last ten years, the proportion of individuals in households spending 30% or more of household income on housing costs generally decreased slowly from a high of 11% in 2013/14 to a low of 6% in 2021/22. However, there has consistently been a larger proportion spending 30% or more of household income on housing costs in the rental sectors compared to the overall population. Due to the ongoing transformation work to the Family Resources Survey (FRS) these figures remain subject to revision and may change in future releases. Further information on this transformation work is available https://www.communities-ni.gov.uk/topics/family-resources-survey-and-poverty-analysis",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
