@@ -838,8 +838,8 @@ var domains_data = {
             importance: "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
             base_year: "2021",
             ci: 1,
-            latest_update: "27-03-2026",
-            next_update: "Summer 2026",
+            latest_update: "03-07-2026",
+            next_update: "September 2026",
             map_commentary: "",
             data: {
                NI: "INDNICEINI",
@@ -849,7 +849,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2025 data is now at a series high. Over the fourth quarter of 2025, economic output in Northern Ireland increased by 0.2%,  mainly driven by increased activity in the Construction sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2025 data is now at a series high. Over the first quarter of 2026, economic output in Northern Ireland increased by 0.7%,  mainly driven by increased activity in the Services sector. Quarterly figures are available: <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
