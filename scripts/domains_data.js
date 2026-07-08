@@ -638,8 +638,8 @@ var domains_data = {
             base_year: null,
             AOS: true,
             ci: 4,
-            latest_update: "31-07-2025",
-            next_update: "Summer 2026",
+            latest_update: "09-07-2025",
+            next_update: "June 2027",
             map_commentary: "",
             ni_line: true,
             data: {
