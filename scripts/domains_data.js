@@ -818,7 +818,7 @@ var domains_data = {
             base_year: "2019",
             ci: 0.1,
             latest_update: "04-07-2025",
-            next_update: "Summer 2026",
+            next_update: "November 2026",
             map_commentary: "",
             data: {
                NI: "INDLABPRDTNI",
