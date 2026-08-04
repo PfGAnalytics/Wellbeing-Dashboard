@@ -1139,8 +1139,8 @@ var domains_data = {
             importance: "This indicator provides information on the number of households who have presented and been accepted as homeless by the NI Housing Executive. Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
             base_year: "2021/22",
             ci: 0,
-            latest_update: "10-08-2025",
-            next_update: "Summer 2026",
+            latest_update: "05-08-2026",
+            next_update: "July 2027",
             map_commentary: "",
             ni_line: false,
             data: {
@@ -1153,7 +1153,7 @@ var domains_data = {
             telling: {
                improved: "This commentary is a placeholder.",
                no_change: "This commentary is a placeholder.",
-               worsened: "From 2021/22 until 2023/24, the number of households that have been accepted as homeless rose year on year. While the number of households accepted as homeless has decreased in 2024/25, it still remains higher than the position in 2021/22. All of those who are accepted as statutorily homeless have a statutory duty to temporary accommodation and there has been an increase in the number of placements in temporary accommodation over the period, from 9,265 placements in 2021/22 to 11,887 in 2024/25.  The number of households accepted as homeless is an annual total for each given year whereas the number of households placed in Temporary Accommodation is a cumulative figure that will include households that were accepted as homeless in previous years.  Not all households accepted as homeless will be allocated a home within the same year.",
+               worsened: "From 2021/22 until 2023/24, the number of households accepted as homeless rose year on year. While the number of households accepted as homeless decreased in 2024/25 and remained similar to that lower level in 2025/26, it is still higher than the position in 2021/22. All of those who are accepted as statutorily homeless have a statutory duty to temporary accommodation and there has been an increase in the number of placements in temporary accommodation over the period, from 9,265 placements in 2021/22 to 12,739 in 2025/26. The number of households accepted as homeless is an annual total for each given year whereas the number of households placed in Temporary Accommodation is a cumulative figure that will include households that were accepted as homeless in previous years. Not all households accepted as homeless will be allocated a home within the same year.",
                insufficient: ""
             }
          },
@@ -1182,11 +1182,11 @@ var domains_data = {
          },
          "Housing stress": {
             importance: "A household in housing stress is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.  Access to good quality, sustainable and affordable housing enables people to thrive and maintain their quality of life, with links to better outcomes in health, education and employment.",
-            base_year: "2020/21",
+            base_year: "2021/22",
             AOS: true,
             ci: 0,
-            latest_update: "04-12-2025",
-            next_update: "September 2026",
+            latest_update: "05-08-2026",
+            next_update: "July 2027",
             map_commentary: "",
             ni_line: false,
             data: {
