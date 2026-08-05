@@ -21,7 +21,7 @@
       },
       "TLIST(A1)": {
         "category": {
-          "index": ["2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24", "2024/25"],
+          "index": ["2013/14", "2014/15", "2015/16", "2016/17", "2017/18", "2018/19", "2019/20", "2020/21", "2021/22", "2022/23", "2023/24", "2024/25", "2025/26"],
           "label": {
             "2013/14": "2013/14",
             "2014/15": "2014/15",
@@ -34,7 +34,8 @@
             "2021/22": "2021/22",
             "2022/23": "2022/23",
             "2023/24": "2023/24",
-            "2024/25": "2024/25"
+            "2024/25": "2024/25",
+            "2025/26": "2025/26"
           }
         },
         "label": "Financial year"
@@ -117,15 +118,15 @@
       ]
     },
     "note": [
-      "[b]Housing stress[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of households in housing stress. For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Housing Statistics, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/housing-statistics]https://www.communities-ni.gov.uk/topics/housing-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19.\r\n\r\n[b]Further information\r\n[/b]1. ‘Housing stress’ is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.\r\n2. Data for LGD are only available from 2013/14 onwards."
+      "[b]Housing stress[/b]\r\n\r\n[b]How do we measure this?[/b]\r\nNumber of households in housing stress. For this indicator a lower figure is better.\r\n\r\n[b]Source[/b]\r\nNorthern Ireland Housing Statistics, Department for Communities\r\n[url=https://www.communities-ni.gov.uk/topics/housing-statistics]https://www.communities-ni.gov.uk/topics/housing-statistics[/url]\r\n\r\n[b]Impact of Covid-19[/b]\r\nThere has been no change to the data collection methodology due to Covid-19.\r\n\r\n[b]Further information\r\n[/b]1. ‘Housing stress’ is defined as an applicant on the waiting list (with no existing NIHE/Housing Association tenancy) having 30 or more points under the Common Selection Scheme.\r\n2. As the number of households in housing stress is taken from an administrative dataset any change could be classed as a real change.\r\n3. Data for LGD are only available from 2013/14 onwards."
     ],
     "role": {
       "metric": "STATISTIC",
       "time": "TLIST(A1)"
     },
-    "size": [1, 12, 11],
-    "updated": "2026-06-17T9:30:00",
-    "value": [1517, 1233, 6912, 1224, 2539, 434, 1165, 1548, 993, 2036, 1985, 1519, 1189, 6933, 1286, 2750, 506, 1173, 1509, 1017, 2151, 2064, 1681, 1142, 7134, 1156, 2981, 537, 1183, 1469, 1030, 2264, 2068, 1668, 1268, 7322, 1292, 3126, 668, 1268, 1563, 1008, 2367, 2144, 1703, 1382, 7336, 1240, 3279, 721, 1420, 1607, 1044, 2388, 2028, 1902, 1713, 8011, 1531, 3401, 1018, 1535, 1625, 1204, 2516, 1931, 2039, 1946, 8143, 1580, 3603, 1153, 1677, 1837, 1173, 2641, 1953, 2187, 2365, 8783, 1753, 3951, 1261, 1747, 1852, 1269, 2976, 2144, 2192, 2271, 9307, 1887, 4076, 1346, 1812, 1955, 1307, 3048, 2206, 2378, 2311, 9531, 2069, 4275, 1396, 1817, 2076, 1380, 3133, 2267, 2674, 2470, 10307, 2296, 4735, 1512, 1975, 2340, 1465, 3286, 2404, 2729, 2760, 11203, 2513, 5023, 1592, 2047, 2458, 1570, 3242, 2498],
+    "size": [1, 13, 11],
+    "updated": "2026-08-05T9:30:00",
+    "value": [1517, 1233, 6912, 1224, 2539, 434, 1165, 1548, 993, 2036, 1985, 1519, 1189, 6933, 1286, 2750, 506, 1173, 1509, 1017, 2151, 2064, 1681, 1142, 7134, 1156, 2981, 537, 1183, 1469, 1030, 2264, 2068, 1668, 1268, 7322, 1292, 3126, 668, 1268, 1563, 1008, 2367, 2144, 1703, 1382, 7336, 1240, 3279, 721, 1420, 1607, 1044, 2388, 2028, 1902, 1713, 8011, 1531, 3401, 1018, 1535, 1625, 1204, 2516, 1931, 2039, 1946, 8143, 1580, 3603, 1153, 1677, 1837, 1173, 2641, 1953, 2187, 2365, 8783, 1753, 3951, 1261, 1747, 1852, 1269, 2976, 2144, 2192, 2271, 9307, 1887, 4076, 1346, 1812, 1955, 1307, 3048, 2206, 2378, 2311, 9531, 2069, 4275, 1396, 1817, 2076, 1380, 3133, 2267, 2674, 2470, 10307, 2296, 4735, 1512, 1975, 2340, 1465, 3286, 2404, 2729, 2760, 11203, 2513, 5023, 1592, 2047, 2458, 1570, 3242, 2498, 2854, 2825, 11880, 2648, 5193, 1589, 2049, 2596, 1643, 3232, 2499],
     "version": "2.0"
   },
   "id": {}
