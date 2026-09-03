@@ -1489,37 +1489,28 @@ async function getEqualityGroups(d, e) {
   var labels = Object.values(dimension.EQUALGROUPS.category.label);  // List of all category labels in EQUALGROUPS variable
 
   var eq_groups = [];      // Empty array to be filled with groupings
+  const all_eq_groups = Object.keys(eqgroups);
 
-  for (let i = 0; i < labels.length; i ++) {    // Loop through all labels
+  for (let i = 0; i < all_eq_groups.length; i++) {
+   let keep_group = false;
+   const group_name = all_eq_groups[i];
 
+   for (let j = 0; j < labels.length; j++) {
+      let group;
+      if (labels[j].includes("-")) {
+         group = labels[j].slice(0, labels[j].indexOf("-")).trim();
+      } else {
+         group = labels[j].trim();
+      }
 
-         let group;
-         if (labels[i].includes("-")) {
-           group = labels[i].slice(0, labels[i].indexOf("-")).trim();
-         } else {
-           group = labels[i].trim();
-         }
+      if (group.includes("Age")) {
+         group = "Age"              // Rename any Age category to just "Age"
+      }
+      if (group == group_name & group != "Northern Ireland") keep_group = true;
+   }
 
-
-         if (group.includes("Age")) {
-            group = "Age"              // Rename any Age category to just "Age"
-        }
-
-         if (!eq_groups.includes(group) & group != "Northern Ireland") {
-            eq_groups.push(group)         // If grouping isn't already in eq_groups array, then add it to the array
-         }
-
-         // Ordering "Age" to always come after "Sex"
-         if (eq_groups.includes("Sex") && eq_groups.includes("Age")) {
-            const sexEQ = eq_groups.indexOf("Sex");
-            const ageEQ = eq_groups.indexOf("Age");
-            
-            // Only move Age if it is not already immediately after Sex
-            if (ageEQ !== sexEQ + 1) {
-               eq_groups.splice(ageEQ, 1);          // remove Age
-               eq_groups.splice(sexEQ + 1, 0, "Age"); // insert after Sex
-            }
-         }
+   if (keep_group) eq_groups.push(group_name);
+   
   }
 
   if (e == "Skills") {
