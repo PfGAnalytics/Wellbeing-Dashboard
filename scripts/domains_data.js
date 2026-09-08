@@ -331,7 +331,7 @@ var domains_data = {
             ci: 1.4,
             AOS: true,
             latest_update: "09-01-2026",
-            next_update: "Summer 2026",
+            next_update: "September 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -456,7 +456,7 @@ var domains_data = {
             ci: 3.6,
             AOS: true,
             latest_update: "09-01-2026",
-            next_update: "Summer 2026",
+            next_update: "September 2026",
             map_commentary: "",
             ni_line: true,
             data: {
