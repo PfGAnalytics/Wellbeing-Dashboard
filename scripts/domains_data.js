@@ -326,7 +326,7 @@ var domains_data = {
             }
          },
          "Sustainable travel - public transport": {
-            importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
+            importance: "Encouraging more sustainable and efficient ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and wellbeing for all.",
             base_year: "2022",
             ci: 1.4,
             AOS: true,
@@ -451,7 +451,7 @@ var domains_data = {
        mission: "People",
        indicators: {
          "Active travel - walking and cycling": {
-            importance: "Encouraging more active and sustainable ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and well-being for all.",
+            importance: "Encouraging more active and sustainable ways of travelling will help build connectivity, improve air quality by reducing emissions and promote health and wellbeing for all.",
             base_year: "2022",
             ci: 3.6,
             AOS: true,
