@@ -879,11 +879,11 @@ var domains_data = {
          },
          "Skills": {
             importance: "The proportion of the workforce with low or no qualifications (Level 2 or below) has been a persistent problem in Northern Ireland. Whilst substantial progress was made, continued improvement will be required to keep pace with other comparable small advanced economies.",
-            base_year: "2020",
+            base_year: "2021",
             AOS: true,
-            ci: 1.7,
-            latest_update: "24-10-2025",
-            next_update: "September 2026",
+            ci: 1.6,
+            latest_update: "15-09-2026",
+            next_update: "September 2027",
             map_commentary: "",
             ni_line: false,
             data: {
