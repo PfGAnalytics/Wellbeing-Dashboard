@@ -838,8 +838,8 @@ var domains_data = {
             importance: "The NICEI provides information on the performance of economic activity in NI on a quarterly basis. The NICEI is used to help monitor the progress of a range of key government strategies in NI. The statistic is also used by a broad range of users with an interest in assessing and reporting on the level of economic activity here, such as the ONS, economists in the public and private sector, academics and the media.",
             base_year: "2021",
             ci: 1,
-            latest_update: "03-07-2026",
-            next_update: "September 2026",
+            latest_update: "25-09-2026",
+            next_update: "January 2027",
             map_commentary: "",
             data: {
                NI: "INDNICEINI",
@@ -849,7 +849,7 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2025 data is now at a series high. Over the first quarter of 2026, economic output in Northern Ireland increased by 0.7%,  mainly driven by increased activity in the Services sector. Quarterly figures are available <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
+               improved: "Economic activity has increased gradually in recent years. Economic activity post-pandemic has recovered substantially and the latest 2026 data is now at a series high. Over the second quarter of 2026, economic output in Northern Ireland increased by 1.0%, mainly driven by Quarterly figures are available <a href = 'https://www.nisra.gov.uk/statistics/economic-output-statistics/ni-composite-economic-index' target = '_blank'>from this link. </a>",
                no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
@@ -971,10 +971,10 @@ var domains_data = {
          },
          "Processing times for criminal cases": {
             importance: "Improving the efficiency and effectiveness of the Criminal Justice System has been a longstanding priority for the Department of Justice and criminal justice partner organisations. The speed of the system matters to victims, witnesses and defendants, and their families and communities. Speeding up delivery of justice reduces trauma for victims and defendants, encourages public confidence in the legal system and helps prevent erosion of the accused’s presumption of innocence. Timeliness also improves general public confidence in the wider justice system, and helps demonstrate legitimacy and respect for the rule of law. Tackling delay however is complex and challenging and reforms take time to embed and for their impact to be seen. The Criminal Justice Board has therefore prioritised a programme of work targeted at reducing avoidable delay with the system.  This work is built around five key workstreams and will take forward existing work on committal reform, existing and emerging work in the digital arena and explore other areas for efficiencies such as early engagement, court remits and out of court disposals.",
-            base_year: "2020/21",
+            base_year: "2021/22",
             ci: 5,
-            latest_update: "07-10-2025",
-            next_update: "September 2026",
+            latest_update: "25-09-2026",
+            next_update: "September 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -985,8 +985,8 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "This commentary is a placeholder.",
-               no_change: "The figure for 2020/21 was the first year to reflect the impact of the Covid-19 pandemic on the workings of the justice system, which caused a backlog of cases to occur. While the impact of this backlog is still being reflected in the average time taken to complete cases, some improvement has been noted. The figure for 2024/25 (189 days) is lower than the figure for 2020/21 (193 days).",
+               improved: "Court disruptions, as a result of the Covid-19 pandemic, led to delays and resulted in a backlog of cases to be cleared in 2021/22 and subsequent years. The figure for 2025/26 (209 days) is 17 days less than the figure for 2021/22 (226 days).",
+               no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
