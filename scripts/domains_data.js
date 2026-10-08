@@ -686,11 +686,11 @@ var domains_data = {
        indicators: {
          "Economic inactivity": {
             importance: "This indicator shows the percentage of people who are not engaged in the labour market due to any reason except being a student. It is important as a high economic inactivity rate can restrict labour supply which may in turn affect economic growth.",
-            base_year: "2020",
+            base_year: "2021",
             AOS: true,
             ci: 1.6,
-            latest_update: "17-10-2025",
-            next_update: "October 2026",
+            latest_update: "09-10-2026",
+            next_update: "September 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -701,19 +701,19 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The proportion of people who are economically inactive for any reason apart from being a student has decreased from 2020.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               improved: "",
+               no_change: "The proportion of people who are economically inactive for any reason apart from being a student has remained broadly similar when compared with 2021.",
+               worsened: "",
                insufficient: ""
             }
          },
          "Employment rate": {
             importance: "The employment rate is important as a key labour market indicator. Those who are employed have money to spend which can contribute towards economic growth.",
-            base_year: "2020",
+            base_year: "2021",
             AOS: true,
             ci: 1.8,
-            latest_update: "17-10-2025",
-            next_update: "October 2026",
+            latest_update: "09-10-2026",
+            next_update: "September 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -724,9 +724,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The proportion of people aged 16 to 64 in employment has statistically increased from 2020.",
-               no_change: "This commentary is a placeholder.",
-               worsened: "This commentary is a placeholder.",
+               improved: "The proportion of people aged 16 to 64 in employment has statistically increased from 2021.",
+               no_change: "",
+               worsened: "",
                insufficient: ""
             }
          },
