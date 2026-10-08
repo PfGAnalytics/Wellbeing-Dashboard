@@ -16,9 +16,19 @@ jobs:
             any::magrittr
             any::base64enc
             any::httpuv
+            any::jsonlite
+            any::dplyr
+            any::stringr
+            any::purrr
+            any::openxlsx
+            any::V8
+            any::lubridate
 
       - name: Check out repository
         uses: actions/checkout@v6
+
+      - name: Run Indicator Summary
+        run: Rscript -e 'source("scripts/indicator-performance-table.R")'
 
       - name: Dashboard to self-contained html
         run: Rscript -e 'source("scripts/datavis-prep-automated.R")'
@@ -32,5 +42,7 @@ jobs:
           git config --local user.name "PfGAnalytics"
           git add dashboard-to-upload/pfg_wellbeing_dashboard.html
           git add dashboard-to-upload/quick-read.html
+          git add 'scripts/performance.json'
+          git add 'scripts/performance-meta.json'
           git commit -m 'HTML output created' || echo "No changes to commit"
           git push origin || echo "No changes to commit"

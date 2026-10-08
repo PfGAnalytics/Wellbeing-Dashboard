@@ -178,22 +178,17 @@ if (day(today()) == 1) {
            cols = 1,
            rows = 1:nrow(summary_history) + 1,
            style = createStyle(numFmt = "dd/mm/yyyy"))
-  
+ 
   addStyle(wb,
            "indicator-performance",
            cols = 4:8,
            rows = 1:nrow(summary_history) + 1,
            style = createStyle(halign = "right"),
            gridExpand = TRUE)
-  
+ 
   setColWidths(wb, "indicator-performance", c(2, 3, 10), c(20, 50, 255))
-  
+ 
   saveWorkbook(wb, "indicator-performance-table.xlsx", overwrite = TRUE)
   # openXL("indicator-performance-table.xlsx")
-  
+
 }
-
-
-
-
-
