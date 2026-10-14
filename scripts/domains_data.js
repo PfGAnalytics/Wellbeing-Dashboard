@@ -83,7 +83,7 @@ var domains_data = {
             base_year: "2016",
             ci: 0.1,
             latest_update: "30-01-2025",
-            next_update: "December 2026",
+            next_update: "Spring 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -105,7 +105,7 @@ var domains_data = {
             base_year: "2016",
             ci: 2.6,
             latest_update: "30-01-2025",
-            next_update: "December 2026",
+            next_update: "Spring 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -359,7 +359,7 @@ var domains_data = {
             base_year: "2020",
             ci: 2.7,
             latest_update: "07-11-2025",
-            next_update: "October 2026",
+            next_update: "November 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -427,7 +427,7 @@ var domains_data = {
             base_year: "2019",
             ci: 2.7,
             latest_update: "16-05-2024",
-            next_update: "TBC",
+            next_update: "November 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -616,7 +616,7 @@ var domains_data = {
             base_year: "2021/22",
             ci: 0.11,
             latest_update: "02-02-2026",
-            next_update: "Autumn 2026",
+            next_update: "Spring 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -661,7 +661,7 @@ var domains_data = {
             base_year: "2021/22",
             ci: 2,
             latest_update: "02-02-2026",
-            next_update: "Autumn 2026",
+            next_update: "Spring 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -996,7 +996,7 @@ var domains_data = {
             base_year: "2020",
             ci: 2.7,
             latest_update: "07-11-2025",
-            next_update: "October 2026",
+            next_update: "November 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1067,7 +1067,7 @@ var domains_data = {
             base_year: "2021/22",
             ci: 2,
             latest_update: "02-02-2026",
-            next_update: "Autumn 2026",
+            next_update: "Spring 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1214,7 +1214,7 @@ var domains_data = {
             base_year: "2020",
             ci: 2.7,
             latest_update: "07-11-2025",
-            next_update: "0ctober 2026",
+            next_update: "November 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1236,7 +1236,7 @@ var domains_data = {
             base_year: "2020",
             ci: 2.3,
             latest_update: "07-11-2025",
-            next_update: "October 2026",
+            next_update: "November 2026",
             map_commentary: "",
             ni_line: true,
             data: {
