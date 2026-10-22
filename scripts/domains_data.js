@@ -1088,8 +1088,8 @@ var domains_data = {
             importance: "This indicator provides the proportion of adults in Northern Ireland who volunteer, providing a measure of civic engagement.",
             base_year: "2023/24",
             ci: 2,
-            latest_update: "31-10-2025",
-            next_update: "October 2026",
+            latest_update: "23-10-2026",
+            next_update: "October 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1101,7 +1101,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "This commentary is a placeholder.",
-               no_change: "Although the overall estimate for volunteering in 2024/25 has not changed, consistent gaps continue to exist across key groups. These include differences between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and between people with dependants and those without dependants. Of the 11 LGDs, Fermanagh and Omagh and Lisburn and Castlereagh had the highest proportion of adults volunteering in 2024/25.",
+               no_change: "Although the overall estimate for volunteering in 2025/26 has not changed, consistent gaps continue to exist across key groups. These include differences between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and between people with dependants and those without dependants. Of the 11 LGDs, over half of adults living in the following areas had volunteered in the previous year; Fermanagh and Omagh, Antrim and Newtownabbey and Mid and East Antrim.",
                worsened: "This commentary is a placeholder.",
                insufficient: "This commentary is a placeholder."
             }
