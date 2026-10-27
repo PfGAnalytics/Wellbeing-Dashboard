@@ -1163,7 +1163,7 @@ var domains_data = {
             AOS: true,
             ci: 3,
             latest_update: "10-07-2025",
-            next_update: "August 2026",
+            next_update: "TBC",
             map_commentary: "",
             ni_line: true,
             data: {
