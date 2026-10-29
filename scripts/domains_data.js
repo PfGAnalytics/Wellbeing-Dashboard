@@ -1258,7 +1258,7 @@ var domains_data = {
             base_year: "2021",
             ci: 4,
             latest_update: "12-06-2026",
-            next_update: "October 2026",
+            next_update: "December 2026",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1280,7 +1280,7 @@ var domains_data = {
             base_year: "2021",
             ci: 3.8,
             latest_update: "12-06-2026",
-            next_update: "October 2026",
+            next_update: "December 2026",
             map_commentary: "",
             ni_line: true,
             data: {
