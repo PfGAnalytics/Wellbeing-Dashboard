@@ -359,7 +359,7 @@ var domains_data = {
             base_year: "2020",
             ci: 2.7,
             latest_update: "07-11-2025",
-            next_update: "November 2026",
+            next_update: "March 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -996,7 +996,7 @@ var domains_data = {
             base_year: "2020",
             ci: 2.7,
             latest_update: "07-11-2025",
-            next_update: "November 2026",
+            next_update: "March 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1214,7 +1214,7 @@ var domains_data = {
             base_year: "2020",
             ci: 2.7,
             latest_update: "07-11-2025",
-            next_update: "November 2026",
+            next_update: "March 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1236,7 +1236,7 @@ var domains_data = {
             base_year: "2020",
             ci: 2.3,
             latest_update: "07-11-2025",
-            next_update: "November 2026",
+            next_update: "March 2027",
             map_commentary: "",
             ni_line: true,
             data: {
