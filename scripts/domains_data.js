@@ -96,7 +96,7 @@ var domains_data = {
             telling: {
                improved: "",
                no_change: "",
-               worsened: "As the survey only runs every three years, with the first year being 2016, the comparison year has been set to 2016 to observe differences across the surveys.  There are consistent gaps between males and females, pupils entitled to Free School Meals and those not entitled to Free School Meals, pupils living in urban areas compared to those living in rural areas, pupils with a disability compared to those without a disability, and Year 9 pupils compared to Year 12 pupils.",
+               worsened: "At Northern Ireland level, average life satisfaction among Year 9-12 pupils decreased from 7.6 out of 10 in 2016 to 6.7 in 2022. However, the experience has not been the same for everyone. There have been persistent inequalities between groups of pupils. Life satisfaction has been consistently lower among pupils with a disability, females, pupils entitled to free school meals and pupils living in urban areas when compared with those with no disability, males, those not entitled to free school meals and those living in rural areas.",
                insufficient: ""
             }
          },
@@ -118,7 +118,7 @@ var domains_data = {
             telling: {
                improved: "",
                no_change: "",
-               worsened: "As the survey only runs every three years, with the first year being 2016, the comparison year has been set to 2016 to observe differences across the surveys. There are consistent gaps between males and females, the most and least deprived areas, and pupils with a disability compared to those without a disability.",
+               worsened: "At Northern Ireland level, the percentage of Year 9-12 pupils with low self-efficacy increased from 43% in 2016 to 53% in 2022.  This means that, in 2022, more than half of Year 9-12 pupils had low confidence in their ability to influence the things that affect their lives.  However the experience has not been the same for everyone. There have been persistent inequalities between groups of pupils. A higher percentage of females, pupils with a disability and pupils living in the most deprived areas had low confidence in their own abilities when compared with males, those with no disability, and those living in the least deprived areas.",
                insufficient: ""
             }
          },
