@@ -628,7 +628,7 @@ var domains_data = {
             improvement: "increase",
             telling: {
                improved: "",
-               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend also shows no change in life satisfaction since reporting began in 2014/15. However, consistent gaps remain between the most and least deprived areas, urban and rural areas, people with a disability compared to those without a disability, and also between people who are married or in a civil partnership compared with any other marital status. Of the 11 LGDs, Ards & North Down have the highest rates of life satisfaction for 2024/25.",
+               no_change: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend also shows no change in life satisfaction since reporting began in 2014/15. Persistent inequalities remain across the subpopulation groups. People living in the most deprived areas, people living in urban areas, people with a disability, and people who are single, separated, divorced or widowed felt less satisfied with their lives than those people living in the least deprived areas, people living in rural areas, people without a disability and people that are married or in a civil partnership.",
                worsened: "",
                insufficient: ""
             }
@@ -674,7 +674,7 @@ var domains_data = {
             telling: {
                improved: "",
                no_change: "",
-               worsened: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend shows an improvement in self-efficacy since reporting began in 2014/15. Consistent gaps remain between males and females, the most and least deprived areas, and people with a disability compared with those without.",
+               worsened: "The comparison has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. At the Northern Ireland level, the proportion of people with low self-efficacy increased from 17.6% in 2021/22 to 20.1% in 2024/25. This means that in 2024/25, 1 in 5 people aged 16 and over had low confidence in their ability to influence the things that affect their lives. The longer-term trend shows an overall improvement in self-efficacy since reporting began in 2014/15. However, there has been no real change since the previous year (2023/24). Persistent inequalities remain across subpopulation groups. A higher percentage of females, people living in the most deprived areas and people with a disability had low confidence in their own abilities than males, people living in the least deprived areas and people without a disability. In 2024/25, Derry City & Strabane had the highest proportion of low self-efficacy than any other LGD.",
                insufficient: ""
             }
          }
@@ -1078,7 +1078,7 @@ var domains_data = {
             },
             improvement: "decrease",
             telling: {
-               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels since 2023/24. However, consistent gaps remain between the most and least deprived areas, people with a disability compared with those without, people who are married or in a civil partnership compared with those who are separated, divorced or widowed, and also between people with a white ethnicity compared with any other ethnicity.",
+               improved: "The comparison year has been set to 2021/22 due to changes in the data collection method as a result of Covid-19. At the Northern Ireland level, the proportion of people who reported feeling lonely 'at least some of the time' decreased from 20.2% in 2021/22 to 17.9% in 2024/25. The longer term trend shows a spike in loneliness during the pandemic and appears to be returning to pre-pandemic levels since 2023/24. Persistent inequalities remain across subpopulation groups. A higher percentage of people with a disability, people living in the most deprived areas, people who are single, separated, divorced or widowed, and people with a white ethnicity felt lonelier than those people without a disability, people living in the least deprived areas, people who are married or in a civil partnership and people with any other ethnicity.",
                no_change: "",
                worsened: "",
                insufficient: ""
