@@ -754,10 +754,10 @@ var domains_data = {
          },
          "Good jobs": {
             importance: 'Providing all workers and their families with a decent and secure income is an important priority for the Department for the Economy.  Increasing the proportion of good jobs will be essential in helping to address pay gaps in society and delivering economic and social change.',
-            base_year: "2021",
-            ci: 1.3,
-            latest_update: "11-02-2026",
-            next_update: "December 2026",
+            base_year: "2022",
+            ci: 1.7,
+            latest_update: "27-11-2026",
+            next_update: "November 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -768,9 +768,9 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "The percentage of good jobs in Northern Ireland has increased from 66.9% in 2021 to 69.0% in 2025.",
+               improved: "",
                no_change: "",               
-               worsened: "",
+               worsened: "The percentage of good jobs in Northern Ireland has decreased from 70.9% in 2022 to 69.0% in 2026.",
                insufficient: ""
             }
          },   
