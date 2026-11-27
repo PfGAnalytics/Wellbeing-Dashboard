@@ -1117,8 +1117,8 @@ var domains_data = {
             base_year: "2021/22",
             AOS: true,
             ci: 2,
-            latest_update: "13-01-2026",
-            next_update: "November 2026",
+            latest_update: "30-11-2026",
+            next_update: "October 2027",
             map_commentary: "",
             ni_line: true,
             data: {
@@ -1129,8 +1129,8 @@ var domains_data = {
             },
             improvement: "increase",
             telling: {
-               improved: "This commentary is a placeholder",
-               no_change: "While the proportion of households who report being very satisfied or fairly satisified with their house or flat had improved in 2023/24, the level in 2024/25 is now similar to that in 2021/22.",
+               improved: "The proportion of households who report being very satisfied or fairly satisified with their house or flat has improved significantly during this time.",
+               no_change: "This commentary is a placeholder.",
                worsened: "This commentary is a placeholder.",
                insufficient: ""
             }
